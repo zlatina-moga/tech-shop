@@ -8,9 +8,9 @@ const Footer = () => {
           <a href="" className="text-decoration-none">
             <h1 className="mb-4 display-5 font-weight-semi-bold">
               <span className="text-primary font-weight-bold border border-white px-3 mr-1">
-                E
+                Tech
               </span>
-              Shopper
+              Shop
             </h1>
           </a>
           <p>
@@ -30,29 +30,6 @@ const Footer = () => {
         </div>
         <div className="col-lg-8 col-md-12">
           <div className="row">
-            <div className="col-md-4 mb-5">
-              <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
-              <div className="d-flex flex-column justify-content-start">
-                <a className="text-dark mb-2" href="index.html">
-                  <i className="fa fa-angle-right mr-2"></i>Home
-                </a>
-                <a className="text-dark mb-2" href="shop.html">
-                  <i className="fa fa-angle-right mr-2"></i>Our Shop
-                </a>
-                <a className="text-dark mb-2" href="detail.html">
-                  <i className="fa fa-angle-right mr-2"></i>Shop Detail
-                </a>
-                <a className="text-dark mb-2" href="cart.html">
-                  <i className="fa fa-angle-right mr-2"></i>Shopping Cart
-                </a>
-                <a className="text-dark mb-2" href="checkout.html">
-                  <i className="fa fa-angle-right mr-2"></i>Checkout
-                </a>
-                <a className="text-dark" href="contact.html">
-                  <i className="fa fa-angle-right mr-2"></i>Contact Us
-                </a>
-              </div>
-            </div>
             <div className="col-md-4 mb-5">
               <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
               <div className="d-flex flex-column justify-content-start">
@@ -113,7 +90,7 @@ const Footer = () => {
           <p className="mb-md-0 text-center text-md-left text-dark">
             &copy;{" "}
             <a className="text-dark font-weight-semi-bold" href="#">
-              Your Site Name
+              Tech Shop
             </a>
             . All Rights Reserved. Website created by 
             <a

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Script from "next/script";
+import Navbar from "../global/Navbar";
 import Footer from "../global/Footer";
 import Meta from "./Meta";
 
@@ -11,7 +11,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
     return (
         <>
             <Meta />
-            {/*Navbar*/}
+            <Navbar />
             {/*Scripts*/}
 
             {children}
