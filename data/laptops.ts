@@ -34,6 +34,12 @@ import laptopHPPROBOOK450G3Img5 from  "../public/products/eb-cam-tastatura-ilumi
 import laptopHPEliteBook820G1Img1 from "../public/products/4600u-3-30ghz-8gb-ddr3-180gb-ssd.webp";
 import laptopHPEliteBook820G1Img2 from "../public/products/4gb-ddr3-500gb-hdd-webcam-znej-ll.webp";
 import laptopHPEliteBook820G1Img3 from "../public/products/4gb-ddr3-500gb-hdd-webcam-nsqr-7x.webp";
+import laptopDellLatitudeE7440Img1 from "../public/products/Laptop-Dell-Latitude-E7440-14--Display--Procesor-Intel-Core-i7-4600U-3-30-GHz--8GB-DDR3--256GB-SSD-.jpeg";
+import laptopDellLatitudeE7440Img2 from "../public/products/Laptop-Dell-Latitude-E7440-14--Display--Procesor-Intel-Core-i7-4600U-3-30-GHz--8GB-DDR3--256GB-SSD-_ehyp-up.jpeg";
+import laptopDellLatitudeE7440Img3 from "../public/products/Laptop-Dell-Latitude-E7440-14--Display--Procesor-Intel-Core-i7-4600U-3-30-GHz--8GB-DDR3--256GB-SSD-_dnua-po.jpeg";
+import laptopDellLatitudeUltraBookE7440Img1 from "../public/products/Laptop-Refurbished-Dell-Latitude-UltraBook-E7440--procesor-Intel-Core-i5-4300U--16GB-Ram-DDR3--SSD-256GB--14--Display.jpeg";
+import laptopDellLatitudeUltraBookE7440Img2 from "../public/products/Laptop-Refurbished-Dell-Latitude-UltraBook-E7440--procesor-Intel-Core-i5-4300U--16GB-Ram-DDR3--SSD-256GB--14--Display_irjx-x0.jpeg";
+import laptopDellLatitudeUltraBookE7440Img3 from "../public/products/Laptop-Refurbished-Dell-Latitude-UltraBook-E7440--procesor-Intel-Core-i5-4300U--16GB-Ram-DDR3--SSD-256GB--14--Display_d3yz-24.jpeg";
 
 export interface ILaptop {
       id: string;
@@ -81,7 +87,8 @@ export interface ILaptop {
           chipset?: string;
         };
         operationSystem?: string;
-        secondHand: boolean;
+        secondHand?: boolean;
+        refurbished?: boolean;
         others?: string;
         display: {
           diagonal: number;
@@ -104,6 +111,9 @@ export interface ILaptop {
           usb_3?: number;
           wi_fi?: string;
           network?: number;
+           firewire?: number;
+           docking?: number;
+           hdmi?: number
         };
         summary?: {
           model: string;
@@ -873,5 +883,157 @@ export const laptopsData: ILaptop[] = [
       warranty: "12 Luni 30 zile bateria",
       operationalsystem: "Fara sistem de operare preinstalat",
     },
+  },
+  {
+    id: 'laptop-dell-latitude-e7440-14-display-procesor-intel-core-i7-4600u-3.30-ghz-8gb-ddr3-256gb-ssd-ro',
+    title:
+      'Laptop Dell Latitude E7440 14" Display, Procesor Intel Core i7-4600U 3.30 GHz, 8GB DDR3, 256GB SSD',
+    images: [
+        laptopDellLatitudeE7440Img1,
+        laptopDellLatitudeE7440Img2,
+        laptopDellLatitudeE7440Img3
+    ],
+    price: 969.83,
+    currency: "lei",
+    details:
+      "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
+    batteryType: "65",
+    internalCode: "DL7440SH02",
+    model: "Latitude E7440",
+    producerDetails: {
+      model: "Dell",
+      warranty: "12 Luni",
+      layout: "",
+    },
+    processorType: "i7",
+    processorDetails: {
+    processorModel: 'i7-4600U',
+      nuclearNumber: 2,
+      processorType: "Intel Core i7",
+      cpuCache: 4,
+      frequencyCPU: 2.10,
+      frequencyTurbo: 3.30,
+      graphicProcessor: "Intel® HD Graphics 4400",
+      socket: "BGA 1168",
+    },
+    memoryCapacity: 8,
+    memoryType: "DDR3",
+    hardDiskDetails: {
+      capacity: "256 GB",
+      format: '2.5 inch',
+      interface: 'SATA-III',
+      type: "SSD",
+    },
+    motherBoard: {
+      typeMemory: "DDR3",
+      RAMcapacity: 8,
+      memorySlots: 2,
+      cpuSocket: 'BGA 1168',
+      producer: 'DELL'
+    },
+    secondHand: true,
+    others: "Second Hand",
+    display: {
+      diagonal: 14.0,
+      rezolution: "1366 x 768",
+      technology: "Anti-Glare, Led Backlit",
+    },
+    videoCard: {
+      chip: "Intel",
+      memoryFrequency: 1600,
+      tip: "HD Graphics 4400",
+    },
+    ports: {
+      audio: '1x Combo',
+      network: 1,
+      usb_3: 3,
+      wi_fi: '802.11 b/g/n',
+      firewire: 1
+    }
+  },
+  {
+    id: 'laptop-refurbished-dell-latitude-ultrabook-e7440-procesor-intel-core-i54300u-16gb-ram-ddr3-ssd-256gb-14-display-6264',
+    title:
+      'Laptop Refurbished Dell Latitude UltraBook E7440, procesor Intel Core i5-4300U, 16GB Ram DDR3, SSD 256GB, 14" Display',
+    images: [
+        laptopDellLatitudeUltraBookE7440Img1,
+        laptopDellLatitudeUltraBookE7440Img2,
+        laptopDellLatitudeUltraBookE7440Img3
+    ],
+    price: 2006.56,
+    currency: "lei",
+    details:
+      "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
+    batteryType: "65",
+    internalCode: "DL5492",
+    model: "Latitude E7440",
+    producerDetails: {
+      model: "Dell",
+      warranty: "24 luni",
+      layout: "",
+    },
+    processorType: "i5",
+    processorDetails: {
+    processorModel: 'i5-4300U',
+      nuclearNumber: 2,
+      processorType: "Intel Core i5",
+      cpuCache: 3,
+      frequencyCPU: 1.90,
+      frequencyTurbo: 2.90,
+      graphicProcessor: "Intel® HD Graphics 4400",
+      socket: "BGA 1168",
+    },
+    memoryCapacity: 16,
+    memoryType: "DDR3",
+    hardDiskDetails: {
+      capacity: "256 GB",
+      format: '2.5 inch',
+      interface: 'SATA-III',
+      type: "SSD",
+    },
+    motherBoard: {
+      typeMemory: "DDR3",
+      RAMcapacity: 8,
+      memorySlots: 2,
+      cpuSocket: 'BGA 1168',
+      producer: 'DELL',
+    },
+    secondHand: false,
+    refurbished: true,
+    others: "Refurbished",
+    display: {
+      diagonal: 14.0,
+      rezolution: "1366 x 768",
+      technology: "Anti-Glare, Led Backlit",
+    },
+    videoCard: {
+      chip: "Intel",
+      memoryFrequency: 1600,
+      tip: "HD Graphics 4400",
+    },
+    ports: {
+      audio: '1x Combo',
+      docking: 1,
+      network: 1,
+      hdmi: 1,
+      usb_3: 3,
+      wi_fi: '802.11 b/g/n',
+      firewire: 1
+    },
+    summary: {
+        model: "Dell Latitude E7440",
+        display: '14.0" FHD 1366*768 LED-Backlit Anti-Glare',
+        processor:
+          "Intel Core i5-4300U Dual Core 1.90 GHz (2.90 GHz Turbo, 3MB Cache, 2 Nuclee) Generatia a 4-a Haswell",
+        memory: "16 GB DDR3 1600 MHz",
+        storage: "256 GB SSD SATA III",
+        opticalUnit: 'Fara unitate optica',
+        videoCard: "Intel HD Graphics 4400",
+        characteristics:
+          "QWERTY BLUETOOTH 3x USB 3.0 WEBCAM mini DisplayPort HDMI",
+        productState: "Refurbished",
+        warranty: "24 Luni",
+        operationalsystem: "Fara sistem de operare preinstalat",
+      },
   },
 ];
