@@ -19,6 +19,21 @@ import laptopHPRevolve810G2Img4 from "../public/products/Laptop-HP-Revolve-810-G
 import laptopDELLLatitude5430Img1 from "../public/products/Laptop-DELL-Latitude-5430--14--HD---Intel-Core-i5-3320M-3-30GHz--8GB-DDR3--320GB-HDD--DVD-RW--WEB-CAM.webp";
 import laptopDELLLatitude5430Img2 from "../public/products/Laptop-DELL-Latitude-5430--14--HD---Intel-Core-i5-3320M-3-30GHz--8GB-DDR3--320GB-HDD--DVD-RW--WEB-CAM_mp4s-yi.webp";
 import laptopDELLLatitude5430Img3 from "../public/products/Laptop-DELL-Latitude-5430--14--HD---Intel-Core-i5-3320M-3-30GHz--8GB-DDR3--320GB-HDD--DVD-RW--WEB-CAM_kk2j-tg.webp";
+import laptopLenovoThinkPadX240Img1 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img2 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img3 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img4 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img5 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img6 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img7 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopHPPROBOOK450G3Img1 from  "../public/products/gb-ssd-web-cam-tastatura-iluminata.webp";
+import laptopHPPROBOOK450G3Img2 from  "../public/products/b-ssd-web-cam-tastatura-iluminata.webp";
+import laptopHPPROBOOK450G3Img3 from  "../public/products/eb-cam-tastatura-iluminata-ghbv-6l.webp";
+import laptopHPPROBOOK450G3Img4 from  "../public/products/eb-cam-tastatura-iluminata-5zir-4e.webp";
+import laptopHPPROBOOK450G3Img5 from  "../public/products/eb-cam-tastatura-iluminata-ufin-30.webp";
+import laptopHPEliteBook820G1Img1 from "../public/products/4600u-3-30ghz-8gb-ddr3-180gb-ssd.webp";
+import laptopHPEliteBook820G1Img2 from "../public/products/4gb-ddr3-500gb-hdd-webcam-znej-ll.webp";
+import laptopHPEliteBook820G1Img3 from "../public/products/4gb-ddr3-500gb-hdd-webcam-nsqr-7x.webp";
 
 export interface ILaptop {
       id: string;
@@ -37,7 +52,7 @@ export interface ILaptop {
         };
         processorType: string;
         processorDetails: {
-          processorModel: string;
+          processorModel?: string;
           nuclearNumber: number;
           processorNumber?: number;
           processorType: string;
@@ -55,11 +70,12 @@ export interface ILaptop {
           interface?: string;
           numberIncluded?: number;
           type: string;
+          rotation?: number;
         };
         motherBoard: {
           typeMemory: string;
           RAMcapacity: number;
-          producer: string;
+          producer?: string;
           memorySlots: number;
           cpuSocket?: string;
           chipset?: string;
@@ -77,6 +93,10 @@ export interface ILaptop {
           chip: string;
           memoryFrequency: number;
           tip: string;
+          busMemory?: number;
+          capacity?: string;
+          supportDirectX?: number;
+          supportOpenGL?: number;
         };
         ports: {
           audio: any;
@@ -596,6 +616,259 @@ export const laptopsData: ILaptop[] = [
       opticalUnit: 'DVD-RW',
       characteristics:
         "QWERTY/QWERTZ/AZERTY WEBCAM FINGERPRINT 1x USB 2.0 2x USB 3.0",
+      productState: "Second Hand",
+      warranty: "12 Luni 30 zile bateria",
+      operationalsystem: "Fara sistem de operare preinstalat",
+    },
+  },
+  {
+    id: 'laptop-lenovo-thinkpad-x240-12.5-hd-intel-core-i5-4300u-2.90-ghz-generatia-a-4-a-8-gb-ddr3-500-gb-hdd-webcam',
+    title:
+      'Laptop Lenovo ThinkPad X240 12.5" HD, Intel Core i5-4300U 2.90 GHz Generatia a 4-a, 8 GB DDR3, 500 GB HDD, WEBCAM',
+    images: [
+        laptopLenovoThinkPadX240Img1,
+        laptopLenovoThinkPadX240Img2,
+        laptopLenovoThinkPadX240Img3,
+        laptopLenovoThinkPadX240Img4,
+        laptopLenovoThinkPadX240Img5,
+        laptopLenovoThinkPadX240Img6,
+        laptopLenovoThinkPadX240Img7
+    ],
+    price: 635.41,
+    currency: "lei",
+    details:
+      "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
+    batteryType: "47",
+    internalCode: "LNX240SH06",
+    model: "ThinkPad X240",
+    producerDetails: {
+      model: "Lenovo",
+      warranty: "12 Luni / 30 zile baterie",
+      layout: "",
+    },
+    processorType: "i5",
+    processorDetails: {
+      processorModel: "i5-4300U",
+      nuclearNumber: 2,
+      processorType: "Intel Core i5",
+      cpuCache: 3,
+      frequencyCPU: 1.90,
+      frequencyTurbo: 2.90,
+      graphicProcessor: "Intel® HD Graphics 4000",
+      socket: "BGA 1168",
+    },
+    memoryCapacity: 8,
+    memoryType: "DDR3",
+    hardDiskDetails: {
+      capacity: "500 GB",
+      format: '2.5 inch',
+      interface: 'SATA-III',
+      type: "HDD",
+      numberIncluded: 1,
+      rotation: 7200
+    },
+    motherBoard: {
+      typeMemory: "DDR3",
+      RAMcapacity: 8,
+      producer: "LENOVO",
+      memorySlots: 1,
+      cpuSocket: 'BAG1168',
+    },
+    secondHand: true,
+    others: "Second Hand",
+    operationSystem: 'Fara sistem de operare preinstalat',
+    display: {
+      diagonal: 12.5,
+      rezolution: "1366 x 768",
+      technology: "Anti-Glare, Led Backlit",
+    },
+    videoCard: {
+      chip: "Intel",
+      memoryFrequency: 1600,
+      tip: "HD Graphics 4000",
+    },
+    ports: {
+      audio: 1,
+      network: 1,
+      usb_3: 2,
+    },
+    summary: {
+      model: "Lenovo ThinkPad X240",
+      display: '12.5" HD 1366*768 Anti-Glare LED-Backlit',
+      processor:
+        "Intel Core i5-4300U Dual Core 1.90 GHz (2.90 GHz Turbo, 3MB Cache, 2 Nuclee) Generatia a 4-a",
+      memory: "8 GB DDR3 1600 MHz",
+      storage: "500 GB HDD SATA III",
+      videoCard: "Intel HD Graphics 4000",
+      opticalUnit: 'Fara unitate optica',
+      characteristics:
+        "WEBCAM BLUETOOTH TASTATURA ILUMINATA 2x USB 3.0 1x VGA 1x Mini Display Port",
+      productState: "Second Hand",
+      warranty: "12 Luni 30 zile bateria",
+      operationalsystem: "Fara sistem de operare preinstalat",
+    },
+  },
+  {
+    id: 'laptop-hp-probook-450-g3-15-6-hd-intel-core-i5-6200u-2.80ghz-8gb-ddr4-256-gb-ssd-web-cam-tastatura-iluminata',
+    title:
+      'LAPTOP HP PROBOOK 450 G3, 15,6" HD, Intel Core i5-6200U 2.80Ghz, 8GB DDR4, 256 GB SSD, WEB CAM, TASTATURA ILUMINATA',
+    images: [
+        laptopHPPROBOOK450G3Img1,
+        laptopHPPROBOOK450G3Img2,
+        laptopHPPROBOOK450G3Img3,
+        laptopHPPROBOOK450G3Img4,
+        laptopHPPROBOOK450G3Img5
+    ],
+    price: 1270.82,
+    currency: "lei",
+    details:
+      "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
+    batteryType: "44",
+    internalCode: "HP450G3SH04",
+    model: "PROBOOK 450 G3",
+    producerDetails: {
+      model: "HP",
+      warranty: "12 Luni",
+      layout: "",
+    },
+    processorType: "i5",
+    processorDetails: {
+      nuclearNumber: 2,
+      processorType: "Intel Core i5",
+      cpuCache: 3,
+      frequencyCPU: 2.30,
+      frequencyTurbo: 2.80,
+      graphicProcessor: "Intel® HD Graphics 520",
+      socket: "BGA 1356",
+    },
+    memoryCapacity: 8,
+    memoryType: "DDR4",
+    hardDiskDetails: {
+      capacity: "256 GB",
+      format: '2.5 inch',
+      interface: 'SATA-III',
+      type: "SSD",
+    },
+    motherBoard: {
+      typeMemory: "DDR4",
+      RAMcapacity: 16,
+      memorySlots: 2,
+      cpuSocket: 'BGA 1356',
+    },
+    secondHand: true,
+    others: "Second Hand",
+    operationSystem: 'Fara sistem de operare preinstalat',
+    display: {
+      diagonal: 15.6,
+      rezolution: "1366 x 768",
+      technology: "Anti-Glare, Led Backlit",
+    },
+    videoCard: {
+      chip: "Intel",
+      memoryFrequency: 2133,
+      tip: "DDR3",
+      busMemory: 128,
+      capacity: 'up to 32 GB',
+      supportDirectX: 12,
+      supportOpenGL: 4.5
+    },
+    ports: {
+      audio: '1x Combo',
+      usb_2: 2,
+      usb_3: 2,
+    },
+    summary: {
+      model: "ProBook 450 G3",
+      display: '15.6" HD 1366*768 LED-Backlit Anti-Glare',
+      processor:
+        " Intel Core i5-6200U 2.30 GHz (2.80 GHz Turbo, 3MB Cache, 2 Nuclee)",
+      memory: "8 GB DDR4 2133 MHz",
+      storage: "256 GB SSD M.2 SATA III",
+      videoCard: "Intel HD Graphics 520",
+      opticalUnit: 'Fara unitate optica',
+      characteristics:
+        " QWERTY/QWERTZ/AZERTY 2x USB 2.0 + PowerShare 2x USB 3.0 WEBCAM TASTATURA ILUMINATA",
+      productState: "Second Hand",
+      warranty: "12 Luni",
+      operationalsystem: "Fara sistem de operare preinstalat",
+    },
+  },
+  {
+    id: 'laptop-hp-elitebook-820-g1-12.5-i5-4310m-3.40-ghz-4gb-ddr3-500gb-hdd-webcam',
+    title:
+      'Laptop HP EliteBook 820 G1 12.5", i5-4310M 3.40 GHz, 4GB DDR3, 500GB HDD, Webcam',
+    images: [
+        laptopHPEliteBook820G1Img1,
+        laptopHPEliteBook820G1Img2,
+        laptopHPEliteBook820G1Img3
+    ],
+    price: 668.86,
+    currency: "lei",
+    details:
+      "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
+    batteryType: "46",
+    internalCode: "HP820G1SH01",
+    model: "EliteBook 820 G1",
+    producerDetails: {
+      model: "HP",
+      warranty: "12 Luni",
+      layout: "",
+    },
+    processorType: "i5",
+    processorDetails: {
+    processorModel: 'i5-4310m',
+      nuclearNumber: 2,
+      processorType: "Intel Core i5",
+      cpuCache: 3,
+      frequencyCPU: 2.70,
+      frequencyTurbo: 3.40,
+      graphicProcessor: "Intel® HD Graphics 4600",
+      socket: "BGA 1168",
+    },
+    memoryCapacity: 4,
+    memoryType: "DDR3",
+    hardDiskDetails: {
+      capacity: "500 GB",
+      format: '2.5 inch',
+      interface: 'SATA-III',
+      type: "HDD",
+    },
+    motherBoard: {
+      typeMemory: "DDR3",
+      RAMcapacity: 16,
+      memorySlots: 2,
+      cpuSocket: 'BGA 1168',
+      producer: 'HP'
+    },
+    secondHand: true,
+    others: "Second Hand",
+    operationSystem: 'Fara sistem de operare preinstalat',
+    display: {
+      diagonal: 12.5,
+      rezolution: "1366 x 768",
+      technology: "Led Backlit",
+    },
+    videoCard: {
+      chip: "Intel",
+      memoryFrequency: 1600,
+      tip: "DDR3",
+    },
+    ports: {
+      audio: '1x Combo',
+      network: 1,
+      usb_3: 2,
+      wi_fi: '802.11 b/g/n'
+    },
+    summary: {
+      model: "EliteBook 820 G1",
+      display: ' 12.5" HD 1366x768 Anti-Glare',
+      processor:
+        "Intel Core i5-4310MU Dual Core 2.70 GHz (3.40 GHz Turbo, 3MB Cache, 2 Nuclee) Generatia a 4-a Haswell",
+      memory: "4 GB DDR3 1600 MHz",
+      storage: "500 GB HDD SATA",
+      videoCard: "Intel HD Graphics 4400",
+      characteristics:
+        " QWERTY/QWERTZ/AZERTY BLUETOOTH 2x USB 3.0 1x PowerShare 1x Display Port 1x VGA",
       productState: "Second Hand",
       warranty: "12 Luni 30 zile bateria",
       operationalsystem: "Fara sistem de operare preinstalat",
