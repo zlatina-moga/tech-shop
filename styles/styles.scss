@@ -51,7 +51,7 @@ nav {
   color: #333;
 }
 .forgot a:hover {
-  color: #6C873B;
+  color: #6c873b;
 }
 
 #inner-wrapper,
@@ -76,4 +76,23 @@ nav {
   border-right-color: rgb(243, 170, 12);
   border-right-style: none;
   border-right-width: medium;
+}
+.laptops-page {
+  padding: 60px 40px 0;
+  margin: 0 auto;
+  //background-color: #F8F8F8;
+  .laptop-card {
+    margin: 40px;
+    padding: 5px;
+    box-sizing: border-box;
+    .inner-container {
+      box-shadow: 0 1px 5px -1px #00000024;
+      padding: 25px;
+      .img-wrapper {
+        height: 380px !important;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
 }

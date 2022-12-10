@@ -216,7 +216,7 @@ export const laptopsData: ILaptop[] = [
   {
     id: 'lenovo-thinkpad-x250-12.5-hd-intel-core-i5-5300u-2.90ghz-8gb-ddr3-500gb-hdd-webcam-bluetooth',
     title:
-      'LENOVO ThinkPad X250 12.5" HD, Intel Core i5-5300U 2.90GHz, 8GB DDR3, 500GB HDD, WEBCAM, BLUETOOTH',
+      'Laptop Lenovo ThinkPad X250 12.5" HD, Intel Core i5-5300U 2.90GHz, 8GB DDR3, 500GB HDD, WEBCAM, BLUETOOTH',
     images: [
       lenovoThinkPadX250Img1,
       lenovoThinkPadX250Img2,
@@ -721,7 +721,7 @@ export const laptopsData: ILaptop[] = [
   {
     id: 'laptop-hp-probook-450-g3-15-6-hd-intel-core-i5-6200u-2.80ghz-8gb-ddr4-256-gb-ssd-web-cam-tastatura-iluminata',
     title:
-      'LAPTOP HP PROBOOK 450 G3, 15,6" HD, Intel Core i5-6200U 2.80Ghz, 8GB DDR4, 256 GB SSD, WEB CAM, TASTATURA ILUMINATA',
+      'Laptop HP Probook 450 G3, 15,6" HD, Intel Core i5-6200U 2.80Ghz, 8GB DDR4, 256 GB SSD, WEB CAM, TASTATURA ILUMINATA',
     images: [
         laptopHPPROBOOK450G3Img1,
         laptopHPPROBOOK450G3Img2,
