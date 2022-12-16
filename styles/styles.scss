@@ -1,9 +1,9 @@
-nav {
+#nav-container {
   box-shadow: 0 1px 10px 0 rgb(0 0 0 / 10%);
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  position: fixed;
+  z-index: 999999;
   background: #fff;
+  top: 0;
 }
 
 #login {
@@ -93,6 +93,16 @@ nav {
         display: flex;
         align-items: center;
       }
+    }
+  }
+  .card-body {
+    h6 {
+      font-weight: 600;
+    }
+    h6.price {
+      color: red;
+      font-size: 20px;
+      font-weight: 700;
     }
   }
 }

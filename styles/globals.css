@@ -8998,6 +8998,10 @@ button.bg-dark:focus {
   .px-xl-5 {
     padding-right: 3rem !important;
   }
+  .pr-xl-7,
+  .px-xl-7 {
+    padding-right: 7rem !important;
+  }
   .pb-xl-5,
   .py-xl-5 {
     padding-bottom: 3rem !important;
@@ -9005,6 +9009,10 @@ button.bg-dark:focus {
   .pl-xl-5,
   .px-xl-5 {
     padding-left: 3rem !important;
+  }
+  .pl-xl-7,
+  .px-xl-7 {
+    padding-left: 7rem !important;
   }
   .m-xl-n1 {
     margin: -0.25rem !important;

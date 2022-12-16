@@ -42,6 +42,7 @@ import laptopDellLatitudeUltraBookE7440Img2 from "../public/products/Laptop-Refu
 import laptopDellLatitudeUltraBookE7440Img3 from "../public/products/Laptop-Refurbished-Dell-Latitude-UltraBook-E7440--procesor-Intel-Core-i5-4300U--16GB-Ram-DDR3--SSD-256GB--14--Display_d3yz-24.jpeg";
 
 export interface ILaptop {
+      category?: string;
       id: string;
         images: any[];
         title: string;
@@ -133,6 +134,7 @@ export interface ILaptop {
 export const laptopsData: ILaptop[] = [
   {
     id: 'laptop-lenovo-b50-50-15.6-hd-procesor-intel-core-i3-5005u-2.00-ghz-8gb-ddr3-128-gb-ssd-dvd-ro',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop Lenovo B50-50, 15.6" HD, Procesor Intel Core i3-5005U 2.00 GHz, 8GB DDR3, 128 GB SSD, DVD',
     images: [
@@ -215,6 +217,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'lenovo-thinkpad-x250-12.5-hd-intel-core-i5-5300u-2.90ghz-8gb-ddr3-500gb-hdd-webcam-bluetooth',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop Lenovo ThinkPad X250 12.5" HD, Intel Core i5-5300U 2.90GHz, 8GB DDR3, 500GB HDD, WEBCAM, BLUETOOTH',
     images: [
@@ -298,6 +301,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-lenovo-thinkpad-l540-15.6-hd-procesor-intel-core-i5-4200m-3.30-ghz-8gb-ddr3-500gb-hdd-dvd',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop Lenovo Thinkpad L540, 15.6" HD, Procesor Intel Core i5-4200M 3.30 GHz, 8GB DDR3, 500GB HDD, DVD',
     images: [
@@ -384,6 +388,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-refurbished-dell-latitude-e6410-intel-core-i5560-2660-mhz-4-gb-ddr3-160-gb-hdd-dvdrw-display-141-1839',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop Second Hand Dell Latitude E6410, Intel Core i5-560 2660 mhz, 4 GB DDR3, 160 GB HDD, DVDRW, Display 14.1',
     images: [
@@ -468,6 +473,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-hp-revolve-810-g2-11.6-inch-touchscreen-i5-4210m-3.20-ghz-8gb-ddr3-120gb-ssd-webcam',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop HP Revolve 810 G2 11.6 Inch, TouchScreen, i5-4210M 3.20 GHz, 8GB DDR3, 120GB SSD, Webcam',
     images: [
@@ -548,6 +554,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-dell-latitude-5430-14-hd-intel-core-i5-3320m-3.30ghz-8gb-ddr3-320gb-hdd-dvd-rw-web-cam',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop DELL Latitude 5430, 14" HD+, Intel Core i5-3320M 3.30GHz, 8GB DDR3, 320GB HDD, DVD-RW, WEB CAM',
     images: [
@@ -633,6 +640,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-lenovo-thinkpad-x240-12.5-hd-intel-core-i5-4300u-2.90-ghz-generatia-a-4-a-8-gb-ddr3-500-gb-hdd-webcam',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop Lenovo ThinkPad X240 12.5" HD, Intel Core i5-4300U 2.90 GHz Generatia a 4-a, 8 GB DDR3, 500 GB HDD, WEBCAM',
     images: [
@@ -720,6 +728,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-hp-probook-450-g3-15-6-hd-intel-core-i5-6200u-2.80ghz-8gb-ddr4-256-gb-ssd-web-cam-tastatura-iluminata',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop HP Probook 450 G3, 15,6" HD, Intel Core i5-6200U 2.80Ghz, 8GB DDR4, 256 GB SSD, WEB CAM, TASTATURA ILUMINATA',
     images: [
@@ -805,6 +814,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-hp-elitebook-820-g1-12.5-i5-4310m-3.40-ghz-4gb-ddr3-500gb-hdd-webcam',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop HP EliteBook 820 G1 12.5", i5-4310M 3.40 GHz, 4GB DDR3, 500GB HDD, Webcam',
     images: [
@@ -886,6 +896,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-dell-latitude-e7440-14-display-procesor-intel-core-i7-4600u-3.30-ghz-8gb-ddr3-256gb-ssd-ro',
+    category: 'laptopuri-second-hand',
     title:
       'Laptop Dell Latitude E7440 14" Display, Procesor Intel Core i7-4600U 3.30 GHz, 8GB DDR3, 256GB SSD',
     images: [
@@ -953,6 +964,7 @@ export const laptopsData: ILaptop[] = [
   },
   {
     id: 'laptop-refurbished-dell-latitude-ultrabook-e7440-procesor-intel-core-i54300u-16gb-ram-ddr3-ssd-256gb-14-display-6264',
+    category: 'laptopuri-refurbished',
     title:
       'Laptop Refurbished Dell Latitude UltraBook E7440, procesor Intel Core i5-4300U, 16GB Ram DDR3, SSD 256GB, 14" Display',
     images: [

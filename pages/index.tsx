@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <main style={{ paddingTop: "10px"}}>
+    <div style={{maxWidth: '100rem', margin: '0 auto'}}>
+      <main style={{ paddingTop: "150px"}}>
         {/*<!-- SideBar Start -->*/}
         <div className="container-fluid mb-5">
           <div className="row px-xl-5">
@@ -131,7 +131,7 @@ export default function Home() {
                       alt=""
                       layout="fill"
                       objectFit="cover"
-                      style={{borderBottomLeftRadius: '4px', borderBottomRightRadius: '4px'}}
+                      style={{borderBottomLeftRadius: '4px', borderBottomRightRadius: '4px', objectFit: 'contain'}}
                     />
                   </div>
                 </div>
