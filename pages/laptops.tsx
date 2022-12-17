@@ -49,7 +49,7 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
                 </div>
               </div>
               <div className="card-footer d-flex justify-content-between bg-light">
-                <Link href={l.id} className="btn btn-sm text-dark p-0">
+                <Link href={'/' + l.category + '/' + l.id} className="btn btn-sm text-dark p-0">
                   <i className="fas fa-eye text-primary mr-1"></i>View Detail
                 </Link>
                 <a href="" className="btn btn-sm text-dark p-0">

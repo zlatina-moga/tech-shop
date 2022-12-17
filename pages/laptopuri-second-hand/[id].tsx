@@ -2,23 +2,31 @@ import { useRouter } from "next/router";
 import { laptopsData } from "../../data";
 import Meta from "../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {  Navigation } from "swiper";
+import { Navigation } from "swiper";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
+import qualityIcon from "../../public/svg/quality.svg";
+import transportIcon from "../../public/svg/transport.svg";
+import payImg from "../../public/images/mobilpay.png";
+
+const features = ["Producator", "Model", "Garantie", "Stare produs"];
 
 const SecondHandLaptopDetails = () => {
   const router = useRouter();
   const { id } = router.query;
 
   return (
-    <div style={{ maxWidth: "100rem", margin: "0 auto", paddingTop: "120px" }}>
+    <div className="page-details">
       {laptopsData
         .filter((laptop) => laptop.id == id)
         .map((l, idx) => (
           <div key={idx}>
             <Meta title={l.title} />
             <div className="container-fluid py-5">
+              <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
+                {l.title}
+              </h1>
               <div className="row px-xl-5">
                 <div className="col-lg-5 pb-5">
                   <Swiper
@@ -28,84 +36,15 @@ const SecondHandLaptopDetails = () => {
                   >
                     {l.images.map((img, idx) => (
                       <SwiperSlide key={idx}>
-                        <Image
-                          src={img}
-                          alt="image"
-                        />
+                        <Image src={img} alt="image" />
                       </SwiperSlide>
                     ))}
                   </Swiper>
-
-                  {/*<div
-                    id="product-carousel"
-                    className="carousel slide"
-                    data-bs-ride="carousel"
-                  >
-                    <div className="carousel-inner border">
-                      <div className="carousel-item active">
-                        <Image
-                          src={l.images[0]}
-                          className="w-100 d-block img-fluid"
-                          alt="image"
-                          //style={{maxHeight: '420px'}}
-                        />
-                      </div>
-                      {/*l.images.map((i, index) => (
-                        <div className="carousel-item" key={index}>
-                          <Image
-                            src={i}
-                            className="w-100 d-block img-fluid"
-                            alt="image"
-                          />
-                        </div>
-                      ))
-                      <div className="carousel-item">
-                        <Image
-                          src={l.images[1]}
-                          className="w-100 d-block img-fluid"
-                          alt="image"
-                        />
-                      </div>
-                      <div className="carousel-item">
-                        <Image
-                          src={l.images[2]}
-                          className="w-100 d-block img-fluid"
-                          alt="image"
-                        />
-                      </div>
-                    </div>
-                    <button
-                      className="carousel-control-prev"
-                      data-bs-target="#product-carousel"
-                      data-bs-slide="prev"
-                      type="button"
-                    >
-                      <span
-                        className="carousel-control-prev-icon"
-                        aria-hidden="true"
-                      ></span>
-                      <span className="visually-hidden">Previous</span>
-                      <i className="fa fa-2x fa-angle-left text-dark"></i>
-                    </button>
-                    <button
-                      className="carousel-control-next"
-                      data-bs-target="#product-carousel"
-                      data-bs-slide="next"
-                      type="button"
-                    >
-                      <span
-                        className="carousel-control-next-icon"
-                        aria-hidden="true"
-                      ></span>
-                      <span className="visually-hidden">Next</span>
-                      <i className="fa fa-2x fa-angle-right text-dark"></i>
-                    </button>
-                  </div>*/}
                 </div>
 
-                <div className="col-lg-7 pb-5">
-                  <h3 className="font-weight-semi-bold">{l.title}</h3>
-                  <div className="d-flex mb-3">
+                <div className="col-lg-7 pb-5 parent-container">
+                  <div className="first-container">
+                    {/*<div className="d-flex mb-3">
                     <div className="text-primary mr-2">
                       <small className="fas fa-star"></small>
                       <small className="fas fa-star"></small>
@@ -114,54 +53,93 @@ const SecondHandLaptopDetails = () => {
                       <small className="far fa-star"></small>
                     </div>
                     <small className="pt-1">(50 Reviews)</small>
-                  </div>
-                  <h3 className="font-weight-semi-bold mb-4">
-                    {l.price} {l.currency}
-                  </h3>
-                  <p className="mb-4">{l.details}</p>
-                  <div className="d-flex align-items-center mb-4 pt-2">
-                    <div
-                      className="input-group quantity mr-3"
-                      style={{ width: "130px" }}
-                    >
-                      <div className="input-group-btn">
-                        <button className="btn btn-primary btn-minus">
-                          <i className="fa fa-minus"></i>
-                        </button>
+                    </div>*/}
+
+                    <div className="features-list">
+                      <div className="features-key">
+                        {features.map((f, idx) => (
+                          <p key={idx}>{f}:</p>
+                        ))}
                       </div>
-                      <input
-                        type="text"
-                        className="form-control bg-secondary text-center"
-                        value="1"
-                      />
-                      <div className="input-group-btn">
-                        <button className="btn btn-primary btn-plus">
-                          <i className="fa fa-plus"></i>
-                        </button>
+                      <div className="features-value">
+                        <p>{l.producerDetails.model}</p>
+                        <p>{l.model}</p>
+                        <p>{l.producerDetails.warranty}</p>
+                        <p>{l.others}</p>
                       </div>
                     </div>
+
+                    <p className="mb-4">{l.details}</p>
+                    <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                      <Image src={qualityIcon} alt="quality" />
+                      <p>Garantie la toate produsele comandate</p>
+                    </div>
+                    <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                      <Image src={transportIcon} alt="quality" />
+                      <p>Livrare gratuita la orice comanda de peste 250 lei</p>
+                    </div>
+                    <div className="d-flex align-items-center mb-2 pt-2">
+                      <Image src={payImg} alt="payments" />
+                    </div>
+                    <div className="d-flex pt-3 icons-container">
+                      <p className="text-dark font-weight-medium mb-0 mr-2">
+                        Share on:
+                      </p>
+                      <div className="d-inline-flex">
+                        <a
+                          className="text-dark px-2"
+                          target="_blank"
+                          href="https://www.facebook.com"
+                          rel="noreferrer"
+                        >
+                          <i className="fab fa-facebook-f"></i>
+                        </a>
+                        <a
+                          className="text-dark px-2"
+                          target="_blank"
+                          href="https://twitter.com"
+                          rel="noreferrer"
+                        >
+                          <i className="fab fa-twitter"></i>
+                        </a>
+                        <a
+                          className="text-dark px-2"
+                          target="_blank"
+                          href="https://www.linkedin.com"
+                          rel="noreferrer"
+                        >
+                          <i className="fab fa-linkedin-in"></i>
+                        </a>
+                        <a
+                          className="text-dark px-2"
+                          target="_blank"
+                          href="https://www.pinterest.com"
+                          rel="noreferrer"
+                        >
+                          <i className="fab fa-pinterest"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="second-container">
+                    {/*<div className="d-flex mb-3">
+                    <div className="text-primary mr-2">
+                      <small className="fas fa-star"></small>
+                      <small className="fas fa-star"></small>
+                      <small className="fas fa-star"></small>
+                      <small className="fas fa-star-half-alt"></small>
+                      <small className="far fa-star"></small>
+                    </div>
+                    <small className="pt-1">(50 Reviews)</small>
+                    </div>*/}
+
+                    <h3 className="font-weight-semi-bold mb-4">
+                      {l.price} {l.currency}
+                    </h3>
+
                     <button className="btn btn-primary px-3">
                       <i className="fa fa-shopping-cart mr-1"></i> Add To Cart
                     </button>
-                  </div>
-                  <div className="d-flex pt-2">
-                    <p className="text-dark font-weight-medium mb-0 mr-2">
-                      Share on:
-                    </p>
-                    <div className="d-inline-flex">
-                      <a className="text-dark px-2" href="">
-                        <i className="fab fa-facebook-f"></i>
-                      </a>
-                      <a className="text-dark px-2" href="">
-                        <i className="fab fa-twitter"></i>
-                      </a>
-                      <a className="text-dark px-2" href="">
-                        <i className="fab fa-linkedin-in"></i>
-                      </a>
-                      <a className="text-dark px-2" href="">
-                        <i className="fab fa-pinterest"></i>
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>
