@@ -1,14 +1,18 @@
 import { useRouter } from "next/router";
 import { laptopsData } from "../../data";
 import Meta from "../../components/layouts/Meta";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {  Navigation } from "swiper";
 import Image from "next/image";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const SecondHandLaptopDetails = () => {
   const router = useRouter();
   const { id } = router.query;
 
   return (
-    <div>
+    <div style={{ maxWidth: "100rem", margin: "0 auto", paddingTop: "120px" }}>
       {laptopsData
         .filter((laptop) => laptop.id == id)
         .map((l, idx) => (
@@ -17,39 +21,90 @@ const SecondHandLaptopDetails = () => {
             <div className="container-fluid py-5">
               <div className="row px-xl-5">
                 <div className="col-lg-5 pb-5">
-                  <div
+                  <Swiper
+                    navigation={true}
+                    modules={[Navigation]}
+                    className="mySwiper"
+                  >
+                    {l.images.map((img, idx) => (
+                      <SwiperSlide key={idx}>
+                        <Image
+                          src={img}
+                          alt="image"
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+
+                  {/*<div
                     id="product-carousel"
                     className="carousel slide"
-                    data-ride="carousel"
+                    data-bs-ride="carousel"
                   >
                     <div className="carousel-inner border">
                       <div className="carousel-item active">
-                        {l.images.map((i, index) => (
-                            <Image key={index} src={i} className="w-100 h-100" alt='image'/>
-                        ))}
+                        <Image
+                          src={l.images[0]}
+                          className="w-100 d-block img-fluid"
+                          alt="image"
+                          //style={{maxHeight: '420px'}}
+                        />
+                      </div>
+                      {/*l.images.map((i, index) => (
+                        <div className="carousel-item" key={index}>
+                          <Image
+                            src={i}
+                            className="w-100 d-block img-fluid"
+                            alt="image"
+                          />
+                        </div>
+                      ))
+                      <div className="carousel-item">
+                        <Image
+                          src={l.images[1]}
+                          className="w-100 d-block img-fluid"
+                          alt="image"
+                        />
+                      </div>
+                      <div className="carousel-item">
+                        <Image
+                          src={l.images[2]}
+                          className="w-100 d-block img-fluid"
+                          alt="image"
+                        />
                       </div>
                     </div>
-                    <a
+                    <button
                       className="carousel-control-prev"
-                      href="#product-carousel"
-                      data-slide="prev"
+                      data-bs-target="#product-carousel"
+                      data-bs-slide="prev"
+                      type="button"
                     >
+                      <span
+                        className="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span className="visually-hidden">Previous</span>
                       <i className="fa fa-2x fa-angle-left text-dark"></i>
-                    </a>
-                    <a
+                    </button>
+                    <button
                       className="carousel-control-next"
-                      href="#product-carousel"
-                      data-slide="next"
+                      data-bs-target="#product-carousel"
+                      data-bs-slide="next"
+                      type="button"
                     >
+                      <span
+                        className="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span className="visually-hidden">Next</span>
                       <i className="fa fa-2x fa-angle-right text-dark"></i>
-                    </a>
-                  </div>
+                    </button>
+                  </div>*/}
                 </div>
 
                 <div className="col-lg-7 pb-5">
-                  <h3 className="font-weight-semi-bold">
-                    Colorful Stylish Shirt
-                  </h3>
+                  <h3 className="font-weight-semi-bold">{l.title}</h3>
                   <div className="d-flex mb-3">
                     <div className="text-primary mr-2">
                       <small className="fas fa-star"></small>
@@ -60,118 +115,10 @@ const SecondHandLaptopDetails = () => {
                     </div>
                     <small className="pt-1">(50 Reviews)</small>
                   </div>
-                  <h3 className="font-weight-semi-bold mb-4">$150.00</h3>
-                  <p className="mb-4">
-                    Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr
-                    erat diam stet sit clita ea. Sanc invidunt ipsum et, labore
-                    clita lorem magna lorem ut. Erat lorem duo dolor no sea
-                    nonumy. Accus labore stet, est lorem sit diam sea et justo,
-                    amet at lorem et eirmod ipsum diam et rebum kasd rebum.
-                  </p>
-                  <div className="d-flex mb-3">
-                    <p className="text-dark font-weight-medium mb-0 mr-3">
-                      Sizes:
-                    </p>
-                    <form>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="size-1"
-                          name="size"
-                        />
-                        <label className="custom-control-label">XS</label>
-                      </div>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="size-2"
-                          name="size"
-                        />
-                        <label className="custom-control-label">S</label>
-                      </div>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="size-3"
-                          name="size"
-                        />
-                        <label className="custom-control-label">M</label>
-                      </div>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="size-4"
-                          name="size"
-                        />
-                        <label className="custom-control-label">L</label>
-                      </div>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="size-5"
-                          name="size"
-                        />
-                        <label className="custom-control-label">XL</label>
-                      </div>
-                    </form>
-                  </div>
-                  <div className="d-flex mb-4">
-                    <p className="text-dark font-weight-medium mb-0 mr-3">
-                      Colors:
-                    </p>
-                    <form>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="color-1"
-                          name="color"
-                        />
-                        <label className="custom-control-label">Black</label>
-                      </div>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="color-2"
-                          name="color"
-                        />
-                        <label className="custom-control-label">White</label>
-                      </div>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="color-3"
-                          name="color"
-                        />
-                        <label className="custom-control-label">Red</label>
-                      </div>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="color-4"
-                          name="color"
-                        />
-                        <label className="custom-control-label">Blue</label>
-                      </div>
-                      <div className="custom-control custom-radio custom-control-inline">
-                        <input
-                          type="radio"
-                          className="custom-control-input"
-                          id="color-5"
-                          name="color"
-                        />
-                        <label className="custom-control-label">Green</label>
-                      </div>
-                    </form>
-                  </div>
+                  <h3 className="font-weight-semi-bold mb-4">
+                    {l.price} {l.currency}
+                  </h3>
+                  <p className="mb-4">{l.details}</p>
                   <div className="d-flex align-items-center mb-4 pt-2">
                     <div
                       className="input-group quantity mr-3"

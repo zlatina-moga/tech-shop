@@ -2,8 +2,11 @@ import { ThemeEditorProvider } from "@hypertheme-editor/chakra-ui";
 import { theme } from "../theme/index";
 import { ChakraProvider } from "@chakra-ui/react";
 import { AppLayout } from "../components/layouts/AppLayout";
+import 'bootstrap/dist/css/bootstrap.css';
 import "../styles/globals.css";
-import '../styles/styles.scss'
+import '../styles/styles.scss';
+import '../styles/custom.scss';
+import "swiper/css/bundle";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
