@@ -19,18 +19,18 @@ import laptopHPRevolve810G2Img4 from "../public/products/Laptop-HP-Revolve-810-G
 import laptopDELLLatitude5430Img1 from "../public/products/Laptop-DELL-Latitude-5430--14--HD---Intel-Core-i5-3320M-3-30GHz--8GB-DDR3--320GB-HDD--DVD-RW--WEB-CAM.webp";
 import laptopDELLLatitude5430Img2 from "../public/products/Laptop-DELL-Latitude-5430--14--HD---Intel-Core-i5-3320M-3-30GHz--8GB-DDR3--320GB-HDD--DVD-RW--WEB-CAM_mp4s-yi.webp";
 import laptopDELLLatitude5430Img3 from "../public/products/Laptop-DELL-Latitude-5430--14--HD---Intel-Core-i5-3320M-3-30GHz--8GB-DDR3--320GB-HDD--DVD-RW--WEB-CAM_kk2j-tg.webp";
-import laptopLenovoThinkPadX240Img1 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img2 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img3 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img4 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img5 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img6 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img7 from  "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopHPPROBOOK450G3Img1 from  "../public/products/gb-ssd-web-cam-tastatura-iluminata.webp";
-import laptopHPPROBOOK450G3Img2 from  "../public/products/b-ssd-web-cam-tastatura-iluminata.webp";
-import laptopHPPROBOOK450G3Img3 from  "../public/products/eb-cam-tastatura-iluminata-ghbv-6l.webp";
-import laptopHPPROBOOK450G3Img4 from  "../public/products/eb-cam-tastatura-iluminata-5zir-4e.webp";
-import laptopHPPROBOOK450G3Img5 from  "../public/products/eb-cam-tastatura-iluminata-ufin-30.webp";
+import laptopLenovoThinkPadX240Img1 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img2 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img3 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img4 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img5 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img6 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img7 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopHPPROBOOK450G3Img1 from "../public/products/gb-ssd-web-cam-tastatura-iluminata.webp";
+import laptopHPPROBOOK450G3Img2 from "../public/products/b-ssd-web-cam-tastatura-iluminata.webp";
+import laptopHPPROBOOK450G3Img3 from "../public/products/eb-cam-tastatura-iluminata-ghbv-6l.webp";
+import laptopHPPROBOOK450G3Img4 from "../public/products/eb-cam-tastatura-iluminata-5zir-4e.webp";
+import laptopHPPROBOOK450G3Img5 from "../public/products/eb-cam-tastatura-iluminata-ufin-30.webp";
 import laptopHPEliteBook820G1Img1 from "../public/products/4600u-3-30ghz-8gb-ddr3-180gb-ssd.webp";
 import laptopHPEliteBook820G1Img2 from "../public/products/4gb-ddr3-500gb-hdd-webcam-znej-ll.webp";
 import laptopHPEliteBook820G1Img3 from "../public/products/4gb-ddr3-500gb-hdd-webcam-nsqr-7x.webp";
@@ -42,99 +42,101 @@ import laptopDellLatitudeUltraBookE7440Img2 from "../public/products/Laptop-Refu
 import laptopDellLatitudeUltraBookE7440Img3 from "../public/products/Laptop-Refurbished-Dell-Latitude-UltraBook-E7440--procesor-Intel-Core-i5-4300U--16GB-Ram-DDR3--SSD-256GB--14--Display_d3yz-24.jpeg";
 
 export interface ILaptop {
-      category?: string;
-      id: string;
-        images: any[];
-        title: string;
-        price: number;
-        currency: string;
-        details: string;
-        model: string;
-        internalCode: string;
-        batteryType: string;
-        producerDetails: {
-          model: string;
-          warranty: string;
-          layout: string;
-        };
-        processorType: string;
-        processorDetails: {
-          processorModel?: string;
-          nuclearNumber: number;
-          processorNumber?: number;
-          processorType: string;
-          cpuCache: number;
-          frequencyCPU: number;
-          frequencyTurbo?: number;
-          graphicProcessor: string;
-          socket: string;
-        };
-        memoryCapacity: number;
-        memoryType: string;
-        hardDiskDetails: {
-          capacity: string;
-          format?: string;
-          interface?: string;
-          numberIncluded?: number;
-          type: string;
-          rotation?: number;
-        };
-        motherBoard: {
-          typeMemory: string;
-          RAMcapacity: number;
-          producer?: string;
-          memorySlots: number;
-          cpuSocket?: string;
-          chipset?: string;
-        };
-        operationSystem?: string;
-        secondHand?: boolean;
-        refurbished?: boolean;
-        others?: string;
-        display: {
-          diagonal: number;
-          rezolution: string;
-          technology: string;
-          aspectRatio?: string;
-        };
-        videoCard: {
-          chip: string;
-          memoryFrequency: number;
-          tip: string;
-          busMemory?: number;
-          capacity?: string;
-          supportDirectX?: number;
-          supportOpenGL?: number;
-        };
-        ports: {
-          audio: any;
-          usb_2?: number;
-          usb_3?: number;
-          wi_fi?: string;
-          network?: number;
-           firewire?: number;
-           docking?: number;
-           hdmi?: number
-        };
-        summary?: {
-          model: string;
-          display: string;
-          processor: string;
-          memory: string;
-          storage: string;
-          videoCard: string;
-          opticalUnit?: string;
-          characteristics: string;
-          productState: string;
-          warranty: string;
-          operationalsystem: string;
-        };
+  category?: string;
+  id: string;
+  images: any[];
+  title: string;
+  price: number;
+  oldPrice?: number;
+  discount?: number;
+  currency: string;
+  details: string;
+  model: string;
+  internalCode: string;
+  batteryType: string;
+  producerDetails: {
+    model: string;
+    warranty: string;
+    layout: string;
+  };
+  processorType: string;
+  processorDetails: {
+    processorModel?: string;
+    nuclearNumber: number;
+    processorNumber?: number;
+    processorType: string;
+    cpuCache: number;
+    frequencyCPU: number;
+    frequencyTurbo?: number;
+    graphicProcessor: string;
+    socket: string;
+  };
+  memoryCapacity: number;
+  memoryType: string;
+  hardDiskDetails: {
+    capacity: string;
+    format?: string;
+    interface?: string;
+    numberIncluded?: number;
+    type: string;
+    rotation?: number;
+  };
+  motherBoard: {
+    typeMemory: string;
+    RAMcapacity: number;
+    producer?: string;
+    memorySlots: number;
+    cpuSocket?: string;
+    chipset?: string;
+  };
+  operationSystem?: string;
+  secondHand?: boolean;
+  refurbished?: boolean;
+  others?: string;
+  display: {
+    diagonal: number;
+    rezolution: string;
+    technology: string;
+    aspectRatio?: string;
+  };
+  videoCard: {
+    chip: string;
+    memoryFrequency: number;
+    tip: string;
+    busMemory?: number;
+    capacity?: string;
+    supportDirectX?: number;
+    supportOpenGL?: number;
+  };
+  ports: {
+    audio: any;
+    usb_2?: number;
+    usb_3?: number;
+    wi_fi?: string;
+    network?: number;
+    firewire?: number;
+    docking?: number;
+    hdmi?: number;
+  };
+  summary?: {
+    model: string;
+    display: string;
+    processor: string;
+    memory: string;
+    storage: string;
+    videoCard: string;
+    opticalUnit?: string;
+    characteristics: string;
+    productState: string;
+    warranty: string;
+    operationalsystem: string;
+  };
 }
 
 export const laptopsData: ILaptop[] = [
   {
-    id: 'laptop-lenovo-b50-50-15.6-hd-procesor-intel-core-i3-5005u-2.00-ghz-8gb-ddr3-128-gb-ssd-dvd-ro',
-    category: 'laptopuri-second-hand',
+    id: "laptop-lenovo-b50-50-15.6-hd-procesor-intel-core-i3-5005u-2.00-ghz-8gb-ddr3-128-gb-ssd-dvd-ro",
+    category: "laptopuri-second-hand",
     title:
       'Laptop Lenovo B50-50, 15.6" HD, Procesor Intel Core i3-5005U 2.00 GHz, 8GB DDR3, 128 GB SSD, DVD',
     images: [
@@ -143,6 +145,8 @@ export const laptopsData: ILaptop[] = [
       lenovoLaptopB50_50_15iImg3,
     ],
     price: 802.62,
+    oldPrice: 1003.28,
+    discount: 200.66,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -216,8 +220,8 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'lenovo-thinkpad-x250-12.5-hd-intel-core-i5-5300u-2.90ghz-8gb-ddr3-500gb-hdd-webcam-bluetooth',
-    category: 'laptopuri-second-hand',
+    id: "lenovo-thinkpad-x250-12.5-hd-intel-core-i5-5300u-2.90ghz-8gb-ddr3-500gb-hdd-webcam-bluetooth",
+    category: "laptopuri-second-hand",
     title:
       'Laptop Lenovo ThinkPad X250 12.5" HD, Intel Core i5-5300U 2.90GHz, 8GB DDR3, 500GB HDD, WEBCAM, BLUETOOTH',
     images: [
@@ -226,6 +230,8 @@ export const laptopsData: ILaptop[] = [
       lenovoThinkPadX250Img3,
     ],
     price: 769.18,
+    oldPrice: 961.48,
+    discount: 192.3,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -300,16 +306,18 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'laptop-lenovo-thinkpad-l540-15.6-hd-procesor-intel-core-i5-4200m-3.30-ghz-8gb-ddr3-500gb-hdd-dvd',
-    category: 'laptopuri-second-hand',
+    id: "laptop-lenovo-thinkpad-l540-15.6-hd-procesor-intel-core-i5-4200m-3.30-ghz-8gb-ddr3-500gb-hdd-dvd",
+    category: "laptopuri-second-hand",
     title:
       'Laptop Lenovo Thinkpad L540, 15.6" HD, Procesor Intel Core i5-4200M 3.30 GHz, 8GB DDR3, 500GB HDD, DVD',
     images: [
-        lenovoThinkPadL540Img1,
-        lenovoThinkPadL540Img2,
-        lenovoThinkPadL540Img3,
+      lenovoThinkPadL540Img1,
+      lenovoThinkPadL540Img2,
+      lenovoThinkPadL540Img3,
     ],
     price: 1103.61,
+    oldPrice: 1379.51,
+    discount: 275.9,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -328,8 +336,8 @@ export const laptopsData: ILaptop[] = [
       processorType: "Intel Core i5",
       processorNumber: 1,
       cpuCache: 3,
-      frequencyCPU: 2.50,
-      frequencyTurbo: 3.10,
+      frequencyCPU: 2.5,
+      frequencyTurbo: 3.1,
       graphicProcessor: "Intel® HD Graphics 4600",
       socket: "BGA 1168",
     },
@@ -347,9 +355,8 @@ export const laptopsData: ILaptop[] = [
       RAMcapacity: 16,
       producer: "LENOVO",
       memorySlots: 2,
-      cpuSocket: 'BAG1168',
-      chipset: 'Intel® QM87'
-
+      cpuSocket: "BAG1168",
+      chipset: "Intel® QM87",
     },
     operationSystem: "Fara sistem de operare preinstalat",
     secondHand: true,
@@ -387,18 +394,20 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'laptop-refurbished-dell-latitude-e6410-intel-core-i5560-2660-mhz-4-gb-ddr3-160-gb-hdd-dvdrw-display-141-1839',
-    category: 'laptopuri-second-hand',
+    id: "laptop-refurbished-dell-latitude-e6410-intel-core-i5560-2660-mhz-4-gb-ddr3-160-gb-hdd-dvdrw-display-141-1839",
+    category: "laptopuri-second-hand",
     title:
-      'Laptop Second Hand Dell Latitude E6410, Intel Core i5-560 2660 mhz, 4 GB DDR3, 160 GB HDD, DVDRW, Display 14.1',
+      "Laptop Second Hand Dell Latitude E6410, Intel Core i5-560 2660 mhz, 4 GB DDR3, 160 GB HDD, DVDRW, Display 14.1",
     images: [
-        dellLatitudeE6410IMG1,
-        dellLatitudeE6410IMG2,
-        dellLatitudeE6410IMG3,
-        dellLatitudeE6410IMG4,
-        dellLatitudeE6410IMG5
+      dellLatitudeE6410IMG1,
+      dellLatitudeE6410IMG2,
+      dellLatitudeE6410IMG3,
+      dellLatitudeE6410IMG4,
+      dellLatitudeE6410IMG5,
     ],
     price: 802.62,
+    oldPrice: 1003.28,
+    discount: 200.66,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -417,8 +426,9 @@ export const laptopsData: ILaptop[] = [
       processorType: "Intel Core i5",
       cpuCache: 3,
       frequencyCPU: 2.66,
-      frequencyTurbo: 3.20,
-      graphicProcessor: "Intel® HD Graphics for 2nd Generation Intel® Processors",
+      frequencyTurbo: 3.2,
+      graphicProcessor:
+        "Intel® HD Graphics for 2nd Generation Intel® Processors",
       socket: "PGA 988",
     },
     memoryCapacity: 4,
@@ -433,9 +443,8 @@ export const laptopsData: ILaptop[] = [
       RAMcapacity: 8,
       producer: "DELL",
       memorySlots: 2,
-      cpuSocket: 'PGA 988',
-      chipset: 'Intel Mobile QM57 Express'
-
+      cpuSocket: "PGA 988",
+      chipset: "Intel Mobile QM57 Express",
     },
     operationSystem: "Fara sistem de operare preinstalat",
     secondHand: true,
@@ -451,9 +460,9 @@ export const laptopsData: ILaptop[] = [
       tip: "DDR3",
     },
     ports: {
-      audio: '2x Jack',
+      audio: "2x Jack",
       usb_2: 4,
-      network: 1
+      network: 1,
     },
     summary: {
       model: "Dell Latitude E6410",
@@ -472,17 +481,19 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'laptop-hp-revolve-810-g2-11.6-inch-touchscreen-i5-4210m-3.20-ghz-8gb-ddr3-120gb-ssd-webcam',
-    category: 'laptopuri-second-hand',
+    id: "laptop-hp-revolve-810-g2-11.6-inch-touchscreen-i5-4210m-3.20-ghz-8gb-ddr3-120gb-ssd-webcam",
+    category: "laptopuri-second-hand",
     title:
-      'Laptop HP Revolve 810 G2 11.6 Inch, TouchScreen, i5-4210M 3.20 GHz, 8GB DDR3, 120GB SSD, Webcam',
+      "Laptop HP Revolve 810 G2 11.6 Inch, TouchScreen, i5-4210M 3.20 GHz, 8GB DDR3, 120GB SSD, Webcam",
     images: [
-        laptopHPRevolve810G2Img1,
-        laptopHPRevolve810G2Img2,
-        laptopHPRevolve810G2Img3,
-        laptopHPRevolve810G2Img4,
+      laptopHPRevolve810G2Img1,
+      laptopHPRevolve810G2Img2,
+      laptopHPRevolve810G2Img3,
+      laptopHPRevolve810G2Img4,
     ],
     price: 902.95,
+    oldPrice: 1128.69,
+    discount: 225.74,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -500,8 +511,8 @@ export const laptopsData: ILaptop[] = [
       nuclearNumber: 2,
       processorType: "Intel Core i5",
       cpuCache: 3,
-      frequencyCPU: 2.60,
-      frequencyTurbo: 3.20,
+      frequencyCPU: 2.6,
+      frequencyTurbo: 3.2,
       graphicProcessor: "Intel® HD Graphics 4600",
       socket: "PGA 946",
     },
@@ -509,7 +520,7 @@ export const laptopsData: ILaptop[] = [
     memoryType: "DDR3",
     hardDiskDetails: {
       capacity: "120 GB",
-      format: '2.5 inch',
+      format: "2.5 inch",
       type: "SSD",
     },
     motherBoard: {
@@ -517,8 +528,7 @@ export const laptopsData: ILaptop[] = [
       RAMcapacity: 12,
       producer: "HP",
       memorySlots: 1,
-      cpuSocket: 'PGA 946',
-
+      cpuSocket: "PGA 946",
     },
     secondHand: true,
     others: "Second Hand",
@@ -535,7 +545,7 @@ export const laptopsData: ILaptop[] = [
     ports: {
       audio: 1,
       usb_3: 2,
-      wi_fi: '802.11 b/g/n'
+      wi_fi: "802.11 b/g/n",
     },
     summary: {
       model: "EliteBook Revolve 810 G2",
@@ -553,16 +563,18 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'laptop-dell-latitude-5430-14-hd-intel-core-i5-3320m-3.30ghz-8gb-ddr3-320gb-hdd-dvd-rw-web-cam',
-    category: 'laptopuri-second-hand',
+    id: "laptop-dell-latitude-5430-14-hd-intel-core-i5-3320m-3.30ghz-8gb-ddr3-320gb-hdd-dvd-rw-web-cam",
+    category: "laptopuri-second-hand",
     title:
       'Laptop DELL Latitude 5430, 14" HD+, Intel Core i5-3320M 3.30GHz, 8GB DDR3, 320GB HDD, DVD-RW, WEB CAM',
     images: [
-        laptopDELLLatitude5430Img1,
-        laptopDELLLatitude5430Img2,
-        laptopDELLLatitude5430Img3,
+      laptopDELLLatitude5430Img1,
+      laptopDELLLatitude5430Img2,
+      laptopDELLLatitude5430Img3,
     ],
     price: 601.97,
+    oldPrice: 752.46,
+    discount: 150.49,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -580,8 +592,8 @@ export const laptopsData: ILaptop[] = [
       nuclearNumber: 2,
       processorType: "Intel Core i5",
       cpuCache: 3,
-      frequencyCPU: 2.60,
-      frequencyTurbo: 3.30,
+      frequencyCPU: 2.6,
+      frequencyTurbo: 3.3,
       graphicProcessor: "Intel® HD Graphics 4000",
       socket: "PGA 988",
     },
@@ -589,8 +601,8 @@ export const laptopsData: ILaptop[] = [
     memoryType: "DDR3",
     hardDiskDetails: {
       capacity: "320 GB",
-      format: '2.5 inch',
-      interface: 'SATA-III',
+      format: "2.5 inch",
+      interface: "SATA-III",
       type: "HDD",
     },
     motherBoard: {
@@ -598,17 +610,17 @@ export const laptopsData: ILaptop[] = [
       RAMcapacity: 8,
       producer: "DELL",
       memorySlots: 2,
-      cpuSocket: 'BGA 1023',
-      chipset: 'Intel QM77 Express'
+      cpuSocket: "BGA 1023",
+      chipset: "Intel QM77 Express",
     },
     secondHand: true,
     others: "Second Hand",
-    operationSystem: 'Fara sistem de operare preinstalat',
+    operationSystem: "Fara sistem de operare preinstalat",
     display: {
       diagonal: 14.1,
       rezolution: "1600 x 900",
       technology: "LCD LED",
-      aspectRatio: '16:9'
+      aspectRatio: "16:9",
     },
     videoCard: {
       chip: "nVidia",
@@ -620,7 +632,7 @@ export const laptopsData: ILaptop[] = [
       network: 1,
       usb_2: 2,
       usb_3: 1,
-      wi_fi: '802.11 b/g/n'
+      wi_fi: "802.11 b/g/n",
     },
     summary: {
       model: "DELL Latitude 5430",
@@ -630,7 +642,7 @@ export const laptopsData: ILaptop[] = [
       memory: " 8 GB DDR3 1600 MHz",
       storage: "320 GB HDD",
       videoCard: "Intel HD Graphics 4000",
-      opticalUnit: 'DVD-RW',
+      opticalUnit: "DVD-RW",
       characteristics:
         "QWERTY/QWERTZ/AZERTY WEBCAM FINGERPRINT 1x USB 2.0 2x USB 3.0",
       productState: "Second Hand",
@@ -639,20 +651,22 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'laptop-lenovo-thinkpad-x240-12.5-hd-intel-core-i5-4300u-2.90-ghz-generatia-a-4-a-8-gb-ddr3-500-gb-hdd-webcam',
-    category: 'laptopuri-second-hand',
+    id: "laptop-lenovo-thinkpad-x240-12.5-hd-intel-core-i5-4300u-2.90-ghz-generatia-a-4-a-8-gb-ddr3-500-gb-hdd-webcam",
+    category: "laptopuri-second-hand",
     title:
       'Laptop Lenovo ThinkPad X240 12.5" HD, Intel Core i5-4300U 2.90 GHz Generatia a 4-a, 8 GB DDR3, 500 GB HDD, WEBCAM',
     images: [
-        laptopLenovoThinkPadX240Img1,
-        laptopLenovoThinkPadX240Img2,
-        laptopLenovoThinkPadX240Img3,
-        laptopLenovoThinkPadX240Img4,
-        laptopLenovoThinkPadX240Img5,
-        laptopLenovoThinkPadX240Img6,
-        laptopLenovoThinkPadX240Img7
+      laptopLenovoThinkPadX240Img1,
+      laptopLenovoThinkPadX240Img2,
+      laptopLenovoThinkPadX240Img3,
+      laptopLenovoThinkPadX240Img4,
+      laptopLenovoThinkPadX240Img5,
+      laptopLenovoThinkPadX240Img6,
+      laptopLenovoThinkPadX240Img7,
     ],
     price: 635.41,
+    oldPrice: 794.26,
+    discount: 158.85,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -670,8 +684,8 @@ export const laptopsData: ILaptop[] = [
       nuclearNumber: 2,
       processorType: "Intel Core i5",
       cpuCache: 3,
-      frequencyCPU: 1.90,
-      frequencyTurbo: 2.90,
+      frequencyCPU: 1.9,
+      frequencyTurbo: 2.9,
       graphicProcessor: "Intel® HD Graphics 4000",
       socket: "BGA 1168",
     },
@@ -679,22 +693,22 @@ export const laptopsData: ILaptop[] = [
     memoryType: "DDR3",
     hardDiskDetails: {
       capacity: "500 GB",
-      format: '2.5 inch',
-      interface: 'SATA-III',
+      format: "2.5 inch",
+      interface: "SATA-III",
       type: "HDD",
       numberIncluded: 1,
-      rotation: 7200
+      rotation: 7200,
     },
     motherBoard: {
       typeMemory: "DDR3",
       RAMcapacity: 8,
       producer: "LENOVO",
       memorySlots: 1,
-      cpuSocket: 'BAG1168',
+      cpuSocket: "BAG1168",
     },
     secondHand: true,
     others: "Second Hand",
-    operationSystem: 'Fara sistem de operare preinstalat',
+    operationSystem: "Fara sistem de operare preinstalat",
     display: {
       diagonal: 12.5,
       rezolution: "1366 x 768",
@@ -718,7 +732,7 @@ export const laptopsData: ILaptop[] = [
       memory: "8 GB DDR3 1600 MHz",
       storage: "500 GB HDD SATA III",
       videoCard: "Intel HD Graphics 4000",
-      opticalUnit: 'Fara unitate optica',
+      opticalUnit: "Fara unitate optica",
       characteristics:
         "WEBCAM BLUETOOTH TASTATURA ILUMINATA 2x USB 3.0 1x VGA 1x Mini Display Port",
       productState: "Second Hand",
@@ -727,18 +741,20 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'laptop-hp-probook-450-g3-15-6-hd-intel-core-i5-6200u-2.80ghz-8gb-ddr4-256-gb-ssd-web-cam-tastatura-iluminata',
-    category: 'laptopuri-second-hand',
+    id: "laptop-hp-probook-450-g3-15-6-hd-intel-core-i5-6200u-2.80ghz-8gb-ddr4-256-gb-ssd-web-cam-tastatura-iluminata",
+    category: "laptopuri-second-hand",
     title:
       'Laptop HP Probook 450 G3, 15,6" HD, Intel Core i5-6200U 2.80Ghz, 8GB DDR4, 256 GB SSD, WEB CAM, TASTATURA ILUMINATA',
     images: [
-        laptopHPPROBOOK450G3Img1,
-        laptopHPPROBOOK450G3Img2,
-        laptopHPPROBOOK450G3Img3,
-        laptopHPPROBOOK450G3Img4,
-        laptopHPPROBOOK450G3Img5
+      laptopHPPROBOOK450G3Img1,
+      laptopHPPROBOOK450G3Img2,
+      laptopHPPROBOOK450G3Img3,
+      laptopHPPROBOOK450G3Img4,
+      laptopHPPROBOOK450G3Img5,
     ],
     price: 1270.82,
+    oldPrice: 1588.52,
+    discount: 317.7,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -755,8 +771,8 @@ export const laptopsData: ILaptop[] = [
       nuclearNumber: 2,
       processorType: "Intel Core i5",
       cpuCache: 3,
-      frequencyCPU: 2.30,
-      frequencyTurbo: 2.80,
+      frequencyCPU: 2.3,
+      frequencyTurbo: 2.8,
       graphicProcessor: "Intel® HD Graphics 520",
       socket: "BGA 1356",
     },
@@ -764,19 +780,19 @@ export const laptopsData: ILaptop[] = [
     memoryType: "DDR4",
     hardDiskDetails: {
       capacity: "256 GB",
-      format: '2.5 inch',
-      interface: 'SATA-III',
+      format: "2.5 inch",
+      interface: "SATA-III",
       type: "SSD",
     },
     motherBoard: {
       typeMemory: "DDR4",
       RAMcapacity: 16,
       memorySlots: 2,
-      cpuSocket: 'BGA 1356',
+      cpuSocket: "BGA 1356",
     },
     secondHand: true,
     others: "Second Hand",
-    operationSystem: 'Fara sistem de operare preinstalat',
+    operationSystem: "Fara sistem de operare preinstalat",
     display: {
       diagonal: 15.6,
       rezolution: "1366 x 768",
@@ -787,12 +803,12 @@ export const laptopsData: ILaptop[] = [
       memoryFrequency: 2133,
       tip: "DDR3",
       busMemory: 128,
-      capacity: 'up to 32 GB',
+      capacity: "up to 32 GB",
       supportDirectX: 12,
-      supportOpenGL: 4.5
+      supportOpenGL: 4.5,
     },
     ports: {
-      audio: '1x Combo',
+      audio: "1x Combo",
       usb_2: 2,
       usb_3: 2,
     },
@@ -804,7 +820,7 @@ export const laptopsData: ILaptop[] = [
       memory: "8 GB DDR4 2133 MHz",
       storage: "256 GB SSD M.2 SATA III",
       videoCard: "Intel HD Graphics 520",
-      opticalUnit: 'Fara unitate optica',
+      opticalUnit: "Fara unitate optica",
       characteristics:
         " QWERTY/QWERTZ/AZERTY 2x USB 2.0 + PowerShare 2x USB 3.0 WEBCAM TASTATURA ILUMINATA",
       productState: "Second Hand",
@@ -813,16 +829,18 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'laptop-hp-elitebook-820-g1-12.5-i5-4310m-3.40-ghz-4gb-ddr3-500gb-hdd-webcam',
-    category: 'laptopuri-second-hand',
+    id: "laptop-hp-elitebook-820-g1-12.5-i5-4310m-3.40-ghz-4gb-ddr3-500gb-hdd-webcam",
+    category: "laptopuri-second-hand",
     title:
       'Laptop HP EliteBook 820 G1 12.5", i5-4310M 3.40 GHz, 4GB DDR3, 500GB HDD, Webcam',
     images: [
-        laptopHPEliteBook820G1Img1,
-        laptopHPEliteBook820G1Img2,
-        laptopHPEliteBook820G1Img3
+      laptopHPEliteBook820G1Img1,
+      laptopHPEliteBook820G1Img2,
+      laptopHPEliteBook820G1Img3,
     ],
     price: 668.86,
+    oldPrice: 836.07,
+    discount: 167.21,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -836,12 +854,12 @@ export const laptopsData: ILaptop[] = [
     },
     processorType: "i5",
     processorDetails: {
-    processorModel: 'i5-4310m',
+      processorModel: "i5-4310m",
       nuclearNumber: 2,
       processorType: "Intel Core i5",
       cpuCache: 3,
-      frequencyCPU: 2.70,
-      frequencyTurbo: 3.40,
+      frequencyCPU: 2.7,
+      frequencyTurbo: 3.4,
       graphicProcessor: "Intel® HD Graphics 4600",
       socket: "BGA 1168",
     },
@@ -849,20 +867,20 @@ export const laptopsData: ILaptop[] = [
     memoryType: "DDR3",
     hardDiskDetails: {
       capacity: "500 GB",
-      format: '2.5 inch',
-      interface: 'SATA-III',
+      format: "2.5 inch",
+      interface: "SATA-III",
       type: "HDD",
     },
     motherBoard: {
       typeMemory: "DDR3",
       RAMcapacity: 16,
       memorySlots: 2,
-      cpuSocket: 'BGA 1168',
-      producer: 'HP'
+      cpuSocket: "BGA 1168",
+      producer: "HP",
     },
     secondHand: true,
     others: "Second Hand",
-    operationSystem: 'Fara sistem de operare preinstalat',
+    operationSystem: "Fara sistem de operare preinstalat",
     display: {
       diagonal: 12.5,
       rezolution: "1366 x 768",
@@ -874,10 +892,10 @@ export const laptopsData: ILaptop[] = [
       tip: "DDR3",
     },
     ports: {
-      audio: '1x Combo',
+      audio: "1x Combo",
       network: 1,
       usb_3: 2,
-      wi_fi: '802.11 b/g/n'
+      wi_fi: "802.11 b/g/n",
     },
     summary: {
       model: "EliteBook 820 G1",
@@ -895,16 +913,18 @@ export const laptopsData: ILaptop[] = [
     },
   },
   {
-    id: 'laptop-dell-latitude-e7440-14-display-procesor-intel-core-i7-4600u-3.30-ghz-8gb-ddr3-256gb-ssd-ro',
-    category: 'laptopuri-second-hand',
+    id: "laptop-dell-latitude-e7440-14-display-procesor-intel-core-i7-4600u-3.30-ghz-8gb-ddr3-256gb-ssd-ro",
+    category: "laptopuri-second-hand",
     title:
       'Laptop Dell Latitude E7440 14" Display, Procesor Intel Core i7-4600U 3.30 GHz, 8GB DDR3, 256GB SSD',
     images: [
-        laptopDellLatitudeE7440Img1,
-        laptopDellLatitudeE7440Img2,
-        laptopDellLatitudeE7440Img3
+      laptopDellLatitudeE7440Img1,
+      laptopDellLatitudeE7440Img2,
+      laptopDellLatitudeE7440Img3,
     ],
     price: 969.83,
+    oldPrice: 1212.29,
+    discount: 242.46,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -918,12 +938,12 @@ export const laptopsData: ILaptop[] = [
     },
     processorType: "i7",
     processorDetails: {
-    processorModel: 'i7-4600U',
+      processorModel: "i7-4600U",
       nuclearNumber: 2,
       processorType: "Intel Core i7",
       cpuCache: 4,
-      frequencyCPU: 2.10,
-      frequencyTurbo: 3.30,
+      frequencyCPU: 2.1,
+      frequencyTurbo: 3.3,
       graphicProcessor: "Intel® HD Graphics 4400",
       socket: "BGA 1168",
     },
@@ -931,16 +951,16 @@ export const laptopsData: ILaptop[] = [
     memoryType: "DDR3",
     hardDiskDetails: {
       capacity: "256 GB",
-      format: '2.5 inch',
-      interface: 'SATA-III',
+      format: "2.5 inch",
+      interface: "SATA-III",
       type: "SSD",
     },
     motherBoard: {
       typeMemory: "DDR3",
       RAMcapacity: 8,
       memorySlots: 2,
-      cpuSocket: 'BGA 1168',
-      producer: 'DELL'
+      cpuSocket: "BGA 1168",
+      producer: "DELL",
     },
     secondHand: true,
     others: "Second Hand",
@@ -955,24 +975,26 @@ export const laptopsData: ILaptop[] = [
       tip: "HD Graphics 4400",
     },
     ports: {
-      audio: '1x Combo',
+      audio: "1x Combo",
       network: 1,
       usb_3: 3,
-      wi_fi: '802.11 b/g/n',
-      firewire: 1
-    }
+      wi_fi: "802.11 b/g/n",
+      firewire: 1,
+    },
   },
   {
-    id: 'laptop-refurbished-dell-latitude-ultrabook-e7440-procesor-intel-core-i54300u-16gb-ram-ddr3-ssd-256gb-14-display-6264',
-    category: 'laptopuri-refurbished',
+    id: "laptop-refurbished-dell-latitude-ultrabook-e7440-procesor-intel-core-i54300u-16gb-ram-ddr3-ssd-256gb-14-display-6264",
+    category: "laptopuri-refurbished",
     title:
       'Laptop Refurbished Dell Latitude UltraBook E7440, procesor Intel Core i5-4300U, 16GB Ram DDR3, SSD 256GB, 14" Display',
     images: [
-        laptopDellLatitudeUltraBookE7440Img1,
-        laptopDellLatitudeUltraBookE7440Img2,
-        laptopDellLatitudeUltraBookE7440Img3
+      laptopDellLatitudeUltraBookE7440Img1,
+      laptopDellLatitudeUltraBookE7440Img2,
+      laptopDellLatitudeUltraBookE7440Img3,
     ],
     price: 2006.56,
+    oldPrice: 2508.20,
+    discount: 501.64,
     currency: "lei",
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
@@ -986,12 +1008,12 @@ export const laptopsData: ILaptop[] = [
     },
     processorType: "i5",
     processorDetails: {
-    processorModel: 'i5-4300U',
+      processorModel: "i5-4300U",
       nuclearNumber: 2,
       processorType: "Intel Core i5",
       cpuCache: 3,
-      frequencyCPU: 1.90,
-      frequencyTurbo: 2.90,
+      frequencyCPU: 1.9,
+      frequencyTurbo: 2.9,
       graphicProcessor: "Intel® HD Graphics 4400",
       socket: "BGA 1168",
     },
@@ -999,16 +1021,16 @@ export const laptopsData: ILaptop[] = [
     memoryType: "DDR3",
     hardDiskDetails: {
       capacity: "256 GB",
-      format: '2.5 inch',
-      interface: 'SATA-III',
+      format: "2.5 inch",
+      interface: "SATA-III",
       type: "SSD",
     },
     motherBoard: {
       typeMemory: "DDR3",
       RAMcapacity: 8,
       memorySlots: 2,
-      cpuSocket: 'BGA 1168',
-      producer: 'DELL',
+      cpuSocket: "BGA 1168",
+      producer: "DELL",
     },
     secondHand: false,
     refurbished: true,
@@ -1024,28 +1046,28 @@ export const laptopsData: ILaptop[] = [
       tip: "HD Graphics 4400",
     },
     ports: {
-      audio: '1x Combo',
+      audio: "1x Combo",
       docking: 1,
       network: 1,
       hdmi: 1,
       usb_3: 3,
-      wi_fi: '802.11 b/g/n',
-      firewire: 1
+      wi_fi: "802.11 b/g/n",
+      firewire: 1,
     },
     summary: {
-        model: "Dell Latitude E7440",
-        display: '14.0" FHD 1366*768 LED-Backlit Anti-Glare',
-        processor:
-          "Intel Core i5-4300U Dual Core 1.90 GHz (2.90 GHz Turbo, 3MB Cache, 2 Nuclee) Generatia a 4-a Haswell",
-        memory: "16 GB DDR3 1600 MHz",
-        storage: "256 GB SSD SATA III",
-        opticalUnit: 'Fara unitate optica',
-        videoCard: "Intel HD Graphics 4400",
-        characteristics:
-          "QWERTY BLUETOOTH 3x USB 3.0 WEBCAM mini DisplayPort HDMI",
-        productState: "Refurbished",
-        warranty: "24 Luni",
-        operationalsystem: "Fara sistem de operare preinstalat",
-      },
+      model: "Dell Latitude E7440",
+      display: '14.0" FHD 1366*768 LED-Backlit Anti-Glare',
+      processor:
+        "Intel Core i5-4300U Dual Core 1.90 GHz (2.90 GHz Turbo, 3MB Cache, 2 Nuclee) Generatia a 4-a Haswell",
+      memory: "16 GB DDR3 1600 MHz",
+      storage: "256 GB SSD SATA III",
+      opticalUnit: "Fara unitate optica",
+      videoCard: "Intel HD Graphics 4400",
+      characteristics:
+        "QWERTY BLUETOOTH 3x USB 3.0 WEBCAM mini DisplayPort HDMI",
+      productState: "Refurbished",
+      warranty: "24 Luni",
+      operationalsystem: "Fara sistem de operare preinstalat",
+    },
   },
 ];

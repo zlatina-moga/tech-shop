@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import qualityIcon from "../../public/svg/quality.svg";
 import transportIcon from "../../public/svg/transport.svg";
-import payImg from "../../public/images/mobilpay.png";
+import payImg from "../../public/images/stripe.png";
 
 const features = ["Producator", "Model", "Garantie", "Stare produs"];
 
@@ -78,9 +78,6 @@ const SecondHandLaptopDetails = () => {
                       <Image src={transportIcon} alt="quality" />
                       <p>Livrare gratuita la orice comanda de peste 250 lei</p>
                     </div>
-                    <div className="d-flex align-items-center mb-2 pt-2">
-                      <Image src={payImg} alt="payments" />
-                    </div>
                     <div className="d-flex pt-3 icons-container">
                       <p className="text-dark font-weight-medium mb-0 mr-2">
                         Share on:
@@ -140,6 +137,9 @@ const SecondHandLaptopDetails = () => {
                     <button className="btn btn-primary px-3">
                       <i className="fa fa-shopping-cart mr-1"></i> Add To Cart
                     </button>
+                    <div className="d-flex align-items-center mb-2 pt-2">
+                      <Image src={payImg} alt="payments" />
+                    </div>
                   </div>
                 </div>
               </div>
