@@ -49,6 +49,7 @@ export interface ILaptop {
   price: number;
   oldPrice?: number;
   discount?: number;
+  inStock?: boolean;
   currency: string;
   details: string;
   model: string;
@@ -148,6 +149,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 1003.28,
     discount: 200.66,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "",
@@ -233,6 +235,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 961.48,
     discount: 192.3,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "48",
@@ -319,6 +322,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 1379.51,
     discount: 275.9,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "56",
@@ -409,6 +413,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 1003.28,
     discount: 200.66,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "37",
@@ -495,6 +500,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 1128.69,
     discount: 225.74,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "44",
@@ -576,6 +582,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 752.46,
     discount: 150.49,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "65",
@@ -668,6 +675,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 794.26,
     discount: 158.85,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "47",
@@ -756,6 +764,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 1588.52,
     discount: 317.7,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "44",
@@ -842,6 +851,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 836.07,
     discount: 167.21,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "46",
@@ -926,6 +936,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 1212.29,
     discount: 242.46,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "65",
@@ -996,6 +1007,7 @@ export const laptopsData: ILaptop[] = [
     oldPrice: 2508.20,
     discount: 501.64,
     currency: "lei",
+    inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
     batteryType: "65",

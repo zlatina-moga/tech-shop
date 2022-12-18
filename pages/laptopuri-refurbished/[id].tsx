@@ -9,6 +9,9 @@ import "swiper/css/navigation";
 import qualityIcon from "../../public/svg/quality.svg";
 import transportIcon from "../../public/svg/transport.svg";
 import payImg from "../../public/images/stripe.png";
+import truckIcon from "../../public/svg/truck.svg";
+import walletIcon from "../../public/svg/money.svg";
+import cartIcon from "../../public/svg/cart.svg";
 
 const features = ["Producator", "Model", "Garantie", "Stare produs"];
 
@@ -69,16 +72,24 @@ const RefurbishedLaptopDetails = () => {
                       </div>
                     </div>
 
-                    <p className="mb-4">{l.details}</p>
+                    <p className="mb-4 details">{l.details}</p>
                     <div className="d-flex align-items-center mb-2 pt-2 img-container">
                       <Image src={qualityIcon} alt="quality" />
                       <p>Garantie la toate produsele comandate</p>
                     </div>
                     <div className="d-flex align-items-center mb-2 pt-2 img-container">
                       <Image src={transportIcon} alt="quality" />
-                      <p>Livrare gratuita la orice comanda de peste 250 lei</p>
+                      <p>Livrare gratuita la comanda de peste 250 lei</p>
                     </div>
-                    <div className="d-flex pt-3 icons-container">
+                    <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                      <Image src={walletIcon} alt="payment" />
+                      <p>Modalitati de plata</p>
+                    </div>
+                    <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                      <Image src={cartIcon} alt="cart" />
+                      <p>Politica de retur</p>
+                    </div>
+                    <div className="d-flex pt-4 icons-container">
                       <p className="text-dark font-weight-medium mb-0 mr-2">
                         Share on:
                       </p>
@@ -119,26 +130,59 @@ const RefurbishedLaptopDetails = () => {
                     </div>
                   </div>
                   <div className="second-container">
-                    {/*<div className="d-flex mb-3">
-                    <div className="text-primary mr-2">
-                      <small className="fas fa-star"></small>
-                      <small className="fas fa-star"></small>
-                      <small className="fas fa-star"></small>
-                      <small className="fas fa-star-half-alt"></small>
-                      <small className="far fa-star"></small>
+                    <div className="discount-container">
+                      <div>
+                        <p>-20%</p>
+                      </div>
                     </div>
-                    <small className="pt-1">(50 Reviews)</small>
-                    </div>*/}
-
-                    <h3 className="font-weight-semi-bold mb-4">
+                    <div className="price-container">
+                      <div className="old-price">
+                        <h6>
+                          <del>
+                            {l.oldPrice} {l.currency}
+                          </del>
+                        </h6>
+                        <h6 className="text-muted">
+                          {"(-"}
+                          {l.discount} {l.currency}
+                          {" )"}
+                        </h6>
+                      </div>
+                    </div>
+                    <h3 className="mb-3 price">
                       {l.price} {l.currency}
                     </h3>
+                    <div className="delivery mb-3">
+                      <Image src={truckIcon} alt="delivery" />
+                      <p>
+                        Livrare in <b>1-2 zile</b>
+                      </p>
+                    </div>
+                    {l.inStock ? (
+                      <p className="in-stock">Disponibil in stoc</p>
+                    ) : null}
+                    <p className="eco-tax">
+                      Pretul include Eco-Taxa de 6.00 lei
+                    </p>
 
-                    <button className="btn btn-primary px-3">
-                      <i className="fa fa-shopping-cart mr-1"></i> Add To Cart
+                    <button className="btn btn-primary add-to-cart">
+                      {/*<span><i className="fa fa-shopping-cart mr-1"></i> </span>*/}
+                      Adauga in cos
                     </button>
                     <div className="d-flex align-items-center mb-2 pt-2">
                       <Image src={payImg} alt="payments" />
+                    </div>
+                    <div className="contact">
+                      <span>Comanda telefonica:</span>
+                      <div>
+                        <b>Nume Prenume</b>
+                        <p>
+                          <b>Email: </b>email@gmail.com
+                        </p>
+                        <p>
+                          <b>Telefon: </b>+40123456789
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
