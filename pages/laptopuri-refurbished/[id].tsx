@@ -12,6 +12,7 @@ import payImg from "../../public/images/stripe.png";
 import truckIcon from "../../public/svg/truck.svg";
 import walletIcon from "../../public/svg/money.svg";
 import cartIcon from "../../public/svg/cart.svg";
+import externalIcon from "../../public/svg/external.svg";
 
 const features = ["Producator", "Model", "Garantie", "Stare produs"];
 
@@ -187,205 +188,317 @@ const RefurbishedLaptopDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className="row px-xl-5">
-                <div className="col">
-                  <div className="nav nav-tabs justify-content-center border-secondary mb-4">
-                    <a
-                      className="nav-item nav-link active"
-                      data-toggle="tab"
-                      href="#tab-pane-1"
-                    >
-                      Description
-                    </a>
-                    <a
-                      className="nav-item nav-link"
-                      data-toggle="tab"
-                      href="#tab-pane-2"
-                    >
-                      Information
-                    </a>
-                    <a
-                      className="nav-item nav-link"
-                      data-toggle="tab"
-                      href="#tab-pane-3"
-                    >
-                      Reviews (0)
-                    </a>
-                  </div>
-                  <div className="tab-content">
-                    <div className="tab-pane fade show active" id="tab-pane-1">
-                      <h4 className="mb-3">Product Description</h4>
-                      <p>
-                        Eos no lorem eirmod diam diam, eos elitr et gubergren
-                        diam sea. Consetetur vero aliquyam invidunt duo dolores
-                        et duo sit. Vero diam ea vero et dolore rebum, dolor
-                        rebum eirmod consetetur invidunt sed sed et, lorem duo
-                        et eos elitr, sadipscing kasd ipsum rebum diam. Dolore
-                        diam stet rebum sed tempor kasd eirmod. Takimata kasd
-                        ipsum accusam sadipscing, eos dolores sit no ut diam
-                        consetetur duo justo est, sit sanctus diam tempor
-                        aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd
-                        eos consetetur at sit rebum, diam kasd invidunt tempor
-                        lorem, ipsum lorem elitr sanctus eirmod takimata dolor
-                        ea invidunt.
-                      </p>
-                      <p>
-                        Dolore magna est eirmod sanctus dolor, amet diam et
-                        eirmod et ipsum. Amet dolore tempor consetetur sed lorem
-                        dolor sit lorem tempor. Gubergren amet amet labore
-                        sadipscing clita clita diam clita. Sea amet et sed ipsum
-                        lorem elitr et, amet et labore voluptua sit rebum. Ea
-                        erat sed et diam takimata sed justo. Magna takimata
-                        justo et amet magna et.
-                      </p>
-                    </div>
-                    <div className="tab-pane fade" id="tab-pane-2">
-                      <h4 className="mb-3">Additional Information</h4>
-                      <p>
-                        Eos no lorem eirmod diam diam, eos elitr et gubergren
-                        diam sea. Consetetur vero aliquyam invidunt duo dolores
-                        et duo sit. Vero diam ea vero et dolore rebum, dolor
-                        rebum eirmod consetetur invidunt sed sed et, lorem duo
-                        et eos elitr, sadipscing kasd ipsum rebum diam. Dolore
-                        diam stet rebum sed tempor kasd eirmod. Takimata kasd
-                        ipsum accusam sadipscing, eos dolores sit no ut diam
-                        consetetur duo justo est, sit sanctus diam tempor
-                        aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd
-                        eos consetetur at sit rebum, diam kasd invidunt tempor
-                        lorem, ipsum lorem elitr sanctus eirmod takimata dolor
-                        ea invidunt.
-                      </p>
-                      <div className="row">
-                        <div className="col-md-6">
-                          <ul className="list-group list-group-flush">
-                            <li className="list-group-item px-0">
-                              Sit erat duo lorem duo ea consetetur, et eirmod
-                              takimata.
-                            </li>
-                            <li className="list-group-item px-0">
-                              Amet kasd gubergren sit sanctus et lorem eos
-                              sadipscing at.
-                            </li>
-                            <li className="list-group-item px-0">
-                              Duo amet accusam eirmod nonumy stet et et stet
-                              eirmod.
-                            </li>
-                            <li className="list-group-item px-0">
-                              Takimata ea clita labore amet ipsum erat justo
-                              voluptua. Nonumy.
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-6">
-                          <ul className="list-group list-group-flush">
-                            <li className="list-group-item px-0">
-                              Sit erat duo lorem duo ea consetetur, et eirmod
-                              takimata.
-                            </li>
-                            <li className="list-group-item px-0">
-                              Amet kasd gubergren sit sanctus et lorem eos
-                              sadipscing at.
-                            </li>
-                            <li className="list-group-item px-0">
-                              Duo amet accusam eirmod nonumy stet et et stet
-                              eirmod.
-                            </li>
-                            <li className="list-group-item px-0">
-                              Takimata ea clita labore amet ipsum erat justo
-                              voluptua. Nonumy.
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="tab-pane fade" id="tab-pane-3">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <h4 className="mb-4">
-                            1 review for Colorful Stylish Shirt
-                          </h4>
-                          <div className="media mb-4">
-                            <img
-                              src="img/user.jpg"
-                              alt="Image"
-                              className="img-fluid mr-3 mt-1"
-                              style={{ width: "45px" }}
-                            />
-                            <div className="media-body">
-                              <h6>
-                                John Doe
-                                <small>
-                                  {" "}
-                                  - <i>01 Jan 2045</i>
-                                </small>
-                              </h6>
-                              <div className="text-primary mb-2">
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star-half-alt"></i>
-                                <i className="far fa-star"></i>
-                              </div>
-                              <p>
-                                Diam amet duo labore stet elitr ea clita ipsum,
-                                tempor labore accusam ipsum et no at. Kasd diam
-                                tempor rebum magna dolores sed sed eirmod ipsum.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <h4 className="mb-4">Leave a review</h4>
-                          <small>
-                            Your email address will not be published. Required
-                            fields are marked *
-                          </small>
-                          <div className="d-flex my-3">
-                            <p className="mb-0 mr-2">Your Rating * :</p>
-                            <div className="text-primary">
-                              <i className="far fa-star"></i>
-                              <i className="far fa-star"></i>
-                              <i className="far fa-star"></i>
-                              <i className="far fa-star"></i>
-                              <i className="far fa-star"></i>
-                            </div>
-                          </div>
-                          <form>
-                            <div className="form-group">
-                              <label>Your Review *</label>
-                              <textarea
-                                id="message"
-                                className="form-control"
-                              ></textarea>
-                            </div>
-                            <div className="form-group">
-                              <label>Your Name *</label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="name"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Your Email *</label>
-                              <input
-                                type="email"
-                                className="form-control"
-                                id="email"
-                              />
-                            </div>
-                            <div className="form-group mb-0">
-                              <input
-                                type="submit"
-                                value="Leave Your Review"
-                                className="btn btn-primary px-3"
-                              />
-                            </div>
-                          </form>
-                        </div>
-                      </div>
+              <div className="description-container">
+                {l.batteryType ? (
+                  <div className="description-feature">
+                    <h4>Baterie laptop</h4>
+                    <div>
+                      <p>Tip baterie:</p>
+                      <p>{l.batteryType}</p>
                     </div>
                   </div>
+                ) : null}
+                <div className="description-feature">
+                  <h4>Producator</h4>
+                  <div>
+                    <p>Nume:</p>
+                    <p>{l.producerDetails.model}</p>
+                  </div>
+                  <div>
+                    <p>Model:</p>
+                    <p>{l.model}</p>
+                  </div>
+                  <div>
+                    <p>Garantie:</p>
+                    <p>{l.producerDetails.warranty}</p>
+                  </div>
+                </div>
+                {l.producerDetails.layout ? (
+                  <div className="description-feature">
+                    <h4>Tastatura</h4>
+                    <div>
+                      <p>Layout:</p>
+                      <p>{l.producerDetails.layout}</p>
+                    </div>
+                  </div>
+                ) : null}
+
+                <div className="description-feature">
+                  <h4>Procesor</h4>
+                  {l.processorDetails.processorModel ? (
+                    <div>
+                      <p>Model procesor:</p>
+                      <p>{l.processorDetails.processorModel}</p>
+                    </div>
+                  ) : null}
+
+                  <div>
+                    <p>Numar nuclee:</p>
+                    <p>{l.processorDetails.nuclearNumber}</p>
+                  </div>
+                  {l.processorDetails.producer ? (
+                    <div>
+                      <p>Producator procesor:</p>
+                      <p>{l.processorDetails.producer}</p>
+                    </div>
+                  ) : null}
+                  {l.processorDetails.processorNumber ? (
+                    <div>
+                      <p>Procesoare incluse:</p>
+                      <p>{l.processorDetails.processorNumber}</p>
+                    </div>
+                  ) : null}
+                  <div>
+                    <p>Tip procesor:</p>
+                    <p>{l.processorDetails.processorType}</p>
+                  </div>
+                  <div>
+                    <p>Cache CPU (MB):</p>
+                    <p>{l.processorDetails.cpuCache}</p>
+                  </div>
+                  <div>
+                    <p>Frecventa CPU (MHz):</p>
+                    <p>{l.processorDetails.frequencyCPU}</p>
+                  </div>
+                  {l.processorDetails.frequencyTurbo ? (
+                    <div>
+                      <p>Frecventa turbo (MHz):</p>
+                      <p>{l.processorDetails.frequencyTurbo}</p>
+                    </div>
+                  ) : null}
+
+                  <div>
+                    <p>Procesor grafic integrat:</p>
+                    <p>{l.processorDetails.graphicProcessor}</p>
+                  </div>
+                  <div>
+                    <p>Socket:</p>
+                    <p>{l.processorDetails.socket}</p>
+                  </div>
+                </div>
+                <div className="description-feature">
+                  <h4>Memorie</h4>
+                  <div>
+                    <p>Capacitate memorie RAM (GB):</p>
+                    <p>{l.memoryCapacity}</p>
+                  </div>
+                  <div>
+                    <p>Tip memorie:</p>
+                    <p>{l.memoryType}</p>
+                  </div>
+                </div>
+                <div className="description-feature">
+                  <h4>Hard Disk</h4>
+                  <div>
+                    <p>Capacitate hard disk (GB):</p>
+                    <p>{l.hardDiskDetails.capacity}</p>
+                  </div>
+                  {l.hardDiskDetails.format ? (
+                    <div>
+                      <p>Format:</p>
+                      <p>{l.hardDiskDetails.format}</p>
+                    </div>
+                  ) : null}
+                  {l.hardDiskDetails.interface ? (
+                    <div>
+                      <p>Interfata:</p>
+                      <p>{l.hardDiskDetails.interface}</p>
+                    </div>
+                  ) : null}
+
+                  {l.hardDiskDetails.numberIncluded ? (
+                    <div>
+                      <p>Numar hard disk incluse:</p>
+                      <p>{l.hardDiskDetails.numberIncluded}</p>
+                    </div>
+                  ) : null}
+                  {l.hardDiskDetails.rotation ? (
+                    <div>
+                      <p>Viteza de rotatie (rpm):</p>
+                      <p>{l.hardDiskDetails.rotation}</p>
+                    </div>
+                  ) : null}
+
+                  <div>
+                    <p>Tip:</p>
+                    <p>{l.hardDiskDetails.type}</p>
+                  </div>
+                </div>
+                <div className="description-feature">
+                  <h4>Placa de baza</h4>
+                  <div>
+                    <p>Tip memorie:</p>
+                    <p>{l.motherBoard.typeMemory}</p>
+                  </div>
+                  <div>
+                    <p>Capacitate maxima memorie RAM (GB):</p>
+                    <p>{l.motherBoard.RAMcapacity}</p>
+                  </div>
+                  {l.motherBoard.chipset ? (
+                    <div>
+                      <p>Chipset MB:</p>
+                      <p>{l.motherBoard.chipset}</p>
+                    </div>
+                  ) : null}
+                  {l.motherBoard.cpuSocket ? (
+                    <div>
+                      <p>CPU Socket:</p>
+                      <p>{l.motherBoard.cpuSocket}</p>
+                    </div>
+                  ) : null}
+                  {l.motherBoard.producer ? (
+                    <div>
+                      <p>Producator pl baza:</p>
+                      <p>{l.motherBoard.producer}</p>
+                    </div>
+                  ) : null}
+                  <div>
+                    <p>Sloturi memorie:</p>
+                    <p>{l.motherBoard.memorySlots}</p>
+                  </div>
+                </div>
+                <div className="description-feature">
+                  <h4>Sistem operare</h4>
+                  <div>
+                    <p>Denumire:</p>
+                    <p>
+                      {l.operationSystem}{" "}
+                      <a
+                        target="_blank"
+                        href="https://ialicenta.ro/"
+                        rel="noreferrer"
+                      >
+                        <Image src={externalIcon} alt="external-link" />
+                        Adauga
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <div className="description-feature">
+                  <h4>Altele</h4>
+                  <div>
+                    <p>Stare produs:</p>
+                    <p>{l.others}</p>
+                  </div>
+                </div>
+                <div className="description-feature">
+                  <h4>Display</h4>
+                  {l.display.aspectRatio ? (
+                    <div>
+                      <p>Aspect imagine:</p>
+                      <p>{l.display.aspectRatio}</p>
+                    </div>
+                  ) : null}
+                  <div>
+                    <p>Diagonala display:</p>
+                    <p>{l.display.diagonal}</p>
+                  </div>
+                  <div>
+                    <p>Rezolutie:</p>
+                    <p>{l.display.rezolution}</p>
+                  </div>
+                  <div>
+                    <p>Tehnologie:</p>
+                    <p>{l.display.technology}</p>
+                  </div>
+                </div>
+                <div className="description-feature">
+                  <h4>Placa video</h4>
+                  {l.videoCard.busMemory ? (
+                    <div>
+                      <p>BUS memorie (biti):</p>
+                      <p>{l.videoCard.busMemory}</p>
+                    </div>
+                  ) : null}
+                  {l.videoCard.capacity ? (
+                    <div>
+                      <p>Capacitate memorie placa video (MB):</p>
+                      <p>{l.videoCard.capacity}</p>
+                    </div>
+                  ) : null}
+                  <div>
+                    <p>Chipset:</p>
+                    <p>{l.videoCard.chip}</p>
+                  </div>
+                  <div>
+                    <p>Frecventa memorie (MHz):</p>
+                    <p>{l.videoCard.memoryFrequency}</p>
+                  </div>
+                  {l.videoCard.supportDirectX ? (
+                    <div>
+                      <p>Suport DirectX:</p>
+                      <p>{l.videoCard.supportDirectX}</p>
+                    </div>
+                  ) : null}
+                  {l.videoCard.supportOpenGL ? (
+                    <div>
+                      <p>Suport OpenGL:</p>
+                      <p>{l.videoCard.supportOpenGL}</p>
+                    </div>
+                  ) : null}
+                  <div>
+                    <p>Tip memorie video:</p>
+                    <p>{l.videoCard.tip}</p>
+                  </div>
+                  {l.videoCard.slotType ? (
+                    <div>
+                      <p>Tip slot:</p>
+                      <p>{l.videoCard.slotType}</p>
+                    </div>
+                  ) : null}
+                </div>
+                <div className="description-feature">
+                  <h4>Porturi / Conexiuni</h4>
+                  {l.ports.audio ? (
+                    <div>
+                      <p>Audio:</p>
+                      <p>{l.ports.audio}</p>
+                    </div>
+                  ) : null}
+
+                  {l.ports.firewire ? (
+                    <div>
+                      <p>Firewire:</p>
+                      <p>{l.ports.firewire}</p>
+                    </div>
+                  ) : null}
+
+                  {l.ports.network ? (
+                    <div>
+                      <p>Retea (RJ45):</p>
+                      <p>{l.ports.network}</p>
+                    </div>
+                  ) : null}
+                  {l.ports.usb_2 ? (
+                    <div>
+                      <p>USB 2.0:</p>
+                      <p>{l.ports.usb_2}</p>
+                    </div>
+                  ) : null}
+                  {l.ports.usb_3 ? (
+                    <div>
+                      <p>USB 3.0:</p>
+                      <p>{l.ports.usb_3}</p>
+                    </div>
+                  ) : null}
+                  {l.ports.wi_fi ? (
+                    <div>
+                      <p>Wi-Fi:</p>
+                      <p>{l.ports.wi_fi}</p>
+                    </div>
+                  ) : null}
+                  {l.ports.hdmi ? (
+                    <div>
+                      <p>HDMI:</p>
+                      <p>{l.ports.hdmi}</p>
+                    </div>
+                  ) : null}
+                  {l.ports.docking ? (
+                    <div>
+                      <p>Docking:</p>
+                      <p>{l.ports.docking}</p>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>

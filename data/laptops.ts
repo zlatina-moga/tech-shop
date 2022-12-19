@@ -20,12 +20,12 @@ import laptopDELLLatitude5430Img1 from "../public/products/Laptop-DELL-Latitude-
 import laptopDELLLatitude5430Img2 from "../public/products/Laptop-DELL-Latitude-5430--14--HD---Intel-Core-i5-3320M-3-30GHz--8GB-DDR3--320GB-HDD--DVD-RW--WEB-CAM_mp4s-yi.webp";
 import laptopDELLLatitude5430Img3 from "../public/products/Laptop-DELL-Latitude-5430--14--HD---Intel-Core-i5-3320M-3-30GHz--8GB-DDR3--320GB-HDD--DVD-RW--WEB-CAM_kk2j-tg.webp";
 import laptopLenovoThinkPadX240Img1 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img2 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img3 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img4 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img5 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img6 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
-import laptopLenovoThinkPadX240Img7 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5--HD---Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a--8-GB-DDR3--500-GB-HDD--WEBCAM.webp";
+import laptopLenovoThinkPadX240Img2 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5-HD-Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a-8-GB-DDR3-500-GB-HD_1.webp";
+import laptopLenovoThinkPadX240Img3 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5-HD-Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a-8-GB-DDR3-500-GB-HD.webp";
+import laptopLenovoThinkPadX240Img4 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5-HD-Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a-8-GB-DDR3-500-GB-HD_2.webp";
+import laptopLenovoThinkPadX240Img5 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5-HD-Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a-8-GB-DDR3-500-GB-HD-1.webp";
+import laptopLenovoThinkPadX240Img6 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5-HD-Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a-8-GB-DDR3-500-GB-HD-2.webp";
+import laptopLenovoThinkPadX240Img7 from "../public/products/Laptop-Lenovo-ThinkPad-X240-12-5-HD-Intel-Core-i5-4300U-2-90-GHz-Generatia-a-4-a-8-GB-DDR3-500-GB-HD_1_1.webp";
 import laptopHPPROBOOK450G3Img1 from "../public/products/gb-ssd-web-cam-tastatura-iluminata.webp";
 import laptopHPPROBOOK450G3Img2 from "../public/products/b-ssd-web-cam-tastatura-iluminata.webp";
 import laptopHPPROBOOK450G3Img3 from "../public/products/eb-cam-tastatura-iluminata-ghbv-6l.webp";
@@ -54,11 +54,11 @@ export interface ILaptop {
   details: string;
   model: string;
   internalCode: string;
-  batteryType: string;
+  batteryType?: string;
   producerDetails: {
     model: string;
     warranty: string;
-    layout: string;
+    layout?: string;
   };
   processorType: string;
   processorDetails: {
@@ -66,11 +66,12 @@ export interface ILaptop {
     nuclearNumber: number;
     processorNumber?: number;
     processorType: string;
-    cpuCache: number;
-    frequencyCPU: number;
-    frequencyTurbo?: number;
+    cpuCache: string;
+    frequencyCPU: string;
+    frequencyTurbo?: string;
     graphicProcessor: string;
     socket: string;
+    producer?: string;
   };
   memoryCapacity: number;
   memoryType: string;
@@ -95,7 +96,7 @@ export interface ILaptop {
   refurbished?: boolean;
   others?: string;
   display: {
-    diagonal: number;
+    diagonal: string;
     rezolution: string;
     technology: string;
     aspectRatio?: string;
@@ -108,6 +109,7 @@ export interface ILaptop {
     capacity?: string;
     supportDirectX?: number;
     supportOpenGL?: number;
+    slotType?: string;
   };
   ports: {
     audio: any;
@@ -152,21 +154,19 @@ export const laptopsData: ILaptop[] = [
     inStock: true,
     details:
       "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
-    batteryType: "",
     internalCode: "LVOB5050SH10",
     model: "B50-50",
     producerDetails: {
       model: "Lenovo",
       warranty: "12 Luni / 30 zile baterie",
-      layout: "",
     },
     processorType: "i3",
     processorDetails: {
       processorModel: "i3-5005U",
       nuclearNumber: 2,
       processorType: "Intel Core i3",
-      cpuCache: 3,
-      frequencyCPU: 2.0,
+      cpuCache: '3',
+      frequencyCPU: '2.00',
       graphicProcessor: "Intel® HD Graphics 5500",
       socket: "BGA 1168",
     },
@@ -190,7 +190,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     display: {
-      diagonal: 15.6,
+      diagonal: '15.6',
       rezolution: "1366 x 768",
       technology: "LED Backlight",
     },
@@ -244,7 +244,7 @@ export const laptopsData: ILaptop[] = [
     producerDetails: {
       model: "Lenovo",
       warranty: "12 Luni / 30 zile baterie",
-      layout: "",
+      layout: "QWERTY/QWERTZ/AZERTY",
     },
     processorType: "i5",
     processorDetails: {
@@ -252,9 +252,9 @@ export const laptopsData: ILaptop[] = [
       nuclearNumber: 2,
       processorType: "Intel Core i5",
       processorNumber: 1,
-      cpuCache: 3,
-      frequencyCPU: 2.3,
-      frequencyTurbo: 2.9,
+      cpuCache: '3',
+      frequencyCPU: '2.30',
+      frequencyTurbo: '2.90',
       graphicProcessor: "Intel® HD Graphics 5500",
       socket: "BGA 1168",
     },
@@ -277,7 +277,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     display: {
-      diagonal: 12.0,
+      diagonal: '12.00',
       rezolution: "1366 x 768",
       technology: "Anti-Glare, Led Backlit",
     },
@@ -289,7 +289,7 @@ export const laptopsData: ILaptop[] = [
     ports: {
       audio: 1,
       network: 1,
-      usb_3: 1,
+      usb_3: 2,
       wi_fi: "802.11 b/g/n",
     },
     summary: {
@@ -339,9 +339,9 @@ export const laptopsData: ILaptop[] = [
       nuclearNumber: 2,
       processorType: "Intel Core i5",
       processorNumber: 1,
-      cpuCache: 3,
-      frequencyCPU: 2.5,
-      frequencyTurbo: 3.1,
+      cpuCache: '3',
+      frequencyCPU: '2.50',
+      frequencyTurbo: '3.10',
       graphicProcessor: "Intel® HD Graphics 4600",
       socket: "BGA 1168",
     },
@@ -352,7 +352,7 @@ export const laptopsData: ILaptop[] = [
       format: "2.5 inch",
       interface: "SATA-III",
       numberIncluded: 1,
-      type: "SSD",
+      type: "HDD",
     },
     motherBoard: {
       typeMemory: "DDR3",
@@ -366,7 +366,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     display: {
-      diagonal: 15.6,
+      diagonal: '15.6',
       rezolution: "1366 x 768",
       technology: "LED Backlight",
     },
@@ -429,9 +429,9 @@ export const laptopsData: ILaptop[] = [
       processorModel: "i5-560M",
       nuclearNumber: 2,
       processorType: "Intel Core i5",
-      cpuCache: 3,
-      frequencyCPU: 2.66,
-      frequencyTurbo: 3.2,
+      cpuCache: '3',
+      frequencyCPU: '2.66',
+      frequencyTurbo: '3.20',
       graphicProcessor:
         "Intel® HD Graphics for 2nd Generation Intel® Processors",
       socket: "PGA 988",
@@ -455,7 +455,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     display: {
-      diagonal: 14.1,
+      diagonal: '14.1',
       rezolution: "1280 x 800",
       technology: "LED",
     },
@@ -516,9 +516,9 @@ export const laptopsData: ILaptop[] = [
       processorModel: "i5-4210M",
       nuclearNumber: 2,
       processorType: "Intel Core i5",
-      cpuCache: 3,
-      frequencyCPU: 2.6,
-      frequencyTurbo: 3.2,
+      cpuCache: '3',
+      frequencyCPU: '2.60',
+      frequencyTurbo: '3.20',
       graphicProcessor: "Intel® HD Graphics 4600",
       socket: "PGA 946",
     },
@@ -539,7 +539,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     display: {
-      diagonal: 11.6,
+      diagonal: '11.6',
       rezolution: "1366 x 768",
       technology: "Touchscreen",
     },
@@ -598,9 +598,9 @@ export const laptopsData: ILaptop[] = [
       processorModel: "i5-3320M",
       nuclearNumber: 2,
       processorType: "Intel Core i5",
-      cpuCache: 3,
-      frequencyCPU: 2.6,
-      frequencyTurbo: 3.3,
+      cpuCache: '3',
+      frequencyCPU: '2.60',
+      frequencyTurbo: '3.30',
       graphicProcessor: "Intel® HD Graphics 4000",
       socket: "PGA 988",
     },
@@ -624,7 +624,7 @@ export const laptopsData: ILaptop[] = [
     others: "Second Hand",
     operationSystem: "Fara sistem de operare preinstalat",
     display: {
-      diagonal: 14.1,
+      diagonal: '14.1',
       rezolution: "1600 x 900",
       technology: "LCD LED",
       aspectRatio: "16:9",
@@ -684,16 +684,15 @@ export const laptopsData: ILaptop[] = [
     producerDetails: {
       model: "Lenovo",
       warranty: "12 Luni / 30 zile baterie",
-      layout: "",
     },
     processorType: "i5",
     processorDetails: {
       processorModel: "i5-4300U",
       nuclearNumber: 2,
       processorType: "Intel Core i5",
-      cpuCache: 3,
-      frequencyCPU: 1.9,
-      frequencyTurbo: 2.9,
+      cpuCache: '3',
+      frequencyCPU: '1.90',
+      frequencyTurbo: '2.90',
       graphicProcessor: "Intel® HD Graphics 4000",
       socket: "BGA 1168",
     },
@@ -718,7 +717,7 @@ export const laptopsData: ILaptop[] = [
     others: "Second Hand",
     operationSystem: "Fara sistem de operare preinstalat",
     display: {
-      diagonal: 12.5,
+      diagonal: '12.5',
       rezolution: "1366 x 768",
       technology: "Anti-Glare, Led Backlit",
     },
@@ -779,9 +778,9 @@ export const laptopsData: ILaptop[] = [
     processorDetails: {
       nuclearNumber: 2,
       processorType: "Intel Core i5",
-      cpuCache: 3,
-      frequencyCPU: 2.3,
-      frequencyTurbo: 2.8,
+      cpuCache: '3',
+      frequencyCPU: '2.30',
+      frequencyTurbo: '2.80',
       graphicProcessor: "Intel® HD Graphics 520",
       socket: "BGA 1356",
     },
@@ -803,7 +802,7 @@ export const laptopsData: ILaptop[] = [
     others: "Second Hand",
     operationSystem: "Fara sistem de operare preinstalat",
     display: {
-      diagonal: 15.6,
+      diagonal: '15.6',
       rezolution: "1366 x 768",
       technology: "Anti-Glare, Led Backlit",
     },
@@ -867,9 +866,9 @@ export const laptopsData: ILaptop[] = [
       processorModel: "i5-4310m",
       nuclearNumber: 2,
       processorType: "Intel Core i5",
-      cpuCache: 3,
-      frequencyCPU: 2.7,
-      frequencyTurbo: 3.4,
+      cpuCache: '3',
+      frequencyCPU: '2.70',
+      frequencyTurbo: '3.40',
       graphicProcessor: "Intel® HD Graphics 4600",
       socket: "BGA 1168",
     },
@@ -892,7 +891,7 @@ export const laptopsData: ILaptop[] = [
     others: "Second Hand",
     operationSystem: "Fara sistem de operare preinstalat",
     display: {
-      diagonal: 12.5,
+      diagonal: '12.5',
       rezolution: "1366 x 768",
       technology: "Led Backlit",
     },
@@ -904,7 +903,7 @@ export const laptopsData: ILaptop[] = [
     ports: {
       audio: "1x Combo",
       network: 1,
-      usb_3: 2,
+      usb_3: 3,
       wi_fi: "802.11 b/g/n",
     },
     summary: {
@@ -952,9 +951,9 @@ export const laptopsData: ILaptop[] = [
       processorModel: "i7-4600U",
       nuclearNumber: 2,
       processorType: "Intel Core i7",
-      cpuCache: 4,
-      frequencyCPU: 2.1,
-      frequencyTurbo: 3.3,
+      cpuCache: '4',
+      frequencyCPU: '2.10',
+      frequencyTurbo: '3.30',
       graphicProcessor: "Intel® HD Graphics 4400",
       socket: "BGA 1168",
     },
@@ -976,7 +975,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     display: {
-      diagonal: 14.0,
+      diagonal: '14.0',
       rezolution: "1366 x 768",
       technology: "Anti-Glare, Led Backlit",
     },
@@ -1023,11 +1022,12 @@ export const laptopsData: ILaptop[] = [
       processorModel: "i5-4300U",
       nuclearNumber: 2,
       processorType: "Intel Core i5",
-      cpuCache: 3,
-      frequencyCPU: 1.9,
-      frequencyTurbo: 2.9,
+      cpuCache: '3',
+      frequencyCPU: '1.90',
+      frequencyTurbo: '2.90',
       graphicProcessor: "Intel® HD Graphics 4400",
       socket: "BGA 1168",
+      producer: 'Intel'
     },
     memoryCapacity: 16,
     memoryType: "DDR3",
@@ -1044,11 +1044,12 @@ export const laptopsData: ILaptop[] = [
       cpuSocket: "BGA 1168",
       producer: "DELL",
     },
+    operationSystem: 'Fara sistem de operare preinstalat',
     secondHand: false,
     refurbished: true,
     others: "Refurbished",
     display: {
-      diagonal: 14.0,
+      diagonal: '14.0',
       rezolution: "1366 x 768",
       technology: "Anti-Glare, Led Backlit",
     },
@@ -1056,6 +1057,7 @@ export const laptopsData: ILaptop[] = [
       chip: "Intel",
       memoryFrequency: 1600,
       tip: "HD Graphics 4400",
+      slotType: 'Onboard'
     },
     ports: {
       audio: "1x Combo",

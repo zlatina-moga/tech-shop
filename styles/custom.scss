@@ -215,8 +215,8 @@
       .contact {
         text-align: left;
         span {
-          color: #6C873B;
-          border-bottom: thin solid #6C873B;
+          color: #6c873b;
+          border-bottom: thin solid #6c873b;
           width: 100%;
           font-weight: 700;
           padding-bottom: 5px;
@@ -226,6 +226,63 @@
           p {
             padding-top: 5px 0;
           }
+        }
+      }
+    }
+  }
+  .description-container {
+    word-wrap: break-word;
+    display: inline-block;
+    width: 100%;
+    .description-feature {
+      width: 50%;
+      display: inline-block;
+      float: left;
+      padding: 5px;
+      box-sizing: border-box;
+      
+      h4 {
+        background: #005067 none repeat scroll 0 0;
+        font-weight: bold;
+        padding: 10px;
+        margin: 0px;
+        font-size: 16px;
+        color: white;
+      }
+      div {
+        display: flex;
+        width: 100%;
+        padding: 7px !important;
+        box-sizing: border-box;
+        border-bottom: none !important;
+        margin: 5px 0;
+        p {
+          box-sizing: border-box;
+          width: 50%;
+          margin-left: 0px;
+          font-size: 14px;
+          display: inline-block;
+          font-weight: 500;
+        }
+      }
+      div:nth-child(odd) {
+        background: #f8f8f8;
+      }
+      a {
+        float: right;
+        background: #90BD3F;
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: white;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        img {
+          margin-right: 5px;
+          max-height: 18px;
+        }
+        &:hover {
+          text-decoration: none;
         }
       }
     }
