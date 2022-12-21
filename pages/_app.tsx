@@ -7,6 +7,7 @@ import "../styles/globals.css";
 import '../styles/styles.scss';
 import '../styles/custom.scss';
 import "swiper/css/bundle";
+import 'react-photo-view/dist/react-photo-view.css';
 
 const MyApp = ({ Component, pageProps }) => {
   return (

@@ -40,6 +40,9 @@ import laptopDellLatitudeE7440Img3 from "../public/products/Laptop-Dell-Latitude
 import laptopDellLatitudeUltraBookE7440Img1 from "../public/products/Laptop-Refurbished-Dell-Latitude-UltraBook-E7440--procesor-Intel-Core-i5-4300U--16GB-Ram-DDR3--SSD-256GB--14--Display.jpeg";
 import laptopDellLatitudeUltraBookE7440Img2 from "../public/products/Laptop-Refurbished-Dell-Latitude-UltraBook-E7440--procesor-Intel-Core-i5-4300U--16GB-Ram-DDR3--SSD-256GB--14--Display_irjx-x0.jpeg";
 import laptopDellLatitudeUltraBookE7440Img3 from "../public/products/Laptop-Refurbished-Dell-Latitude-UltraBook-E7440--procesor-Intel-Core-i5-4300U--16GB-Ram-DDR3--SSD-256GB--14--Display_d3yz-24.jpeg";
+import laptopDellLatitudeE7440RefurbishedImg1 from '../public/products/Laptop-Dell-Latitude-E7440-14-Display-Procesor-Intel-Core-i7-4600U-3-30-GHz-16GB-DDR3-240GB-SSD-ref.webp'
+import laptopDellLatitudeE7440RefurbishedImg2 from '../public/products/Laptop-Dell-Latitude-E7440-14-Display-Procesor-Intel-Core-i7-4600U-3-30-GHz-16GB-DDR3-240GB-SSD-Wind.webp'
+import laptopDellLatitudeE7440RefurbishedImg3 from '../public/products/Laptop-Dell-Latitude-E7440-14-Display-Procesor-Intel-Core-i7-4600U-3-30-GHz-16GB-DDR3-240GB-SSD-Wind-ref2.webp'
 
 export interface ILaptop {
   category?: string;
@@ -63,7 +66,7 @@ export interface ILaptop {
   processorType: string;
   processorDetails: {
     processorModel?: string;
-    nuclearNumber: number;
+    nuclearNumber?: number;
     processorNumber?: number;
     processorType: string;
     cpuCache: string;
@@ -91,6 +94,7 @@ export interface ILaptop {
     cpuSocket?: string;
     chipset?: string;
   };
+  hasNoOS?: boolean;
   operationSystem?: string;
   secondHand?: boolean;
   refurbished?: boolean;
@@ -186,6 +190,7 @@ export const laptopsData: ILaptop[] = [
       memorySlots: 2,
       cpuSocket: "BGA 1170",
     },
+    hasNoOS: true,
     operationSystem: "Fara sistem de operare preinstalat",
     secondHand: true,
     others: "Second Hand",
@@ -273,6 +278,7 @@ export const laptopsData: ILaptop[] = [
       producer: "LENOVO",
       memorySlots: 1,
     },
+    hasNoOS: true,
     operationSystem: "Fara sistem de operare preinstalat",
     secondHand: true,
     others: "Second Hand",
@@ -362,6 +368,7 @@ export const laptopsData: ILaptop[] = [
       cpuSocket: "BAG1168",
       chipset: "Intel® QM87",
     },
+    hasNoOS: true,
     operationSystem: "Fara sistem de operare preinstalat",
     secondHand: true,
     others: "Second Hand",
@@ -451,6 +458,7 @@ export const laptopsData: ILaptop[] = [
       cpuSocket: "PGA 988",
       chipset: "Intel Mobile QM57 Express",
     },
+    hasNoOS: true,
     operationSystem: "Fara sistem de operare preinstalat",
     secondHand: true,
     others: "Second Hand",
@@ -511,6 +519,8 @@ export const laptopsData: ILaptop[] = [
       warranty: "12 Luni",
       layout: "",
     },
+    hasNoOS: true,
+    operationSystem: "Fara sistem de operare preinstalat",
     processorType: "i5",
     processorDetails: {
       processorModel: "i5-4210M",
@@ -622,6 +632,7 @@ export const laptopsData: ILaptop[] = [
     },
     secondHand: true,
     others: "Second Hand",
+    hasNoOS: true,
     operationSystem: "Fara sistem de operare preinstalat",
     display: {
       diagonal: '14.1',
@@ -716,6 +727,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     operationSystem: "Fara sistem de operare preinstalat",
+    hasNoOS: true,
     display: {
       diagonal: '12.5',
       rezolution: "1366 x 768",
@@ -801,6 +813,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     operationSystem: "Fara sistem de operare preinstalat",
+    hasNoOS: true,
     display: {
       diagonal: '15.6',
       rezolution: "1366 x 768",
@@ -890,6 +903,7 @@ export const laptopsData: ILaptop[] = [
     secondHand: true,
     others: "Second Hand",
     operationSystem: "Fara sistem de operare preinstalat",
+    hasNoOS: true,
     display: {
       diagonal: '12.5',
       rezolution: "1366 x 768",
@@ -974,6 +988,8 @@ export const laptopsData: ILaptop[] = [
     },
     secondHand: true,
     others: "Second Hand",
+    operationSystem: "Fara sistem de operare preinstalat",
+    hasNoOS: true,
     display: {
       diagonal: '14.0',
       rezolution: "1366 x 768",
@@ -1045,6 +1061,7 @@ export const laptopsData: ILaptop[] = [
       producer: "DELL",
     },
     operationSystem: 'Fara sistem de operare preinstalat',
+    hasNoOS: true,
     secondHand: false,
     refurbished: true,
     others: "Refurbished",
@@ -1082,6 +1099,94 @@ export const laptopsData: ILaptop[] = [
       productState: "Refurbished",
       warranty: "24 Luni",
       operationalsystem: "Fara sistem de operare preinstalat",
+    },
+  },
+  {
+    id: "laptop-dell-latitude-e7440-14-display-procesor-intel-core-i7-4600u-3.30-ghz-16gb-ddr3-240gb-ssd-windows-10-home-refurbished",
+    category: "laptopuri-refurbished",
+    title:
+      'Laptop Dell Latitude E7440 14" Display, Procesor Intel Core i7-4600U 3.30 GHz, 16GB DDR3, 240GB SSD, Windows 10 Home Refurbished',
+    images: [
+      laptopDellLatitudeE7440RefurbishedImg1,
+      laptopDellLatitudeE7440RefurbishedImg2,
+      laptopDellLatitudeE7440RefurbishedImg3,
+    ],
+    price: 1308.58,
+    oldPrice: 1635.72,
+    discount: 327.14,
+    currency: "lei",
+    inStock: true,
+    details:
+      "Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului",
+    batteryType: "65",
+    internalCode: "DL7440RE04H",
+    model: "Latitude E7440",
+    producerDetails: {
+      model: "Dell",
+      warranty: "12 luni",
+      layout: "",
+    },
+    processorType: "i7",
+    processorDetails: {
+      processorModel: "i7-4600U",
+      processorType: "Intel Core i7",
+      cpuCache: '4',
+      frequencyCPU: '2.10',
+      frequencyTurbo: '3.30',
+      graphicProcessor: "Intel® HD Graphics 4400",
+      socket: "BGA 1168",
+    },
+    memoryCapacity: 16,
+    memoryType: "DDR3",
+    hardDiskDetails: {
+      capacity: "240 GB",
+      format: "2.5 inch",
+      interface: "SATA-III",
+      type: "SSD",
+    },
+    motherBoard: {
+      typeMemory: "DDR3",
+      RAMcapacity: 8,
+      memorySlots: 2,
+      cpuSocket: "BGA 1168",
+      producer: "DELL",
+    },
+    operationSystem: 'Windows 10 Home Mar',
+    secondHand: false,
+    refurbished: true,
+    others: "Refurbished",
+    display: {
+      diagonal: '14.0',
+      rezolution: "1366 x 768",
+      technology: "Anti-Glare, Led Backlit",
+    },
+    videoCard: {
+      chip: "Intel",
+      memoryFrequency: 1600,
+      tip: "HD Graphics 4400",
+      slotType: 'Onboard'
+    },
+    ports: {
+      audio: "1x Combo",
+      network: 1,
+      usb_3: 3,
+      wi_fi: "802.11 b/g/n",
+      firewire: 1,
+    },
+    summary: {
+      model: "Dell Latitude E7440",
+      display: '14.0" HD 1366*768 LED-Backlit Anti-Glare',
+      processor:
+        "Intel Core i7-4600U Dual Core 2.10 GHz (3.300 GHz Turbo, 4MB Cache, 2 Nuclee) Generatia a 4-a Haswell",
+      memory: "16 GB DDR3 1600 MHz",
+      storage: "240 GB SSD SATA III",
+      opticalUnit: "Fara unitate optica",
+      videoCard: "Intel HD Graphics 4400",
+      characteristics:
+        "QWERTY BLUETOOTH 3x USB 3.0 WEBCAM mini DisplayPort HDMI TASTATURA ILUMINATA",
+      productState: "Refurbished",
+      warranty: "24 Luni",
+      operationalsystem: "Windows 10 Home Mar preinstalat",
     },
   },
 ];
