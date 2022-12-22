@@ -11,8 +11,8 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
     return (
         <>
             <Meta />
-            <Navbar />
-            {/*Scripts*/}
+            
+            {/*<Navbar /> Scripts*/}
 
             {children}
             
