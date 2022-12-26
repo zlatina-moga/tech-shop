@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { laptopsData } from "../data";
+import { computersData } from "../data";
 import Navbar from "../components/global/Navbar";
 
 export default function Home() {
@@ -45,9 +46,9 @@ export default function Home() {
                     <Link href="/laptops" className="nav-item nav-link py-3">
                       Laptops
                     </Link>
-                    <a href="" className="nav-item nav-link py-3">
+                    <Link href="/computers" className="nav-item nav-link py-3">
                       Computers
-                    </a>
+                    </Link>
                     <a href="" className="nav-item nav-link py-3">
                       Workstations
                     </a>
@@ -226,9 +227,9 @@ export default function Home() {
                   className="cat-item d-flex flex-column border mb-4"
                   style={{ padding: "30px", borderRadius: "4px" }}
                 >
-                  <p className="text-right">32 Products</p>
-                  <a
-                    href=""
+                  <p className="text-right">{computersData.length} Products</p>
+                  <Link
+                    href="/computers"
                     className="cat-img position-relative overflow-hidden mb-3 mx-auto"
                   >
                     <Image
@@ -238,7 +239,7 @@ export default function Home() {
                       width={300}
                       height={300}
                     />
-                  </a>
+                  </Link>
                   <h5 className="font-weight-semi-bold m-0">Computers</h5>
                 </div>
               </div>

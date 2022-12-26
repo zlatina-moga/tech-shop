@@ -1,19 +1,19 @@
-import { ILaptop,laptopsData } from "../data";
+import { IComputer, computersData } from "../data";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 
-const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
+const Computers: React.FC<IComputer> = (props: IComputer) => {
   return (
     <>
       <Navbar />
       <div className={classNames("container-fluid pt-5", "laptops-page")}>
         <div className="text-center mb-4">
-          <h1 className="px-5">Laptops</h1>
+          <h1 className="px-5">Computers</h1>
         </div>
         <div className="row px-xl-5 pb-3 justify-content-center">
-          {laptopsData.map((l, idx) => (
+          {computersData.map((l, idx) => (
             <div
               className={classNames(
                 `col-lg-3 col-md-6 col-sm-12 pb-1`,
@@ -82,4 +82,4 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
   );
 };
 
-export default Laptops;
+export default Computers;
