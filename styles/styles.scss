@@ -79,8 +79,12 @@
 }
 .laptops-page {
   padding: 60px 40px 0;
-  margin: 0 auto;
+  margin: 100px auto 0;
   //background-color: #F8F8F8;
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+  }
   .laptop-card {
     margin: 40px;
     padding: 5px;
