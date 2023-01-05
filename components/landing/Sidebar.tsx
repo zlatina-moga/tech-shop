@@ -52,7 +52,7 @@ const Sidebar = () => {
                   alt="list"
                   style={{ height: "18px" }}
                 />
-                Laptops
+                Laptopuri
               </Link>
               <Link
                 href="/computers"
@@ -63,7 +63,7 @@ const Sidebar = () => {
                   alt="list"
                   style={{ height: "18px" }}
                 />
-                Computers
+                Calculatoare
               </Link>
               <Link href="/workstations" className="nav-item nav-link py-3 sidebar-link">
                 <img
@@ -71,7 +71,7 @@ const Sidebar = () => {
                   alt="list"
                   style={{ height: "18px" }}
                 />
-                Workstations
+                Statii Grafice
               </Link>
               <Link href="/servers" className="nav-item nav-link py-3 sidebar-link">
                 <img
@@ -79,7 +79,7 @@ const Sidebar = () => {
                   alt="list"
                   style={{ height: "18px" }}
                 />
-                Servers
+                Servere
               </Link>
               <Link href="/monitors" className="nav-item nav-link py-3 sidebar-link">
                 <img
@@ -87,7 +87,7 @@ const Sidebar = () => {
                   alt="list"
                   style={{ height: "18px" }}
                 />
-                Monitors
+                Monitoare
               </Link>
               <Link href="/apple" className="nav-item nav-link py-3 sidebar-link">
                 <img
@@ -95,7 +95,7 @@ const Sidebar = () => {
                   alt="list"
                   style={{ height: "18px" }}
                 />
-                Apple
+                Apple Refurbished
               </Link>
               <Link href="/components" className="nav-item nav-link py-3 sidebar-link" style={{borderBottom: 'none'}}>
                 <img
@@ -103,7 +103,7 @@ const Sidebar = () => {
                   alt="list"
                   style={{ height: "18px" }}
                 />
-                Components
+                Componente
               </Link>
             </div>
           </nav>
@@ -174,7 +174,7 @@ const Sidebar = () => {
               <div>
                 <Image
                   className="img-fluid"
-                  src="/images/banner_site-03.png"
+                  src="/images/cerere.png"
                   alt=""
                   layout="fill"
                   objectFit="cover"
