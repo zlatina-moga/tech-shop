@@ -4,6 +4,7 @@ import Link from "next/link";
 import { laptopsData } from "../data";
 import { computersData } from "../data";
 import Navbar from "../components/global/Navbar";
+import Sidebar from "../components/landing/Sidebar";
 
 export default function Home() {
   return (
@@ -11,149 +12,7 @@ export default function Home() {
       <Navbar />
       <div style={{ maxWidth: "100rem", margin: "0 auto" }}>
         <main style={{ paddingTop: "150px" }}>
-          {/*<!-- SideBar Start -->*/}
-          <div className="container-fluid mb-5">
-            <div className="row px-xl-5">
-              <div className="col-lg-3 d-none d-lg-block">
-                <a
-                  className="btn d-flex align-items-center justify-content-between bg-primary text-white w-100"
-                  data-toggle="collapse"
-                  href="#navbar-vertical"
-                  style={{
-                    height: 65,
-                    marginTop: -1,
-                    paddingBottom: 30,
-                    paddingTop: 30,
-                    borderTopLeftRadius: "4px",
-                    borderTopRightRadius: "4px",
-                  }}
-                >
-                  <h6 className="m-0">Products</h6>
-                  <i className="fa fa-angle-down text-dark"></i>
-                </a>
-                <nav
-                  className="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
-                  id="navbar-vertical"
-                >
-                  <div
-                    className="navbar-nav w-100 overflow-hidden"
-                    style={{
-                      height: 410,
-                      borderBottomLeftRadius: "4px",
-                      borderBottomRightRadius: "4px",
-                    }}
-                  >
-                    <Link href="/laptops" className="nav-item nav-link py-3">
-                      Laptops
-                    </Link>
-                    <Link href="/computers" className="nav-item nav-link py-3">
-                      Computers
-                    </Link>
-                    <a href="" className="nav-item nav-link py-3">
-                      Workstations
-                    </a>
-                    <a href="" className="nav-item nav-link py-3">
-                      Servers
-                    </a>
-                    <a href="" className="nav-item nav-link py-3">
-                      Monitors
-                    </a>
-                    <a href="" className="nav-item nav-link py-3">
-                      Apple
-                    </a>
-                    <a
-                      href=""
-                      className="nav-item nav-link py-3"
-                      style={{ borderBottom: "none" }}
-                    >
-                      Components
-                    </a>
-                  </div>
-                </nav>
-              </div>
-              <div className="col-lg-9">
-                <nav className="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                  <a href="" className="text-decoration-none d-block d-lg-none">
-                    <h1 className="m-0 display-5 font-weight-semi-bold">
-                      <span className="text-primary font-weight-bold border px-3 mr-1">
-                        Tech
-                      </span>
-                      Shop
-                    </h1>
-                  </a>
-                  <button
-                    type="button"
-                    className="navbar-toggler"
-                    data-toggle="collapse"
-                    data-target="#navbarCollapse"
-                  >
-                    <span className="navbar-toggler-icon"></span>
-                  </button>
-                  <div
-                    className="collapse navbar-collapse justify-content-between"
-                    style={{ borderRadius: "4px" }}
-                  >
-                    <div className="navbar-nav mr-auto py-0">
-                      <a href="" className="nav-item nav-link active">
-                        Promotions
-                      </a>
-                      <a href="" className="nav-item nav-link">
-                        High-end systems
-                      </a>
-                      <a href="" className="nav-item nav-link">
-                        Gaming
-                      </a>
-                      <a href="" className="nav-item nav-link">
-                        All-in-one
-                      </a>
-                      <a href="" className="nav-item nav-link">
-                        Tablets
-                      </a>
-                      {/*<div className="nav-item dropdown">
-                      <a
-                        href="#"
-                        className="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                      >
-                        Pages
-                      </a>
-                      <div className="dropdown-menu rounded-0 m-0">
-                        <a href="cart.html" className="dropdown-item">
-                          Shopping Cart
-                        </a>
-                        <a href="checkout.html" className="dropdown-item">
-                          Checkout
-                        </a>
-                      </div>
-              </div>*/}
-                      <a href="" className="nav-item nav-link">
-                        Contact
-                      </a>
-                    </div>
-                  </div>
-                </nav>
-                <div className="carousel slide" data-ride="carousel">
-                  <div className="carousel-item active" style={{ height: 410 }}>
-                    <div>
-                      <Image
-                        className="img-fluid"
-                        src="/images/banner_site-03.png"
-                        alt=""
-                        layout="fill"
-                        objectFit="cover"
-                        style={{
-                          borderBottomLeftRadius: "4px",
-                          borderBottomRightRadius: "4px",
-                          objectFit: "contain",
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/*<!-- SideBar end -->*/}
+          <Sidebar />
 
           {/*<!-- Featured Start -->*/}
           <div className="container-fluid pt-5">
