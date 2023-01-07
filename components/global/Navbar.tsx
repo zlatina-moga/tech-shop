@@ -3,12 +3,12 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <div className="py-1 w-100" id='nav-container'>
+    <div className="w-100" id='nav-container'>
       <nav className="row align-items-center px-xl-5" style={{maxWidth: '100rem', margin: '0 auto'}}>
         <div className="col-lg-3 d-none d-lg-block">
           <Link href="/">
             <Image
-              src="/images/logo-example.png"
+              src="/images/logo-example.jpg"
               alt="logo"
               width={150}
               height={60}
