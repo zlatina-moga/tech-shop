@@ -22,7 +22,7 @@ const Navbar = () => {
                 type="text"
                 className="form-control"
                 placeholder="Search for products"
-                style={{ borderRadius: "4px" }}
+                style={{ borderRadius: "4px", textAlign: 'left' }}
               />
               <div className="input-group-append">
                 <span

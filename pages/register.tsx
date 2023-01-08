@@ -7,14 +7,29 @@ import hidePasswordIcon from "../public/svg/password-hide.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+interface IFillTheForm {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
+}
+
+const initialValues: IFillTheForm = {
+  name: '',
+  username: '',
+  email: '',
+  password: '',
+  repeatPassword: ''
+}
+
 const Register = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showSecondPassword, setShowSecondPassword] = useState<boolean>(false);
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formState, setFormState] = useState<boolean>(true);
+  const [formValues, setFormValues] = useState<IFillTheForm>(initialValues);
   const notify = () => {
-    toast("Thank you for registering!");
+    toast("Thank you for registering!")
   }
 
   const togglePassword = () => {
@@ -28,23 +43,48 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const postData = async () => {
-      const data = {
-        name: name,
-        username: username,
-        password: password,
-      };
-      const response = await fetch("/api/register", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      return response.json();
-    };
-
-    postData().then((data) => {
-      alert(data.message);
-    });
+    validateForm(formValues)
   };
+
+  async function validateForm(formValues: IFillTheForm) {
+    if (!formValues.name) {
+      setFormState(false)
+      toast.error('Please enter name')
+    }
+    if (!formValues.username) {
+      setFormState(false)
+      toast.error('Please enter username')
+    }
+    if (!formValues.email) {
+      setFormState(false)
+      toast.error('Please enter email')
+    }
+    if (!formValues.password) {
+      setFormState(false)
+      toast.error('Please enter password')
+    }
+    if (formValues.password != formValues.repeatPassword) {
+      setFormState(false)
+      toast.error('Passwords don\'t match')
+    }
+    await register()
+  }
+
+  async function register() {
+    const response = await fetch("/api/register", {
+      method: "POST",
+      body: JSON.stringify(formValues),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    return response.json();
+  }
+
+  const handleChange = (e: any) => {
+    const {name, value} = e.target;
+    setFormValues((prevState: any) => ({...prevState, [name]: value}))
+  }
 
   return (
     <>
@@ -56,16 +96,23 @@ const Register = () => {
             <input
               type="text"
               placeholder="Name"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name='name'
+              value={formValues.name}
+              onChange={handleChange}
             />
             <input
               type="text"
               placeholder="Username"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              name='username'
+              value={formValues.username}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="Email"
+              name='email'
+              value={formValues.email}
+              onChange={handleChange}
             />
             <div
               style={{
@@ -74,12 +121,12 @@ const Register = () => {
                 position: "relative",
               }}
             >
-              {" "}
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name='password'
+                value={formValues.password}
+                onChange={handleChange}
               />
               <Image
                 src={showPassword ? showPasswordIcon : hidePasswordIcon}
@@ -101,10 +148,12 @@ const Register = () => {
                 position: "relative",
               }}
             >
-              {" "}
               <input
                 type={showSecondPassword ? "text" : "password"}
                 placeholder="Repeat Password"
+                name='repeatPassword'
+                value={formValues.repeatPassword}
+                onChange={handleChange}
               />
               <Image
                 src={showSecondPassword ? showPasswordIcon : hidePasswordIcon}
