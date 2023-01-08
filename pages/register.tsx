@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 import Image from "next/image";
 import showPasswordIcon from "../public/svg/password-show.svg";
 import hidePasswordIcon from "../public/svg/password-hide.svg";
-import toast, { Toaster } from 'react-hot-toast';
-
+import toast, { Toaster } from "react-hot-toast";
 
 interface IFillTheForm {
   name: string;
@@ -30,6 +30,7 @@ const Register = () => {
   const [showSecondPassword, setShowSecondPassword] = useState<boolean>(false);
   const [formState, setFormState] = useState<boolean>(true);
   const [formValues, setFormValues] = useState<IFillTheForm>(initialValues);
+  const router = useRouter();
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -49,31 +50,31 @@ const Register = () => {
     if (!formValues.name) {
       setFormState(false);
       toast.error("Please enter name", {
-        style: {marginTop: '100px'}
+        style: { marginTop: "100px" },
       });
     }
     if (!formValues.username) {
       setFormState(false);
       toast.error("Please enter username", {
-        style: {marginTop: '100px'}
+        style: { marginTop: "100px" },
       });
     }
     if (!formValues.email) {
       setFormState(false);
       toast.error("Please enter email", {
-        style: {marginTop: '100px'}
+        style: { marginTop: "100px" },
       });
     }
     if (!formValues.password) {
       setFormState(false);
       toast.error("Please enter password", {
-        style: {marginTop: '100px'}
+        style: { marginTop: "100px" },
       });
     }
     if (formValues.password != formValues.repeatPassword) {
       setFormState(false);
       toast.error("Passwords don't match", {
-        style: {marginTop: '100px'}
+        style: { marginTop: "100px" },
       });
     }
 
@@ -81,25 +82,28 @@ const Register = () => {
   }
 
   async function register() {
-    try {
-      const response = await fetch(`${baseUrl}/auth/register`, {
-        method: "POST",
-        body: JSON.stringify(formValues),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    const response = await fetch(`${baseUrl}/auth/register`, {
+      method: "POST",
+      body: JSON.stringify(formValues),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.status == 200) {
+      toast.success("Thank you for registering!", {
+        style: { marginTop: "100px" },
       });
-
-      if (response.status == 200) {
-        toast.success("Thank you for registering!", {
-          style: {marginTop: '100px'}
-        })    
-      }
-      return response.json();
-    } catch (err) {
-
-      console.log(err.message);
+      setFormValues(initialValues);
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
+    } else {
+      toast.error(response.statusText, { //adjust here
+        style: { marginTop: "100px" },
+      })
     }
+    return response.json();
   }
 
   const handleChange = (e: any) => {
