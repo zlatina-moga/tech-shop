@@ -208,13 +208,13 @@ export default function Home() {
                     Bonus points on each order
                   </h5>
                   <h1 className="mb-4 font-weight-semi-bold">-Get Offer-</h1>
-                  <a
-                    href="/products"
+                  <Link
+                    href="/computers"
                     className="btn btn-outline-primary py-md-2 px-md-3"
                     style={{ borderRadius: "4px" }}
                   >
                     Shop Now
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

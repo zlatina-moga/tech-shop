@@ -113,9 +113,9 @@ const Sidebar = () => {
             <a href="" className="text-decoration-none d-block d-lg-none">
               <h1 className="m-0 display-5 font-weight-semi-bold">
                 <span className="text-primary font-weight-bold border px-3 mr-1">
-                  Tech
+                  PC
                 </span>
-                Shop
+                BUN
               </h1>
             </a>
             <button
@@ -174,14 +174,13 @@ const Sidebar = () => {
               <div>
                 <Image
                   className="img-fluid"
-                  src="/images/cerere.png"
+                  src="/images/banner-11.jpg"
                   alt=""
                   layout="fill"
-                  objectFit="cover"
+                  objectFit="contain"
                   style={{
-                    borderBottomLeftRadius: "4px",
-                    borderBottomRightRadius: "4px",
                     objectFit: "contain",
+                    borderRadius: '4px'
                   }}
                 />
               </div>

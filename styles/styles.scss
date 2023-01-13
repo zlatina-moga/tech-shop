@@ -320,7 +320,7 @@ form .auth-field {
       margin-right: 5px;
     }
     &:hover {
-      background-color: #4f652b !important;
+      background-color: #619F42 !important;
       color: white !important;
     }
   }
@@ -356,6 +356,7 @@ form .auth-field {
           margin-left: 3px;
           margin-bottom: 3px;
           overflow: hidden;
+          max-height: 30px;
           p {
             color: #fff;
             font-size: 12px;

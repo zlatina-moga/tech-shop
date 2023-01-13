@@ -19,6 +19,7 @@ const Navbar = () => {
               alt="logo"
               width={150}
               height={60}
+              style={{borderRadius: '4px'}}
             />
           </Link>
         </div>

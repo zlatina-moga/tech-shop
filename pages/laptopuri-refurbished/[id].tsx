@@ -180,7 +180,7 @@ const RefurbishedLaptopDetails = () => {
                           Adauga in cos
                         </button>
                         <div className="d-flex align-items-center mb-2 pt-2">
-                          <Image src={payImg} alt="payments" />
+                          <Image src={payImg} alt="payments" style={{maxHeight: '120px'}} />
                         </div>
                         <div className="contact">
                           <span>Comanda telefonica:</span>

@@ -2,13 +2,13 @@ import computerLenovoThinkCentreImg1 from "../public/products/computers/Calculat
 import computerLenovoThinkCentreImg2 from "../public/products/computers/Calculator-Lenovo-ThinkCentre-M82-Tower-Intel-Core-i3-2100-3-10-GHz-4GB-DDR3-250GB-HDD-DVD-Windows-1.webp";
 import computerLenovoThinkCentreImg3 from "../public/products/computers/Calculator-Lenovo-ThinkCentre-M82-Tower-Intel-Core-i3-2100-3-10-GHz-4GB-DDR3-250GB-HDD-DVD-Windows-1(1).webp";
 import computerLenovoThinkCentreImg4 from "../public/products/computers/Calculator-Lenovo-ThinkCentre-M82-Tower-Intel-Core-i3-2100-3-10-GHz-4GB-DDR3-250GB-HDD-DVD-Windows-1_1.webp";
-import computerFujitsiImg2 from '../public/products/computers/Calculator-Fujitsu-Esprimo-Q920-Mini--Intel-Core-i3-4130-3-40-GHz--4GB-DDR3--120-SSD-Refurbished.jpg';
-import computerFujitsiImg1 from '../public/products/computers/Calculator-Fujitsu-Esprimo-Q920-Mini--Intel-Core-i3-4130-3-40-GHz--4GB-DDR3--120-SSD-Refurbished.png';
-import HPProdeskImg1 from '../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat.jpg';
-import HPProdeskImg2 from '../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat.png';
-import HPProdeskImg3 from '../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat_838x-n4.png';
-import HPProdeskImg4 from '../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat_97r0-gn.png';
-import HPProdeskImg5 from '../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat_bwy5-h2.png';
+import computerFujitsiImg2 from "../public/products/computers/Calculator-Fujitsu-Esprimo-Q920-Mini--Intel-Core-i3-4130-3-40-GHz--4GB-DDR3--120-SSD-Refurbished.jpg";
+import computerFujitsiImg1 from "../public/products/computers/Calculator-Fujitsu-Esprimo-Q920-Mini--Intel-Core-i3-4130-3-40-GHz--4GB-DDR3--120-SSD-Refurbished.png";
+import HPProdeskImg1 from "../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat.jpg";
+import HPProdeskImg2 from "../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat.png";
+import HPProdeskImg3 from "../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat_838x-n4.png";
+import HPProdeskImg4 from "../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat_97r0-gn.png";
+import HPProdeskImg5 from "../public/products/computers/HP-Prodesk-600-G4-Tower-Intel-Core-i7-8700T-2-40-GHz--16GB-DDR4--256GB-SSD--Intel-UHD-Graphics-630---Windows-10-Pro-Mar-preinstalat_bwy5-h2.png";
 
 export interface IComputer {
   category?: string;
@@ -110,7 +110,7 @@ export interface IComputer {
 
 export const computersData: IComputer[] = [
   {
-    id: "calculator-lenovo-thinkcentre-m82-tower-intel-core-i3-2100-3.10-ghz-4gb-ddr3-250gb-hdd-dvd-windows-10-pro-refurbished-preinstalat",
+    id: "calculator-lenovo-thinkcentre-m82-tower-intel-core-i3-2100-3.10-ghz-4gb-ddr3-250gb-hdd-dvd",
     images: [
       computerLenovoThinkCentreImg1,
       computerLenovoThinkCentreImg2,
@@ -119,7 +119,7 @@ export const computersData: IComputer[] = [
     ],
     category: "calculatoare-refurbished",
     title:
-      "Calculator Lenovo ThinkCentre M82 Tower, Intel Core i3-2100 3.10 GHz, 4GB DDR3, 250GB HDD, DVD, Windows 10 Pro Refurbished Preinstalat",
+      "Calculator Lenovo ThinkCentre M82 Tower, Intel Core i3-2100 3.10 GHz, 4GB DDR3, 250GB HDD, DVD",
     price: 381.36,
     oldPrice: 476.7,
     discount: 95.34,
@@ -168,8 +168,8 @@ export const computersData: IComputer[] = [
       shape: "Tower",
       weight: "11",
     },
-    hasNoOS: false,
-    operationSystem: "Windows 10 Professional Mar",
+    hasNoOS: true,
+    operationSystem: "Fara sistem de operare preinstalat",
     videoCard: {
       capacity: "up to 2 GB",
       chip: "Intel",
@@ -186,10 +186,7 @@ export const computersData: IComputer[] = [
   },
   {
     id: "calculator-fujitsu-esprimo-q920-mini-intel-core-i3-4130-3.40-ghz-4gb-ddr3-120-ssd-refurbished",
-    images: [
-      computerFujitsiImg1,
-      computerFujitsiImg2
-    ],
+    images: [computerFujitsiImg1, computerFujitsiImg2],
     category: "calculatoare-refurbished",
     title:
       "Calculator Fujitsu Esprimo Q920 Mini, Intel Core i3-4130T 2.90 GHz, 4GB DDR3, 120 SSD, Refurbished",
@@ -234,8 +231,8 @@ export const computersData: IComputer[] = [
       psi_e_x16: 1,
       memorySlots: 2,
       psiSlots: 1,
-      typeMemory: 'DDR3',
-      producer: 'Fujitsu'
+      typeMemory: "DDR3",
+      producer: "Fujitsu",
     },
     layout: {
       color: "Negru",
@@ -244,13 +241,13 @@ export const computersData: IComputer[] = [
       weight: "1.6",
     },
     refurbished: true,
-    operationSystem: "Fara sistem de operare",
+    operationSystem: "Fara sistem de operare preinstalat",
     hasNoOS: true,
     videoCard: {
       chip: "Intel",
       memoryFrequency: 1333,
       tip: "HD Graphics",
-      supportDirectX: 11.1
+      supportDirectX: 11.1,
     },
     powerSupply: 65,
     ports: {
@@ -258,17 +255,21 @@ export const computersData: IComputer[] = [
       serialPort: 1,
       usb_2: 2,
       usb_3: 4,
-      network: 1
+      network: 1,
     },
   },
   {
-    id: "hp-prodesk-600-g4-tower-intel-core-i7-8700t-2.40-ghz-16gb-ddr4-256gb-ssd-intel-uhd-graphics-630-windows-10-pro-mar-preinstalat",
+    id: "hp-prodesk-600-g4-tower-intel-core-i7-8700t-2.40-ghz-16gb-ddr4-256gb-ssd-intel-uhd-graphics-630",
     images: [
-      HPProdeskImg1,HPProdeskImg2, HPProdeskImg3, HPProdeskImg4, HPProdeskImg5
+      HPProdeskImg1,
+      HPProdeskImg2,
+      HPProdeskImg3,
+      HPProdeskImg4,
+      HPProdeskImg5,
     ],
     category: "calculatoare-refurbished",
     title:
-      "HP Prodesk 600 G4 Tower Intel Core i7-8700T 2.40 GHz, 16GB DDR4, 256GB SSD, Intel UHD Graphics 630 + Windows 10 Pro OEM",
+      "HP Prodesk 600 G4 Tower Intel Core i7-8700T 2.40 GHz, 16GB DDR4, 256GB SSD, Intel UHD Graphics 630",
     price: 2106.89,
     oldPrice: 2633.61,
     discount: 526.72,
@@ -283,15 +284,17 @@ export const computersData: IComputer[] = [
       model: "ProDesk 600 G4",
       warranty: "12 luni",
     },
+    hasNoOS: true,
+    operationSystem: "Fara sistem de operare preinstalat",
     processorDetails: {
       processorModel: "i7-8700T",
       nuclearNumber: 6,
       processorNumber: 1,
       processorType: "Intel Core i7",
-      producer: 'Intel',
+      producer: "Intel",
       cpuCache: "12",
       frequencyCPU: "2.40",
-      frequencyTurbo: '4.00',
+      frequencyTurbo: "4.00",
       graphicProcessor: "Intel UHD Graphics 630",
       socket: "FCLGA1151",
     },
@@ -303,9 +306,8 @@ export const computersData: IComputer[] = [
     },
     motherBoard: {
       cpuSocket: "FCLGA1151",
-      typeMemory: 'DDR4',
+      typeMemory: "DDR4",
     },
-    hasNoOS:false, 
-    refurbished: true
+    refurbished: true,
   },
 ];
