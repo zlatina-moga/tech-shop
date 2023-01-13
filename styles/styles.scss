@@ -371,9 +371,6 @@ form .auth-field {
   }
 }
 
-#footer-container {
-}
-
 .verified-email {
   display: flex;
   align-items: center;
@@ -382,5 +379,15 @@ form .auth-field {
     font-size: 32px;
     font-weight: 600;
     margin: 20vh auto;
+  }
+}
+
+#shopping-cart {
+  table {
+    td.product-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
   }
 }

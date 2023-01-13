@@ -1549,17 +1549,17 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #EDF1FF;
+  border: 1px solid #EDF1FF !important;
 }
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #EDF1FF;
+  border: 1px solid #EDF1FF !important;
 }
 
 .table-bordered thead th,
 .table-bordered thead td {
-  border-bottom-width: 2px;
+  border-bottom-width: 1px !important;
 }
 
 .table-borderless th,
@@ -2359,6 +2359,7 @@ fieldset:disabled a.btn {
   color: #212529;
   background-color: #57A046;
   border-color: #57A046;
+  border-radius: 4px;
 }
 
 .btn-primary:hover {
@@ -2371,7 +2372,7 @@ fieldset:disabled a.btn {
   color: #fff;
   background-color: #EFC904;
   border-color: #EFC904;
-  box-shadow: 0 0 0 0.2rem rgba(183, 138, 135, 0.5);
+  box-shadow: 0 0 0 0.2rem #EFC904;
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -2383,8 +2384,8 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #c17a74;
-  border-color: #bd726b;
+  background-color: #EFC904;
+  border-color: #EFC904;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -2938,7 +2939,7 @@ fieldset:disabled a.btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  border-radius: 0;
+  border-radius: 4px;
 }
 
 .btn-block {

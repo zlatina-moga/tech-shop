@@ -18,7 +18,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import Navbar from "../../components/global/Navbar";
 
-const features = ["Producator", "Model", "Garantie", "Stare produs"];
+const features = ["Producator", "Model", "Garantie"];
 
 const RefurbishedComputerDetails = () => {
   const router = useRouter();
@@ -33,7 +33,7 @@ const RefurbishedComputerDetails = () => {
             .filter((laptop) => laptop.id == id)
             .map((l, idx) => (
               <div key={idx}>
-                <Meta title={l.title} />
+                <Meta title={l.title} keywords={l.title} />
                 <div className="container-fluid py-5">
                   <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
                     {l.title}
@@ -75,7 +75,7 @@ const RefurbishedComputerDetails = () => {
                             ))}
                           </div>
                           <div className="features-value">
-                            <p>{l.producerDetails.model}</p>
+                            <p>{l.producerDetails.name}</p>
                             <p>{l.model}</p>
                             <p>{l.producerDetails.warranty}</p>
                             <p>{l.others}</p>
@@ -83,19 +83,19 @@ const RefurbishedComputerDetails = () => {
                         </div>
 
                         <p className="mb-4 details">{l.details}</p>
-                        <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                        <div className="d-flex align-items-center img-container">
                           <Image src={qualityIcon} alt="quality" />
                           <p>Garantie la toate produsele comandate</p>
                         </div>
-                        <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                        <div className="d-flex align-items-center img-container">
                           <Image src={transportIcon} alt="quality" />
                           <p>Livrare gratuita la comanda de peste 250 lei</p>
                         </div>
-                        <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                        <div className="d-flex align-items-center img-container">
                           <Image src={walletIcon} alt="payment" />
                           <p>Modalitati de plata</p>
                         </div>
-                        <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                        <div className="d-flex align-items-center img-container">
                           <Image src={cartIcon} alt="cart" />
                           <p>Politica de retur</p>
                         </div>
@@ -180,7 +180,11 @@ const RefurbishedComputerDetails = () => {
                           Adauga in cos
                         </button>
                         <div className="d-flex align-items-center mb-2 pt-2">
-                          <Image src={payImg} alt="payments" style={{maxHeight: '120px'}} />
+                          <Image
+                            src={payImg}
+                            alt="payments"
+                            style={{ maxHeight: "120px" }}
+                          />
                         </div>
                         <div className="contact">
                           <span>Comanda telefonica:</span>
@@ -192,6 +196,10 @@ const RefurbishedComputerDetails = () => {
                             <p>
                               <b>Telefon: </b>+40123456789
                             </p>
+                            <p>
+                              <b>Product Code: </b>
+                              {l.internalCode}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -202,7 +210,7 @@ const RefurbishedComputerDetails = () => {
                       <h4>Producator</h4>
                       <div>
                         <p>Nume:</p>
-                        <p>{l.producerDetails.model}</p>
+                        <p>{l.producerDetails.name}</p>
                       </div>
                       <div>
                         <p>Model:</p>
@@ -321,10 +329,13 @@ const RefurbishedComputerDetails = () => {
                         <p>Tip memorie:</p>
                         <p>{l.motherBoard.typeMemory}</p>
                       </div>
-                      <div>
-                        <p>Capacitate maxima memorie RAM (GB):</p>
-                        <p>{l.motherBoard.RAMcapacity}</p>
-                      </div>
+                      {l.motherBoard.RAMcapacity ? (
+                        <div>
+                          <p>Capacitate maxima memorie RAM (GB):</p>
+                          <p>{l.motherBoard.RAMcapacity}</p>
+                        </div>
+                      ) : null}
+
                       {l.motherBoard.chipset ? (
                         <div>
                           <p>Chipset MB:</p>
@@ -343,10 +354,12 @@ const RefurbishedComputerDetails = () => {
                           <p>{l.motherBoard.producer}</p>
                         </div>
                       ) : null}
-                      <div>
-                        <p>Sloturi memorie:</p>
-                        <p>{l.motherBoard.memorySlots}</p>
-                      </div>
+                      {l.motherBoard.memorySlots ? (
+                        <div>
+                          <p>Sloturi memorie:</p>
+                          <p>{l.motherBoard.memorySlots}</p>
+                        </div>
+                      ) : null}
                     </div>
                     <div className="description-feature">
                       <h4>Sistem operare</h4>
@@ -367,60 +380,65 @@ const RefurbishedComputerDetails = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="description-feature">
-                      <h4>Altele</h4>
-                      <div>
-                        <p>Stare produs:</p>
-                        <p>{l.others}</p>
+                    {l.others ? (
+                      <div className="description-feature">
+                        <h4>Altele</h4>
+                        <div>
+                          <p>Stare produs:</p>
+                          <p>{l.others}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="description-feature">
-                      <h4>Porturi / Conexiuni</h4>
+                    ) : null}
 
-                      {l.ports.firewire ? (
-                        <div>
-                          <p>Firewire:</p>
-                          <p>{l.ports.firewire}</p>
-                        </div>
-                      ) : null}
+                    {l.ports ? (
+                      <div className="description-feature">
+                        <h4>Porturi / Conexiuni</h4>
 
-                      {l.ports.network ? (
-                        <div>
-                          <p>Retea (RJ45):</p>
-                          <p>{l.ports.network}</p>
-                        </div>
-                      ) : null}
-                      {l.ports.usb_2 ? (
-                        <div>
-                          <p>USB 2.0:</p>
-                          <p>{l.ports.usb_2}</p>
-                        </div>
-                      ) : null}
-                      {l.ports.usb_3 ? (
-                        <div>
-                          <p>USB 3.0:</p>
-                          <p>{l.ports.usb_3}</p>
-                        </div>
-                      ) : null}
-                      {l.ports.wi_fi ? (
-                        <div>
-                          <p>Wi-Fi:</p>
-                          <p>{l.ports.wi_fi}</p>
-                        </div>
-                      ) : null}
-                      {l.ports.hdmi ? (
-                        <div>
-                          <p>HDMI:</p>
-                          <p>{l.ports.hdmi}</p>
-                        </div>
-                      ) : null}
-                      {l.ports.docking ? (
-                        <div>
-                          <p>Docking:</p>
-                          <p>{l.ports.docking}</p>
-                        </div>
-                      ) : null}
-                    </div>
+                        {l.ports?.firewire ? (
+                          <div>
+                            <p>Firewire:</p>
+                            <p>{l.ports.firewire}</p>
+                          </div>
+                        ) : null}
+
+                        {l.ports?.network ? (
+                          <div>
+                            <p>Retea (RJ45):</p>
+                            <p>{l.ports.network}</p>
+                          </div>
+                        ) : null}
+                        {l.ports?.usb_2 ? (
+                          <div>
+                            <p>USB 2.0:</p>
+                            <p>{l.ports.usb_2}</p>
+                          </div>
+                        ) : null}
+                        {l.ports?.usb_3 ? (
+                          <div>
+                            <p>USB 3.0:</p>
+                            <p>{l.ports.usb_3}</p>
+                          </div>
+                        ) : null}
+                        {l.ports?.wi_fi ? (
+                          <div>
+                            <p>Wi-Fi:</p>
+                            <p>{l.ports.wi_fi}</p>
+                          </div>
+                        ) : null}
+                        {l.ports?.hdmi ? (
+                          <div>
+                            <p>HDMI:</p>
+                            <p>{l.ports.hdmi}</p>
+                          </div>
+                        ) : null}
+                        {l.ports?.docking ? (
+                          <div>
+                            <p>Docking:</p>
+                            <p>{l.ports.docking}</p>
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
 

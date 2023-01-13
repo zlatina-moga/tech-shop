@@ -43,7 +43,7 @@ const Footer = () => {
                 <Link className="text-dark mb-2" href="">
                   <i className="fa fa-angle-right mr-2"></i>Shop Detail
                 </Link>
-                <Link className="text-dark mb-2" href="">
+                <Link className="text-dark mb-2" href="/my-cart">
                   <i className="fa fa-angle-right mr-2"></i>Shopping Cart
                 </Link>
                 <Link className="text-dark mb-2" href="">

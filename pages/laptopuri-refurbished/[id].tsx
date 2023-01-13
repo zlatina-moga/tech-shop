@@ -33,7 +33,7 @@ const RefurbishedLaptopDetails = () => {
             .filter((laptop) => laptop.id == id)
             .map((l, idx) => (
               <div key={idx}>
-                <Meta title={l.title} />
+                <Meta title={l.title} keywords={l.title} />
                 <div className="container-fluid py-5">
                   <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
                     {l.title}
@@ -83,19 +83,19 @@ const RefurbishedLaptopDetails = () => {
                         </div>
 
                         <p className="mb-4 details">{l.details}</p>
-                        <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                        <div className="d-flex align-items-center img-container">
                           <Image src={qualityIcon} alt="quality" />
                           <p>Garantie la toate produsele comandate</p>
                         </div>
-                        <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                        <div className="d-flex align-items-center img-container">
                           <Image src={transportIcon} alt="quality" />
                           <p>Livrare gratuita la comanda de peste 250 lei</p>
                         </div>
-                        <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                        <div className="d-flex align-items-center img-container">
                           <Image src={walletIcon} alt="payment" />
                           <p>Modalitati de plata</p>
                         </div>
-                        <div className="d-flex align-items-center mb-2 pt-2 img-container">
+                        <div className="d-flex align-items-center img-container">
                           <Image src={cartIcon} alt="cart" />
                           <p>Politica de retur</p>
                         </div>
@@ -180,7 +180,11 @@ const RefurbishedLaptopDetails = () => {
                           Adauga in cos
                         </button>
                         <div className="d-flex align-items-center mb-2 pt-2">
-                          <Image src={payImg} alt="payments" style={{maxHeight: '120px'}} />
+                          <Image
+                            src={payImg}
+                            alt="payments"
+                            style={{ maxHeight: "120px" }}
+                          />
                         </div>
                         <div className="contact">
                           <span>Comanda telefonica:</span>
@@ -191,6 +195,10 @@ const RefurbishedLaptopDetails = () => {
                             </p>
                             <p>
                               <b>Telefon: </b>+40123456789
+                            </p>
+                            <p>
+                              <b>Product Code: </b>
+                              {l.internalCode}
                             </p>
                           </div>
                         </div>
