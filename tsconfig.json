@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "contexts/AuthContext.js", "hooks/useLocalStorage.ts"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 import Image from "next/image";
+import { AuthContext } from "../contexts/AuthContext";
+import * as userService from '../services/userService';
 import showPasswordIcon from "../public/svg/password-show.svg";
 import hidePasswordIcon from "../public/svg/password-hide.svg";
 import toast, { Toaster } from "react-hot-toast";
@@ -24,6 +26,7 @@ const Login = () => {
   const [formState, setFormState] = useState<boolean>(true);
   const [formValues, setFormValues] = useState<IFillTheForm>(initialValues);
   const router = useRouter();
+  const { loginUser } = useContext(AuthContext);
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -53,7 +56,25 @@ const Login = () => {
   }
 
   async function login() {
-    const response = await fetch(`${baseUrl}/auth/login`, {
+    userService.login(formValues.email, formValues.password)
+    .then((authData) => {
+      loginUser(authData)
+      setFormValues(initialValues);
+      toast.success("Login successful", {
+        style: { marginTop: "100px" },
+      });
+      setTimeout(() => {
+        router.push("/");
+      }, 2500);
+    })
+    .catch(err => {
+      toast.error(err.message, {
+        style: { marginTop: "100px" },
+      });
+      setFormValues(initialValues);
+    })
+
+    /*const response = await fetch(`${baseUrl}/auth/login`, {
       method: "POST",
       body: JSON.stringify(formValues),
       headers: {
@@ -61,25 +82,26 @@ const Login = () => {
       },
     });
 
-      if (response.status == 200) {
-        setFormValues(initialValues);
-        toast.success("Login successful", {
-          style: { marginTop: "100px" },
-        });
-        setTimeout(() => {
-          router.push("/");
-        }, 2500);
-      }
-    
-      if (response.status == 401){
-        toast.error("Incorrect email or password", {
-          style: { marginTop: "100px" },
-        });
-        setFormValues(initialValues);
-      }
-        
-    
-    return response.json();
+    if (response.status == 200) {
+      console.log(response);
+      loginUser(response);
+      setFormValues(initialValues);
+      toast.success("Login successful", {
+        style: { marginTop: "100px" },
+      });
+      setTimeout(() => {
+        router.push("/");
+      }, 2500);
+    }
+
+    if (response.status == 401) {
+      toast.error("Incorrect email or password", {
+        style: { marginTop: "100px" },
+      });
+      setFormValues(initialValues);
+    }
+
+    return response.json();*/
   }
 
   const handleChange = (e: any) => {
@@ -136,6 +158,16 @@ const Login = () => {
             >
               Login
             </button>
+            <p className="auth-field">
+              <span>
+                <span>
+                  Missing an account? Click{" "}
+                  <Link className="linkBtn" href="/register">
+                    here
+                  </Link>
+                </span>
+              </span>
+            </p>
           </form>
         </div>
         <Toaster position="top-center" />

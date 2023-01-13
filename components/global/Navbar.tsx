@@ -1,10 +1,17 @@
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+
   return (
-    <div className="w-100" id='nav-container'>
-      <nav className="row align-items-center px-xl-5" style={{maxWidth: '100rem', margin: '0 auto'}}>
+    <div className="w-100" id="nav-container">
+      <nav
+        className="row align-items-center px-xl-5"
+        style={{ maxWidth: "100rem", margin: "0 auto" }}
+      >
         <div className="col-lg-3 d-none d-lg-block">
           <Link href="/">
             <Image
@@ -22,7 +29,7 @@ const Navbar = () => {
                 type="text"
                 className="form-control"
                 placeholder="Search for products"
-                style={{ borderRadius: "4px", textAlign: 'left' }}
+                style={{ borderRadius: "4px", textAlign: "left" }}
               />
               <div className="input-group-append">
                 <span
@@ -36,42 +43,65 @@ const Navbar = () => {
           </form>
         </div>
         <div className="col-lg-3 col-6 text-right">
-          <Link
-            href="/login"
-            className="btn border"
-            style={{ marginRight: "5px", borderRadius: "4px" }}
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            className="btn border"
-            style={{ marginRight: "5px", borderRadius: "4px" }}
-          >
-            Register
-          </Link>
-          <Link
-            href="/favorites"
-            className="btn border"
-            style={{ marginRight: "5px", borderRadius: "4px" }}
-          >
-            <i className="fas fa-heart text-primary"></i>
-            <span className="badge"></span>
-          </Link>
-          <Link
-            href="/my-cart"
-            className="btn border"
-            style={{ borderRadius: "4px" }}
-          >
-            <i className="fas fa-shopping-cart text-primary"></i>
-            <span className="badge"></span>
-          </Link>
+          {user.email ? userNav : guestNav}
         </div>
       </nav>
     </div>
   );
 };
 
-export default Navbar;
+const guestNav = (
+  <>
+    <Link
+      href="/login"
+      className="btn border"
+      style={{ marginRight: "5px", borderRadius: "4px" }}
+    >
+      <i className="fas fa-user text-primary mr-1"></i>
+      <span className="badge"></span>
+      Login
+    </Link>
+    <Link
+      href="/register"
+      className="btn border"
+      style={{ marginRight: "5px", borderRadius: "4px" }}
+    >
+      <i className="fa fa-user-plus text-primary mr-1"></i>
+      <span className="badge"></span>
+      Register
+    </Link>
+  </>
+);
 
-<div className="navbar-nav ml-auto py-0"></div>;
+const userNav = (
+  <>
+    <Link
+      href="/logout"
+      className="btn border"
+      style={{ marginRight: "5px", borderRadius: "4px" }}
+    >
+      <i className="fas fa-user-minus text-primary mr-1"></i>
+      <span className="badge"></span>
+      Logout
+    </Link>
+    <Link
+      href="/profile"
+      className="btn border"
+      style={{ marginRight: "5px", borderRadius: "4px" }}
+    >
+      <i className="fas fa-user text-primary mr-1"></i>
+      <span className="badge"></span>
+      Profile
+    </Link>
+    <Link
+      href="/my-cart"
+      className="btn border"
+      style={{ borderRadius: "4px" }}
+    >
+      <i className="fas fa-shopping-cart text-primary mr-1"></i>
+      <span className="badge"></span>Cart
+    </Link>
+  </>
+);
+
+export default Navbar;

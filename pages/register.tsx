@@ -203,6 +203,14 @@ const Register = () => {
             >
               Register
             </button>
+            <p className="auth-field">
+              <span>
+                Already have an account? Click{" "}
+                <Link className="linkBtn" href="/login">
+                  here
+                </Link>
+              </span>
+            </p>
           </form>
           <Toaster position="top-center" />
         </div>
