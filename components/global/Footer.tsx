@@ -1,19 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="container-fluid bg-secondary text-dark pt-5">
-      <div className="row px-xl-5 pt-5">
+    <div className="container-fluid bg-secondary text-dark pt-5 w-100" id="footer-container">
+      <div className="row px-xl-5 pt-5" style={{maxWidth: '100rem', margin: '0 auto'}}>
         <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-          <a href="" className="text-decoration-none">
-            <h1 className="mb-4 display-5 font-weight-semi-bold">
-              <span className="text-primary font-weight-bold border border-white px-3 mr-1">
-                Tech
-              </span>
-              Shop
-            </h1>
-          </a>
-          <p>
+          <Link href="/">
+          <Image
+              src="/images/logo-example.png"
+              alt="logo"
+              width={150}
+              height={60}
+            />
+          </Link>
+          <p className="mt-2">
             Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no
             sit erat lorem et magna ipsum dolore amet erat.
           </p>
@@ -84,13 +85,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="row border-top border-light mx-xl-5 py-4">
+        <div className="row border-top border-light mx-xl-5 py-4" style={{maxWidth: '100rem', margin: '0 auto'}}>
         <div className="col-md-6 px-xl-0">
           <p className="mb-md-0 text-center text-md-left text-dark">
             &copy;{" "}
             <a className="text-dark font-weight-semi-bold" href="#">
-              Tech Shop
+              PC Bun
             </a>
             . All Rights Reserved. Website created by 
             <a
@@ -105,6 +105,8 @@ const Footer = () => {
           <Image className="img-fluid" src="/images/payments.png" alt="" width={300} height={300}/>
         </div>
       </div>
+      </div>
+
     </div>
   );
 };

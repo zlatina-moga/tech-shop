@@ -12,7 +12,7 @@ const Meta = ({ keywords, description, title }: MetaProps) => {
       <meta name="keywords" content={keywords} />
       <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="icon" href="img/favicon.ico" />
+      <link rel="icon" href="images/pcbun_icon.png" />
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
         rel="stylesheet"
@@ -25,7 +25,7 @@ const Meta = ({ keywords, description, title }: MetaProps) => {
 Meta.defaultProps = {
   keywords: "",
   description: "",
-  title: "Tech Shop",
+  title: "PC Bun",
 };
 
 export default Meta;

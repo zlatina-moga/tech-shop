@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 import Image from "next/image";
@@ -30,7 +29,6 @@ const Register = () => {
   const [showSecondPassword, setShowSecondPassword] = useState<boolean>(false);
   const [formState, setFormState] = useState<boolean>(true);
   const [formValues, setFormValues] = useState<IFillTheForm>(initialValues);
-  const router = useRouter();
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -42,6 +40,11 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    toast.loading("Please wait", {
+      style: { marginTop: "100px" },
+      duration: 2000,
+    });
 
     validateForm(formValues);
   };
@@ -90,18 +93,18 @@ const Register = () => {
       },
     });
 
-    if (response.status == 200) {
-      toast.success("Thank you for registering!", {
+    try {
+      if (response.status == 200) {
+        toast.success("Please verify email address", {
+          style: { marginTop: "100px" },
+          duration: 5000,
+        });
+        setFormValues(initialValues);
+      }
+    } catch (error) {
+      toast.error(error.message, {
         style: { marginTop: "100px" },
       });
-      setFormValues(initialValues);
-      setTimeout(() => {
-        router.push("/");
-      }, 3000);
-    } else {
-      toast.error(response.statusText, { //adjust here
-        style: { marginTop: "100px" },
-      })
     }
     return response.json();
   }
@@ -110,13 +113,12 @@ const Register = () => {
     const { name, value } = e.target;
     setFormValues((prevState: any) => ({ ...prevState, [name]: value }));
   };
-
   return (
     <>
       <Navbar />
       <div className="wrapper">
         <div className="container">
-          <h1>Register</h1>
+          <h1 style={{ color: "white" }}>Register</h1>
           <form className="form" onSubmit={handleSubmit}>
             <input
               type="text"
