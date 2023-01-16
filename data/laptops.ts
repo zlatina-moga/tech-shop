@@ -1105,7 +1105,7 @@ export const laptopsData: ILaptop[] = [
     id: "laptop-dell-latitude-e7440-14-display-procesor-intel-core-i7-4600u-3.30-ghz-16gb-ddr3-240gb-ssd-windows-10-home-refurbished",
     category: "laptopuri-refurbished",
     title:
-      'Laptop Dell Latitude E7440 14" Display, Procesor Intel Core i7-4600U 3.30 GHz, 16GB DDR3, 240GB SSD, Windows 10 Home Refurbished',
+      'Laptop Dell Latitude E7440 14" Display, Procesor Intel Core i7-4600U 3.30 GHz, 16GB DDR3, 240GB SSD',
     images: [
       laptopDellLatitudeE7440RefurbishedImg1,
       laptopDellLatitudeE7440RefurbishedImg2,
@@ -1187,7 +1187,7 @@ export const laptopsData: ILaptop[] = [
         "QWERTY BLUETOOTH 3x USB 3.0 WEBCAM mini DisplayPort HDMI TASTATURA ILUMINATA",
       productState: "Refurbished",
       warranty: "24 Luni",
-      operationalsystem: "Windows 10 Home Mar preinstalat",
+      operationalsystem: "Fara sistem de operare preinstalat",
     },
   },
 ];

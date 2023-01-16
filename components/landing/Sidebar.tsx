@@ -8,6 +8,7 @@ import serverIcon from "../../public/svg/server.svg";
 import monitorIcon from "../../public/svg/monitor.svg";
 import appleIcon from "../../public/svg/apple.svg";
 import componentIcon from "../../public/svg/component.svg";
+import softwareIcon from '../../public/svg/software.svg';
 
 const Sidebar = () => {
   return (
@@ -40,7 +41,7 @@ const Sidebar = () => {
             <div
               className="navbar-nav w-100 overflow-hidden"
               style={{
-                height: 400,
+                height: 460,
               }}
             >
               <Link
@@ -104,6 +105,14 @@ const Sidebar = () => {
                   style={{ height: "18px" }}
                 />
                 Componente
+              </Link>
+              <Link href="/components" className="nav-item nav-link py-3 sidebar-link" style={{borderBottom: 'none'}}>
+                <img
+                  src={softwareIcon.src}
+                  alt="list"
+                  style={{ height: "18px" }}
+                />
+                Software
               </Link>
             </div>
           </nav>

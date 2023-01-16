@@ -20,6 +20,7 @@ const Computers: React.FC<IComputer> = (props: IComputer) => {
                 "laptop-card"
               )}
               key={idx}
+              style={{maxWidth: '300px'}}
             >
               <div
                 className={classNames(

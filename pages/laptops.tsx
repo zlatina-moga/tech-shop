@@ -8,7 +8,7 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
   return (
     <>
       <Navbar />
-      <div className={classNames("container-fluid pt-5", "laptops-page")}>
+      <div className={classNames("container-fluid pt-5", "laptops-page")} style={{maxWidth: '100rem'}}>
         <div className="text-center mb-4">
           <h1 className="px-5">Laptops</h1>
         </div>
@@ -20,6 +20,7 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
                 "laptop-card"
               )}
               key={idx}
+              style={{maxWidth: '300px'}}
             >
               <div
                 className={classNames(
@@ -43,6 +44,7 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
                       className="img-fluid w-100"
                       src={l.images[0]}
                       alt=""
+                      //style={{maxWidth: '200px'}}
                     />
                   </div>
                 </Link>
