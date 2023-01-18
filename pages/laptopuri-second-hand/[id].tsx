@@ -48,7 +48,11 @@ const SecondHandLaptopDetails = () => {
                         {l.images.map((img, idx) => (
                           <SwiperSlide key={idx}>
                             <PhotoView key={idx} src={img.src}>
-                              <Image src={img} alt="image" style={{cursor: 'pointer'}}/>
+                              <Image
+                                src={img}
+                                alt="image"
+                                style={{ cursor: "pointer" }}
+                              />
                             </PhotoView>
                           </SwiperSlide>
                         ))}
@@ -180,7 +184,11 @@ const SecondHandLaptopDetails = () => {
                           Adauga in cos
                         </button>
                         <div className="d-flex align-items-center mb-2 pt-2">
-                          <Image src={payImg} alt="payments" style={{maxHeight: '120px'}}/>
+                          <Image
+                            src={payImg}
+                            alt="payments"
+                            style={{ maxHeight: "120px" }}
+                          />
                         </div>
                         <div className="contact">
                           <span>Comanda telefonica:</span>
@@ -193,7 +201,8 @@ const SecondHandLaptopDetails = () => {
                               <b>Telefon: </b>+40123456789
                             </p>
                             <p>
-                              <b>Product Code: </b>{l.internalCode}
+                              <b>Product Code: </b>
+                              {l.internalCode}
                             </p>
                           </div>
                         </div>
