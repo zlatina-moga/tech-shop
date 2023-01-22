@@ -23,6 +23,7 @@ const features = ["Producator", "Model", "Garantie", "Stare produs"];
 const SecondHandLaptopDetails = () => {
   const router = useRouter();
   const { id } = router.query;
+  //const laptops = props.laptops;
 
   return (
     <>
@@ -30,9 +31,10 @@ const SecondHandLaptopDetails = () => {
       <div className="page-details">
         <PhotoProvider>
           {laptopsData
+            //.filter((x) => x.SUBCATEGORIA == 'Second Hand')
             .filter((laptop) => laptop.id == id)
-            .map((l, idx) => (
-              <div key={idx}>
+            .map((l) => (
+              <div key={l.id}>
                 <Meta title={l.title} keywords={l.title} />
                 <div className="container-fluid py-5">
                   <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>

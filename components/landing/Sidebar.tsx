@@ -98,7 +98,7 @@ const Sidebar = () => {
                 />
                 Apple Refurbished
               </Link>
-              <Link href="/components" className="nav-item nav-link py-3 sidebar-link" style={{borderBottom: 'none'}}>
+              <Link href="/components" className="nav-item nav-link py-3 sidebar-link">
                 <img
                   src={componentIcon.src}
                   alt="list"

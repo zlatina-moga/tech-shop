@@ -95,7 +95,7 @@ const Register = () => {
 
     try {
       if (response.status == 200) {
-        toast.success("Please verify email address", {
+        toast.success("Please verify your email address", {
           style: { marginTop: "100px" },
           duration: 5000,
         });
