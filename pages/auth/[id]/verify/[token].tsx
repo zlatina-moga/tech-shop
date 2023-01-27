@@ -30,10 +30,12 @@ const VerifiedEmail = () => {
   return (
     <>
       <Navbar />
-      <div style={{ marginTop: "150px" }}>
-        {validUrl ? (
+      <div style={{ marginTop: "150px", minHeight: '100%'}}>
+        {!validUrl ? (
           <div className="verified-email">
-            <Image src={checkedImg} alt="success_img" />
+            <div className="img-container">
+              <Image src={checkedImg} alt="success_img" />
+            </div>
             <h1>Email verified successfully!</h1>
             <Link href="/login">
               <button>Login</button>
