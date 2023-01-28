@@ -2325,6 +2325,10 @@ textarea.form-control {
   border-radius: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.btn:hover {
+  background-color: #EFC805;
+  color: white !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .btn {

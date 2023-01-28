@@ -206,7 +206,7 @@ const Register = () => {
             <p className="auth-field">
               <span>
                 Already have an account? Click{" "}
-                <Link className="linkBtn" href="/login">
+                <Link className="linkBtn" href="/login" style={{textDecoration: 'underline'}}>
                   here
                 </Link>
               </span>

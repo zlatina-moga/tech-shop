@@ -162,7 +162,7 @@ const Login = () => {
               <span>
                 <span>
                   Missing an account? Click{" "}
-                  <Link className="linkBtn" href="/register">
+                  <Link className="linkBtn" href="/register" style={{textDecoration: 'underline'}}>
                     here
                   </Link>
                 </span>
