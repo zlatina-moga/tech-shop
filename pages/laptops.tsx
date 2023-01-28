@@ -1,14 +1,32 @@
-import { ILaptop,laptopsData } from "../data";
+//import { ILaptop,laptopsData } from "../data";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
+import * as productService from "../services/productService";
 
-const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
+const Laptops = () => {
+  const [laptopsData, setLaptopsData] = useState([]);
+
+  useEffect(() => {
+    productService
+      .getAllSecondHandLaptops()
+      .then((result) => {
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <Navbar />
-      <div className={classNames("container-fluid pt-5", "laptops-page")} style={{maxWidth: '100rem'}}>
+      <div
+        className={classNames("container-fluid pt-5", "laptops-page")}
+        style={{ maxWidth: "100rem" }}
+      >
         <div className="text-center mb-4">
           <h1 className="px-5">Laptops</h1>
         </div>
@@ -20,7 +38,7 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
                 "laptop-card"
               )}
               key={idx}
-              style={{maxWidth: '300px'}}
+              style={{ maxWidth: "320px" }}
             >
               <div
                 className={classNames(
@@ -28,7 +46,8 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
                   "inner-container"
                 )}
               >
-                <Link href={"/" + l.category + "/" + l.id}>
+                {/*<Link href={"/" + l.category + "/" + l.id}>*/}
+                <Link href="/">
                   <div
                     className={classNames(
                       "card-header product-img position-relative overflow-hidden bg-transparent",
@@ -40,9 +59,9 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
                         <p>-20%</p>
                       </div>
                     </div>
-                    <Image
+                    <img
                       className="img-fluid w-100"
-                      src={l.images[0]}
+                      src={l.imgLink}
                       alt=""
                       //style={{maxWidth: '200px'}}
                     />
@@ -50,22 +69,27 @@ const Laptops: React.FC<ILaptop> = (props: ILaptop) => {
                 </Link>
                 <div className="card-body text-center p-3 pt-4">
                   <h6 className="mb-3">{l.title}</h6>
-                  <div className="d-flex justify-content-center">
-                    <h6 className="text-muted pb-2">
-                      <del>
-                        {l.oldPrice} {l.currency}
-                      </del>
-                    </h6>
-                  </div>
+                  {l.oldPrice ? (
+                    <div className="d-flex justify-content-center">
+                      <h6 className="text-muted pb-2">
+                        <del>
+                          {l.oldPrice} {l.currency}
+                        </del>
+                      </h6>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
                   <div className="d-flex justify-content-center">
                     <h6 className="price">
-                      {l.price} {l.currency}
+                      {l.price}
                     </h6>
                   </div>
                 </div>
                 <div className="card-footer d-flex justify-content-between bg-light">
                   <Link
-                    href={"/" + l.category + "/" + l.id}
+                    href={"/"  + l.id}
                     className="btn btn-sm text-dark p-0"
                   >
                     <i className="fas fa-eye text-primary mr-1"></i>View Detail
