@@ -61,14 +61,15 @@ const Laptops = () => {
                         "img-wrapper"
                       )}
                     >
-                      <div className="discount-container">
+                      {/*<div className="discount-container">
                         <div>
                           <p>-20%</p>
                         </div>
-                      </div>
+                      </div>*/}
+                      
                       <img
                         className="img-fluid w-100"
-                        src={l.imgLink}
+                        src={l.imgLink ? l.imgLink : l.imgLink1}
                         alt=""
                         //style={{maxWidth: '200px'}}
                       />
