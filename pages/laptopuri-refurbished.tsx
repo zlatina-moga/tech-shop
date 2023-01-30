@@ -7,13 +7,13 @@ import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import Loader from "../components/global/Loader/Loader";
 
-const Laptops = () => {
+const LaptopuriRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     productService
-      .getAllSecondHandLaptops()
+      .getAllRefurbishedLaptops()
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -34,7 +34,7 @@ const Laptops = () => {
           style={{ maxWidth: "100rem" }}
         >
           <div className="text-center mb-4">
-            <h1 className="px-5">Laptops</h1>
+            <h1 className="px-5">Refurbished Laptops</h1>
           </div>
 
           <div className="row px-xl-5 pb-3 justify-content-center">
@@ -116,4 +116,4 @@ const Laptops = () => {
   );
 };
 
-export default Laptops;
+export default LaptopuriRefurbished;
