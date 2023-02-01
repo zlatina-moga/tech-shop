@@ -4,13 +4,13 @@ import * as productService from "../services/productService";
 import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
 
-const LaptopuriRefurbished = () => {
+const Laptopuri = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     productService
-      .getAllRefurbishedLaptops()
+      .getAllLaptops()
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -26,10 +26,10 @@ const LaptopuriRefurbished = () => {
       {loading ? (
         <Loader />
       ) : (
-        <LaptopsPage title="Refurbished Laptops" laptopsData={laptopsData} />
+        <LaptopsPage title="All Laptops" laptopsData={laptopsData} />
       )}
     </>
   );
 };
 
-export default LaptopuriRefurbished;
+export default Laptopuri;
