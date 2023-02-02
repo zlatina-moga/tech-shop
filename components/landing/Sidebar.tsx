@@ -8,7 +8,7 @@ import serverIcon from "../../public/svg/server.svg";
 import monitorIcon from "../../public/svg/monitor.svg";
 import appleIcon from "../../public/svg/apple.svg";
 import componentIcon from "../../public/svg/component.svg";
-import softwareIcon from '../../public/svg/software.svg';
+import softwareIcon from "../../public/svg/software.svg";
 
 const Sidebar = () => {
   return (
@@ -39,14 +39,17 @@ const Sidebar = () => {
             }}
           >
             <div
-              className="navbar-nav w-100 overflow-hidden"
+              className="navbar-nav w-100 overflow-hidden relative"
               style={{
                 height: 460,
               }}
             >
               <Link
-                href="/laptops"
-                className="nav-item nav-link py-3 sidebar-link"
+                href="/laptopuri"
+                className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
                 <img
                   src={laptopIcon.src}
@@ -54,10 +57,48 @@ const Sidebar = () => {
                   style={{ height: "18px" }}
                 />
                 Laptopuri
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <Link className="dropdown-item" href="/laptopuri-refurbished" passHref>
+                      <img
+                        src={laptopIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px'}}
+                      />
+                      Refurbished
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" href="/laptopuri-new" passHref>
+                      <img
+                        src={laptopIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      New
+                    </Link>
+                  </li>
+                  <li className="dropdown-submenu">
+                    <Link className="dropdown-item" href="/laptopuri-second-hand" passHref>
+                      <img
+                        src={laptopIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      Second Hand
+                    </Link>
+                  </li>
+                </ul>
               </Link>
               <Link
-                href="/computers"
-                className="nav-item nav-link py-3 sidebar-link"
+                href="/calculatoare"
+                className="nav-item nav-link py-3 sidebar-link  dropdown dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
                 <img
                   src={computerIcon.src}
@@ -65,8 +106,46 @@ const Sidebar = () => {
                   style={{ height: "18px" }}
                 />
                 Calculatoare
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <Link className="dropdown-item" href="/calculatoare-refurbished">
+                      <img
+                        src={computerIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px'}}
+                      />
+                      Refurbished
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" href="/calculatoare-new">
+                      <img
+                        src={computerIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      New
+                    </Link>
+                  </li>
+                  <li className="dropdown-submenu">
+                    <Link className="dropdown-item" href="/calculatoare-second-hand">
+                      <img
+                        src={computerIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      Second Hand
+                    </Link>
+                  </li>
+                </ul>
               </Link>
-              <Link href="/workstations" className="nav-item nav-link py-3 sidebar-link">
+              <Link
+                href="/workstations"
+                className="nav-item nav-link py-3 sidebar-link"
+              >
                 <img
                   src={workstationIcons.src}
                   alt="list"
@@ -74,7 +153,10 @@ const Sidebar = () => {
                 />
                 Statii Grafice
               </Link>
-              <Link href="/servers" className="nav-item nav-link py-3 sidebar-link">
+              <Link
+                href="/servers"
+                className="nav-item nav-link py-3 sidebar-link"
+              >
                 <img
                   src={serverIcon.src}
                   alt="list"
@@ -82,7 +164,10 @@ const Sidebar = () => {
                 />
                 Servere
               </Link>
-              <Link href="/monitors" className="nav-item nav-link py-3 sidebar-link">
+              <Link
+                href="/monitors"
+                className="nav-item nav-link py-3 sidebar-link"
+              >
                 <img
                   src={monitorIcon.src}
                   alt="list"
@@ -90,7 +175,10 @@ const Sidebar = () => {
                 />
                 Monitoare
               </Link>
-              <Link href="/apple" className="nav-item nav-link py-3 sidebar-link">
+              <Link
+                href="/apple"
+                className="nav-item nav-link py-3 sidebar-link"
+              >
                 <img
                   src={appleIcon.src}
                   alt="list"
@@ -98,7 +186,10 @@ const Sidebar = () => {
                 />
                 Apple Refurbished
               </Link>
-              <Link href="/components" className="nav-item nav-link py-3 sidebar-link">
+              <Link
+                href="/components"
+                className="nav-item nav-link py-3 sidebar-link"
+              >
                 <img
                   src={componentIcon.src}
                   alt="list"
@@ -106,7 +197,11 @@ const Sidebar = () => {
                 />
                 Componente
               </Link>
-              <Link href="/components" className="nav-item nav-link py-3 sidebar-link" style={{borderBottom: 'none'}}>
+              <Link
+                href="/components"
+                className="nav-item nav-link py-3 sidebar-link"
+                style={{ borderBottom: "none" }}
+              >
                 <img
                   src={softwareIcon.src}
                   alt="list"
@@ -189,7 +284,7 @@ const Sidebar = () => {
                   objectFit="contain"
                   style={{
                     objectFit: "contain",
-                    borderRadius: '4px'
+                    borderRadius: "4px",
                   }}
                 />
               </div>
