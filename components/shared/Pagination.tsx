@@ -1,29 +1,10 @@
-import { useState, useEffect } from "react";
-import Navbar from "../components/global/Navbar";
-import * as productService from "../services/productService";
-import Loader from "../components/global/Loader/Loader";
-import LaptopsPage from "../components/shared/LaptopsPage";
-import Pagination from "../components/shared/Pagination";
+import { useState } from "react";
+import Link from "next/link";
 
-const Calculatoare = () => {
-  const [laptopsData, setLaptopsData] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
+const Pagination = ({ totalPages }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    productService
-      .getAllNewComputers(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentPage]);
-
-  const totalPages = laptopsData[0]?.totalPages;
-  const pageNumbers = [...Array(totalPages).keys()].slice(1); // add + 1 to array
+  const pageNumbers = [...Array(totalPages + 1).keys()].slice(1);
 
   const nextPage = () => {
     if (currentPage !== totalPages) {
@@ -36,16 +17,8 @@ const Calculatoare = () => {
       setCurrentPage(currentPage - 1);
     }
   };
-
   return (
-    <>
-      <Navbar />
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <LaptopsPage title="New Computers" laptopsData={laptopsData} />
-          <nav>
+    <nav>
       <ul className="pagination justify-content-center flex-wrap">
         <>
           <li className="page-item">
@@ -75,10 +48,7 @@ const Calculatoare = () => {
         </>
       </ul>
     </nav>
-        </>
-      )}
-    </>
   );
 };
 
-export default Calculatoare;
+export default Pagination;
