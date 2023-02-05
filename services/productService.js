@@ -18,3 +18,9 @@ export const getAllNewComputers = (page) => request.get(`${baseUrl}/calculatoare
 export const getAllRefurbishedComputers = (page) => request.get(`${baseUrl}/calculatoare-refurbished?page=${page}`)
 
 export const getAllServers = (page) => request.get(`${baseUrl}/servere?page=${page}`)
+
+export const getAllSecondHandServers = (page) => request.get(`${baseUrl}/servere-second-hand?page=${page}`)
+
+export const getAllRefurbishedServers = (page) => request.get(`${baseUrl}/servere-refurbished?page=${page}`)
+
+export const getAllNewServers = (page) => request.get(`${baseUrl}/servere-new?page=${page}`)
