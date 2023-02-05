@@ -46,35 +46,36 @@ const Calculatoare = () => {
         <>
           <LaptopsPage title="New Computers" laptopsData={laptopsData} />
           <nav>
-      <ul className="pagination justify-content-center flex-wrap">
-        <>
-          <li className="page-item">
-            <a className="page-link" href="#" tabIndex={-1} onClick={prevPage}>
-              Previous
-            </a>
-          </li>
-          {pageNumbers.map((page) => (
-            <li
-              className={`page-item ${currentPage == page ? "active" : ""} `}
-              key={page}
-            >
-              <a
-                className="page-link"
-                href="#"
-                onClick={() => setCurrentPage(page)}
-              >
-                {page}
-              </a>
-            </li>
-          ))}
-          <li className="page-item">
-            <a className="page-link" href="#" onClick={nextPage}>
-              Next
-            </a>
-          </li>
-        </>
-      </ul>
-    </nav>
+            <ul className="pagination justify-content-center flex-wrap">
+              <>
+                <li className="page-item">
+                  <a className="page-link" onClick={prevPage}>
+                    Previous
+                  </a>
+                </li>
+                {pageNumbers.map((page) => (
+                  <li
+                    className={`page-item ${
+                      currentPage == page ? "active" : ""
+                    } `}
+                    key={page}
+                  >
+                    <a
+                      className="page-link"
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </a>
+                  </li>
+                ))}
+                <li className="page-item">
+                  <a className="page-link" onClick={nextPage}>
+                    Next
+                  </a>
+                </li>
+              </>
+            </ul>
+          </nav>
         </>
       )}
     </>
