@@ -154,8 +154,8 @@ const Sidebar = () => {
                 Statii Grafice
               </Link>
               <Link
-                href="/servers"
-                className="nav-item nav-link py-3 sidebar-link"
+                href="/servere"
+                className="nav-item nav-link py-3 sidebar-link sidebar-link dropdown dropdown-toggle"
               >
                 <img
                   src={serverIcon.src}
@@ -163,6 +163,41 @@ const Sidebar = () => {
                   style={{ height: "18px" }}
                 />
                 Servere
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <Link className="dropdown-item" href="/servere-refurbished" passHref>
+                      <img
+                        src={serverIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px'}}
+                      />
+                      Refurbished
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" href="/servere-new" passHref>
+                      <img
+                        src={serverIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      New
+                    </Link>
+                  </li>
+                  <li className="dropdown-submenu">
+                    <Link className="dropdown-item" href="/servere-second-hand" passHref>
+                      <img
+                        src={serverIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      Second Hand
+                    </Link>
+                  </li>
+                </ul>
               </Link>
               <Link
                 href="/monitors"

@@ -3,7 +3,7 @@ import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
-import Pagination from "../components/shared/Pagination";
+import { usePagination, DOTS } from "../hooks/usePagination";
 
 const Calculatoare = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -23,7 +23,15 @@ const Calculatoare = () => {
   }, [currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
-  const pageNumbers = [...Array(totalPages).keys()].slice(1); // add + 1 to array
+
+  const paginationRange = usePagination({
+    currentPage,
+    totalCount: totalPages,
+    siblingCount: 1,
+  });
+  if (currentPage === 0 || totalPages < 2) {
+    return null;
+  }
 
   const nextPage = () => {
     if (currentPage !== totalPages) {
@@ -48,17 +56,18 @@ const Calculatoare = () => {
           <nav>
             <ul className="pagination justify-content-center flex-wrap">
               <>
-                <li className="page-item">
+                <li className="page-item" style={{ cursor: "pointer" }}>
                   <a className="page-link" onClick={prevPage}>
                     Previous
                   </a>
                 </li>
-                {pageNumbers.map((page) => (
+                {paginationRange.map((page) => (
                   <li
                     className={`page-item ${
                       currentPage == page ? "active" : ""
                     } `}
                     key={page}
+                    style={{ cursor: "pointer" }}
                   >
                     <a
                       className="page-link"
@@ -68,7 +77,12 @@ const Calculatoare = () => {
                     </a>
                   </li>
                 ))}
-                <li className="page-item">
+                <li
+                  className={`page-item ${
+                    currentPage == totalPages ? "user-select-none" : ""
+                  } `}
+                  style={{ cursor: "pointer" }}
+                >
                   <a className="page-link" onClick={nextPage}>
                     Next
                   </a>
