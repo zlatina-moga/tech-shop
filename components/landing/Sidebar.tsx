@@ -144,14 +144,42 @@ const Sidebar = () => {
               </Link>
               <Link
                 href="/workstations"
-                className="nav-item nav-link py-3 sidebar-link"
+                className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
                 <img
                   src={workstationIcons.src}
                   alt="list"
                   style={{ height: "18px" }}
                 />
-                Statii Grafice
+                Workstations
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <Link className="dropdown-item" href="/workstations-refurbished" passHref>
+                      <img
+                        src={workstationIcons.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px'}}
+                      />
+                      Refurbished
+                    </Link>
+                  </li>
+                  <li className="dropdown-submenu">
+                    <Link className="dropdown-item" href="/workstations-second-hand" passHref>
+                      <img
+                        src={workstationIcons.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      Second Hand
+                    </Link>
+                  </li>
+                </ul>
               </Link>
               <Link
                 href="/servere"

@@ -24,3 +24,9 @@ export const getAllSecondHandServers = (page) => request.get(`${baseUrl}/servere
 export const getAllRefurbishedServers = (page) => request.get(`${baseUrl}/servere-refurbished?page=${page}`)
 
 export const getAllNewServers = (page) => request.get(`${baseUrl}/servere-new?page=${page}`)
+
+export const getAllWorkstations = (page) => request.get(`${baseUrl}/workstations?page=${page}`)
+
+export const getRefurbishedWorkstations = (page) => request.get(`${baseUrl}/workstations-refurbished?page=${page}`)
+
+export const getSecondHandWorkstations = (page) => request.get(`${baseUrl}/workstations-second-hand?page=${page}`)
