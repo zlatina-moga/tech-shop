@@ -30,3 +30,5 @@ export const getAllWorkstations = (page) => request.get(`${baseUrl}/workstations
 export const getRefurbishedWorkstations = (page) => request.get(`${baseUrl}/workstations-refurbished?page=${page}`)
 
 export const getSecondHandWorkstations = (page) => request.get(`${baseUrl}/workstations-second-hand?page=${page}`)
+
+export const geAllMonitors = (page) => request.get(`${baseUrl}/monitoare?page=${page}`)

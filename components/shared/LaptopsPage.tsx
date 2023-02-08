@@ -26,17 +26,17 @@ const LaptopsPage: React.FC<ILaptopPage> = ({ title, laptopsData }) => {
                 "laptop-card"
               )}
               key={idx}
-              style={{ maxWidth: "320px",  }}
+              style={{ maxWidth: "320px" }}
             >
               <div
                 className={classNames(
                   "card product-item border border-gray rounded mb-4",
                   "inner-container"
                 )}
-                style={{alignItems: 'stretch', height: '550px'}}
+                style={{ alignItems: "stretch", height: "550px" }}
               >
                 {/*<Link href={"/" + l.category + "/" + l.id}>*/}
-                <Link href="/">
+                <Link href={"/" + l.id}>
                   <div
                     className={classNames(
                       "card-header product-img position-relative overflow-hidden bg-transparent",
@@ -58,7 +58,16 @@ const LaptopsPage: React.FC<ILaptopPage> = ({ title, laptopsData }) => {
                   </div>
                 </Link>
                 <div className="card-body text-center p-3 pt-4 relative">
-                  <h6 className="mb-3" style={{overflow: 'hidden', textOverflow: 'ellipsis', maxHeight: '150px'}}>{l.title}</h6>
+                  <h6
+                    className="mb-3"
+                    style={{
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxHeight: "150px",
+                    }}
+                  >
+                    {l.title}
+                  </h6>
                   {l.oldPrice ? (
                     <div className="d-flex justify-content-center">
                       <h6 className="text-muted pb-2">

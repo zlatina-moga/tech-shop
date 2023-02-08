@@ -5,14 +5,14 @@ import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
 
-const Laptopuri = () => {
+const Monitoare = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     productService
-      .getAllServers(currentPage)
+      .geAllMonitors(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -49,7 +49,7 @@ const Laptopuri = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="All Servers" laptopsData={laptopsData} />
+          <LaptopsPage title="All Monitors" laptopsData={laptopsData} />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
@@ -95,4 +95,4 @@ const Laptopuri = () => {
   );
 };
 
-export default Laptopuri;
+export default Monitoare;

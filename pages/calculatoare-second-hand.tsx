@@ -29,9 +29,6 @@ const Calculatoare = () => {
     totalCount: totalPages,
     siblingCount: 1,
   });
-  if (currentPage === 0 || totalPages < 2) {
-    return null;
-  }
 
   const nextPage = () => {
     if (currentPage !== totalPages) {
@@ -56,43 +53,45 @@ const Calculatoare = () => {
             title="Second Hand Computers"
             laptopsData={laptopsData}
           />
-          <nav>
-            <ul className="pagination justify-content-center flex-wrap">
-              <>
-                <li className="page-item" style={{ cursor: "pointer" }}>
-                  <a className="page-link" onClick={prevPage}>
-                    Previous
-                  </a>
-                </li>
-                {paginationRange.map((page) => (
-                  <li
-                    className={`page-item ${
-                      currentPage == page ? "active" : ""
-                    } `}
-                    key={page}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <a
-                      className="page-link"
-                      onClick={() => setCurrentPage(page)}
-                    >
-                      {page}
+          {currentPage === 0 || totalPages < 2 ? null : (
+            <nav>
+              <ul className="pagination justify-content-center flex-wrap">
+                <>
+                  <li className="page-item" style={{ cursor: "pointer" }}>
+                    <a className="page-link" onClick={prevPage}>
+                      Previous
                     </a>
                   </li>
-                ))}
-                <li
-                  className={`page-item ${
-                    currentPage == totalPages ? "user-select-none" : ""
-                  } `}
-                  style={{ cursor: "pointer" }}
-                >
-                  <a className="page-link" onClick={nextPage}>
-                    Next
-                  </a>
-                </li>
-              </>
-            </ul>
-          </nav>
+                  {paginationRange.map((page) => (
+                    <li
+                      className={`page-item ${
+                        currentPage == page ? "active" : ""
+                      } `}
+                      key={page}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <a
+                        className="page-link"
+                        onClick={() => setCurrentPage(page)}
+                      >
+                        {page}
+                      </a>
+                    </li>
+                  ))}
+                  <li
+                    className={`page-item ${
+                      currentPage == totalPages ? "user-select-none" : ""
+                    } `}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <a className="page-link" onClick={nextPage}>
+                      Next
+                    </a>
+                  </li>
+                </>
+              </ul>
+            </nav>
+          )}
         </>
       )}
     </>

@@ -29,9 +29,6 @@ const NewServers = () => {
     totalCount: totalPages,
     siblingCount: 1,
   });
-  if (currentPage === 0 || totalPages < 2) {
-    return null;
-  }
 
   const nextPage = () => {
     if (currentPage !== totalPages) {
@@ -53,7 +50,7 @@ const NewServers = () => {
       ) : (
         <>
           <LaptopsPage title="New Servers" laptopsData={laptopsData} />
-          {paginationRange ? (
+          {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
                 <>
@@ -91,7 +88,7 @@ const NewServers = () => {
                 </>
               </ul>
             </nav>
-          ) : null}
+          )}
         </>
       )}
     </>
