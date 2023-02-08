@@ -38,3 +38,7 @@ export const geAllNewMonitors = (page) => request.get(`${baseUrl}/monitoare-new?
 export const geAllRefurbishedMonitors = (page) => request.get(`${baseUrl}/monitoare-refurbished?page=${page}`)
 
 export const geAllSecondHandMonitors = (page) => request.get(`${baseUrl}/monitoare-second-hand?page=${page}`)
+
+export const geAllComponents = (page) => request.get(`${baseUrl}/componente?page=${page}`)
+
+export const geAllSoftware = (page) => request.get(`${baseUrl}/licenta-software?page=${page}`)

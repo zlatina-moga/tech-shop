@@ -41,7 +41,7 @@ const Sidebar = () => {
             <div
               className="navbar-nav w-100 overflow-hidden relative"
               style={{
-                height: 460,
+                height: 410,
               }}
             >
               <Link
@@ -280,18 +280,7 @@ const Sidebar = () => {
                 </ul>
               </Link>
               <Link
-                href="/apple"
-                className="nav-item nav-link py-3 sidebar-link"
-              >
-                <img
-                  src={appleIcon.src}
-                  alt="list"
-                  style={{ height: "18px" }}
-                />
-                Apple Refurbished
-              </Link>
-              <Link
-                href="/components"
+                href="/componente"
                 className="nav-item nav-link py-3 sidebar-link"
               >
                 <img
@@ -302,7 +291,7 @@ const Sidebar = () => {
                 Componente
               </Link>
               <Link
-                href="/components"
+                href="/licenta-software"
                 className="nav-item nav-link py-3 sidebar-link"
                 style={{ borderBottom: "none" }}
               >
