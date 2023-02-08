@@ -183,7 +183,10 @@ const Sidebar = () => {
               </Link>
               <Link
                 href="/servere"
-                className="nav-item nav-link py-3 sidebar-link sidebar-link dropdown dropdown-toggle"
+                className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
                 <img
                   src={serverIcon.src}
@@ -228,8 +231,11 @@ const Sidebar = () => {
                 </ul>
               </Link>
               <Link
-                href="/monitors"
-                className="nav-item nav-link py-3 sidebar-link"
+                href="/monitoare"
+                className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
                 <img
                   src={monitorIcon.src}
@@ -237,6 +243,41 @@ const Sidebar = () => {
                   style={{ height: "18px" }}
                 />
                 Monitoare
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <Link className="dropdown-item" href="/monitoare-refurbished" passHref>
+                      <img
+                        src={monitorIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px'}}
+                      />
+                      Refurbished
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" href="/monitoare-new" passHref>
+                      <img
+                        src={monitorIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      New
+                    </Link>
+                  </li>
+                  <li className="dropdown-submenu">
+                    <Link className="dropdown-item" href="/monitoare-second-hand" passHref>
+                      <img
+                        src={monitorIcon.src}
+                        alt="list"
+                        style={{ height: "18px", marginRight: '10px' }}
+                      />
+                      Second Hand
+                    </Link>
+                  </li>
+                </ul>
               </Link>
               <Link
                 href="/apple"
