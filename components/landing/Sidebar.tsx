@@ -6,7 +6,6 @@ import computerIcon from "../../public/svg/computer.svg";
 import workstationIcons from "../../public/svg/workstations.svg";
 import serverIcon from "../../public/svg/server.svg";
 import monitorIcon from "../../public/svg/monitor.svg";
-import appleIcon from "../../public/svg/apple.svg";
 import componentIcon from "../../public/svg/component.svg";
 import softwareIcon from "../../public/svg/software.svg";
 

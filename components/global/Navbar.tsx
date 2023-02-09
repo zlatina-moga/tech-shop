@@ -9,17 +9,17 @@ const Navbar = () => {
   return (
     <div className="w-100" id="nav-container">
       <nav
-        className="row align-items-center px-xl-5"
+        className="row align-items-center px-xl-5 collapse show navbar navbar-vertical"
         style={{ maxWidth: "100rem", margin: "0 auto" }}
       >
-        <div className="col-lg-3 d-none d-lg-block">
+        <div className="col-lg-3 d-none d-lg-block container-fluid">
           <Link href="/">
             <Image
               src="/images/logo-example.png"
               alt="logo"
               width={150}
               height={60}
-              style={{borderRadius: '4px'}}
+              style={{ borderRadius: "4px" }}
             />
           </Link>
         </div>
@@ -53,47 +53,73 @@ const Navbar = () => {
 
 const guestNav = (
   <>
+    <span className="nav-item dropdown">
+      <Link
+        className="btn border dropdown-toggle"
+        style={{ marginRight: "5px", borderRadius: "4px" }}
+        data-bs-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        href=""
+      >
+        <i className="fas fa-user text-primary mr-1"></i>
+        <span className="badge"></span>
+        Cont
+        <ul className="dropdown-menu mt-4" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            <Link className="dropdown-item" href="/login">
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link className="dropdown-item" href="/register">
+              Register
+            </Link>
+          </li>
+        </ul>
+      </Link>
+    </span>
     <Link
-      href="/login"
+      href="/my-cart"
       className="btn border"
-      style={{ marginRight: "5px", borderRadius: "4px" }}
+      style={{ borderRadius: "4px" }}
     >
-      <i className="fas fa-user text-primary mr-1"></i>
-      <span className="badge"></span>
-      Login
-    </Link>
-    <Link
-      href="/register"
-      className="btn border"
-      style={{ marginRight: "5px", borderRadius: "4px" }}
-    >
-      <i className="fa fa-user-plus text-primary mr-1"></i>
-      <span className="badge"></span>
-      Register
+      <i className="fas fa-shopping-cart text-primary mr-1"></i>
+      <span className="badge"></span>Coș
     </Link>
   </>
 );
 
 const userNav = (
   <>
-    <Link
-      href="/logout"
-      className="btn border"
-      style={{ marginRight: "5px", borderRadius: "4px" }}
-    >
-      <i className="fas fa-user-minus text-primary mr-1"></i>
-      <span className="badge"></span>
-      Logout
-    </Link>
-    <Link
-      href="/profile"
-      className="btn border"
-      style={{ marginRight: "5px", borderRadius: "4px" }}
-    >
-      <i className="fas fa-user text-primary mr-1"></i>
-      <span className="badge"></span>
-      Profile
-    </Link>
+      <span className="nav-item dropdown">
+      <Link
+        className="btn border dropdown-toggle"
+        style={{ marginRight: "5px", borderRadius: "4px" }}
+        data-bs-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        href=""
+      >
+        <i className="fas fa-user text-primary mr-1"></i>
+        <span className="badge"></span>
+        Cont
+        <ul className="dropdown-menu mt-4" aria-labelledby="navbarDropdownMenuLink">
+        <li>
+            <Link className="dropdown-item" href="/profile">
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link className="dropdown-item" href="/logout">
+              Logout
+            </Link>
+          </li>
+
+        </ul>
+      </Link>
+    </span>
+
     <Link
       href="/my-cart"
       className="btn border"
