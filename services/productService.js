@@ -42,3 +42,15 @@ export const geAllSecondHandMonitors = (page) => request.get(`${baseUrl}/monitoa
 export const geAllComponents = (page) => request.get(`${baseUrl}/componente?page=${page}`)
 
 export const geAllSoftware = (page) => request.get(`${baseUrl}/licenta-software?page=${page}`)
+
+export const geAllPrinters = (page) => request.get(`${baseUrl}/imprimante?page=${page}`)
+
+export const geAllPOS = (page) => request.get(`${baseUrl}/sisteme-pos?page=${page}`)
+
+export const geAllUPS = (page) => request.get(`${baseUrl}/ups?page=${page}`)
+
+export const geAllAccessories = (page) => request.get(`${baseUrl}/accesorii?page=${page}`)
+
+export const geAllRetails = (page) => request.get(`${baseUrl}/retelistica?page=${page}`)
+
+export const geAllSolarPanels = (page) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice?page=${page}`)

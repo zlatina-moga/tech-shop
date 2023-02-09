@@ -328,40 +328,23 @@ const Sidebar = () => {
               style={{ borderRadius: "4px" }}
             >
               <div className="navbar-nav mr-auto py-0">
-                <a href="" className="nav-item nav-link active">
-                  Promotions
+                <a href="/imprimante" className="nav-item nav-link">
+                  Imprimante
                 </a>
-                <a href="" className="nav-item nav-link">
-                  High-end systems
+                <a href="/sisteme-pos" className="nav-item nav-link">
+                  Sisteme POS
                 </a>
-                <a href="" className="nav-item nav-link">
-                  Gaming
+                <a href="/ups" className="nav-item nav-link">
+                  UPS
                 </a>
-                <a href="" className="nav-item nav-link">
-                  All-in-one
+                <a href="/accesorii" className="nav-item nav-link">
+                  Accesorii
                 </a>
-                <a href="" className="nav-item nav-link">
-                  Tablets
+                <a href="/retelistica" className="nav-item nav-link">
+                  Retelistica
                 </a>
-                {/*<div className="nav-item dropdown">
-                  <a
-                    href="#"
-                    className="nav-link dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    Pages
-                  </a>
-                  <div className="dropdown-menu rounded-0 m-0">
-                    <a href="cart.html" className="dropdown-item">
-                      Shopping Cart
-                    </a>
-                    <a href="checkout.html" className="dropdown-item">
-                      Checkout
-                    </a>
-                  </div>
-          </div>*/}
-                <a href="" className="nav-item nav-link">
-                  Contact
+                <a href="/sisteme-solare-fotovoltaice" className="nav-item nav-link">
+                  Sisteme solare fotovoltaice
                 </a>
               </div>
             </div>
