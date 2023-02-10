@@ -37,84 +37,97 @@ const Sidebar = () => {
               borderBottomRightRadius: "4px",
             }}
           >
-            <div
+            <ul
               className="navbar-nav w-100 overflow-hidden relative"
               style={{
                 height: 410,
               }}
             >
-              <Link
-                href="/laptopuri"
+              <li
                 className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
               >
-                <img
-                  src={laptopIcon.src}
-                  alt="list"
-                  style={{ height: "18px" }}
-                />
-                Laptopuri
+                <Link href="/laptopuri" className='sidebar-link'>
+                  <img
+                    src={laptopIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  Laptopuri
+                </Link>
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <Link className="dropdown-item" href="/laptopuri-refurbished" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/laptopuri-refurbished"
+                      passHref
+                    >
                       <img
                         src={laptopIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px'}}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Refurbished
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" href="/laptopuri-new" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/laptopuri-new"
+                      passHref
+                    >
                       <img
                         src={laptopIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       New
                     </Link>
                   </li>
                   <li className="dropdown-submenu">
-                    <Link className="dropdown-item" href="/laptopuri-second-hand" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/laptopuri-second-hand"
+                      passHref
+                    >
                       <img
                         src={laptopIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Second Hand
                     </Link>
                   </li>
                 </ul>
-              </Link>
-              <Link
-                href="/calculatoare"
+              </li>
+              <li
                 className="nav-item nav-link py-3 sidebar-link  dropdown dropdown-toggle"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
               >
-                <img
-                  src={computerIcon.src}
-                  alt="list"
-                  style={{ height: "18px" }}
-                />
-                Calculatoare
+                <Link href="/calculatoare" className='sidebar-link'>
+                  <img
+                    src={computerIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  Calculatoare
+                </Link>
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <Link className="dropdown-item" href="/calculatoare-refurbished">
+                    <Link
+                      className="dropdown-item"
+                      href="/calculatoare-refurbished"
+                    >
                       <img
                         src={computerIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px'}}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Refurbished
                     </Link>
@@ -124,184 +137,220 @@ const Sidebar = () => {
                       <img
                         src={computerIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       New
                     </Link>
                   </li>
                   <li className="dropdown-submenu">
-                    <Link className="dropdown-item" href="/calculatoare-second-hand">
+                    <Link
+                      className="dropdown-item"
+                      href="/calculatoare-second-hand"
+                    >
                       <img
                         src={computerIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Second Hand
                     </Link>
                   </li>
                 </ul>
-              </Link>
-              <Link
-                href="/workstations"
+              </li>
+              <li
                 className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
               >
-                <img
-                  src={workstationIcons.src}
-                  alt="list"
-                  style={{ height: "18px" }}
-                />
-                Workstations
+                <Link href="/workstations" className='sidebar-link'>
+                  <img
+                    src={workstationIcons.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  Workstations
+                </Link>
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <Link className="dropdown-item" href="/workstations-refurbished" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/workstations-refurbished"
+                      passHref
+                    >
                       <img
                         src={workstationIcons.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px'}}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Refurbished
                     </Link>
                   </li>
                   <li className="dropdown-submenu">
-                    <Link className="dropdown-item" href="/workstations-second-hand" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/workstations-second-hand"
+                      passHref
+                    >
                       <img
                         src={workstationIcons.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Second Hand
                     </Link>
                   </li>
                 </ul>
-              </Link>
-              <Link
-                href="/servere"
+              </li>
+              <li
                 className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
               >
-                <img
-                  src={serverIcon.src}
-                  alt="list"
-                  style={{ height: "18px" }}
-                />
-                Servere
+                <Link href="/servere" className='sidebar-link'>
+                  <img
+                    src={serverIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  Servere
+                </Link>
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <Link className="dropdown-item" href="/servere-refurbished" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/servere-refurbished"
+                      passHref
+                    >
                       <img
                         src={serverIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px'}}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Refurbished
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" href="/servere-new" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/servere-new"
+                      passHref
+                    >
                       <img
                         src={serverIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       New
                     </Link>
                   </li>
                   <li className="dropdown-submenu">
-                    <Link className="dropdown-item" href="/servere-second-hand" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/servere-second-hand"
+                      passHref
+                    >
                       <img
                         src={serverIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Second Hand
                     </Link>
                   </li>
                 </ul>
-              </Link>
-              <Link
-                href="/monitoare"
+              </li>
+              <li
                 className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
               >
-                <img
-                  src={monitorIcon.src}
-                  alt="list"
-                  style={{ height: "18px" }}
-                />
-                Monitoare
+                <Link href="/monitoare" className='sidebar-link'>
+                  <img
+                    src={monitorIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  Monitoare
+                </Link>
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <Link className="dropdown-item" href="/monitoare-refurbished" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/monitoare-refurbished"
+                      passHref
+                    >
                       <img
                         src={monitorIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px'}}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Refurbished
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" href="/monitoare-new" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/monitoare-new"
+                      passHref
+                    >
                       <img
                         src={monitorIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       New
                     </Link>
                   </li>
                   <li className="dropdown-submenu">
-                    <Link className="dropdown-item" href="/monitoare-second-hand" passHref>
+                    <Link
+                      className="dropdown-item"
+                      href="/monitoare-second-hand"
+                      passHref
+                    >
                       <img
                         src={monitorIcon.src}
                         alt="list"
-                        style={{ height: "18px", marginRight: '10px' }}
+                        style={{ height: "18px", marginRight: "10px" }}
                       />
                       Second Hand
                     </Link>
                   </li>
                 </ul>
-              </Link>
-              <Link
-                href="/componente"
-                className="nav-item nav-link py-3 sidebar-link"
-              >
-                <img
-                  src={componentIcon.src}
-                  alt="list"
-                  style={{ height: "18px" }}
-                />
-                Componente
-              </Link>
-              <Link
-                href="/licenta-software"
-                className="nav-item nav-link py-3 sidebar-link"
-                style={{ borderBottom: "none" }}
-              >
-                <img
-                  src={softwareIcon.src}
-                  alt="list"
-                  style={{ height: "18px" }}
-                />
-                Software
-              </Link>
-            </div>
+              </li>
+              <li>
+                <Link
+                  href="/componente"
+                  className="nav-item nav-link py-3 sidebar-link"
+                >
+                  <img
+                    src={componentIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  Componente
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/licenta-software"
+                  className="nav-item nav-link py-3 sidebar-link"
+                  style={{ borderBottom: "none" }}
+                >
+                  <img
+                    src={softwareIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  Software
+                </Link>
+              </li>
+            </ul>
           </nav>
         </div>
         <div className="col-lg-9">
@@ -327,24 +376,27 @@ const Sidebar = () => {
               style={{ borderRadius: "4px" }}
             >
               <div className="navbar-nav mr-auto py-0">
-                <a href="/imprimante" className="nav-item nav-link">
+                <Link href="/imprimante" className="nav-item nav-link">
                   Imprimante
-                </a>
-                <a href="/sisteme-pos" className="nav-item nav-link">
+                </Link>
+                <Link href="/sisteme-pos" className="nav-item nav-link">
                   Sisteme POS
-                </a>
-                <a href="/ups" className="nav-item nav-link">
+                </Link>
+                <Link href="/ups" className="nav-item nav-link">
                   UPS
-                </a>
-                <a href="/accesorii" className="nav-item nav-link">
+                </Link>
+                <Link href="/accesorii" className="nav-item nav-link">
                   Accesorii
-                </a>
-                <a href="/retelistica" className="nav-item nav-link">
+                </Link>
+                <Link href="/retelistica" className="nav-item nav-link">
                   Retelistica
-                </a>
-                <a href="/sisteme-solare-fotovoltaice" className="nav-item nav-link">
+                </Link>
+                <Link
+                  href="/sisteme-solare-fotovoltaice"
+                  className="nav-item nav-link"
+                >
                   Sisteme solare fotovoltaice
-                </a>
+                </Link>
               </div>
             </div>
           </nav>

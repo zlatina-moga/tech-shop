@@ -54,18 +54,20 @@ const Navbar = () => {
 const guestNav = (
   <>
     <span className="nav-item dropdown">
-      <Link
+      <div
         className="btn border dropdown-toggle"
         style={{ marginRight: "5px", borderRadius: "4px" }}
         data-bs-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
-        href=""
       >
         <i className="fas fa-user text-primary mr-1"></i>
         <span className="badge"></span>
         Cont
-        <ul className="dropdown-menu mt-4" aria-labelledby="navbarDropdownMenuLink">
+        <ul
+          className="dropdown-menu mt-4"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
           <li>
             <Link className="dropdown-item" href="/login">
               Login
@@ -77,7 +79,7 @@ const guestNav = (
             </Link>
           </li>
         </ul>
-      </Link>
+      </div>
     </span>
     <Link
       href="/my-cart"
@@ -92,20 +94,22 @@ const guestNav = (
 
 const userNav = (
   <>
-      <span className="nav-item dropdown">
-      <Link
+    <span className="nav-item dropdown">
+      <div
         className="btn border dropdown-toggle"
         style={{ marginRight: "5px", borderRadius: "4px" }}
         data-bs-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
-        href=""
       >
         <i className="fas fa-user text-primary mr-1"></i>
         <span className="badge"></span>
         Cont
-        <ul className="dropdown-menu mt-4" aria-labelledby="navbarDropdownMenuLink">
-        <li>
+        <ul
+          className="dropdown-menu mt-4"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li>
             <Link className="dropdown-item" href="/profile">
               Profile
             </Link>
@@ -115,9 +119,8 @@ const userNav = (
               Logout
             </Link>
           </li>
-
         </ul>
-      </Link>
+      </div>
     </span>
 
     <Link
