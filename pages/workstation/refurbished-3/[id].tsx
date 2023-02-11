@@ -23,7 +23,7 @@ import Loader from "../../../components/global/Loader/Loader";
 
 const features = ["Procesor", "RAM" ];
 
-const RefurbishedCompDetails = () => {
+const RefurnishedWorkstationDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
@@ -31,7 +31,7 @@ const RefurbishedCompDetails = () => {
 
   useEffect(() => {
     itemService
-      .getRefurnishedComp(id)
+      .getRefurnishedWorkstation(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -232,4 +232,4 @@ const RefurbishedCompDetails = () => {
   );
 };
 
-export default RefurbishedCompDetails;
+export default RefurnishedWorkstationDetails;

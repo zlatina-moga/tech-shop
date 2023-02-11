@@ -23,7 +23,7 @@ import Loader from "../../../components/global/Loader/Loader";
 
 const features = ["RAM", "Hard Disk", "Sistem de operare"];
 
-const SecondHandLaptopDetails = () => {
+const NewLaptopDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
@@ -156,4 +156,4 @@ const SecondHandLaptopDetails = () => {
   );
 };
 
-export default SecondHandLaptopDetails;
+export default NewLaptopDetails;
