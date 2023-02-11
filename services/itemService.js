@@ -28,3 +28,17 @@ export const getRefurbishedMonitor = (id) => request.get(`${baseUrl}/monitoare/r
 export const getNewMonitor = (id) => request.get(`${baseUrl}/monitoare/noi-4/${id}`)
 
 export const getSecondHandMonitor = (id) => request.get(`${baseUrl}/monitoare/second-hand-4/${id}`)
+
+export const getHardDisk = (id) => request.get(`${baseUrl}/componente/hard-disk/${id}`)
+
+export const getRAM = (id) => request.get(`${baseUrl}/componente/memorie-ram/${id}`)
+
+export const getVideoCard = (id) => request.get(`${baseUrl}/componente/placa-video/${id}`)
+
+export const getProcesor = (id) => request.get(`${baseUrl}/componente/procesor/${id}`)
+
+export const getKeyboard = (id) => request.get(`${baseUrl}/componente/tastatura-laptop/${id}`)
+
+export const getBattery = (id) => request.get(`${baseUrl}/componente/baterie-laptop/${id}`)
+
+export const getCharger = (id) => request.get(`${baseUrl}/componente/alimentator-laptop/${id}`)
