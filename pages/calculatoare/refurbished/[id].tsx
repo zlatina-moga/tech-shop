@@ -31,7 +31,7 @@ const RefurbishedCompDetails = () => {
 
   useEffect(() => {
     itemService
-      .getRefurnishedComp(id)
+      .getRefurbishedComp(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);

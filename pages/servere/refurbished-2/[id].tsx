@@ -21,9 +21,9 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 
-const features = ["RAM", "Hard Disk", "Sistem de operare"];
+const features = ["Procesor", "Memorie" ];
 
-const RefurbishedLaptopDetails = () => {
+const RefurbishedServerDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
@@ -31,7 +31,7 @@ const RefurbishedLaptopDetails = () => {
 
   useEffect(() => {
     itemService
-      .getRefurbishedLaptop(id)
+      .getRefurbishedServer(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -78,114 +78,6 @@ const RefurbishedLaptopDetails = () => {
                     </div>
                     <div className="col-lg-7 pb-5 parent-container">
                       <div className="first-container">
-                        <div className="features-list">
-                          <div className="features-key">
-                            {features.map((f, idx) => (
-                              <p key={idx}>{f}:</p>
-                            ))}
-                          </div>
-                          <div className="features-value">
-                            <div
-                              className="dropend"
-                              style={{
-                                borderRadius: "4px",
-                                marginBottom: "1rem",
-                              }}
-                            >
-                              <button
-                                className="btn border dropdown-toggle"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                {item.defaultRam}
-                              </button>
-                              <ul className="dropdown-menu">
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Action
-                                  </a>
-                                </li>
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Another action
-                                  </a>
-                                </li>
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Something else here
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                            <div
-                              className="dropend"
-                              style={{
-                                borderRadius: "4px",
-                                marginBottom: "1rem",
-                              }}
-                            >
-                              <button
-                                className="btn border dropdown-toggle"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                {item.defaultHardDisk}
-                              </button>
-                              <ul className="dropdown-menu">
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Action
-                                  </a>
-                                </li>
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Another action
-                                  </a>
-                                </li>
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Something else here
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                            <div
-                              className="dropend"
-                              style={{
-                                borderRadius: "4px",
-                                marginBottom: "1rem",
-                              }}
-                            >
-                              <button
-                                className="btn border dropdown-toggle"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                {item.defaultOS}
-                              </button>
-                              <ul className="dropdown-menu">
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Action
-                                  </a>
-                                </li>
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Another action
-                                  </a>
-                                </li>
-                                <li>
-                                  <a className="dropdown-item" href="#">
-                                    Something else here
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
 
                         <p className="mb-4 details">
                           Toate fotografiile produselor prezentate au caracter
@@ -264,4 +156,4 @@ const RefurbishedLaptopDetails = () => {
   );
 };
 
-export default RefurbishedLaptopDetails;
+export default RefurbishedServerDetails;

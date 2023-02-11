@@ -21,7 +21,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 
-const features = ["Procesor", "RAM" ];
+const features = ["RAM", "Hard Disk" ];
 
 const RefurnishedWorkstationDetails = () => {
   const router = useRouter();
@@ -31,7 +31,7 @@ const RefurnishedWorkstationDetails = () => {
 
   useEffect(() => {
     itemService
-      .getRefurnishedWorkstation(id)
+      .getRefurbishedWorkstation(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
