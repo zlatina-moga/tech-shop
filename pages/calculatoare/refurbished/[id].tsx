@@ -21,7 +21,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 
-const features = ["RAM", "Hard Disk", "Sistem de operare"];
+const features = ["Procesor", "RAM", "Hard Disk", "Placa video", "Sistem de operare"];
 
 const SecondHandLaptopDetails = () => {
   const router = useRouter();
@@ -31,7 +31,7 @@ const SecondHandLaptopDetails = () => {
 
   useEffect(() => {
     itemService
-      .getRefurnishedLaptop(id)
+      .getRefurnishedComp(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -85,6 +85,39 @@ const SecondHandLaptopDetails = () => {
                             ))}
                           </div>
                           <div className="features-value">
+                            <div
+                              className="dropend"
+                              style={{
+                                borderRadius: "4px",
+                                marginBottom: "1rem",
+                              }}
+                            >
+                              <button
+                                className="btn border dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                {item.defaultProcesor}
+                              </button>
+                              <ul className="dropdown-menu">
+                                <li>
+                                  <a className="dropdown-item" href="#">
+                                    Action
+                                  </a>
+                                </li>
+                                <li>
+                                  <a className="dropdown-item" href="#">
+                                    Another action
+                                  </a>
+                                </li>
+                                <li>
+                                  <a className="dropdown-item" href="#">
+                                    Something else here
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
                             <div
                               className="dropend"
                               style={{
@@ -156,6 +189,40 @@ const SecondHandLaptopDetails = () => {
                               style={{
                                 borderRadius: "4px",
                                 marginBottom: "1rem",
+                              }}
+                            >
+                              <button
+                                className="btn border dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                {item.defaultVideoCard}
+                              </button>
+                              <ul className="dropdown-menu">
+                                <li>
+                                  <a className="dropdown-item" href="#">
+                                    Action
+                                  </a>
+                                </li>
+                                <li>
+                                  <a className="dropdown-item" href="#">
+                                    Another action
+                                  </a>
+                                </li>
+                                <li>
+                                  <a className="dropdown-item" href="#">
+                                    Something else here
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <div
+                              className="dropend"
+                              style={{
+                                borderRadius: "4px",
+                                marginBottom: "1rem",
+                                marginTop: '2rem'
                               }}
                             >
                               <button

@@ -31,7 +31,7 @@ const SecondHandLaptopDetails = () => {
 
   useEffect(() => {
     itemService
-      .getRefurnishedLaptop(id)
+      .getSecondHandLaptop(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -78,6 +78,17 @@ const SecondHandLaptopDetails = () => {
                     </div>
                     <div className="col-lg-7 pb-5 parent-container">
                       <div className="first-container">
+                        {/*<div className="d-flex mb-3">
+                    <div className="text-primary mr-2">
+                      <small className="fas fa-star"></small>
+                      <small className="fas fa-star"></small>
+                      <small className="fas fa-star"></small>
+                      <small className="fas fa-star-half-alt"></small>
+                      <small className="far fa-star"></small>
+                    </div>
+                    <small className="pt-1">(50 Reviews)</small>
+                    </div>*/}
+
                         <div className="features-list">
                           <div className="features-key">
                             {features.map((f, idx) => (
@@ -209,6 +220,7 @@ const SecondHandLaptopDetails = () => {
                           <Image src={cartIcon} alt="cart" />
                           <p>Politica de retur</p>
                         </div>
+
                       </div>
                       <div className="second-container">
                         <div className="price-container">

@@ -12,9 +12,6 @@ import "swiper/css/bundle";
 import "react-photo-view/dist/react-photo-view.css";
 
 const MyApp = ({ Component, pageProps }) => {
-  useEffect(()=>{
-    import("bootstrap/dist/js/bootstrap");
-},[])
   return (
     <>
       <AuthProvider>
