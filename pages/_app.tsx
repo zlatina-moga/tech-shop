@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ThemeEditorProvider } from "@hypertheme-editor/chakra-ui";
 import { theme } from "../theme/index";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -11,6 +12,9 @@ import "swiper/css/bundle";
 import "react-photo-view/dist/react-photo-view.css";
 
 const MyApp = ({ Component, pageProps }) => {
+  useEffect(()=>{
+    import("bootstrap/dist/js/bootstrap");
+},[])
   return (
     <>
       <AuthProvider>
