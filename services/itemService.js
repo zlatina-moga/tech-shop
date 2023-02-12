@@ -42,3 +42,23 @@ export const getKeyboard = (id) => request.get(`${baseUrl}/componente/tastatura-
 export const getBattery = (id) => request.get(`${baseUrl}/componente/baterie-laptop/${id}`)
 
 export const getCharger = (id) => request.get(`${baseUrl}/componente/alimentator-laptop/${id}`)
+
+export const getPalmrest = (id) => request.get(`${baseUrl}/componente/palmrest/${id}`)
+
+export const getCaddy = (id) => request.get(`${baseUrl}/componente/caddy-server/${id}`)
+
+export const getRailKit = (id) => request.get(`${baseUrl}/componente/railkit-server/${id}`)
+
+export const getMascaBay = (id) => request.get(`${baseUrl}/componente/masca-bay-server/${id}`)
+
+export const getController = (id) => request.get(`${baseUrl}/componente/controller-raid/${id}`)
+
+export const getPlaca = (id) => request.get(`${baseUrl}/componente/placa-de-retea/${id}`)
+
+export const getCarcasa = (id) => request.get(`${baseUrl}/componente/carcasa-si-surse/${id}`)
+
+export const getBarebone = (id) => request.get(`${baseUrl}/componente/barebone-calculator/${id}`)
+
+export const getCooler = (id) => request.get(`${baseUrl}/componente/coolere-si-radiatoare/${id}`)
+
+export const getMB = (id) => request.get(`${baseUrl}/componente/placa-de-baza-calculator/${id}`)
