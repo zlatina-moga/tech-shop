@@ -1,13 +1,13 @@
 import * as request from "./requester";
 const baseUrl = "http://localhost:5500";
 
-export const getAllLaptops = (page) => request.get(`${baseUrl}/laptopuri?page=${page}`)
+export const getAllLaptops = (page) => request.get(`${baseUrl}/laptop?page=${page}`)
 
-export const getAllSecondHandLaptops = (page) => request.get(`${baseUrl}/laptopuri-second-hand?page=${page}`)
+export const getAllSecondHandLaptops = (page) => request.get(`${baseUrl}/laptop/second-hand-1?page=${page}`)
 
-export const getAllRefurbishedLaptops = (page) => request.get(`${baseUrl}/laptopuri-refurbished?page=${page}`)
+export const getAllRefurbishedLaptops = (page) => request.get(`${baseUrl}/laptop/refurbished-1?page=${page}`)
 
-export const getAllNewLaptops = (page) => request.get(`${baseUrl}/laptopuri-new?page=${page}`)
+export const getAllNewLaptops = (page) => request.get(`${baseUrl}/laptop/noi-1?page=${page}`)
 
 export const getAllComputers = (page) => request.get(`${baseUrl}/calculatoare?page=${page}`)
 

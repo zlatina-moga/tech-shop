@@ -47,7 +47,7 @@ const Sidebar = () => {
                 className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
                 data-bs-toggle="dropdown"
               >
-                <Link href="/laptopuri" className='sidebar-link'>
+                <Link href="/laptop" className='sidebar-link'>
                   <img
                     src={laptopIcon.src}
                     alt="list"
@@ -62,7 +62,7 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/laptopuri-refurbished"
+                      href="/laptop/refurbished-1"
                       passHref
                     >
                       <img
@@ -76,7 +76,7 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/laptopuri-new"
+                      href="/laptop/noi-1"
                       passHref
                     >
                       <img
@@ -90,7 +90,7 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/laptopuri-second-hand"
+                      href="/laptop/second-hand-1"
                       passHref
                     >
                       <img

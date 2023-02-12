@@ -21,7 +21,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 
-const features = ["RAM", "Hard Disk" ];
+const features = ["Procesor", "RAM" ];
 
 const RefurnishedWorkstationDetails = () => {
   const router = useRouter();

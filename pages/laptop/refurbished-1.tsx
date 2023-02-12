@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/global/Navbar";
-import * as productService from "../services/productService";
-import Loader from "../components/global/Loader/Loader";
-import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../hooks/usePagination";
+import Navbar from "../../components/global/Navbar";
+import * as productService from "../../services/productService";
+import Loader from "../../components/global/Loader/Loader";
+import LaptopsPage from "../../components/shared/LaptopsPage";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 
 const LaptopuriRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);

@@ -65,7 +65,7 @@ export default function Home() {
                   style={{ padding: "30px", borderRadius: "4px" }}
                 >
                   <Link
-                    href="/laptopuri"
+                    href="/laptop"
                     className="cat-img position-relative overflow-hidden mb-3 mx-auto"
                   >
                     <Image
