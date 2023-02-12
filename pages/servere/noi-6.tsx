@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/global/Navbar";
-import * as productService from "../services/productService";
-import Loader from "../components/global/Loader/Loader";
-import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../hooks/usePagination";
+import Navbar from "../../components/global/Navbar";
+import * as productService from "../../services/productService";
+import Loader from "../../components/global/Loader/Loader";
+import LaptopsPage from "../../components/shared/LaptopsPage";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 
-const WorkstationsSecondHand = () => {
+const NewServers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     productService
-      .getSecondHandWorkstations(currentPage)
+      .getAllNewServers(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -49,7 +49,7 @@ const WorkstationsSecondHand = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Second Hand Workstations" laptopsData={laptopsData} />
+          <LaptopsPage title="New Servers" laptopsData={laptopsData} />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
@@ -95,4 +95,4 @@ const WorkstationsSecondHand = () => {
   );
 };
 
-export default WorkstationsSecondHand;
+export default NewServers;

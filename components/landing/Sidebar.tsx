@@ -122,7 +122,7 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/calculatoare-refurbished"
+                      href="/calculatoare/refurbished"
                     >
                       <img
                         src={computerIcon.src}
@@ -133,7 +133,7 @@ const Sidebar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" href="/calculatoare-new">
+                    <Link className="dropdown-item" href="/calculatoare/noi">
                       <img
                         src={computerIcon.src}
                         alt="list"
@@ -145,7 +145,7 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/calculatoare-second-hand"
+                      href="/calculatoare/second-hand"
                     >
                       <img
                         src={computerIcon.src}
@@ -161,7 +161,7 @@ const Sidebar = () => {
                 className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
                 data-bs-toggle="dropdown"
               >
-                <Link href="/workstations" className='sidebar-link'>
+                <Link href="/workstation" className='sidebar-link'>
                   <img
                     src={workstationIcons.src}
                     alt="list"
@@ -176,7 +176,7 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/workstations-refurbished"
+                      href="/workstation/refurbished-3"
                       passHref
                     >
                       <img
@@ -190,7 +190,7 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/workstations-second-hand"
+                      href="/workstation/second-hand-3"
                       passHref
                     >
                       <img
@@ -222,7 +222,7 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/servere-refurbished"
+                      href="/servere/refurbished-2"
                       passHref
                     >
                       <img
@@ -236,7 +236,7 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/servere-new"
+                      href="/servere/noi-6"
                       passHref
                     >
                       <img
@@ -250,7 +250,7 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/servere-second-hand"
+                      href="/servere/second-hand-2"
                       passHref
                     >
                       <img

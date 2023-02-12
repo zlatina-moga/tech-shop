@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/global/Navbar";
-import * as productService from "../services/productService";
-import Loader from "../components/global/Loader/Loader";
-import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../hooks/usePagination";
+import Navbar from "../../components/global/Navbar";
+import * as productService from "../../services/productService";
+import Loader from "../../components/global/Loader/Loader";
+import LaptopsPage from "../../components/shared/LaptopsPage";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 
 const Calculatoare = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -12,7 +12,7 @@ const Calculatoare = () => {
 
   useEffect(() => {
     productService
-      .getAllRefurbishedComputers(currentPage)
+      .getAllNewComputers(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -49,10 +49,7 @@ const Calculatoare = () => {
         <Loader />
       ) : (
         <>
-          <LaptopsPage
-            title="Refurbished Computers"
-            laptopsData={laptopsData}
-          />
+          <LaptopsPage title="New Computers" laptopsData={laptopsData} />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
