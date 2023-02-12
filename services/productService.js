@@ -33,11 +33,11 @@ export const getSecondHandWorkstations = (page) => request.get(`${baseUrl}/works
 
 export const geAllMonitors = (page) => request.get(`${baseUrl}/monitoare?page=${page}`)
 
-export const geAllNewMonitors = (page) => request.get(`${baseUrl}/monitoare-new?page=${page}`)
+export const geAllNewMonitors = (page) => request.get(`${baseUrl}/monitoare/noi-4?page=${page}`)
 
-export const geAllRefurbishedMonitors = (page) => request.get(`${baseUrl}/monitoare-refurbished?page=${page}`)
+export const geAllRefurbishedMonitors = (page) => request.get(`${baseUrl}/monitoare/refurbished-4?page=${page}`)
 
-export const geAllSecondHandMonitors = (page) => request.get(`${baseUrl}/monitoare-second-hand?page=${page}`)
+export const geAllSecondHandMonitors = (page) => request.get(`${baseUrl}/monitoare/second-hand-4?page=${page}`)
 
 export const geAllComponents = (page) => request.get(`${baseUrl}/componente?page=${page}`)
 

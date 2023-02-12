@@ -282,7 +282,7 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/monitoare-refurbished"
+                      href="/monitoare/refurbished-4"
                       passHref
                     >
                       <img
@@ -296,7 +296,7 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/monitoare-new"
+                      href="/monitoare/noi-4"
                       passHref
                     >
                       <img
@@ -310,7 +310,7 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/monitoare-second-hand"
+                      href="/monitoare/second-hand-4"
                       passHref
                     >
                       <img
