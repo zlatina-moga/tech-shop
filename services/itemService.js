@@ -62,3 +62,9 @@ export const getBarebone = (id) => request.get(`${baseUrl}/componente/barebone-c
 export const getCooler = (id) => request.get(`${baseUrl}/componente/coolere-si-radiatoare/${id}`)
 
 export const getMB = (id) => request.get(`${baseUrl}/componente/placa-de-baza-calculator/${id}`)
+
+export const getNewPrinter = (id) => request.get(`${baseUrl}/imprimante/noi-3/${id}`)
+
+export const getSHPrinter = (id) => request.get(`${baseUrl}/imprimante/second-hand-5/${id}`)
+
+export const getPrinterCollateral = (id) => request.get(`${baseUrl}/imprimante/consumabile/${id}`)

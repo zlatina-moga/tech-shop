@@ -54,3 +54,9 @@ export const geAllAccessories = (page) => request.get(`${baseUrl}/accesorii?page
 export const geAllRetails = (page) => request.get(`${baseUrl}/retelistica?page=${page}`)
 
 export const geAllSolarPanels = (page) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice?page=${page}`)
+
+export const getAllNewPrinters = (page) => request.get(`${baseUrl}/imprimante/noi-3?page=${page}`)
+
+export const getAllSHPrinters = (page) => request.get(`${baseUrl}/imprimante/second-hand-5?page=${page}`)
+
+export const getAllPrinterCollateral = (page) => request.get(`${baseUrl}/imprimante/consumabile?page=${page}`)
