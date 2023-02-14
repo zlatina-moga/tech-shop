@@ -47,7 +47,21 @@ export const geAllPrinters = (page) => request.get(`${baseUrl}/imprimante?page=$
 
 export const geAllPOS = (page) => request.get(`${baseUrl}/sisteme-pos?page=${page}`)
 
-export const geAllUPS = (page) => request.get(`${baseUrl}/ups?page=${page}`)
+export const getAllRefurbishedPOS = (page) => request.get(`${baseUrl}/sisteme-pos/refurbished-6?page=${page}`)
+
+export const getAllSecondHandPOS = (page) => request.get(`${baseUrl}/sisteme-pos/second-hand-6?page=${page}`)
+
+export const getAllNewPOS = (page) => request.get(`${baseUrl}/sisteme-pos/noi-8?page=${page}`)
+
+export const getAllPOSReaders = (page) => request.get(`${baseUrl}/sisteme-pos/cititor-cod-bare?page=${page}`)
+
+export const getAllUPS = (page) => request.get(`${baseUrl}/ups?page=${page}`)
+
+export const getAllRefurbishedUPS = (page) => request.get(`${baseUrl}/ups/refurbished-7?page=${page}`)
+
+export const getAlllNewUPS = (page) => request.get(`${baseUrl}/ups/noi-7?page=${page}`)
+
+export const getAllSecondHandUPS = (page) => request.get(`${baseUrl}/ups/second-hand-7?page=${page}`)
 
 export const geAllAccessories = (page) => request.get(`${baseUrl}/accesorii?page=${page}`)
 
