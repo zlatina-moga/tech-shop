@@ -74,3 +74,23 @@ export const getAllNewPrinters = (page) => request.get(`${baseUrl}/imprimante/no
 export const getAllSHPrinters = (page) => request.get(`${baseUrl}/imprimante/second-hand-5?page=${page}`)
 
 export const getAllPrinterCollateral = (page) => request.get(`${baseUrl}/imprimante/consumabile?page=${page}`)
+
+export const getAllCables = (page) => request.get(`${baseUrl}/accesorii/cabluri-si-adaptoare?page=${page}`)
+
+export const getAllMice = (page) => request.get(`${baseUrl}/accesorii/mouse?page=${page}`)
+
+export const getAllKeyboards = (page) => request.get(`${baseUrl}/accesorii/tastaturi?page=${page}`)
+
+export const getAllOtherAccessories = (page) => request.get(`${baseUrl}/accesorii/periferice-diverse?page=${page}`)
+
+export const getAllDockingStations = (page) => request.get(`${baseUrl}/accesorii/docking-station?page=${page}`)
+
+export const getAllBags = (page) => request.get(`${baseUrl}/accesorii/genti?page=${page}`)
+
+export const getAllCameras = (page) => request.get(`${baseUrl}/accesorii/camere-web?page=${page}`)
+
+export const getAllHeadPhones = (page) => request.get(`${baseUrl}/accesorii/casti?page=${page}`)
+
+export const getAllGaming = (page) => request.get(`${baseUrl}/accesorii/gaming-console?page=${page}`)
+
+export const getAllVideo = (page) => request.get(`${baseUrl}/accesorii/videoproiectoare?page=${page}`)

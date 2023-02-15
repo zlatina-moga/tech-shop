@@ -82,3 +82,23 @@ export const getRefurbishedUPS = (id) => request.get(`${baseUrl}/ups/refurbished
 export const getSecondHandUPS = (id) => request.get(`${baseUrl}/ups/second-hand-7/${id}`)
 
 export const getNewUPS = (id) => request.get(`${baseUrl}/ups/noi-7/${id}`)
+
+export const getCable = (id) => request.get(`${baseUrl}/accesorii/cabluri-si-adaptoare/${id}`)
+
+export const getMouse = (id) => request.get(`${baseUrl}/accesorii/mouse/${id}`)
+
+export const getKeyboardDetails = (id) => request.get(`${baseUrl}/accesorii/tastaturi/${id}`)
+
+export const getOtherAccessoryDetails = (id) => request.get(`${baseUrl}/accesorii/periferice-diverse/${id}`)
+
+export const getDockingStation = (id) => request.get(`${baseUrl}/accesorii/docking-station/${id}`)
+
+export const getBag = (id) => request.get(`${baseUrl}/accesorii/genti/${id}`)
+
+export const getCamera = (id) => request.get(`${baseUrl}/accesorii/camere-web/${id}`)
+
+export const getHeadPhones = (id) => request.get(`${baseUrl}/accesorii/casti/${id}`)
+
+export const getGaming = (id) => request.get(`${baseUrl}/accesorii/gaming-console/${id}`)
+
+export const getVideo = (id) => request.get(`${baseUrl}/accesorii/videoproiectoare/${id}`)
