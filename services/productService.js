@@ -94,3 +94,13 @@ export const getAllHeadPhones = (page) => request.get(`${baseUrl}/accesorii/cast
 export const getAllGaming = (page) => request.get(`${baseUrl}/accesorii/gaming-console?page=${page}`)
 
 export const getAllVideo = (page) => request.get(`${baseUrl}/accesorii/videoproiectoare?page=${page}`)
+
+export const getAllNetwork = (page) => request.get(`${baseUrl}/retelistica/placi-de-retea?page=${page}`)
+
+export const getAllAdaptors = (page) => request.get(`${baseUrl}/retelistica/adaptoare-wireless?page=${page}`)
+
+export const getAllRouters = (page) => request.get(`${baseUrl}/retelistica/routere?page=${page}`)
+
+export const getAllSwitch = (page) => request.get(`${baseUrl}/retelistica/switch-uri?page=${page}`)
+
+export const getAllAccessPoints = (page) => request.get(`${baseUrl}/retelistica/access-point-uri?page=${page}`)

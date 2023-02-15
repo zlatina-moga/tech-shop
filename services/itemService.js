@@ -102,3 +102,13 @@ export const getHeadPhones = (id) => request.get(`${baseUrl}/accesorii/casti/${i
 export const getGaming = (id) => request.get(`${baseUrl}/accesorii/gaming-console/${id}`)
 
 export const getVideo = (id) => request.get(`${baseUrl}/accesorii/videoproiectoare/${id}`)
+
+export const getNetwork = (id) => request.get(`${baseUrl}/retelistica/placi-de-retea/${id}`)
+
+export const getAdaptor = (id) => request.get(`${baseUrl}/retelistica/adaptoare-wireless/${id}`)
+
+export const getRouter = (id) => request.get(`${baseUrl}/retelistica/routere/${id}`)
+
+export const getSwitch = (id) => request.get(`${baseUrl}/retelistica/switch-uri/${id}`)
+
+export const getAccessPoint = (id) => request.get(`${baseUrl}/retelistica/access-point-uri/${id}`)
