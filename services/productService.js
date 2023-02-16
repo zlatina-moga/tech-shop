@@ -41,6 +41,40 @@ export const geAllSecondHandMonitors = (page) => request.get(`${baseUrl}/monitoa
 
 export const geAllComponents = (page) => request.get(`${baseUrl}/componente?page=${page}`)
 
+export const getAllHardDisks = (page) => request.get(`${baseUrl}/componente/hard-disk?page=${page}`)
+
+export const getAllRAM = (page) => request.get(`${baseUrl}/componente/memorie-ram?page=${page}`)
+
+export const getAllVideoCards = (page) => request.get(`${baseUrl}/componente/placa-video?page=${page}`)
+
+export const getAllProcesors = (page) => request.get(`${baseUrl}/componente/procesor?page=${page}`)
+
+export const getAllLaptopKeyboards = (page) => request.get(`${baseUrl}/componente/tastatura-laptop?page=${page}`)
+
+export const getAllLaptopBatteries = (page) => request.get(`${baseUrl}/componente/baterie-laptop?page=${page}`)
+
+export const getAllLaptopChargers = (page) => request.get(`${baseUrl}/componente/alimentator-laptop?page=${page}`)
+
+export const getAllPalmrests = (page) => request.get(`${baseUrl}/componente/palmrest?page=${page}`)
+
+export const getAllCaddy = (page) => request.get(`${baseUrl}/componente/caddy-server?page=${page}`)
+
+export const getAllRailkit = (page) => request.get(`${baseUrl}/componente/railkit-server?page=${page}`)
+
+export const getAllMascaBay = (page) => request.get(`${baseUrl}/componente/masca-bay-server?page=${page}`)
+
+export const getAllControllers = (page) => request.get(`${baseUrl}/componente/controller-raid?page=${page}`)
+
+export const getAllNetworks = (page) => request.get(`${baseUrl}/componente/placa-de-retea?page=${page}`)
+
+export const getAllCases = (page) => request.get(`${baseUrl}/componente/carcasa-si-surse?page=${page}`)
+
+export const getAllBarebone = (page) => request.get(`${baseUrl}/componente/barebone-calculator?page=${page}`)
+
+export const getAllCoolers = (page) => request.get(`${baseUrl}/componente/coolere-si-radiatoare?page=${page}`)
+
+export const getAllMotherBoards = (page) => request.get(`${baseUrl}/componente/placa-de-baza-calculator?page=${page}`)
+
 export const geAllSoftware = (page) => request.get(`${baseUrl}/licenta-software?page=${page}`)
 
 export const geAllPrinters = (page) => request.get(`${baseUrl}/imprimante?page=${page}`)
