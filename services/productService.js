@@ -104,3 +104,7 @@ export const getAllRouters = (page) => request.get(`${baseUrl}/retelistica/route
 export const getAllSwitch = (page) => request.get(`${baseUrl}/retelistica/switch-uri?page=${page}`)
 
 export const getAllAccessPoints = (page) => request.get(`${baseUrl}/retelistica/access-point-uri?page=${page}`)
+
+export const getAllPanels = (page) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice?page=${page}`)
+
+export const getAllInvertors = (page) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice/invertoare-fotovoltaice?page=${page}`)
