@@ -72,7 +72,7 @@ const SingleItemView = ({itemData}) => {
                   </div>
                   <div className="second-container">
                     <div className="price-container">
-                      <h3 className="mb-3 price">{item.price}</h3>
+                      <h3 className="mb-3 price">{item.price} + TVA</h3>
                       <div className="delivery mb-3">
                         <Image src={truckIcon} alt="delivery" />
                         <p>
@@ -95,7 +95,7 @@ const SingleItemView = ({itemData}) => {
                         <Image
                           src={payImg}
                           alt="payments"
-                          style={{ maxHeight: "120px" }}
+                          style={{ maxHeight: "60px" }}
                         />
                       </div>
                       <div className="contact">

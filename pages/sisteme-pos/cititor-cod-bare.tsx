@@ -4,6 +4,7 @@ import * as productService from "../../services/productService";
 import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
+import { posCategories } from "../../data/categories";
 
 const POSReader = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -49,7 +50,7 @@ const POSReader = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Cititor Coduri Bare" laptopsData={laptopsData} />
+        <LaptopsPage title="Cititor Coduri Bare" laptopsData={laptopsData} categories={posCategories}/>
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

@@ -4,6 +4,7 @@ import * as productService from "../services/productService";
 import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
+import { monitorCategories } from "../data/categories";
 
 const Monitoare = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -49,7 +50,7 @@ const Monitoare = () => {
         <Loader />
       ) : (
         <>
-          <LaptopsPage title="All Monitors" laptopsData={laptopsData} />
+          <LaptopsPage title="All Monitors" laptopsData={laptopsData} categories={monitorCategories} />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

@@ -4,6 +4,7 @@ import * as productService from "../services/productService";
 import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
+import { solarCategories } from "../data/categories";
 
 const SolarPanels = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -49,7 +50,7 @@ const SolarPanels = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Sisteme Solare Fotovoltaice" laptopsData={laptopsData} />
+        <LaptopsPage title="Sisteme Solare Fotovoltaice" laptopsData={laptopsData} categories={solarCategories}/>
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

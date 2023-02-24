@@ -4,6 +4,7 @@ import * as productService from "../../services/productService";
 import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
+import { networkCategories } from "../../data/categories";
 
 const Switches = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -49,7 +50,7 @@ const Switches = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Switch-uri" laptopsData={laptopsData} />
+        <LaptopsPage title="Switch-uri" laptopsData={laptopsData} categories={networkCategories}/>
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

@@ -4,6 +4,7 @@ import * as productService from "../../services/productService";
 import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
+import { upsCategories } from "../../data/categories";
 
 const NewUPS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -49,7 +50,7 @@ const NewUPS = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="UPS Noi" laptopsData={laptopsData} />
+        <LaptopsPage title="UPS Noi" laptopsData={laptopsData} categories={upsCategories}/>
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

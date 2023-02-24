@@ -4,6 +4,7 @@ import * as productService from "../../services/productService";
 import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
+import { componentCategories } from "../../data/categories";
 
 const Barebone = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -49,7 +50,7 @@ const Barebone = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Componente Barebone calculator" laptopsData={laptopsData} />
+        <LaptopsPage title="Componente Barebone calculator" laptopsData={laptopsData} categories={componentCategories}/>
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
