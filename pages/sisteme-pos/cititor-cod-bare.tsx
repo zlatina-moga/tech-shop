@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { posCategories } from "../../data/categories";
+import { posReadersBrcrmbs } from "../../data/breadcrumbs";
 
 const POSReader = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const POSReader = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Cititor Coduri Bare" laptopsData={laptopsData} categories={posCategories}/>
+          <LaptopsPage
+            title="Cititor Coduri Bare"
+            laptopsData={laptopsData}
+            categories={posCategories}
+            breadcrumbs={posReadersBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { posCategories } from "../../data/categories";
+import { posNewBrcrmbs } from "../../data/breadcrumbs";
 
 const NewPOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const NewPOS = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Sisteme POS Noi" laptopsData={laptopsData} categories={posCategories}/>
+          <LaptopsPage
+            title="Sisteme POS Noi"
+            laptopsData={laptopsData}
+            categories={posCategories}
+            breadcrumbs={posNewBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

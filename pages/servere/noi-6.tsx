@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { serverCategories } from "../../data/categories";
+import { serverNewBrcrmbs } from "../../data/breadcrumbs";
 
 const NewServers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const NewServers = () => {
         <Loader />
       ) : (
         <>
-          <LaptopsPage title="New Servers" laptopsData={laptopsData} categories={serverCategories}/>
+          <LaptopsPage
+            title="Servere Noi"
+            laptopsData={laptopsData}
+            categories={serverCategories}
+            breadcrumbs={serverNewBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

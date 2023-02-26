@@ -478,3 +478,102 @@ export const switchBrcrmbs = [
   },
   { name: "Switch-uri", link: "/retelistica/switch-uri" },
 ];
+
+export const serverBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Servere", link: "/servere" },
+];
+
+export const serverRefBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
+  { name: "Refurbished ", link: "/servere/refurbished-2" },
+];
+
+export const serverNewBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
+  { name: "Noi ", link: "/servere/noi-6" },
+];
+
+export const serverSHBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
+  { name: "Second Hand", link: "/servere/second-hand-2" },
+];
+
+export const posBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Sisteme POS", link: "/sisteme-pos" },
+];
+
+export const posReadersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme POS",
+    link: "/sisteme-pos",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Cititor Coduri Bare", link: "/sisteme-pos/cititor-cod-bare" },
+];
+
+export const posNewBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme POS",
+    link: "/sisteme-pos",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Noi", link: "/sisteme-pos/noi-8" },
+];
+
+export const posRefBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme POS",
+    link: "/sisteme-pos",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Refurbished", link: "/sisteme-pos/refurbished-6" },
+];
+
+export const posSHBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme POS",
+    link: "/sisteme-pos",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Second Hand", link: "/sisteme-pos/second-hand-6" },
+];
+
+export const solarBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Sisteme Solare Fotovoltaice", link: "/sisteme-solare-fotovoltaice" },
+];
+
+export const solarInvertorsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme Solare Fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Invertoare fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice/invertoare-fotovoltaice",
+  },
+];
+
+export const solarpanelsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme Solare Fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Sisteme Solare Fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice",
+  },
+];

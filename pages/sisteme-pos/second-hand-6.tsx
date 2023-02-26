@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { posCategories } from "../../data/categories";
+import { posSHBrcrmbs } from "../../data/breadcrumbs";
 
 const SecondHandPOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const SecondHandPOS = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Sisteme POS Second Hand" laptopsData={laptopsData} categories={posCategories}/>
+          <LaptopsPage
+            title="Sisteme POS Second Hand"
+            laptopsData={laptopsData}
+            categories={posCategories}
+            breadcrumbs={posSHBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

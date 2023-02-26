@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { solarCategories } from "../../data/categories";
+import { solarInvertorsBrcrmbs } from "../../data/breadcrumbs";
 
 const Invertors = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Invertors = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Invertoare fotovoltaice" laptopsData={laptopsData} categories={solarCategories} />
+          <LaptopsPage
+            title="Invertoare fotovoltaice"
+            laptopsData={laptopsData}
+            categories={solarCategories}
+            breadcrumbs={solarInvertorsBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

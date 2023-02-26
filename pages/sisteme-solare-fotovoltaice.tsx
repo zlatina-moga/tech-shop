@@ -5,6 +5,7 @@ import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
 import { solarCategories } from "../data/categories";
+import { solarBrcrmbs } from "../data/breadcrumbs";
 
 const SolarPanels = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const SolarPanels = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Sisteme Solare Fotovoltaice" laptopsData={laptopsData} categories={solarCategories}/>
+          <LaptopsPage
+            title="Sisteme Solare Fotovoltaice"
+            laptopsData={laptopsData}
+            categories={solarCategories}
+            breadcrumbs={solarBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
