@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
+import { chargerBrcrmbs } from "../../data/breadcrumbs";
 
 const LaptopChargers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,7 @@ const LaptopChargers = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Componente Alimentator laptop" laptopsData={laptopsData} categories={componentCategories}/>
+        <LaptopsPage title="Componente Alimentator laptop" laptopsData={laptopsData} categories={componentCategories} breadcrumbs={chargerBrcrmbs}/>
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

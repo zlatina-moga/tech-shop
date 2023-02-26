@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
+import { ramBrcrmbs } from "../../data/breadcrumbs";
 
 const RAM = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const RAM = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Componente Memorie RAM" laptopsData={laptopsData} categories={componentCategories}/>
+          <LaptopsPage
+            title="Componente Memorie RAM"
+            laptopsData={laptopsData}
+            categories={componentCategories}
+            breadcrumbs={ramBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

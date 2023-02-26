@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
+import { carcasaBrcrmbs } from "../../data/breadcrumbs";
 
 const Cases = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Cases = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Componente Carcasa si Surse" laptopsData={laptopsData} categories={componentCategories} />
+          <LaptopsPage
+            title="Componente Carcasa si Surse"
+            laptopsData={laptopsData}
+            categories={componentCategories}
+            breadcrumbs={carcasaBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

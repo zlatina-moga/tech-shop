@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
+import { controllerBrcrmbs } from "../../data/breadcrumbs";
 
 const Controllers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Controllers = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Componente Controller Raid" laptopsData={laptopsData} categories={componentCategories} />
+          <LaptopsPage
+            title="Componente Controller Raid"
+            laptopsData={laptopsData}
+            categories={componentCategories}
+            breadcrumbs={controllerBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

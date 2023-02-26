@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { compCategories } from "../../data/categories";
+import { secondHandComputersBrcrmbs } from "../../data/breadcrumbs";
 
 const Calculatoare = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -54,6 +55,7 @@ const Calculatoare = () => {
             title="Second Hand Computers"
             laptopsData={laptopsData}
             categories={compCategories}
+            breadcrumbs={secondHandComputersBrcrmbs}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

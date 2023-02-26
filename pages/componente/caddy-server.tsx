@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
+import { caddyBrcrmbs } from "../../data/breadcrumbs";
 
 const Caddys = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Caddys = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Caddy server" laptopsData={laptopsData} categories={componentCategories} />
+          <LaptopsPage
+            title="Caddy server"
+            laptopsData={laptopsData}
+            categories={componentCategories}
+            breadcrumbs={caddyBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

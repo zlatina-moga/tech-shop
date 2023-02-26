@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
+import { mascaBrcrmbs } from "../../data/breadcrumbs";
 
 const MascaBays = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const MascaBays = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Masca Bay server" laptopsData={laptopsData} categories={componentCategories}/>
+          <LaptopsPage
+            title="Masca Bay server"
+            laptopsData={laptopsData}
+            categories={componentCategories}
+            breadcrumbs={mascaBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

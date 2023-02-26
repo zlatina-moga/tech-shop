@@ -28,8 +28,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           <div className="container-fluid mx-auto">
             <div className="row ">
               <nav aria-label="breadcrumb " className="second ">
-                <ol className="breadcrumb indigo lighten-6 first shadow-lg px-md-4">
-                  {breadcrumbs.map((br, idx) => (
+                <ol className="breadcrumb indigo lighten-6 first px-md-4">
+                  {breadcrumbs && breadcrumbs.map((br, idx) => (
                     <li
                       className="breadcrumb-item align-items-center"
                       key={idx}
@@ -106,7 +106,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
             {laptopsData.map((l, idx) => (
               <div
                 className={classNames(
-                  `col-lg-3 col-md-6 col-sm-12 pb-1`,
+                  `pb-1`,
                   "laptop-card"
                 )}
                 key={idx}
