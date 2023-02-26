@@ -4549,10 +4549,7 @@ input[type="button"].btn-block {
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-  display: inline-block;
-  padding-right: 0.5rem;
-  color: #6c757d;
-  content: "/";
+  content: none;
 }
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
@@ -4561,6 +4558,10 @@ input[type="button"].btn-block {
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
   text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  color: #F1C705;
 }
 
 .breadcrumb-item.active {

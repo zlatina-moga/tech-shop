@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
+import { cablesBreadCrmbs } from "../../data/breadcrumbs";
 
 const Cables = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Cables = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Cabluri si Adaptoare" laptopsData={laptopsData} categories={accessoryCategories} />
+          <LaptopsPage
+            title="Cabluri si Adaptoare"
+            laptopsData={laptopsData}
+            categories={accessoryCategories}
+            breadcrumbs={cablesBreadCrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

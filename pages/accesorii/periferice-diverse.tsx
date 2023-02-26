@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
+import { diverseBreadCrmbs } from "../../data/breadcrumbs";
 
 const Keyboards = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Keyboards = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Periferice Diverse" laptopsData={laptopsData} categories={accessoryCategories}  />
+          <LaptopsPage
+            title="Periferice Diverse"
+            laptopsData={laptopsData}
+            categories={accessoryCategories}
+            breadcrumbs={diverseBreadCrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

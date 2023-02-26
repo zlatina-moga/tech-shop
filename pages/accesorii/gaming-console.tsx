@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
+import { gamingBreadCrmbs } from "../../data/breadcrumbs";
 
 const Gaming = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,7 @@ const Gaming = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Accesorii Gaming & Console" laptopsData={laptopsData} categories={accessoryCategories} />
+        <LaptopsPage title="Accesorii Gaming & Console" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={gamingBreadCrmbs} />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

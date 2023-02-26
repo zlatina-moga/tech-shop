@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
+import { headphonesBreadCrmbs } from "../../data/breadcrumbs";
 
 const Headphones = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,7 @@ const Headphones = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Casti" laptopsData={laptopsData} categories={accessoryCategories} />
+        <LaptopsPage title="Casti" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={headphonesBreadCrmbs}/>
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

@@ -6,12 +6,14 @@ interface ILaptopPage {
   title: string;
   laptopsData: any[];
   categories?: any[];
+  breadcrumbs?: any[];
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
   title,
   laptopsData,
   categories,
+  breadcrumbs,
 }) => {
   return (
     <>
@@ -20,49 +22,86 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
         style={{
           maxWidth: "100rem",
           display: "flex",
-          justifyContent: "space-around",
         }}
       >
-        {categories ? (
-          <div
-            className="container-fluid sidebar-container"
-            style={{ position: "fixed"}}
-          >
-            <div className="row">
-              <div className="d-none d-lg-block">
-                <nav
-                  className="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0"
-                  id="navbar-vertical"
-                  style={{
-                    borderBottomLeftRadius: "4px",
-                    borderBottomRightRadius: "4px",
-                  }}
-                >
-                  <ul className="navbar-nav overflow-hidden relative">
-                    {categories.map((c, idx) => (
-                      <li
-                        className="nav-item nav-link py-3 sidebar-link"
-                        key={idx}
-                      >
-                        <Link href={c.link} className="sidebar-link">
-                          {c.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div className="container-fluid mx-auto">
+            <div className="row ">
+              <nav aria-label="breadcrumb " className="second ">
+                <ol className="breadcrumb indigo lighten-6 first shadow-lg px-md-4">
+                  {breadcrumbs.map((br, idx) => (
+                    <li
+                      className="breadcrumb-item align-items-center"
+                      key={idx}
+                    >
+                      <Link className="black-text" href={br.link}>
+                        <span className="mr-md-3 mr-2">{br.name}</span>
+                      </Link>
+                      <i className={br.linkIcon} aria-hidden="true"></i>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
             </div>
           </div>
-        ) : null}
+          {categories ? (
+            <div
+              className="container-fluid sidebar-container"
+              style={{ display: "block", maxWidth: "280px" }}
+            >
+              <div className="row">
+                <div className="d-none d-lg-block">
+                  <nav
+                    className="collapse show navbar-vertical navbar-light p-0"
+                    id="navbar-vertical-2"
+                    style={{
+                      borderBottomLeftRadius: "4px",
+                      borderBottomRightRadius: "4px",
+                    }}
+                  >
+                    <ul
+                      className="navbar-nav overflow-hidden relative"
+                      style={{
+                        borderTopLeftRadius: "4px",
+                        borderTopRightRadius: "4px",
+                      }}
+                    >
+                      <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
+                        Calitate
+                      </h4>
+                      {categories.map((c, idx) => (
+                        <li
+                          className="nav-item nav-link py-3 sidebar-link"
+                          key={idx}
+                        >
+                          <Link href={c.link} className="sidebar-link">
+                            {c.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                  <nav
+                    className="collapse show navbar navbar-vertical navbar-light align-items-start p-0"
+                    id="navbar-vertical"
+                    style={{
+                      borderBottomLeftRadius: "4px",
+                      borderBottomRightRadius: "4px",
+                    }}
+                  ></nav>
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </div>
 
-        <div>
+        <div className="">
           <div className="text-center mb-4">
             <h1 className="px-5">{title}</h1>
           </div>
           <div
             className="row px-xl-5 pb-3 justify-content-end"
-            style={{ maxWidth: "90rem" }}
+            style={{ maxWidth: "95rem" }}
           >
             {laptopsData.map((l, idx) => (
               <div

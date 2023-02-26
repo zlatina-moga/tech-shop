@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
+import { dockingBreadCrmbs } from "../../data/breadcrumbs";
 
 const DockingStations = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,7 @@ const DockingStations = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Docking Station" laptopsData={laptopsData} categories={accessoryCategories}/>
+        <LaptopsPage title="Docking Station" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={dockingBreadCrmbs}/>
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
