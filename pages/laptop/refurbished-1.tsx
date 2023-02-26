@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { laptopCategories } from "../../data/categories";
+import { laptopRefurbishedBrcrmbs } from "../../data/breadcrumbs";
 
 const LaptopuriRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const LaptopuriRefurbished = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Refurbished Laptops" laptopsData={laptopsData} categories={laptopCategories}/>
+          <LaptopsPage
+            title="Laptopuri Refurbished"
+            laptopsData={laptopsData}
+            categories={laptopCategories}
+            breadcrumbs={laptopRefurbishedBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

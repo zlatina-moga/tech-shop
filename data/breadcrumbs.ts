@@ -330,3 +330,61 @@ export const laptopKeyboardBrcrmbs = [
     link: "/componente/tastatura-laptop",
   },
 ];
+
+export const printerBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Imprimante", link: "/imprimante" },
+];
+
+export const printerConsumablesBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Imprimante",
+    link: "/imprimante",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Consumabile", link: "/imprimante/consumabile" },
+];
+
+export const printerNewBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Imprimante",
+    link: "/imprimante",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Noi", link: "/imprimante/noi-3" },
+];
+
+export const printerSHBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Imprimante",
+    link: "/imprimante",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Second Hand", link: "/imprimante/second-hand-5" },
+];
+
+export const laptopBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Laptopuri", link: "/laptop" },
+];
+
+export const laptopRefurbishedBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
+  { name: "Refurbished", link: "/laptop/refurbished-1" },
+];
+
+export const laptopNewdBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
+  { name: "Noi", link: "/laptop/noi-1" },
+];
+
+export const laptopSHBrcrmbs = [
+    { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+    { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
+    { name: "Second Hand", link: "/laptop/second-hand-1" },
+  ];

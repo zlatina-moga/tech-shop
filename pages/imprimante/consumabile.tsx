@@ -5,6 +5,10 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { printerCategories } from "../../data/categories";
+import {
+  printerBrcrmbs,
+  printerConsumablesBrcrmbs,
+} from "../../data/breadcrumbs";
 
 const NewPrinters = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +54,12 @@ const NewPrinters = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Imprimante Consumabile" laptopsData={laptopsData} categories={printerCategories}/>
+          <LaptopsPage
+            title="Imprimante Consumabile"
+            laptopsData={laptopsData}
+            categories={printerCategories}
+            breadcrumbs={printerConsumablesBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
