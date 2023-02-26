@@ -577,3 +577,52 @@ export const solarpanelsBrcrmbs = [
     link: "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice",
   },
 ];
+
+export const upsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "UPS", link: "/ups" },
+];
+
+export const upsNewBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
+  { name: "Noi", link: "/ups/noi-7" },
+];
+
+export const upsRefBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
+  { name: "Refurbished", link: "/ups/refurbished-7" },
+];
+
+export const upsSHBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
+  { name: "Second Hand", link: "/ups/second-hand-7" },
+];
+
+export const workstationBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Workstation", link: "/workstation" },
+];
+
+export const workstationRefBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Workstation",
+    link: "/workstation",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Refurbished", link: "/workstation/refurbished-3" },
+];
+
+export const workstationSHBrcrmbs = [
+    { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+    {
+      name: "Workstation",
+      link: "/workstation",
+      linkIcon: "fa fa-angle-double-right",
+    },
+    { name: "Second Hand", link: "/workstation/second-hand-3" },
+  ];
+  

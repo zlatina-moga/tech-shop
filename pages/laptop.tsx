@@ -52,7 +52,7 @@ const Laptopuri = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Toate Laptopuri"
+            title="Laptopuri"
             laptopsData={laptopsData}
             categories={laptopCategories}
             breadcrumbs={laptopBrcrmbs}

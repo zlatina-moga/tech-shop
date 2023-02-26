@@ -51,7 +51,7 @@ const Calculatoare = () => {
         <Loader />
       ) : (
         <>
-          <LaptopsPage title="New Computers" laptopsData={laptopsData} categories={compCategories} breadcrumbs={newComputersBrcrmbs} />
+          <LaptopsPage title="Calculatoare Noi" laptopsData={laptopsData} categories={compCategories} breadcrumbs={newComputersBrcrmbs} />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

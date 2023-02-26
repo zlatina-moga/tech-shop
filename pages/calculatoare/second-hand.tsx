@@ -52,7 +52,7 @@ const Calculatoare = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Second Hand Computers"
+            title="Calculatoare Second Hand"
             laptopsData={laptopsData}
             categories={compCategories}
             breadcrumbs={secondHandComputersBrcrmbs}

@@ -52,7 +52,7 @@ const Componente = () => {
       ) : (
         <>
           <LaptopsPage
-            title="All Components"
+            title="Componente"
             laptopsData={laptopsData}
             categories={componentCategories}
             breadcrumbs={componentBrcrmbs}
