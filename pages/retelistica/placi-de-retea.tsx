@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { networkCategories } from "../../data/categories";
+import { networkCardsBrcrmbs } from "../../data/breadcrumbs";
 
 const Network = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Network = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Placi de retea" laptopsData={laptopsData} categories={networkCategories} />
+          <LaptopsPage
+            title="Placi de retea"
+            laptopsData={laptopsData}
+            categories={networkCategories}
+            breadcrumbs={networkCardsBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

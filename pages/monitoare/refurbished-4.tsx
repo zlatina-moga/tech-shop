@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { monitorCategories } from "../../data/categories";
+import { monitorRefBrcrmbs } from "../../data/breadcrumbs";
 
 const MonitoareRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const MonitoareRefurbished = () => {
         <Loader />
       ) : (
         <>
-          <LaptopsPage title="Refurbished Monitors" laptopsData={laptopsData} categories={monitorCategories}/>
+          <LaptopsPage
+            title="Monitoare Refurbished"
+            laptopsData={laptopsData}
+            categories={monitorCategories}
+            breadcrumbs={monitorRefBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

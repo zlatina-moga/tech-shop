@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { networkCategories } from "../../data/categories";
+import { switchBrcrmbs } from "../../data/breadcrumbs";
 
 const Switches = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Switches = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Switch-uri" laptopsData={laptopsData} categories={networkCategories}/>
+          <LaptopsPage
+            title="Switch-uri"
+            laptopsData={laptopsData}
+            categories={networkCategories}
+            breadcrumbs={switchBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

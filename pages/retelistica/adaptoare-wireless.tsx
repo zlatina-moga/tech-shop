@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { networkCategories } from "../../data/categories";
+import { adaptorskBrcrmbs } from "../../data/breadcrumbs";
 
 const Adaptors = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const Adaptors = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Adaptoare Wireless" laptopsData={laptopsData} categories={networkCategories}/>
+          <LaptopsPage
+            title="Adaptoare Wireless"
+            laptopsData={laptopsData}
+            categories={networkCategories}
+            breadcrumbs={adaptorskBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

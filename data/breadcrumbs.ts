@@ -384,7 +384,97 @@ export const laptopNewdBrcrmbs = [
 ];
 
 export const laptopSHBrcrmbs = [
-    { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-    { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
-    { name: "Second Hand", link: "/laptop/second-hand-1" },
-  ];
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
+  { name: "Second Hand", link: "/laptop/second-hand-1" },
+];
+
+export const monitorBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Monitoare", link: "/monitoare" },
+];
+
+export const monitorNewBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Monitoare",
+    link: "/monitoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Noi", link: "/monitoare/noi-4" },
+];
+
+export const monitorRefBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Monitoare",
+    link: "/monitoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Refurbished", link: "/monitoare/refurbished-4" },
+];
+
+export const monitorSHBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Monitoare",
+    link: "/monitoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Second Hand", link: "/monitoare/second-hand-4" },
+];
+
+export const networkBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Retelistica", link: "/retelistica" },
+];
+
+export const accessPointskBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Retelistica",
+    link: "/retelistica",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Access Point-uri", link: "/retelistica/access-point-uri" },
+];
+
+export const adaptorskBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Retelistica",
+    link: "/retelistica",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Adaptoare Wireless", link: "/retelistica/adaptoare-wireless" },
+];
+
+export const networkCardsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Retelistica",
+    link: "/retelistica",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Placi de retea", link: "/retelistica/placi-de-retea" },
+];
+
+export const routerBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Retelistica",
+    link: "/retelistica",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Routere", link: "/retelistica/routere" },
+];
+
+export const switchBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Retelistica",
+    link: "/retelistica",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Switch-uri", link: "/retelistica/switch-uri" },
+];

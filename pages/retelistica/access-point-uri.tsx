@@ -5,6 +5,7 @@ import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { networkCategories } from "../../data/categories";
+import { accessPointskBrcrmbs } from "../../data/breadcrumbs";
 
 const AccessPoints = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -50,7 +51,12 @@ const AccessPoints = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Access Point-uri" laptopsData={laptopsData} categories={networkCategories}/>
+          <LaptopsPage
+            title="Access Point-uri"
+            laptopsData={laptopsData}
+            categories={networkCategories}
+            breadcrumbs={accessPointskBrcrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
