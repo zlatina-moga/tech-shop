@@ -100,8 +100,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
             <h1 className="px-5">{title}</h1>
           </div>
           <div
-            className="row px-xl-5 pb-3 justify-content-end"
-            style={{ maxWidth: "95rem" }}
+            className="row px-xl-5 pb-3 justify-content-center"
+            style={{ maxWidth: "98rem" }}
           >
             {laptopsData.map((l, idx) => (
               <div

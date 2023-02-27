@@ -3,11 +3,17 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="container-fluid bg-secondary text-dark pt-5 w-100" id="footer-container">
-      <div className="row px-xl-5 pt-5" style={{maxWidth: '100rem', margin: '0 auto'}}>
+    <div
+      className="container-fluid bg-secondary text-dark pt-5 w-100"
+      id="footer-container"
+    >
+      <div
+        className="row px-xl-5 pt-5"
+        style={{ maxWidth: "100rem", margin: "0 auto" }}
+      >
         <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
           <Link href="/">
-          <Image
+            <Image
               src="/images/logo-example.png"
               alt="logo"
               width={150}
@@ -85,28 +91,38 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="row border-top border-light mx-xl-5 py-4" style={{maxWidth: '100rem', margin: '0 auto'}}>
-        <div className="col-md-6 px-xl-0">
-          <p className="mb-md-0 text-center text-md-left text-dark">
-            &copy;{" "}
-            <a className="text-dark font-weight-semi-bold" href="#">
-              PC Bun
-            </a>
-            . All Rights Reserved. Website created by 
-            <a
-              className="text-dark font-weight-semi-bold"
-              href="#"
-            >
-              {' '}Zlatina Moga
-            </a>
-          </p>
-        </div>
-        <div className="col-md-6 px-xl-0 text-center text-md-right">
-          <Image className="img-fluid" src="/images/payments.png" alt="" width={300} height={300}/>
+        <div
+          className="row border-top border-light mx-xl-5 py-4"
+          style={{ maxWidth: "100rem", margin: "0 auto" }}
+        >
+          <div className="col-md-6 px-xl-0">
+            <p className="mb-md-0 text-center text-md-left text-dark">
+              &copy;{" "}
+              <a className="text-dark font-weight-semi-bold" href="#">
+                PC Bun{" "}
+              </a>
+              <a
+                className="text-dark font-weight-semi-bold"
+                href="https://www.linkedin.com/in/zlatina-moga-7094871a9/"
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "underline" }}
+              >
+                Website
+              </a>
+            </p>
+          </div>
+          <div className="col-md-6 px-xl-0 text-center text-md-right">
+            <Image
+              className="img-fluid"
+              src="/images/payments.png"
+              alt=""
+              width={300}
+              height={300}
+            />
+          </div>
         </div>
       </div>
-      </div>
-
     </div>
   );
 };
