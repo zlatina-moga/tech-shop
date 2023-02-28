@@ -43,11 +43,12 @@ const Sidebar = () => {
                 height: 410,
               }}
             >
-              <li
-                className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                <Link href="/laptop" className='sidebar-link'>
+              <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
+                <Link
+                  href="/laptop"
+                  className="sidebar-link"
+                  data-target="/laptop"
+                >
                   <img
                     src={laptopIcon.src}
                     alt="list"
@@ -55,15 +56,12 @@ const Sidebar = () => {
                   />
                   Laptopuri
                 </Link>
-                <ul
-                  className="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
+                <ul className="dropdown-menu">
                   <li>
                     <Link
                       className="dropdown-item"
                       href="/laptop/refurbished-1"
-                      passHref
+                      data-target="/laptop/refurbished-1"
                     >
                       <img
                         src={laptopIcon.src}
@@ -77,7 +75,7 @@ const Sidebar = () => {
                     <Link
                       className="dropdown-item"
                       href="/laptop/noi-1"
-                      passHref
+                      data-target="/laptop/noi-1"
                     >
                       <img
                         src={laptopIcon.src}
@@ -91,7 +89,7 @@ const Sidebar = () => {
                     <Link
                       className="dropdown-item"
                       href="/laptop/second-hand-1"
-                      passHref
+                      data-target="/laptop/second-hand-1"
                     >
                       <img
                         src={laptopIcon.src}
@@ -103,11 +101,12 @@ const Sidebar = () => {
                   </li>
                 </ul>
               </li>
-              <li
-                className="nav-item nav-link py-3 sidebar-link  dropdown dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                <Link href="/calculatoare" className='sidebar-link'>
+              <li className="nav-item nav-link py-3 sidebar-link  dropdown dropdown-toggle">
+                <Link
+                  href="/calculatoare"
+                  className="sidebar-link"
+                  data-target="/calculatoare"
+                >
                   <img
                     src={computerIcon.src}
                     alt="list"
@@ -123,6 +122,7 @@ const Sidebar = () => {
                     <Link
                       className="dropdown-item"
                       href="/calculatoare/refurbished"
+                      data-target="/calculatoare/refurbished"
                     >
                       <img
                         src={computerIcon.src}
@@ -133,7 +133,11 @@ const Sidebar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" href="/calculatoare/noi">
+                    <Link
+                      className="dropdown-item"
+                      href="/calculatoare/noi"
+                      data-target="/calculatoare/noi"
+                    >
                       <img
                         src={computerIcon.src}
                         alt="list"
@@ -146,6 +150,7 @@ const Sidebar = () => {
                     <Link
                       className="dropdown-item"
                       href="/calculatoare/second-hand"
+                      data-target="/calculatoare/second-hand"
                     >
                       <img
                         src={computerIcon.src}
@@ -157,11 +162,12 @@ const Sidebar = () => {
                   </li>
                 </ul>
               </li>
-              <li
-                className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                <Link href="/workstation" className='sidebar-link'>
+              <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
+                <Link
+                  href="/workstation"
+                  className="sidebar-link"
+                  data-target="/workstation"
+                >
                   <img
                     src={workstationIcons.src}
                     alt="list"
@@ -177,6 +183,7 @@ const Sidebar = () => {
                     <Link
                       className="dropdown-item"
                       href="/workstation/refurbished-3"
+                      data-target="/workstation/refurbished-3"
                       passHref
                     >
                       <img
@@ -192,6 +199,7 @@ const Sidebar = () => {
                       className="dropdown-item"
                       href="/workstation/second-hand-3"
                       passHref
+                      data-target="/workstation/second-hand-3"
                     >
                       <img
                         src={workstationIcons.src}
@@ -203,11 +211,12 @@ const Sidebar = () => {
                   </li>
                 </ul>
               </li>
-              <li
-                className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                <Link href="/servere" className='sidebar-link'>
+              <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
+                <Link
+                  href="/servere"
+                  className="sidebar-link"
+                  data-target="/servere"
+                >
                   <img
                     src={serverIcon.src}
                     alt="list"
@@ -224,6 +233,7 @@ const Sidebar = () => {
                       className="dropdown-item"
                       href="/servere/refurbished-2"
                       passHref
+                      data-target="/servere/refurbished-2"
                     >
                       <img
                         src={serverIcon.src}
@@ -238,6 +248,7 @@ const Sidebar = () => {
                       className="dropdown-item"
                       href="/servere/noi-6"
                       passHref
+                      data-target="/servere/noi-6"
                     >
                       <img
                         src={serverIcon.src}
@@ -252,6 +263,7 @@ const Sidebar = () => {
                       className="dropdown-item"
                       href="/servere/second-hand-2"
                       passHref
+                      data-target="/servere/second-hand-2"
                     >
                       <img
                         src={serverIcon.src}
@@ -263,11 +275,12 @@ const Sidebar = () => {
                   </li>
                 </ul>
               </li>
-              <li
-                className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                <Link href="/monitoare" className='sidebar-link'>
+              <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
+                <Link
+                  href="/monitoare"
+                  className="sidebar-link"
+                  data-target="/monitoare"
+                >
                   <img
                     src={monitorIcon.src}
                     alt="list"
@@ -284,6 +297,7 @@ const Sidebar = () => {
                       className="dropdown-item"
                       href="/monitoare/refurbished-4"
                       passHref
+                      data-target="/monitoare/refurbished-4"
                     >
                       <img
                         src={monitorIcon.src}
@@ -298,6 +312,7 @@ const Sidebar = () => {
                       className="dropdown-item"
                       href="/monitoare/noi-4"
                       passHref
+                      data-target="/monitoare/noi-4"
                     >
                       <img
                         src={monitorIcon.src}
@@ -312,6 +327,7 @@ const Sidebar = () => {
                       className="dropdown-item"
                       href="/monitoare/second-hand-4"
                       passHref
+                      data-target="/monitoare/second-hand-4"
                     >
                       <img
                         src={monitorIcon.src}

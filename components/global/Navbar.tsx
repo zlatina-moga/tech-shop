@@ -57,7 +57,6 @@ const guestNav = (
       <div
         className="btn border dropdown-toggle"
         style={{ marginRight: "5px", borderRadius: "4px" }}
-        data-bs-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
       >
@@ -98,7 +97,6 @@ const userNav = (
       <div
         className="btn border dropdown-toggle"
         style={{ marginRight: "5px", borderRadius: "4px" }}
-        data-bs-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
       >

@@ -393,7 +393,7 @@ form .auth-field {
     -moz-appearance: none;
     appearance: none;
     outline: 0;
-    background-color: #179A02;
+    background-color: #179a02;
     border: 0;
     padding: 10px 15px;
     color: white;
@@ -406,7 +406,7 @@ form .auth-field {
     -moz-box-shadow: 2px 3px 13px 0px rgba(0, 0, 0, 0.57);
     -webkit-transition-duration: 0.25s;
     transition-duration: 0.25s;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
     margin-bottom: 50px;
   }
   button:hover {
@@ -439,4 +439,18 @@ form .auth-field {
   max-width: 280px;
   border-radius: 4px;
   box-shadow: 0 1px 5px -1px #00000024;
+}
+
+#upgrade-links {
+  background-color: white;
+  border: 1px solid #6AB04C;
+  li {
+    a {
+      color: black;
+      &:hover {
+        background-color: #6AB04C;
+        color: white;
+      }
+    }
+  }
 }

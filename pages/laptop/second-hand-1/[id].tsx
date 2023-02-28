@@ -5,7 +5,7 @@ import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 
-const features = ["RAM", "Hard Disk", "Sistem de operare"];
+const features = ["RAM", "Hard Disk"];
 
 const SecondHandLaptopDetails = () => {
   const router = useRouter();

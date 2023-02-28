@@ -2,6 +2,7 @@ import Meta from "../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";
+import Link from "next/link";
 import "swiper/css";
 import "swiper/css/navigation";
 import qualityIcon from "../../public/svg/quality.svg";
@@ -69,11 +70,21 @@ const SingleDetailedView = ({ itemData, features }) => {
                           >
                             {item.defaultProcesor}
                           </button>
-                          <ul className="dropdown-menu">
+                          <ul className="dropdown-menu" id="upgrade-links">
                             <li>
-                              <a className="dropdown-item" href="#">
-                                Action
-                              </a>
+                              <Link href='#' className="dropdown-item">
+                                {item.defaultProcesor}
+                                <i className="fas fa-check" style={{color: '#6AB04C', marginLeft: '10px'}}></i>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                className="dropdown-item"
+                                data-target={item.upgradeLink1}
+                                href={item.upgradeLink1}
+                              >
+                                {item.upgradeOption1 + "Lei"}
+                              </Link>
                             </li>
                             <li>
                               <a className="dropdown-item" href="#">
