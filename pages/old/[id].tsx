@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { laptopsData } from "../../data";
+import { laptopsData } from "../../data/laptops";
 import Meta from "../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -23,7 +23,6 @@ const features = ["Producator", "Model", "Garantie", "Stare produs"];
 const SecondHandLaptopDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  //const laptops = props.laptops;
 
   return (
     <>
