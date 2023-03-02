@@ -118,6 +118,10 @@ const SingleItemView = ({itemData}) => {
                   </div>
                 </div>
               </div>
+              <div>
+                <h3>{item.productDetailsTitle}</h3>
+                <p>{item.productDetails}</p>
+                </div>
             </div>
           </div>
         ))}

@@ -617,12 +617,46 @@ export const workstationRefBrcrmbs = [
 ];
 
 export const workstationSHBrcrmbs = [
-    { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-    {
-      name: "Workstation",
-      link: "/workstation",
-      linkIcon: "fa fa-angle-double-right",
-    },
-    { name: "Second Hand", link: "/workstation/second-hand-3" },
-  ];
-  
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Workstation",
+    link: "/workstation",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Second Hand", link: "/workstation/second-hand-3" },
+];
+
+export const softwareBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Software", link: "/licenta-software" },
+];
+
+export const windowsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
+  { name: 'Windows', link: '/licenta-software/windows' },
+];
+
+export const officeBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
+  { name: 'Microsoft Office', link: '/licenta-software/office' },
+];
+
+export const projectBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
+  { name: 'Microsoft Project', link: '/licenta-software/project' },
+];
+
+export const adobeBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
+  { name:"Adobe", link: '/licenta-software/adobe' },
+];
+
+export const antivurusBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
+  { name: "Antivirus", link: '/licenta-software/antivirus' },
+];

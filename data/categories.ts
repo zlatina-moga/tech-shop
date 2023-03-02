@@ -240,7 +240,6 @@ export const solarCategories = [
   },
 ]
 
-
 export const upsCategories = [
   {
     name: "Refurbished",
@@ -266,3 +265,26 @@ export const workstationCategories = [
     link: "/workstation/second-hand-3",
   },
 ];
+
+export const softwareCategories = [
+  {
+    name: 'Windows',
+    link: '/licenta-software/windows'
+  },
+  {
+    name: 'Microsoft Office',
+    link: '/licenta-software/office'
+  },
+  {
+    name: 'Microsoft Project',
+    link: '/licenta-software/project'
+  },
+  {
+    name: "Adobe",
+    link: '/licenta-software/adobe'
+  },
+  {
+    name: "Antivirus",
+    link: '/licenta-software/antivirus'
+  },
+]
