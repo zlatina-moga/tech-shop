@@ -4,6 +4,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
+import { workstationRefBrcrmbs } from "../../../data/breadcrumbs";
 
 const features = ["Procesor", "RAM"];
 
@@ -31,7 +32,7 @@ const RefurnishedWorkstationDetails = () => {
       {loading ? (
         <Loader />
       ) : (
-        <SingleDetailedView itemData={itemData} features={features} />
+        <SingleDetailedView itemData={itemData} features={features} breadcrumbs={workstationRefBrcrmbs}/>
       )}
     </>
   );

@@ -4,6 +4,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleItemView from "../../../components/shared/SingleItemView";
+import { serverRefBrcrmbs } from "../../../data/breadcrumbs";
 
 const features = ["Procesor", "Memorie"];
 
@@ -28,7 +29,7 @@ const RefurbishedServerDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : <SingleItemView itemData={itemData} />}
+      {loading ? <Loader /> : <SingleItemView itemData={itemData} breadcrumbs={serverRefBrcrmbs}/>}
     </>
   );
 };

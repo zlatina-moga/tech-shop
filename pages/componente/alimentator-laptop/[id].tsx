@@ -4,6 +4,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleItemView from "../../../components/shared/SingleItemView";
+import { chargerBrcrmbs } from "../../../data/breadcrumbs";
 
 
 const ChargerDetails = () => {
@@ -29,7 +30,7 @@ const ChargerDetails = () => {
       <Navbar />
       {loading ? (
         <Loader />
-      ) : <SingleItemView itemData={itemData} />}
+      ) : <SingleItemView itemData={itemData} breadcrumbs={chargerBrcrmbs}/>}
     </>
   );
 };

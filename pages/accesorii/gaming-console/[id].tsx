@@ -4,6 +4,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleItemView from "../../../components/shared/SingleItemView";
+import { gamingBreadCrmbs } from "../../../data/breadcrumbs";
 
 const GamingDetails = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const GamingDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : <SingleItemView itemData={itemData} />}
+      {loading ? <Loader /> : <SingleItemView itemData={itemData} breadcrumbs={gamingBreadCrmbs}/>}
     </>
   );
 };

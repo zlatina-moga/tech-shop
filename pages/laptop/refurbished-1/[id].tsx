@@ -4,6 +4,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
+import { laptopRefurbishedBrcrmbs } from "../../../data/breadcrumbs";
 
 const features = ["RAM", "Hard Disk", "Sistem de operare"];
 
@@ -31,7 +32,7 @@ const RefurbishedLaptopDetails = () => {
       {loading ? (
         <Loader />
       ) : (
-        <SingleDetailedView itemData={itemData} features={features} />
+        <SingleDetailedView itemData={itemData} features={features} breadcrumbs={laptopRefurbishedBrcrmbs} />
       )}
     </>
   );

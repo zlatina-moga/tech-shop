@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import Meta from "../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,17 +10,33 @@ import payImg from "../../public/images/stripe.png";
 import truckIcon from "../../public/svg/truck.svg";
 import walletIcon from "../../public/svg/money.svg";
 import cartIcon from "../../public/svg/cart.svg";
-import externalIcon from "../../public/svg/external.svg";
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const SingleItemView = ({itemData}) => {
+const SingleItemView = ({ itemData, breadcrumbs }) => {
   return (
     <div className="page-details">
       <PhotoProvider>
         {itemData.map((item, idx) => (
           <div key={idx}>
+            <div className="row px-5">
+              <nav aria-label="breadcrumb " className="second ">
+                <ol className="breadcrumb indigo lighten-6 first px-md-4">
+                  {breadcrumbs.map((br, idx) => (
+                    <li
+                      className="breadcrumb-item align-items-center"
+                      key={idx}
+                    >
+                      <Link className="black-text" href={br.link}>
+                        <span className="mr-md-3 mr-2">{br.name}</span>
+                      </Link>
+                      <i className={br.linkIcon} aria-hidden="true"></i>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </div>
             <Meta title={item.title} keywords={item.title} />
             <div className="container-fluid py-5">
               <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
@@ -121,7 +138,7 @@ const SingleItemView = ({itemData}) => {
               <div>
                 <h3>{item.productDetailsTitle}</h3>
                 <p>{item.productDetails}</p>
-                </div>
+              </div>
             </div>
           </div>
         ))}

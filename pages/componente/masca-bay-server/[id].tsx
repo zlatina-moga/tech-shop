@@ -4,6 +4,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleItemView from "../../../components/shared/SingleItemView";
+import { mascaBrcrmbs } from "../../../data/breadcrumbs";
 
 const MascaBayDetails = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const MascaBayDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : <SingleItemView itemData={itemData} />}
+      {loading ? <Loader /> : <SingleItemView itemData={itemData} breadcrumbs={mascaBrcrmbs}/>}
     </>
   );
 };

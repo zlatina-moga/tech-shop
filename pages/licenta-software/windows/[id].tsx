@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import Navbar from "../../../components/global/Navbar";
 import { licenseData } from "../../../data/licenseData";
 import { PhotoProvider, PhotoView } from "react-photo-view";
@@ -7,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";
 import payImg from "../../../public/images/stripe.png";
+import { windowsBrcrmbs } from "../../../data/breadcrumbs";
 
 const WindowsDetails = () => {
   const router = useRouter();
@@ -22,6 +24,23 @@ const WindowsDetails = () => {
             .filter((el) => el.item == id)
             .map((item, idx) => (
               <div key={idx}>
+                <div className="row px-5">
+                  <nav aria-label="breadcrumb " className="second ">
+                    <ol className="breadcrumb indigo lighten-6 first px-md-4">
+                      {windowsBrcrmbs.map((br, idx) => (
+                        <li
+                          className="breadcrumb-item align-items-center"
+                          key={idx}
+                        >
+                          <Link className="black-text" href={br.link}>
+                            <span className="mr-md-3 mr-2">{br.name}</span>
+                          </Link>
+                          <i className={br.linkIcon} aria-hidden="true"></i>
+                        </li>
+                      ))}
+                    </ol>
+                  </nav>
+                </div>
                 <Meta title={item.title} keywords={item.title} />
                 <div className="container-fluid py-5">
                   <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
@@ -101,9 +120,8 @@ const WindowsDetails = () => {
                       ))}
                     </ul>
                     {item.postDescr?.map((d, idx) => (
-                        <p key={idx}>{d}</p>
+                      <p key={idx}>{d}</p>
                     ))}
-                    
                   </div>
                 </div>
               </div>

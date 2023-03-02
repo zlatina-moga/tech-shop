@@ -6,7 +6,6 @@ import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { printerCategories } from "../../data/categories";
 import {
-  printerBrcrmbs,
   printerConsumablesBrcrmbs,
 } from "../../data/breadcrumbs";
 

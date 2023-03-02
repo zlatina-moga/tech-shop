@@ -4,6 +4,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleItemView from "../../../components/shared/SingleItemView";
+import { posSHBrcrmbs } from "../../../data/breadcrumbs";
 
 const SecondHandPOSDetails = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const SecondHandPOSDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : <SingleItemView itemData={itemData} />}
+      {loading ? <Loader /> : <SingleItemView itemData={itemData} breadcrumbs={posSHBrcrmbs}/>}
     </>
   );
 };

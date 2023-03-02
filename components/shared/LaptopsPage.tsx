@@ -25,8 +25,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
         }}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div className="container-fluid mx-auto">
-            <div className="row ">
+            <div className="row pr-5">
               <nav aria-label="breadcrumb " className="second ">
                 <ol className="breadcrumb indigo lighten-6 first px-md-4">
                   {breadcrumbs && breadcrumbs.map((br, idx) => (
@@ -43,7 +42,6 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                 </ol>
               </nav>
             </div>
-          </div>
           {categories ? (
             <div
               className="container-fluid sidebar-container"

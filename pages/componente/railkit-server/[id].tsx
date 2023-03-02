@@ -4,6 +4,7 @@ import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import Loader from "../../../components/global/Loader/Loader";
 import SingleItemView from "../../../components/shared/SingleItemView";
+import { railkitBrcrmbs } from "../../../data/breadcrumbs";
 
 const RailKitDetails = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const RailKitDetails = () => {
       <Navbar />
       {loading ? (
         <Loader />
-      ) : <SingleItemView itemData={itemData} />}
+      ) : <SingleItemView itemData={itemData} breadcrumbs={railkitBrcrmbs}/>}
     </>
   );
 };
