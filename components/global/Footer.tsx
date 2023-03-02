@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import topIcon from "../../public/svg/top.svg";
 
 const Footer = () => {
+  function getToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
   return (
     <div
       className="container-fluid bg-secondary text-dark pt-5 w-100"
@@ -9,7 +15,7 @@ const Footer = () => {
     >
       <div
         className="row px-xl-5 pt-5"
-        style={{ maxWidth: "100rem", margin: "0 auto" }}
+        style={{ maxWidth: "100rem", margin: "0 auto", position: "relative" }}
       >
         <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
           <Link href="/">
@@ -122,6 +128,23 @@ const Footer = () => {
             />
           </div>
         </div>
+        <button
+          style={{
+            borderRadius: "50%",
+            backgroundColor: "#F1C705",
+            height: 50,
+            width: 50,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            right: 30,
+            top: -70,
+          }}
+          onClick={() => getToTop()}
+        >
+          <Image src={topIcon} alt="" height={30} width={30} />
+        </button>
       </div>
     </div>
   );
