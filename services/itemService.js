@@ -23,6 +23,8 @@ export const getSecondHandServer = (id) => request.get(`${baseUrl}/servere/secon
 
 export const getNewServer = (id) => request.get(`${baseUrl}/servere/noi-6/${id}`)
 
+export const getRackServer = (id) => request.get(`${baseUrl}/servere/cabinet-rack-refurbished/${id}`)
+
 export const getRefurbishedMonitor = (id) => request.get(`${baseUrl}/monitoare/refurbished-4/${id}`)
 
 export const getNewMonitor = (id) => request.get(`${baseUrl}/monitoare/noi-4/${id}`)

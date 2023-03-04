@@ -96,11 +96,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                           Livrare in <b>1-2 zile</b>
                         </p>
                       </div>
-                      {item.inStock !== undefined ? (
-                        <p className="in-stock">Disponibil in stoc</p>
-                      ) : (
-                        <p className="not-in-stock">Indisponibil</p>
-                      )}
+                      <p className="in-stock">{item.inStock}</p>
 
                       <p className="eco-tax">
                         Pretul include Eco-Taxa de 6.00 lei

@@ -58,74 +58,74 @@ export const compCategories = [
 
 export const componentCategories = [
   {
-    name: 'Alimentator laptop',
-    link: '/componente/alimentator-laptop'
+    name: "Alimentator laptop",
+    link: "/componente/alimentator-laptop",
   },
   {
-    name: 'Barebone calculator',
-    link: '/componente/barebone-calculator'
+    name: "Barebone calculator",
+    link: "/componente/barebone-calculator",
   },
   {
-    name: 'Baterie laptop',
-    link: '/componente/baterie-laptop'
+    name: "Baterie laptop",
+    link: "/componente/baterie-laptop",
   },
   {
-    name: 'Caddy server',
-    link: '/componente/caddy-server'
+    name: "Caddy server",
+    link: "/componente/caddy-server",
   },
   {
-    name: 'Carcasa si Surse',
-    link: '/componente/carcasa-si-surse'
+    name: "Carcasa si Surse",
+    link: "/componente/carcasa-si-surse",
   },
   {
-    name: 'Controller Raid',
-    link: '/componente/controller-raid'
+    name: "Controller Raid",
+    link: "/componente/controller-raid",
   },
   {
-    name: 'Coolere si Radiatoare',
-    link: '/componente/coolere-si-radiatoare'
+    name: "Coolere si Radiatoare",
+    link: "/componente/coolere-si-radiatoare",
   },
   {
-    name: 'Hard Disk',
-    link: '/componente/hard-disk'
+    name: "Hard Disk",
+    link: "/componente/hard-disk",
   },
   {
-    name: 'Masca Bay server',
-    link: '/componente/masca-bay-server'
+    name: "Masca Bay server",
+    link: "/componente/masca-bay-server",
   },
   {
-    name: 'Memorie RAM',
-    link: '/componente/memorie-ram'
+    name: "Memorie RAM",
+    link: "/componente/memorie-ram",
   },
   {
-    name: 'Palmrest',
-    link: '/componente/palmrest'
+    name: "Palmrest",
+    link: "/componente/palmrest",
   },
   {
-    name: 'Placa de baza calculator',
-    link: '/componente/placa-de-baza-calculator'
+    name: "Placa de baza calculator",
+    link: "/componente/placa-de-baza-calculator",
   },
   {
-    name: 'Placa de retea',
-    link: '/componente/placa-de-retea'
+    name: "Placa de retea",
+    link: "/componente/placa-de-retea",
   },
   {
-    name: 'Placa video',
-    link: '/componente/placa-video'
+    name: "Placa video",
+    link: "/componente/placa-video",
   },
   {
-    name: 'Procesor',
-    link: '/componente/procesor'
+    name: "Procesor",
+    link: "/componente/procesor",
   },
   {
-    name: 'RailKit server',
-    link: '/componente/railkit-server'
+    name: "RailKit server",
+    link: "/componente/railkit-server",
   },
   {
-    name: 'Tastatura laptop',
-    link: '/componente/tastatura-laptop'
+    name: "Tastatura laptop",
+    link: "/componente/tastatura-laptop",
   },
-]
+];
 
 export const printerCategories = [
   {
@@ -174,24 +174,24 @@ export const monitorCategories = [
 
 export const networkCategories = [
   {
-    name: 'Access Point-uri',
-    link: '/retelistica/access-point-uri'
+    name: "Access Point-uri",
+    link: "/retelistica/access-point-uri",
   },
   {
-    name: 'Adaptoare Wireless',
-    link: '/retelistica/adaptoare-wireless'
+    name: "Adaptoare Wireless",
+    link: "/retelistica/adaptoare-wireless",
   },
   {
-    name: 'Placi de retea',
-    link: '/retelistica/placi-de-retea'
+    name: "Placi de retea",
+    link: "/retelistica/placi-de-retea",
   },
   {
-    name: 'Routere',
-    link: '/retelistica/routere'
+    name: "Routere",
+    link: "/retelistica/routere",
   },
   {
-    name: 'Switch-uri',
-    link: '/retelistica/switch-uri'
+    name: "Switch-uri",
+    link: "/retelistica/switch-uri",
   },
 ];
 
@@ -207,6 +207,10 @@ export const serverCategories = [
   {
     name: "Noi",
     link: "/servere/noi-6",
+  },
+  {
+    name: "Cabinet Rack Refurbished ",
+    link: "/servere/cabinet-rack-refurbished",
   },
 ];
 
@@ -231,14 +235,14 @@ export const posCategories = [
 
 export const solarCategories = [
   {
-    name: 'Invertoare fotovoltaice',
-    link: '/sisteme-solare-fotovoltaice/invertoare-fotovoltaice'
+    name: "Invertoare fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice/invertoare-fotovoltaice",
   },
   {
-    name: 'Sisteme solare fotovoltaice',
-    link: '/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice'
+    name: "Sisteme solare fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice",
   },
-]
+];
 
 export const upsCategories = [
   {
@@ -268,23 +272,23 @@ export const workstationCategories = [
 
 export const softwareCategories = [
   {
-    name: 'Windows',
-    link: '/licenta-software/windows'
+    name: "Windows",
+    link: "/licenta-software/windows",
   },
   {
-    name: 'Microsoft Office',
-    link: '/licenta-software/office'
+    name: "Microsoft Office",
+    link: "/licenta-software/office",
   },
   {
-    name: 'Microsoft Project',
-    link: '/licenta-software/project'
+    name: "Microsoft Project",
+    link: "/licenta-software/project",
   },
   {
     name: "Adobe",
-    link: '/licenta-software/adobe'
+    link: "/licenta-software/adobe",
   },
   {
     name: "Antivirus",
-    link: '/licenta-software/antivirus'
+    link: "/licenta-software/antivirus",
   },
-]
+];

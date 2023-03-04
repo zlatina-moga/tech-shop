@@ -25,6 +25,8 @@ export const getAllRefurbishedServers = (page) => request.get(`${baseUrl}/server
 
 export const getAllNewServers = (page) => request.get(`${baseUrl}/servere/noi-6?page=${page}`)
 
+export const getAllRackServers = (page) => request.get(`${baseUrl}/servere/cabinet-rack-refurbished?page=${page}`)
+
 export const getAllWorkstations = (page) => request.get(`${baseUrl}/workstation?page=${page}`)
 
 export const getRefurbishedWorkstations = (page) => request.get(`${baseUrl}/workstation/refurbished-3?page=${page}`)

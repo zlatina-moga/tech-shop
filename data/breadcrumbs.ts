@@ -496,6 +496,12 @@ export const serverNewBrcrmbs = [
   { name: "Noi ", link: "/servere/noi-6" },
 ];
 
+export const serverRackBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
+  { name: "Cabinet Rack Refurbished ", link: "/servere/cabinet-rack-refurbished" },
+];
+
 export const serverSHBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },

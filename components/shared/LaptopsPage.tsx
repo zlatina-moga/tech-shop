@@ -25,10 +25,11 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
         }}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
-            <div className="row pr-5">
-              <nav aria-label="breadcrumb " className="second ">
-                <ol className="breadcrumb indigo lighten-6 first px-md-4">
-                  {breadcrumbs && breadcrumbs.map((br, idx) => (
+          <div className="row pr-5">
+            <nav aria-label="breadcrumb " className="second ">
+              <ol className="breadcrumb indigo lighten-6 first px-md-4">
+                {breadcrumbs &&
+                  breadcrumbs.map((br, idx) => (
                     <li
                       className="breadcrumb-item align-items-center"
                       key={idx}
@@ -39,12 +40,12 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                       <i className={br.linkIcon} aria-hidden="true"></i>
                     </li>
                   ))}
-                </ol>
-              </nav>
-            </div>
+              </ol>
+            </nav>
+          </div>
           {categories ? (
             <div
-              className="container-fluid sidebar-container"
+              className="sidebar-container"
               style={{ display: "block", maxWidth: "280px" }}
             >
               <div className="row">
@@ -98,17 +99,14 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
             <h1 className="px-5">{title}</h1>
           </div>
           <div
-            className="row px-xl-5 pb-3 justify-content-center"
+            className="row pb-3 justify-content-center"
             style={{ maxWidth: "98rem" }}
           >
             {laptopsData.map((l, idx) => (
               <div
-                className={classNames(
-                  `pb-1`,
-                  "laptop-card"
-                )}
+                className={classNames(`pb-1`, "laptop-card")}
                 key={idx}
-                style={{ maxWidth: "320px" }}
+                style={{ maxWidth: "270px" }}
               >
                 <div
                   className={classNames(
@@ -117,19 +115,20 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                   )}
                   style={{ alignItems: "stretch", height: "550px" }}
                 >
-                  {/*<Link href={"/" + l.category + "/" + l.id}>*/}
-                  <Link href={"/" + l.id}>
+                  <Link href={l.id}>
                     <div
                       className={classNames(
                         "card-header product-img position-relative overflow-hidden bg-transparent",
                         "img-wrapper"
                       )}
                     >
-                      {/*<div className="discount-container">
-                        <div>
-                          <p>-20%</p>
+                      {l.discount && (
+                        <div className="discount-container">
+                          <div>
+                            <p>{l.discount}</p>
+                          </div>
                         </div>
-                      </div>*/}
+                      )}
 
                       <img
                         className="img-fluid w-100"
@@ -145,21 +144,17 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                       style={{
                         overflow: "hidden",
                         textOverflow: "ellipsis",
-                        maxHeight: "150px",
+                        maxHeight: "95px",
                       }}
                     >
                       {l.title}
                     </h6>
-                    {l.oldPrice ? (
+                    {l.oldPrice && (
                       <div className="d-flex justify-content-center">
-                        <h6 className="text-muted pb-2">
-                          <del>
-                            {l.oldPrice} {l.currency}
-                          </del>
+                        <h6 className="text-muted pb-2 price-2">
+                          <del>{l.oldPrice}</del>
                         </h6>
                       </div>
-                    ) : (
-                      ""
                     )}
 
                     <div className="d-flex justify-content-center">
@@ -167,10 +162,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                     </div>
                   </div>
                   <div className="card-footer d-flex justify-content-between bg-light">
-                    <Link
-                      href={"/" + l.id}
-                      className="btn btn-sm text-dark p-0"
-                    >
+                    <Link href={l.id} className="btn btn-sm text-dark p-0">
                       <i className="fas fa-eye text-primary mr-1"></i>View
                       Detail
                     </Link>

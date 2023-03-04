@@ -67,9 +67,11 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                   <div className="first-container">
                     <div className="features-list">
                       <div className="features-key">
-                        {features.map((f, idx) => (
+                        {/*features.map((f, idx) => (
                           <p key={idx}>{f}:</p>
-                        ))}
+                        ))*/}
+                        <p>{item.upgradeTitle}</p>
+                        <p>{item.upgradeTitle2}</p>
                       </div>
                       <div className="features-value">
                         <div
@@ -89,7 +91,15 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                           </button>
                           <ul className="dropdown-menu" id="upgrade-links">
                             <li>
-                              <Link href="#" className="dropdown-item">
+                              <Link
+                                href="#"
+                                className="dropdown-item"
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                }}
+                              >
                                 {item.defaultProcesor}
                                 <i
                                   className="fas fa-check"
@@ -100,25 +110,56 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                                 ></i>
                               </Link>
                             </li>
-                            <li>
+                            {item.upgradeLink1 && (
+                              <li>
+                                <Link
+                                  className="dropdown-item"
+                                  data-target={item.upgradeLink1}
+                                  href={item.upgradeLink1}
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  {item.upgradeOption1 + "Lei"}
+                                </Link>
+                              </li>
+                            )}
+                            {/*item.upgradeLink2 && (
+                              <li>
+                                <Link
+                                  className="dropdown-item"
+                                  data-target={item.upgradeLink2}
+                                  href={item.upgradeLink2}
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  {item.upgradeOption2 + "Lei"}
+                                </Link>
+                              </li>
+                                )*/}
+                            {/* <li>
                               <Link
                                 className="dropdown-item"
-                                data-target={item.upgradeLink1}
-                                href={item.upgradeLink1}
+                                data-target={item.upgradeLink3}
+                                href={item.upgradeLink3}
                               >
-                                {item.upgradeOption1 + "Lei"}
+                                {item.upgradeOption3 + "Lei"}
                               </Link>
                             </li>
                             <li>
-                              <a className="dropdown-item" href="#">
-                                Another action
-                              </a>
-                            </li>
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Something else here
-                              </a>
-                            </li>
+                              <Link
+                                className="dropdown-item"
+                                data-target={item.upgradeLink4}
+                                href={item.upgradeLink4}
+                              >
+                                {item.upgradeOption4 + "Lei"}
+                              </Link>
+                                </li>*/}
                           </ul>
                         </div>
                         <div
@@ -181,6 +222,21 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                     </div>
                   </div>
                   <div className="second-container">
+                    {item.discount && (
+                      <div style={{display: 'flex'}}>
+                        <div className="discount-container">
+                          <div>
+                            <p>{item.discount}</p>
+                          </div>
+                        </div>
+                        <div className="old-price">
+                          <h6>
+                            <del>{item.oldPrice}</del>
+                          </h6>
+                        </div>
+                      </div>
+                    )}
+
                     <div className="price-container">
                       <h3 className="mb-3 price">{item.price} + TVA</h3>
                       <div className="delivery mb-3">
@@ -189,12 +245,8 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                           Livrare in <b>1-2 zile</b>
                         </p>
                       </div>
-                      {item.inStock !== undefined ? (
-                        <p className="in-stock">Disponibil in stoc</p>
-                      ) : (
-                        <p className="not-in-stock">Indisponibil</p>
-                      )}
 
+                      <p className="in-stock">{item.inStock}</p>
                       <p className="eco-tax">
                         Pretul include Eco-Taxa de 6.00 lei
                       </p>
