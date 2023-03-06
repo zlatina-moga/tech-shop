@@ -40,7 +40,14 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
             </div>
             <Meta title={item.title} keywords={item.title} />
             <div className="container-fluid py-5">
-              <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
+              <h1
+                style={{
+                  textAlign: "center",
+                  paddingBottom: "30px",
+                  fontWeight: "600",
+                  fontSize: "30px",
+                }}
+              >
                 {item.title}
               </h1>
               <div className="row px-xl-5">
@@ -223,7 +230,7 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                   </div>
                   <div className="second-container">
                     {item.discount && (
-                      <div style={{display: 'flex'}}>
+                      <div style={{ display: "flex" }}>
                         <div className="discount-container">
                           <div>
                             <p>{item.discount}</p>
@@ -238,7 +245,9 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                     )}
 
                     <div className="price-container">
-                      <h3 className="mb-3 price">{item.price} + TVA</h3>
+                      {item.price && (
+                        <h3 className="mb-3 price">{item.price} + TVA</h3>
+                      )}
                       <div className="delivery mb-3">
                         <Image src={truckIcon} alt="delivery" />
                         <p>
@@ -281,8 +290,16 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                 </div>
               </div>
               <div>
-                <h3>{item.productDetailsTitle}</h3>
+                <h3 style={{ fontWeight: "600" }}>
+                  {item.productDetailsTitle}
+                </h3>
                 <p>{item.productDetails}</p>
+                <div style={{display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
+                  <img src={item.techImage} />
+                </div>
+              </div>
+              <div>
+                <h4 style={{fontWeight: '600', marginTop: '50px'}}>{item.techSpecsTitle}</h4>
               </div>
             </div>
           </div>
