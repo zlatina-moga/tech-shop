@@ -131,9 +131,41 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                   </div>
                 </div>
               </div>
+
               <div>
-                <h3>{item.productDetailsTitle}</h3>
+                {item.productDetails && <h3 style={{ fontWeight: "600"}}>{item.productDetailsTitle}</h3>}
                 <p>{item.productDetails}</p>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "50px",
+                  }}
+                >
+                  <img src={item.techImage} />
+                </div>
+              </div>
+              <div>
+                <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
+                  {item.techSpecsTitle}
+                </h4>
+                <div className="description-container">
+                  {item.techSpecs.map((item, idx) => (
+                    <div className="description-feature" key={idx}>
+                      <h4>{item.name}</h4>
+                      {item.items.map((attr, i) => (
+                        <div key={i}>
+                          <p style={{ fontWeight: "600", fontSize: "16px" }}>
+                            {attr.attribute_name}
+                          </p>
+                          <p style={{ fontSize: "16px" }}>
+                            {attr.attribute_value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
