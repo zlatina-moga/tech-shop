@@ -170,6 +170,14 @@ export const monitorCategories = [
     name: "Noi",
     link: "/monitoare/noi-4",
   },
+  {
+    name: "Touchscreen Refurbished",
+    link: "/monitoare/touchscreen-refurbished",
+  },
+  {
+    name: "Touchscreen Second Hand",
+    link: "/monitoare/touchscreen-second",
+  },
 ];
 
 export const networkCategories = [

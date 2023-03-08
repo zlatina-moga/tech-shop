@@ -41,6 +41,10 @@ export const geAllRefurbishedMonitors = (page) => request.get(`${baseUrl}/monito
 
 export const geAllSecondHandMonitors = (page) => request.get(`${baseUrl}/monitoare/second-hand-4?page=${page}`)
 
+export const getAllTSRefMonitors = (page) => request.get(`${baseUrl}/monitoare/touchscreen-refurbished?page=${page}`)
+
+export const getAllSecHandTSMonitors = (page) => request.get(`${baseUrl}/monitoare/touchscreen-second?page=${page}`)
+
 export const geAllComponents = (page) => request.get(`${baseUrl}/componente?page=${page}`)
 
 export const getAllHardDisks = (page) => request.get(`${baseUrl}/componente/hard-disk?page=${page}`)

@@ -31,6 +31,10 @@ export const getNewMonitor = (id) => request.get(`${baseUrl}/monitoare/noi-4/${i
 
 export const getSecondHandMonitor = (id) => request.get(`${baseUrl}/monitoare/second-hand-4/${id}`)
 
+export const getTSRefMonitor = (id) => request.get(`${baseUrl}/monitoare/touchscreen-refurbished/${id}`)
+
+export const getTSSecHandMonitor = (id) => request.get(`${baseUrl}/monitoare/touchscreen-second/${id}`)
+
 export const getHardDisk = (id) => request.get(`${baseUrl}/componente/hard-disk/${id}`)
 
 export const getRAM = (id) => request.get(`${baseUrl}/componente/memorie-ram/${id}`)

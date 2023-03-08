@@ -424,6 +424,26 @@ export const monitorSHBrcrmbs = [
   { name: "Second Hand", link: "/monitoare/second-hand-4" },
 ];
 
+export const monitorTouchSHBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Monitoare",
+    link: "/monitoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Touchscreen Refurbished", link: "/monitoare/touchscreen-refurbished" },
+];
+
+export const monitorTouchScreenSHBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Monitoare",
+    link: "/monitoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Touchscreen Second Hand", link: "/monitoare/touchscreen-second" },
+];
+
 export const networkBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Retelistica", link: "/retelistica" },
