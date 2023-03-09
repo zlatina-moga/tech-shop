@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { AppLayout } from "../components/layouts/AppLayout";
 import { AuthProvider } from "../contexts/AuthContext";
+import { Provider } from "react-redux";
+import store from "../services/redux/store";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
 import "../styles/styles.scss";
@@ -16,11 +18,13 @@ const MyApp = ({ Component, pageProps }) => {
   }, []);
   return (
     <>
-      <AuthProvider>
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
-      </AuthProvider>
+      <Provider store={store}>
+        <AuthProvider>
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </AuthProvider>
+      </Provider>
     </>
   );
 };

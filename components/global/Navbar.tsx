@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+  const quantity = useSelector((state) => state.cart.quantity);
 
   return (
     <div className="w-100" id="nav-container">
@@ -45,6 +47,17 @@ const Navbar = () => {
         </div>
         <div className="col-lg-3 col-6 text-right">
           {user.email ? userNav : guestNav}
+          <Link
+            href="/my-cart"
+            className="btn border"
+            style={{ borderRadius: "4px" }}
+          >
+            <i className="fas fa-shopping-cart text-primary mr-1"></i>
+            <span className="badge" style={{ color: "black" }}>
+              {quantity}
+            </span>
+            Coș
+          </Link>
         </div>
       </nav>
     </div>
@@ -80,14 +93,6 @@ const guestNav = (
         </ul>
       </div>
     </span>
-    <Link
-      href="/my-cart"
-      className="btn border"
-      style={{ borderRadius: "4px" }}
-    >
-      <i className="fas fa-shopping-cart text-primary mr-1"></i>
-      <span className="badge"></span>Coș
-    </Link>
   </>
 );
 
@@ -120,15 +125,6 @@ const userNav = (
         </ul>
       </div>
     </span>
-
-    <Link
-      href="/my-cart"
-      className="btn border"
-      style={{ borderRadius: "4px" }}
-    >
-      <i className="fas fa-shopping-cart text-primary mr-1"></i>
-      <span className="badge"></span>Cart
-    </Link>
   </>
 );
 

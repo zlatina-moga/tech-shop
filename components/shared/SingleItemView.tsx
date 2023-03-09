@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import Meta from "../../components/layouts/Meta";
@@ -13,8 +14,15 @@ import cartIcon from "../../public/svg/cart.svg";
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css";
 import "swiper/css/navigation";
+import { addProduct } from "../../services/redux/cartRedux";
 
 const SingleItemView = ({ itemData, breadcrumbs }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addProduct({ itemData, quantity: 1 }));
+  };
+
   return (
     <div className="page-details">
       <PhotoProvider>
@@ -37,7 +45,11 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                 </ol>
               </nav>
             </div>
-            <Meta title={item.title} keywords={item.title} />
+            <Meta
+              title={item.title}
+              keywords={item.title}
+              description={item.title}
+            />
             <div className="container-fluid py-5">
               <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
                 {item.title}
@@ -101,7 +113,10 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                       <p className="eco-tax">
                         Pretul include Eco-Taxa de 6.00 lei
                       </p>
-                      <button className="btn btn-primary add-to-cart">
+                      <button
+                        className="btn btn-primary add-to-cart"
+                        onClick={handleAddToCart}
+                      >
                         Adauga in cos
                       </button>
                       <div className="d-flex align-items-center mb-2 pt-2">
@@ -133,7 +148,11 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
               </div>
 
               <div>
-                {item.productDetails && <h3 style={{ fontWeight: "600"}}>{item.productDetailsTitle}</h3>}
+                {item.productDetails && (
+                  <h3 style={{ fontWeight: "600" }}>
+                    {item.productDetailsTitle}
+                  </h3>
+                )}
                 <p>{item.productDetails}</p>
                 <div
                   style={{

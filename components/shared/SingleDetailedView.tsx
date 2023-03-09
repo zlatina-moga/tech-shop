@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import Meta from "../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -11,11 +12,17 @@ import payImg from "../../public/images/stripe.png";
 import truckIcon from "../../public/svg/truck.svg";
 import walletIcon from "../../public/svg/money.svg";
 import cartIcon from "../../public/svg/cart.svg";
-import externalIcon from "../../public/svg/external.svg";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+import { addProduct } from "../../services/redux/cartRedux";
 
-const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
+const SingleDetailedView = ({ itemData, breadcrumbs }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addProduct({ itemData, quantity: 1 }));
+  };
+
   return (
     <div className="page-details">
       <PhotoProvider>
@@ -38,7 +45,11 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                 </ol>
               </nav>
             </div>
-            <Meta title={item.title} keywords={item.title} />
+            <Meta
+              title={item.title}
+              keywords={item.title}
+              description={item.title}
+            />
             <div className="container-fluid py-5">
               <h1
                 style={{
@@ -259,7 +270,10 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                       <p className="eco-tax">
                         Pretul include Eco-Taxa de 6.00 lei
                       </p>
-                      <button className="btn btn-primary add-to-cart">
+                      <button
+                        className="btn btn-primary add-to-cart"
+                        onClick={handleAddToCart}
+                      >
                         Adauga in cos
                       </button>
                       <div className="d-flex align-items-center mb-2 pt-2">
@@ -314,8 +328,12 @@ const SingleDetailedView = ({ itemData, features, breadcrumbs }) => {
                       <h4>{item.name}</h4>
                       {item.items.map((attr, i) => (
                         <div key={i}>
-                          <p style={{fontWeight: '600', fontSize: '16px'}}>{attr.attribute_name}</p>
-                          <p style={{fontSize: '16px'}}>{attr.attribute_value}</p>
+                          <p style={{ fontWeight: "600", fontSize: "16px" }}>
+                            {attr.attribute_name}
+                          </p>
+                          <p style={{ fontSize: "16px" }}>
+                            {attr.attribute_value}
+                          </p>
                         </div>
                       ))}
                     </div>

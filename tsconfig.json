@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "contexts/AuthContext.js", "hooks/useLocalStorage.ts"  ],
+, "contexts/AuthContext.js", "hooks/useLocalStorage.ts", "services/redux/cartRedux.ts", "services/redux/store.ts"  ],
   "exclude": [
     "node_modules"
   ]
