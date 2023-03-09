@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
+import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 
 const MyCard = () => {
+  const cart = useSelector((state) => state.cart);
   return (
     <>
       <Navbar />
@@ -13,14 +16,14 @@ const MyCard = () => {
             className="font-weight-semi-bold text-uppercase text-primary"
             style={{ marginTop: "100px" }}
           >
-            Shopping Cart
+            Cosul meu
           </h1>
         </div>
       </div>
       <div
         className="container-fluid pt-5"
         style={{ maxWidth: "100rem", margin: "0 auto" }}
-        id='shopping-cart'
+        id="shopping-cart"
       >
         <div className="row px-xl-5">
           <div className="col-lg-8 table-responsive mb-5">
@@ -33,180 +36,48 @@ const MyCard = () => {
                 </tr>
               </thead>
               <tbody className="align-middle">
-                <tr>
-                  <td className="align-middle product-item">
-                    <img
-                      src="/images/computer.jpeg"
-                      alt=""
-                      style={{ width: "50px" }}
-                    />{" "}
-                    Calculator Dell Optiplex 390 Mini Tower, Intel Core i7-2600
-                    3.80 GHz
-                  </td>
-                  <td className="align-middle">653.75 lei</td>
-                  <td className="align-middle">
-                    <div
-                      className="input-group quantity mx-auto"
-                      style={{ width: "100px" }}
-                    >
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-minus">
-                          <i className="fa fa-minus"></i>
-                        </button>
+                {cart.products.map((p) => (
+                  <tr key={p.itemData[0].id}>
+                    <td className="align-middle product-item">
+                      <img
+                        src={p.itemData[0].imgLink ? p.itemData[0].imgLink : p.itemData[0].img1 }
+                        alt=""
+                        style={{ width: "50px", marginRight: "10px" }}
+                      />{" "}
+                      <Link href={p.itemData[0].id} id='product-link'>{p.itemData[0].title}</Link>
+                    </td>
+                    <td className="align-middle">
+                      {p.itemData[0].priceNum * p.quantity} Lei
+                    </td>
+                    <td className="align-middle">
+                      <div
+                        className="input-group quantity mx-auto"
+                        style={{ width: "100px" }}
+                      >
+                        <div className="input-group-btn">
+                          <button className="btn btn-sm btn-primary btn-minus">
+                            <i className="fa fa-minus"></i>
+                          </button>
+                        </div>
+                        <input
+                          type="text"
+                          className="form-control form-control-sm bg-secondary text-center"
+                          value="1"
+                        />
+                        <div className="input-group-btn">
+                          <button className="btn btn-sm btn-primary btn-plus">
+                            <i className="fa fa-plus"></i>
+                          </button>
+                        </div>
                       </div>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm bg-secondary text-center"
-                        value="1"
-                      />
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-plus">
-                          <i className="fa fa-plus"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="align-middle product-item">
-                    <img
-                      src="images/Workstation.jpeg"
-                      alt=""
-                      style={{ width: "50px" }}
-                    />{" "}
-                    Workstation HP Z220 Intel Core i7-3770 3.90 GHz 4-Cores gen.
-                    a 3-a, 8 GB DDR3
-                  </td>
-                  <td className="align-middle">2152.04 lei</td>
-                  <td className="align-middle">
-                    <div
-                      className="input-group quantity mx-auto"
-                      style={{ width: "100px" }}
-                    >
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-minus">
-                          <i className="fa fa-minus"></i>
-                        </button>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm bg-secondary text-center"
-                        value="1"
-                      />
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-plus">
-                          <i className="fa fa-plus"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="align-middle product-item">
-                    <img
-                      src="images/laptop.jpeg"
-                      alt=""
-                      style={{ width: "50px" }}
-                    />{" "}
-                    Laptop HP EliteBook 820 G1 12.5", i7-4600U 3.30 GHz, 8GB
-                    DDR3, 256GB SSD, Webcam
-                  </td>
-                  <td className="align-middle">1015.82 lei</td>
-                  <td className="align-middle">
-                    <div
-                      className="input-group quantity mx-auto"
-                      style={{ width: "100px" }}
-                    >
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-minus">
-                          <i className="fa fa-minus"></i>
-                        </button>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm bg-secondary text-center"
-                        value="1"
-                      />
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-plus">
-                          <i className="fa fa-plus"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="align-middle product-item">
-                    <img
-                      src="images/Server.jpeg"
-                      alt=""
-                      style={{ width: "50px" }}
-                    />{" "}
-                    Server Dell PowerEdge R900 4U, 4x Intel Xeon Hexa Core X7460
-                    2.66GHz
-                  </td>
-                  <td className="align-middle">4685.63 lei</td>
-                  <td className="align-middle">
-                    <div
-                      className="input-group quantity mx-auto"
-                      style={{ width: "100px" }}
-                    >
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-minus">
-                          <i className="fa fa-minus"></i>
-                        </button>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm bg-secondary text-center"
-                        value="1"
-                      />
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-plus">
-                          <i className="fa fa-plus"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="align-start product-item">
-                    <img
-                      src="images/hard-disk.jpeg"
-                      alt=""
-                      style={{ width: "50px" }}
-                    />{" "}
-                    Hard Disk extern 500GB, USB 2.0, 2.5Inch
-                  </td>
-                  <td className="align-middle">125.41 lei</td>
-                  <td className="align-middle">
-                    <div
-                      className="input-group quantity mx-auto"
-                      style={{ width: "100px" }}
-                    >
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-minus">
-                          <i className="fa fa-minus"></i>
-                        </button>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm bg-secondary text-center"
-                        value="1"
-                      />
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-plus">
-                          <i className="fa fa-plus"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
           <div className="col-lg-4">
-            <form className="mb-3" action="" style={{marginTop: '-20px'}}>
+            <form className="mb-3" action="" style={{ marginTop: "-20px" }}>
               <div className="input-group">
                 <input
                   type="text"
@@ -225,7 +96,7 @@ const MyCard = () => {
               <div className="card-body">
                 <div className="d-flex justify-content-between mb-3 pt-1">
                   <h6 className="font-weight-medium">Subtotal</h6>
-                  <h6 className="font-weight-medium">8632.85 lei</h6>
+                  <h6 className="font-weight-medium">{cart.total.toFixed(2)} Lei</h6>
                 </div>
                 <div className="d-flex justify-content-between">
                   <h6 className="font-weight-medium">Shipping?</h6>
@@ -239,7 +110,7 @@ const MyCard = () => {
               <div className="card-footer border-secondary bg-transparent">
                 <div className="d-flex justify-content-between mt-2">
                   <h5 className="font-weight-bold">Total</h5>
-                  <h5 className="font-weight-bold">8632.85 lei</h5>
+                  <h5 className="font-weight-bold">{cart.total.toFixed(2)} Lei</h5>
                 </div>
                 <button className="btn btn-block btn-primary my-3 py-3">
                   Proceed To Checkout
