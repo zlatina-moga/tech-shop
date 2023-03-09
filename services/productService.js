@@ -95,6 +95,8 @@ export const getAllNewPOS = (page) => request.get(`${baseUrl}/sisteme-pos/noi-8?
 
 export const getAllPOSReaders = (page) => request.get(`${baseUrl}/sisteme-pos/cititor-cod-bare?page=${page}`)
 
+export const getAllPOSPrinters = (page) => request.get(`${baseUrl}/sisteme-pos/imprimante-termice-noi?page=${page}`)
+
 export const getAllUPS = (page) => request.get(`${baseUrl}/ups?page=${page}`)
 
 export const getAllRefurbishedUPS = (page) => request.get(`${baseUrl}/ups/refurbished-7?page=${page}`)
@@ -112,6 +114,8 @@ export const geAllSolarPanels = (page) => request.get(`${baseUrl}/sisteme-solare
 export const getAllNewPrinters = (page) => request.get(`${baseUrl}/imprimante/noi-3?page=${page}`)
 
 export const getAllSHPrinters = (page) => request.get(`${baseUrl}/imprimante/second-hand-5?page=${page}`)
+
+export const getAllRefPrinters = (page) => request.get(`${baseUrl}/imprimante/refurbished-5?page=${page}`)
 
 export const getAllPrinterCollateral = (page) => request.get(`${baseUrl}/imprimante/consumabile?page=${page}`)
 

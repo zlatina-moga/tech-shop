@@ -140,6 +140,10 @@ export const printerCategories = [
     name: "Noi",
     link: "/imprimante/noi-3",
   },
+  {
+    name: "Refurbished",
+    link: "/imprimante/refurbished-5",
+  },
 ];
 
 export const laptopCategories = [
@@ -238,6 +242,10 @@ export const posCategories = [
   {
     name: "Cititor Coduri Bare",
     link: "/sisteme-pos/cititor-cod-bare",
+  },
+  {
+    name: "Imprimante Termice Noi",
+    link: "/sisteme-pos/imprimante-termice-noi",
   },
 ];
 

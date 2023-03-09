@@ -366,6 +366,16 @@ export const printerSHBrcrmbs = [
   { name: "Second Hand", link: "/imprimante/second-hand-5" },
 ];
 
+export const printerRefBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Imprimante",
+    link: "/imprimante",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Refurbished", link: "/imprimante/refurbished-5" },
+];
+
 export const laptopBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop" },
@@ -541,6 +551,16 @@ export const posReadersBrcrmbs = [
     linkIcon: "fa fa-angle-double-right",
   },
   { name: "Cititor Coduri Bare", link: "/sisteme-pos/cititor-cod-bare" },
+];
+
+export const posPrinterBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme POS",
+    link: "/sisteme-pos",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Imprimante Termice Noi", link: "/sisteme-pos/imprimante-termice-noi" },
 ];
 
 export const posNewBrcrmbs = [

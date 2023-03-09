@@ -73,6 +73,8 @@ export const getNewPrinter = (id) => request.get(`${baseUrl}/imprimante/noi-3/${
 
 export const getSHPrinter = (id) => request.get(`${baseUrl}/imprimante/second-hand-5/${id}`)
 
+export const getRefPrinter = (id) => request.get(`${baseUrl}/imprimante/refurbished-5/${id}`)
+
 export const getPrinterCollateral = (id) => request.get(`${baseUrl}/imprimante/consumabile/${id}`)
 
 export const getRefurbishedPOS = (id) => request.get(`${baseUrl}/sisteme-pos/refurbished-6/${id}`)
@@ -82,6 +84,8 @@ export const getSecondHandPOS = (id) => request.get(`${baseUrl}/sisteme-pos/seco
 export const getNewPOS = (id) => request.get(`${baseUrl}/sisteme-pos/noi-8/${id}`)
 
 export const getPOSReader = (id) => request.get(`${baseUrl}/sisteme-pos/cititor-cod-bare/${id}`)
+
+export const getPOSPrinter = (id) => request.get(`${baseUrl}/sisteme-pos/imprimante-termice-noi/${id}`)
 
 export const getRefurbishedUPS = (id) => request.get(`${baseUrl}/ups/refurbished-7/${id}`)
 
