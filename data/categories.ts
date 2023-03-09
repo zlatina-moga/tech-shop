@@ -295,6 +295,10 @@ export const softwareCategories = [
     name: "Microsoft Office",
     link: "/licenta-software/office",
   },
+    {
+    name: "Microsoft Visio",
+    link: "/licenta-software/microsoft-visio",
+  },
   {
     name: "Microsoft Project",
     link: "/licenta-software/project",

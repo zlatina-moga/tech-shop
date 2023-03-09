@@ -14,6 +14,9 @@ export interface ILicence {
   activationSteps?: string[];
   activationLink?: string;
   postDescr?: string[];
+  priceNum?: number;
+  oldPrice?: string;
+  discount?: string;
 }
 
 export const licenseData: ILicence[] = [
@@ -25,7 +28,10 @@ export const licenseData: ILicence[] = [
      [ "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-7.jpeg"],
     version: "10 HOME 32/64BIT",
     title: "Windows 10 HOME 32/64BIT",
-    price: "69.99lei",
+    price: "69,99 Lei",
+    oldPrice: '535,00 Lei + TVA',
+    discount: '-86%',
+    priceNum: 69.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -59,7 +65,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-8.jpeg"],
     version: "10 PRO 32/64BIT",
     title: "Windows 10 PRO 32/64BIT",
-    price: "69.99lei",
+    price: "69,99 Lei",
+    oldPrice: '789,00 Lei + TVA',
+    priceNum: 69.99,
+    discount: '-91%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -93,7 +102,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-10.jpeg"],
     version: "11 PRO 32/64BIT",
     title: "Windows 11 PRO 32/64BIT",
-    price: "79.99lei",
+    price: "79,99 Lei",
+    oldPrice: '980,00 Lei + TVA',
+    priceNum: 79.99,
+    discount: '-91%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -123,7 +135,10 @@ export const licenseData: ILicence[] = [
      [ "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-9.jpeg"],
     version: "11 HOME 32/64BIT",
     title: "Windows 11 HOME 32/64BIT",
-    price: "79.99lei",
+    price: "79,99 Lei",
+    oldPrice: '489,00 Lei + TVA',
+    priceNum: 79.99,
+    discount: '-83%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -146,6 +161,138 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
+    id: "licenta-software/microsoft-visio/microsoft-visio-2019-professional-1pc",
+    item: 'microsoft-visio-2019-professional-1pc',
+    category: "Visio",
+    imgLink:
+     [ "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2019-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600-2.png"],
+    version: "2019 Professional",
+    title: "Microsoft Visio 2019 Professional – 1PC | LifeTime ",
+    price: "179,99 Lei",
+    oldPrice: '985,00 Lei + TVA',
+    priceNum: 179.99,
+    discount: '-81%',
+    descrTitle:
+      "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
+    description: [
+      "Valabilitate pe viata",
+      "Retail (varianta comerciala)",
+      "Activarea se face in maxim 7 zile",
+      "Confirmarea cumparaturi ( factura)",
+      "Fara restrictii",
+      "Activare pe software original Microsoft",
+      "Descarcare de pe pagina oficiala Microsoft",
+    ],
+    activationTitle: "Descriere",
+    activation1: "Link Descarcare ",
+    activationLink: "https://setup.office.com",
+    activation2: "Dupa Instalare: ",
+    activationSteps: [
+      "1. Introdu codul pe pagina oficiala Microsoft",
+      "2. Selecteaza limba si descarca kitul de instalare",
+      "3. Porneste softul si introdu inca o data codul in cazul in care este nevoie",
+    ],
+  },
+  {
+    id: "licenta-software/microsoft-visio/microsoft-visio-2019-professional-1pc-lifetime-o-singura-instalare",
+    item: 'microsoft-visio-2019-professional-1pc-lifetime-o-singura-instalare',
+    category: "Visio",
+    imgLink:
+     [ "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2019-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600-2.png"],
+    version: "2019 Professional",
+    title: "Microsoft Visio 2019 Professional – 1PC | LifeTime | O singura instalare",
+    price: "59,99 Lei",
+    oldPrice: '985,00 Lei + TVA',
+    priceNum: 59.99,
+    discount: '-94%',
+    descrTitle:
+      "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
+    description: [
+      "Valabilitate pe viata",
+      "Retail (varianta comerciala)",
+      "Activarea se face in maxim 7 zile",
+      "Confirmarea cumparaturi ( factura)",
+      "Fara restrictii",
+      "Activare pe software original Microsoft",
+      "Descarcare de pe pagina oficiala Microsoft",
+    ],
+    activationTitle: "Descriere",
+    activation1: "Link Descarcare ",
+    activationLink: "https://setup.office.com",
+    activation2: "Dupa Instalare: ",
+    activationSteps: [
+      "1. Introdu codul pe pagina oficiala Microsoft",
+      "2. Selecteaza limba si descarca kitul de instalare",
+      "3. Porneste softul si introdu inca o data codul in cazul in care este nevoie",
+    ],
+  },
+  {
+    id: "licenta-software/microsoft-visio/microsoft-visio-2021-professional-1pc-lifetime",
+    item: 'microsoft-visio-2021-professional-1pc-lifetime',
+    category: "Visio",
+    imgLink:
+     [ "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2021-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600.png"],
+    version: "2021 Professional",
+    title: "Microsoft Visio 2021 Professional – 1PC | LifeTime",
+    price: "199,99 Lei",
+    oldPrice: '985,00 Lei + TVA',
+    priceNum: 199.99,
+    discount: '-80%',
+    descrTitle:
+      "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
+    description: [
+      "Valabilitate pe viata",
+      "Retail (varianta comerciala)",
+      "Activarea se face in maxim 7 zile",
+      "Confirmarea cumparaturi ( factura)",
+      "Fara restrictii",
+      "Activare pe software original Microsoft",
+      "Descarcare de pe pagina oficiala Microsoft",
+    ],
+    activationTitle: "Descriere",
+    activation1: "Link Descarcare ",
+    activationLink: "https://setup.office.com",
+    activation2: "Dupa Instalare: ",
+    activationSteps: [
+      "1. Introdu codul pe pagina oficiala Microsoft",
+      "2. Selecteaza limba si descarca kitul de instalare",
+      "3. Porneste softul si introdu inca o data codul in cazul in care este nevoie",
+    ],
+  },
+  {
+    id: "licenta-software/microsoft-visio/microsoft-visio-2021-professional-1pc-lifetime-o-singura-instalare",
+    item: 'microsoft-visio-2021-professional-1pc-lifetime-o-singura-instalare',
+    category: "Visio",
+    imgLink:
+     [ "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2021-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600.png"],
+    version: "2021 Professional",
+    title: "Microsoft Visio 2021 Professional – 1PC | LifeTime| O singura instalare",
+    price: "69,99 Lei",
+    oldPrice: '985,00 Lei + TVA',
+    priceNum: 69.99,
+    discount: '-92%',
+    descrTitle:
+      "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
+    description: [
+      "Valabilitate pe viata",
+      "Retail (varianta comerciala)",
+      "Activarea se face in maxim 7 zile",
+      "Confirmarea cumparaturi ( factura)",
+      "Fara restrictii",
+      "Activare pe software original Microsoft",
+      "Descarcare de pe pagina oficiala Microsoft",
+    ],
+    activationTitle: "Descriere",
+    activation1: "Link Descarcare ",
+    activationLink: "https://setup.office.com",
+    activation2: "Dupa Instalare: ",
+    activationSteps: [
+      "1. Introdu codul pe pagina oficiala Microsoft",
+      "2. Selecteaza limba si descarca kitul de instalare",
+      "3. Porneste softul si introdu inca o data codul in cazul in care este nevoie",
+    ],
+  },
+  {
     id: "licenta-software/office/office-2019-professional-plus-global",
     item: 'office-2019-professional-plus-global',
     category: "Office",
@@ -153,7 +300,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-3.jpeg"],
     version: "2019 Professional PLUS | Global | Asociat cont MS",
     title: "Microsoft Office 2019 Professional PLUS | Global | Asociat cont MS",
-    price: "159.99lei",
+    price: "159,99 Lei",
+    oldPrice: '1.199,00 Lei + TVA',
+    priceNum: 159.99,
+    discount: '-86%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -187,7 +337,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-3.jpeg"],
     version: "2019 Professional PLUS | Global | Retail",
     title: "Microsoft Office 2019 Professional PLUS | Global | Retail",
-    price: "109.99lei",
+    price: "109,99 lei",
+    oldPrice: '1.197,00 Lei + TVA',
+    priceNum: 109.99,
+    discount: '-90%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -221,7 +374,10 @@ export const licenseData: ILicence[] = [
      [ "https://ialicenta.ro/wp-content/uploads/2022/11/office2021bus_nologo-500x500-1.webp"],
     version: "2021 Home and Business MAC | Global | Retail",
     title: "Microsoft Office 2021 Home and Business MAC | Global | Retail",
-    price: "149.99lei",
+    price: "149,99 Lei",
+    oldPrice: '1.800,00 Lei + TVA',
+    priceNum: 149.99,
+    discount: '-91%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -255,7 +411,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-4.jpeg"],
     version: "2021 Professional Plus | Global | Asociat cont MS",
     title: "Microsoft Office Professional Plus | Global | Asociat cont MS",
-    price: "189.99lei",
+    price: "189,99 Lei",
+    oldPrice: '1.800,00 Lei + TVA',
+    priceNum: 189.99,
+    discount: '-89%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -287,9 +446,12 @@ export const licenseData: ILicence[] = [
     category: "Office",
     imgLink:
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-4.jpeg"],
-    version: "2021 Professional Plus | Global | Asociat cont MS",
-    title: "Microsoft Office Professional Plus | Global | Asociat cont MS",
-    price: "189.99lei",
+    version: "2021 Professional Plus | KEY PHONE ACTIVATION | Global",
+    title: "Microsoft Office Professional Plus | KEY PHONE ACTIVATION | Global",
+    price: "79,99 Lei",
+    priceNum: 79.99,
+    oldPrice: '1.800,00 Lei + TVA',
+    discount: '-95%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -307,9 +469,9 @@ export const licenseData: ILicence[] = [
     activationLink: "https://setup.office.com",
     activationSteps: [
       "1. Intrati pe link",
-      "2. Va creati cont",
-      "3. Adaugati licenta primita de la noi",
-      "4. Descarcati softul.",
+      "2. Selecteaza “activation by phone” in instalarea softului *Poti trece de confirmarea telefonica, adaugand codul in : https://getcid.info",
+      "3. Mergi pe https://getcid.info/ si adauga installation ID (de la instalarea office) selecteaza versiunea 2016/2019 si ia id-ul de confirmare (in caz de eroare, incearca in alt browser )",
+      "4. Insereaza confirmation ID in casuta de instalare office",
     ],
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
@@ -323,7 +485,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-5.jpeg"],
     version: "365 Home",
     title: "Microsoft Office 365 Home | 5 DEVICES – ONE TIME PAYMENT",
-    price: "249.99lei",
+    price: "249,99 Lei",
+    priceNum: 249.99,
+    oldPrice: '999,00 Lei + TVA',
+    discount: '-75%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -357,7 +522,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-6.jpeg"],
     version: "365 Personal",
     title: "Microsoft Office 365 Personal | 1 DEVICE – ONE TIME PAYMENT",
-    price: "199.99lei",
+    price: "199,99 Lei",
+    priceNum: 199.99,
+    oldPrice: '499,99 Lei + TVA',
+    discount: '-60%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -391,7 +559,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2019-download-digital-licence_600x600-2.png"],
     version: "2019 Professional",
     title: "Microsoft Project 2019 Professional– 1PC | LifeTime",
-    price: "179.99lei",
+    price: "179,99 Lei",
+    priceNum: 179.99,
+    oldPrice: '985,00 Lei + TVA',
+    discount: '-81%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -424,7 +595,10 @@ export const licenseData: ILicence[] = [
     version: "2019 Professional",
     title:
       "Microsoft Project 2019 Professional– 1PC | LifeTime | O singura instalare",
-    price: "59.99lei",
+    price: "59,99 Lei",
+    oldPrice: '985,00 Lei + TVA',
+    discount: '-94%',
+    priceNum: 59.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -456,7 +630,10 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2021-download-digital-licence_600x600.png"],
     version: "2021 Professional",
     title: "Microsoft Project 2021 Professional – 1PC | LifeTime",
-    price: "199.99lei",
+    price: "199,99 Lei",
+    priceNum: 199.99,
+    oldPrice: '1.800,00 Lei + TVA',
+    discount: '-88%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -489,7 +666,10 @@ export const licenseData: ILicence[] = [
     version: "2021 Professional",
     title:
       "Microsoft Project 2021 Professional– 1PC | LifeTime | O singura instalare",
-    price: "69.99lei",
+    price: "69,99 Lei",
+    priceNum: 69.99,
+    oldPrice: '1.800,00 Lei + TVA',
+    discount: '-96%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -521,7 +701,10 @@ export const licenseData: ILicence[] = [
      [ "https://ialicenta.ro/wp-content/uploads/2022/10/adobe-creative-cloud-abonament-1-an.png"],
     version: "Creative Cloud ",
     title: "Adobe Creative Cloud | 1 An",
-    price: "1899.00 lei",
+    price: "1.899,00 Lei",
+    priceNum: 1899.00,
+    oldPrice: '4,850.00 Lei + TVA',
+    discount: '-60%',
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -538,7 +721,8 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg"],
     version: "Bitdefender 2022 Antivirus Plus",
     title: "Bitdefender 2022 Antivirus Plus (1 PC -1 An)",
-    price: "119.99 lei",
+    price: "119,99 Lei",
+    priceNum: 119.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -568,7 +752,8 @@ export const licenseData: ILicence[] = [
      [ "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg"],
     version: "Bitdefender 2022 Antivirus Plus",
     title: "Bitdefender 2022 Antivirus Plus (10 PC -1 An)",
-    price: "329.99 lei",
+    price: "329,99 Lei",
+    priceNum: 329.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -597,7 +782,8 @@ export const licenseData: ILicence[] = [
      [ "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg"],
     version: "Bitdefender 2022 Antivirus Plus",
     title: "Bitdefender 2022 Antivirus Plus (5 PC -1 An)",
-    price: "199.99 lei",
+    price: "199,99 Lei",
+    priceNum: 199.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -616,35 +802,6 @@ export const licenseData: ILicence[] = [
       "2. Creaza un cont",
       "3. Selecteaza tabul “My Subscription”",
       "3. Selecteaza butonul “Activation Code” in coltul din dreapta sus si adauga cheia",
-    ],
-  },
-  {
-    id: "licenta-software/antivirus/bitdefender-2022-antivirus-plus-5-pc-1-an",
-    item: 'bitdefender-2022-antivirus-plus-5-pc-1-an',
-    category: "Antivirus",
-    imgLink:
-     [ "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg"],
-    version: "Bitdefender 2022 Antivirus Plus",
-    title: "Bitdefender 2022 Antivirus Plus (5 PC -1 An)",
-    price: "199.99 lei",
-    descrTitle:
-      "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
-    description: [
-      "Retail (varianta comerciala)",
-      "Activarea se face in maxim 60 zile",
-      "Confirmarea cumparaturi ( factura)",
-      "Fara restrictii",
-      "Activare pe site-ul official",
-      "Descarcare de pe pagina oficiala BitDefender",
-    ],
-    activationTitle: "Descriere",
-    activation1: "Instructiuni de instalare",
-    activationLink: "http://central.bitdefender.com",
-    activationSteps: [
-      "1. Mergi pe link",
-      "2. Creaza un cont",
-      "3. Selecteaza tabul “My Subscription”",
-      "4. Selecteaza butonul “Activation Code” in coltul din dreapta sus si adauga cheia",
     ],
   },
   {
@@ -655,7 +812,8 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.44-PM-1.jpeg"],
     version: "ESET NOD32",
     title: "ESET NOD32 Antivirus (1 An / 1 PC)",
-    price: "129.99 lei",
+    price: "129,99 Lei",
+    priceNum: 129.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -686,7 +844,8 @@ export const licenseData: ILicence[] = [
      [ "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.44-PM.jpeg"],
     version: "ESET NOD32 Internet Security",
     title: "ESET NOD32 Internet Security (1 An / 1 PC)",
-    price: "149.99 lei",
+    price: "149,99 Lei",
+    priceNum: 149.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -717,7 +876,8 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.31-PM.jpeg"],
     version: "Kaspersky AntiVirus 2022",
     title: "Kaspersky AntiVirus 2022 ( 1 An / 1 Device )",
-    price: "109.99 lei",
+    price: "109,99 Lei",
+    priceNum: 109.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -751,7 +911,8 @@ export const licenseData: ILicence[] = [
       ["https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.31-PM-1.jpeg"],
     version: "Kaspersky Total Security 2022",
     title: "Kaspersky Total Security 2022 ( 1 An / 1 Device )",
-    price: "129.99 lei",
+    price: "129,99 Lei",
+    priceNum: 129.99,
     descrTitle:
       "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
     description: [
@@ -772,6 +933,42 @@ export const licenseData: ILicence[] = [
       "3. Deschide Kaspersky si selecteaza “Enter Activation Code” in coltul din dreapta jos",
       "4. Alege “Activate Aplication”",
       "5. Introdu codul si selecteaza “Activate”",
+    ],
+    postDescr: [
+      "*Softul poate cere crearea unui cont.",
+    ],
+  },
+  {
+    id: "licenta-software/antivirus/mcafee-internet-security-2022-1-an-10-pc",
+    item: 'mcafee-internet-security-2022-1-an-10-pc',
+    category: "Antivirus",
+    imgLink:
+      ["https://ialicenta.ro/wp-content/uploads/2022/11/McAfee-Internet-Security-2021-4.webp"],
+    version: "MCAFEE Internet Security 2022",
+    title: "MCAFEE Internet Security 2022 | 1 AN | 10 PC",
+    price: "99,99 Lei",
+    priceNum: 99.99,
+    oldPrice: '399,99 Lei + TVA',
+    discount: '-75%',
+    descrTitle:
+      "Acest produs poate fi utilizat atat de PERSOANE FIZICE cat si de PERSOANE JURIDICE sau REVANZARE!Se ofera FACTURA FISCALA conform legii.",
+    description: [
+      "Valabilitate pe un an",
+      "Retail (varianta comerciala)",
+      "Activarea se face in maxim 60 zile",
+      "Confirmarea cumparaturi ( factura)",
+      "Fara restrictii",
+      "Activare pe site-ul official",
+      "Descarcare de pe pagina oficiala",
+    ],
+    activationTitle: "Descriere",
+    activation1: "Instructiuni de instalare",
+    activationLink: "https://www.mcafee.com",
+    activationSteps: [
+      "1. Descarca softul de pe link",
+      "2. Insereaza licenta primita pe mail",
+      "3. Creaza un cont (sau te poti loga daca ai unul deja)",
+      "4. Descarca software gata licentiat",
     ],
     postDescr: [
       "*Softul poate cere crearea unui cont.",

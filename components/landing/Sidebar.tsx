@@ -82,7 +82,7 @@ const Sidebar = () => {
                         alt="list"
                         style={{ height: "18px", marginRight: "10px" }}
                       />
-                      New
+                      Noi
                     </Link>
                   </li>
                   <li className="dropdown-submenu">
@@ -143,7 +143,7 @@ const Sidebar = () => {
                         alt="list"
                         style={{ height: "18px", marginRight: "10px" }}
                       />
-                      New
+                      Noi
                     </Link>
                   </li>
                   <li className="dropdown-submenu">
@@ -255,7 +255,7 @@ const Sidebar = () => {
                         alt="list"
                         style={{ height: "18px", marginRight: "10px" }}
                       />
-                      New
+                      Noi
                     </Link>
                   </li>
                   <li className="dropdown-submenu">
@@ -319,7 +319,7 @@ const Sidebar = () => {
                         alt="list"
                         style={{ height: "18px", marginRight: "10px" }}
                       />
-                      New
+                      Noi
                     </Link>
                   </li>
                   <li className="dropdown-submenu">

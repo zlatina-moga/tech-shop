@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
 import Navbar from "../../../components/global/Navbar";
 import { licenseData } from "../../../data/licenseData";
@@ -9,11 +10,17 @@ import { Navigation } from "swiper";
 import Image from "next/image";
 import payImg from "../../../public/images/stripe.png";
 import { adobeBrcrmbs } from "../../../data/breadcrumbs";
-
+import { addProduct } from "../../../services/redux/cartRedux";
 
 const AdobeDetails = () => {
   const router = useRouter();
   const { id } = router.query;
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    let itemData = licenseData.filter((el) => el.item == id)
+    dispatch(addProduct({ itemData, quantity: 1 }));
+  };
 
   return (
     <>
@@ -24,10 +31,10 @@ const AdobeDetails = () => {
             .filter((el) => el.item == id)
             .map((item, idx) => (
               <div key={idx}>
-                                <div className="row px-5">
+                <div className="row px-5">
                   <nav aria-label="breadcrumb " className="second ">
                     <ol className="breadcrumb indigo lighten-6 first px-md-4">
-                      { adobeBrcrmbs.map((br, idx) => (
+                      {adobeBrcrmbs.map((br, idx) => (
                         <li
                           className="breadcrumb-item align-items-center"
                           key={idx}
@@ -46,7 +53,7 @@ const AdobeDetails = () => {
                   <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
                     {item.title}
                   </h1>
-                  <div className="row px-xl-5" style={{alignItems: 'center'}}>
+                  <div className="row px-xl-5" style={{ alignItems: "center" }}>
                     <div className="col-lg-5 pb-5">
                       <Swiper
                         navigation={true}
@@ -76,13 +83,27 @@ const AdobeDetails = () => {
                         </ul>
                       </div>
                       <div className="second-container">
+                      {item.discount && (
+                      <div style={{ display: "flex" }}>
+                        <div className="discount-container">
+                          <div>
+                            <p>{item.discount}</p>
+                          </div>
+                        </div>
+                        <div className="old-price">
+                          <h6>
+                            <del>{item.oldPrice}</del>
+                          </h6>
+                        </div>
+                      </div>
+                    )}
                         <div
                           className="price-container"
                           style={{ marginTop: "0" }}
                         >
                           <h3 className="mb-3 price">{item.price} + TVA</h3>
 
-                          <button className="btn btn-primary add-to-cart">
+                          <button className="btn btn-primary add-to-cart" onClick={ handleAddToCart}>
                             Adauga in cos
                           </button>
                           <div className="d-flex align-items-center mb-2 pt-2">

@@ -689,6 +689,12 @@ export const officeBrcrmbs = [
   { name: 'Microsoft Office', link: '/licenta-software/office' },
 ];
 
+export const visioBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
+  { name: 'Microsoft Visio', link: '/licenta-software/microsoft-visio' },
+];
+
 export const projectBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },

@@ -9,10 +9,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";
 import payImg from "../../../public/images/stripe.png";
-import { projectBrcrmbs } from "../../../data/breadcrumbs";
+import { visioBrcrmbs } from "../../../data/breadcrumbs";
 import { addProduct } from "../../../services/redux/cartRedux";
 
-const ProjectDetails = () => {
+const VisioDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const ProjectDetails = () => {
                 <div className="row px-5">
                   <nav aria-label="breadcrumb " className="second ">
                     <ol className="breadcrumb indigo lighten-6 first px-md-4">
-                      {projectBrcrmbs.map((br, idx) => (
+                      {visioBrcrmbs.map((br, idx) => (
                         <li
                           className="breadcrumb-item align-items-center"
                           key={idx}
@@ -156,4 +156,4 @@ const ProjectDetails = () => {
   );
 };
 
-export default ProjectDetails;
+export default VisioDetails;

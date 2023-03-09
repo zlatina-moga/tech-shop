@@ -100,6 +100,20 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                     </div>
                   </div>
                   <div className="second-container">
+                    {item.discount && (
+                      <div style={{ display: "flex" }}>
+                        <div className="discount-container">
+                          <div>
+                            <p>{item.discount}</p>
+                          </div>
+                        </div>
+                        <div className="old-price">
+                          <h6>
+                            <del>{item.oldPrice}</del>
+                          </h6>
+                        </div>
+                      </div>
+                    )}
                     <div className="price-container">
                       <h3 className="mb-3 price">{item.price} + TVA</h3>
                       <div className="delivery mb-3">
