@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
+import CartItem from "../components/shared/CartItem";
 
 const MyCard = () => {
   const cart = useSelector((state) => state.cart);
+
   return (
     <>
       <Navbar />
@@ -37,41 +39,14 @@ const MyCard = () => {
               </thead>
               <tbody className="align-middle">
                 {cart.products.map((p) => (
-                  <tr key={p.itemData[0].id}>
-                    <td className="align-middle product-item">
-                      <img
-                        src={p.itemData[0].imgLink ? p.itemData[0].imgLink : p.itemData[0].img1 }
-                        alt=""
-                        style={{ width: "50px", marginRight: "10px" }}
-                      />{" "}
-                      <Link href={p.itemData[0].id} id='product-link'>{p.itemData[0].title}</Link>
-                    </td>
-                    <td className="align-middle">
-                      {p.itemData[0].priceNum * p.quantity} Lei
-                    </td>
-                    <td className="align-middle">
-                      <div
-                        className="input-group quantity mx-auto"
-                        style={{ width: "100px" }}
-                      >
-                        <div className="input-group-btn">
-                          <button className="btn btn-sm btn-primary btn-minus">
-                            <i className="fa fa-minus"></i>
-                          </button>
-                        </div>
-                        <input
-                          type="text"
-                          className="form-control form-control-sm bg-secondary text-center"
-                          value="1"
-                        />
-                        <div className="input-group-btn">
-                          <button className="btn btn-sm btn-primary btn-plus">
-                            <i className="fa fa-plus"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+                  <CartItem
+                    key={p.itemData[0].id}
+                    id={p.itemData[0].id}
+                    imgLink={p.itemData[0].imgLink}
+                    img1={p.itemData[0].img1}
+                    title={p.itemData[0].title}
+                    priceNum={p.itemData[0].priceNum}
+                  />
                 ))}
               </tbody>
             </table>
@@ -96,10 +71,18 @@ const MyCard = () => {
               <div className="card-body">
                 <div className="d-flex justify-content-between mb-3 pt-1">
                   <h6 className="font-weight-medium">Subtotal</h6>
-                  <h6 className="font-weight-medium">{cart.total.toFixed(2)} Lei</h6>
+                  <h6 className="font-weight-medium">
+                    {cart.total.toFixed(2)} Lei
+                  </h6>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <h6 className="font-weight-medium">Shipping?</h6>
+                  <h6 className="font-weight-medium">TVA</h6>
+                  <h6 className="font-weight-medium">
+                    {cart.tvaTotal.toFixed(2)} Lei
+                  </h6>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <h6 className="font-weight-medium">Shipping</h6>
                   <h6 className="font-weight-medium">0</h6>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -110,7 +93,9 @@ const MyCard = () => {
               <div className="card-footer border-secondary bg-transparent">
                 <div className="d-flex justify-content-between mt-2">
                   <h5 className="font-weight-bold">Total</h5>
-                  <h5 className="font-weight-bold">{cart.total.toFixed(2)} Lei</h5>
+                  <h5 className="font-weight-bold">
+                    {cart.grandTotal.toFixed(2)} Lei
+                  </h5>
                 </div>
                 <button className="btn btn-block btn-primary my-3 py-3">
                   Proceed To Checkout
