@@ -257,7 +257,14 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
 
                     <div className="price-container">
                       {item.price && (
-                        <h3 className="mb-3 price">{item.price} + TVA</h3>
+                        <>
+                          <h4 className="price" style={{ color: "#6C757D" }}>
+                            {item.priceNoTva}
+                          </h4>
+                          <h3 className="mb-3 price">
+                            {item.price} (TVA inclus)
+                          </h3>
+                        </>
                       )}
                       <div className="delivery mb-3">
                         <Image src={truckIcon} alt="delivery" />

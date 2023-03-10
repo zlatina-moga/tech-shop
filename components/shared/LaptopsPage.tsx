@@ -159,7 +159,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                     )}
 
                     <div className="d-flex justify-content-center">
-                      <h6 className="price">{l.price}</h6>
+                      <h6 className="price">{l.price} + TVA</h6>
                     </div>
                   </div>
                   <div className="card-footer d-flex justify-content-between bg-light">
