@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
+import * as sortingService from "../services/sortingService";
 import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../hooks/usePagination";
+import { usePagination } from "../hooks/usePagination";
 import { laptopCategories } from "../data/categories";
 import { laptopBrcrmbs } from "../data/breadcrumbs";
 
@@ -11,6 +12,7 @@ const Laptopuri = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     productService
@@ -23,6 +25,12 @@ const Laptopuri = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  useEffect(() => {
+    sortingService.getBrands(5).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -56,6 +64,7 @@ const Laptopuri = () => {
             laptopsData={laptopsData}
             categories={laptopCategories}
             breadcrumbs={laptopBrcrmbs}
+            brands={brands}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -7,6 +7,7 @@ interface ILaptopPage {
   laptopsData: any[];
   categories?: any[];
   breadcrumbs?: any[];
+  brands?: any;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -14,10 +15,11 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   laptopsData,
   categories,
   breadcrumbs,
+  brands,
 }) => {
   return (
     <>
-    <Meta title={title} keywords={title} description={title}/>
+      <Meta title={title} keywords={title} description={title} />
       <div
         className={classNames("container-fluid pt-5", "laptops-page")}
         style={{
@@ -62,8 +64,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                     <ul
                       className="navbar-nav overflow-hidden relative"
                       style={{
-                        borderTopLeftRadius: "4px",
-                        borderTopRightRadius: "4px",
+                        borderRadius: "4px",
                       }}
                     >
                       <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
@@ -75,6 +76,57 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                           key={idx}
                         >
                           <Link href={c.link} className="sidebar-link">
+                            {c.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                  <nav
+                    className="collapse show navbar navbar-vertical navbar-light align-items-start p-0"
+                    id="navbar-vertical"
+                    style={{
+                      borderBottomLeftRadius: "4px",
+                      borderBottomRightRadius: "4px",
+                    }}
+                  ></nav>
+                </div>
+              </div>
+            </div>
+          )}
+          {brands && (
+            <div
+              className="sidebar-container mt-4"
+              style={{ display: "block", maxWidth: "280px" }}
+            >
+              <div className="row">
+                <div className="d-none d-lg-block">
+                  <nav
+                    className="collapse show navbar-vertical navbar-light p-0"
+                    id="navbar-vertical-2"
+                    style={{
+                      borderBottomLeftRadius: "4px",
+                      borderBottomRightRadius: "4px",
+                    }}
+                  >
+                    <ul
+                      className="navbar-nav overflow-hidden relative"
+                      style={{
+                        borderRadius: "4px",
+                      }}
+                    >
+                      <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
+                        Brand
+                      </h4>
+                      {brands.map((c, idx) => (
+                        <li
+                          className="nav-item nav-link py-3 sidebar-link"
+                          key={idx}
+                        >
+                          <Link
+                            href={''}
+                            className="sidebar-link"
+                          >
                             {c.name}
                           </Link>
                         </li>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
+import * as sortingService from "../services/sortingService";
 import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
@@ -11,6 +12,7 @@ const SistemePOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     productService
@@ -23,6 +25,13 @@ const SistemePOS = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+    useEffect(() => {
+    sortingService.getBrands(34).then((result) => {
+      setBrands(result);
+    });
+  }, []);
+
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -56,6 +65,7 @@ const SistemePOS = () => {
             laptopsData={laptopsData}
             categories={posCategories}
             breadcrumbs={posBrcrmbs}
+            brands={brands}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

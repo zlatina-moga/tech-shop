@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
+import * as sortingService from "../services/sortingService";
 import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../hooks/usePagination";
+import { usePagination } from "../hooks/usePagination";
 import { accessoryCategories } from "../data/categories";
 import { accessoryBreadCrmbs } from "../data/breadcrumbs";
 
@@ -11,6 +12,7 @@ const Accesorii = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     productService
@@ -23,6 +25,12 @@ const Accesorii = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  useEffect(() => {
+    sortingService.getBrands(47).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -51,7 +59,13 @@ const Accesorii = () => {
         <Loader />
       ) : (
         <>
-        <LaptopsPage title="Accesorii" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={accessoryBreadCrmbs}/>
+          <LaptopsPage
+            title="Accesorii"
+            laptopsData={laptopsData}
+            categories={accessoryCategories}
+            breadcrumbs={accessoryBreadCrmbs}
+            brands={brands}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
