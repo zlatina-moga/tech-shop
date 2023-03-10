@@ -97,9 +97,9 @@ const MyCard = () => {
                     {cart.grandTotal.toFixed(2)} Lei
                   </h5>
                 </div>
-                <button className="btn btn-block btn-primary my-3 py-3">
+                <Link className="btn btn-block btn-primary my-3 py-3" href='/checkout'>
                   Proceed To Checkout
-                </button>
+                </Link>
               </div>
             </div>
           </div>
