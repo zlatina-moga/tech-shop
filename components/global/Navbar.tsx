@@ -1,12 +1,76 @@
-import { useContext } from "react";
+import { useContext, useState, useRef } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 
+const categories = [
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+  },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+  },
+  {
+    name: "Workstation",
+    link: "/workstation",
+  },
+  {
+    name: "Servere",
+    link: "/servere",
+  },
+  {
+    name: "Monitoare",
+    link: "/monitoare",
+  },
+  {
+    name: "Componente",
+    link: "/componente",
+  },
+  {
+    name: "Software",
+    link: "/licenta-software",
+  },
+  {
+    name: "Imprimante",
+    link: "/imprimante",
+  },
+  {
+    name: "Sisteme POS",
+    link: "/sisteme-pos",
+  },
+  {
+    name: "UPS",
+    link: "/ups",
+  },
+  {
+    name: "Accesorii",
+    link: "/accesorii",
+  },
+  {
+    name: "Retelistica",
+    link: "/retelistica",
+  },
+  {
+    name: "Sisteme solare",
+    link: "/sisteme-solare-fotovoltaice",
+  },
+];
+
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   const quantity = useSelector((state) => state.cart.quantity);
+  const [category, setCategory] = useState("");
+  const ref = useRef();
+
+  const onSearch = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    let item = formData.get("searchItem");
+  };
 
   return (
     <div className="w-100" id="nav-container">
@@ -26,21 +90,41 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="col-lg-6 col-6 text-left">
-          <form action="">
+          <form onSubmit={() => ""}>
             <div className="input-group">
+              <select
+                className="form-select"
+                style={{ maxWidth: "180px" }}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option selected>Categoriile</option>
+                {categories.map((cat, idx) => (
+                  <option className="dropdown-item" key={idx} value={cat.link}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
               <input
                 type="text"
+                id="searchItem"
+                ref={ref}
                 className="form-control"
-                placeholder="Search for products"
+                placeholder="Cauta produse"
                 style={{ borderRadius: "4px", textAlign: "left" }}
               />
               <div className="input-group-append">
-                <span
+                <button
                   className="input-group-text bg-transparent text-primary"
-                  style={{ marginLeft: "5px", borderRadius: "4px" }}
+                  type="submit"
+                  style={{
+                    marginLeft: "5px",
+                    borderRadius: "4px",
+                    width: "40px",
+                    boxShadow: "none",
+                  }}
                 >
                   <i className="fa fa-search"></i>
-                </span>
+                </button>
               </div>
             </div>
           </form>

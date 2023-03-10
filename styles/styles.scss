@@ -468,3 +468,14 @@ form .auth-field {
   background-color: transparent !important;
   color: red !important;
 }
+.form-select{ 
+  border-radius: 4px !important;
+  border: 1px solid #EDF1FF !important;
+  color: #495057 !important;
+}
+
+
+.form-select:focus {
+  border-color: #EDF1FF !important;
+  box-shadow: none !important;
+}
