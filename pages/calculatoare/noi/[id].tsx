@@ -6,8 +6,6 @@ import Loader from "../../../components/global/Loader/Loader";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { newComputersBrcrmbs } from "../../../data/breadcrumbs";
 
-const features = ["Procesor", "RAM"];
-
 const NewCompDetails = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -32,7 +30,7 @@ const NewCompDetails = () => {
       {loading ? (
         <Loader />
       ) : 
-        <SingleDetailedView itemData={itemData} features={features} breadcrumbs={newComputersBrcrmbs}/>
+        <SingleDetailedView itemData={itemData} breadcrumbs={newComputersBrcrmbs}/>
       }
     </>
   );

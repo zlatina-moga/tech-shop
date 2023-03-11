@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import Link from "next/link";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import Meta from "../../components/layouts/Meta";
@@ -15,12 +16,15 @@ import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import { addProduct } from "../../services/redux/cartRedux";
+import classNames from "classnames";
 
 const SingleItemView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
+  const [clicked, setClicked] = useState(false);
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1 }));
+    setClicked(true);
   };
 
   return (
@@ -115,7 +119,9 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                       </div>
                     )}
                     <div className="price-container">
-                      <h4 className="price" style={{color: '#6C757D'}}>{item.priceNoTva}</h4>
+                      <h4 className="price" style={{ color: "#6C757D" }}>
+                        {item.priceNoTva}
+                      </h4>
                       <h3 className="mb-3 price">{item.price} (TVA inclus)</h3>
                       <div className="delivery mb-3">
                         <Image src={truckIcon} alt="delivery" />
@@ -129,7 +135,10 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                         Pretul include Eco-Taxa de 6.00 lei
                       </p>
                       <button
-                        className="btn btn-primary add-to-cart"
+                        className={classNames(
+                          "btn btn-primary add-to-cart",
+                          clicked ? "disabled" : ""
+                        )}
                         onClick={handleAddToCart}
                       >
                         Adauga in cos

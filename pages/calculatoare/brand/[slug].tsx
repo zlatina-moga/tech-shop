@@ -1,38 +1,32 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/global/Navbar";
-import * as productService from "../services/productService";
-import * as sortingService from "../services/sortingService";
-import Loader from "../components/global/Loader/Loader";
-import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination } from "../hooks/usePagination";
-import { laptopCategories } from "../data/categories";
-import { laptopBrcrmbs } from "../data/breadcrumbs";
+import { useRouter } from "next/router";
+import * as productService from "../../../services/productService";
+import LaptopsPage from "../../../components/shared/LaptopsPage";
+import { usePagination } from "../../../hooks/usePagination";
+import Navbar from "../../../components/global/Navbar";
+import Loader from "../../../components/global/Loader/Loader";
+import { brandComputersBrcrmbs } from "../../../data/breadcrumbs";
 
-const Laptopuri = () => {
-  const [laptopsData, setLaptopsData] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
+const BrandDetail = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+  const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     productService
-      .getAllLaptops(currentPage)
+      .getAllComputersByBrand(currentPage, slug)
       .then((result) => {
         setLoading(false);
-        setLaptopsData(result);
+        seItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+  }, [currentPage, slug]);
 
-  useEffect(() => {
-    sortingService.getBrands(5).then((result) => {
-      setBrands(result);
-    });
-  }, []);
-
-  const totalPages = laptopsData[0]?.totalPages;
+  const totalPages = itemData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -52,6 +46,12 @@ const Laptopuri = () => {
     }
   };
 
+  let pageTitle = "";
+  if (slug != undefined) {
+    let slugToStr = slug as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -60,12 +60,9 @@ const Laptopuri = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Laptopuri"
-            laptopsData={laptopsData}
-            categories={laptopCategories}
-            breadcrumbs={laptopBrcrmbs}
-            brands={brands}
-            brandLink={'/laptop/brand/'}
+            title={`Calculatoare ${pageTitle}`}
+            laptopsData={itemData}
+            breadcrumbs={brandComputersBrcrmbs}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -112,4 +109,4 @@ const Laptopuri = () => {
   );
 };
 
-export default Laptopuri;
+export default BrandDetail;

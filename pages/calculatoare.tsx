@@ -65,6 +65,7 @@ const Calculatoare = () => {
             categories={compCategories}
             breadcrumbs={computersBrcrmbs}
             brands={brands}
+            brandLink={'/calculatoare/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

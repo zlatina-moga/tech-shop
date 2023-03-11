@@ -138,6 +138,16 @@ export const refComputersBrcrmbs = [
   { name: "Refurbished", link: "/calculatoare/refurbished" },
 ];
 
+export const brandComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "" },
+];
+
 export const componentBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Componente", link: "/componente" },
@@ -381,6 +391,12 @@ export const laptopBrcrmbs = [
   { name: "Laptopuri", link: "/laptop" },
 ];
 
+export const laptopBrandBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
+  { name: "Brand", link: "" },
+];
+
 export const laptopRefurbishedBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
@@ -441,7 +457,10 @@ export const monitorTouchSHBrcrmbs = [
     link: "/monitoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Touchscreen Refurbished", link: "/monitoare/touchscreen-refurbished" },
+  {
+    name: "Touchscreen Refurbished",
+    link: "/monitoare/touchscreen-refurbished",
+  },
 ];
 
 export const monitorTouchScreenSHBrcrmbs = [
@@ -529,7 +548,10 @@ export const serverNewBrcrmbs = [
 export const serverRackBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
-  { name: "Cabinet Rack Refurbished ", link: "/servere/cabinet-rack-refurbished" },
+  {
+    name: "Cabinet Rack Refurbished ",
+    link: "/servere/cabinet-rack-refurbished",
+  },
 ];
 
 export const serverSHBrcrmbs = [
@@ -560,7 +582,10 @@ export const posPrinterBrcrmbs = [
     link: "/sisteme-pos",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Imprimante Termice Noi", link: "/sisteme-pos/imprimante-termice-noi" },
+  {
+    name: "Imprimante Termice Noi",
+    link: "/sisteme-pos/imprimante-termice-noi",
+  },
 ];
 
 export const posNewBrcrmbs = [
@@ -679,36 +704,60 @@ export const softwareBrcrmbs = [
 
 export const windowsBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
-  { name: 'Windows', link: '/licenta-software/windows' },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Windows", link: "/licenta-software/windows" },
 ];
 
 export const officeBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
-  { name: 'Microsoft Office', link: '/licenta-software/office' },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Microsoft Office", link: "/licenta-software/office" },
 ];
 
 export const visioBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
-  { name: 'Microsoft Visio', link: '/licenta-software/microsoft-visio' },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Microsoft Visio", link: "/licenta-software/microsoft-visio" },
 ];
 
 export const projectBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
-  { name: 'Microsoft Project', link: '/licenta-software/project' },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Microsoft Project", link: "/licenta-software/project" },
 ];
 
 export const adobeBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
-  { name:"Adobe", link: '/licenta-software/adobe' },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Adobe", link: "/licenta-software/adobe" },
 ];
 
 export const antivurusBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Software", link: "/licenta-software", linkIcon: "fa fa-angle-double-right" },
-  { name: "Antivirus", link: '/licenta-software/antivirus' },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Antivirus", link: "/licenta-software/antivirus" },
 ];

@@ -6,8 +6,6 @@ import Loader from "../../../components/global/Loader/Loader";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { secondHandComputersBrcrmbs } from "../../../data/breadcrumbs";
 
-const features = ["Procesor", "RAM" ];
-
 const SecondHandCompDetails = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -31,7 +29,7 @@ const SecondHandCompDetails = () => {
       <Navbar />
       {loading ? (
         <Loader />
-      ) : <SingleDetailedView itemData={itemData} features={features} breadcrumbs={secondHandComputersBrcrmbs}/>}
+      ) : <SingleDetailedView itemData={itemData} breadcrumbs={secondHandComputersBrcrmbs}/>}
     </>
   );
 };

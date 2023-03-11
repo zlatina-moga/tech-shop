@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import Meta from "../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -15,12 +16,15 @@ import cartIcon from "../../public/svg/cart.svg";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { addProduct } from "../../services/redux/cartRedux";
+import classNames from "classnames";
 
 const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
+  const [clicked, setClicked] = useState(false);
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1 }));
+    setClicked(true);
   };
 
   return (
@@ -278,7 +282,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                         Pretul include Eco-Taxa de 6.00 lei
                       </p>
                       <button
-                        className="btn btn-primary add-to-cart"
+                        className={classNames(
+                          "btn btn-primary add-to-cart",
+                          clicked ? "disabled" : ""
+                        )}
                         onClick={handleAddToCart}
                       >
                         Adauga in cos

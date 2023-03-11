@@ -9,7 +9,11 @@ export const getAllRefurbishedLaptops = (page) => request.get(`${baseUrl}/laptop
 
 export const getAllNewLaptops = (page) => request.get(`${baseUrl}/laptop/noi-1?page=${page}`)
 
+export const getAllLaptopsByBrand = (page, slug) => request.get(`${baseUrl}/laptop/brand?brand=${slug}&page=${page}`)
+
 export const getAllComputers = (page) => request.get(`${baseUrl}/calculatoare?page=${page}`)
+
+export const getAllComputersByBrand = (page, slug) => request.get(`${baseUrl}/calculatoare/brand?brand=${slug}&page=${page}`)
 
 export const getAllSecondHandComputers = (page) => request.get(`${baseUrl}/calculatoare/second-hand?page=${page}`)
 
