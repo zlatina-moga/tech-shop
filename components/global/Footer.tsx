@@ -46,19 +46,19 @@ const Footer = () => {
             <div className="col-md-4 mb-5">
               <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
               <div className="d-flex flex-column justify-content-start">
-                <Link className="text-dark mb-2" href="/">
-                  <i className="fa fa-angle-right mr-2"></i>Home
+                <Link className="text-dark mb-2" href="/laptop">
+                  <i className="fa fa-angle-right mr-2"></i>Laptopuri
                 </Link>
-                <Link className="text-dark mb-2" href="">
-                  <i className="fa fa-angle-right mr-2"></i>Our Shop
+                <Link className="text-dark mb-2" href="/calculatoare">
+                  <i className="fa fa-angle-right mr-2"></i>Calculatoare
                 </Link>
-                <Link className="text-dark mb-2" href="">
-                  <i className="fa fa-angle-right mr-2"></i>Shop Detail
+                <Link className="text-dark mb-2" href="/servere">
+                  <i className="fa fa-angle-right mr-2"></i>Servere
                 </Link>
                 <Link className="text-dark mb-2" href="/my-cart">
                   <i className="fa fa-angle-right mr-2"></i>Shopping Cart
                 </Link>
-                <Link className="text-dark mb-2" href="">
+                <Link className="text-dark mb-2" href="/checkout">
                   <i className="fa fa-angle-right mr-2"></i>Checkout
                 </Link>
                 <Link className="text-dark" href="">

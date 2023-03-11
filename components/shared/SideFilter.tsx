@@ -40,7 +40,7 @@ const SideFilter = ({ categories, breadcrumbs, brands, brandLink }) => {
                   }}
                 >
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
-                    Calitate
+                    Tip
                   </h4>
                   {categories.map((c, idx) => (
                     <li
