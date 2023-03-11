@@ -13,6 +13,14 @@ export default function Home() {
         <main style={{ paddingTop: "150px" }}>
           <Sidebar />
 
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Link href='/computer-builder' style={{width: '100%'}}>
+              <button className="btn bg-primary" id="build-btn">
+                Build your own computer
+              </button>
+            </Link>
+          </div>
+
           {/*<!-- Featured Start -->*/}
           <div className="container-fluid pt-5">
             <div className="row px-xl-5 pb-3">

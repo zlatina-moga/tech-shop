@@ -54,7 +54,7 @@ const Laptopuri = () => {
 
   return (
     <>
-      <Navbar />
+      
       {loading ? (
         <Loader />
       ) : (

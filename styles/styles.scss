@@ -448,12 +448,12 @@ form .auth-field {
 
 #upgrade-links {
   background-color: white;
-  border: 1px solid #6AB04C;
+  border: 1px solid #6ab04c;
   li {
     a {
       color: black;
       &:hover {
-        background-color: #6AB04C;
+        background-color: #6ab04c;
         color: white;
       }
     }
@@ -461,21 +461,34 @@ form .auth-field {
 }
 
 #product-link:hover {
-  color: #F1C705 !important;
+  color: #f1c705 !important;
 }
 
 #remove-btn:hover {
   background-color: transparent !important;
   color: red !important;
 }
-.form-select{ 
+.form-select {
   border-radius: 4px !important;
-  border: 1px solid #EDF1FF !important;
+  border: 1px solid #edf1ff !important;
   color: #495057 !important;
 }
 
-
 .form-select:focus {
-  border-color: #EDF1FF !important;
+  border-color: #edf1ff !important;
   box-shadow: none !important;
+}
+
+#build-btn {
+  color: white;
+  width: 100%;
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 20px;
+  box-shadow: -3px 4px 35px 0px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: -3px 4px 35px 0px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: -3px 4px 35px 0px rgba(0, 0, 0, 0.35);
+  &:hover {
+    background-color: #b7d945 !important;
+  }
 }
