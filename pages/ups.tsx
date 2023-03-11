@@ -65,6 +65,7 @@ const UPS = () => {
             categories={upsCategories}
             breadcrumbs={upsBrcrmbs}
             brands={brands}
+            brandLink={'/ups/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -65,6 +65,7 @@ const Monitoare = () => {
             categories={monitorCategories}
             breadcrumbs={monitorBrcrmbs}
             brands={brands}
+            brandLink={'/monitoare/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

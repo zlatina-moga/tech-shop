@@ -65,6 +65,7 @@ const Componente = () => {
             categories={componentCategories}
             breadcrumbs={componentBrcrmbs}
             brands={brands}
+            brandLink={'/componente/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

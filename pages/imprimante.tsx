@@ -65,6 +65,7 @@ const Imprimante = () => {
             categories={printerCategories}
             breadcrumbs={printerBrcrmbs}
             brands={brands}
+            brandLink={'/imprimante/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

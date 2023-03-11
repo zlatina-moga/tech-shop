@@ -65,6 +65,7 @@ const Laptopuri = () => {
             categories={serverCategories}
             breadcrumbs={serverBrcrmbs}
             brands={brands}
+            brandLink={'/servere/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

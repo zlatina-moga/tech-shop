@@ -65,6 +65,7 @@ const Workstations = () => {
             categories={workstationCategories}
             breadcrumbs={workstationBrcrmbs}
             brands={brands}
+            brandLink={'/workstation/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

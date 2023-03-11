@@ -66,6 +66,7 @@ const SistemePOS = () => {
             categories={posCategories}
             breadcrumbs={posBrcrmbs}
             brands={brands}
+            brandLink={'/sisteme-pos/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

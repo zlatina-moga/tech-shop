@@ -65,6 +65,7 @@ const SolarPanels = () => {
             categories={solarCategories}
             breadcrumbs={solarBrcrmbs}
             brands={brands}
+            brandLink={'/sisteme-solare-fotovoltaice/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

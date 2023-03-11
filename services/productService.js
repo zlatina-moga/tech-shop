@@ -23,6 +23,8 @@ export const getAllRefurbishedComputers = (page) => request.get(`${baseUrl}/calc
 
 export const getAllServers = (page) => request.get(`${baseUrl}/servere?page=${page}`)
 
+export const getAllServersByBrand = (page, slug) => request.get(`${baseUrl}/servere/brand?brand=${slug}&page=${page}`)
+
 export const getAllSecondHandServers = (page) => request.get(`${baseUrl}/servere/second-hand-2?page=${page}`)
 
 export const getAllRefurbishedServers = (page) => request.get(`${baseUrl}/servere/refurbished-2?page=${page}`)
@@ -33,11 +35,15 @@ export const getAllRackServers = (page) => request.get(`${baseUrl}/servere/cabin
 
 export const getAllWorkstations = (page) => request.get(`${baseUrl}/workstation?page=${page}`)
 
+export const getAllWorkstationsByBrand = (page, slug) => request.get(`${baseUrl}/workstation/brand?brand=${slug}&page=${page}`)
+
 export const getRefurbishedWorkstations = (page) => request.get(`${baseUrl}/workstation/refurbished-3?page=${page}`)
 
 export const getSecondHandWorkstations = (page) => request.get(`${baseUrl}/workstation/second-hand-3?page=${page}`)
 
 export const geAllMonitors = (page) => request.get(`${baseUrl}/monitoare?page=${page}`)
+
+export const geAllBrandMonitors = (page, slug) => request.get(`${baseUrl}/monitoare/brand?brand=${slug}&page=${page}`)
 
 export const geAllNewMonitors = (page) => request.get(`${baseUrl}/monitoare/noi-4?page=${page}`)
 
@@ -50,6 +56,8 @@ export const getAllTSRefMonitors = (page) => request.get(`${baseUrl}/monitoare/t
 export const getAllSecHandTSMonitors = (page) => request.get(`${baseUrl}/monitoare/touchscreen-second?page=${page}`)
 
 export const geAllComponents = (page) => request.get(`${baseUrl}/componente?page=${page}`)
+
+export const geAllBrandComponents = (page, slug) => request.get(`${baseUrl}/componente/brand?brand=${slug}&page=${page}`)
 
 export const getAllHardDisks = (page) => request.get(`${baseUrl}/componente/hard-disk?page=${page}`)
 
@@ -89,7 +97,11 @@ export const geAllSoftware = (page) => request.get(`${baseUrl}/licenta-software?
 
 export const geAllPrinters = (page) => request.get(`${baseUrl}/imprimante?page=${page}`)
 
+export const geAllBrandPrinters = (page, slug) => request.get(`${baseUrl}/imprimante/brand?brand=${slug}&page=${page}`)
+
 export const geAllPOS = (page) => request.get(`${baseUrl}/sisteme-pos?page=${page}`)
+
+export const geAllPOSBrands = (page, slug) => request.get(`${baseUrl}/sisteme-pos/brand?brand=${slug}&page=${page}`)
 
 export const getAllRefurbishedPOS = (page) => request.get(`${baseUrl}/sisteme-pos/refurbished-6?page=${page}`)
 
@@ -103,6 +115,8 @@ export const getAllPOSPrinters = (page) => request.get(`${baseUrl}/sisteme-pos/i
 
 export const getAllUPS = (page) => request.get(`${baseUrl}/ups?page=${page}`)
 
+export const getAllUPSBrands = (page, slug) => request.get(`${baseUrl}/ups/brand?brand=${slug}&page=${page}`)
+
 export const getAllRefurbishedUPS = (page) => request.get(`${baseUrl}/ups/refurbished-7?page=${page}`)
 
 export const getAlllNewUPS = (page) => request.get(`${baseUrl}/ups/noi-7?page=${page}`)
@@ -111,9 +125,15 @@ export const getAllSecondHandUPS = (page) => request.get(`${baseUrl}/ups/second-
 
 export const geAllAccessories = (page) => request.get(`${baseUrl}/accesorii?page=${page}`)
 
+export const getAllBrandAccessories = (page, slug) => request.get(`${baseUrl}/accesorii/brand?brand=${slug}&page=${page}`)
+
 export const geAllRetails = (page) => request.get(`${baseUrl}/retelistica?page=${page}`)
 
+export const geAllRetailsBrand = (page, slug) => request.get(`${baseUrl}/retelistica/brand?brand=${slug}&page=${page}`)
+
 export const geAllSolarPanels = (page) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice?page=${page}`)
+
+export const geAllSolarPanelsBrands = (page, slug) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice/brand?brand=${slug}&page=${page}`)
 
 export const getAllNewPrinters = (page) => request.get(`${baseUrl}/imprimante/noi-3?page=${page}`)
 

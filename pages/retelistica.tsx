@@ -65,6 +65,7 @@ const Retails = () => {
             categories={networkCategories}
             breadcrumbs={networkBrcrmbs}
             brands={brands}
+            brandLink={'/retelistica/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
