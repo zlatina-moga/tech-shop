@@ -119,9 +119,6 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                       </div>
                     )}
                     <div className="price-container">
-                      <h4 className="price" style={{ color: "#6C757D" }}>
-                        {item.priceNoTva}
-                      </h4>
                       <h3 className="mb-3 price">{item.price} (TVA inclus)</h3>
                       <div className="delivery mb-3">
                         <Image src={truckIcon} alt="delivery" />

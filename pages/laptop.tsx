@@ -54,18 +54,18 @@ const Laptopuri = () => {
 
   return (
     <>
-      
       {loading ? (
         <Loader />
       ) : (
         <>
+          <Navbar />
           <LaptopsPage
             title="Laptopuri"
             laptopsData={laptopsData}
             categories={laptopCategories}
             breadcrumbs={laptopBrcrmbs}
             brands={brands}
-            brandLink={'/laptop/brand/'}
+            brandLink={"/laptop/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

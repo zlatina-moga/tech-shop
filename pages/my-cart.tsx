@@ -52,7 +52,7 @@ const MyCard = () => {
             </table>
           </div>
           <div className="col-lg-4">
-            <form className="mb-3" action="" style={{ marginTop: "-20px" }}>
+            {/*<form className="mb-3" action="" style={{ marginTop: "-20px" }}>
               <div className="input-group">
                 <input
                   type="text"
@@ -63,7 +63,7 @@ const MyCard = () => {
                   <button className="btn btn-primary">Use points</button>
                 </div>
               </div>
-            </form>
+                </form>*/}
             <div className="card border-secondary mb-4">
               <div className="card-header bg-secondary border-0">
                 <h4 className="font-weight-semi-bold m-0">Cart Summary</h4>
@@ -73,12 +73,6 @@ const MyCard = () => {
                   <h6 className="font-weight-medium">Subtotal</h6>
                   <h6 className="font-weight-medium">
                     {cart.total.toFixed(2)} Lei
-                  </h6>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <h6 className="font-weight-medium">TVA</h6>
-                  <h6 className="font-weight-medium">
-                    {cart.tvaTotal.toFixed(2)} Lei
                   </h6>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -94,7 +88,7 @@ const MyCard = () => {
                 <div className="d-flex justify-content-between mt-2">
                   <h5 className="font-weight-bold">Total</h5>
                   <h5 className="font-weight-bold">
-                    {cart.grandTotal.toFixed(2)} Lei
+                    {cart.total.toFixed(2)} Lei
                   </h5>
                 </div>
                 <Link className="btn btn-block btn-primary my-3 py-3" href='/checkout'>

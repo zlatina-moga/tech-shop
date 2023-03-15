@@ -19,8 +19,6 @@ const initialValues: IFillTheForm = {
   password: "",
 };
 
-const baseUrl = "http://localhost:5500";
-
 const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formState, setFormState] = useState<boolean>(true);

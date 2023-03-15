@@ -17,6 +17,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { addProduct } from "../../services/redux/cartRedux";
 import classNames from "classnames";
+import toast, { Toaster } from "react-hot-toast";
 
 const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1 }));
     setClicked(true);
+    toast.success("Product added to cart", {
+      style: { marginTop: "100px" },
+    });
   };
 
   return (
@@ -262,9 +266,6 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                     <div className="price-container">
                       {item.price && (
                         <>
-                          <h4 className="price" style={{ color: "#6C757D" }}>
-                            {item.priceNoTva}
-                          </h4>
                           <h3 className="mb-3 price">
                             {item.price} (TVA inclus)
                           </h3>
@@ -354,6 +355,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                   ))}
                 </div>
               </div>
+              <Toaster position="top-right" />
             </div>
           </div>
         ))}
