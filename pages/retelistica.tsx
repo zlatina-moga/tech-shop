@@ -4,9 +4,10 @@ import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../hooks/usePagination";
+import { usePagination } from "../hooks/usePagination";
 import { networkCategories } from "../data/categories";
 import { networkBrcrmbs } from "../data/breadcrumbs";
+import MainSkeleton from "../components/shared/MainSkeleton";
 
 const Retails = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -56,7 +57,7 @@ const Retails = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+         <MainSkeleton />
       ) : (
         <>
           <LaptopsPage

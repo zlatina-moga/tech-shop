@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
-import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../../hooks/usePagination";
+import { usePagination } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { bagsBreadCrmbs } from "../../data/breadcrumbs";
+import MainSkeleton from "../../components/shared/MainSkeleton";
 
 const Bags = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -48,10 +48,15 @@ const Bags = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+        <MainSkeleton />
       ) : (
         <>
-        <LaptopsPage title="Genti" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={bagsBreadCrmbs} />
+          <LaptopsPage
+            title="Genti"
+            laptopsData={laptopsData}
+            categories={accessoryCategories}
+            breadcrumbs={bagsBreadCrmbs}
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

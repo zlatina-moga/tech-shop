@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
-import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../../hooks/usePagination";
+import { usePagination } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
 import { carcasaBrcrmbs } from "../../data/breadcrumbs";
+import MainSkeleton from "../../components/shared/MainSkeleton";
 
 const Cases = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -48,7 +48,7 @@ const Cases = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+         <MainSkeleton />
       ) : (
         <>
           <LaptopsPage

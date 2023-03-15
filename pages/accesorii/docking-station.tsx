@@ -3,9 +3,10 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../../hooks/usePagination";
+import { usePagination } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { dockingBreadCrmbs } from "../../data/breadcrumbs";
+import MainSkeleton from "../../components/shared/MainSkeleton";
 
 const DockingStations = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -48,7 +49,7 @@ const DockingStations = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+        <MainSkeleton />
       ) : (
         <>
         <LaptopsPage title="Docking Station" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={dockingBreadCrmbs}/>

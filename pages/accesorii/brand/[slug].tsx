@@ -4,8 +4,8 @@ import * as productService from "../../../services/productService";
 import LaptopsPage from "../../../components/shared/LaptopsPage";
 import { usePagination } from "../../../hooks/usePagination";
 import Navbar from "../../../components/global/Navbar";
-import Loader from "../../../components/global/Loader/Loader";
 import { accessoryBrandBreadCrmbs } from "../../../data/breadcrumbs";
+import MainSkeleton from "../../../components/shared/MainSkeleton";
 
 const BrandDetail = () => {
   const router = useRouter();
@@ -56,7 +56,7 @@ const BrandDetail = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+         <MainSkeleton />
       ) : (
         <>
           <LaptopsPage

@@ -3,6 +3,8 @@ import { AppLayout } from "../components/layouts/AppLayout";
 import { AuthProvider } from "../contexts/AuthContext";
 import { Provider } from "react-redux";
 import store from "../services/redux/store";
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
 import "../styles/styles.scss";
@@ -21,7 +23,9 @@ const MyApp = ({ Component, pageProps }) => {
       <Provider store={store}>
         <AuthProvider>
           <AppLayout>
-            <Component {...pageProps} />
+            <SkeletonTheme baseColor="#F0F0F0" highlightColor="#E8E3DF">
+              <Component {...pageProps} />
+            </SkeletonTheme>
           </AppLayout>
         </AuthProvider>
       </Provider>

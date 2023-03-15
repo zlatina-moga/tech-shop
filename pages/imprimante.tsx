@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
-import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../hooks/usePagination";
+import { usePagination, } from "../hooks/usePagination";
 import { printerCategories } from "../data/categories";
 import { printerBrcrmbs } from "../data/breadcrumbs";
+import MainSkeleton from "../components/shared/MainSkeleton";
 
 const Imprimante = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -56,7 +56,7 @@ const Imprimante = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+         <MainSkeleton />
       ) : (
         <>
           <LaptopsPage

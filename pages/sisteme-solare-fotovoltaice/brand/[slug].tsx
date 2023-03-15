@@ -4,7 +4,7 @@ import * as productService from "../../../services/productService";
 import LaptopsPage from "../../../components/shared/LaptopsPage";
 import { usePagination } from "../../../hooks/usePagination";
 import Navbar from "../../../components/global/Navbar";
-import Loader from "../../../components/global/Loader/Loader";
+import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { solarBrandsBrcrmbs } from "../../../data/breadcrumbs";
 
 const BrandDetail = () => {
@@ -56,7 +56,7 @@ const BrandDetail = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+         <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
