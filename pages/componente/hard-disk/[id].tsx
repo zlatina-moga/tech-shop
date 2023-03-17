@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
-import Loader from "../../../components/global/Loader/Loader";
+import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { hardDiskBrcrmbs } from "../../../data/breadcrumbs";
 
@@ -28,7 +28,7 @@ const HardDiskDetails = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+        <DetailPageSkeleton />
       ) : <SingleItemView itemData={itemData} breadcrumbs={hardDiskBrcrmbs} />}
     </>
   );

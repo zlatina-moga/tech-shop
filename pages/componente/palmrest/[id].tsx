@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
-import Loader from "../../../components/global/Loader/Loader";
+import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { palmrestBrcrmbs } from "../../../data/breadcrumbs";
 
@@ -27,7 +27,7 @@ const PalmrestDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : <SingleItemView itemData={itemData} breadcrumbs={palmrestBrcrmbs} />}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={palmrestBrcrmbs} />}
     </>
   );
 };

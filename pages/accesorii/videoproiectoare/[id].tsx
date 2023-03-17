@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
-import Loader from "../../../components/global/Loader/Loader";
+import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { videoBreadCrmbs } from "../../../data/breadcrumbs";
 
@@ -27,7 +27,7 @@ const VideoDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : <SingleItemView itemData={itemData} breadcrumbs={videoBreadCrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={videoBreadCrmbs}/>}
     </>
   );
 };

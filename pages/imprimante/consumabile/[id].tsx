@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
-import Loader from "../../../components/global/Loader/Loader";
+import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { printerConsumablesBrcrmbs } from "../../../data/breadcrumbs";
 
@@ -28,7 +28,7 @@ const NewPrinterDetails = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+       <DetailPageSkeleton />
       ) : <SingleItemView itemData={itemData} breadcrumbs={printerConsumablesBrcrmbs}/>}
     </>
   );

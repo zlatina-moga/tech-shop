@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
-import Loader from "../../../components/global/Loader/Loader";
+import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { upsSHBrcrmbs } from "../../../data/breadcrumbs";
 
@@ -27,7 +27,7 @@ const SecondHandUPSDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : <SingleItemView itemData={itemData} breadcrumbs={upsSHBrcrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={upsSHBrcrmbs}/>}
     </>
   );
 };

@@ -2,11 +2,9 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
-import Loader from "../../../components/global/Loader/Loader";
+import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import {serverRackBrcrmbs } from "../../../data/breadcrumbs";
-
-const features = ["Procesor", "Memorie"];
 
 const RackServerDetails = () => {
   const router = useRouter();
@@ -29,7 +27,7 @@ const RackServerDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : <SingleItemView itemData={itemData} breadcrumbs={serverRackBrcrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={serverRackBrcrmbs}/>}
     </>
   );
 };
