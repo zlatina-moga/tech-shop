@@ -238,14 +238,6 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                       <Image src={transportIcon} alt="quality" />
                       <p>Livrare gratuita la comanda de peste 250 lei</p>
                     </div>
-                    <div className="d-flex align-items-center img-container">
-                      <Image src={walletIcon} alt="payment" />
-                      <p>Modalitati de plata</p>
-                    </div>
-                    <div className="d-flex align-items-center img-container">
-                      <Image src={cartIcon} alt="cart" />
-                      <p>Politica de retur</p>
-                    </div>
                   </div>
                   <div className="second-container">
                     {item.discount && (
