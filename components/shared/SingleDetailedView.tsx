@@ -22,6 +22,7 @@ import toast, { Toaster } from "react-hot-toast";
 const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
+  const [price, setPrice] = useState('');
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1 }));
@@ -91,138 +92,112 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                 </div>
                 <div className="col-lg-7 pb-5 parent-container">
                   <div className="first-container">
-                    <div className="features-list">
-                      <div className="features-key">
-                        {/*features.map((f, idx) => (
-                          <p key={idx}>{f}:</p>
-                        ))*/}
-                        <p>{item.upgradeTitle}</p>
-                        <p>{item.upgradeTitle2}</p>
-                      </div>
-                      <div className="features-value">
-                        <div
-                          className="dropend"
-                          style={{
-                            borderRadius: "4px",
-                            marginBottom: "1rem",
-                          }}
-                        >
-                          <button
-                            className="btn border dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            {item.defaultProcesor}
-                          </button>
-                          <ul className="dropdown-menu" id="upgrade-links">
-                            <li>
-                              <Link
-                                href="#"
-                                className="dropdown-item"
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  alignItems: "center",
-                                }}
-                              >
-                                {item.defaultProcesor}
-                                <i
-                                  className="fas fa-check"
-                                  style={{
-                                    color: "#6AB04C",
-                                    marginLeft: "10px",
-                                  }}
-                                ></i>
-                              </Link>
-                            </li>
-                            {item.upgradeLink1 && (
-                              <li>
-                                <Link
-                                  className="dropdown-item"
-                                  data-target={item.upgradeLink1}
-                                  href={item.upgradeLink1}
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  {item.upgradeOption1 + "Lei"}
-                                </Link>
-                              </li>
-                            )}
-                            {/*item.upgradeLink2 && (
-                              <li>
-                                <Link
-                                  className="dropdown-item"
-                                  data-target={item.upgradeLink2}
-                                  href={item.upgradeLink2}
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  {item.upgradeOption2 + "Lei"}
-                                </Link>
-                              </li>
-                                )*/}
-                            {/* <li>
-                              <Link
-                                className="dropdown-item"
-                                data-target={item.upgradeLink3}
-                                href={item.upgradeLink3}
-                              >
-                                {item.upgradeOption3 + "Lei"}
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                className="dropdown-item"
-                                data-target={item.upgradeLink4}
-                                href={item.upgradeLink4}
-                              >
-                                {item.upgradeOption4 + "Lei"}
-                              </Link>
-                                </li>*/}
-                          </ul>
+                    {item.upgradeOptions && (
+                      <div className="features-list">
+                        <div className="features-key">
+                          {item.upgradeOptions.map((f, idx) => (
+                            <p key={idx}>{f.name}:</p>
+                          ))}
+                          {item.warrantyOptions && (
+                            <p>Adauga extra garantie:</p>
+                          )}
                         </div>
-                        <div
-                          className="dropend"
-                          style={{
-                            borderRadius: "4px",
-                            marginBottom: "1rem",
-                          }}
-                        >
-                          <button
-                            className="btn border dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            {item.defaultRam}
-                          </button>
-                          <ul className="dropdown-menu">
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Action
-                              </a>
-                            </li>
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Another action
-                              </a>
-                            </li>
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Something else here
-                              </a>
-                            </li>
-                          </ul>
+                        <div className="features-value">
+                          {item.upgradeOptions.map((option, i) => (
+                            <div
+                              key={i}
+                              className="dropend"
+                              style={{
+                                borderRadius: "4px",
+                                marginBottom: "1rem",
+                              }}
+                            >
+                              <button
+                                className="btn border dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                {option.current_name}
+                              </button>
+                              <ul className="dropdown-menu" id="upgrade-links">
+                                {option.components.map((extra, index) => (
+                                  <li key={index}>
+                                    <Link
+                                      className="dropdown-item"
+                                      data-target={extra.url}
+                                      href={extra.url.split("/").pop()}
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      {extra.name}
+
+                                      {extra.is_current ? (
+                                        <i
+                                          className="fas fa-check"
+                                          style={{
+                                            color: "#6AB04C",
+                                            marginLeft: "10px",
+                                          }}
+                                        ></i>
+                                      ) : (
+                                        <span className="ml-3 font-weight-bold">
+                                          {extra.price_variation}
+                                          {" Lei"}
+                                        </span>
+                                      )}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                          {item.warrantyOptions && (
+                            <div
+                              className="dropend"
+                              style={{
+                                borderRadius: "4px",
+                                marginBottom: "1rem",
+                              }}
+                            >
+                              <button
+                                className="btn border dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Alege garantia
+                              </button>
+                              <ul className="dropdown-menu" id="upgrade-links">
+                                {item.warrantyOptions.map((w, i) => (
+                                  <li key={i}>
+                                    <button
+                                      className="dropdown-item"
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                        color: "black",
+                                      }}
+                                    
+                                    >
+                                      {w.name}
+                                      <span className="ml-3 font-weight-bold">
+                                        {w.value_with_vat}
+                                        {" Lei"}
+                                      </span>
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
+                    )}
 
                     <p className="mb-4 details">
                       Toate fotografiile produselor prezentate au caracter

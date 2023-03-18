@@ -22,28 +22,29 @@ const Pagination = ({ totalPages }) => {
       <ul className="pagination justify-content-center flex-wrap">
         <>
           <li className="page-item">
-            <a className="page-link" href="#" tabIndex={-1} onClick={prevPage}>
+            <Link className="page-link" href="#" tabIndex={-1} onClick={prevPage} scroll>
               Previous
-            </a>
+            </Link>
           </li>
           {pageNumbers.map((page) => (
             <li
               className={`page-item ${currentPage == page ? "active" : ""} `}
               key={page}
             >
-              <a
+              <Link
                 className="page-link"
                 href="#"
                 onClick={() => setCurrentPage(page)}
+                scroll
               >
                 {page}
-              </a>
+              </Link>
             </li>
           ))}
           <li className="page-item">
-            <a className="page-link" href="#" onClick={nextPage}>
+            <Link className="page-link" href="#" onClick={nextPage} scroll>
               Next
-            </a>
+            </Link>
           </li>
         </>
       </ul>
