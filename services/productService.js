@@ -1,6 +1,8 @@
 import * as request from "./requester";
 const baseUrl = "http://localhost:5500";
 
+export const getAllProdictsCount = () => request.get(`${baseUrl}`)
+
 export const getAllLaptops = (page) => request.get(`${baseUrl}/laptop?page=${page}`)
 
 export const getAllSecondHandLaptops = (page) => request.get(`${baseUrl}/laptop/second-hand-1?page=${page}`)
