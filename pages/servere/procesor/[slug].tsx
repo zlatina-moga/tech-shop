@@ -1,42 +1,32 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/global/Navbar";
-import * as productService from "../services/productService";
-import * as sortingService from "../services/sortingService";
-import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination } from "../hooks/usePagination";
-import { serverCategories } from "../data/categories";
-import { serverBrcrmbs } from "../data/breadcrumbs";
-import MainSkeleton from "../components/shared/MainSkeleton";
+import { useRouter } from "next/router";
+import * as productService from "../../../services/productService";
+import LaptopsPage from "../../../components/shared/LaptopsPage";
+import { usePagination } from "../../../hooks/usePagination";
+import Navbar from "../../../components/global/Navbar";
+import MainSkeleton from "../../../components/shared/MainSkeleton";
+import { serverProcBrcrmbs } from "../../../data/breadcrumbs";
 
-const Laptopuri = () => {
-  const [laptopsData, setLaptopsData] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
+const ProcDetail = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+  const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [brands, setBrands] = useState([]);
-  const [processors, setProcessors] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     productService
-      .getAllServers(currentPage)
+      .getAllServersByProcessor(currentPage, slug)
       .then((result) => {
         setLoading(false);
-        setLaptopsData(result);
+        seItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+  }, [currentPage, slug]);
 
-  useEffect(() => {
-    sortingService.getBrands(9).then((result) => {
-      setBrands(result);
-    });
-    sortingService.getProcessors(9).then((res) => {
-      setProcessors(res);
-    });
-  }, []);
-
-  const totalPages = laptopsData[0]?.totalPages;
+  const totalPages = itemData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -56,22 +46,23 @@ const Laptopuri = () => {
     }
   };
 
+  let pageTitle = "";
+  if (slug != undefined) {
+    let slugToStr = slug as string;
+    pageTitle = slugToStr.replaceAll('-', ' ')
+  }
+
   return (
     <>
       <Navbar />
       {loading ? (
-        <MainSkeleton />
+         <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
-            title="Servere"
-            laptopsData={laptopsData}
-            categories={serverCategories}
-            breadcrumbs={serverBrcrmbs}
-            brands={brands}
-            brandLink={"/servere/brand/"}
-            processors={processors}
-            processorsLink={"/servere/procesor/"}
+            title={`Servere ${pageTitle}`}
+            laptopsData={itemData}
+            breadcrumbs={serverProcBrcrmbs}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -118,4 +109,4 @@ const Laptopuri = () => {
   );
 };
 
-export default Laptopuri;
+export default ProcDetail;

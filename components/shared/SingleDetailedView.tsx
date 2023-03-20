@@ -11,8 +11,6 @@ import qualityIcon from "../../public/svg/quality.svg";
 import transportIcon from "../../public/svg/transport.svg";
 import payImg from "../../public/images/stripe.png";
 import truckIcon from "../../public/svg/truck.svg";
-import walletIcon from "../../public/svg/money.svg";
-import cartIcon from "../../public/svg/cart.svg";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { addProduct } from "../../services/redux/cartRedux";
@@ -22,7 +20,6 @@ import toast, { Toaster } from "react-hot-toast";
 const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
-  const [price, setPrice] = useState('');
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1 }));
@@ -96,10 +93,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                       <div className="features-list">
                         <div className="features-key">
                           {item.upgradeOptions.map((f, idx) => (
-                            <p key={idx}>{f.name}:</p>
+                            <p className="text-primary" key={idx}>{f.name}:</p>
                           ))}
                           {item.warrantyOptions && (
-                            <p>Adauga extra garantie:</p>
+                            <p className="text-primary">Adauga extra garantie:</p>
                           )}
                         </div>
                         <div className="features-value">

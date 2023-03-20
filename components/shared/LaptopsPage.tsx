@@ -9,7 +9,9 @@ interface ILaptopPage {
   categories?: any[];
   breadcrumbs?: any[];
   brands?: any;
-  brandLink?: string
+  brandLink?: string;
+  processors?: any;
+  processorsLink?: string
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -18,7 +20,9 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   categories,
   breadcrumbs,
   brands,
-  brandLink
+  brandLink,
+  processors,
+  processorsLink
 }) => {
   return (
     <>
@@ -35,6 +39,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           breadcrumbs={breadcrumbs}
           brands={brands}
           brandLink={brandLink}
+          processors={processors}
+          processorsLink={processorsLink}
         />
         <div className="">
           <div className="text-center mb-4">

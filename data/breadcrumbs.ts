@@ -569,6 +569,12 @@ export const serverBrandBrcrmbs = [
   { name: "Brand", link: "" },
 ];
 
+export const serverProcBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right"  },
+  { name: "Procesor", link: "" },
+];
+
 export const serverRefBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },

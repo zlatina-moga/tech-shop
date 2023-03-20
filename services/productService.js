@@ -27,6 +27,8 @@ export const getAllServers = (page) => request.get(`${baseUrl}/servere?page=${pa
 
 export const getAllServersByBrand = (page, slug) => request.get(`${baseUrl}/servere/brand?brand=${slug}&page=${page}`)
 
+export const getAllServersByProcessor = (page, slug) => request.get(`${baseUrl}/servere/procesor?procesor=${slug}&page=${page}`)
+
 export const getAllSecondHandServers = (page) => request.get(`${baseUrl}/servere/second-hand-2?page=${page}`)
 
 export const getAllRefurbishedServers = (page) => request.get(`${baseUrl}/servere/refurbished-2?page=${page}`)

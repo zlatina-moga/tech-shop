@@ -1,6 +1,13 @@
 import Link from "next/link";
 
-const SideFilter = ({ categories, breadcrumbs, brands, brandLink }) => {
+const SideFilter = ({
+  categories,
+  breadcrumbs,
+  brands,
+  brandLink,
+  processors,
+  processorsLink,
+}) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div className="row pr-5">
@@ -39,9 +46,7 @@ const SideFilter = ({ categories, breadcrumbs, brands, brandLink }) => {
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
-                    Tip
-                  </h4>
+                  <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
                   {categories.map((c, idx) => (
                     <li
                       className="nav-item nav-link py-3 sidebar-link"
@@ -95,7 +100,61 @@ const SideFilter = ({ categories, breadcrumbs, brands, brandLink }) => {
                       className="nav-item nav-link py-3 sidebar-link"
                       key={idx}
                     >
-                      <Link href={`${brandLink}${c.slug}-${c.id}`} className="sidebar-link">
+                      <Link
+                        href={`${brandLink}${c.slug}-${c.id}`}
+                        className="sidebar-link"
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+              <nav
+                className="collapse show navbar navbar-vertical navbar-light align-items-start p-0"
+                id="navbar-vertical"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              ></nav>
+            </div>
+          </div>
+        </div>
+      )}
+      {processors && (
+        <div
+          className="sidebar-container mt-4"
+          style={{ display: "block", maxWidth: "280px" }}
+        >
+          <div className="row">
+            <div className="d-none d-lg-block">
+              <nav
+                className="collapse show navbar-vertical navbar-light p-0"
+                id="navbar-vertical-2"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              >
+                <ul
+                  className="navbar-nav overflow-hidden relative"
+                  style={{
+                    borderRadius: "4px",
+                  }}
+                >
+                  <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
+                    Procesor
+                  </h4>
+                  {processors.map((c, idx) => (
+                    <li
+                      className="nav-item nav-link py-3 sidebar-link"
+                      key={idx}
+                    >
+                      <Link
+                        href={`${processorsLink}${c.slug}-${c.id}`}
+                        className="sidebar-link"
+                      >
                         {c.name}
                       </Link>
                     </li>
