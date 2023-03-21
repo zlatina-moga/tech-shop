@@ -13,6 +13,7 @@ const SistemePOS = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
 
   useEffect(() => {
     productService
@@ -29,6 +30,9 @@ const SistemePOS = () => {
     useEffect(() => {
     sortingService.getBrands(34).then((result) => {
       setBrands(result);
+    });
+    sortingService.getProcessors(34).then((res) => {
+      setProcessors(res);
     });
   }, []);
 
@@ -67,6 +71,8 @@ const SistemePOS = () => {
             breadcrumbs={posBrcrmbs}
             brands={brands}
             brandLink={'/sisteme-pos/brand/'}
+            processors={processors}
+            processorsLink={"/sisteme-pos/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

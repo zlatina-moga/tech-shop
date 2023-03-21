@@ -13,9 +13,13 @@ export const getAllNewLaptops = (page) => request.get(`${baseUrl}/laptop/noi-1?p
 
 export const getAllLaptopsByBrand = (page, slug) => request.get(`${baseUrl}/laptop/brand?brand=${slug}&page=${page}`)
 
+export const getAllLaptopsByProcessor = (page, slug) => request.get(`${baseUrl}/laptop/procesor?procesor=${slug}&page=${page}`)
+
 export const getAllComputers = (page) => request.get(`${baseUrl}/calculatoare?page=${page}`)
 
 export const getAllComputersByBrand = (page, slug) => request.get(`${baseUrl}/calculatoare/brand?brand=${slug}&page=${page}`)
+
+export const getAllComputersByProcessor = (page, slug) => request.get(`${baseUrl}/calculatoare/procesor?procesor=${slug}&page=${page}`)
 
 export const getAllSecondHandComputers = (page) => request.get(`${baseUrl}/calculatoare/second-hand?page=${page}`)
 
@@ -40,6 +44,8 @@ export const getAllRackServers = (page) => request.get(`${baseUrl}/servere/cabin
 export const getAllWorkstations = (page) => request.get(`${baseUrl}/workstation?page=${page}`)
 
 export const getAllWorkstationsByBrand = (page, slug) => request.get(`${baseUrl}/workstation/brand?brand=${slug}&page=${page}`)
+
+export const getAllWorkstationsByProcessor = (page, slug) => request.get(`${baseUrl}/workstation/procesor?procesor=${slug}&page=${page}`)
 
 export const getRefurbishedWorkstations = (page) => request.get(`${baseUrl}/workstation/refurbished-3?page=${page}`)
 
@@ -106,6 +112,8 @@ export const geAllBrandPrinters = (page, slug) => request.get(`${baseUrl}/imprim
 export const geAllPOS = (page) => request.get(`${baseUrl}/sisteme-pos?page=${page}`)
 
 export const geAllPOSBrands = (page, slug) => request.get(`${baseUrl}/sisteme-pos/brand?brand=${slug}&page=${page}`)
+
+export const getAllPOSByProcessor = (page, slug) => request.get(`${baseUrl}/sisteme-pos/procesor?procesor=${slug}&page=${page}`)
 
 export const getAllRefurbishedPOS = (page) => request.get(`${baseUrl}/sisteme-pos/refurbished-6?page=${page}`)
 

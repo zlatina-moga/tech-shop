@@ -5,8 +5,12 @@ export const accessoryBreadCrmbs = [
 
 export const accessoryBrandBreadCrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Accesorii", link: "/accesorii", linkIcon: "fa fa-angle-double-right" },
-  { name: "Brand", link: "" },
+  {
+    name: "Accesorii",
+    link: "/accesorii",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
 ];
 
 export const cablesBreadCrmbs = [
@@ -151,7 +155,17 @@ export const brandComputersBrcrmbs = [
     link: "/calculatoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Brand", link: "" },
+  { name: "Brand", link: "#" },
+];
+
+export const procComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
 ];
 
 export const componentBrcrmbs = [
@@ -161,8 +175,12 @@ export const componentBrcrmbs = [
 
 export const componentBrandBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Componente", link: "/componente", linkIcon: "fa fa-angle-double-right" },
-  { name: "Brand", link: "/componente" },
+  {
+    name: "Componente",
+    link: "/componente",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
 ];
 
 export const chargerBrcrmbs = [
@@ -360,8 +378,12 @@ export const printerBrcrmbs = [
 
 export const printerBrandBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Imprimante", link: "/imprimante", linkIcon: "fa fa-angle-double-right" },
-  { name: "Brand", link: "" },
+  {
+    name: "Imprimante",
+    link: "/imprimante",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
 ];
 
 export const printerConsumablesBrcrmbs = [
@@ -412,7 +434,7 @@ export const laptopBrcrmbs = [
 export const laptopBrandBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
-  { name: "Brand", link: "" },
+  { name: "Brand", link: "#" },
 ];
 
 export const laptopRefurbishedBrcrmbs = [
@@ -433,6 +455,12 @@ export const laptopSHBrcrmbs = [
   { name: "Second Hand", link: "/laptop/second-hand-1" },
 ];
 
+export const laptopProcesorBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
+  { name: "Procesor", link: "#" },
+];
+
 export const monitorBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Monitoare", link: "/monitoare" },
@@ -440,8 +468,12 @@ export const monitorBrcrmbs = [
 
 export const monitorBrandBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Monitoare", link: "/monitoare", linkIcon: "fa fa-angle-double-right" },
-  { name: "Brand", link: "" },
+  {
+    name: "Monitoare",
+    link: "/monitoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
 ];
 
 export const monitorNewBrcrmbs = [
@@ -504,8 +536,12 @@ export const networkBrcrmbs = [
 
 export const networkBrandsBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Retelistica", link: "/retelistica", linkIcon: "fa fa-angle-double-right" },
-  { name: "Brand", link: "" },
+  {
+    name: "Retelistica",
+    link: "/retelistica",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
 ];
 
 export const accessPointskBrcrmbs = [
@@ -565,14 +601,14 @@ export const serverBrcrmbs = [
 
 export const serverBrandBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right"  },
-  { name: "Brand", link: "" },
+  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
+  { name: "Brand", link: "#" },
 ];
 
 export const serverProcBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right"  },
-  { name: "Procesor", link: "" },
+  { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
+  { name: "Procesor", link: "#" },
 ];
 
 export const serverRefBrcrmbs = [
@@ -609,8 +645,22 @@ export const posBrcrmbs = [
 
 export const posBrandsBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Sisteme POS", link: "/sisteme-pos", linkIcon: "fa fa-angle-double-right" },
-   { name: "Brand", link: "" },
+  {
+    name: "Sisteme POS",
+    link: "/sisteme-pos",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
+export const posProcBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme POS",
+    link: "/sisteme-pos",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
 ];
 
 export const posReadersBrcrmbs = [
@@ -673,8 +723,12 @@ export const solarBrcrmbs = [
 
 export const solarBrandsBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Sisteme Solare Fotovoltaice", link: "/sisteme-solare-fotovoltaice", linkIcon: "fa fa-angle-double-right" },
-  { name: "Brand", link: "" },
+  {
+    name: "Sisteme Solare Fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
 ];
 
 export const solarInvertorsBrcrmbs = [
@@ -710,8 +764,8 @@ export const upsBrcrmbs = [
 
 export const upsBrandsBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right"},
-  { name: "Brand", link: "" },
+  { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
+  { name: "Brand", link: "#" },
 ];
 
 export const upsNewBrcrmbs = [
@@ -739,8 +793,22 @@ export const workstationBrcrmbs = [
 
 export const workstationBrandBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
-  { name: "Workstation", link: "/workstation", linkIcon: "fa fa-angle-double-right" },
-  { name: "Brand", link: "" },
+  {
+    name: "Workstation",
+    link: "/workstation",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
+export const workstationProcBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Workstation",
+    link: "/workstation",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
 ];
 
 export const workstationRefBrcrmbs = [

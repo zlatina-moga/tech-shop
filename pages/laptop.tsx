@@ -13,6 +13,7 @@ const Laptopuri = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
 
   useEffect(() => {
     productService
@@ -29,6 +30,9 @@ const Laptopuri = () => {
   useEffect(() => {
     sortingService.getBrands(5).then((result) => {
       setBrands(result);
+    });
+    sortingService.getProcessors(5).then((res) => {
+      setProcessors(res);
     });
   }, []);
 
@@ -66,6 +70,8 @@ const Laptopuri = () => {
             breadcrumbs={laptopBrcrmbs}
             brands={brands}
             brandLink={"/laptop/brand/"}
+            processors={processors}
+            processorsLink={"/laptop/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

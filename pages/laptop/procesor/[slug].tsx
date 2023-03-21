@@ -1,42 +1,32 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/global/Navbar";
-import * as productService from "../services/productService";
-import * as sortingService from "../services/sortingService";
-import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination } from "../hooks/usePagination";
-import { workstationCategories } from "../data/categories";
-import { workstationBrcrmbs } from "../data/breadcrumbs";
-import MainSkeleton from "../components/shared/MainSkeleton";
+import { useRouter } from "next/router";
+import * as productService from "../../../services/productService";
+import LaptopsPage from "../../../components/shared/LaptopsPage";
+import { usePagination } from "../../../hooks/usePagination";
+import Navbar from "../../../components/global/Navbar";
+import MainSkeleton from "../../../components/shared/MainSkeleton";
+import { procComputersBrcrmbs } from "../../../data/breadcrumbs";
 
-const Workstations = () => {
-  const [laptopsData, setLaptopsData] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
+const ProcDetail = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+  const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [brands, setBrands] = useState([]);
-  const [processors, setProcessors] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     productService
-      .getAllWorkstations(currentPage)
+      .getAllLaptopsByProcessor(currentPage, slug)
       .then((result) => {
         setLoading(false);
-        setLaptopsData(result);
+        seItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+  }, [currentPage, slug]);
 
-  useEffect(() => {
-    sortingService.getBrands(15).then((result) => {
-      setBrands(result);
-    });
-    sortingService.getProcessors(15).then((res) => {
-      setProcessors(res);
-    });
-  }, []);
-
-  const totalPages = laptopsData[0]?.totalPages;
+  const totalPages = itemData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -56,22 +46,23 @@ const Workstations = () => {
     }
   };
 
+  let pageTitle = "";
+  if (slug != undefined) {
+    let slugToStr = slug as string;
+    pageTitle = slugToStr.replaceAll('-', ' ')
+  }
+
   return (
     <>
       <Navbar />
       {loading ? (
-        <MainSkeleton />
+         <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
-            title="Workstation"
-            laptopsData={laptopsData}
-            categories={workstationCategories}
-            breadcrumbs={workstationBrcrmbs}
-            brands={brands}
-            brandLink={"/workstation/brand/"}
-            processors={processors}
-            processorsLink={"/workstation/procesor/"}
+            title={`Laptopuri ${pageTitle}`}
+            laptopsData={itemData}
+            breadcrumbs={procComputersBrcrmbs}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -118,4 +109,4 @@ const Workstations = () => {
   );
 };
 
-export default Workstations;
+export default ProcDetail;

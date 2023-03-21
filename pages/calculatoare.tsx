@@ -13,6 +13,7 @@ const Calculatoare = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
 
   useEffect(() => {
     productService
@@ -29,6 +30,9 @@ const Calculatoare = () => {
   useEffect(() => {
     sortingService.getBrands(1).then((result) => {
       setBrands(result);
+    });
+    sortingService.getProcessors(1).then((res) => {
+      setProcessors(res);
     });
   }, []);
 
@@ -66,6 +70,8 @@ const Calculatoare = () => {
             breadcrumbs={computersBrcrmbs}
             brands={brands}
             brandLink={'/calculatoare/brand/'}
+            processors={processors}
+            processorsLink={"/calculatoare/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
