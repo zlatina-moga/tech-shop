@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
-import Loader from "../components/global/Loader/Loader";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination } from "../hooks/usePagination";
 import { accessoryCategories } from "../data/categories";
 import { accessoryBreadCrmbs } from "../data/breadcrumbs";
+import MainSkeleton from "../components/shared/MainSkeleton";
 
 const Accesorii = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -56,7 +56,7 @@ const Accesorii = () => {
     <>
       <Navbar />
       {loading ? (
-        <Loader />
+         <MainSkeleton />
       ) : (
         <>
           <LaptopsPage

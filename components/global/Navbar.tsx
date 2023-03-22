@@ -1,4 +1,5 @@
 import { useContext, useState, useRef } from "react";
+import { useRouter } from "next/router";
 import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
@@ -61,15 +62,17 @@ const categories = [
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+  { /*@ts-ignore */}
   const quantity = useSelector((state) => state.cart.quantity);
-  const [category, setCategory] = useState("");
   const ref = useRef();
+  const router = useRouter();
 
   const onSearch = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     let item = formData.get("searchItem");
+    router.push(`/search/search=${item}`);
   };
 
   return (
@@ -90,9 +93,9 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="col-lg-6 col-6 text-left">
-          <form onSubmit={() => ""}>
+          <form onSubmit={onSearch}>
             <div className="input-group">
-              <select
+              {/*<select
                 className="form-select"
                 style={{ maxWidth: "180px" }}
                 onChange={(e) => setCategory(e.target.value)}
@@ -103,9 +106,10 @@ const Navbar = () => {
                     {cat.name}
                   </option>
                 ))}
-              </select>
+                </select>*/}
               <input
                 type="text"
+                name="searchItem"
                 id="searchItem"
                 ref={ref}
                 className="form-control"

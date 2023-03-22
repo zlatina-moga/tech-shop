@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import * as productService from "../../../services/productService";
-import LaptopsPage from "../../../components/shared/LaptopsPage";
-import { usePagination } from "../../../hooks/usePagination";
-import Navbar from "../../../components/global/Navbar";
-import MainSkeleton from "../../../components/shared/MainSkeleton";
-import { procComputersBrcrmbs } from "../../../data/breadcrumbs";
+import * as productService from "../../services/productService";
+import LaptopsPage from "../../components/shared/LaptopsPage";
+import { usePagination } from "../../hooks/usePagination";
+import Navbar from "../../components/global/Navbar";
+import MainSkeleton from "../../components/shared/MainSkeleton";
+import { procComputersBrcrmbs } from "../../data/breadcrumbs";
 
 const ProcDetail = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { search } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     productService
-      .getAllComputersByProcessor(currentPage, slug)
+      .getSearchedItems(search)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -24,7 +24,7 @@ const ProcDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage, slug]);
+  }, []);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -46,12 +46,6 @@ const ProcDetail = () => {
     }
   };
 
-  let pageTitle = "";
-  if (slug != undefined) {
-    let slugToStr = slug as string;
-    pageTitle = slugToStr.replaceAll("-", " ");
-  }
-
   return (
     <>
       <Navbar />
@@ -60,7 +54,7 @@ const ProcDetail = () => {
       ) : (
         <>
           <LaptopsPage
-            title={`Calculatoare ${pageTitle}`}
+            title={`HERE`}
             laptopsData={itemData}
             breadcrumbs={procComputersBrcrmbs}
           />

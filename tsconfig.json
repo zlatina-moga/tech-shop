@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "contexts/AuthContext.js", "hooks/useLocalStorage.ts", "services/redux/cartRedux.ts", "services/redux/store.ts"  ],
+, "contexts/AuthContext.js", "hooks/useLocalStorage.ts", "services/redux/cartRedux.ts", "services/redux/store.ts", "services/itemService.js", "services/productService.js", "services/requester.js", "services/sortingService.js"  ],
   "exclude": [
     "node_modules"
   ]
