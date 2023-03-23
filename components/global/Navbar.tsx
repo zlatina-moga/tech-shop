@@ -62,7 +62,7 @@ const categories = [
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  { /*@ts-ignore */}
+  { /*@ts-ignore */ }
   const quantity = useSelector((state) => state.cart.quantity);
   const ref = useRef();
   const router = useRouter();

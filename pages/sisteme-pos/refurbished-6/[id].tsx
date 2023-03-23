@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
-import SingleItemView from "../../../components/shared/SingleItemView";
+import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { posRefBrcrmbs } from "../../../data/breadcrumbs";
 
 const RefurbishedPOSDetails = () => {
@@ -27,7 +27,7 @@ const RefurbishedPOSDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={posRefBrcrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={posRefBrcrmbs}/>}
     </>
   );
 };

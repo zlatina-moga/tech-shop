@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
 import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
-import SingleItemView from "../../../components/shared/SingleItemView";
+import SingleDetailedView from "../../../components/shared/SingleItemView";
 import { serverNewBrcrmbs } from "../../../data/breadcrumbs";
 
 const NewServerDetails = () => {
@@ -27,7 +27,7 @@ const NewServerDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={serverNewBrcrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={serverNewBrcrmbs}/>}
     </>
   );
 };

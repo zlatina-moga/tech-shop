@@ -287,5 +287,5 @@ export const getAllInvertors = (page) =>
     `${baseUrl}/sisteme-solare-fotovoltaice/invertoare-fotovoltaice?page=${page}`
   );
 
-export const getSearchedItems = (item) =>
-  request.get(`https://api.citgrup.ro/public/products/search?search==${item}`);
+export const getSearchedItems = (search) =>
+  request.get(`https://api.citgrup.ro/public/products/search?${search}`);

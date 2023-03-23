@@ -110,52 +110,75 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                         </div>
                       </div>
                     )}
-                    <div className="price-container">
-                      <h3 className="mb-3 price">{item.price} (TVA inclus)</h3>
-                      <div className="delivery mb-3">
-                        <Image src={truckIcon} alt="delivery" />
-                        <p>
-                          Livrare in <b>1-2 zile</b>
-                        </p>
-                      </div>
-                      <p className="in-stock">{item.inStock}</p>
-
-                      <p className="eco-tax">
-                        Pretul include Eco-Taxa de 6.00 lei
-                      </p>
-                      <button
-                        className={classNames(
-                          "btn btn-primary add-to-cart",
-                          clicked ? "disabled" : ""
-                        )}
-                        onClick={handleAddToCart}
-                      >
-                        Adauga in cos
-                      </button>
-                      <div className="d-flex align-items-center mb-2 pt-2">
-                        <Image
-                          src={payImg}
-                          alt="payments"
-                          style={{ maxHeight: "60px" }}
-                        />
-                      </div>
-                      <div className="contact">
-                        <span>Comanda telefonica:</span>
-                        <div>
-                          <b>Nume Prenume</b>
+                    {item.price ? (
+                      <div className="price-container">
+                        <h3 className="mb-3 price">
+                          {item.price} (TVA inclus)
+                        </h3>
+                        <div className="delivery mb-3">
+                          <Image src={truckIcon} alt="delivery" />
                           <p>
-                            <b>Email: </b>email@gmail.com
-                          </p>
-                          <p>
-                            <b>Telefon: </b>+40123456789
-                          </p>
-                          <p>
-                            <b>ID Produs: </b>
-                            {item.idCode}
+                            Livrare in <b>1-2 zile</b>
                           </p>
                         </div>
+                        <p className="in-stock">{item.inStock}</p>
+
+                        <p className="eco-tax">
+                          Pretul include Eco-Taxa de 6.00 lei
+                        </p>
+                        <button
+                          className={classNames(
+                            "btn btn-primary add-to-cart",
+                            clicked ? "disabled" : ""
+                          )}
+                          onClick={handleAddToCart}
+                        >
+                          Adauga in cos
+                        </button>
+                        <div className="d-flex align-items-center mb-2 pt-2">
+                          <Image
+                            src={payImg}
+                            alt="payments"
+                            style={{ maxHeight: "60px" }}
+                          />
+                        </div>
+                        <div className="contact">
+                          <span>Comanda telefonica:</span>
+                          <div>
+                            <b>Nume Prenume</b>
+                            <p>
+                              <b>Email: </b>email@gmail.com
+                            </p>
+                            <p>
+                              <b>Telefon: </b>+40123456789
+                            </p>
+                            <p>
+                              <b>ID Produs: </b>
+                              {item.idCode}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="price-container">
+                        <h3 className="mb-3 price">
+                          Contacteaza telefonic agentul pentru a comanda
+                          produsul. Suna acum.
+                        </h3>
+                        <div className="contact">
+                          <span>Comanda telefonica:</span>
+                          <div>
+                            <b>Nume Prenume</b>
+                            <p>
+                              <b>Email: </b>email@gmail.com
+                            </p>
+                            <p>
+                              <b>Telefon: </b>+40123456789
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -182,21 +205,22 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                   {item.techSpecsTitle}
                 </h4>
                 <div className="description-container">
-                  {item.techSpecs.map((item, idx) => (
-                    <div className="description-feature" key={idx}>
-                      <h4>{item.name}</h4>
-                      {item.items.map((attr, i) => (
-                        <div key={i}>
-                          <p style={{ fontWeight: "600", fontSize: "16px" }}>
-                            {attr.attribute_name}
-                          </p>
-                          <p style={{ fontSize: "16px" }}>
-                            {attr.attribute_value}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
+                  {item.techSpecs &&
+                    item.techSpecs.map((item, idx) => (
+                      <div className="description-feature" key={idx}>
+                        <h4>{item.name}</h4>
+                        {item.items.map((attr, i) => (
+                          <div key={i}>
+                            <p style={{ fontWeight: "600", fontSize: "16px" }}>
+                              {attr.attribute_name}
+                            </p>
+                            <p style={{ fontSize: "16px" }}>
+                              {attr.attribute_value}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
