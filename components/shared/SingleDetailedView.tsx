@@ -89,7 +89,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                 </div>
                 <div className="col-lg-7 pb-5 parent-container">
                   <div className="first-container">
-                    {item.upgradeOptions && (
+                    {item.techSpecs && item.upgradeOptions && (
                       <div className="features-list">
                         <div className="features-key">
                           {item.upgradeOptions.map((f, idx) => (
@@ -132,7 +132,6 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                         display: "flex",
                                         justifyContent: "space-between",
                                         alignItems: "center",
-                                        
                                       }}
                                     >
                                       {extra.name}
@@ -320,25 +319,28 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                 </div>
               </div>
               <div>
-                <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
-                  {item.techSpecsTitle}
-                </h4>
+                {item.techSpecs && (
+                  <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
+                    {item.techSpecsTitle}
+                  </h4>
+                )}
                 <div className="description-container">
-                  {item.techSpecs.map((item, idx) => (
-                    <div className="description-feature" key={idx}>
-                      <h4>{item.name}</h4>
-                      {item.items.map((attr, i) => (
-                        <div key={i}>
-                          <p style={{ fontWeight: "600", fontSize: "16px" }}>
-                            {attr.attribute_name}
-                          </p>
-                          <p style={{ fontSize: "16px" }}>
-                            {attr.attribute_value}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
+                  {item.techSpecs &&
+                    item.techSpecs.map((item, idx) => (
+                      <div className="description-feature" key={idx}>
+                        <h4>{item.name}</h4>
+                        {item.items.map((attr, i) => (
+                          <div key={i}>
+                            <p style={{ fontWeight: "600", fontSize: "16px" }}>
+                              {attr.attribute_name}
+                            </p>
+                            <p style={{ fontSize: "16px" }}>
+                              {attr.attribute_value}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
                 </div>
               </div>
               <Toaster position="top-right" />

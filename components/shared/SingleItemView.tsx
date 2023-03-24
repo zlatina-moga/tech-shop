@@ -10,8 +10,6 @@ import qualityIcon from "../../public/svg/quality.svg";
 import transportIcon from "../../public/svg/transport.svg";
 import payImg from "../../public/images/stripe.png";
 import truckIcon from "../../public/svg/truck.svg";
-import walletIcon from "../../public/svg/money.svg";
-import cartIcon from "../../public/svg/cart.svg";
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -201,9 +199,11 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                 </div>
               </div>
               <div>
-                <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
-                  {item.techSpecsTitle}
-                </h4>
+                {item.techSpecs && (
+                  <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
+                    {item.techSpecsTitle}
+                  </h4>
+                )}
                 <div className="description-container">
                   {item.techSpecs &&
                     item.techSpecs.map((item, idx) => (
