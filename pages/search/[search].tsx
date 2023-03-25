@@ -197,6 +197,7 @@ const ProcDetail = () => {
                             style={{
                               overflow: "hidden",
                               textOverflow: "ellipsis",
+                              maxHeight: "95px",
                             }}
                           >
                             {l.name}
