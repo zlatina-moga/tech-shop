@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Navbar from "../global/Navbar";
 import Footer from "../global/Footer";
 import Meta from "./Meta";
 

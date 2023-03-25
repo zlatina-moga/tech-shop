@@ -17,7 +17,7 @@ const Footer = () => {
         className="row px-xl-5 pt-5"
         style={{ maxWidth: "100rem", margin: "0 auto", position: "relative" }}
       >
-        <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+        <div className="col-lg-4 col-md-12 mb-5 pr-xl-5">
           <Link href="/">
             <Image
               src="/images/logo-example.png"
@@ -26,16 +26,12 @@ const Footer = () => {
               height={60}
             />
           </Link>
-          <p className="mt-2">
-            Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no
-            sit erat lorem et magna ipsum dolore amet erat.
-          </p>
-          <p className="mb-2">
+          <p className="mb-2 mt-4">
             <i className="fa fa-map-marker-alt text-primary mr-3"></i>123
             Street, New York, USA
           </p>
           <p className="mb-2">
-            <i className="fa fa-envelope text-primary mr-3"></i>info@example.com
+            <i className="fa fa-envelope text-primary mr-3"></i>salut@pcbun.ro
           </p>
           <p className="mb-0">
             <i className="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890
@@ -61,28 +57,25 @@ const Footer = () => {
                 <Link className="text-dark mb-2" href="/checkout">
                   <i className="fa fa-angle-right mr-2"></i>Checkout
                 </Link>
-                <Link className="text-dark" href="">
-                  <i className="fa fa-angle-right mr-2"></i>Contact Us
-                </Link>
               </div>
             </div>
             <div className="col-md-4 mb-5">
               <h5 className="font-weight-bold text-dark mb-4">Newsletter</h5>
-              <form action="">
+              <form>
                 <div className="form-group">
                   <input
                     type="text"
                     className="form-control border-0 py-4"
-                    placeholder="Your Name"
-                    required
+                    name="cf-name"
+                    placeholder="Nume"
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="email"
                     className="form-control border-0 py-4"
-                    placeholder="Your Email"
-                    required
+                    name="cf-email"
+                    placeholder="Adresa email"
                   />
                 </div>
                 <div>

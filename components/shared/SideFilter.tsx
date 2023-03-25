@@ -28,7 +28,7 @@ const SideFilter = ({
       {categories && (
         <div
           className="sidebar-container"
-          style={{ display: "block", maxWidth: "280px" }}
+          style={{ display: "block", maxWidth: "260px" }}
         >
           <div className="row">
             <div className="d-none d-lg-block">
@@ -74,7 +74,7 @@ const SideFilter = ({
       {brands && (
         <div
           className="sidebar-container mt-4"
-          style={{ display: "block", maxWidth: "280px" }}
+          style={{ display: "block", maxWidth: "260px" }}
         >
           <div className="row">
             <div className="d-none d-lg-block">
@@ -125,7 +125,7 @@ const SideFilter = ({
       {processors && (
         <div
           className="sidebar-container mt-4"
-          style={{ display: "block", maxWidth: "280px" }}
+          style={{ display: "block", maxWidth: "260px" }}
         >
           <div className="row">
             <div className="d-none d-lg-block">
