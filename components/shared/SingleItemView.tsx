@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import Meta from "../../components/layouts/Meta";
@@ -15,14 +16,51 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { addProduct } from "../../services/redux/cartRedux";
 import classNames from "classnames";
+import emailjs from "emailjs-com";
+import toast, { Toaster } from "react-hot-toast";
 
 const SingleItemView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
+  const router = useRouter()
   const [clicked, setClicked] = useState(false);
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1 }));
     setClicked(true);
+    toast.success("Product added to cart", {
+      style: { marginTop: "100px" },
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("cf-name");
+    const email = formData.get("cf-email");
+    const phone = formData.get("cf-phone");
+    const message = formData.get("cf-message");
+
+    sendItemRequest(process.env.TEMPLATE_ID, {
+      message: message,
+      phone: phone,
+      email: email,
+      from_name: name,
+      reply_to: email,
+    });
+  };
+
+  const sendItemRequest = (templateId, variables) => {
+    emailjs
+      .send(process.env.SERVICE_ID, templateId, variables, process.env.USER_ID)
+      .then((res) => {
+        toast.success("Mesaj trimis cu succes", {
+          style: { marginTop: "100px" },
+        });
+        setTimeout(() => {
+          router.push('/')
+        }, 2000)
+      });
   };
 
   return (
@@ -77,22 +115,69 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                   </Swiper>
                 </div>
                 <div className="col-lg-7 pb-5 parent-container">
-                  <div className="first-container">
-                    <p className="mb-4 details">
-                      Toate fotografiile produselor prezentate au caracter
-                      informativ, pot diferi fata de produsul vandut si pot
-                      arata accesorii ce nu sunt incluse in pachetul standard al
-                      produsului
-                    </p>
-                    <div className="d-flex align-items-center img-container">
-                      <Image src={qualityIcon} alt="quality" />
-                      <p>Garantie la toate produsele comandate</p>
+                  {item.price ? (
+                    <div className="first-container">
+                      <p className="mb-4 details">
+                        Toate fotografiile produselor prezentate au caracter
+                        informativ, pot diferi fata de produsul vandut si pot
+                        arata accesorii ce nu sunt incluse in pachetul standard
+                        al produsului
+                      </p>
+                      <div className="d-flex align-items-center img-container">
+                        <Image src={qualityIcon} alt="quality" />
+                        <p>Garantie la toate produsele comandate</p>
+                      </div>
+                      <div className="d-flex align-items-center img-container">
+                        <Image src={transportIcon} alt="quality" />
+                        <p>Livrare gratuita la comanda de peste 250 lei</p>
+                      </div>
                     </div>
-                    <div className="d-flex align-items-center img-container">
-                      <Image src={transportIcon} alt="quality" />
-                      <p>Livrare gratuita la comanda de peste 250 lei</p>
+                  ) : (
+                    <div className="first-container">
+                      <h3 className="mb-4 price">
+                        Te intereseaza sa cumperi acum acest produs? Completeaza
+                        formularul
+                      </h3>
+                      <form onSubmit={onSubmit}>
+                        <input
+                          type="text"
+                          className="form-control text-left"
+                          name="cf-name"
+                          placeholder="Nume"
+                        />
+                        <input
+                          type="email"
+                          className="form-control text-left w-100"
+                          name="cf-email"
+                          placeholder="Adresa email"
+                        />
+                        <input
+                          type="tel"
+                          className="form-control text-left"
+                          name="cf-phone"
+                          placeholder="Numar telefon"
+                        />
+                        <textarea
+                          className="form-control"
+                          name="cf-message"
+                          defaultValue={`Sunt interesat de produsul cu ${
+                            item.productDetailsTitle.split(",")[1]
+                          }`}
+                          placeholder={`Sunt interesat de produsul cu ${
+                            item.productDetailsTitle.split(",")[1]
+                          }`}
+                        ></textarea>
+                        <button
+                          type="submit"
+                          className="form-control mt-4 btn btn-primary"
+                          id="submit-button"
+                          name="submit"
+                        >
+                          Trimite
+                        </button>
+                      </form>
                     </div>
-                  </div>
+                  )}
                   <div className="second-container">
                     {item.discount && (
                       <div style={{ display: "flex" }}>
@@ -223,6 +308,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                     ))}
                 </div>
               </div>
+              <Toaster position="top-right" />
             </div>
           </div>
         ))}

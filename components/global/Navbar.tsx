@@ -1,70 +1,14 @@
-import { useContext, useState, useRef } from "react";
+import { useContext } from "react";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 
-const categories = [
-  {
-    name: "Laptopuri",
-    link: "/laptop",
-  },
-  {
-    name: "Calculatoare",
-    link: "/calculatoare",
-  },
-  {
-    name: "Workstation",
-    link: "/workstation",
-  },
-  {
-    name: "Servere",
-    link: "/servere",
-  },
-  {
-    name: "Monitoare",
-    link: "/monitoare",
-  },
-  {
-    name: "Componente",
-    link: "/componente",
-  },
-  {
-    name: "Software",
-    link: "/licenta-software",
-  },
-  {
-    name: "Imprimante",
-    link: "/imprimante",
-  },
-  {
-    name: "Sisteme POS",
-    link: "/sisteme-pos",
-  },
-  {
-    name: "UPS",
-    link: "/ups",
-  },
-  {
-    name: "Accesorii",
-    link: "/accesorii",
-  },
-  {
-    name: "Retelistica",
-    link: "/retelistica",
-  },
-  {
-    name: "Sisteme solare",
-    link: "/sisteme-solare-fotovoltaice",
-  },
-];
-
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   { /*@ts-ignore */ }
   const quantity = useSelector((state) => state.cart.quantity);
-  const ref = useRef();
   const router = useRouter();
 
   const onSearch = (e) => {
@@ -111,7 +55,6 @@ const Navbar = () => {
                 type="text"
                 name="searchItem"
                 id="searchItem"
-                ref={ref}
                 className="form-control"
                 placeholder="Cauta produse"
                 style={{ borderRadius: "4px", textAlign: "left" }}

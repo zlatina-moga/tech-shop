@@ -11,6 +11,11 @@ const ProcDetail = () => {
   const { search } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
+  let searchStr = '';
+  if (search != undefined) {
+    let searchToStr = search as string;
+    searchStr = searchToStr.split('=')[1]
+  }
 
   useEffect(() => {
     productService
@@ -40,7 +45,7 @@ const ProcDetail = () => {
           >
             <div>
               <div className="text-center mb-4">
-                <h1 className="px-5">Results:</h1>
+                <h1 className="px-5">Rezultatele cautarii pentru: {searchStr}</h1>
               </div>
               <div
                 className="row pb-3 justify-content-center"
@@ -57,7 +62,7 @@ const ProcDetail = () => {
                         "card product-item border border-gray rounded mb-4",
                         "inner-container"
                       )}
-                      style={{ alignItems: "stretch", height: "550px" }}
+                      style={{ alignItems: "stretch", height: "450px", cursor:'pointer' }}
                     >
                       <div
                         className={classNames(

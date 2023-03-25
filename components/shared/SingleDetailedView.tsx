@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Meta from "../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -16,9 +17,11 @@ import "react-photo-view/dist/react-photo-view.css";
 import { addProduct } from "../../services/redux/cartRedux";
 import classNames from "classnames";
 import toast, { Toaster } from "react-hot-toast";
+import emailjs from "emailjs-com";
 
 const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [clicked, setClicked] = useState(false);
 
   const handleAddToCart = () => {
@@ -27,6 +30,37 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
     toast.success("Product added to cart", {
       style: { marginTop: "100px" },
     });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("cf-name");
+    const email = formData.get("cf-email");
+    const phone = formData.get("cf-phone");
+    const message = formData.get("cf-message");
+
+    sendItemRequest(process.env.TEMPLATE_ID, {
+      message: message,
+      phone: phone,
+      email: email,
+      from_name: name,
+      reply_to: email,
+    });
+  };
+
+  const sendItemRequest = (templateId, variables) => {
+    emailjs
+      .send(process.env.SERVICE_ID, templateId, variables, process.env.USER_ID)
+      .then((res) => {
+        toast.success("Mesaj trimis cu succes", {
+          style: { marginTop: "100px" },
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
+      });
   };
 
   return (
@@ -88,8 +122,8 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                   </Swiper>
                 </div>
                 <div className="col-lg-7 pb-5 parent-container">
-                  <div className="first-container">
-                    {item.techSpecs && item.upgradeOptions && (
+                  {item.techSpecs && item.upgradeOptions && (
+                    <div className="first-container">
                       <div className="features-list">
                         <div className="features-key">
                           {item.upgradeOptions.map((f, idx) => (
@@ -197,110 +231,155 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           )}
                         </div>
                       </div>
-                    )}
-
-                    <p className="mb-4 details">
-                      Toate fotografiile produselor prezentate au caracter
-                      informativ, pot diferi fata de produsul vandut si pot
-                      arata accesorii ce nu sunt incluse in pachetul standard al
-                      produsului
-                    </p>
-                    <div className="d-flex align-items-center img-container">
-                      <Image src={qualityIcon} alt="quality" />
-                      <p>Garantie la toate produsele comandate</p>
                     </div>
-                    <div className="d-flex align-items-center img-container">
-                      <Image src={transportIcon} alt="quality" />
-                      <p>Livrare gratuita la comanda de peste 250 lei</p>
+                  )}
+                  {item.price ? (
+                    <div className="first-container">
+                      <p className="mb-4 details">
+                        Toate fotografiile produselor prezentate au caracter
+                        informativ, pot diferi fata de produsul vandut si pot
+                        arata accesorii ce nu sunt incluse in pachetul standard
+                        al produsului
+                      </p>
+                      <div className="d-flex align-items-center img-container">
+                        <Image src={qualityIcon} alt="quality" />
+                        <p>Garantie la toate produsele comandate</p>
+                      </div>
+                      <div className="d-flex align-items-center img-container">
+                        <Image src={transportIcon} alt="quality" />
+                        <p>Livrare gratuita la comanda de peste 250 lei</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="second-container">
-                    {item.discount && (
-                      <div style={{ display: "flex" }}>
-                        <div className="discount-container">
-                          <div>
-                            <p>{item.discount}</p>
-                          </div>
-                        </div>
-                        <div className="old-price">
-                          <h6>
-                            <del>{item.oldPrice}</del>
-                          </h6>
+                  ) : (
+                    <div className="first-container">
+                      <h3 className="mb-4 price">
+                        Te intereseaza sa cumperi acum acest produs? Completeaza
+                        formularul
+                      </h3>
+                      <form onSubmit={onSubmit}>
+                        <input
+                          type="text"
+                          className="form-control text-left"
+                          name="cf-name"
+                          placeholder="Nume"
+                        />
+                        <input
+                          type="email"
+                          className="form-control text-left w-100"
+                          name="cf-email"
+                          placeholder="Adresa email"
+                        />
+                        <input
+                          type="tel"
+                          className="form-control text-left"
+                          name="cf-phone"
+                          placeholder="Numar telefon"
+                        />
+                        <textarea
+                          className="form-control"
+                          name="cf-message"
+                          defaultValue={`Sunt interesat de produsul cu ${
+                            item.productDetailsTitle.split(",")[1]
+                          }`}
+                          placeholder={`Sunt interesat de produsul cu ${
+                            item.productDetailsTitle.split(",")[1]
+                          }`}
+                        ></textarea>
+                        <button
+                          type="submit"
+                          className="form-control mt-4 btn btn-primary"
+                          id="submit-button"
+                          name="submit"
+                        >
+                          Trimite
+                        </button>
+                      </form>
+                    </div>
+                  )}
+                </div>
+                <div className="second-container">
+                  {item.discount && (
+                    <div style={{ display: "flex" }}>
+                      <div className="discount-container">
+                        <div>
+                          <p>{item.discount}</p>
                         </div>
                       </div>
-                    )}
+                      <div className="old-price">
+                        <h6>
+                          <del>{item.oldPrice}</del>
+                        </h6>
+                      </div>
+                    </div>
+                  )}
 
-                    {item.price ? (
-                      <div className="price-container">
-                        <h3 className="mb-3 price">
-                          {item.price} (TVA inclus)
-                        </h3>
+                  {item.price ? (
+                    <div className="price-container">
+                      <h3 className="mb-3 price">{item.price} (TVA inclus)</h3>
+                      <div className="delivery mb-3">
+                        <Image src={truckIcon} alt="delivery" />
+                        <p>
+                          Livrare in <b>1-2 zile</b>
+                        </p>
+                      </div>
 
-                        <div className="delivery mb-3">
-                          <Image src={truckIcon} alt="delivery" />
+                      <p className="in-stock">{item.inStock}</p>
+                      <p className="eco-tax">
+                        Pretul include Eco-Taxa de 6.00 lei
+                      </p>
+                      <button
+                        className={classNames(
+                          "btn btn-primary add-to-cart",
+                          clicked ? "disabled" : ""
+                        )}
+                        onClick={handleAddToCart}
+                      >
+                        Adauga in cos
+                      </button>
+                      <div className="d-flex align-items-center mb-2 pt-2">
+                        <Image
+                          src={payImg}
+                          alt="payments"
+                          style={{ maxHeight: "60px" }}
+                        />
+                      </div>
+                      <div className="contact">
+                        <span>Comanda telefonica:</span>
+                        <div>
+                          <b>Nume Prenume</b>
                           <p>
-                            Livrare in <b>1-2 zile</b>
+                            <b>Email: </b>email@gmail.com
+                          </p>
+                          <p>
+                            <b>Telefon: </b>+40123456789
+                          </p>
+                          <p>
+                            <b>ID Produs: </b>
+                            {item.idCode}
                           </p>
                         </div>
-
-                        <p className="in-stock">{item.inStock}</p>
-                        <p className="eco-tax">
-                          Pretul include Eco-Taxa de 6.00 lei
-                        </p>
-                        <button
-                          className={classNames(
-                            "btn btn-primary add-to-cart",
-                            clicked ? "disabled" : ""
-                          )}
-                          onClick={handleAddToCart}
-                        >
-                          Adauga in cos
-                        </button>
-                        <div className="d-flex align-items-center mb-2 pt-2">
-                          <Image
-                            src={payImg}
-                            alt="payments"
-                            style={{ maxHeight: "60px" }}
-                          />
-                        </div>
-                        <div className="contact">
-                          <span>Comanda telefonica:</span>
-                          <div>
-                            <b>Nume Prenume</b>
-                            <p>
-                              <b>Email: </b>email@gmail.com
-                            </p>
-                            <p>
-                              <b>Telefon: </b>+40123456789
-                            </p>
-                            <p>
-                              <b>ID Produs: </b>
-                              {item.idCode}
-                            </p>
-                          </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="price-container">
+                      <h3 className="mb-3 price">
+                        Contacteaza telefonic agentul pentru a comanda produsul.
+                        Suna acum.
+                      </h3>
+                      <div className="contact">
+                        <span>Comanda telefonica:</span>
+                        <div>
+                          <b>Nume Prenume</b>
+                          <p>
+                            <b>Email: </b>email@gmail.com
+                          </p>
+                          <p>
+                            <b>Telefon: </b>+40123456789
+                          </p>
                         </div>
                       </div>
-                    ) : (
-                      <div className="price-container">
-                        <h3 className="mb-3 price">
-                          Contacteaza telefonic agentul pentru a comanda
-                          produsul. Suna acum.
-                        </h3>
-                        <div className="contact">
-                          <span>Comanda telefonica:</span>
-                          <div>
-                            <b>Nume Prenume</b>
-                            <p>
-                              <b>Email: </b>email@gmail.com
-                            </p>
-                            <p>
-                              <b>Telefon: </b>+40123456789
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
               <div>
