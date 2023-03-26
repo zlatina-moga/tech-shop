@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
 import { hardDiskBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const HardDisks = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const HardDisks = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

@@ -7,6 +7,7 @@ import { usePagination} from "../hooks/usePagination";
 import { solarCategories } from "../data/categories";
 import { solarBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
+import Footer from "../components/global/Footer";
 
 const SolarPanels = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -108,6 +109,7 @@ const SolarPanels = () => {
           )}
         </>
       )}
+       <Footer />
     </>
   );
 };

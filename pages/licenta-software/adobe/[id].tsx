@@ -11,6 +11,7 @@ import Image from "next/image";
 import payImg from "../../../public/images/stripe.png";
 import { adobeBrcrmbs } from "../../../data/breadcrumbs";
 import { addProduct } from "../../../services/redux/cartRedux";
+import Footer from "../../../components/global/Footer";
 
 const AdobeDetails = () => {
   const router = useRouter();
@@ -122,6 +123,7 @@ const AdobeDetails = () => {
             ))}
         </PhotoProvider>
       </div>
+      <Footer />
     </>
   );
 };

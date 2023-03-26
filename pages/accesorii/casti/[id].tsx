@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { headphonesBreadCrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const HeadphonesDetails = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const HeadphonesDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={headphonesBreadCrmbs}/>}
+      <Footer />
     </>
   );
 };

@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { railkitBrcrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const RailKitDetails = () => {
   const router = useRouter();
@@ -30,6 +31,7 @@ const RailKitDetails = () => {
       {loading ? (
         <DetailPageSkeleton />
       ) : <SingleItemView itemData={itemData} breadcrumbs={railkitBrcrmbs}/>}
+      <Footer />
     </>
   );
 };

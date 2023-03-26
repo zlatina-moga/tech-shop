@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 import CartItem from "../components/shared/CartItem";
+import Footer from "../components/global/Footer";
 
 const MyCard = () => {
   const cart = useSelector((state) => state.cart);
@@ -99,6 +100,7 @@ const MyCard = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

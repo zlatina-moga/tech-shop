@@ -3,6 +3,7 @@ import LaptopsPage from "../../components/shared/LaptopsPage";
 import { projectBrcrmbs } from "../../data/breadcrumbs";
 import { softwareCategories } from "../../data/categories";
 import { licenseData } from "../../data/licenseData";
+import Footer from "../../components/global/Footer";
 
 const Projects = () => {
   return (
@@ -14,6 +15,7 @@ const Projects = () => {
         categories={softwareCategories}
         breadcrumbs={projectBrcrmbs}
       />
+      <Footer />
     </>
   );
 };

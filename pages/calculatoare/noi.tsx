@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { compCategories } from "../../data/categories";
 import { newComputersBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const Calculatoare = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -93,6 +94,7 @@ const Calculatoare = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

@@ -7,6 +7,7 @@ import { usePagination } from "../hooks/usePagination";
 import { workstationCategories } from "../data/categories";
 import { workstationBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
+import Footer from "../components/global/Footer";
 
 const Workstations = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -114,6 +115,7 @@ const Workstations = () => {
           )}
         </>
       )}
+       <Footer />
     </>
   );
 };

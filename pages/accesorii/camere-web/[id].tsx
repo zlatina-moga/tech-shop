@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { camerasBreadCrmbs } from "../../../data/breadcrumbs";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
+import Footer from "../../../components/global/Footer";
 
 const CameraDetails = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const CameraDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={camerasBreadCrmbs}/>}
+      <Footer />
     </>
   );
 };

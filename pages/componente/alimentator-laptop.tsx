@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
 import { chargerBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const LaptopChargers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -93,6 +94,7 @@ const LaptopChargers = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

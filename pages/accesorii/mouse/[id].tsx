@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { mouseBreadCrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const MouseDetails = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const MouseDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={mouseBreadCrmbs}/>}
+      <Footer />
     </>
   );
 };

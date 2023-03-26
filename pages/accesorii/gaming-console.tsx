@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { gamingBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const Gaming = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const Gaming = () => {
           )}
         </>
       )}
+       <Footer />
     </>
   );
 };

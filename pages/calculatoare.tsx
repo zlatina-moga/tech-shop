@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/global/Navbar";
+import Footer from "../components/global/Footer";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
@@ -114,6 +115,7 @@ const Calculatoare = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

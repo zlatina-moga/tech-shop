@@ -3,6 +3,7 @@ import LaptopsPage from "../../components/shared/LaptopsPage";
 import { antivurusBrcrmbs } from "../../data/breadcrumbs";
 import { softwareCategories } from "../../data/categories";
 import { licenseData } from "../../data/licenseData";
+import Footer from "../../components/global/Footer";
 
 const Antivirus = () => {
   return (
@@ -14,6 +15,7 @@ const Antivirus = () => {
         categories={softwareCategories}
         breadcrumbs={antivurusBrcrmbs}
       />
+      <Footer />
     </>
   );
 };

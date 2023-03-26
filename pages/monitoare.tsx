@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/global/Navbar";
+import Footer from "../components/global/Footer";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
@@ -65,7 +66,7 @@ const Monitoare = () => {
             categories={monitorCategories}
             breadcrumbs={monitorBrcrmbs}
             brands={brands}
-            brandLink={'/monitoare/brand/'}
+            brandLink={"/monitoare/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -108,6 +109,7 @@ const Monitoare = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

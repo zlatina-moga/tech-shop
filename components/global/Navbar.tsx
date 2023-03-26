@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
@@ -7,7 +7,10 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  { /*@ts-ignore */ }
+  const [searchItem, setSearchedItem] = useState<FormDataEntryValue>();
+  {
+    /*@ts-ignore */
+  }
   const quantity = useSelector((state) => state.cart.quantity);
   const router = useRouter();
 
@@ -39,18 +42,6 @@ const Navbar = () => {
         <div className="col-lg-6 col-6 text-left">
           <form onSubmit={onSearch}>
             <div className="input-group">
-              {/*<select
-                className="form-select"
-                style={{ maxWidth: "180px" }}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option selected>Categoriile</option>
-                {categories.map((cat, idx) => (
-                  <option className="dropdown-item" key={idx} value={cat.link}>
-                    {cat.name}
-                  </option>
-                ))}
-                </select>*/}
               <input
                 type="text"
                 name="searchItem"

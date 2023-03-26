@@ -2,9 +2,10 @@ import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
+import Footer from "../components/global/Footer";
 import Image from "next/image";
 import { AuthContext } from "../contexts/AuthContext";
-import * as userService from '../services/userService';
+import * as userService from "../services/userService";
 import showPasswordIcon from "../public/svg/password-show.svg";
 import hidePasswordIcon from "../public/svg/password-hide.svg";
 import toast, { Toaster } from "react-hot-toast";
@@ -54,23 +55,24 @@ const Login = () => {
   }
 
   async function login() {
-    userService.login(formValues.email, formValues.password)
-    .then((authData) => {
-      loginUser(authData)
-      setFormValues(initialValues);
-      toast.success("Login successful", {
-        style: { marginTop: "100px" },
+    userService
+      .login(formValues.email, formValues.password)
+      .then((authData) => {
+        loginUser(authData);
+        setFormValues(initialValues);
+        toast.success("Login successful", {
+          style: { marginTop: "100px" },
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 2500);
+      })
+      .catch((err) => {
+        toast.error(err.message, {
+          style: { marginTop: "100px" },
+        });
+        setFormValues(initialValues);
       });
-      setTimeout(() => {
-        router.push("/");
-      }, 2500);
-    })
-    .catch(err => {
-      toast.error(err.message, {
-        style: { marginTop: "100px" },
-      });
-      setFormValues(initialValues);
-    })
 
     /*const response = await fetch(`${baseUrl}/auth/login`, {
       method: "POST",
@@ -160,7 +162,11 @@ const Login = () => {
               <span>
                 <span>
                   Missing an account? Click{" "}
-                  <Link className="linkBtn" href="/register" style={{textDecoration: 'underline'}}>
+                  <Link
+                    className="linkBtn"
+                    href="/register"
+                    style={{ textDecoration: "underline" }}
+                  >
                     here
                   </Link>
                 </span>
@@ -182,6 +188,7 @@ const Login = () => {
           <li></li>
         </ul>
       </div>
+      <Footer />
     </>
   );
 };

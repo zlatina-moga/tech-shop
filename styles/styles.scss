@@ -313,7 +313,7 @@ form .auth-field {
     }
   }
   .nf-img-section {
-    background-image: url(/images/51a0a5d.jpg); 
+    background-image: url(/images/51a0a5d.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -467,6 +467,10 @@ form .auth-field {
       }
     }
   }
+}
+
+.footer-link:hover {
+  color: #f1c705 !important;
 }
 
 #product-link:hover {

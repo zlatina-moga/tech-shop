@@ -7,6 +7,7 @@ import { usePagination } from "../hooks/usePagination";
 import { serverCategories } from "../data/categories";
 import { serverBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
+import Footer from "../components/global/Footer";
 
 const Laptopuri = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -114,6 +115,7 @@ const Laptopuri = () => {
           )}
         </>
       )}
+       <Footer />
     </>
   );
 };

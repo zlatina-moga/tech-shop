@@ -5,8 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { caddyBrcrmbs } from "../../../data/breadcrumbs";
-
-const features = ["Procesor", "Memorie"];
+import Footer from "../../../components/global/Footer";
 
 const CaddyDetails = () => {
   const router = useRouter();
@@ -30,6 +29,7 @@ const CaddyDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={caddyBrcrmbs}/>}
+      <Footer />
     </>
   );
 };

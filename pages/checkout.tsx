@@ -1,4 +1,5 @@
 import Navbar from "../components/global/Navbar";
+import Footer from "../components/global/Footer";
 import classNames from "classnames";
 
 const Checkout = () => {

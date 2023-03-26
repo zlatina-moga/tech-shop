@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { printerCategories } from "../../data/categories";
 import { printerNewBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const NewPrinters = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const NewPrinters = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

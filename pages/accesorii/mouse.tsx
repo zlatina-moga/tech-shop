@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
-import Loader from "../../components/global/Loader/Loader";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { mouseBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const Mice = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -99,6 +99,7 @@ const Mice = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
-import Loader from "../components/global/Loader/Loader";
+import Footer from "../components/global/Footer";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination } from "../hooks/usePagination";
 import { networkCategories } from "../data/categories";
@@ -57,7 +57,7 @@ const Retails = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -66,7 +66,7 @@ const Retails = () => {
             categories={networkCategories}
             breadcrumbs={networkBrcrmbs}
             brands={brands}
-            brandLink={'/retelistica/brand/'}
+            brandLink={"/retelistica/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -109,6 +109,7 @@ const Retails = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

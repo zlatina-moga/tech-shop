@@ -6,6 +6,7 @@ import { usePagination, DOTS } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { cablesBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const Cables = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const Cables = () => {
           )}
         </>
       )}
+       <Footer />
     </>
   );
 };

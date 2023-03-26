@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { hardDiskBrcrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const HardDiskDetails = () => {
   const router = useRouter();
@@ -30,6 +31,7 @@ const HardDiskDetails = () => {
       {loading ? (
         <DetailPageSkeleton />
       ) : <SingleItemView itemData={itemData} breadcrumbs={hardDiskBrcrmbs} />}
+      <Footer />
     </>
   );
 };

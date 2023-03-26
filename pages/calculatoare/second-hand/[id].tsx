@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { secondHandComputersBrcrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const SecondHandCompDetails = () => {
   const router = useRouter();
@@ -30,6 +31,7 @@ const SecondHandCompDetails = () => {
       {loading ? (
         <DetailPageSkeleton />
       ) : <SingleDetailedView itemData={itemData} breadcrumbs={secondHandComputersBrcrmbs}/>}
+      <Footer />
     </>
   );
 };

@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { laptopCategories } from "../../data/categories";
 import { laptopRefurbishedBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const LaptopuriRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const LaptopuriRefurbished = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

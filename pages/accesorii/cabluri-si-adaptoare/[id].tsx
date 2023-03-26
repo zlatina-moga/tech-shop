@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { cablesBreadCrmbs } from "../../../data/breadcrumbs";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
+import Footer from "../../../components/global/Footer";
 
 const CableDetails = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const CableDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={cablesBreadCrmbs}/>}
+      <Footer />
     </>
   );
 };

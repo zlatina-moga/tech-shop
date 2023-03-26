@@ -1,4 +1,5 @@
 import Navbar from "../components/global/Navbar";
+import Footer from "../components/global/Footer";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { licenseData } from "../data/licenseData";
 import { softwareCategories } from "../data/categories";
@@ -14,6 +15,7 @@ const Software = () => {
         categories={softwareCategories}
         breadcrumbs={softwareBrcrmbs}
       />
+      <Footer />
     </>
   );
 };

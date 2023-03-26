@@ -11,6 +11,7 @@ import Image from "next/image";
 import payImg from "../../../public/images/stripe.png";
 import { projectBrcrmbs } from "../../../data/breadcrumbs";
 import { addProduct } from "../../../services/redux/cartRedux";
+import Footer from "../../../components/global/Footer";
 
 const ProjectDetails = () => {
   const router = useRouter();
@@ -152,6 +153,7 @@ const ProjectDetails = () => {
             ))}
         </PhotoProvider>
       </div>
+      <Footer />
     </>
   );
 };

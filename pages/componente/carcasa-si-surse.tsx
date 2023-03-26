@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
 import { carcasaBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const Cases = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -48,7 +49,7 @@ const Cases = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -98,6 +99,7 @@ const Cases = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

@@ -7,6 +7,7 @@ import { usePagination } from "../hooks/usePagination";
 import { posCategories } from "../data/categories";
 import { posBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
+import Footer from "../components/global/Footer";
 
 const SistemePOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -115,6 +116,7 @@ const SistemePOS = () => {
           )}
         </>
       )}
+       <Footer />
     </>
   );
 };

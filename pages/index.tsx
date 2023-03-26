@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
+import Footer from "../components/global/Footer";
 import Sidebar from "../components/landing/Sidebar";
 import * as productService from "../services/productService";
 
@@ -374,6 +375,7 @@ export default function Home() {
           </div>
         </main>
       </div>
+      <Footer />
     </>
   );
 }

@@ -37,57 +37,58 @@ const Footer = () => {
             <i className="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890
           </p>
         </div>
-        <div className="col-lg-8 col-md-12">
-          <div className="row">
-            <div className="col-md-4 mb-5">
-              <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
-              <div className="d-flex flex-column justify-content-start">
-                <Link className="text-dark mb-2" href="/laptop">
-                  <i className="fa fa-angle-right mr-2"></i>Laptopuri
-                </Link>
-                <Link className="text-dark mb-2" href="/calculatoare">
-                  <i className="fa fa-angle-right mr-2"></i>Calculatoare
-                </Link>
-                <Link className="text-dark mb-2" href="/servere">
-                  <i className="fa fa-angle-right mr-2"></i>Servere
-                </Link>
-                <Link className="text-dark mb-2" href="/my-cart">
-                  <i className="fa fa-angle-right mr-2"></i>Shopping Cart
-                </Link>
-                <Link className="text-dark mb-2" href="/checkout">
-                  <i className="fa fa-angle-right mr-2"></i>Checkout
-                </Link>
+        <div
+          className="col-lg-8 col-md-12"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <div className="col-md-4 mb-5">
+            <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
+            <div className="d-flex flex-column justify-content-start">
+              <Link className="mb-2 footer-link" href="/laptop">
+                <i className="fa fa-angle-right mr-2"></i>Laptopuri
+              </Link>
+              <Link className="footer-link mb-2 " href="/calculatoare">
+                <i className="fa fa-angle-right mr-2"></i>Calculatoare
+              </Link>
+              <Link className="footer-link mb-2" href="/servere">
+                <i className="fa fa-angle-right mr-2"></i>Servere
+              </Link>
+              <Link className=" footer-link mb-2" href="/my-cart">
+                <i className="fa fa-angle-right mr-2"></i>Shopping Cart
+              </Link>
+              <Link className="footer-link mb-2" href="/checkout">
+                <i className="fa fa-angle-right mr-2"></i>Checkout
+              </Link>
+            </div>
+          </div>
+          <div className="col-md-4 mb-5">
+            <h5 className="font-weight-bold text-dark mb-4">Newsletter</h5>
+            <form>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control border-0 py-4"
+                  name="cf-name"
+                  placeholder="Nume"
+                />
               </div>
-            </div>
-            <div className="col-md-4 mb-5">
-              <h5 className="font-weight-bold text-dark mb-4">Newsletter</h5>
-              <form>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control border-0 py-4"
-                    name="cf-name"
-                    placeholder="Nume"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className="form-control border-0 py-4"
-                    name="cf-email"
-                    placeholder="Adresa email"
-                  />
-                </div>
-                <div>
-                  <button
-                    className="btn btn-primary btn-block border-0 py-3"
-                    type="submit"
-                  >
-                    Subscribe Now
-                  </button>
-                </div>
-              </form>
-            </div>
+              <div className="form-group">
+                <input
+                  type="email"
+                  className="form-control border-0 py-4"
+                  name="cf-email"
+                  placeholder="Adresa email"
+                />
+              </div>
+              <div>
+                <button
+                  className="btn btn-primary btn-block border-0 py-3"
+                  type="submit"
+                >
+                  Subscribe Now
+                </button>
+              </div>
+            </form>
           </div>
         </div>
         <div

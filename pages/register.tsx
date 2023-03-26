@@ -5,6 +5,7 @@ import Image from "next/image";
 import showPasswordIcon from "../public/svg/password-show.svg";
 import hidePasswordIcon from "../public/svg/password-hide.svg";
 import toast, { Toaster } from "react-hot-toast";
+import Footer from "../components/global/Footer";
 
 interface IFillTheForm {
   name: string;
@@ -227,6 +228,7 @@ const Register = () => {
           <li></li>
         </ul>
       </div>
+      <Footer />
     </>
   );
 };

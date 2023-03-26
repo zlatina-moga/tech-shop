@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { laptopKeyboardBrcrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const KeyBoardDetails = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const KeyBoardDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={laptopKeyboardBrcrmbs}/>}
+      <Footer />
     </>
   );
 };

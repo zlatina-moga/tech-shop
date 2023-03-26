@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { headphonesBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const Headphones = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -93,6 +94,7 @@ const Headphones = () => {
           )}
         </>
       )}
+       <Footer />
     </>
   );
 };

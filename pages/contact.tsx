@@ -1,9 +1,10 @@
 import Navbar from "../components/global/Navbar";
+import Footer from "../components/global/Footer";
 
 const Contact = () => {
   return (
     <>
-          <Navbar />
+      <Navbar />
       <div className="container-fluid pt-5">
         <div className="text-center mb-4">
           <h2 className="section-title px-5">
@@ -110,6 +111,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

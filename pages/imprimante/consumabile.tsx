@@ -8,6 +8,7 @@ import {
   printerConsumablesBrcrmbs
 } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const NewPrinters = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -100,6 +101,7 @@ const NewPrinters = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };
