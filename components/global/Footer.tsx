@@ -1,12 +1,45 @@
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import topIcon from "../../public/svg/top.svg";
+import toast, { Toaster } from "react-hot-toast";
+import emailjs from "emailjs-com";
 
 const Footer = () => {
+  const router = useRouter();
+
   function getToTop() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("cf-name");
+    const email = formData.get("cf-email");
+
+    sendItemRequest(process.env.TEMPLATE_ID, {
+      message: `${name} just subscribed to PC Bun newsletter`,
+      email: email,
+      from_name: name,
+      reply_to: email,
+    });
+  };
+
+  const sendItemRequest = (templateId, variables) => {
+    emailjs
+      .send(process.env.SERVICE_ID, templateId, variables, process.env.USER_ID)
+      .then(() => {
+        toast.success("Multumim! V-ati abonat cu succes", {
+          style: { marginTop: "100px" },
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
+      });
+  };
 
   return (
     <div
@@ -63,7 +96,7 @@ const Footer = () => {
           </div>
           <div className="col-md-4 mb-5">
             <h5 className="font-weight-bold text-dark mb-4">Newsletter</h5>
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="form-group">
                 <input
                   type="text"
@@ -140,6 +173,7 @@ const Footer = () => {
           <Image src={topIcon} alt="" height={30} width={30} />
         </button>
       </div>
+      <Toaster position="top-right" />
     </div>
   );
 };
