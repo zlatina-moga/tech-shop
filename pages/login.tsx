@@ -8,7 +8,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import * as userService from "../services/userService";
 import showPasswordIcon from "../public/svg/password-show.svg";
 import hidePasswordIcon from "../public/svg/password-hide.svg";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 interface IFillTheForm {
   email: string;
@@ -174,7 +174,6 @@ const Login = () => {
             </p>
           </form>
         </div>
-        <Toaster position="top-center" />
         <ul className="bg-bubbles">
           <li></li>
           <li></li>

@@ -213,7 +213,6 @@ const Register = () => {
               </span>
             </p>
           </form>
-          <Toaster position="top-center" />
         </div>
         <ul className="bg-bubbles">
           <li></li>
