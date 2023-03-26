@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { serverCategories } from "../../data/categories";
 import { serverRackBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const RackServers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const RackServers = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

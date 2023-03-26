@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { networkCategories } from "../../data/categories";
 import { adaptorskBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const Adaptors = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const Adaptors = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

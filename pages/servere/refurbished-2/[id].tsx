@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { serverRefBrcrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const RefurbishedServerDetails = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const RefurbishedServerDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={serverRefBrcrmbs}/>}
+      <Footer />
     </>
   );
 };

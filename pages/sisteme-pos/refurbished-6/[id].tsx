@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { posRefBrcrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const RefurbishedPOSDetails = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const RefurbishedPOSDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={posRefBrcrmbs}/>}
+      <Footer />
     </>
   );
 };

@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { upsCategories } from "../../data/categories";
 import { upsRefBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const RefurbishedUPS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const RefurbishedUPS = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

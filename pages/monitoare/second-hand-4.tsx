@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { monitorCategories } from "../../data/categories";
 import { monitorSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const MonitoareSecondHand = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const MonitoareSecondHand = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

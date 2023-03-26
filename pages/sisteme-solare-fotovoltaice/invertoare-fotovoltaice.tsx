@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { solarCategories } from "../../data/categories";
 import { solarInvertorsBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const Invertors = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const Invertors = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

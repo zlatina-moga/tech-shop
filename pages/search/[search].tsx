@@ -7,6 +7,7 @@ import MainSkeleton from "../../components/shared/MainSkeleton";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import emailjs from "emailjs-com";
+import Footer from "../../components/global/Footer";
 
 const ProcDetail = () => {
   const router = useRouter();
@@ -213,6 +214,7 @@ const ProcDetail = () => {
           <Toaster position="top-right" />
         </main>
       )}
+      <Footer />
     </>
   );
 };

@@ -5,6 +5,7 @@ import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { monitorSHBrcrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const SecondHandMonitorDetails = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const SecondHandMonitorDetails = () => {
     <>
       <Navbar />
       {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={monitorSHBrcrmbs}/>}
+      <Footer />
     </>
   );
 };

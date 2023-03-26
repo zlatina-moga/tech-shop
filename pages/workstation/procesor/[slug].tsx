@@ -6,6 +6,7 @@ import { usePagination } from "../../../hooks/usePagination";
 import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { workstationProcBrcrmbs } from "../../../data/breadcrumbs";
+import Footer from "../../../components/global/Footer";
 
 const ProcDetail = () => {
   const router = useRouter();
@@ -105,6 +106,7 @@ const ProcDetail = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

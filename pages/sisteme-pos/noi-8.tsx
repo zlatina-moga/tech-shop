@@ -6,6 +6,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { posCategories } from "../../data/categories";
 import { posNewBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 
 const NewPOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -98,6 +99,7 @@ const NewPOS = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };
