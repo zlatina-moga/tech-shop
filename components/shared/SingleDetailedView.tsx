@@ -23,9 +23,13 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
+  let [warranty, setWarranty] = useState(0);
+  let [warrantyType, setWarrantyType] = useState('');
+
+  const id = itemData.map((element => element.id)).toString()
 
   const handleAddToCart = () => {
-    dispatch(addProduct({ itemData, quantity: 1 }));
+    dispatch(addProduct({ itemData, quantity: 1, warranty }));
     setClicked(true);
     toast.success("Product added to cart", {
       style: { marginTop: "100px" },
@@ -61,6 +65,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
           router.push("/");
         }, 2000);
       });
+  };
+
+  const handleWarranty = (selectedWarranty) => {
+    setWarranty(selectedWarranty);
   };
 
   return (
@@ -204,7 +212,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                               >
-                                Alege garantia
+                                {warranty === 0 ? "Alege garantia" : warrantyType}
                               </button>
                               <ul className="dropdown-menu" id="upgrade-links">
                                 {item.warrantyOptions.map((w, i) => (
@@ -217,6 +225,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                         alignItems: "center",
                                         color: "black",
                                       }}
+                                      onClick={() =>{
+                                        handleWarranty(w.value_with_vat)
+                                        setWarrantyType(w.name)}
+                                      }
                                     >
                                       {w.name}
                                       <span className="ml-3 font-weight-bold">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { increase, decrease, removeItem } from "../../services/redux/cartRedux";
 import classNames from "classnames";
 
-const CartItem = ({ id, imgLink, img1, title, priceNum }) => {
+const CartItem = ({ id, imgLink, img1, title, priceNum, warranty }) => {
   const dispatch = useDispatch();
 
   let [quantity, setQuantity] = useState(1);
@@ -34,6 +34,7 @@ const CartItem = ({ id, imgLink, img1, title, priceNum }) => {
         </Link>
       </td>
       <td className="align-middle">{(priceNum * quantity).toFixed(2)} Lei</td>
+      <td className="align-middle">{warranty} Lei</td>
       <td className="align-middle">
         <div
           className="input-group quantity mx-auto"

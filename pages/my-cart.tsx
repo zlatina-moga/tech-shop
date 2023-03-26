@@ -7,6 +7,8 @@ import Footer from "../components/global/Footer";
 const MyCard = () => {
   const cart = useSelector((state) => state.cart);
 
+  const deliveryCost = cart.products.map
+
   return (
     <>
       <Navbar />
@@ -33,9 +35,10 @@ const MyCard = () => {
             <table className="table table-bordered text-center mb-0">
               <thead className="bg-secondary text-dark">
                 <tr>
-                  <th>Products</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
+                  <th>Produse</th>
+                  <th>Preț</th>
+                  <th>Garantie</th>
+                  <th>Cantitate</th>
                 </tr>
               </thead>
               <tbody className="align-middle">
@@ -47,6 +50,7 @@ const MyCard = () => {
                     img1={p.itemData[0].img1}
                     title={p.itemData[0].title}
                     priceNum={p.itemData[0].priceNum}
+                    warranty={p.warranty}
                   />
                 ))}
               </tbody>
@@ -67,21 +71,21 @@ const MyCard = () => {
                 </form>*/}
             <div className="card border-secondary mb-4">
               <div className="card-header bg-secondary border-0">
-                <h4 className="font-weight-semi-bold m-0">Cart Summary</h4>
+                <h4 className="font-weight-semi-bold m-0">Sumar Comanda</h4>
               </div>
               <div className="card-body">
                 <div className="d-flex justify-content-between mb-3 pt-1">
-                  <h6 className="font-weight-medium">Subtotal</h6>
+                  <h6 className="font-weight-medium">Cost produse</h6>
                   <h6 className="font-weight-medium">
                     {cart.total.toFixed(2)} Lei
                   </h6>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <h6 className="font-weight-medium">Shipping</h6>
+                  <h6 className="font-weight-medium">Cost livrare</h6>
                   <h6 className="font-weight-medium">0</h6>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <h6 className="font-weight-medium">Discount</h6>
+                  <h6 className="font-weight-medium">Reducere</h6>
                   <h6 className="font-weight-medium">0</h6>
                 </div>
               </div>
