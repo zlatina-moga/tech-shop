@@ -9,7 +9,6 @@ import Footer from "../components/global/Footer";
 
 interface IFillTheForm {
   name: string;
-  username: string;
   email: string;
   password: string;
   repeatPassword: string;
@@ -17,7 +16,6 @@ interface IFillTheForm {
 
 const initialValues: IFillTheForm = {
   name: "",
-  username: "",
   email: "",
   password: "",
   repeatPassword: "",
@@ -42,10 +40,12 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    toast.loading("Please wait", {
-      style: { marginTop: "100px" },
-      duration: 2000,
-    });
+    if (formState) {
+      toast.loading("Please wait", {
+        style: { marginTop: "100px" },
+        duration: 2000,
+      });
+    }
 
     validateForm(formValues);
   };
@@ -54,12 +54,6 @@ const Register = () => {
     if (!formValues.name) {
       setFormState(false);
       toast.error("Please enter name", {
-        style: { marginTop: "100px" },
-      });
-    }
-    if (!formValues.username) {
-      setFormState(false);
-      toast.error("Please enter username", {
         style: { marginTop: "100px" },
       });
     }
@@ -82,7 +76,9 @@ const Register = () => {
       });
     }
 
-    await register();
+    if (formState) {
+      await register();
+    }
   }
 
   async function register() {
@@ -101,9 +97,12 @@ const Register = () => {
           duration: 5000,
         });
         setFormValues(initialValues);
+      } else if (response.status == 400) {  
+        console.log(response.statusText)
       }
     } catch (error) {
-      toast.error(error.message, {
+      console.log('I am fucking here')
+      toast.error(error, {
         style: { marginTop: "100px" },
       });
     }
@@ -119,25 +118,20 @@ const Register = () => {
       <Navbar />
       <div className="wrapper">
         <div className="container">
-          <h1 style={{ color: "white" }}>Register</h1>
+          <h1 style={{ color: "white" }}>
+            Inregistrează-te pentru a crea un cont nou
+          </h1>
           <form className="form" onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Nume*"
               name="name"
               value={formValues.name}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Username"
-              name="username"
-              value={formValues.username}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              placeholder="Email"
+              placeholder="Email*"
               name="email"
               value={formValues.email}
               onChange={handleChange}
@@ -151,7 +145,7 @@ const Register = () => {
             >
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="Password"
+                placeholder="Parolă*"
                 name="password"
                 value={formValues.password}
                 onChange={handleChange}
@@ -178,7 +172,7 @@ const Register = () => {
             >
               <input
                 type={showSecondPassword ? "text" : "password"}
-                placeholder="Repeat Password"
+                placeholder="Confirmare parolă*"
                 name="repeatPassword"
                 value={formValues.repeatPassword}
                 onChange={handleChange}
@@ -202,13 +196,17 @@ const Register = () => {
               id="login-button"
               style={{ marginTop: "50px" }}
             >
-              Register
+              Inregistrează-te
             </button>
             <p className="auth-field">
               <span>
-                Already have an account? Click{" "}
-                <Link className="linkBtn" href="/login" style={{textDecoration: 'underline'}}>
-                  here
+                Ai deja un cont? Autentifică-te{" "}
+                <Link
+                  className="linkBtn"
+                  href="/login"
+                  style={{ textDecoration: "underline" }}
+                >
+                  aici
                 </Link>
               </span>
             </p>

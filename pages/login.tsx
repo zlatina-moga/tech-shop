@@ -73,35 +73,6 @@ const Login = () => {
         });
         setFormValues(initialValues);
       });
-
-    /*const response = await fetch(`${baseUrl}/auth/login`, {
-      method: "POST",
-      body: JSON.stringify(formValues),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.status == 200) {
-      console.log(response);
-      loginUser(response);
-      setFormValues(initialValues);
-      toast.success("Login successful", {
-        style: { marginTop: "100px" },
-      });
-      setTimeout(() => {
-        router.push("/");
-      }, 2500);
-    }
-
-    if (response.status == 401) {
-      toast.error("Incorrect email or password", {
-        style: { marginTop: "100px" },
-      });
-      setFormValues(initialValues);
-    }
-
-    return response.json();*/
   }
 
   const handleChange = (e: any) => {
@@ -114,11 +85,11 @@ const Login = () => {
       <Navbar />
       <div className="wrapper">
         <div className="container">
-          <h1 style={{ color: "white" }}>Login</h1>
+          <h1 style={{ color: "white" }}>Autentificare</h1>
           <form className="form" onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Email"
+              placeholder="Email*"
               name="email"
               value={formValues.email}
               onChange={handleChange}
@@ -132,7 +103,7 @@ const Login = () => {
             >
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="Password"
+                placeholder="Parolă*"
                 name="password"
                 value={formValues.password}
                 onChange={handleChange}
@@ -156,18 +127,18 @@ const Login = () => {
               id="login-button"
               style={{ marginTop: "50px" }}
             >
-              Login
+              Autentificare
             </button>
             <p className="auth-field">
               <span>
                 <span>
-                  Missing an account? Click{" "}
+                  Nu ai un cont? Inregistrează-te{" "}
                   <Link
                     className="linkBtn"
                     href="/register"
                     style={{ textDecoration: "underline" }}
                   >
-                    here
+                    aici
                   </Link>
                 </span>
               </span>

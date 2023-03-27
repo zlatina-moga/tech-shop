@@ -1,10 +1,10 @@
 import * as request from "./requester";
 const baseUrl = "http://localhost:5500";
 
-export const register = (name, email, username, password) => {
+export const register = (name, email, password) => {
   return fetch(`${baseUrl}/auth/register`, {
     method: "POST",
-    body: JSON.stringify({ name, email, username, password }),
+    body: JSON.stringify({ name, email, password }),
     headers: {
       "Content-Type": "application/json",
     },

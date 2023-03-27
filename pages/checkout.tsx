@@ -53,25 +53,6 @@ const Checkout = () => {
               </div>
 
               <div className="mb-3">
-                <label>Username</label>
-                <div className="input-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">@</span>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    placeholder="Username"
-                    required
-                  />
-                  <div className="invalid-feedback" style={{ width: "100%" }}>
-                    Your username is required.
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-3">
                 <label>
                   Email <span className="text-muted">(Optional)</span>
                 </label>
