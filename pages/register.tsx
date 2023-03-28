@@ -4,7 +4,7 @@ import Navbar from "../components/global/Navbar";
 import Image from "next/image";
 import showPasswordIcon from "../public/svg/password-show.svg";
 import hidePasswordIcon from "../public/svg/password-hide.svg";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Footer from "../components/global/Footer";
 
 interface IFillTheForm {
@@ -26,7 +26,6 @@ const baseUrl = "http://localhost:5500";
 const Register = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showSecondPassword, setShowSecondPassword] = useState<boolean>(false);
-  const [formState, setFormState] = useState<boolean>(true);
   const [formValues, setFormValues] = useState<IFillTheForm>(initialValues);
 
   const togglePassword = () => {
@@ -39,44 +38,41 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (formState) {
-      toast.loading("Please wait", {
-        style: { marginTop: "100px" },
-        duration: 2000,
-      });
-    }
-
     validateForm(formValues);
   };
 
   async function validateForm(formValues: IFillTheForm) {
     if (!formValues.name) {
-      setFormState(false);
       toast.error("Please enter name", {
         style: { marginTop: "100px" },
       });
     }
     if (!formValues.email) {
-      setFormState(false);
       toast.error("Please enter email", {
         style: { marginTop: "100px" },
       });
     }
     if (!formValues.password) {
-      setFormState(false);
       toast.error("Please enter password", {
         style: { marginTop: "100px" },
       });
     }
     if (formValues.password != formValues.repeatPassword) {
-      setFormState(false);
       toast.error("Passwords don't match", {
         style: { marginTop: "100px" },
       });
     }
 
-    if (formState) {
+    if (
+      formValues.name &&
+      formValues.email &&
+      formValues.password &&
+      formValues.password == formValues.repeatPassword
+    ) {
+      toast.loading("Please wait", {
+        style: { marginTop: "100px" },
+        duration: 2000,
+      });
       await register();
     }
   }
@@ -97,11 +93,8 @@ const Register = () => {
           duration: 5000,
         });
         setFormValues(initialValues);
-      } else if (response.status == 400) {  
-        console.log(response.statusText)
       }
     } catch (error) {
-      console.log('I am fucking here')
       toast.error(error, {
         style: { marginTop: "100px" },
       });
@@ -158,6 +151,7 @@ const Register = () => {
                   position: "absolute",
                   right: "190px",
                   bottom: "25px",
+                  cursor: "pointer",
                 }}
                 onClick={togglePassword}
                 alt="image"
@@ -185,6 +179,7 @@ const Register = () => {
                   position: "absolute",
                   right: "190px",
                   bottom: "25px",
+                  cursor: "pointer",
                 }}
                 onClick={toggleSecondPassword}
                 alt="image"
