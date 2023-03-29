@@ -22,7 +22,6 @@ const initialValues: IFillTheForm = {
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [formState, setFormState] = useState<boolean>(true);
   const [formValues, setFormValues] = useState<IFillTheForm>(initialValues);
   const router = useRouter();
   const { loginUser } = useContext(AuthContext);
@@ -39,19 +38,23 @@ const Login = () => {
 
   async function validateForm(formValues: IFillTheForm) {
     if (!formValues.email) {
-      setFormState(false);
-      toast.error("Please enter email", {
+      toast.error("Vă rugăm să introduceți adresa de e-mail", {
         style: { marginTop: "100px" },
       });
     }
     if (!formValues.password) {
-      setFormState(false);
-      toast.error("Please enter password", {
+      toast.error("Vă rugăm să introduceți parolă", {
         style: { marginTop: "100px" },
       });
     }
 
-    await login();
+    if (formValues.email && formValues.password) {
+      toast.loading("Vă rugăm asteptați", {
+        style: { marginTop: "100px" },
+        duration: 2000,
+      });
+      await login();
+    }
   }
 
   async function login() {
@@ -60,7 +63,7 @@ const Login = () => {
       .then((authData) => {
         loginUser(authData);
         setFormValues(initialValues);
-        toast.success("Login successful", {
+        toast.success("Bine ai venit!", {
           style: { marginTop: "100px" },
         });
         setTimeout(() => {
@@ -68,7 +71,7 @@ const Login = () => {
         }, 2500);
       })
       .catch((err) => {
-        toast.error(err.message, {
+        toast.error(err, {
           style: { marginTop: "100px" },
         });
         setFormValues(initialValues);

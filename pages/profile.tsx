@@ -9,7 +9,7 @@ const Profile = () => {
     <>
       <Navbar />
       <div
-        className="laptops-page h-100"
+        className="laptops-page h-100 profil-page"
         style={{ maxWidth: "100rem", marginTop: "50px" }}
       >
         <div className="row justify-content-center">

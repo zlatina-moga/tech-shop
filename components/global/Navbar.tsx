@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  const [searchItem, setSearchedItem] = useState<FormDataEntryValue>();
   {
     /*@ts-ignore */
   }
@@ -47,7 +46,7 @@ const Navbar = () => {
                 name="searchItem"
                 id="searchItem"
                 className="form-control"
-                placeholder="Cauta produse"
+                placeholder="Caută produse"
                 style={{ borderRadius: "4px", textAlign: "left" }}
               />
               <div className="input-group-append">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import showPasswordIcon from "../public/svg/password-show.svg";
 import hidePasswordIcon from "../public/svg/password-hide.svg";
 import toast from "react-hot-toast";
 import Footer from "../components/global/Footer";
+import * as userService from "../services/userService";
 
 interface IFillTheForm {
   name: string;
@@ -20,8 +21,6 @@ const initialValues: IFillTheForm = {
   password: "",
   repeatPassword: "",
 };
-
-const baseUrl = "http://localhost:5500";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -43,22 +42,22 @@ const Register = () => {
 
   async function validateForm(formValues: IFillTheForm) {
     if (!formValues.name) {
-      toast.error("Please enter name", {
+      toast.error("Vă rugăm să introduceți numele", {
         style: { marginTop: "100px" },
       });
     }
     if (!formValues.email) {
-      toast.error("Please enter email", {
+      toast.error("Vă rugăm să introduceți adresa de e-mail", {
         style: { marginTop: "100px" },
       });
     }
     if (!formValues.password) {
-      toast.error("Please enter password", {
+      toast.error("Vă rugăm să introduceți parolă", {
         style: { marginTop: "100px" },
       });
     }
     if (formValues.password != formValues.repeatPassword) {
-      toast.error("Passwords don't match", {
+      toast.error("Parolele introduse nu se potrivesc", {
         style: { marginTop: "100px" },
       });
     }
@@ -69,7 +68,7 @@ const Register = () => {
       formValues.password &&
       formValues.password == formValues.repeatPassword
     ) {
-      toast.loading("Please wait", {
+      toast.loading("Vă rugăm asteptați", {
         style: { marginTop: "100px" },
         duration: 2000,
       });
@@ -78,28 +77,21 @@ const Register = () => {
   }
 
   async function register() {
-    const response = await fetch(`${baseUrl}/auth/register`, {
-      method: "POST",
-      body: JSON.stringify(formValues),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    try {
-      if (response.status == 200) {
-        toast.success("Please verify your email address", {
+    userService
+      .register(formValues.name, formValues.email, formValues.password)
+      .then(() => {
+        setFormValues(initialValues);
+        toast.success("Vă rog să vă verificați adresa de email", {
           style: { marginTop: "100px" },
           duration: 5000,
         });
-        setFormValues(initialValues);
-      }
-    } catch (error) {
-      toast.error(error, {
-        style: { marginTop: "100px" },
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err, {
+          style: { marginTop: "100px" },
+        });
       });
-    }
-    return response.json();
   }
 
   const handleChange = (e: any) => {
