@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const useLocalStorage = (key, initialValue) => {
-  let item;
-  useEffect(() => {
-    item = localStorage.getItem(key);
-  }, [])
-
   const [state, setState] = useState(() => {
     try {
+      let item;
+      if (typeof window !== undefined && localStorage !== undefined ) {
+        item = localStorage.getItem(key);
         return item ? JSON.parse(item) : initialValue;
+      }
     } catch (err) {
       console.log(err);
       return initialValue;
@@ -17,7 +16,7 @@ const useLocalStorage = (key, initialValue) => {
 
   const setItem = (value) => {
     try {
-      if (typeof window != undefined) {
+      if (typeof window !== undefined && localStorage !== undefined  ) {
         localStorage.setItem(key, JSON.stringify(value));
         setState(value);
       }
@@ -25,6 +24,7 @@ const useLocalStorage = (key, initialValue) => {
       console.log(err);
     }
   };
+
   return [state, setItem];
 };
 

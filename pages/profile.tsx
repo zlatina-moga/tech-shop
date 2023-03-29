@@ -32,7 +32,6 @@ const Profile = () => {
                           className="form-control"
                           placeholder=""
                           aria-label="First name"
-                          value={user.name}
                         />
                       </div>
                       <div className="d-flex">
@@ -41,7 +40,6 @@ const Profile = () => {
                           type="email"
                           className="form-control"
                           id="inputEmail4"
-                          value={user.email}
                         />
                       </div>
                       <div className="d-flex">
@@ -100,7 +98,7 @@ const Profile = () => {
                           type="text"
                           className="form-control"
                           id=""
-                          value="Romania"
+                          value=""
                         />
                       </div>
                       <div className="">
