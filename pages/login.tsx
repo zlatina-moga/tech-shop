@@ -1,10 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { loginFailure, loginStart, loginSuccess } from "../services/redux/userRedux";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
 import Image from "next/image";
-import { AuthContext } from "../contexts/AuthContext";
 import * as userService from "../services/userService";
 import showPasswordIcon from "../public/svg/password-show.svg";
 import hidePasswordIcon from "../public/svg/password-hide.svg";
@@ -24,7 +25,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<IFillTheForm>(initialValues);
   const router = useRouter();
-  const { loginUser } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  //@ts-ignore
+  const {isFetching } = useSelector(state => state.user)
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -49,19 +52,22 @@ const Login = () => {
     }
 
     if (formValues.email && formValues.password) {
-      toast.loading("Vă rugăm asteptați", {
-        style: { marginTop: "100px" },
-        duration: 2000,
-      });
+      if (isFetching) {
+        toast.loading("Vă rugăm asteptați", {
+          style: { marginTop: "100px" }
+        });
+      }
+
       await login();
     }
   }
 
   async function login() {
+    dispatch(loginStart())
     userService
       .login(formValues.email, formValues.password)
       .then((authData) => {
-        loginUser(authData);
+        dispatch(loginSuccess(authData))
         setFormValues(initialValues);
         toast.success("Bine ai venit!", {
           style: { marginTop: "100px" },
@@ -71,6 +77,7 @@ const Login = () => {
         }, 2500);
       })
       .catch((err) => {
+        dispatch(loginFailure())
         toast.error(err, {
           style: { marginTop: "100px" },
         });

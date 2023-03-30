@@ -5,9 +5,8 @@ import CartItem from "../components/shared/CartItem";
 import Footer from "../components/global/Footer";
 
 const MyCard = () => {
+  //@ts-ignore
   const cart = useSelector((state) => state.cart);
-
-  const deliveryCost = cart.products.map
 
   return (
     <>

@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
-import { AuthContext } from "../contexts/AuthContext";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+    //@ts-ignore
+    const user = useSelector((state => state.user.currentUser));
   return (
     <>
       <Navbar />

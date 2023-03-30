@@ -1,16 +1,15 @@
-import { useContext } from "react";
 import { useRouter } from "next/router";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useSelector } from "react-redux";
+//import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
-import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
-  {
-    /*@ts-ignore */
-  }
+  //const { user } = useContext(AuthContext);
+  //@ts-ignore
   const quantity = useSelector((state) => state.cart.quantity);
+  //@ts-ignore
+  const user = useSelector((state => state.user.currentUser));
   const router = useRouter();
 
   const onSearch = (e) => {
@@ -67,7 +66,7 @@ const Navbar = () => {
           </form>
         </div>
         <div className="col-lg-3 col-6 text-right">
-          {user.email ? userNav : guestNav}
+          {user ? userNav : guestNav}
           <Link
             href="/my-cart"
             className="btn border"
