@@ -1,5 +1,6 @@
 # Pc Bun
-NextJS e-commerce platform *still in the works 
+NextJS e-commerce platform 
+*Still in the works 
 To install all dependencies, open a terminal and run `npm install`.
 To execute it manually run `npm run dev` .
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
