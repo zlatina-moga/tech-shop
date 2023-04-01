@@ -9,7 +9,7 @@ const Navbar = () => {
   //@ts-ignore
   const quantity = useSelector((state) => state.cart.quantity);
   //@ts-ignore
-  const user = useSelector((state => state.user.currentUser));
+  const user = useSelector((state) => state.user.currentUser);
   const router = useRouter();
 
   const onSearch = (e) => {
@@ -19,6 +19,75 @@ const Navbar = () => {
     let item = formData.get("searchItem");
     router.push(`/search/search=${item}`);
   };
+
+  const guestNav = (
+    <>
+      <span className="nav-item dropdown">
+        <div
+          className="btn border dropdown-toggle"
+          style={{ marginRight: "5px", borderRadius: "4px" }}
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i className="fas fa-user text-primary mr-1"></i>
+          <span className="badge"></span>
+          Cont
+          <ul
+            className="dropdown-menu mt-4"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li>
+              <Link className="dropdown-item" href="/login">
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" href="/register">
+                Register
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </span>
+    </>
+  );
+
+  const userNav = (
+    <>
+      {user && (
+        <span className="nav-item dropdown">
+          <div
+            className="btn border dropdown-toggle"
+            style={{ marginRight: "5px", borderRadius: "4px" }}
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i className="fas fa-user text-primary mr-1"></i>
+            <span className="badge"></span>
+            Cont
+            <ul
+              className="dropdown-menu mt-4"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
+              <li>
+                <Link
+                  className="dropdown-item"
+                  href={`/auth/profile/${user._id}`}
+                >
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" href="/logout">
+                  Logout
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </span>
+      )}
+    </>
+  );
 
   return (
     <div className="w-100" id="nav-container">
@@ -66,7 +135,7 @@ const Navbar = () => {
           </form>
         </div>
         <div className="col-lg-3 col-6 text-right">
-          {user ? userNav : guestNav}
+          {user !== null ? userNav : guestNav}
           <Link
             href="/my-cart"
             className="btn border"
@@ -83,69 +152,5 @@ const Navbar = () => {
     </div>
   );
 };
-
-const guestNav = (
-  <>
-    <span className="nav-item dropdown">
-      <div
-        className="btn border dropdown-toggle"
-        style={{ marginRight: "5px", borderRadius: "4px" }}
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        <i className="fas fa-user text-primary mr-1"></i>
-        <span className="badge"></span>
-        Cont
-        <ul
-          className="dropdown-menu mt-4"
-          aria-labelledby="navbarDropdownMenuLink"
-        >
-          <li>
-            <Link className="dropdown-item" href="/login">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link className="dropdown-item" href="/register">
-              Register
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </span>
-  </>
-);
-
-const userNav = (
-  <>
-    <span className="nav-item dropdown">
-      <div
-        className="btn border dropdown-toggle"
-        style={{ marginRight: "5px", borderRadius: "4px" }}
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        <i className="fas fa-user text-primary mr-1"></i>
-        <span className="badge"></span>
-        Cont
-        <ul
-          className="dropdown-menu mt-4"
-          aria-labelledby="navbarDropdownMenuLink"
-        >
-          <li>
-            <Link className="dropdown-item" href="/profile">
-              Profile
-            </Link>
-          </li>
-          <li>
-            <Link className="dropdown-item" href="/logout">
-              Logout
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </span>
-  </>
-);
 
 export default Navbar;

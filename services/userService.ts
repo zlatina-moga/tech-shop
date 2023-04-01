@@ -43,3 +43,8 @@ export const logout = (token) => {
     },
   });
 };
+
+export const getOne = async (id) => {
+  let result = await fetch(`${baseUrl}/auth/profile/${id}`);
+  return result.json()
+}
