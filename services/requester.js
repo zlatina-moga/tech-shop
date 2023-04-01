@@ -1,4 +1,4 @@
-export const request = async (method, url, data) => {
+export const request = async (method, url, data, token) => {
     let promiseResult = null;
 
     if (method == 'GET') {
@@ -8,7 +8,7 @@ export const request = async (method, url, data) => {
             method,
             headers: {
                 'Content-Type': 'application/json',
-                'X-Authorization': getToken()
+                'X-Authorization': token
             },
             body: JSON.stringify(data)
         })

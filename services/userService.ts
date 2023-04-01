@@ -1,4 +1,3 @@
-import * as request from "./requester";
 const baseUrl = "http://localhost:5500";
 
 export const register = async (name, email, password) => {
@@ -46,5 +45,25 @@ export const logout = (token) => {
 
 export const getOne = async (id) => {
   let result = await fetch(`${baseUrl}/auth/profile/${id}`);
-  return result.json()
-}
+  return result.json();
+};
+
+export const update = (id, userData, token) => {
+  return fetch(`${baseUrl}/auth/profile/${id}`, {
+    method: "PUT",
+    headers: {
+      "X-Authorization": token,
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(userData),
+  });
+};
+
+export const del = (userId, token) => {
+  return fetch(`${baseUrl}/auth/profile/${userId}`, {
+    method: "DELETE",
+    headers: {
+      "X-Authorization": token,
+    },
+  });
+};
