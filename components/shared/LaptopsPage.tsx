@@ -1,7 +1,9 @@
+import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import Link from "next/link";
 import Meta from "../../components/layouts/Meta";
 import SideFilter from "./SideFilter";
+import { addProduct } from "../../services/redux/cartRedux";
 
 interface ILaptopPage {
   title: string;
@@ -11,7 +13,7 @@ interface ILaptopPage {
   brands?: any;
   brandLink?: string;
   processors?: any;
-  processorsLink?: string
+  processorsLink?: string;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -22,8 +24,9 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   brands,
   brandLink,
   processors,
-  processorsLink
+  processorsLink,
 }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <Meta title={title} keywords={title} description={title} />
@@ -50,7 +53,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
             className="row pb-3 justify-content-center"
             style={{ maxWidth: "98rem" }}
           >
-            {laptopsData.map((l, idx) => (
+            {laptopsData.map((itemData, idx) => (
               <div
                 className={classNames(`pb-1`, "laptop-card")}
                 key={idx}
@@ -63,24 +66,24 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                   )}
                   style={{ alignItems: "stretch", height: "550px" }}
                 >
-                  <Link href={l.id}>
+                  <Link href={itemData.id}>
                     <div
                       className={classNames(
                         "card-header product-img position-relative overflow-hidden bg-transparent",
                         "img-wrapper"
                       )}
                     >
-                      {l.discount && (
+                      {itemData.discount && (
                         <div className="discount-container">
                           <div>
-                            <p>{l.discount}</p>
+                            <p>{itemData.discount}</p>
                           </div>
                         </div>
                       )}
 
                       <img
                         className="img-fluid w-100"
-                        src={l.imgLink ? l.imgLink : l.imgLink1}
+                        src={itemData.imgLink ? itemData.imgLink : itemData.imgLink1}
                         alt=""
                         //style={{maxWidth: '200px'}}
                       />
@@ -95,29 +98,32 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                         maxHeight: "95px",
                       }}
                     >
-                      {l.title}
+                      {itemData.title}
                     </h6>
-                    {l.oldPrice && (
+                    {itemData.oldPrice && (
                       <div className="d-flex justify-content-center">
                         <h6 className="text-muted pb-2 price-2">
-                          <del>{l.oldPrice}</del>
+                          <del>{itemData.oldPrice}</del>
                         </h6>
                       </div>
                     )}
 
                     <div className="d-flex justify-content-center">
-                      <h6 className="price">{l.price} + TVA</h6>
+                      <h6 className="price">{itemData.price} + TVA</h6>
                     </div>
                   </div>
                   <div className="card-footer d-flex justify-content-between bg-light">
-                    <Link href={l.id} className="btn btn-sm text-dark p-1">
+                    <Link href={itemData.id} className="btn btn-sm text-dark p-1">
                       <i className="fas fa-eye text-primary mr-1"></i>View
                       Detail
                     </Link>
-                    <Link href={l.id} className="btn btn-sm text-dark p-1">
+                    <button
+                      className="btn btn-sm text-dark p-1"
+                      onClick={() => ""} //dispatch(addProduct({ l, quantity: 1 }))}
+                    >
                       <i className="fas fa-shopping-cart text-primary mr-1"></i>
                       Add To Cart
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

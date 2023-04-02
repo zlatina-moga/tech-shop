@@ -29,7 +29,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const id = itemData.map((element => element.id)).toString()
 
   const handleAddToCart = () => {
-    dispatch(addProduct({ itemData, quantity: 1, warranty }));
+    dispatch(addProduct({ itemData, quantity: 1, warranty: warranty }));
     setClicked(true);
     toast.success("Product added to cart", {
       style: { marginTop: "100px" },

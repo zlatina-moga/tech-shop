@@ -92,7 +92,7 @@ const MyCard = () => {
                 <div className="d-flex justify-content-between mt-2">
                   <h5 className="font-weight-bold">Total</h5>
                   <h5 className="font-weight-bold">
-                    {cart.total.toFixed(2)} Lei
+                     {cart.total.toFixed(2)} Lei
                   </h5>
                 </div>
                 <Link className="btn btn-block btn-primary my-3 py-3" href='/checkout'>
