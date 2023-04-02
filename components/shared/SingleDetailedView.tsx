@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Meta from "../../components/layouts/Meta";
+import Meta from "../layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";

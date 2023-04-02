@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import Link from "next/link";
-import Meta from "../../components/layouts/Meta";
+import Meta from "../layouts/Meta";
 import SideFilter from "./SideFilter";
 import { addProduct } from "../../services/redux/cartRedux";
 

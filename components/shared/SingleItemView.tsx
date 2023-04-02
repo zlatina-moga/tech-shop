@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import Meta from "../../components/layouts/Meta";
+import Meta from "../layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";
@@ -24,8 +24,9 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
   const router = useRouter()
   const [clicked, setClicked] = useState(false);
 
+
   const handleAddToCart = () => {
-    dispatch(addProduct({ itemData, quantity: 1 }));
+    dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
     setClicked(true);
     toast.success("Product added to cart", {
       style: { marginTop: "100px" },

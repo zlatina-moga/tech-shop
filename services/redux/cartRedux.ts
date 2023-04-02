@@ -23,6 +23,10 @@ const cartSlice = createSlice({
       state.quantity -= 1;
       state.total -= payload.warranty || 0;
       state.total -= payload.priceNum || 0;
+
+      if (state.total < 0) {
+        state.total = 0
+      }
     },
     increase: (state, { payload }) => {
       const cartItem = state.products.find(

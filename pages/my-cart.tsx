@@ -76,12 +76,19 @@ const MyCard = () => {
                 <div className="d-flex justify-content-between mb-3 pt-1">
                   <h6 className="font-weight-medium">Cost produse</h6>
                   <h6 className="font-weight-medium">
-                    {cart.total.toFixed(2)} Lei
+                    {cart.total && cart.total.toFixed(2)} Lei
                   </h6>
                 </div>
                 <div className="d-flex justify-content-between">
                   <h6 className="font-weight-medium">Cost livrare</h6>
-                  <h6 className="font-weight-medium">0</h6>
+                  {cart.total >= 250 ? (
+                    <h6 className="font-weight-medium text-primary">
+                      {" "}
+                      GRATUIT
+                    </h6>
+                  ) : (
+                    <h6 className="font-weight-medium">?????</h6>
+                  )}
                 </div>
                 <div className="d-flex justify-content-between">
                   <h6 className="font-weight-medium">Reducere</h6>
@@ -92,12 +99,24 @@ const MyCard = () => {
                 <div className="d-flex justify-content-between mt-2">
                   <h5 className="font-weight-bold">Total</h5>
                   <h5 className="font-weight-bold">
-                     {cart.total.toFixed(2)} Lei
+                    {cart.total && cart.total.toFixed(2)} Lei
                   </h5>
                 </div>
-                <Link className="btn btn-block btn-primary my-3 py-3" href='/checkout'>
-                  Proceed To Checkout
-                </Link>
+                {cart.total != 0 ? (
+                  <Link
+                    className="btn btn-block btn-primary my-3 py-3"
+                    href="/checkout"
+                  >
+                    Finalizeaza Comanda
+                  </Link>
+                ) : (
+                  <Link
+                    className="btn btn-block btn-primary my-3 py-3"
+                    href="/"
+                  >
+                    Înapoi la produse
+                  </Link>
+                )}
               </div>
             </div>
           </div>

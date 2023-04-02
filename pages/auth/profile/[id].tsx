@@ -7,7 +7,7 @@ import * as userService from "../../../services/userService";
 import { Country, State, City } from "country-state-city";
 import toast from "react-hot-toast";
 
-interface IUser {
+export interface IUser {
   name: string;
   email: string;
   phone: string;
@@ -18,7 +18,7 @@ interface IUser {
   zip?: string;
 }
 
-const initialValues: IUser = {
+ export const initialValues: IUser = {
   name: "",
   email: "",
   phone: "",
@@ -178,9 +178,9 @@ const Profile = () => {
                           onChange={handleChange}
                           value={selectedState}
                         >
-                          {states.map((c) => (
+                          {states.map((c, idx) => (
                             <option
-                              key={c.isoCode}
+                              key={idx}
                               value={c.isoCode}
                               className="form-control"
                             >
@@ -199,9 +199,9 @@ const Profile = () => {
                         <select className="form-control">
                           {cities
                             .filter((c) => c.stateCode === selectedState)
-                            .map((c) => (
+                            .map((c, idx) => (
                               <option
-                                key={c.name}
+                                key={idx}
                                 value={c.name}
                                 className="form-control"
                               >
@@ -233,13 +233,13 @@ const Profile = () => {
                       <div className="d-flex justify-content-end">
                         <button
                           type="submit"
-                          className="btn btn-primary btn-lg"
+                          className="btn btn-primary btn-lg rounded-1"
                         >
                           Update
                         </button>
                         <button
                           type="button"
-                          className="btn btn-danger btn-lg ml-4"
+                          className="btn btn-danger btn-lg ml-4 d-none"
                           onClick={deleteHandler}
                         >
                           Delete
