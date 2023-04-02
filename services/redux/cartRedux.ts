@@ -25,7 +25,7 @@ const cartSlice = createSlice({
       state.total -= payload.priceNum || 0;
 
       if (state.total < 0) {
-        state.total = 0
+        state.total = 0;
       }
     },
     increase: (state, { payload }) => {
@@ -43,7 +43,13 @@ const cartSlice = createSlice({
       cartItem.quantity -= 1;
       state.quantity -= 1;
       state.total -= payload.priceNum;
-    }
+    },
+    empty: (state) => {
+      (state.products = []),
+        (state.quantity = 0),
+        (state.warranty = 0),
+        (state.total = 0);
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -55,6 +61,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addProduct, increase, decrease, removeItem } =
+export const { addProduct, increase, decrease, removeItem, empty } =
   cartSlice.actions;
 export default cartSlice.reducer;
