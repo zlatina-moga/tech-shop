@@ -94,6 +94,10 @@ const MyCard = () => {
                   <h6 className="font-weight-medium">Reducere</h6>
                   <h6 className="font-weight-medium">0</h6>
                 </div>
+                <div className="d-flex justify-content-between">
+                  <h6 className="font-weight-medium">Taxa verde</h6>
+                  <h6 className="font-weight-medium text-primary">Inclus</h6>
+                </div>
               </div>
               <div className="card-footer border-secondary bg-transparent">
                 <div className="d-flex justify-content-between mt-2">

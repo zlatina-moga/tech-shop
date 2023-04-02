@@ -18,7 +18,7 @@ export interface IUser {
   zip?: string;
 }
 
- export const initialValues: IUser = {
+export const initialValues: IUser = {
   name: "",
   email: "",
   phone: "",
@@ -34,6 +34,7 @@ const Profile = () => {
   const { id } = router.query;
   const [userData, setUserData] = useState<IUser>(initialValues);
   let [selectedState, setSelectedState] = useState("");
+  let [selectedCity, setSelectedCity] = useState("");
   //@ts-ignore
   const user = useSelector((state) => state.user.currentUser);
 
@@ -60,6 +61,10 @@ const Profile = () => {
     setSelectedState(e.target.value);
   };
 
+  const handleCityChange = (e) => {
+    setSelectedCity(e.target.value);
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -67,9 +72,24 @@ const Profile = () => {
     const name = formData.get("cf-name");
     const email = formData.get("cf-email");
     const phone = formData.get("cf-phone");
+    const address = formData.get("cf-address");
+    const zip = formData.get("cf-zip");
 
     userService
-      .update(id, { name, email, phone }, user.accessToken)
+      .update(
+        id,
+        {
+          name,
+          email,
+          phone,
+          country: "Romania",
+          county: selectedState,
+          city: selectedCity,
+          address,
+          zip
+        },
+        user.accessToken
+      )
       .then((result) => {
         //@ts-ignore
         setUserData(result);
@@ -102,10 +122,10 @@ const Profile = () => {
         className="laptops-page h-100 profil-page"
         style={{ maxWidth: "100rem", marginTop: "50px" }}
       >
-        <div className="row justify-content-center">
+        <div className="row justify-content-center mt-5">
           <div className="">
-            <div className="my-5">
-              <h3>Detalii profil</h3>
+            <div className="ml-4">
+              <h3 className="font-weight-semi-bold ">Detalii profil</h3>
               <hr />
             </div>
 
@@ -113,47 +133,42 @@ const Profile = () => {
               <div className="row mb-5 gx-5 justify-content-center">
                 <div className="mb-5 mb-xxl-0">
                   <div className="bg-secondary-soft px-4 py-5 rounded">
-                    <div className="row g-3">
-                      <h4 className="mb-4 mt-0">Informatii de contact</h4>
-                      <div className="d-flex align-items-center ">
-                        <label className="form-label">Nume</label>
+                    <div className="row">
+                      <h4 className="mb-4 mt-0">Informații de contact</h4>
+                      <div className="col-md-6 form-group d-flex flex-column">
+                        <label className="form-label">Numele</label>
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control text-start border border-primary w-100"
                           aria-label="First name"
                           defaultValue={userData.name}
                           name="cf-name"
                         />
                       </div>
-                      <div className="d-flex align-items-center">
+                      <div className="col-md-6 form-group d-flex flex-column">
                         <label className="form-label">Email</label>
                         <input
                           type="email"
-                          className="form-control"
+                          className="form-control text-start border border-primary w-100"
                           defaultValue={userData.email}
                           name="cf-email"
                         />
                       </div>
-                      <div className="d-flex align-items-center">
+                      <div className="col-md-6 form-group d-flex flex-column">
                         <label className="form-label">Telefon</label>
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control text-start border border-primary w-100"
                           defaultValue={userData.phone}
                           name="cf-phone"
                         />
                       </div>
                     </div>
-                    <div className="row g-3">
+                    <div className="row">
                       <h4 className="mb-4 mt-5">Adresa de livrare</h4>
-                      <div className="d-flex align-items-center">
-                        <label
-                          className="form-label"
-                          style={{ marginRight: "250px" }}
-                        >
-                          Țară
-                        </label>
-                        <select className="form-control ">
+                      <div className="col-md-6 form-group d-flex flex-column">
+                        <label className="form-label">Țară</label>
+                        <select className="form-control text-start border border-primary w-100">
                           {countries.map((c) => (
                             <option
                               key={c.isoCode}
@@ -166,17 +181,13 @@ const Profile = () => {
                         </select>
                       </div>
 
-                      <div className="d-flex align-items-center">
-                        <label
-                          className="form-label"
-                          style={{ marginRight: "250px" }}
-                        >
-                          Județ
-                        </label>
+                      <div className="col-md-6 form-group d-flex flex-column">
+                        <label className="form-label">Județ</label>
                         <select
-                          className="form-control"
+                          className="form-control text-start border border-primary w-100"
                           onChange={handleChange}
                           value={selectedState}
+                          defaultValue={userData.county}
                         >
                           {states.map((c, idx) => (
                             <option
@@ -189,14 +200,14 @@ const Profile = () => {
                           ))}
                         </select>
                       </div>
-                      <div className="d-flex align-items-center">
-                        <label
-                          className="form-label"
-                          style={{ marginRight: "250px" }}
+                      <div className="col-md-6 form-group d-flex flex-column">
+                        <label className="form-label">Oraș</label>
+                        <select
+                          className="form-control text-start border border-primary w-100"
+                          onChange={handleCityChange}
+                          //value={selectedCity}
+                          defaultValue={userData.city}
                         >
-                          Oraș
-                        </label>
-                        <select className="form-control">
                           {cities
                             .filter((c) => c.stateCode === selectedState)
                             .map((c, idx) => (
@@ -210,24 +221,24 @@ const Profile = () => {
                             ))}
                         </select>
                       </div>
-                      <div className="d-flex align-items-center">
+                      <div className="col-md-6 form-group d-flex flex-column">
                         <label className="form-label">Adresă</label>
                         <input
                           type="text"
-                          className="form-control"
-                          placeholder=""
-                          aria-label=""
-                          value=""
+                          className="form-control text-start border border-primary w-100"
+                          aria-label="Adresa"
+                          defaultValue={userData.address}
+                          name="cf-address"
                         />
                       </div>
 
-                      <div className="d-flex align-items-center">
+                      <div className="col-md-6 form-group d-flex flex-column">
                         <label className="form-label">Zip/Cod poștal</label>
                         <input
                           type="number"
-                          className="form-control"
-                          id="inputEmail4"
-                          value="example@homerealty.com"
+                          className="form-control text-start border border-primary w-100"
+                          defaultValue={userData.zip}
+                          name="cf-zip"
                         />
                       </div>
                       <div className="d-flex justify-content-end">
