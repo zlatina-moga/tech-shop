@@ -1818,6 +1818,11 @@ isexe@^2.0.0:
   resolved "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+js-cookie@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.npmjs.org/js-cookie/-/js-cookie-2.2.1.tgz"
+  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
+
 js-sdsl@^4.1.4:
   version "4.2.0"
   resolved "https://registry.npmjs.org/js-sdsl/-/js-sdsl-4.2.0.tgz"
@@ -2246,6 +2251,13 @@ react-bootstrap@^2.7.0:
     react-transition-group "^4.4.2"
     uncontrollable "^7.2.1"
     warning "^4.0.3"
+
+react-cookie-consent@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.npmjs.org/react-cookie-consent/-/react-cookie-consent-8.0.1.tgz"
+  integrity sha512-4A2jzPQDFfBhtxIz4hYX+vJ0QnOknGdOXpEoetXzgwUrMtxVJVow8YgBsGerNt5rJI7WhKkHwr8LmxekxgVejg==
+  dependencies:
+    js-cookie "^2.2.1"
 
 "react-dom@^16.8 || ^17.0 || ^18.0", react-dom@^18.2.0, react-dom@>=16, react-dom@>=16.14.0, react-dom@>=16.6.0, react-dom@>=16.8.0:
   version "18.2.0"

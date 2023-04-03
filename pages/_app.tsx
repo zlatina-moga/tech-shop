@@ -4,6 +4,7 @@ import { Provider} from "react-redux";
 import { store, persistor } from "../services/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { SkeletonTheme } from "react-loading-skeleton";
+import CookeConsent from "../components/landing/CookeConsent";
 import "react-loading-skeleton/dist/skeleton.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
@@ -26,6 +27,7 @@ const MyApp = ({ Component, pageProps }) => {
           <SkeletonTheme baseColor="#F0F0F0" highlightColor="#E8E3DF">
             <Component {...pageProps} />
           </SkeletonTheme>
+          <CookeConsent />
         </AppLayout>
         </PersistGate>
       </Provider>
