@@ -145,7 +145,7 @@ const ConfidentialPolicy = () => {
             livrare), Exclusive Key Licenses SRL, colectează următoarele tipuri de date cu caracter
             personal: nume, prenume, adresă de facturare/livrare, e-mail, număr
             de telefon. Aceste date sunt partajate cu companiile de curierat: ex
-            Fan Courier, GLS General Logistics System etc.
+            DPD Courier, Dragon Star Curier etc.
           </p>
           <p>
             În cazul clienților care și-au creat cont pe website-ul nostru, le
@@ -205,7 +205,7 @@ const ConfidentialPolicy = () => {
             După caz, putem transmite sau oferi acces la anumite date cu
             caracter personal următoarelor categorii de destinatari:
             <li>
-              furnizorilor de servicii de curierat: Fan Curier și GLS România;
+              furnizorilor de servicii de curierat: DPD Curier și Dragon Star Curier România;
             </li>
             <li>
               furnizorilor de servicii de plată/bancare de la orice bancă;
