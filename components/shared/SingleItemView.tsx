@@ -229,12 +229,12 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                         <div className="contact">
                           <span>Comanda telefonica:</span>
                           <div>
-                            <b>Nume Prenume</b>
+                            <b>Popescu Vlad</b>
                             <p>
-                              <b>Email: </b>email@gmail.com
+                              <b>Email: </b>salut@pcbun.ro
                             </p>
                             <p>
-                              <b>Telefon: </b>+40123456789
+                              <b>Telefon: </b>+40 (721) 909 049
                             </p>
                             <p>
                               <b>ID Produs: </b>
@@ -252,12 +252,12 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                         <div className="contact">
                           <span>Comanda telefonica:</span>
                           <div>
-                            <b>Nume Prenume</b>
+                            <b>Popescu Vlad</b>
                             <p>
-                              <b>Email: </b>email@gmail.com
+                              <b>Email: </b>salut@pcbun.ro
                             </p>
                             <p>
-                              <b>Telefon: </b>+40123456789
+                              <b>Telefon: </b>+40 (721) 909 049
                             </p>
                           </div>
                         </div>

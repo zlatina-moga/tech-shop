@@ -39,16 +39,23 @@ const Profile = () => {
   const user = useSelector((state) => state.user.currentUser);
 
   useEffect(() => {
-    userService
-      .getOne(id)
-      .then((result) => {
-        setUserData(result);
-      })
-      .catch((err) => {
-        toast.error(err, {
-          style: { marginTop: "100px" },
+    if (user != null) {
+      userService
+        .getOne(id)
+        .then((result) => {
+          setUserData(result);
+        })
+        .catch((err) => {
+          toast.error(err, {
+            style: { marginTop: "100px" },
+          });
         });
+    } else {
+      toast.error("Vă rugăm să vă conectați mai întâi în contul dvs", {
+        style: { marginTop: "100px" },
       });
+      router.push("/login");
+    }
   }, [id]);
 
   const countries = Country.getAllCountries().filter(
@@ -86,7 +93,7 @@ const Profile = () => {
           county: selectedState,
           city: selectedCity,
           address,
-          zip
+          zip,
         },
         user.accessToken
       )

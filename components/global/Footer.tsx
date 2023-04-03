@@ -50,82 +50,108 @@ const Footer = () => {
         className="row px-xl-5 pt-5"
         style={{ maxWidth: "100rem", margin: "0 auto", position: "relative" }}
       >
-        <div className="col-lg-4 col-md-12 mb-5 pr-xl-5">
-          <Link href="/">
-            <Image
-              src="/images/logo-example.png"
-              alt="logo"
-              width={150}
-              height={60}
-            />
-          </Link>
-          <p className="mb-2 mt-4">
-            <i className="fa fa-map-marker-alt text-primary mr-3"></i>123
-            Street, New York, USA
-          </p>
-          <p className="mb-2">
-            <i className="fa fa-envelope text-primary mr-3"></i>salut@pcbun.ro
-          </p>
-          <p className="mb-0">
-            <i className="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890
-          </p>
-        </div>
-        <div
-          className="col-lg-8 col-md-12"
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <div className="col-md-4 mb-5">
-            <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
-            <div className="d-flex flex-column justify-content-start">
-              <Link className="mb-2 footer-link" href="/laptop">
-                <i className="fa fa-angle-right mr-2"></i>Laptopuri
-              </Link>
-              <Link className="footer-link mb-2 " href="/calculatoare">
-                <i className="fa fa-angle-right mr-2"></i>Calculatoare
-              </Link>
-              <Link className="footer-link mb-2" href="/servere">
-                <i className="fa fa-angle-right mr-2"></i>Servere
-              </Link>
-              <Link className=" footer-link mb-2" href="/my-cart">
-                <i className="fa fa-angle-right mr-2"></i>Shopping Cart
-              </Link>
-              <Link className="footer-link mb-2" href="/checkout">
-                <i className="fa fa-angle-right mr-2"></i>Checkout
-              </Link>
+        <div className="row">
+          <div className="col-lg-4 col-md-12 mb-5 pr-xl-5">
+            <Link href="/">
+              <Image
+                src="/images/logo-example.png"
+                className="rounded-1"
+                alt="logo"
+                width={150}
+                height={60}
+              />
+            </Link>
+            <p className="mb-2 mt-4">
+              <i className="fa fa-map-marker-alt text-primary mr-3"></i>Str. Galaxiei nr.29, Sanpetru, Brașov
+            </p>
+            <p className="mb-2">
+              <i className="fa fa-envelope text-primary mr-3"></i>salut@pcbun.ro
+            </p>
+            <p className="mb-0">
+              <i className="fa fa-phone-alt text-primary mr-3"></i>+40 (721) 909 049
+            </p>
+          </div>
+          <div
+            className="col-lg-8 col-md-12"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <div className="mb-5">
+              <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
+              <div className="d-flex flex-column justify-content-start">
+                <Link className="mb-2 footer-link" href="/laptop">
+                  <i className="fa fa-angle-right mr-2"></i>Laptopuri
+                </Link>
+                <Link className="footer-link mb-2 " href="/calculatoare">
+                  <i className="fa fa-angle-right mr-2"></i>Calculatoare
+                </Link>
+                <Link className="footer-link mb-2" href="/servere">
+                  <i className="fa fa-angle-right mr-2"></i>Servere
+                </Link>
+                <Link className="footer-link mb-2" href="/workstation">
+                  <i className="fa fa-angle-right mr-2"></i>Workstation
+                </Link>
+                <Link className=" footer-link mb-2" href="/my-cart">
+                  <i className="fa fa-angle-right mr-2"></i>Coș de cumpărături
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-4 mb-5 mt-5">
+              <div className="d-flex flex-column justify-content-start">
+                <Link className="mb-2 footer-link" href="/politica-cookie">
+                  <i className="fa fa-angle-right mr-2"></i>Politica cookie
+                </Link>
+                <Link
+                  className="footer-link mb-2 "
+                  href="/politica-confidentialitate"
+                >
+                  <i className="fa fa-angle-right mr-2"></i>Politica de
+                  confidentialitate
+                </Link>
+                <Link className="footer-link mb-2" href="/termeni">
+                  <i className="fa fa-angle-right mr-2"></i>Termeni si conditii
+                </Link>
+                <Link className="footer-link mb-2" href="/prelucrarea-datelor">
+                  <i className="fa fa-angle-right mr-2"></i>Prelucrarea datelor
+                </Link>
+                <Link className=" footer-link mb-2" href="/cum-cumpar">
+                  <i className="fa fa-angle-right mr-2"></i>Cum cumpar?
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <h5 className="font-weight-bold text-dark">Newsletter</h5>
+              <form onSubmit={onSubmit} style={{ paddingTop: "0px" }}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control border border-primary py-4 rounded-1"
+                    name="cf-name"
+                    placeholder="Nume"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    className="form-control border border-primary py-4 rounded-1"
+                    name="cf-email"
+                    placeholder="Adresa email"
+                  />
+                </div>
+                <div>
+                  <button
+                    className="btn btn-primary btn-block border-0 py-3"
+                    type="submit"
+                  >
+                    Subscribe Now
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
-          <div className="col-md-4 mb-5">
-            <h5 className="font-weight-bold text-dark mb-4">Newsletter</h5>
-            <form onSubmit={onSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control border-0 py-4"
-                  name="cf-name"
-                  placeholder="Nume"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type="email"
-                  className="form-control border-0 py-4"
-                  name="cf-email"
-                  placeholder="Adresa email"
-                />
-              </div>
-              <div>
-                <button
-                  className="btn btn-primary btn-block border-0 py-3"
-                  type="submit"
-                >
-                  Subscribe Now
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
+
         <div
-          className="row border-top border-light mx-xl-5 py-4"
+          className="row border-top border-light py-4"
           style={{ maxWidth: "100rem", margin: "0 auto" }}
         >
           <div className="col-md-6 px-xl-0">
