@@ -3,7 +3,18 @@ import classNames from "classnames";
 import Link from "next/link";
 import Meta from "../layouts/Meta";
 import SideFilter from "./SideFilter";
+import localFont from "@next/font/local";
 import { addProduct } from "../../services/redux/cartRedux";
+
+const veneer = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Veneer-Three.ttf",
+      weight: "400",
+    },
+  ],
+  variable: "--font-verneer",
+});
 
 interface ILaptopPage {
   title: string;
@@ -47,7 +58,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
         />
         <div className="">
           <div className="text-center mb-4">
-            <h1 className="px-5">{title}</h1>
+            <h1 className={`font-${veneer.variable} font-sans`}>{title}</h1>
           </div>
           <div
             className="row pb-3 justify-content-center"

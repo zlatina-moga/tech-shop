@@ -82,6 +82,7 @@ const ProcDetail = () => {
             alt="logo"
             width={150}
             height={60}
+            className="rounded-1"
           />
           <h3 className="mb-4 mt-4 price font-weight-bold ">
             ADUCEM ORICE DE PE PLANETA
@@ -94,24 +95,24 @@ const ProcDetail = () => {
           <form onSubmit={onSubmit}>
             <input
               type="text"
-              className="form-control text-left"
+              className="form-control text-left w-100 border-primary rounded-1"
               name="cf-name"
               placeholder="Nume"
             />
             <input
               type="email"
-              className="form-control text-left w-100"
+              className="form-control text-left w-100 border-primary rounded-1"
               name="cf-email"
               placeholder="Adresa email"
             />
             <input
               type="tel"
-              className="form-control text-left"
+              className="form-control text-left w-100 border-primary rounded-1"
               name="cf-phone"
               placeholder="Numar telefon"
             />
             <textarea
-              className="form-control"
+              className="form-control border-primary w-100 rounded-1"
               name="cf-message"
               placeholder="Produse dorite"
             ></textarea>

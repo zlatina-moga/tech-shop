@@ -2,6 +2,7 @@ import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
 import Link from "next/link";
 import localFont from "@next/font/local";
+import classNames from "classnames";
 
 const veneer = localFont({
   src: [
@@ -38,10 +39,10 @@ const FourOhFour = () => {
               </p>
               <p></p>
               <div className="btn-block">
-                <Link href="/produse-la-reducere" className="btn-1">
+                <Link href="/produse-la-reducere" className={classNames("btn-1",`font-${veneer.variable} font-sans`)}>
                 reduceri
                 </Link>
-                <Link href="/" className="btn-2">
+                <Link href="/" className={classNames("btn-2",`font-${veneer.variable} font-sans`)}>
                   HOME PAGE
                 </Link>
               </div>
