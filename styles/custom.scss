@@ -75,12 +75,12 @@
           padding-left: 30px;
           div {
             padding-top: 11px;
-            button{
+            button {
               border-radius: 4px !important;
             }
             button:hover {
               background-color: transparent !important;
-              color: #5F9F40 !important;
+              color: #5f9f40 !important;
             }
           }
         }
@@ -179,7 +179,7 @@
         font-weight: 600;
       }
       .not-in-stock {
-        background: #E84536;
+        background: #e84536;
         color: white;
         padding: 6px 15px;
         border-radius: 5px;
@@ -356,6 +356,56 @@
         color: #90bd40;
         font-size: 24px;
         font-weight: 700;
+      }
+    }
+  }
+}
+
+.laptops-page {
+  .not-found-page {
+    background-image: url(/images/404.webp) !important;
+    position: relative;
+    background-position: top 70px center;
+    background-repeat: no-repeat;
+    background-color: #000;
+    padding-top: 350px;
+    h1 {
+      font-size: 52px;
+      margin: 0;
+      font-family: Veneer, sans-serif;
+      color: #E8CA44;
+    }
+    .btn-block {
+      display: flex;
+      width: 100%;
+      max-width: 610px;
+      justify-content: space-between;
+      margin: 50px auto;
+      .btn-1 {
+        background: linear-gradient(
+          180deg,
+          rgba(152, 6, 6, 1) 0%,
+          rgba(246, 33, 35, 1) 100%
+        );
+        font-size: 24px;
+        color: #fff;
+        border-radius: 50px;
+        padding: 15px 40px;
+        height: 61px;
+        font-family: Veneer, sans-serif;
+        box-shadow: 10px 11px 30px #aa2f34;
+        -webkit-box-shadow: 10px 11px 30px #aa2f34;
+      }
+      .btn-2 {
+        background: linear-gradient(180deg,rgba(3,117,214,1) 0%,rgba(52,238,255,1) 100%);
+        font-size: 24px;
+        color: #fff;
+        border-radius: 50px;
+        padding: 15px 40px;
+        height: 61px;
+        font-family: Veneer,sans-serif;
+        box-shadow: 10px 11px 30px #129ae4;
+        -webkit-box-shadow: 10px 11px 30px #129ae4;
       }
     }
   }

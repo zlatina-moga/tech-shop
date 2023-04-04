@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Veneer';
+    src: local('Veneer Three'), local('Veneer-Three'),
+        url('Veneer-Three.woff2') format('woff2'),
+        url('Veneer-Three.woff') format('woff'),
+        url('Veneer-Three.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  

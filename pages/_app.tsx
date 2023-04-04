@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
 import "../styles/styles.scss";
 import "../styles/custom.scss";
+import "../public/fonts/style.css"
 import "swiper/css/bundle";
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css";
