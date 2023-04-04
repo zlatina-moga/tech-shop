@@ -529,6 +529,115 @@ export const monitorTouchScreenSHBrcrmbs = [
   { name: "Touchscreen Second Hand", link: "/monitoare/touchscreen-second" },
 ];
 
+export const discountedItemsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+  }
+];
+
+export const discountedServersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Servere", link: "#" },
+];
+
+export const discountedWorkstationsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Workstation", link: "#" },
+];
+
+export const discountedCompBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Calculatoare", link: "#" },
+];
+
+export const discountedLaptopBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Laptopuri", link: "#" },
+];
+
+export const discountedMonitorBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Monitoare", link: "#" },
+];
+
+export const discountedComponentsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Componente", link: "#" },
+];
+
+export const discountedPrinterBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Imprimante", link: "#" },
+];
+
+export const discountedPOSrBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Sisteme POS", link: "#" },
+];
+
+export const discountedUPSBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "UPS", link: "#" },
+];
+
+export const discountedAccBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Produse la reducere",
+    link: "/produse-la-reducere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Accesorii", link: "#" },
+];
+
+
 export const networkBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Retelistica", link: "/retelistica" },

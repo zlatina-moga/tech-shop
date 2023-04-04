@@ -289,3 +289,25 @@ export const getAllInvertors = (page) =>
 
 export const getSearchedItems = (search) =>
   request.get(`https://api.citgrup.ro/public/products/search?${search}`);
+
+export const getDiscountedItems = (page) => request.get(`${baseUrl}/promotii?page=${page}`);
+
+export const getDiscountedServers = (page) => request.get(`${baseUrl}/promotii/servere?page=${page}`);
+
+export const getDiscountedWorkstations = (page) => request.get(`${baseUrl}/promotii/workstation?page=${page}`);
+
+export const getDiscountedComputers = (page) => request.get(`${baseUrl}/promotii/calculatoare?page=${page}`);
+
+export const getDiscountedLaptops = (page) => request.get(`${baseUrl}/promotii/laptop?page=${page}`);
+
+export const getDiscountedMonitors = (page) => request.get(`${baseUrl}/promotii/monitoare?page=${page}`);
+
+export const getDiscountedComponents = (page) => request.get(`${baseUrl}/promotii/componente?page=${page}`);
+
+export const getDiscountedPrinters = (page) => request.get(`${baseUrl}/promotii/imprimante?page=${page}`);
+
+export const getDiscountedPOS = (page) => request.get(`${baseUrl}/promotii/sisteme-pos?page=${page}`);
+
+export const getDiscountedUPS = (page) => request.get(`${baseUrl}/promotii/ups?page=${page}`);
+
+export const getDiscountedAccessories = (page) => request.get(`${baseUrl}/promotii/accesorii?page=${page}`);

@@ -207,6 +207,49 @@ export const networkCategories = [
   },
 ];
 
+export const discountCategories = [
+  {
+    name: "Servere la reducere",
+    link: "/produse-la-reducere/servere",
+  },
+  {
+    name: "Workstation la reducere",
+    link: "/produse-la-reducere/workstation",
+  },
+  {
+    name: "Calculatoare la reducere",
+    link: "/produse-la-reducere/calculatoare",
+  },
+  {
+    name: "Laptopuri la reducere",
+    link: "/produse-la-reducere/laptop",
+  },
+  {
+    name: "Monitoare la reducere",
+    link: "/produse-la-reducere/monitoare",
+  },
+  {
+    name: "Componente la reducere",
+    link: "/produse-la-reducere/componente",
+  },
+  {
+    name: "Imprimante la reducere",
+    link: "/produse-la-reducere/imprimante",
+  },
+  {
+    name: "Sisteme POS la reducere",
+    link: "/produse-la-reducere/sisteme-pos",
+  },
+  {
+    name: "UPS la reducere",
+    link: "/produse-la-reducere/ups",
+  },
+  {
+    name: "Accesorii la reducere",
+    link: "/produse-la-reducere/accesorii",
+  },
+];
+
 export const serverCategories = [
   {
     name: "Refurbished",
@@ -295,7 +338,7 @@ export const softwareCategories = [
     name: "Microsoft Office",
     link: "/licenta-software/office",
   },
-    {
+  {
     name: "Microsoft Visio",
     link: "/licenta-software/microsoft-visio",
   },

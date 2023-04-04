@@ -413,6 +413,12 @@ const Sidebar = () => {
                 >
                   Sisteme solare fotovoltaice
                 </Link>
+                <Link
+                  href="/produse-la-reducere"
+                  className="nav-item nav-link text-danger font-weight-semi-bold"
+                >
+                  Produse la reducere
+                </Link>
               </div>
             </div>
           </nav>
