@@ -6,25 +6,25 @@ export const getAllProdictsCount = () => request.get(`${baseUrl}`);
 export const getAllLaptops = (page) =>
   request.get(`${baseUrl}/laptop?page=${page}`);
 
-  export const getSortedLaptops = (page, sort) =>
+export const getSortedLaptops = (page, sort) =>
   request.get(`${baseUrl}/laptop?sort=${sort}&page=${page}`);
 
 export const getAllSecondHandLaptops = (page) =>
   request.get(`${baseUrl}/laptop/second-hand-1?page=${page}`);
 
-  export const getSortedSecondHandLaptops = (page, sort) =>
+export const getSortedSecondHandLaptops = (page, sort) =>
   request.get(`${baseUrl}/laptop/second-hand-1?sort=${sort}&page=${page}`);
 
 export const getAllRefurbishedLaptops = (page) =>
   request.get(`${baseUrl}/laptop/refurbished-1?page=${page}`);
 
-  export const getSortedRefurbishedLaptops = (page, sort) =>
+export const getSortedRefurbishedLaptops = (page, sort) =>
   request.get(`${baseUrl}/laptop/refurbished-1?sort=${sort}&page=${page}`);
 
 export const getAllNewLaptops = (page) =>
   request.get(`${baseUrl}/laptop/noi-1?page=${page}`);
 
-  export const getSortedNewLaptops = (page, sort) =>
+export const getSortedNewLaptops = (page, sort) =>
   request.get(`${baseUrl}/laptop/noi-1?sort=${sort}&page=${page}`);
 
 export const getAllLaptopsByBrand = (page, slug) =>
@@ -36,6 +36,9 @@ export const getAllLaptopsByProcessor = (page, slug) =>
 export const getAllComputers = (page) =>
   request.get(`${baseUrl}/calculatoare?page=${page}`);
 
+export const getSortedComputers = (page, sort) =>
+  request.get(`${baseUrl}/calculatoare?sort=${sort}&page=${page}`);
+
 export const getAllComputersByBrand = (page, slug) =>
   request.get(`${baseUrl}/calculatoare/brand?brand=${slug}&page=${page}`);
 
@@ -45,14 +48,26 @@ export const getAllComputersByProcessor = (page, slug) =>
 export const getAllSecondHandComputers = (page) =>
   request.get(`${baseUrl}/calculatoare/second-hand?page=${page}`);
 
+export const getSortedSecondHandComputers = (page, sort) =>
+  request.get(`${baseUrl}/calculatoare/second-hand?sort=${sort}&page=${page}`);
+
 export const getAllNewComputers = (page) =>
   request.get(`${baseUrl}/calculatoare/noi?page=${page}`);
+
+export const getSortedNewComputers = (page, sort) =>
+  request.get(`${baseUrl}/calculatoare/noi?sort=${sort}&page=${page}`);
 
 export const getAllRefurbishedComputers = (page) =>
   request.get(`${baseUrl}/calculatoare/refurbished?page=${page}`);
 
+export const getSortedRefurbishedComputers = (page, sort) =>
+  request.get(`${baseUrl}/calculatoare/refurbished?sort=${sort}&page=${page}`);
+
 export const getAllServers = (page) =>
   request.get(`${baseUrl}/servere?page=${page}`);
+
+export const getSortedServers = (page, sort) =>
+  request.get(`${baseUrl}/servere?sort=${sort}&page=${page}`);
 
 export const getAllServersByBrand = (page, slug) =>
   request.get(`${baseUrl}/servere/brand?brand=${slug}&page=${page}`);
@@ -63,17 +78,34 @@ export const getAllServersByProcessor = (page, slug) =>
 export const getAllSecondHandServers = (page) =>
   request.get(`${baseUrl}/servere/second-hand-2?page=${page}`);
 
+export const getSortedSecondHandServers = (page, sort) =>
+  request.get(`${baseUrl}/servere/second-hand-2?sort=${sort}&page=${page}`);
+
 export const getAllRefurbishedServers = (page) =>
   request.get(`${baseUrl}/servere/refurbished-2?page=${page}`);
+
+export const getSortedRefurbishedServers = (page, sort) =>
+  request.get(`${baseUrl}/servere/refurbished-2?sort=${sort}&page=${page}`);
 
 export const getAllNewServers = (page) =>
   request.get(`${baseUrl}/servere/noi-6?page=${page}`);
 
+export const getSortedNewServers = (page, sort) =>
+  request.get(`${baseUrl}/servere/noi-6?sort=${sort}&page=${page}`);
+
 export const getAllRackServers = (page) =>
   request.get(`${baseUrl}/servere/cabinet-rack-refurbished?page=${page}`);
 
+export const getSortedRackServers = (page, sort) =>
+  request.get(
+    `${baseUrl}/servere/cabinet-rack-refurbished?sort=${sort}&page=${page}`
+  );
+
 export const getAllWorkstations = (page) =>
   request.get(`${baseUrl}/workstation?page=${page}`);
+
+export const getSortedWorkstations = (page, sort) =>
+  request.get(`${baseUrl}/workstation?sort=${sort}&page=${page}`);
 
 export const getAllWorkstationsByBrand = (page, slug) =>
   request.get(`${baseUrl}/workstation/brand?brand=${slug}&page=${page}`);
@@ -84,11 +116,20 @@ export const getAllWorkstationsByProcessor = (page, slug) =>
 export const getRefurbishedWorkstations = (page) =>
   request.get(`${baseUrl}/workstation/refurbished-3?page=${page}`);
 
+  export const getSortedRefurbishedWorkstations = (page, sort) =>
+  request.get(`${baseUrl}/workstation/refurbished-3?sort=${sort}&page=${page}`);
+
 export const getSecondHandWorkstations = (page) =>
   request.get(`${baseUrl}/workstation/second-hand-3?page=${page}`);
 
+  export const getSortedSecondHandWorkstations = (page, sort) =>
+  request.get(`${baseUrl}/workstation/second-hand-3?sort=${sort}&page=${page}`);
+
 export const geAllMonitors = (page) =>
   request.get(`${baseUrl}/monitoare?page=${page}`);
+
+  export const geSortedMonitors = (page, sort) =>
+  request.get(`${baseUrl}/monitoare?sort=${sort}&page=${page}`);
 
 export const geAllBrandMonitors = (page, slug) =>
   request.get(`${baseUrl}/monitoare/brand?brand=${slug}&page=${page}`);
@@ -96,17 +137,32 @@ export const geAllBrandMonitors = (page, slug) =>
 export const geAllNewMonitors = (page) =>
   request.get(`${baseUrl}/monitoare/noi-4?page=${page}`);
 
+  export const geSortedNewMonitors = (page, sort) =>
+  request.get(`${baseUrl}/monitoare/noi-4?sort=${sort}&page=${page}`);
+
 export const geAllRefurbishedMonitors = (page) =>
   request.get(`${baseUrl}/monitoare/refurbished-4?page=${page}`);
+
+  export const geSortedRefurbishedMonitors = (page, sort) =>
+  request.get(`${baseUrl}/monitoare/refurbished-4?sort=${sort}&page=${page}`);
 
 export const geAllSecondHandMonitors = (page) =>
   request.get(`${baseUrl}/monitoare/second-hand-4?page=${page}`);
 
+  export const geSortedSecondHandMonitors = (page, sort) =>
+  request.get(`${baseUrl}/monitoare/second-hand-4?sort=${sort}&page=${page}`);
+
 export const getAllTSRefMonitors = (page) =>
   request.get(`${baseUrl}/monitoare/touchscreen-refurbished?page=${page}`);
 
+  export const geSortedTSRefMonitors = (page, sort) =>
+  request.get(`${baseUrl}/monitoare/touchscreen-refurbished?sort=${sort}&page=${page}`);
+
 export const getAllSecHandTSMonitors = (page) =>
   request.get(`${baseUrl}/monitoare/touchscreen-second?page=${page}`);
+
+  export const getSortedSecHandTSMonitors = (page, sort) =>
+  request.get(`${baseUrl}/monitoare/touchscreen-second?sort=${sort}&page=${page}`);
 
 export const geAllComponents = (page) =>
   request.get(`${baseUrl}/componente?page=${page}`);

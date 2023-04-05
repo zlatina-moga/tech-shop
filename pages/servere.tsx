@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
@@ -15,6 +16,9 @@ const Laptopuri = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [selectedSort, setSelectedSort] = useState("/servere");
+  const router = useRouter();
+
 
   useEffect(() => {
     productService
@@ -27,6 +31,24 @@ const Laptopuri = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+    productService
+      .getSortedServers(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   useEffect(() => {
     sortingService.getBrands(9).then((result) => {
@@ -73,6 +95,8 @@ const Laptopuri = () => {
             brandLink={"/servere/brand/"}
             processors={processors}
             processorsLink={"/servere/procesor/"}
+            sortCriteria={onSort}
+            baseLink='/servere'
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
