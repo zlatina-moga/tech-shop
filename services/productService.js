@@ -6,14 +6,26 @@ export const getAllProdictsCount = () => request.get(`${baseUrl}`);
 export const getAllLaptops = (page) =>
   request.get(`${baseUrl}/laptop?page=${page}`);
 
+  export const getSortedLaptops = (page, sort) =>
+  request.get(`${baseUrl}/laptop?sort=${sort}&page=${page}`);
+
 export const getAllSecondHandLaptops = (page) =>
   request.get(`${baseUrl}/laptop/second-hand-1?page=${page}`);
+
+  export const getSortedSecondHandLaptops = (page, sort) =>
+  request.get(`${baseUrl}/laptop/second-hand-1?sort=${sort}&page=${page}`);
 
 export const getAllRefurbishedLaptops = (page) =>
   request.get(`${baseUrl}/laptop/refurbished-1?page=${page}`);
 
+  export const getSortedRefurbishedLaptops = (page, sort) =>
+  request.get(`${baseUrl}/laptop/refurbished-1?sort=${sort}&page=${page}`);
+
 export const getAllNewLaptops = (page) =>
   request.get(`${baseUrl}/laptop/noi-1?page=${page}`);
+
+  export const getSortedNewLaptops = (page, sort) =>
+  request.get(`${baseUrl}/laptop/noi-1?sort=${sort}&page=${page}`);
 
 export const getAllLaptopsByBrand = (page, slug) =>
   request.get(`${baseUrl}/laptop/brand?brand=${slug}&page=${page}`);
@@ -290,24 +302,35 @@ export const getAllInvertors = (page) =>
 export const getSearchedItems = (search) =>
   request.get(`https://api.citgrup.ro/public/products/search?${search}`);
 
-export const getDiscountedItems = (page) => request.get(`${baseUrl}/promotii?page=${page}`);
+export const getDiscountedItems = (page) =>
+  request.get(`${baseUrl}/promotii?page=${page}`);
 
-export const getDiscountedServers = (page) => request.get(`${baseUrl}/promotii/servere?page=${page}`);
+export const getDiscountedServers = (page) =>
+  request.get(`${baseUrl}/promotii/servere?page=${page}`);
 
-export const getDiscountedWorkstations = (page) => request.get(`${baseUrl}/promotii/workstation?page=${page}`);
+export const getDiscountedWorkstations = (page) =>
+  request.get(`${baseUrl}/promotii/workstation?page=${page}`);
 
-export const getDiscountedComputers = (page) => request.get(`${baseUrl}/promotii/calculatoare?page=${page}`);
+export const getDiscountedComputers = (page) =>
+  request.get(`${baseUrl}/promotii/calculatoare?page=${page}`);
 
-export const getDiscountedLaptops = (page) => request.get(`${baseUrl}/promotii/laptop?page=${page}`);
+export const getDiscountedLaptops = (page) =>
+  request.get(`${baseUrl}/promotii/laptop?page=${page}`);
 
-export const getDiscountedMonitors = (page) => request.get(`${baseUrl}/promotii/monitoare?page=${page}`);
+export const getDiscountedMonitors = (page) =>
+  request.get(`${baseUrl}/promotii/monitoare?page=${page}`);
 
-export const getDiscountedComponents = (page) => request.get(`${baseUrl}/promotii/componente?page=${page}`);
+export const getDiscountedComponents = (page) =>
+  request.get(`${baseUrl}/promotii/componente?page=${page}`);
 
-export const getDiscountedPrinters = (page) => request.get(`${baseUrl}/promotii/imprimante?page=${page}`);
+export const getDiscountedPrinters = (page) =>
+  request.get(`${baseUrl}/promotii/imprimante?page=${page}`);
 
-export const getDiscountedPOS = (page) => request.get(`${baseUrl}/promotii/sisteme-pos?page=${page}`);
+export const getDiscountedPOS = (page) =>
+  request.get(`${baseUrl}/promotii/sisteme-pos?page=${page}`);
 
-export const getDiscountedUPS = (page) => request.get(`${baseUrl}/promotii/ups?page=${page}`);
+export const getDiscountedUPS = (page) =>
+  request.get(`${baseUrl}/promotii/ups?page=${page}`);
 
-export const getDiscountedAccessories = (page) => request.get(`${baseUrl}/promotii/accesorii?page=${page}`);
+export const getDiscountedAccessories = (page) =>
+  request.get(`${baseUrl}/promotii/accesorii?page=${page}`);

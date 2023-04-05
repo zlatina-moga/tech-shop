@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import Meta from "../layouts/Meta";
@@ -25,6 +26,8 @@ interface ILaptopPage {
   brandLink?: string;
   processors?: any;
   processorsLink?: string;
+  sortCriteria?: any;
+  baseLink?: string;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -36,8 +39,18 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   brandLink,
   processors,
   processorsLink,
+  sortCriteria,
+  baseLink
 }) => {
   const dispatch = useDispatch();
+  const [selected, setSelected] = useState("");
+  const totalCount = laptopsData.map((l) => l.itemsCount)[0];
+
+  const handleSort = (e) => {
+    setSelected(e.target.value);
+    sortCriteria(e.target.value);
+  };
+
   return (
     <>
       <Meta title={title} keywords={title} description={title} />
@@ -59,7 +72,23 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
         <div className="">
           <div className="text-center mb-4">
             <h1 className={`font-${veneer.variable} font-sans`}>{title}</h1>
+            <p className="font-weight-medium">{totalCount}</p>
+            <div>
+              <label className="mr-2">Sortează după:</label>
+              <select
+                className="border border-primary p-2 rounded-1"
+                onChange={handleSort}
+                value={selected}
+              >
+                <option value={baseLink}>Cele mai vândute</option>
+                <option value={`${baseLink}?sort=views`}>Cele mai accesate</option>
+                <option value={`${baseLink}?sort=deals`}>Reduceri</option>
+                <option value={`${baseLink}?sort=price`}>Preț ascendent</option>
+                <option value={`${baseLink}?sort=-price`}>Preț descendent</option>
+              </select>
+            </div>
           </div>
+
           <div
             className="row pb-3 justify-content-center"
             style={{ maxWidth: "98rem" }}
@@ -94,7 +123,11 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
 
                       <img
                         className="img-fluid w-100"
-                        src={itemData.imgLink ? itemData.imgLink : itemData.imgLink1}
+                        src={
+                          itemData.imgLink
+                            ? itemData.imgLink
+                            : itemData.imgLink1
+                        }
                         alt=""
                         //style={{maxWidth: '200px'}}
                       />
@@ -124,7 +157,10 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                     </div>
                   </div>
                   <div className="card-footer d-flex justify-content-between bg-light">
-                    <Link href={itemData.id} className="btn btn-sm text-dark p-1">
+                    <Link
+                      href={itemData.id}
+                      className="btn btn-sm text-dark p-1"
+                    >
                       <i className="fas fa-eye text-primary mr-1"></i>View
                       Detail
                     </Link>
