@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
@@ -12,6 +13,10 @@ const LaptopChargers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedSort, setSelectedSort] = useState(
+    "/componente/alimentator-laptop"
+  );
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -24,6 +29,24 @@ const LaptopChargers = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+    productService
+      .getSortedLaptopChargers(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -49,10 +72,17 @@ const LaptopChargers = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
-        <LaptopsPage title="Componente Alimentator laptop" laptopsData={laptopsData} categories={componentCategories} breadcrumbs={chargerBrcrmbs}/>
+          <LaptopsPage
+            title="Componente Alimentator laptop"
+            laptopsData={laptopsData}
+            categories={componentCategories}
+            breadcrumbs={chargerBrcrmbs}
+            sortCriteria={onSort}
+            baseLink='/componente/alimentator-laptop'
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

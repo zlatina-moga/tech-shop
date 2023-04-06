@@ -167,65 +167,122 @@ export const getAllSecHandTSMonitors = (page) =>
 export const geAllComponents = (page) =>
   request.get(`${baseUrl}/componente?page=${page}`);
 
+  export const getSortedComponents = (page, sort) =>
+  request.get(`${baseUrl}/componente?sort=${sort}&page=${page}`);
+
 export const geAllBrandComponents = (page, slug) =>
   request.get(`${baseUrl}/componente/brand?brand=${slug}&page=${page}`);
 
 export const getAllHardDisks = (page) =>
   request.get(`${baseUrl}/componente/hard-disk?page=${page}`);
 
+  export const getSortedHardDisks = (page, sort) =>
+  request.get(`${baseUrl}/componente/hard-disk?sort=${sort}&page=${page}`);
+
 export const getAllRAM = (page) =>
   request.get(`${baseUrl}/componente/memorie-ram?page=${page}`);
+
+  export const getSortedRAM = (page, sort) =>
+  request.get(`${baseUrl}/componente/memorie-ram?sort=${sort}&page=${page}`);
 
 export const getAllVideoCards = (page) =>
   request.get(`${baseUrl}/componente/placa-video?page=${page}`);
 
+  export const getSortedVideoCards = (page, sort) =>
+  request.get(`${baseUrl}/componente/placa-video?sort=${sort}&page=${page}`);
+
 export const getAllProcesors = (page) =>
   request.get(`${baseUrl}/componente/procesor?page=${page}`);
+
+  export const getSortedProcesors = (page, sort) =>
+  request.get(`${baseUrl}/componente/procesor?sort=${sort}&page=${page}`);
 
 export const getAllLaptopKeyboards = (page) =>
   request.get(`${baseUrl}/componente/tastatura-laptop?page=${page}`);
 
+  export const getSortedLaptopKeyboards = (page, sort) =>
+  request.get(`${baseUrl}/componente/tastatura-laptop?sort=${sort}&page=${page}`);
+
 export const getAllLaptopBatteries = (page) =>
   request.get(`${baseUrl}/componente/baterie-laptop?page=${page}`);
+
+  export const getSortedLaptopBatteries = (page, sort) =>
+  request.get(`${baseUrl}/componente/baterie-laptop?sort=${sort}&page=${page}`);
 
 export const getAllLaptopChargers = (page) =>
   request.get(`${baseUrl}/componente/alimentator-laptop?page=${page}`);
 
+  export const getSortedLaptopChargers = (page, sort) =>
+  request.get(`${baseUrl}/componente/alimentator-laptop?sort=${sort}&page=${page}`);
+
 export const getAllPalmrests = (page) =>
   request.get(`${baseUrl}/componente/palmrest?page=${page}`);
+
+  export const getSortedPalmrests = (page, sort) =>
+  request.get(`${baseUrl}/componente/palmrest?sort=${sort}&page=${page}`);
 
 export const getAllCaddy = (page) =>
   request.get(`${baseUrl}/componente/caddy-server?page=${page}`);
 
+  export const getSortedCaddy = (page, sort) =>
+  request.get(`${baseUrl}/componente/caddy-server?sort=${sort}&page=${page}`);
+
 export const getAllRailkit = (page) =>
   request.get(`${baseUrl}/componente/railkit-server?page=${page}`);
+
+  export const getSortedRailkit = (page, sort) =>
+  request.get(`${baseUrl}/componente/railkit-server?sort=${sort}&page=${page}`);
 
 export const getAllMascaBay = (page) =>
   request.get(`${baseUrl}/componente/masca-bay-server?page=${page}`);
 
+  export const getSortedMascaBay = (page, sort) =>
+  request.get(`${baseUrl}/componente/masca-bay-server?sort=${sort}&page=${page}`);
+
 export const getAllControllers = (page) =>
   request.get(`${baseUrl}/componente/controller-raid?page=${page}`);
+
+  export const getSortedControllers = (page, sort) =>
+  request.get(`${baseUrl}/componente/controller-raid?sort=${sort}&page=${page}`);
 
 export const getAllNetworks = (page) =>
   request.get(`${baseUrl}/componente/placa-de-retea?page=${page}`);
 
+  export const getSortedNetworks = (page, sort) =>
+  request.get(`${baseUrl}/componente/placa-de-retea?sort=${sort}&page=${page}`);
+
 export const getAllCases = (page) =>
   request.get(`${baseUrl}/componente/carcasa-si-surse?page=${page}`);
+
+  export const getSortedCases = (page, sort) =>
+  request.get(`${baseUrl}/componente/carcasa-si-surse?sort=${sort}&page=${page}`);
 
 export const getAllBarebone = (page) =>
   request.get(`${baseUrl}/componente/barebone-calculator?page=${page}`);
 
+  export const getSortedBarebone = (page, sort) =>
+  request.get(`${baseUrl}/componente/barebone-calculator?sort=${sort}&page=${page}`);
+
 export const getAllCoolers = (page) =>
   request.get(`${baseUrl}/componente/coolere-si-radiatoare?page=${page}`);
 
+  export const getSortedCoolers = (page, sort) =>
+  request.get(`${baseUrl}/componente/coolere-si-radiatoare?sort=${sort}&page=${page}`);
+
 export const getAllMotherBoards = (page) =>
   request.get(`${baseUrl}/componente/placa-de-baza-calculator?page=${page}`);
+
+  export const getSortedMotherBoards = (page, sort) =>
+  request.get(`${baseUrl}/componente/placa-de-baza-calculator?sort=${sort}&page=${page}`);
 
 export const geAllSoftware = (page) =>
   request.get(`${baseUrl}/licenta-software?page=${page}`);
 
 export const geAllPrinters = (page) =>
   request.get(`${baseUrl}/imprimante?page=${page}`);
+
+  export const getSortedPrinters = (page, sort) =>
+  request.get(`${baseUrl}/imprimante?sort=${sort}&page=${page}`);
 
 export const geAllBrandPrinters = (page, slug) =>
   request.get(`${baseUrl}/imprimante/brand?brand=${slug}&page=${page}`);
@@ -291,14 +348,26 @@ export const geAllSolarPanelsBrands = (page, slug) =>
 export const getAllNewPrinters = (page) =>
   request.get(`${baseUrl}/imprimante/noi-3?page=${page}`);
 
-export const getAllSHPrinters = (page) =>
+  export const getSortedNewPrinters = (page, sort) =>
+  request.get(`${baseUrl}/imprimante/noi-3?sort=${sort}&page=${page}`);
+
+  export const getAllSHPrinters = (page) =>
   request.get(`${baseUrl}/imprimante/second-hand-5?page=${page}`);
+
+export const getSortedSHPrinters = (page, sort) =>
+  request.get(`${baseUrl}/imprimante/second-hand-5?sort=${sort}&page=${page}`);
 
 export const getAllRefPrinters = (page) =>
   request.get(`${baseUrl}/imprimante/refurbished-5?page=${page}`);
 
+  export const getSortedRefPrinters = (page, sort) =>
+  request.get(`${baseUrl}/imprimante/refurbished-5?sort=${sort}&page=${page}`);
+
 export const getAllPrinterCollateral = (page) =>
   request.get(`${baseUrl}/imprimante/consumabile?page=${page}`);
+
+export const getSortedPrinterCollateral = (page, sort) =>
+request.get(`${baseUrl}/imprimante/consumabile?sort=${sort}&page=${page}`);
 
 export const getAllCables = (page) =>
   request.get(`${baseUrl}/accesorii/cabluri-si-adaptoare?page=${page}`);

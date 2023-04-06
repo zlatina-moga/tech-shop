@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
@@ -12,6 +13,8 @@ const Palmrests = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedSort, setSelectedSort] = useState("/componente/palmrest");
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -24,6 +27,24 @@ const Palmrests = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split('=')[1]
+    productService
+      .getSortedPalmrests(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -57,6 +78,8 @@ const Palmrests = () => {
             laptopsData={laptopsData}
             categories={componentCategories}
             breadcrumbs={palmrestBrcrmbs}
+            sortCriteria={onSort}
+            baseLink='/componente/palmrest'
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
