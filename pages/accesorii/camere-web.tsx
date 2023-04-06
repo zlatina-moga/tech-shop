@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination  } from "../../hooks/usePagination";
+import { usePagination } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { camerasBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
@@ -12,6 +13,8 @@ const Cameras = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedSort, setSelectedSort] = useState("/accesorii/camere-web");
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -24,6 +27,24 @@ const Cameras = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+    productService
+      .getSortedCameras(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -44,15 +65,22 @@ const Cameras = () => {
       setCurrentPage(currentPage - 1);
     }
   };
-  
+
   return (
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
-        <LaptopsPage title="Camere Web" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={camerasBreadCrmbs}/>
+          <LaptopsPage
+            title="Camere Web"
+            laptopsData={laptopsData}
+            categories={accessoryCategories}
+            breadcrumbs={camerasBreadCrmbs}
+            sortCriteria={onSort}
+            baseLink='/accesorii/camere-web'
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
@@ -94,7 +122,7 @@ const Cameras = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };

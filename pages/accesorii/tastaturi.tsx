@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
@@ -12,6 +13,8 @@ const Keyboards = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedSort, setSelectedSort] = useState("/accesorii/tastaturi");
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -24,6 +27,24 @@ const Keyboards = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+    productService
+      .getSortedKeyboards(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -52,7 +73,14 @@ const Keyboards = () => {
         <MainSkeleton />
       ) : (
         <>
-        <LaptopsPage title="Tastaturi" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={keyboardBreadCrmbs} />
+          <LaptopsPage
+            title="Tastaturi"
+            laptopsData={laptopsData}
+            categories={accessoryCategories}
+            breadcrumbs={keyboardBreadCrmbs}
+            sortCriteria={onSort}
+            baseLink='/accesorii/tastaturi'
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
 import * as productService from "../services/productService";
@@ -14,6 +15,8 @@ const Accesorii = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
+  const [selectedSort, setSelectedSort] = useState("/accesorii");
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -26,6 +29,24 @@ const Accesorii = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split('=')[1]
+    productService
+      .getSortedAccessories(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   useEffect(() => {
     sortingService.getBrands(47).then((result) => {
@@ -67,6 +88,8 @@ const Accesorii = () => {
             breadcrumbs={accessoryBreadCrmbs}
             brands={brands}
             brandLink={'/accesorii/brand/'}
+            sortCriteria={onSort}
+            baseLink='/accesorii'
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

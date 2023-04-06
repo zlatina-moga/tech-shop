@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
@@ -12,6 +13,8 @@ const Headphones = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedSort, setSelectedSort] = useState("/accesorii/casti");
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -24,6 +27,24 @@ const Headphones = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+    productService
+      .getSortedHeadPhones(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -52,7 +73,14 @@ const Headphones = () => {
         <MainSkeleton />
       ) : (
         <>
-        <LaptopsPage title="Casti" laptopsData={laptopsData} categories={accessoryCategories} breadcrumbs={headphonesBreadCrmbs}/>
+          <LaptopsPage
+            title="Casti"
+            laptopsData={laptopsData}
+            categories={accessoryCategories}
+            breadcrumbs={headphonesBreadCrmbs}
+            sortCriteria={onSort}
+            baseLink='/accesorii/casti'
+          />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
               <ul className="pagination justify-content-center flex-wrap">
@@ -94,7 +122,7 @@ const Headphones = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };
