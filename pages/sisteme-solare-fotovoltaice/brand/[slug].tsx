@@ -14,6 +14,7 @@ const BrandDetail = () => {
   const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedSort, setSelectedSort] = useState(`/sisteme-solare-fotovoltaice/brand/${slug}`);
 
   useEffect(() => {
     productService
@@ -26,6 +27,24 @@ const BrandDetail = () => {
         console.log(err);
       });
   }, [currentPage, slug]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split('=')[1]
+    productService
+      .getSortedSolarPanelsBrands(currentPage, slug, sort)
+      .then((result) => {
+        setLoading(false);
+        seItemsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -64,6 +83,8 @@ const BrandDetail = () => {
             title={`Sisteme Solare Fotovoltaice ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={solarBrandsBrcrmbs}
+            sortCriteria={onSort}
+            baseLink={`/sisteme-solare-fotovoltaice/brand/${slug}`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -14,6 +14,7 @@ const BrandDetail = () => {
   const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedSort, setSelectedSort] = useState(`/componente/brand/${slug}`);
 
   useEffect(() => {
     productService
@@ -26,6 +27,24 @@ const BrandDetail = () => {
         console.log(err);
       });
   }, [currentPage, slug]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split('=')[1]
+    productService
+      .getSortedBrandComponents(currentPage, slug, sort)
+      .then((result) => {
+        setLoading(false);
+        seItemsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -64,6 +83,8 @@ const BrandDetail = () => {
             title={`Componente ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={componentBrandBrcrmbs}
+            sortCriteria={onSort}
+            baseLink={`/componente/brand/${slug}`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

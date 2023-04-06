@@ -14,6 +14,7 @@ const ProcDetail = () => {
   const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedSort, setSelectedSort] = useState(`/sisteme-pos/procesor/${slug}`);
 
   useEffect(() => {
     productService
@@ -26,6 +27,24 @@ const ProcDetail = () => {
         console.log(err);
       });
   }, [currentPage, slug]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split('=')[1]
+    productService
+      .getSortedPOSByProcessor(currentPage, slug, sort)
+      .then((result) => {
+        setLoading(false);
+        seItemsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -64,6 +83,8 @@ const ProcDetail = () => {
             title={`Sisteme POS ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={posProcBrcrmbs}
+            sortCriteria={onSort}
+            baseLink={`/sisteme-pos/procesor/${slug}`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

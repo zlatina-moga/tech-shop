@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const SideFilter = ({
   categories,
@@ -8,6 +9,7 @@ const SideFilter = ({
   processors,
   processorsLink,
 }) => {
+  const router = useRouter();
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div className="row pr-5">
@@ -49,10 +51,17 @@ const SideFilter = ({
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
                   {categories.map((c, idx) => (
                     <li
-                      className="nav-item nav-link py-3 sidebar-link"
+                      className={`nav-item nav-link py-3 sidebar-link ${
+                        router.pathname == c.link ? "active" : ""
+                      }`}
                       key={idx}
                     >
-                      <Link href={c.link} className="sidebar-link">
+                      <Link
+                        href={c.link}
+                        className={`sidebar-link ${
+                          router.pathname == c.link ? "active" : ""
+                        }`}
+                      >
                         {c.name}
                       </Link>
                     </li>

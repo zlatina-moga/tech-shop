@@ -11,21 +11,40 @@ import Footer from "../../../components/global/Footer";
 const BrandDetail = () => {
   const router = useRouter();
   const { slug } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, setItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedSort, setSelectedSort] = useState(`/laptop/brand/${slug}`);
 
   useEffect(() => {
     productService
       .getAllLaptopsByBrand(currentPage, slug)
       .then((result) => {
         setLoading(false);
-        seItemsData(result);
+        setItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [currentPage, slug]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split('=')[1]
+    productService
+      .getSortedLaptopsByBrand(currentPage, slug, sort)
+      .then((result) => {
+        setLoading(false);
+        setItemsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -64,6 +83,8 @@ const BrandDetail = () => {
             title={`Laptopuri ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={laptopBrandBrcrmbs}
+            sortCriteria={onSort}
+            baseLink={`/laptop/brand/${slug}`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

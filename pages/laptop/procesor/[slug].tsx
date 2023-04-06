@@ -11,21 +11,40 @@ import Footer from "../../../components/global/Footer";
 const ProcDetail = () => {
   const router = useRouter();
   const { slug } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, setItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedSort, setSelectedSort] = useState(`/laptop/procesor/${slug}`);
 
   useEffect(() => {
     productService
       .getAllLaptopsByProcessor(currentPage, slug)
       .then((result) => {
         setLoading(false);
-        seItemsData(result);
+        setItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [currentPage, slug]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split('=')[1]
+    productService
+      .getSortedLaptopsByProcessor(currentPage, slug, sort)
+      .then((result) => {
+        setLoading(false);
+        setItemsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -64,6 +83,8 @@ const ProcDetail = () => {
             title={`Laptopuri ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={procComputersBrcrmbs}
+            sortCriteria={onSort}
+            baseLink={`/laptop/procesor/${slug}`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

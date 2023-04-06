@@ -11,21 +11,40 @@ import Footer from "../../../components/global/Footer";
 const BrandDetail = () => {
   const router = useRouter();
   const { slug } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedSort, setSelectedSort] = useState(`/calculatoare/brand/${slug}`);
 
   useEffect(() => {
     productService
       .getAllComputersByBrand(currentPage, slug)
       .then((result) => {
         setLoading(false);
-        seItemsData(result);
+        setItemData(result);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [currentPage, slug]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split('=')[1]
+    productService
+      .getSortedComputersByBrand(currentPage, slug, sort)
+      .then((result) => {
+        setLoading(false);
+        setItemData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -64,6 +83,8 @@ const BrandDetail = () => {
             title={`Calculatoare ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={brandComputersBrcrmbs}
+            sortCriteria={onSort}
+            baseLink={`/calculatoare/brand/${slug}`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
