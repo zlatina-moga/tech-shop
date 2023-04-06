@@ -8,6 +8,7 @@ import { monitorCategories } from "../../data/categories";
 import { monitorTouchSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const MonitoareTouchSH = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const MonitoareTouchSH = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/monitoare/touchscreen-refurbished");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(18).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -81,6 +89,8 @@ const MonitoareTouchSH = () => {
             breadcrumbs={monitorTouchSHBrcrmbs}
             sortCriteria={onSort}
             baseLink='/monitoare/touchscreen-refurbished'
+            brands={brands}
+            brandLink={"/monitoare/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -8,6 +8,7 @@ import { componentCategories } from "../../data/categories";
 import { ramBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const RAM = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const RAM = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/componente/memorie-ram");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(24).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const RAM = () => {
             breadcrumbs={ramBrcrmbs}
             sortCriteria={onSort}
             baseLink='/componente/memorie-ram'
+            brands={brands}
+            brandLink={'/componente/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -8,6 +8,7 @@ import { accessoryCategories } from "../../data/categories";
 import { gamingBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Gaming = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const Gaming = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/accesorii/gaming-console");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(47).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const Gaming = () => {
             breadcrumbs={gamingBreadCrmbs}
             sortCriteria={onSort}
             baseLink='/accesorii/gaming-console'
+            brands={brands}
+            brandLink={'/accesorii/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

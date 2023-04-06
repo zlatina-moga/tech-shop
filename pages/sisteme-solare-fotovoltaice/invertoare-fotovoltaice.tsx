@@ -8,6 +8,7 @@ import { solarCategories } from "../../data/categories";
 import { solarInvertorsBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Invertors = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const Invertors = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/sisteme-solare-fotovoltaice/invertoare-fotovoltaice");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(95).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const Invertors = () => {
             breadcrumbs={solarInvertorsBrcrmbs}
             sortCriteria={onSort}
             baseLink='/sisteme-solare-fotovoltaice/invertoare-fotovoltaice'
+            brands={brands}
+            brandLink={'/sisteme-solare-fotovoltaice/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

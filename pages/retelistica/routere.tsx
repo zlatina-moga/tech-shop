@@ -8,6 +8,7 @@ import { networkCategories } from "../../data/categories";
 import { routerBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Routers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const Routers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/retelistica/routere");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(44).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -81,6 +89,8 @@ const Routers = () => {
             breadcrumbs={routerBrcrmbs}
             sortCriteria={onSort}
             baseLink='/retelistica/routere'
+            brands={brands}
+            brandLink={"/retelistica/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -8,6 +8,7 @@ import { laptopCategories } from "../../data/categories";
 import { laptopRefurbishedBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const LaptopuriRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,17 @@ const LaptopuriRefurbished = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/laptop/refurbished-1");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(5).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(5).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +92,10 @@ const LaptopuriRefurbished = () => {
             breadcrumbs={laptopRefurbishedBrcrmbs}
             sortCriteria={onSort}
             baseLink='/laptop/refurbished-1'
+            brands={brands}
+            processors={processors}
+            processorsLink={"/laptop/procesor/"}
+            brandLink={"/laptop/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

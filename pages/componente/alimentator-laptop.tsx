@@ -8,6 +8,7 @@ import { componentCategories } from "../../data/categories";
 import { chargerBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const LaptopChargers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -17,6 +18,13 @@ const LaptopChargers = () => {
     "/componente/alimentator-laptop"
   );
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(24).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -82,6 +90,8 @@ const LaptopChargers = () => {
             breadcrumbs={chargerBrcrmbs}
             sortCriteria={onSort}
             baseLink='/componente/alimentator-laptop'
+            brands={brands}
+            brandLink={'/componente/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

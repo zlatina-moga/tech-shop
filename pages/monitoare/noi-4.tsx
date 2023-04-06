@@ -8,6 +8,7 @@ import { monitorCategories } from "../../data/categories";
 import { monitorNewBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const MonitoareNew = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const MonitoareNew = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedSort, setSelectedSort] = useState("/monitoare/noi-4");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(18).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
 
   useEffect(() => {
@@ -81,6 +89,8 @@ const MonitoareNew = () => {
             breadcrumbs={monitorNewBrcrmbs}
             sortCriteria={onSort}
             baseLink='/monitoare/noi-4'
+            brands={brands}
+            brandLink={"/monitoare/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

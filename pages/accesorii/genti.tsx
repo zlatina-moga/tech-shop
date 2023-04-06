@@ -8,6 +8,7 @@ import { accessoryCategories } from "../../data/categories";
 import { bagsBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Bags = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const Bags = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/accesorii/genti");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(47).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const Bags = () => {
             breadcrumbs={bagsBreadCrmbs}
             sortCriteria={onSort}
             baseLink='/accesorii/genti'
+            brands={brands}
+            brandLink={'/accesorii/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

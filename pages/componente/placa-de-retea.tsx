@@ -8,6 +8,7 @@ import { componentCategories } from "../../data/categories";
 import { reteaBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Networks = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const Networks = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/componente/placa-de-retea");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(24).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const Networks = () => {
             breadcrumbs={reteaBrcrmbs}
             sortCriteria={onSort}
             baseLink='/componente/placa-de-retea'
+            brands={brands}
+            brandLink={'/componente/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

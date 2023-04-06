@@ -5,8 +5,10 @@ import LaptopsPage from "../../../components/shared/LaptopsPage";
 import { usePagination } from "../../../hooks/usePagination";
 import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
-import { procComputersBrcrmbs } from "../../../data/breadcrumbs";
+import { procLaptopsBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import { laptopCategories } from "../../../data/categories";
+import * as sortingService from "../../../services/sortingService";
 
 const ProcDetail = () => {
   const router = useRouter();
@@ -15,6 +17,8 @@ const ProcDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/laptop/procesor/${slug}`);
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
 
   useEffect(() => {
     productService
@@ -27,6 +31,15 @@ const ProcDetail = () => {
         console.log(err);
       });
   }, [currentPage, slug]);
+
+  useEffect(() => {
+    sortingService.getBrands(5).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(5).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -82,9 +95,14 @@ const ProcDetail = () => {
           <LaptopsPage
             title={`Laptopuri ${pageTitle}`}
             laptopsData={itemData}
-            breadcrumbs={procComputersBrcrmbs}
+            breadcrumbs={procLaptopsBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/laptop/procesor/${slug}`}
+            categories={laptopCategories}
+            brands={brands}
+            processors={processors}
+            processorsLink={"/laptop/procesor/"}
+            brandLink={"/laptop/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

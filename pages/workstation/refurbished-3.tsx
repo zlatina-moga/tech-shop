@@ -7,6 +7,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { workstationCategories } from "../../data/categories";
 import { workstationRefBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import * as sortingService from "../../services/sortingService";
 
 const WorkstationsRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -14,6 +15,17 @@ const WorkstationsRefurbished = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/workstation/refurbished-3");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+  
+  useEffect(() => {
+    sortingService.getBrands(15).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(15).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -79,6 +91,10 @@ const WorkstationsRefurbished = () => {
             breadcrumbs={workstationRefBrcrmbs}
             sortCriteria={onSort}
             baseLink='/workstation/refurbished-3'
+            brands={brands}
+            brandLink={"/workstation/brand/"}
+            processors={processors}
+            processorsLink={"/workstation/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

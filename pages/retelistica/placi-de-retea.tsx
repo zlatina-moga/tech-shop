@@ -8,6 +8,7 @@ import { networkCategories } from "../../data/categories";
 import { networkCardsBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Network = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const Network = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/retelistica/placi-de-retea");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(44).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const Network = () => {
             breadcrumbs={networkCardsBrcrmbs}
             sortCriteria={onSort}
             baseLink='/retelistica/placi-de-retea'
+            brands={brands}
+            brandLink={"/retelistica/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

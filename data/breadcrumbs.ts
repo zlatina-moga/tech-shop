@@ -168,6 +168,16 @@ export const procComputersBrcrmbs = [
   { name: "Procesor", link: "#" },
 ];
 
+export const procLaptopsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
 export const componentBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Componente", link: "/componente" },

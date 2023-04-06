@@ -106,12 +106,16 @@ const SideFilter = ({
                   </h4>
                   {brands.map((c, idx) => (
                     <li
-                      className="nav-item nav-link py-3 sidebar-link"
+                      className={`nav-item nav-link py-3 sidebar-link ${
+                        router.pathname == `${brandLink}${c.slug}-${c.id}` ? "active" : ""
+                      }`}
                       key={idx}
                     >
                       <Link
                         href={`${brandLink}${c.slug}-${c.id}`}
-                        className="sidebar-link"
+                        className={`sidebar-link ${
+                          router.pathname == `${brandLink}${c.slug}-${c.id}` ? "active" : ""
+                        }`}
                       >
                         {c.name}
                       </Link>

@@ -8,6 +8,7 @@ import { accessoryCategories } from "../../data/categories";
 import { cablesBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Cables = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,7 @@ const Cables = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/accesorii/cabluri-si-adaptoare");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     productService
@@ -27,6 +29,12 @@ const Cables = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  useEffect(() => {
+    sortingService.getBrands(47).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -80,6 +88,8 @@ const Cables = () => {
             breadcrumbs={cablesBreadCrmbs}
             sortCriteria={onSort}
             baseLink='/accesorii/cabluri-si-adaptoare'
+            brands={brands}
+            brandLink={'/accesorii/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -8,6 +8,7 @@ import { upsCategories } from "../../data/categories";
 import { upsSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const SecondHandUPS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const SecondHandUPS = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/ups/second-hand-7");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(40).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const SecondHandUPS = () => {
             breadcrumbs={upsSHBrcrmbs}
             sortCriteria={onSort}
             baseLink='/ups/second-hand-7'
+            brands={brands}
+            brandLink={'/ups/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

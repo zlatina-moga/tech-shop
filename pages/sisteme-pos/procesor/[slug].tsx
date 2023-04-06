@@ -7,6 +7,8 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { posProcBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import { posCategories } from "../../../data/categories";
+import * as sortingService from "../../../services/sortingService";
 
 const ProcDetail = () => {
   const router = useRouter();
@@ -15,6 +17,17 @@ const ProcDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/sisteme-pos/procesor/${slug}`);
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(34).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(34).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -85,6 +98,11 @@ const ProcDetail = () => {
             breadcrumbs={posProcBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/sisteme-pos/procesor/${slug}`}
+            brands={brands}
+            brandLink={'/sisteme-pos/brand/'}
+            processors={processors}
+            processorsLink={"/sisteme-pos/procesor/"}
+            categories={posCategories}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

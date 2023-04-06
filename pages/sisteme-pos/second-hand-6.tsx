@@ -8,6 +8,7 @@ import { posCategories } from "../../data/categories";
 import { posSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const SecondHandPOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,17 @@ const SecondHandPOS = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/sisteme-pos/second-hand-6");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(34).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(34).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -81,6 +93,10 @@ const SecondHandPOS = () => {
             breadcrumbs={posSHBrcrmbs}
             sortCriteria={onSort}
             baseLink='/sisteme-pos/second-hand-6'
+            brands={brands}
+            brandLink={'/sisteme-pos/brand/'}
+            processors={processors}
+            processorsLink={"/sisteme-pos/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

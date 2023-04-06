@@ -7,6 +7,8 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { monitorBrandBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import { monitorCategories } from "../../../data/categories";
+import * as sortingService from "../../../services/sortingService";
 
 const BrandDetail = () => {
   const router = useRouter();
@@ -15,6 +17,13 @@ const BrandDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/monitoare/brand/${slug}`);
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(18).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -85,6 +94,9 @@ const BrandDetail = () => {
             breadcrumbs={monitorBrandBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/monitoare/brand/${slug}`}
+            categories={monitorCategories}
+            brands={brands}
+            brandLink={"/monitoare/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

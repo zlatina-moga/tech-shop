@@ -7,6 +7,8 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { brandComputersBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import { compCategories } from "../../../data/categories";
+import * as sortingService from "../../../services/sortingService";
 
 const BrandDetail = () => {
   const router = useRouter();
@@ -15,6 +17,17 @@ const BrandDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/calculatoare/brand/${slug}`);
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(1).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(1).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -85,6 +98,11 @@ const BrandDetail = () => {
             breadcrumbs={brandComputersBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/calculatoare/brand/${slug}`}
+            brands={brands}
+            brandLink={'/calculatoare/brand/'}
+            processors={processors}
+            processorsLink={"/calculatoare/procesor/"}
+            categories={compCategories}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -8,6 +8,7 @@ import { serverCategories } from "../../data/categories";
 import { serverRackBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const RackServers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,17 @@ const RackServers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/servere/cabinet-rack-refurbished");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(9).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(9).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +92,10 @@ const RackServers = () => {
             breadcrumbs={serverRackBrcrmbs}
             sortCriteria={onSort}
             baseLink='/servere/cabinet-rack-refurbished'
+            brands={brands}
+            brandLink={"/servere/brand/"}
+            processors={processors}
+            processorsLink={"/servere/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

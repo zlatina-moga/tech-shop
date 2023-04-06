@@ -8,6 +8,7 @@ import { componentCategories } from "../../data/categories";
 import { laptopKeyboardBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const LaptopKeyboards = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const LaptopKeyboards = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/componente/tastatura-laptop");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(24).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -81,6 +89,8 @@ const LaptopKeyboards = () => {
             breadcrumbs={laptopKeyboardBrcrmbs}
             sortCriteria={onSort}
             baseLink='/componente/tastatura-laptop'
+            brands={brands}
+            brandLink={'/componente/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

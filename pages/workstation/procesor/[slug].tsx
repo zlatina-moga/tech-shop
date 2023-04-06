@@ -7,6 +7,8 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { workstationProcBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import { workstationCategories } from "../../../data/categories";
+import * as sortingService from "../../../services/sortingService";
 
 const ProcDetail = () => {
   const router = useRouter();
@@ -17,6 +19,17 @@ const ProcDetail = () => {
   const [selectedSort, setSelectedSort] = useState(
     `/workstation/procesor/${slug}`
   );
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+  
+  useEffect(() => {
+    sortingService.getBrands(15).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(15).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -87,6 +100,11 @@ const ProcDetail = () => {
             breadcrumbs={workstationProcBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/workstation/procesor/${slug}`}
+            categories={workstationCategories}
+            brands={brands}
+            brandLink={"/workstation/brand/"}
+            processors={processors}
+            processorsLink={"/workstation/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

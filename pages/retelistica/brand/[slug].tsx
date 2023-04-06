@@ -7,6 +7,8 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { networkBrandsBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import { networkCategories } from "../../../data/categories";
+import * as sortingService from "../../../services/sortingService";
 
 const BrandDetail = () => {
   const router = useRouter();
@@ -15,6 +17,13 @@ const BrandDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/retelistica/brand/${slug}`);
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(44).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -85,6 +94,9 @@ const BrandDetail = () => {
             breadcrumbs={networkBrandsBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/retelistica/brand/${slug}`}
+            categories={networkCategories}
+            brands={brands}
+            brandLink={"/retelistica/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

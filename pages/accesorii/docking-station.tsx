@@ -8,6 +8,7 @@ import { accessoryCategories } from "../../data/categories";
 import { dockingBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const DockingStations = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -17,6 +18,13 @@ const DockingStations = () => {
     "/accesorii/docking-station"
   );
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(47).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -82,6 +90,8 @@ const DockingStations = () => {
             breadcrumbs={dockingBreadCrmbs}
             sortCriteria={onSort}
             baseLink='/accesorii/docking-station'
+            brands={brands}
+            brandLink={'/accesorii/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

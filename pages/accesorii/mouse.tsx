@@ -8,6 +8,7 @@ import { accessoryCategories } from "../../data/categories";
 import { mouseBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Mice = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,7 @@ const Mice = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/accesorii/mouse");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     productService
@@ -27,6 +29,12 @@ const Mice = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  useEffect(() => {
+    sortingService.getBrands(47).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -80,6 +88,8 @@ const Mice = () => {
             breadcrumbs={mouseBreadCrmbs}
             sortCriteria={onSort}
             baseLink='/accesorii/mouse'
+            brands={brands}
+            brandLink={'/accesorii/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

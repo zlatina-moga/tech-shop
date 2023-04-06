@@ -8,6 +8,7 @@ import { compCategories } from "../../data/categories";
 import { refComputersBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Calculatoare = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,17 @@ const Calculatoare = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/calculatoare/refurbished");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(1).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(1).then((res) => {
+      setProcessors(res);
+    });
+  }, [])
 
   useEffect(() => {
     productService
@@ -80,6 +92,10 @@ const Calculatoare = () => {
             breadcrumbs={refComputersBrcrmbs}
             sortCriteria={onSort}
             baseLink='/calculatoare/refurbished'
+            brands={brands}
+            brandLink={'/calculatoare/brand/'}
+            processors={processors}
+            processorsLink={"/calculatoare/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

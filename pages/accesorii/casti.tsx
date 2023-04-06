@@ -8,6 +8,7 @@ import { accessoryCategories } from "../../data/categories";
 import { headphonesBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Headphones = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,7 @@ const Headphones = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/accesorii/casti");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     productService
@@ -27,6 +29,13 @@ const Headphones = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  useEffect(() => {
+    sortingService.getBrands(47).then((result) => {
+      setBrands(result);
+    });
+  }, []);
+
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -80,6 +89,8 @@ const Headphones = () => {
             breadcrumbs={headphonesBreadCrmbs}
             sortCriteria={onSort}
             baseLink='/accesorii/casti'
+            brands={brands}
+            brandLink={'/accesorii/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

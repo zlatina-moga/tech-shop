@@ -7,6 +7,8 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { upsBrandsBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import { upsCategories } from "../../../data/categories";
+import * as sortingService from "../../../services/sortingService";
 
 const BrandDetail = () => {
   const router = useRouter();
@@ -15,6 +17,13 @@ const BrandDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/ups/brand/${slug}`);
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(40).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -86,6 +95,9 @@ const BrandDetail = () => {
             breadcrumbs={upsBrandsBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/ups/brand/${slug}`}
+            categories={upsCategories}
+            brands={brands}
+            brandLink={'/ups/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

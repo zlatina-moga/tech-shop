@@ -8,6 +8,7 @@ import { posCategories } from "../../data/categories";
 import { posPrinterBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const POSReader = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,17 @@ const POSReader = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/sisteme-pos/imprimante-termice-noi");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(34).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(34).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -81,6 +93,10 @@ const POSReader = () => {
             breadcrumbs={posPrinterBrcrmbs}
             sortCriteria={onSort}
             baseLink='/sisteme-pos/imprimante-termice-noi'
+            brands={brands}
+            brandLink={'/sisteme-pos/brand/'}
+            processors={processors}
+            processorsLink={"/sisteme-pos/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

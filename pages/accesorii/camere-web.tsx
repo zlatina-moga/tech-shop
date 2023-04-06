@@ -8,6 +8,7 @@ import { accessoryCategories } from "../../data/categories";
 import { camerasBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Cameras = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,7 @@ const Cameras = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/accesorii/camere-web");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     productService
@@ -27,6 +29,12 @@ const Cameras = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  useEffect(() => {
+    sortingService.getBrands(47).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -80,6 +88,8 @@ const Cameras = () => {
             breadcrumbs={camerasBreadCrmbs}
             sortCriteria={onSort}
             baseLink='/accesorii/camere-web'
+            brands={brands}
+            brandLink={'/accesorii/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

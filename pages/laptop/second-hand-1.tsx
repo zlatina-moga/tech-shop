@@ -8,6 +8,7 @@ import { laptopCategories } from "../../data/categories";
 import { laptopSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const LaptopuriSecondHand = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,17 @@ const LaptopuriSecondHand = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/laptop/second-hand-1");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(5).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(5).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +92,10 @@ const LaptopuriSecondHand = () => {
             breadcrumbs={laptopSHBrcrmbs}
             sortCriteria={onSort}
             baseLink='/laptop/second-hand-1'
+            brands={brands}
+            processors={processors}
+            processorsLink={"/laptop/procesor/"}
+            brandLink={"/laptop/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

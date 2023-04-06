@@ -8,6 +8,7 @@ import { solarCategories } from "../../data/categories";
 import { solarpanelsBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const SolarPanels = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const SolarPanels = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(95).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const SolarPanels = () => {
             breadcrumbs={solarpanelsBrcrmbs}
             sortCriteria={onSort}
             baseLink='/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice'
+            brands={brands}
+            brandLink={'/sisteme-solare-fotovoltaice/brand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

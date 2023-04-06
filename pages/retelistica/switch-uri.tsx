@@ -8,6 +8,7 @@ import { networkCategories } from "../../data/categories";
 import { switchBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const Switches = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,13 @@ const Switches = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/retelistica/switch-uri");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(44).then((result) => {
+      setBrands(result);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -80,6 +88,8 @@ const Switches = () => {
             breadcrumbs={switchBrcrmbs}
             sortCriteria={onSort}
             baseLink='/retelistica/switch-uri'
+            brands={brands}
+            brandLink={"/retelistica/brand/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

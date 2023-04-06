@@ -8,6 +8,7 @@ import { posCategories } from "../../data/categories";
 import { posRefBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
+import * as sortingService from "../../services/sortingService";
 
 const RefurbishedPOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -15,6 +16,17 @@ const RefurbishedPOS = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/sisteme-pos/refurbished-6");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
+
+  useEffect(() => {
+    sortingService.getBrands(34).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getProcessors(34).then((res) => {
+      setProcessors(res);
+    });
+  }, []);
 
   useEffect(() => {
     productService
@@ -81,6 +93,10 @@ const RefurbishedPOS = () => {
             breadcrumbs={posRefBrcrmbs}
             sortCriteria={onSort}
             baseLink='/sisteme-pos/refurbished-6'
+            brands={brands}
+            brandLink={'/sisteme-pos/brand/'}
+            processors={processors}
+            processorsLink={"/sisteme-pos/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
