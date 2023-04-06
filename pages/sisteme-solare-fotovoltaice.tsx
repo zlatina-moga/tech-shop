@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
@@ -14,6 +15,8 @@ const SolarPanels = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
+  const [selectedSort, setSelectedSort] = useState("/sisteme-solare-fotovoltaice");
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -26,6 +29,24 @@ const SolarPanels = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+    productService
+      .getSortedSolarPanels(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   useEffect(() => {
     sortingService.getBrands(95).then((result) => {
@@ -67,6 +88,8 @@ const SolarPanels = () => {
             breadcrumbs={solarBrcrmbs}
             brands={brands}
             brandLink={'/sisteme-solare-fotovoltaice/brand/'}
+            sortCriteria={onSort}
+            baseLink='/sisteme-solare-fotovoltaice'
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

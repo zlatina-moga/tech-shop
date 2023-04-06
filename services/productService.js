@@ -391,11 +391,17 @@ export const getAllBrandAccessories = (page, slug) =>
 export const geAllRetails = (page) =>
   request.get(`${baseUrl}/retelistica?page=${page}`);
 
+  export const getSortedRetails = (page, sort) =>
+  request.get(`${baseUrl}/retelistica?sort=${sort}&page=${page}`);
+
 export const geAllRetailsBrand = (page, slug) =>
   request.get(`${baseUrl}/retelistica/brand?brand=${slug}&page=${page}`);
 
 export const geAllSolarPanels = (page) =>
   request.get(`${baseUrl}/sisteme-solare-fotovoltaice?page=${page}`);
+
+export const getSortedSolarPanels = (page, sort) =>
+request.get(`${baseUrl}/sisteme-solare-fotovoltaice?sort=${sort}&page=${page}`);
 
 export const geAllSolarPanelsBrands = (page, slug) =>
   request.get(
@@ -495,26 +501,52 @@ export const getSortedVideo = (page, sort) =>
 export const getAllNetwork = (page) =>
   request.get(`${baseUrl}/retelistica/placi-de-retea?page=${page}`);
 
+  export const getSortedNetwork = (page, sort) =>
+  request.get(`${baseUrl}/retelistica/placi-de-retea?sort=${sort}&page=${page}`);
+
 export const getAllAdaptors = (page) =>
   request.get(`${baseUrl}/retelistica/adaptoare-wireless?page=${page}`);
+
+  export const getSortedAdaptors = (page, sort) =>
+  request.get(`${baseUrl}/retelistica/adaptoare-wireless?sort=${sort}&page=${page}`);
 
 export const getAllRouters = (page) =>
   request.get(`${baseUrl}/retelistica/routere?page=${page}`);
 
+  export const getSortedRouters = (page, sort) =>
+  request.get(`${baseUrl}/retelistica/routere?sort=${sort}&page=${page}`);
+
 export const getAllSwitch = (page) =>
   request.get(`${baseUrl}/retelistica/switch-uri?page=${page}`);
 
+  export const getSortedSwitch = (page, sort) =>
+  request.get(`${baseUrl}/retelistica/switch-uri?sort=${sort}&page=${page}`);
+
+
 export const getAllAccessPoints = (page) =>
   request.get(`${baseUrl}/retelistica/access-point-uri?page=${page}`);
+
+  export const getSortedAccessPoints = (page, sort) =>
+  request.get(`${baseUrl}/retelistica/access-point-uri?sort=${sort}&page=${page}`);
 
 export const getAllPanels = (page) =>
   request.get(
     `${baseUrl}/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice?page=${page}`
   );
 
+  export const getSortedPanels = (page, sort) =>
+  request.get(
+    `${baseUrl}/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice?sort=${sort}&page=${page}`
+  );
+
 export const getAllInvertors = (page) =>
   request.get(
     `${baseUrl}/sisteme-solare-fotovoltaice/invertoare-fotovoltaice?page=${page}`
+  );
+
+  export const getSortedInvertors = (page, sort) =>
+  request.get(
+    `${baseUrl}/sisteme-solare-fotovoltaice/invertoare-fotovoltaice?sort=${sort}&page=${page}`
   );
 
 export const getSearchedItems = (search) =>
@@ -523,32 +555,65 @@ export const getSearchedItems = (search) =>
 export const getDiscountedItems = (page) =>
   request.get(`${baseUrl}/promotii?page=${page}`);
 
+  export const getSortedDiscountedItems = (page, sort) =>
+  request.get(`${baseUrl}/promotii?sort=${sort}&page=${page}`);
+
 export const getDiscountedServers = (page) =>
   request.get(`${baseUrl}/promotii/servere?page=${page}`);
+
+  export const getSortedDiscountedServers = (page, sort) =>
+  request.get(`${baseUrl}/promotii/servere?sort=${sort}&page=${page}`);
 
 export const getDiscountedWorkstations = (page) =>
   request.get(`${baseUrl}/promotii/workstation?page=${page}`);
 
+  export const getSortedDiscountedWorkstations = (page, sort) =>
+  request.get(`${baseUrl}/promotii/workstation?sort=${sort}&page=${page}`);
+
 export const getDiscountedComputers = (page) =>
   request.get(`${baseUrl}/promotii/calculatoare?page=${page}`);
+
+  export const getSortedDiscountedComputers = (page, sort) =>
+  request.get(`${baseUrl}/promotii/calculatoare?sort=${sort}&page=${page}`);
 
 export const getDiscountedLaptops = (page) =>
   request.get(`${baseUrl}/promotii/laptop?page=${page}`);
 
+  export const getSortedDiscountedLaptops = (page, sort) =>
+  request.get(`${baseUrl}/promotii/laptop?sort=${sort}&page=${page}`);
+
 export const getDiscountedMonitors = (page) =>
   request.get(`${baseUrl}/promotii/monitoare?page=${page}`);
+
+  export const getSortedDiscountedMonitors = (page, sort) =>
+  request.get(`${baseUrl}/promotii/monitoare?sort=${sort}&page=${page}`);
 
 export const getDiscountedComponents = (page) =>
   request.get(`${baseUrl}/promotii/componente?page=${page}`);
 
+  export const getSortedDiscountedComponents = (page, sort) =>
+  request.get(`${baseUrl}/promotii/componente?sort=${sort}&page=${page}`);
+
 export const getDiscountedPrinters = (page) =>
   request.get(`${baseUrl}/promotii/imprimante?page=${page}`);
+
+  export const getSortedDiscountedPrinters = (page, sort) =>
+  request.get(`${baseUrl}/promotii/imprimante?sort=${sort}&page=${page}`);
 
 export const getDiscountedPOS = (page) =>
   request.get(`${baseUrl}/promotii/sisteme-pos?page=${page}`);
 
+  export const getSortedDiscountedPOS = (page, sort) =>
+  request.get(`${baseUrl}/promotii/sisteme-pos?sort=${sort}&page=${page}`);
+
 export const getDiscountedUPS = (page) =>
   request.get(`${baseUrl}/promotii/ups?page=${page}`);
 
+  export const getSortedDiscountedUPS = (page, sort) =>
+  request.get(`${baseUrl}/promotii/ups?sort=${sort}&page=${page}`);
+
 export const getDiscountedAccessories = (page) =>
   request.get(`${baseUrl}/promotii/accesorii?page=${page}`);
+
+  export const getSortedDiscountedAccessories = (page, sort) =>
+  request.get(`${baseUrl}/promotii/accesorii?sort=${sort}&page=${page}`);

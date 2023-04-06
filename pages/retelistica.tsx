@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
@@ -14,6 +15,8 @@ const Retails = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
+  const [selectedSort, setSelectedSort] = useState("/retelistica");
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -26,6 +29,24 @@ const Retails = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+    productService
+      .getSortedRetails(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   useEffect(() => {
     sortingService.getBrands(44).then((result) => {
@@ -67,6 +88,8 @@ const Retails = () => {
             breadcrumbs={networkBrcrmbs}
             brands={brands}
             brandLink={"/retelistica/brand/"}
+            sortCriteria={onSort}
+            baseLink='/retelistica'
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

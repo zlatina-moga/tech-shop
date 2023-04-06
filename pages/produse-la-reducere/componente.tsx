@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import * as sortingService from "../../services/sortingService";
@@ -13,6 +14,8 @@ const DiscountedComponents = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedSort, setSelectedSort] = useState("/produse-la-reducere/componente");
+  const router = useRouter();
 
   useEffect(() => {
     productService
@@ -25,6 +28,24 @@ const DiscountedComponents = () => {
         console.log(err);
       });
   }, [currentPage]);
+
+  const onSort = (sort) => {
+    setSelectedSort(sort);
+  };
+
+  useEffect(() => {
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+    productService
+      .getSortedDiscountedComponents(currentPage, sort)
+      .then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedSort, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -58,6 +79,8 @@ const DiscountedComponents = () => {
             laptopsData={laptopsData}
             categories={discountCategories}
             breadcrumbs={discountedComponentsBrcrmbs}
+            sortCriteria={onSort}
+            baseLink='/produse-la-reducere/componente'
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
