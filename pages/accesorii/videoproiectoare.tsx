@@ -17,10 +17,14 @@ const Videos = () => {
   const [selectedSort, setSelectedSort] = useState("/accesorii/videoproiectoare");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(90).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(90).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Videos = () => {
             baseLink='/accesorii/videoproiectoare'
             brands={brands}
             brandLink={'/accesorii/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

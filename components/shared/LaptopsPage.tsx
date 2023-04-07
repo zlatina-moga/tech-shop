@@ -1,11 +1,9 @@
-import { useDispatch } from "react-redux";
 import { useState } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import Meta from "../layouts/Meta";
 import SideFilter from "./SideFilter";
 import localFont from "@next/font/local";
-import { addProduct } from "../../services/redux/cartRedux";
 
 const veneer = localFont({
   src: [
@@ -28,6 +26,7 @@ interface ILaptopPage {
   processorsLink?: string;
   sortCriteria?: any;
   baseLink?: string;
+  highEnd?: number
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -41,10 +40,11 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   processorsLink,
   sortCriteria,
   baseLink,
+  highEnd
 }) => {
-  const dispatch = useDispatch();
   const [selected, setSelected] = useState("");
   const totalCount = laptopsData.map((l) => l.itemsCount)[0];
+
 
   const handleSort = (e) => {
     setSelected(e.target.value);
@@ -61,6 +61,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           display: "flex",
         }}
       >
+
         <SideFilter
           categories={categories}
           breadcrumbs={breadcrumbs}
@@ -68,8 +69,9 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           brandLink={brandLink}
           processors={processors}
           processorsLink={processorsLink}
+          maxPrice={highEnd}
         />
-        <div className="">
+        <div>
           <div className="text-center mb-4">
             <h1 className={`font-${veneer.variable} font-sans`}>{title}</h1>
             <p className="font-weight-medium">{totalCount}</p>
@@ -94,7 +96,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           </div>
 
           <div
-            className="row pb-3 justify-content-center"
+            className="row pb-3 justify-content-center, ml-5"
             style={{ maxWidth: "98rem" }}
           >
             {laptopsData.map((itemData, idx) => (

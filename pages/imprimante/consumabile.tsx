@@ -19,10 +19,14 @@ const NewPrinters = () => {
   const [selectedSort, setSelectedSort] = useState("/imprimante/consumabile");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(29).then((result) => {
+    sortingService.getBrands(93).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(93).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -92,6 +96,7 @@ const NewPrinters = () => {
             baseLink='/imprimante/consumabile'
             brands={brands}
             brandLink={'/imprimante/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

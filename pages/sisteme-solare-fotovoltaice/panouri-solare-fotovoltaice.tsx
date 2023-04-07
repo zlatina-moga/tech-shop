@@ -17,10 +17,14 @@ const SolarPanels = () => {
   const [selectedSort, setSelectedSort] = useState("/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(95).then((result) => {
+    sortingService.getBrands(96).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(96).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const SolarPanels = () => {
             baseLink='/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice'
             brands={brands}
             brandLink={'/sisteme-solare-fotovoltaice/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

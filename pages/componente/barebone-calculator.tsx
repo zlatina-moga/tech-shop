@@ -17,10 +17,14 @@ const Barebone = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/barebone-calculator");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(89).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(89).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Barebone = () => {
             baseLink='/componente/barebone-calculator'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

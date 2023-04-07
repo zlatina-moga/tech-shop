@@ -19,6 +19,7 @@ const BrandDetail = () => {
   const [selectedSort, setSelectedSort] = useState(`/sisteme-pos/brand/${slug}`);
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     sortingService.getBrands(34).then((result) => {
@@ -26,6 +27,9 @@ const BrandDetail = () => {
     });
     sortingService.getProcessors(34).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPriceByBrand(34, slug).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -103,6 +107,7 @@ const BrandDetail = () => {
             processors={processors}
             processorsLink={"/sisteme-pos/procesor/"}
             categories={posCategories}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

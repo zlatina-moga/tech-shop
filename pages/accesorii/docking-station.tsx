@@ -19,10 +19,14 @@ const DockingStations = () => {
   );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(66).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(66).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -92,6 +96,7 @@ const DockingStations = () => {
             baseLink='/accesorii/docking-station'
             brands={brands}
             brandLink={'/accesorii/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

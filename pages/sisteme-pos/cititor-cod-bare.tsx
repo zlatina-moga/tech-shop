@@ -18,13 +18,17 @@ const POSReader = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(34).then((result) => {
+    sortingService.getBrands(37).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(34).then((res) => {
+    sortingService.getProcessors(37).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(37).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -97,6 +101,7 @@ const POSReader = () => {
             brandLink={'/sisteme-pos/brand/'}
             processors={processors}
             processorsLink={"/sisteme-pos/procesor/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

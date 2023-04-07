@@ -17,10 +17,15 @@ const MonitoareTouchRef = () => {
   const [selectedSort, setSelectedSort] = useState("/monitoare/touchscreen-second");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+
 
   useEffect(() => {
-    sortingService.getBrands(18).then((result) => {
+    sortingService.getBrands(22).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(22).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +96,7 @@ const MonitoareTouchRef = () => {
             baseLink='/monitoare/touchscreen-second'
             brands={brands}
             brandLink={"/monitoare/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

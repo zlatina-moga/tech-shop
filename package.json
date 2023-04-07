@@ -23,6 +23,7 @@
     "next-redux-wrapper": "^8.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
+    "react-bootstrap-range-slider": "^3.0.8",
     "react-cookie-consent": "^8.0.1",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",

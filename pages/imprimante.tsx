@@ -17,6 +17,7 @@ const Imprimante = () => {
   const [brands, setBrands] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/imprimante");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -51,6 +52,9 @@ const Imprimante = () => {
   useEffect(() => {
     sortingService.getBrands(29).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(29).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Imprimante = () => {
             brandLink={'/imprimante/brand/'}
             sortCriteria={onSort}
             baseLink='/imprimante'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

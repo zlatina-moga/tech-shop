@@ -17,10 +17,14 @@ const Keyboards = () => {
   const [selectedSort, setSelectedSort] = useState("/accesorii/periferice-diverse");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(65).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(65).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Keyboards = () => {
             baseLink='/accesorii/periferice-diverse'
             brands={brands}
             brandLink={'/accesorii/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

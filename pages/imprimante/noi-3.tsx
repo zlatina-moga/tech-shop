@@ -17,10 +17,14 @@ const NewPrinters = () => {
   const [selectedSort, setSelectedSort] = useState("/imprimante/noi-3");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(29).then((result) => {
+    sortingService.getBrands(53).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(53).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const NewPrinters = () => {
             baseLink='/imprimante/noi-3'
             brands={brands}
             brandLink={'/imprimante/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

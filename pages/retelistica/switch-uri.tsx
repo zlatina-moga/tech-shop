@@ -17,10 +17,14 @@ const Switches = () => {
   const [selectedSort, setSelectedSort] = useState("/retelistica/switch-uri");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(44).then((result) => {
+    sortingService.getBrands(72).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(72).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Switches = () => {
             baseLink='/retelistica/switch-uri'
             brands={brands}
             brandLink={"/retelistica/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

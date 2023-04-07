@@ -17,10 +17,14 @@ const MonitoareSecondHand = () => {
   const [selectedSort, setSelectedSort] = useState("/monitoare/second-hand-4");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(18).then((result) => {
+    sortingService.getBrands(20).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(20).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +95,7 @@ const MonitoareSecondHand = () => {
             baseLink='/monitoare/second-hand-4'
             brands={brands}
             brandLink={"/monitoare/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

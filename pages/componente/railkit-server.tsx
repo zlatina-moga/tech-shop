@@ -17,10 +17,14 @@ const Railkits = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/railkit-server");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(84).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(84).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Railkits = () => {
             baseLink='/componente/railkit-server'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

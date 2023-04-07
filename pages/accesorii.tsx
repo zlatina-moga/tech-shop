@@ -17,6 +17,7 @@ const Accesorii = () => {
   const [brands, setBrands] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/accesorii");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -51,6 +52,9 @@ const Accesorii = () => {
   useEffect(() => {
     sortingService.getBrands(47).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(47).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Accesorii = () => {
             brandLink={'/accesorii/brand/'}
             sortCriteria={onSort}
             baseLink='/accesorii'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

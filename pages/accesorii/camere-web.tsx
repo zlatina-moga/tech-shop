@@ -17,6 +17,7 @@ const Cameras = () => {
   const [selectedSort, setSelectedSort] = useState("/accesorii/camere-web");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -31,8 +32,11 @@ const Cameras = () => {
   }, [currentPage]);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(62).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(62).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Cameras = () => {
             baseLink='/accesorii/camere-web'
             brands={brands}
             brandLink={'/accesorii/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -17,6 +17,7 @@ const Mice = () => {
   const [selectedSort, setSelectedSort] = useState("/accesorii/mouse");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -31,8 +32,11 @@ const Mice = () => {
   }, [currentPage]);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(61).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(61).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -42,7 +46,7 @@ const Mice = () => {
 
   useEffect(() => {
     router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    const sort = selectedSort.split("=")[1];
     productService
       .getSortedMice(currentPage, sort)
       .then((result) => {
@@ -87,9 +91,10 @@ const Mice = () => {
             categories={accessoryCategories}
             breadcrumbs={mouseBreadCrmbs}
             sortCriteria={onSort}
-            baseLink='/accesorii/mouse'
+            baseLink="/accesorii/mouse"
             brands={brands}
-            brandLink={'/accesorii/brand/'}
+            brandLink={"/accesorii/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

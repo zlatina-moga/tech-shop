@@ -8,3 +8,12 @@ export const getProcessors = (category) =>
   request.get(
     `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}`
   );
+
+export const getHighestPrice = (category) =>
+  request.get(`${baseUrl}/price/price?filter[category]=${category}`);
+
+
+export const getHighestPriceByBrand = (category, brand) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}`
+  );

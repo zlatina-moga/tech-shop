@@ -17,13 +17,17 @@ const WorkstationsRefurbished = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
   
   useEffect(() => {
-    sortingService.getBrands(15).then((result) => {
+    sortingService.getBrands(16).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(15).then((res) => {
+    sortingService.getProcessors(16).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(16).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -95,6 +99,7 @@ const WorkstationsRefurbished = () => {
             brandLink={"/workstation/brand/"}
             processors={processors}
             processorsLink={"/workstation/procesor/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

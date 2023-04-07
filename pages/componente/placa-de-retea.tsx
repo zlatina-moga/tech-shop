@@ -17,10 +17,14 @@ const Networks = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/placa-de-retea");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(87).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(87).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Networks = () => {
             baseLink='/componente/placa-de-retea'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

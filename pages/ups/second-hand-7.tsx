@@ -17,10 +17,14 @@ const SecondHandUPS = () => {
   const [selectedSort, setSelectedSort] = useState("/ups/second-hand-7");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(40).then((result) => {
+    sortingService.getBrands(42).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(42).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const SecondHandUPS = () => {
             baseLink='/ups/second-hand-7'
             brands={brands}
             brandLink={'/ups/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

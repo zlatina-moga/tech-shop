@@ -17,10 +17,14 @@ const Bags = () => {
   const [selectedSort, setSelectedSort] = useState("/accesorii/genti");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(60).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(60).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -42,7 +46,7 @@ const Bags = () => {
 
   useEffect(() => {
     router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    const sort = selectedSort.split("=")[1];
     productService
       .getSortedBags(currentPage, sort)
       .then((result) => {
@@ -87,9 +91,10 @@ const Bags = () => {
             categories={accessoryCategories}
             breadcrumbs={bagsBreadCrmbs}
             sortCriteria={onSort}
-            baseLink='/accesorii/genti'
+            baseLink="/accesorii/genti"
             brands={brands}
-            brandLink={'/accesorii/brand/'}
+            brandLink={"/accesorii/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -15,6 +15,8 @@ import "swiper/css/bundle";
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css";
 import "swiper/css/navigation";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {

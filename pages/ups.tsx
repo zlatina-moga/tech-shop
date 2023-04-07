@@ -17,6 +17,7 @@ const UPS = () => {
   const [brands, setBrands] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/ups");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -52,6 +53,9 @@ const UPS = () => {
   useEffect(() => {
     sortingService.getBrands(40).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(40).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +95,7 @@ const UPS = () => {
             brandLink={'/ups/brand/'}
             sortCriteria={onSort}
             baseLink='/ups'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

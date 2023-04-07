@@ -17,10 +17,14 @@ const MonitoareTouchSH = () => {
   const [selectedSort, setSelectedSort] = useState("/monitoare/touchscreen-refurbished");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(18).then((result) => {
+    sortingService.getBrands(21).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(21).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +95,7 @@ const MonitoareTouchSH = () => {
             baseLink='/monitoare/touchscreen-refurbished'
             brands={brands}
             brandLink={"/monitoare/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

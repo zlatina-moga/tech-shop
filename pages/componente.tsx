@@ -17,6 +17,7 @@ const Componente = () => {
   const [brands, setBrands] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/componente");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -51,6 +52,9 @@ const Componente = () => {
   useEffect(() => {
     sortingService.getBrands(24).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(24).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Componente = () => {
             brandLink={'/componente/brand/'}
             sortCriteria={onSort}
             baseLink='/componente'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

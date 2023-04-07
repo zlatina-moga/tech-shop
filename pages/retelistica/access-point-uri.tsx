@@ -17,10 +17,14 @@ const AccessPoints = () => {
   const [selectedSort, setSelectedSort] = useState("/retelistica/access-point-uri");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(44).then((result) => {
+    sortingService.getBrands(73).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(73).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +95,7 @@ const AccessPoints = () => {
             baseLink='/retelistica/access-point-uri'
             brands={brands}
             brandLink={"/retelistica/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

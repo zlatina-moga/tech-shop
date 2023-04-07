@@ -17,10 +17,14 @@ const RefurbishedUPS = () => {
   const [selectedSort, setSelectedSort] = useState("/ups/refurbished-7");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(40).then((result) => {
+    sortingService.getBrands(41).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(41).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -92,6 +96,7 @@ const RefurbishedUPS = () => {
             baseLink='/ups/refurbished-7'
             brands={brands}
             brandLink={'/ups/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

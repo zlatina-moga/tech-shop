@@ -18,10 +18,14 @@ const BrandDetail = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/sisteme-solare-fotovoltaice/brand/${slug}`);
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     sortingService.getBrands(95).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPriceByBrand(95, slug).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -97,6 +101,7 @@ const BrandDetail = () => {
             brands={brands}
             brandLink={'/sisteme-solare-fotovoltaice/brand/'}
             categories={solarCategories}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

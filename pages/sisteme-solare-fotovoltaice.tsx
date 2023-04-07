@@ -17,6 +17,7 @@ const SolarPanels = () => {
   const [brands, setBrands] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/sisteme-solare-fotovoltaice");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -51,6 +52,9 @@ const SolarPanels = () => {
   useEffect(() => {
     sortingService.getBrands(95).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(95).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const SolarPanels = () => {
             brandLink={'/sisteme-solare-fotovoltaice/brand/'}
             sortCriteria={onSort}
             baseLink='/sisteme-solare-fotovoltaice'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

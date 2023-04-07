@@ -17,10 +17,14 @@ const Gaming = () => {
   const [selectedSort, setSelectedSort] = useState("/accesorii/gaming-console");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(91).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(91).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Gaming = () => {
             baseLink='/accesorii/gaming-console'
             brands={brands}
             brandLink={'/accesorii/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

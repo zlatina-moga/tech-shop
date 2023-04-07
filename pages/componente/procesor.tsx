@@ -17,10 +17,14 @@ const Procesors = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/procesor");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(77).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(77).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Procesors = () => {
             baseLink='/componente/procesor'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

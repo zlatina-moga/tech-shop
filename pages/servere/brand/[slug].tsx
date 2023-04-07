@@ -19,6 +19,7 @@ const BrandDetail = () => {
   const [selectedSort, setSelectedSort] = useState(`/servere/brand/${slug}`);
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     sortingService.getBrands(9).then((result) => {
@@ -26,6 +27,9 @@ const BrandDetail = () => {
     });
     sortingService.getProcessors(9).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPriceByBrand(9, slug).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -103,6 +107,7 @@ const BrandDetail = () => {
             brandLink={"/servere/brand/"}
             processors={processors}
             processorsLink={"/servere/procesor/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

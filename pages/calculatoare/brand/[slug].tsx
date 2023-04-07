@@ -19,6 +19,7 @@ const BrandDetail = () => {
   const [selectedSort, setSelectedSort] = useState(`/calculatoare/brand/${slug}`);
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     sortingService.getBrands(1).then((result) => {
@@ -27,7 +28,10 @@ const BrandDetail = () => {
     sortingService.getProcessors(1).then((res) => {
       setProcessors(res);
     });
-  }, []);
+    sortingService.getHighestPriceByBrand(1, slug).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, [slug]);
 
   useEffect(() => {
     productService
@@ -103,6 +107,7 @@ const BrandDetail = () => {
             processors={processors}
             processorsLink={"/calculatoare/procesor/"}
             categories={compCategories}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

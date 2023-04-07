@@ -17,10 +17,14 @@ const LaptopBatteries = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/baterie-laptop");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(80).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(80).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const LaptopBatteries = () => {
             baseLink='/componente/baterie-laptop'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

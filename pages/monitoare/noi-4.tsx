@@ -17,10 +17,14 @@ const MonitoareNew = () => {
   const [selectedSort, setSelectedSort] = useState("/monitoare/noi-4");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(18).then((result) => {
+    sortingService.getBrands(54).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(54).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +95,7 @@ const MonitoareNew = () => {
             baseLink='/monitoare/noi-4'
             brands={brands}
             brandLink={"/monitoare/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

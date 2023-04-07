@@ -18,6 +18,7 @@ const SistemePOS = () => {
   const [processors, setProcessors] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/sisteme-pos");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -55,6 +56,9 @@ const SistemePOS = () => {
     });
     sortingService.getProcessors(34).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(34).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -97,6 +101,7 @@ const SistemePOS = () => {
             processorsLink={"/sisteme-pos/procesor/"}
             sortCriteria={onSort}
             baseLink='/sisteme-pos'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

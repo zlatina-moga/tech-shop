@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import RangeSlider from "react-bootstrap-range-slider";
+import { useState } from "react";
 
 const SideFilter = ({
   categories,
@@ -8,10 +10,19 @@ const SideFilter = ({
   brandLink,
   processors,
   processorsLink,
+  maxPrice,
 }) => {
   const router = useRouter();
+  const [value, setValue] = useState(0);
+
+  const onPriceChange = (changeEvent) => {
+    setValue(changeEvent.target.value);
+  };
+
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", maxWidth: "18rem" }}
+    >
       <div className="row pr-5">
         <nav aria-label="breadcrumb " className="second ">
           <ol className="breadcrumb indigo lighten-6 first px-md-4">
@@ -27,6 +38,23 @@ const SideFilter = ({
           </ol>
         </nav>
       </div>
+      {maxPrice && (
+        <div className="mb-5">
+          <h5 className="">Preț</h5>
+          <RangeSlider
+            value={value}
+            onChange={onPriceChange}
+            min={1}
+            max={maxPrice}
+            tooltip="on"
+          />
+          <div className="d-flex justify-content-between">
+            <span>1</span>
+            <span>{maxPrice}</span>
+          </div>
+        </div>
+      )}
+
       {categories && (
         <div
           className="sidebar-container"
@@ -107,14 +135,18 @@ const SideFilter = ({
                   {brands.map((c, idx) => (
                     <li
                       className={`nav-item nav-link py-3 sidebar-link ${
-                        router.pathname == `${brandLink}${c.slug}-${c.id}` ? "active" : ""
+                        router.pathname == `${brandLink}${c.slug}-${c.id}`
+                          ? "active"
+                          : ""
                       }`}
                       key={idx}
                     >
                       <Link
                         href={`${brandLink}${c.slug}-${c.id}`}
                         className={`sidebar-link ${
-                          router.pathname == `${brandLink}${c.slug}-${c.id}` ? "active" : ""
+                          router.pathname == `${brandLink}${c.slug}-${c.id}`
+                            ? "active"
+                            : ""
                         }`}
                       >
                         {c.name}

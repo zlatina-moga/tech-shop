@@ -17,6 +17,7 @@ const Monitoare = () => {
   const [brands, setBrands] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/monitoare");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -51,6 +52,9 @@ const Monitoare = () => {
   useEffect(() => {
     sortingService.getBrands(18).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(18).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Monitoare = () => {
             brandLink={"/monitoare/brand/"}
             sortCriteria={onSort}
             baseLink='/monitoare'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -17,10 +17,14 @@ const Invertors = () => {
   const [selectedSort, setSelectedSort] = useState("/sisteme-solare-fotovoltaice/invertoare-fotovoltaice");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(95).then((result) => {
+    sortingService.getBrands(97).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(97).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Invertors = () => {
             baseLink='/sisteme-solare-fotovoltaice/invertoare-fotovoltaice'
             brands={brands}
             brandLink={'/sisteme-solare-fotovoltaice/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

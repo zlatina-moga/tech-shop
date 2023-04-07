@@ -18,12 +18,16 @@ const BrandDetail = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/monitoare/brand/${slug}`);
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     sortingService.getBrands(18).then((result) => {
       setBrands(result);
     });
-  }, []);
+    sortingService.getHighestPriceByBrand(18, slug).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, [slug]);
 
   useEffect(() => {
     productService
@@ -97,6 +101,7 @@ const BrandDetail = () => {
             categories={monitorCategories}
             brands={brands}
             brandLink={"/monitoare/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

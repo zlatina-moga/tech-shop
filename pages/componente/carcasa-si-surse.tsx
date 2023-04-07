@@ -17,10 +17,14 @@ const Cases = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/carcasa-si-surse");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(88).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(88).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Cases = () => {
             baseLink='/componente/carcasa-si-surse'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

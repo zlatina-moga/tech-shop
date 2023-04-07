@@ -17,10 +17,14 @@ const LaptopKeyboards = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/tastatura-laptop");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(79).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(79).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +95,7 @@ const LaptopKeyboards = () => {
             baseLink='/componente/tastatura-laptop'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

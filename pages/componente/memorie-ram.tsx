@@ -17,10 +17,14 @@ const RAM = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/memorie-ram");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(75).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(75).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const RAM = () => {
             baseLink='/componente/memorie-ram'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

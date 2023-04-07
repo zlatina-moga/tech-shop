@@ -16,6 +16,7 @@ const Calculatoare = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
   const [selectedSort, setSelectedSort] = useState("/calculatoare");
   const router = useRouter();
 
@@ -37,7 +38,7 @@ const Calculatoare = () => {
 
   useEffect(() => {
     router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    const sort = selectedSort.split("=")[1];
     productService
       .getSortedComputers(currentPage, sort)
       .then((result) => {
@@ -55,6 +56,9 @@ const Calculatoare = () => {
     });
     sortingService.getProcessors(1).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(1).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,11 +95,12 @@ const Calculatoare = () => {
             categories={compCategories}
             breadcrumbs={computersBrcrmbs}
             brands={brands}
-            brandLink={'/calculatoare/brand/'}
+            brandLink={"/calculatoare/brand/"}
             processors={processors}
             processorsLink={"/calculatoare/procesor/"}
             sortCriteria={onSort}
-            baseLink='/calculatoare'
+            baseLink="/calculatoare"
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

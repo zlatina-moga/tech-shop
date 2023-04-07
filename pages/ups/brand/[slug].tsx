@@ -18,10 +18,14 @@ const BrandDetail = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/ups/brand/${slug}`);
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     sortingService.getBrands(40).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPriceByBrand(40, slug).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -98,6 +102,7 @@ const BrandDetail = () => {
             categories={upsCategories}
             brands={brands}
             brandLink={'/ups/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

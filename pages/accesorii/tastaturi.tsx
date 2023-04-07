@@ -16,11 +16,15 @@ const Keyboards = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/accesorii/tastaturi");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(64).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(64).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Keyboards = () => {
             baseLink='/accesorii/tastaturi'
             brands={brands}
             brandLink={'/accesorii/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

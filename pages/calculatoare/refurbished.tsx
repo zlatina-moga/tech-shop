@@ -18,13 +18,17 @@ const Calculatoare = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(1).then((result) => {
+    sortingService.getBrands(2).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(1).then((res) => {
+    sortingService.getProcessors(2).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(2).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, [])
 
@@ -96,6 +100,7 @@ const Calculatoare = () => {
             brandLink={'/calculatoare/brand/'}
             processors={processors}
             processorsLink={"/calculatoare/procesor/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

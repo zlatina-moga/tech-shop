@@ -17,10 +17,14 @@ const VideoCards = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/placa-video");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(76).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(76).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const VideoCards = () => {
             baseLink='/componente/placa-video'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

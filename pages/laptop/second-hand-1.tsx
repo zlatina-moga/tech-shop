@@ -18,13 +18,17 @@ const LaptopuriSecondHand = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(5).then((result) => {
+    sortingService.getBrands(8).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(5).then((res) => {
+    sortingService.getProcessors(8).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(8).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -46,7 +50,7 @@ const LaptopuriSecondHand = () => {
 
   useEffect(() => {
     router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    const sort = selectedSort.split("=")[1];
     productService
       .getSortedSecondHandLaptops(currentPage, sort)
       .then((result) => {
@@ -82,7 +86,7 @@ const LaptopuriSecondHand = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -91,11 +95,12 @@ const LaptopuriSecondHand = () => {
             categories={laptopCategories}
             breadcrumbs={laptopSHBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/laptop/second-hand-1'
+            baseLink="/laptop/second-hand-1"
             brands={brands}
             processors={processors}
             processorsLink={"/laptop/procesor/"}
             brandLink={"/laptop/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -16,11 +16,16 @@ const Routers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/retelistica/routere");
   const router = useRouter();
-  const [brands, setBrands] = useState([]);
+  const [brands, setBrands] = useState([])
+  const [highestPrice, setHighestPrice] = useState(0);
+
 
   useEffect(() => {
-    sortingService.getBrands(44).then((result) => {
+    sortingService.getBrands(69).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(69).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +96,7 @@ const Routers = () => {
             baseLink='/retelistica/routere'
             brands={brands}
             brandLink={"/retelistica/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

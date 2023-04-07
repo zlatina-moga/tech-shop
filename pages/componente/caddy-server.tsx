@@ -17,10 +17,14 @@ const Caddys = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/caddy-server");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(83).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(83).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Caddys = () => {
             baseLink='/componente/caddy-server'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

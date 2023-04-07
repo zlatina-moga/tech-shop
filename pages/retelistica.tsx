@@ -17,6 +17,7 @@ const Retails = () => {
   const [brands, setBrands] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/retelistica");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -51,6 +52,9 @@ const Retails = () => {
   useEffect(() => {
     sortingService.getBrands(44).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(44).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +94,7 @@ const Retails = () => {
             brandLink={"/retelistica/brand/"}
             sortCriteria={onSort}
             baseLink='/retelistica'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -18,6 +18,7 @@ const Laptopuri = () => {
   const [processors, setProcessors] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/servere");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
 
   useEffect(() => {
@@ -56,6 +57,9 @@ const Laptopuri = () => {
     });
     sortingService.getProcessors(9).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(9).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -97,6 +101,7 @@ const Laptopuri = () => {
             processorsLink={"/servere/procesor/"}
             sortCriteria={onSort}
             baseLink='/servere'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

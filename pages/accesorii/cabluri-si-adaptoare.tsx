@@ -14,9 +14,12 @@ const Cables = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/accesorii/cabluri-si-adaptoare");
+  const [selectedSort, setSelectedSort] = useState(
+    "/accesorii/cabluri-si-adaptoare"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -31,8 +34,11 @@ const Cables = () => {
   }, [currentPage]);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(68).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(68).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -42,7 +48,7 @@ const Cables = () => {
 
   useEffect(() => {
     router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    const sort = selectedSort.split("=")[1];
     productService
       .getSortedCables(currentPage, sort)
       .then((result) => {
@@ -87,9 +93,10 @@ const Cables = () => {
             categories={accessoryCategories}
             breadcrumbs={cablesBreadCrmbs}
             sortCriteria={onSort}
-            baseLink='/accesorii/cabluri-si-adaptoare'
+            baseLink="/accesorii/cabluri-si-adaptoare"
             brands={brands}
-            brandLink={'/accesorii/brand/'}
+            brandLink={"/accesorii/brand/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -132,7 +139,7 @@ const Cables = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };

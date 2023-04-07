@@ -18,6 +18,7 @@ const Workstations = () => {
   const [processors, setProcessors] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/workstation");
   const router = useRouter();
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -55,6 +56,9 @@ const Workstations = () => {
     });
     sortingService.getProcessors(15).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(15).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -96,6 +100,7 @@ const Workstations = () => {
             processorsLink={"/workstation/procesor/"}
             sortCriteria={onSort}
             baseLink='/workstation'
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

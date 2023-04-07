@@ -18,13 +18,17 @@ const NewServers = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(9).then((result) => {
+    sortingService.getBrands(56).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(9).then((res) => {
+    sortingService.getProcessors(56).then((res) => {
       setProcessors(res);
+    });
+    sortingService.getHighestPrice(56).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -82,7 +86,7 @@ const NewServers = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -91,11 +95,12 @@ const NewServers = () => {
             categories={serverCategories}
             breadcrumbs={serverNewBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/servere/noi-6'
+            baseLink="/servere/noi-6"
             brands={brands}
             brandLink={"/servere/brand/"}
             processors={processors}
             processorsLink={"/servere/procesor/"}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -17,6 +17,7 @@ const Headphones = () => {
   const [selectedSort, setSelectedSort] = useState("/accesorii/casti");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
     productService
@@ -31,8 +32,11 @@ const Headphones = () => {
   }, [currentPage]);
 
   useEffect(() => {
-    sortingService.getBrands(47).then((result) => {
+    sortingService.getBrands(67).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPrice(67).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -91,6 +95,7 @@ const Headphones = () => {
             baseLink='/accesorii/casti'
             brands={brands}
             brandLink={'/accesorii/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

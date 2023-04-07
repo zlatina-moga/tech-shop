@@ -20,10 +20,10 @@ const POSReader = () => {
   const [processors, setProcessors] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(34).then((result) => {
+    sortingService.getBrands(98).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(34).then((res) => {
+    sortingService.getProcessors(98).then((res) => {
       setProcessors(res);
     });
   }, []);

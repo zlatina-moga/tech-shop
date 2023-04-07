@@ -17,10 +17,15 @@ const MascaBays = () => {
   const [selectedSort, setSelectedSort] = useState("/componente/masca-bay-server");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
 
   useEffect(() => {
-    sortingService.getBrands(24).then((result) => {
+    sortingService.getBrands(85).then((result) => {
       setBrands(result);
+    });
+
+    sortingService.getHighestPrice(85).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -90,6 +95,7 @@ const MascaBays = () => {
             baseLink='/componente/masca-bay-server'
             brands={brands}
             brandLink={'/componente/brand/'}
+            highEnd={highestPrice}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
