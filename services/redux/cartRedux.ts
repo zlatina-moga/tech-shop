@@ -13,6 +13,7 @@ const cartSlice = createSlice({
     addProduct: (state, action) => {
       state.quantity += 1;
       state.products.push(action.payload);
+      state.warranty += action.payload.warranty;
       state.total += action.payload.warranty;
       state.total += action.payload.itemData[0].priceNum;
     },

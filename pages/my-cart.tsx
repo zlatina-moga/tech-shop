@@ -20,7 +20,7 @@ const MyCard = () => {
             className="font-weight-semi-bold text-uppercase text-primary"
             style={{ marginTop: "100px" }}
           >
-            Cosul meu
+            Coșul meu
           </h1>
         </div>
       </div>
@@ -56,18 +56,17 @@ const MyCard = () => {
             </table>
           </div>
           <div className="col-lg-4">
-            {/*<form className="mb-3" action="" style={{ marginTop: "-20px" }}>
+            <form className="mb-3" action="" style={{ marginTop: "-20px" }}>
               <div className="input-group">
                 <input
                   type="text"
-                  className="form-control p-4"
-                  placeholder="Points"
+                  className="form-control p-4 border border-primary mr-2 rounded-1"
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-primary">Use points</button>
+                  <button className="btn btn-primary">Cod voucher/discount:</button>
                 </div>
               </div>
-                </form>*/}
+            </form>
             <div className="card border-secondary mb-4">
               <div className="card-header bg-secondary border-0">
                 <h4 className="font-weight-semi-bold m-0">Sumar Comanda</h4>

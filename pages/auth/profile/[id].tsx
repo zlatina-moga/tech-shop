@@ -33,8 +33,6 @@ const Profile = () => {
   const router = useRouter();
   const { id } = router.query;
   const [userData, setUserData] = useState<IUser>(initialValues);
-  let [selectedState, setSelectedState] = useState("");
-  let [selectedCity, setSelectedCity] = useState("");
   //@ts-ignore
   const user = useSelector((state) => state.user.currentUser);
 
@@ -56,21 +54,11 @@ const Profile = () => {
       });
       router.push("/login");
     }
-  }, [id]);
+  }, [id, user]);
 
   const countries = Country.getAllCountries().filter(
     (c) => c.name === "Romania"
   );
-  const states = State.getStatesOfCountry("RO");
-  const cities = City.getCitiesOfCountry("RO");
-
-  const handleChange = (e) => {
-    setSelectedState(e.target.value);
-  };
-
-  const handleCityChange = (e) => {
-    setSelectedCity(e.target.value);
-  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -81,6 +69,8 @@ const Profile = () => {
     const phone = formData.get("cf-phone");
     const address = formData.get("cf-address");
     const zip = formData.get("cf-zip");
+    const county = formData.get("cf-county");
+    const city = formData.get("cf-city")
 
     userService
       .update(
@@ -90,8 +80,8 @@ const Profile = () => {
           email,
           phone,
           country: "Romania",
-          county: selectedState,
-          city: selectedCity,
+          county,
+          city,
           address,
           zip,
         },
@@ -192,16 +182,18 @@ const Profile = () => {
                         <label className="form-label">Județ</label>
                         <input
                           type="text"
-                          className="form-control border border-primary rounded-1 text-start"
+                          className="form-control border border-primary rounded-1 text-start w-100"
                           defaultValue={userData.county}
+                          name="cf-county"
                         />
                       </div>
                       <div className="col-md-6 form-group d-flex flex-column">
                         <label className="form-label">Oraș</label>
                         <input
                           type="text"
-                          className="form-control border border-primary rounded-1 text-start"
+                          className="form-control border border-primary rounded-1 text-start w-100"
                           defaultValue={userData.city}
+                          name="cf-city"
                         />
                       </div>
                       <div className="col-md-6 form-group d-flex flex-column">
