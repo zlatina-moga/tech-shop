@@ -190,43 +190,19 @@ const Profile = () => {
 
                       <div className="col-md-6 form-group d-flex flex-column">
                         <label className="form-label">Județ</label>
-                        <select
-                          className="form-control text-start border border-primary w-100"
-                          onChange={handleChange}
-                          value={selectedState}
+                        <input
+                          type="text"
+                          className="form-control border border-primary rounded-1 text-start"
                           defaultValue={userData.county}
-                        >
-                          {states.map((c, idx) => (
-                            <option
-                              key={idx}
-                              value={c.isoCode}
-                              className="form-control"
-                            >
-                              {c.name}
-                            </option>
-                          ))}
-                        </select>
+                        />
                       </div>
                       <div className="col-md-6 form-group d-flex flex-column">
                         <label className="form-label">Oraș</label>
-                        <select
-                          className="form-control text-start border border-primary w-100"
-                          onChange={handleCityChange}
-                          //value={selectedCity}
+                        <input
+                          type="text"
+                          className="form-control border border-primary rounded-1 text-start"
                           defaultValue={userData.city}
-                        >
-                          {cities
-                            .filter((c) => c.stateCode === selectedState)
-                            .map((c, idx) => (
-                              <option
-                                key={idx}
-                                value={c.name}
-                                className="form-control"
-                              >
-                                {c.name}
-                              </option>
-                            ))}
-                        </select>
+                        />
                       </div>
                       <div className="col-md-6 form-group d-flex flex-column">
                         <label className="form-label">Adresă</label>

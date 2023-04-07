@@ -135,6 +135,7 @@ const VisioDetails = () => {
                         href={item.activationLink}
                         target="_blank"
                         rel="noreferrer"
+                        className="footer-link font-weight-bold"
                       >
                         Activation Link
                       </a>

@@ -14,6 +14,8 @@ const Checkout = () => {
   const [checked, setChecked] = useState<boolean>(false);
   let [selectedState, setSelectedState] = useState("");
   let [selectedCity, setSelectedCity] = useState("");
+  let [selectedFirm, setSelectedFirm] = useState<boolean>(false);
+  let [selectedPersonal, setSelectedPersonal] = useState<boolean>(true);
   const router = useRouter();
 
   //@ts-ignore
@@ -56,6 +58,31 @@ const Checkout = () => {
     setSelectedCity(e.target.value);
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("cf-name");
+    const email = formData.get("cf-email");
+    const phone = formData.get("cf-phone");
+    const address = formData.get("cf-address");
+    const zip = formData.get("cf-zip");
+    const firm = formData.get('cf-firm');
+    const firmCif = formData.get('cf-cif');
+    const firmReg = formData.get('cf-reg');
+
+  };
+
+  const handlePersonal = () => {
+    setSelectedPersonal(true);
+    setSelectedFirm(false);
+  };
+
+  const handleFirm = () => {
+    setSelectedPersonal(false);
+    setSelectedFirm(true);
+  };
+
   return (
     <>
       <Navbar />
@@ -63,103 +90,303 @@ const Checkout = () => {
         className={classNames("container-fluid pt-5", "laptops-page")}
         style={{ maxWidth: "100rem", marginTop: "50px" }}
       >
-        <form>
+        <form onSubmit={onSubmit}>
           <div className="row px-xl-5">
             <div className="col-lg-8">
               <div className="mb-4">
                 <h4 className="font-weight-semi-bold mb-4">
                   Informatii facturare
                 </h4>
-                <div className="row">
-                  <div className="col-md-6 form-group ">
-                    <label>Numele</label>
-                    <input
-                      className="form-control text-start border border-primary rounded-1"
-                      type="text"
-                      defaultValue={userData.name}
-                      name="cf-name"
-                    />
-                  </div>
-                  <div className="col-md-6 form-group">
-                    <label>Email</label>
-                    <input
-                      className="form-control text-start border border-primary rounded-1"
-                      type="text"
-                      defaultValue={userData.email}
-                      name="cf-email"
-                    />
-                  </div>
-                  <div className="col-md-6 form-group">
-                    <label>Telefon</label>
-                    <input
-                      className="form-control text-start border border-primary rounded-1"
-                      type="text"
-                      defaultValue={userData.phone}
-                      name="cf-phone"
-                    />
-                  </div>
-                  <div className="col-md-6 form-group">
-                    <label>Țară</label>
-                    <select className="form-control text-start border border-primary w-100 rounded-1">
-                      {countries.map((c) => (
-                        <option
-                          key={c.isoCode}
-                          value={c.name}
-                          className="form-control"
-                        >
-                          {c.name} {c.flag}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="col-md-6 form-group">
-                    <label> Județ</label>
-                    <input
-                      type="text"
-                      className="form-control border border-primary rounded-1 text-start"
-                      defaultValue={userData.county}
-                    />
-                  </div>
-                  <div className="col-md-6 form-group">
-                    <label>Oraș</label>
-                    <input
-                      type="text"
-                      className="form-control border border-primary rounded-1 text-start"
-                      defaultValue={userData.city}
-                    />
-                  </div>
-                  <div className="col-md-6 form-group">
-                    <label>Adresa de livrare</label>
-                    <input
-                      className="form-control border border-primary rounded-1 text-start"
-                      type="text"
-                      defaultValue={userData.address}
-                    />
-                  </div>
-
-                  <div className="col-md-6 form-group">
-                    <label>Zip/Cod poștal</label>
-                    <input
-                      className="form-control border border-primary rounded-1 text-start"
-                      type="text"
-                      defaultValue={userData.zip}
-                    />
-                  </div>
-                  <div className="col-md-12 form-group"></div>
-                  <div className="col-md-12 form-group">
-                    <div className="custom-control custom-checkbox">
+                <div className="d-flex justify-content-center pb-5">
+                  <button
+                    className={classNames(
+                      "rounded-1 border mr-4 custom-btn",
+                      selectedPersonal
+                        ? "border-primary font-weight-bold"
+                        : "border-secondary"
+                    )}
+                    style={{ boxShadow: "none" }}
+                    onClick={handlePersonal}
+                  >
+                    Persoana Fizica
+                  </button>
+                  <button
+                    className={classNames(
+                      "rounded-1 border custom-btn",
+                      selectedFirm
+                        ? "border-primary font-weight-bold"
+                        : "border-secondary"
+                    )}
+                    style={{ boxShadow: "none" }}
+                    onClick={handleFirm}
+                  >
+                    Persoana Juridica
+                  </button>
+                </div>
+                {selectedPersonal && (
+                  <div className="row">
+                    <div className="col-md-6 form-group ">
+                      <label>Numele</label>
                       <input
-                        type="checkbox"
-                        className="custom-control-input "
-                        id="shipto"
-                        onChange={() => setChecked(!checked)}
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        defaultValue={userData.name}
+                        name="cf-name"
                       />
-                      <label className="custom-control-label" htmlFor="shipto">
-                        Livrare catre adrese diferite
-                      </label>
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Email</label>
+                      <input
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        defaultValue={userData.email}
+                        name="cf-email"
+                      />
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Telefon</label>
+                      <input
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        defaultValue={userData.phone}
+                        name="cf-phone"
+                      />
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Țară</label>
+                      <select className="form-control text-start border border-primary w-100 rounded-1">
+                        {countries.map((c) => (
+                          <option
+                            key={c.isoCode}
+                            value={c.name}
+                            className="form-control"
+                          >
+                            {c.name} {c.flag}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label> Județ</label>
+                      <select
+                        className="form-control text-start border border-primary w-100"
+                        onChange={handleChange}
+                        value={selectedState}
+                        defaultValue={userData.county}
+                      >
+                        {states.map((c, idx) => (
+                          <option
+                            key={idx}
+                            value={c.isoCode}
+                            className="form-control"
+                          >
+                            {c.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Oraș</label>
+                      <select
+                        className="form-control text-start border border-primary w-100"
+                        onChange={handleCityChange}
+                        //value={selectedCity}
+                        defaultValue={userData.city}
+                      >
+                        {cities
+                          .filter((c) => c.stateCode === selectedState)
+                          .map((c, idx) => (
+                            <option
+                              key={idx}
+                              value={c.name}
+                              className="form-control"
+                            >
+                              {c.name}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Adresa de livrare</label>
+                      <input
+                        className="form-control border border-primary rounded-1 text-start"
+                        type="text"
+                        defaultValue={userData.address}
+                        name="cf-address"
+                      />
+                    </div>
+
+                    <div className="col-md-6 form-group">
+                      <label>Zip/Cod poștal</label>
+                      <input
+                        className="form-control border border-primary rounded-1 text-start"
+                        type="text"
+                        defaultValue={userData.zip}
+                        name="cf-zip"
+                      />
+                    </div>
+                    <div className="col-md-12 form-group">
+                      <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input "
+                          id="shipto"
+                          onChange={() => setChecked(!checked)}
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="shipto"
+                        >
+                          Livrare catre adrese diferite
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+                {selectedFirm && (
+                  <div className="row">
+                    <div className=" form-group w-100">
+                      <label>Denumire Firma</label>
+                      <input
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        name="cf-firm"
+                      />
+                    </div>
+                    <div className="col-md-6 form-group ">
+                      <label>CIF/CUI/RO</label>
+                      <input
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        name="cf-cif"
+                      />
+                    </div>
+                    <div className="col-md-6 form-group ">
+                      <label>Reg. Com.</label>
+                      <input
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        name="cf-reg"
+                      />
+                    </div>
+                    <div className="col-md-6 form-group ">
+                      <label>Numele</label>
+                      <input
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        defaultValue={userData.name}
+                        name="cf-name"
+                      />
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Email</label>
+                      <input
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        defaultValue={userData.email}
+                        name="cf-email"
+                      />
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Telefon</label>
+                      <input
+                        className="form-control text-start border border-primary rounded-1"
+                        type="text"
+                        defaultValue={userData.phone}
+                        name="cf-phone"
+                      />
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Țară</label>
+                      <select className="form-control text-start border border-primary w-100 rounded-1">
+                        {countries.map((c) => (
+                          <option
+                            key={c.isoCode}
+                            value={c.name}
+                            className="form-control"
+                          >
+                            {c.name} {c.flag}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label> Județ</label>
+                      <select
+                        className="form-control text-start border border-primary w-100"
+                        onChange={handleChange}
+                        value={selectedState}
+                        defaultValue={userData.county}
+                      >
+                        {states.map((c, idx) => (
+                          <option
+                            key={idx}
+                            value={c.isoCode}
+                            className="form-control"
+                          >
+                            {c.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Oraș</label>
+                      <select
+                        className="form-control text-start border border-primary w-100"
+                        onChange={handleCityChange}
+                        //value={selectedCity}
+                        defaultValue={userData.city}
+                      >
+                        {cities
+                          .filter((c) => c.stateCode === selectedState)
+                          .map((c, idx) => (
+                            <option
+                              key={idx}
+                              value={c.name}
+                              className="form-control"
+                            >
+                              {c.name}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label>Adresa de livrare</label>
+                      <input
+                        className="form-control border border-primary rounded-1 text-start"
+                        type="text"
+                        defaultValue={userData.address}
+                        name="cf-address"
+                      />
+                    </div>
+
+                    <div className="col-md-6 form-group">
+                      <label>Zip/Cod poștal</label>
+                      <input
+                        className="form-control border border-primary rounded-1 text-start"
+                        type="text"
+                        defaultValue={userData.zip}
+                        name="cf-zip"
+                      />
+                    </div>
+                    <div className="col-md-12 form-group">
+                      <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input "
+                          id="shipto"
+                          onChange={() => setChecked(!checked)}
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="shipto"
+                        >
+                          Livrare catre adrese diferite
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               <div
                 className={classNames("mb-4", checked ? "d-block" : "d-none")}

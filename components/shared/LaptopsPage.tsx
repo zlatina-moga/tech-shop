@@ -40,7 +40,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   processors,
   processorsLink,
   sortCriteria,
-  baseLink
+  baseLink,
 }) => {
   const dispatch = useDispatch();
   const [selected, setSelected] = useState("");
@@ -81,10 +81,14 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                 value={selected}
               >
                 <option value={baseLink}>Cele mai vândute</option>
-                <option value={`${baseLink}?sort=views`}>Cele mai accesate</option>
+                <option value={`${baseLink}?sort=views`}>
+                  Cele mai accesate
+                </option>
                 <option value={`${baseLink}?sort=deals`}>Reduceri</option>
                 <option value={`${baseLink}?sort=price`}>Preț ascendent</option>
-                <option value={`${baseLink}?sort=-price`}>Preț descendent</option>
+                <option value={`${baseLink}?sort=-price`}>
+                  Preț descendent
+                </option>
               </select>
             </div>
           </div>
@@ -156,21 +160,13 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                       <h6 className="price">{itemData.price} + TVA</h6>
                     </div>
                   </div>
-                  <div className="card-footer d-flex justify-content-between bg-light">
+                  <div className="card-footer w-100 bg-light">
                     <Link
                       href={itemData.id}
-                      className="btn btn-sm text-dark p-1"
+                      className="btn btn-primary add-to-cart"
                     >
-                      <i className="fas fa-eye text-primary mr-1"></i>View
-                      Detail
+                      Vezi detalii
                     </Link>
-                    <button
-                      className="btn btn-sm text-dark p-1"
-                      onClick={() => ""} //dispatch(addProduct({ l, quantity: 1 }))}
-                    >
-                      <i className="fas fa-shopping-cart text-primary mr-1"></i>
-                      Add To Cart
-                    </button>
                   </div>
                 </div>
               </div>
