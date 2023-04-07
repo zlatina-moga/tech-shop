@@ -28,7 +28,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
     setClicked(true);
-    toast.success("Product added to cart", {
+    toast.success("Produs adăugat în coș", {
       style: { marginTop: "100px" },
     });
   };

@@ -74,37 +74,55 @@ const Checkout = () => {
     const firmCif = formData.get("cf-cif");
     const firmReg = formData.get("cf-reg");
 
-    let cartItems = cart.products.map((c) => ({
-      productId: c.itemData[0].idCode,
-      quantity: c.quantity,
-      price: c.itemData[0].priceNum,
-      warranty: c.warranty,
-    }));
+    const orderNum = Math.floor(100000 + Math.random() * 900000);
 
-    orderService
-      .create({
-        userId: user._id,
-        products: cartItems,
-        userName: name,
-        userEmail: email,
-        userPhone: phone,
-        country: "Romania",
-        county: county || selectedState,
-        city: city || selectedCity,
-        address: address,
-        zip: zip,
-        amount: cart.total,
-      })
-      .then(() => {
-        toast.success("Comanda plasata cu succes", {
-          style: { marginTop: "100px" },
+    if (
+      name &&
+      email &&
+      phone &&
+      (city || selectedCity) &&
+      (county || selectedState) &&
+      address &&
+      zip
+    ) {
+      let cartItems = cart.products.map((c) => ({
+        productId: c.itemData[0].idCode,
+        quantity: c.quantity,
+        price: c.itemData[0].priceNum,
+        warranty: c.warranty,
+        title: c.itemData[0].title
+      }));
+
+      orderService
+        .create({
+          userId: user._id,
+          products: cartItems,
+          userName: name,
+          userEmail: email,
+          userPhone: phone,
+          country: "Romania",
+          county: county || selectedState,
+          city: city || selectedCity,
+          address: address,
+          zip: zip,
+          amount: cart.total,
+          orderNum: orderNum
+        })
+        .then(() => {
+          toast.success("Comanda plasata cu succes", {
+            style: { marginTop: "100px" },
+          });
+        })
+        .catch((err) => {
+          toast.error(err, {
+            style: { marginTop: "100px" },
+          });
         });
-      })
-      .catch((err) => {
-        toast.error(err, {
-          style: { marginTop: "100px" },
-        });
+    } else {
+      toast.error("Vă rugăm să completați toate câmpurile", {
+        style: { marginTop: "100px" },
       });
+    }
   };
 
   const handlePersonal = () => {
@@ -129,7 +147,7 @@ const Checkout = () => {
             <div className="col-lg-8">
               <div className="mb-4">
                 <h4 className="font-weight-semi-bold mb-4">
-                Informații facturare
+                  Informații facturare
                 </h4>
                 <div className="d-flex justify-content-center pb-5">
                   <button

@@ -5,6 +5,7 @@ import Link from "next/link";
 import checkedImg from "../../../../public/images/checked.jpeg";
 import axios from "axios";
 import Navbar from "../../../../components/global/Navbar";
+import Footer from "../../../../components/global/Footer";
 
 const VerifiedEmail = () => {
   const [validUrl, setValidUrl] = useState<boolean>(false);
@@ -35,17 +36,18 @@ const VerifiedEmail = () => {
             <div className="img-container">
               <Image src={checkedImg} alt="success_img" />
             </div>
-            <h1>Email verified successfully!</h1>
+            <h1>E-mail verificat cu succes!</h1>
             <Link href="/login">
-              <button>Login</button>
+              <button>Autentificare</button>
             </Link>
           </div>
         ) : (
           <div className="verified-email">
-            <h2>404 Not found</h2>
+            <h2>Este ceva în neregulă, vă rugăm să încercați din nou.</h2>
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 };

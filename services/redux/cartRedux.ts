@@ -22,12 +22,10 @@ const cartSlice = createSlice({
         (item) => item.itemData[0].id !== payload.id
       );
       state.quantity -= 1;
-      state.total -= payload.warranty || 0;
-      state.total -= payload.priceNum || 0;
+      state.warranty -= payload.warranty ;
+      state.total -= state.warranty;
+      state.total -= payload.priceNum;
 
-      if (state.total < 0) {
-        state.total = 0;
-      }
     },
     increase: (state, { payload }) => {
       const cartItem = state.products.find(
