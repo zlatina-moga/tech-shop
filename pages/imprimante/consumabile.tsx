@@ -5,9 +5,7 @@ import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination } from "../../hooks/usePagination";
 import { printerCategories } from "../../data/categories";
-import {
-  printerConsumablesBrcrmbs
-} from "../../data/breadcrumbs";
+import { printerConsumablesBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
@@ -20,6 +18,7 @@ const NewPrinters = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(93).then((result) => {
@@ -47,18 +46,44 @@ const NewPrinters = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPrinterCollateralPrice(currentPage, sort, priceRange)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPrinterCollateral(currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedPrinterCollateral(currentPage, sort)
+      .getAllPrinterCollateralPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -84,7 +109,7 @@ const NewPrinters = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -93,10 +118,11 @@ const NewPrinters = () => {
             categories={printerCategories}
             breadcrumbs={printerConsumablesBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/imprimante/consumabile'
+            baseLink="/imprimante/consumabile"
             brands={brands}
-            brandLink={'/imprimante/brand/'}
+            brandLink={"/imprimante/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

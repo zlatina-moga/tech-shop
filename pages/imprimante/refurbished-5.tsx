@@ -18,6 +18,7 @@ const RefPrinters = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(30).then((result) => {
@@ -45,18 +46,45 @@ const RefPrinters = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRefPrintersPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRefPrinters(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedRefPrinters(currentPage, sort)
+      .getAllRefPrintersPrice(currentPage, priceRange)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -82,7 +110,7 @@ const RefPrinters = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -91,10 +119,11 @@ const RefPrinters = () => {
             categories={printerCategories}
             breadcrumbs={printerRefBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/imprimante/refurbished-5'
+            baseLink="/imprimante/refurbished-5"
             brands={brands}
-            brandLink={'/imprimante/brand/'}
+            brandLink={"/imprimante/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -362,6 +362,73 @@ export const getSortedBrandPrinters = (page, slug, sort) =>
     `${baseUrl}/imprimante/brand?brand=${slug}&sort=${sort}&page=${page}`
   );
 
+export const getPrintersPrice = (price, page) =>
+  request.get(`${baseUrl}/imprimante?price=1-${price}&page=${page}`);
+
+export const getSortedPrintersPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/imprimante?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedBrandByPricePrinters = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/imprimante/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getBrandByPricePrinters = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/imprimante/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
+
+
+export const getAllNewPrinters = (page) =>
+  request.get(`${baseUrl}/imprimante/noi-3?page=${page}`);
+
+  export const getAllNewPrintersPrice = (page, price) =>
+  request.get(`${baseUrl}/imprimante/noi-3?price=1-${price}&page=${page}`);
+
+export const getSortedNewPrinters = (page, sort) =>
+  request.get(`${baseUrl}/imprimante/noi-3?sort=${sort}&page=${page}`);
+
+  export const getSortedNewPrintersPrice = (price, page, sort) =>
+  request.get(`${baseUrl}/imprimante/noi-3?price=1-${price}&sort=${sort}&page=${page}`);
+
+export const getAllSHPrinters = (page) =>
+  request.get(`${baseUrl}/imprimante/second-hand-5?page=${page}`);
+
+  export const getAllSHPrintersPrice = (page, price) =>
+  request.get(`${baseUrl}/imprimante/second-hand-5?price=1-${price}&page=${page}`);
+
+  export const getSortedSHPrinters = (page, sort) =>
+  request.get(`${baseUrl}/imprimante/second-hand-5?sort=${sort}&page=${page}`);
+
+export const getSortedSHPrintersPrice = (price, page, sort) =>
+  request.get(`${baseUrl}/imprimante/second-hand-5?price=1-${price}&sort=${sort}&page=${page}`);
+
+export const getAllRefPrinters = (page) =>
+  request.get(`${baseUrl}/imprimante/refurbished-5?page=${page}`);
+
+  export const getAllRefPrintersPrice = (page, price) =>
+  request.get(`${baseUrl}/imprimante/refurbished-5?price=1-${price}&page=${page}`);
+
+export const getSortedRefPrinters = (page, sort) =>
+  request.get(`${baseUrl}/imprimante/refurbished-5?sort=${sort}&page=${page}`);
+
+  export const getSortedRefPrintersPrice = (price, page, sort) =>
+  request.get(`${baseUrl}/imprimante/refurbished-5?price=1-${price}&sort=${sort}&page=${page}`);
+
+export const getAllPrinterCollateral = (page) =>
+  request.get(`${baseUrl}/imprimante/consumabile?page=${page}`);
+
+  export const getAllPrinterCollateralPrice = (price, page) =>
+  request.get(`${baseUrl}/imprimante/consumabile?price=1-${price}&page=${page}`);
+
+export const getSortedPrinterCollateral = (page, sort) =>
+  request.get(`${baseUrl}/imprimante/consumabile?sort=${sort}&page=${page}`);
+
+  export const getSortedPrinterCollateralPrice = (page, sort, price) =>
+  request.get(`${baseUrl}/imprimante/consumabile?price=1-${price}&sort=${sort}&page=${page}`);
+
 export const geAllPOS = (page) =>
   request.get(`${baseUrl}/sisteme-pos?page=${page}`);
 
@@ -492,30 +559,6 @@ export const getSortedSolarPanelsBrands = (page, slug, sort) =>
   request.get(
     `${baseUrl}/sisteme-solare-fotovoltaice/brand?brand=${slug}&sort=${sort}&page=${page}`
   );
-
-export const getAllNewPrinters = (page) =>
-  request.get(`${baseUrl}/imprimante/noi-3?page=${page}`);
-
-export const getSortedNewPrinters = (page, sort) =>
-  request.get(`${baseUrl}/imprimante/noi-3?sort=${sort}&page=${page}`);
-
-export const getAllSHPrinters = (page) =>
-  request.get(`${baseUrl}/imprimante/second-hand-5?page=${page}`);
-
-export const getSortedSHPrinters = (page, sort) =>
-  request.get(`${baseUrl}/imprimante/second-hand-5?sort=${sort}&page=${page}`);
-
-export const getAllRefPrinters = (page) =>
-  request.get(`${baseUrl}/imprimante/refurbished-5?page=${page}`);
-
-export const getSortedRefPrinters = (page, sort) =>
-  request.get(`${baseUrl}/imprimante/refurbished-5?sort=${sort}&page=${page}`);
-
-export const getAllPrinterCollateral = (page) =>
-  request.get(`${baseUrl}/imprimante/consumabile?page=${page}`);
-
-export const getSortedPrinterCollateral = (page, sort) =>
-  request.get(`${baseUrl}/imprimante/consumabile?sort=${sort}&page=${page}`);
 
 export const getAllCables = (page) =>
   request.get(`${baseUrl}/accesorii/cabluri-si-adaptoare?page=${page}`);

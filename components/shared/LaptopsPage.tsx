@@ -26,7 +26,8 @@ interface ILaptopPage {
   processorsLink?: string;
   sortCriteria?: any;
   baseLink?: string;
-  highEnd?: number
+  highEnd?: number;
+  priceRange?: any;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -40,7 +41,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   processorsLink,
   sortCriteria,
   baseLink,
-  highEnd
+  highEnd,
+  priceRange
 }) => {
   const [selected, setSelected] = useState("");
   const totalCount = laptopsData.map((l) => l.itemsCount)[0];
@@ -70,6 +72,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           processors={processors}
           processorsLink={processorsLink}
           maxPrice={highEnd}
+          range={priceRange}
         />
         <div>
           <div className="text-center mb-4">

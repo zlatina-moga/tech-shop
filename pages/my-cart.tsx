@@ -36,7 +36,7 @@ const MyCard = () => {
                 <tr>
                   <th>Produse</th>
                   <th>Preț</th>
-                  <th>Garantie</th>
+                  <th>Garanție</th>
                   <th>Cantitate</th>
                 </tr>
               </thead>
@@ -63,7 +63,9 @@ const MyCard = () => {
                   className="form-control p-4 border border-primary mr-2 rounded-1"
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-primary">Cod voucher/discount:</button>
+                  <button className="btn btn-primary">
+                    Cod voucher/discount:
+                  </button>
                 </div>
               </div>
             </form>

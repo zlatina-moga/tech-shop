@@ -9,6 +9,7 @@ import * as userService from "../services/userService";
 import toast from "react-hot-toast";
 import { Country, State, City } from "country-state-city";
 import * as orderService from "../services/orderService";
+import { empty } from "../services/redux/cartRedux";
 
 const Checkout = () => {
   const [userData, setUserData] = useState<IUser>(initialValues);
@@ -18,6 +19,7 @@ const Checkout = () => {
   let [selectedFirm, setSelectedFirm] = useState<boolean>(false);
   let [selectedPersonal, setSelectedPersonal] = useState<boolean>(true);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   //@ts-ignore
   const user = useSelector((state) => state.user.currentUser);
@@ -112,6 +114,8 @@ const Checkout = () => {
           toast.success("Comanda plasata cu succes", {
             style: { marginTop: "100px" },
           });
+          dispatch(empty())
+          router.push('/')
         })
         .catch((err) => {
           toast.error(err, {

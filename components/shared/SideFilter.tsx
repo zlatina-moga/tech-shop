@@ -11,12 +11,17 @@ const SideFilter = ({
   processors,
   processorsLink,
   maxPrice,
+  range,
 }) => {
   const router = useRouter();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
 
   const onPriceChange = (changeEvent) => {
     setValue(changeEvent.target.value);
+  };
+
+  const onPriceSet = () => {
+    range(value);
   };
 
   return (
@@ -44,13 +49,14 @@ const SideFilter = ({
           <RangeSlider
             value={value}
             onChange={onPriceChange}
+            onAfterChange={onPriceSet}
             min={1}
             max={maxPrice}
             tooltip="on"
           />
           <div className="d-flex justify-content-between">
             <span>1</span>
-            <span>{maxPrice}</span>
+            <span>{maxPrice} Lei</span>
           </div>
         </div>
       )}
