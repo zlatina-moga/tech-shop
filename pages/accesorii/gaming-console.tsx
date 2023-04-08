@@ -18,6 +18,7 @@ const Gaming = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(91).then((result) => {
@@ -45,18 +46,46 @@ const Gaming = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedGamingPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedGaming(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedGaming(currentPage, sort)
+      .getAllGamingPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -91,10 +120,11 @@ const Gaming = () => {
             categories={accessoryCategories}
             breadcrumbs={gamingBreadCrmbs}
             sortCriteria={onSort}
-            baseLink='/accesorii/gaming-console'
+            baseLink="/accesorii/gaming-console"
             brands={brands}
-            brandLink={'/accesorii/brand/'}
+            brandLink={"/accesorii/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -137,7 +167,7 @@ const Gaming = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };

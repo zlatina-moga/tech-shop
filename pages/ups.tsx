@@ -18,6 +18,7 @@ const UPS = () => {
   const [selectedSort, setSelectedSort] = useState("/ups");
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -36,19 +37,30 @@ const UPS = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
-    productService
-      .getSortedUPS(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedUPSPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedUPS(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [selectedSort, currentPage]);
-
 
   useEffect(() => {
     sortingService.getBrands(40).then((result) => {
@@ -58,6 +70,21 @@ const UPS = () => {
       setHighestPrice(response[1]);
     });
   }, []);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    productService
+      .getAllUPSPrice(priceRange, currentPage)
+      .then((result) => {
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -92,10 +119,11 @@ const UPS = () => {
             categories={upsCategories}
             breadcrumbs={upsBrcrmbs}
             brands={brands}
-            brandLink={'/ups/brand/'}
+            brandLink={"/ups/brand/"}
             sortCriteria={onSort}
-            baseLink='/ups'
+            baseLink="/ups"
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -138,7 +166,7 @@ const UPS = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };

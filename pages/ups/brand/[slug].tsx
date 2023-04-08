@@ -19,6 +19,7 @@ const BrandDetail = () => {
   const [selectedSort, setSelectedSort] = useState(`/ups/brand/${slug}`);
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(40).then((result) => {
@@ -27,7 +28,7 @@ const BrandDetail = () => {
     sortingService.getHighestPriceByBrand(40, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
     productService
@@ -46,19 +47,45 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedUPSBrandsPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedUPSBrands(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedUPSBrands(currentPage, slug, sort)
+      .getAllUPSBrandsPrice(currentPage, slug,  priceRange)
       .then((result) => {
-        setLoading(false);
         seItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
-
+  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -101,8 +128,9 @@ const BrandDetail = () => {
             baseLink={`/ups/brand/${slug}`}
             categories={upsCategories}
             brands={brands}
-            brandLink={'/ups/brand/'}
+            brandLink={"/ups/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

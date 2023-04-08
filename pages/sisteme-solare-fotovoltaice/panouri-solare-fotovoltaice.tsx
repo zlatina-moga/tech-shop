@@ -14,10 +14,13 @@ const SolarPanels = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice");
+  const [selectedSort, setSelectedSort] = useState(
+    "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(96).then((result) => {
@@ -45,18 +48,45 @@ const SolarPanels = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPanelsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPanels(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedPanels(currentPage, sort)
+      .getAllPanelsPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -91,10 +121,11 @@ const SolarPanels = () => {
             categories={solarCategories}
             breadcrumbs={solarpanelsBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice'
+            baseLink="/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice"
             brands={brands}
-            brandLink={'/sisteme-solare-fotovoltaice/brand/'}
+            brandLink={"/sisteme-solare-fotovoltaice/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

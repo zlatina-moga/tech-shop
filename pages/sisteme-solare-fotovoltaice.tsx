@@ -4,7 +4,7 @@ import Navbar from "../components/global/Navbar";
 import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
-import { usePagination} from "../hooks/usePagination";
+import { usePagination } from "../hooks/usePagination";
 import { solarCategories } from "../data/categories";
 import { solarBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
@@ -15,9 +15,12 @@ const SolarPanels = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
-  const [selectedSort, setSelectedSort] = useState("/sisteme-solare-fotovoltaice");
+  const [selectedSort, setSelectedSort] = useState(
+    "/sisteme-solare-fotovoltaice"
+  );
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -36,17 +39,29 @@ const SolarPanels = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedSolarPanels(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedSolarPanelsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedSolarPanels(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [selectedSort, currentPage]);
 
   useEffect(() => {
@@ -57,6 +72,21 @@ const SolarPanels = () => {
       setHighestPrice(response[1]);
     });
   }, []);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    productService
+      .getAllSolarPanelsPrice(priceRange, currentPage)
+      .then((result) => {
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -82,7 +112,7 @@ const SolarPanels = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -91,10 +121,11 @@ const SolarPanels = () => {
             categories={solarCategories}
             breadcrumbs={solarBrcrmbs}
             brands={brands}
-            brandLink={'/sisteme-solare-fotovoltaice/brand/'}
+            brandLink={"/sisteme-solare-fotovoltaice/brand/"}
             sortCriteria={onSort}
-            baseLink='/sisteme-solare-fotovoltaice'
+            baseLink="/sisteme-solare-fotovoltaice"
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -137,7 +168,7 @@ const SolarPanels = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };

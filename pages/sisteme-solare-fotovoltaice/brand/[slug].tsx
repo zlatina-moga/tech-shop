@@ -16,9 +16,12 @@ const BrandDetail = () => {
   const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSort, setSelectedSort] = useState(`/sisteme-solare-fotovoltaice/brand/${slug}`);
+  const [selectedSort, setSelectedSort] = useState(
+    `/sisteme-solare-fotovoltaice/brand/${slug}`
+  );
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(95).then((result) => {
@@ -27,7 +30,7 @@ const BrandDetail = () => {
     sortingService.getHighestPriceByBrand(95, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
     productService
@@ -46,18 +49,45 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedSolarPanelsBrandsPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedSolarPanelsBrands(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedSolarPanelsBrands(currentPage, slug, sort)
+      .geAllSolarPanelsBrandsPrice(currentPage, slug,  priceRange)
       .then((result) => {
-        setLoading(false);
         seItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -89,7 +119,7 @@ const BrandDetail = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -99,9 +129,10 @@ const BrandDetail = () => {
             sortCriteria={onSort}
             baseLink={`/sisteme-solare-fotovoltaice/brand/${slug}`}
             brands={brands}
-            brandLink={'/sisteme-solare-fotovoltaice/brand/'}
+            brandLink={"/sisteme-solare-fotovoltaice/brand/"}
             categories={solarCategories}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
