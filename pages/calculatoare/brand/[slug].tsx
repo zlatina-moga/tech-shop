@@ -16,10 +16,13 @@ const BrandDetail = () => {
   const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSort, setSelectedSort] = useState(`/calculatoare/brand/${slug}`);
+  const [selectedSort, setSelectedSort] = useState(
+    `/calculatoare/brand/${slug}`
+  );
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(1).then((result) => {
@@ -50,18 +53,45 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedComputersByBrandPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          setItemData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedComputersByBrand(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          setItemData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedComputersByBrand(currentPage, slug, sort)
+      .getAllComputersByBrandPrice(currentPage, slug,  priceRange)
       .then((result) => {
-        setLoading(false);
         setItemData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -103,11 +133,12 @@ const BrandDetail = () => {
             sortCriteria={onSort}
             baseLink={`/calculatoare/brand/${slug}`}
             brands={brands}
-            brandLink={'/calculatoare/brand/'}
+            brandLink={"/calculatoare/brand/"}
             processors={processors}
             processorsLink={"/calculatoare/procesor/"}
             categories={compCategories}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

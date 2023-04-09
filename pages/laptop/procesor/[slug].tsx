@@ -19,6 +19,8 @@ const ProcDetail = () => {
   const [selectedSort, setSelectedSort] = useState(`/laptop/procesor/${slug}`);
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -39,25 +41,55 @@ const ProcDetail = () => {
     sortingService.getProcessors(5).then((res) => {
       setProcessors(res);
     });
-  }, []);
+    sortingService.getHighestPriceByProcessor(5, slug).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, [slug]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedLaptopsByProcessorPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          setItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedLaptopsByProcessor(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          setItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedLaptopsByProcessor(currentPage, slug, sort)
+      .getAllLaptopsByProcessorPrice(currentPage, slug,  priceRange)
       .then((result) => {
-        setLoading(false);
         setItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -82,14 +114,14 @@ const ProcDetail = () => {
   let pageTitle = "";
   if (slug != undefined) {
     let slugToStr = slug as string;
-    pageTitle = slugToStr.replaceAll('-', ' ')
+    pageTitle = slugToStr.replaceAll("-", " ");
   }
 
   return (
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -103,6 +135,8 @@ const ProcDetail = () => {
             processors={processors}
             processorsLink={"/laptop/procesor/"}
             brandLink={"/laptop/brand/"}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

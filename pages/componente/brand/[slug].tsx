@@ -18,10 +18,15 @@ const BrandDetail = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/componente/brand/${slug}`);
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(24).then((result) => {
       setBrands(result);
+    });
+    sortingService.getHighestPriceByBrand(24, slug).then((response) => {
+      setHighestPrice(response[1]);
     });
   }, []);
 
@@ -42,18 +47,45 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedBrandComponentsPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedBrandComponents(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedBrandComponents(currentPage, slug, sort)
+      .geAllBrandComponentsPrice(currentPage, slug,  priceRange)
       .then((result) => {
-        setLoading(false);
         seItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -85,7 +117,7 @@ const BrandDetail = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -96,7 +128,9 @@ const BrandDetail = () => {
             baseLink={`/componente/brand/${slug}`}
             categories={componentCategories}
             brands={brands}
-            brandLink={'/componente/brand/'}
+            brandLink={"/componente/brand/"}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

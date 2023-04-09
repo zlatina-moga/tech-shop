@@ -19,6 +19,7 @@ const BrandDetail = () => {
   const [selectedSort, setSelectedSort] = useState(`/monitoare/brand/${slug}`);
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(18).then((result) => {
@@ -46,18 +47,45 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedBrandMonitorsPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedBrandMonitors(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedBrandMonitors(currentPage, slug, sort)
+      .geAllBrandMonitorsPrice(currentPage, slug,  priceRange)
       .then((result) => {
-        setLoading(false);
         seItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -89,7 +117,7 @@ const BrandDetail = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -102,6 +130,7 @@ const BrandDetail = () => {
             brands={brands}
             brandLink={"/monitoare/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

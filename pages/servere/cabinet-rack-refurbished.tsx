@@ -14,11 +14,14 @@ const RackServers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/servere/cabinet-rack-refurbished");
+  const [selectedSort, setSelectedSort] = useState(
+    "/servere/cabinet-rack-refurbished"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(12).then((result) => {
@@ -49,18 +52,45 @@ const RackServers = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRackServersPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRackServers(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedRackServers(currentPage, sort)
+      .getAllRackServersPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -95,12 +125,13 @@ const RackServers = () => {
             categories={serverCategories}
             breadcrumbs={serverRackBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/servere/cabinet-rack-refurbished'
+            baseLink="/servere/cabinet-rack-refurbished"
             brands={brands}
             brandLink={"/servere/brand/"}
             processors={processors}
             processorsLink={"/servere/procesor/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

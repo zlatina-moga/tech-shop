@@ -19,6 +19,7 @@ const Calculatoare = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [selectedSort, setSelectedSort] = useState("/calculatoare");
   const router = useRouter();
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -37,18 +38,45 @@ const Calculatoare = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedComputersPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedComputers(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedComputers(currentPage, sort)
+      .getAllComputersPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   useEffect(() => {
     sortingService.getBrands(1).then((result) => {
@@ -101,6 +129,7 @@ const Calculatoare = () => {
             sortCriteria={onSort}
             baseLink="/calculatoare"
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

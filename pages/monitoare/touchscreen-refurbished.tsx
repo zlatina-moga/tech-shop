@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination} from "../../hooks/usePagination";
+import { usePagination } from "../../hooks/usePagination";
 import { monitorCategories } from "../../data/categories";
 import { monitorTouchSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
@@ -14,10 +14,13 @@ const MonitoareTouchSH = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/monitoare/touchscreen-refurbished");
+  const [selectedSort, setSelectedSort] = useState(
+    "/monitoare/touchscreen-refurbished"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(21).then((result) => {
@@ -40,24 +43,50 @@ const MonitoareTouchSH = () => {
       });
   }, [currentPage]);
 
-
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .geSortedTSRefMonitorsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .geSortedTSRefMonitors(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .geSortedTSRefMonitors(currentPage, sort)
+      .getAllTSRefMonitorsPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -83,7 +112,7 @@ const MonitoareTouchSH = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -92,10 +121,11 @@ const MonitoareTouchSH = () => {
             categories={monitorCategories}
             breadcrumbs={monitorTouchSHBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/monitoare/touchscreen-refurbished'
+            baseLink="/monitoare/touchscreen-refurbished"
             brands={brands}
             brandLink={"/monitoare/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

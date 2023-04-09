@@ -19,6 +19,7 @@ const Laptopuri = () => {
   const [selectedSort, setSelectedSort] = useState("/laptop");
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -37,17 +38,29 @@ const Laptopuri = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
-    productService
-      .getSortedLaptops(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedLaptopsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedLaptops(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [selectedSort, currentPage]);
 
   useEffect(() => {
@@ -61,6 +74,21 @@ const Laptopuri = () => {
       setHighestPrice(response[1]);
     });
   }, []);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    productService
+      .getAllLaptopsPrice(priceRange, currentPage)
+      .then((result) => {
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -99,8 +127,9 @@ const Laptopuri = () => {
             processors={processors}
             processorsLink={"/laptop/procesor/"}
             sortCriteria={onSort}
-            baseLink='/laptop'
+            baseLink="/laptop"
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

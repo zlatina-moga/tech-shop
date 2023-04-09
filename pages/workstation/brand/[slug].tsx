@@ -16,10 +16,14 @@ const BrandDetail = () => {
   const [itemData, setItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSort, setSelectedSort] = useState(`/workstation/brand/${slug}`);
+  const [selectedSort, setSelectedSort] = useState(
+    `/workstation/brand/${slug}`
+  );
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
-  
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
+
   useEffect(() => {
     sortingService.getBrands(15).then((result) => {
       setBrands(result);
@@ -27,7 +31,10 @@ const BrandDetail = () => {
     sortingService.getProcessors(15).then((res) => {
       setProcessors(res);
     });
-  }, []);
+    sortingService.getHighestPriceByBrand(15, slug).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, [slug]);
 
   useEffect(() => {
     productService
@@ -46,18 +53,45 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedWorkstationsByBrandPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          setItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedWorkstationsByBrand(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          setItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedWorkstationsByBrand(currentPage, slug, sort)
+      .getAllWorkstationsByBrandPrice(currentPage, slug,  priceRange)
       .then((result) => {
-        setLoading(false);
         setItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -103,6 +137,8 @@ const BrandDetail = () => {
             brandLink={"/workstation/brand/"}
             processors={processors}
             processorsLink={"/workstation/procesor/"}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

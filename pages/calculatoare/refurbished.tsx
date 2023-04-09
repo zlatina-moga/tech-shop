@@ -19,6 +19,7 @@ const Calculatoare = () => {
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(2).then((result) => {
@@ -30,7 +31,7 @@ const Calculatoare = () => {
     sortingService.getHighestPrice(2).then((response) => {
       setHighestPrice(response[1]);
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
     productService
@@ -49,18 +50,45 @@ const Calculatoare = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRefurbishedComputersPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRefurbishedComputers(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedRefurbishedComputers(currentPage, sort)
+      .getAllRefurbishedComputersPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -86,7 +114,7 @@ const Calculatoare = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -95,12 +123,13 @@ const Calculatoare = () => {
             categories={compCategories}
             breadcrumbs={refComputersBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/calculatoare/refurbished'
+            baseLink="/calculatoare/refurbished"
             brands={brands}
-            brandLink={'/calculatoare/brand/'}
+            brandLink={"/calculatoare/brand/"}
             processors={processors}
             processorsLink={"/calculatoare/procesor/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -18,6 +18,7 @@ const Componente = () => {
   const [selectedSort, setSelectedSort] = useState("/componente");
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -36,17 +37,29 @@ const Componente = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
-    productService
-      .getSortedComponents(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedComponentsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedComponents(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [selectedSort, currentPage]);
 
   useEffect(() => {
@@ -57,6 +70,21 @@ const Componente = () => {
       setHighestPrice(response[1]);
     });
   }, []);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    productService
+      .getAllLaptopsPrice(priceRange, currentPage)
+      .then((result) => {
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -82,7 +110,7 @@ const Componente = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -91,10 +119,11 @@ const Componente = () => {
             categories={componentCategories}
             breadcrumbs={componentBrcrmbs}
             brands={brands}
-            brandLink={'/componente/brand/'}
+            brandLink={"/componente/brand/"}
             sortCriteria={onSort}
-            baseLink='/componente'
+            baseLink="/componente"
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

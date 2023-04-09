@@ -13,11 +13,12 @@ import * as sortingService from "../../services/sortingService";
 const MonitoareNew = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/monitoare/noi-4");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(54).then((result) => {
@@ -27,7 +28,6 @@ const MonitoareNew = () => {
       setHighestPrice(response[1]);
     });
   }, []);
-
 
   useEffect(() => {
     productService
@@ -46,18 +46,45 @@ const MonitoareNew = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .geSortedNewMonitorsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .geSortedNewMonitors(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .geSortedNewMonitors(currentPage, sort)
+      .geAllNewMonitorsPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -92,10 +119,11 @@ const MonitoareNew = () => {
             categories={monitorCategories}
             breadcrumbs={monitorNewBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/monitoare/noi-4'
+            baseLink="/monitoare/noi-4"
             brands={brands}
             brandLink={"/monitoare/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

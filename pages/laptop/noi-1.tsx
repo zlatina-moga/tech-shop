@@ -19,6 +19,7 @@ const LaptopuriNoi = () => {
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(49).then((result) => {
@@ -26,7 +27,7 @@ const LaptopuriNoi = () => {
     });
     sortingService.getProcessors(49).then((res) => {
       setProcessors(res);
-    })
+    });
     sortingService.getHighestPrice(49).then((response) => {
       setHighestPrice(response[1]);
     });
@@ -49,18 +50,45 @@ const LaptopuriNoi = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedNewLaptopsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedNewLaptops(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedNewLaptops(currentPage, sort)
+      .getAllNewLaptopsPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -86,7 +114,7 @@ const LaptopuriNoi = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -95,12 +123,13 @@ const LaptopuriNoi = () => {
             categories={laptopCategories}
             breadcrumbs={laptopNewdBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/laptop/noi-1'
+            baseLink="/laptop/noi-1"
             brands={brands}
             processors={processors}
             processorsLink={"/laptop/procesor/"}
             brandLink={"/laptop/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

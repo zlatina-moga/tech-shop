@@ -19,6 +19,7 @@ const Workstations = () => {
   const [selectedSort, setSelectedSort] = useState("/workstation");
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -37,17 +38,29 @@ const Workstations = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedWorkstations(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedWorkstationsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedWorkstations(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [selectedSort, currentPage]);
 
   useEffect(() => {
@@ -61,6 +74,21 @@ const Workstations = () => {
       setHighestPrice(response[1]);
     });
   }, []);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    productService
+      .getAllWorkstationsPrice(priceRange, currentPage)
+      .then((result) => {
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -99,8 +127,9 @@ const Workstations = () => {
             processors={processors}
             processorsLink={"/workstation/procesor/"}
             sortCriteria={onSort}
-            baseLink='/workstation'
+            baseLink="/workstation"
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -143,7 +172,7 @@ const Workstations = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };

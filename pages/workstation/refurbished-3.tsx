@@ -13,12 +13,15 @@ const WorkstationsRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/workstation/refurbished-3");
+  const [selectedSort, setSelectedSort] = useState(
+    "/workstation/refurbished-3"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
-  
+  const [priceRange, setPriceRange] = useState("");
+
   useEffect(() => {
     sortingService.getBrands(16).then((result) => {
       setBrands(result);
@@ -48,18 +51,45 @@ const WorkstationsRefurbished = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRefurbishedWorkstationsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRefurbishedWorkstations(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedRefurbishedWorkstations(currentPage, sort)
+      .getRefurbishedWorkstationsPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -85,7 +115,7 @@ const WorkstationsRefurbished = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -94,12 +124,13 @@ const WorkstationsRefurbished = () => {
             categories={workstationCategories}
             breadcrumbs={workstationRefBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/workstation/refurbished-3'
+            baseLink="/workstation/refurbished-3"
             brands={brands}
             brandLink={"/workstation/brand/"}
             processors={processors}
             processorsLink={"/workstation/procesor/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

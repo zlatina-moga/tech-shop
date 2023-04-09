@@ -18,6 +18,7 @@ const Monitoare = () => {
   const [selectedSort, setSelectedSort] = useState("/monitoare");
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -36,17 +37,29 @@ const Monitoare = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .geSortedMonitors(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .geSortedMonitorsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .geSortedMonitors(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [selectedSort, currentPage]);
 
   useEffect(() => {
@@ -57,6 +70,21 @@ const Monitoare = () => {
       setHighestPrice(response[1]);
     });
   }, []);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    productService
+      .geAllMonitorsPrice(priceRange, currentPage)
+      .then((result) => {
+        setLaptopsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -93,8 +121,9 @@ const Monitoare = () => {
             brands={brands}
             brandLink={"/monitoare/brand/"}
             sortCriteria={onSort}
-            baseLink='/monitoare'
+            baseLink="/monitoare"
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
