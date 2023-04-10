@@ -77,7 +77,7 @@ const Componente = () => {
 
   useEffect(() => {
     productService
-      .getAllLaptopsPrice(priceRange, currentPage)
+      .geAllComponentsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
       })

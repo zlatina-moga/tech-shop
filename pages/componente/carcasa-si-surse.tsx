@@ -18,6 +18,7 @@ const Cases = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(88).then((result) => {
@@ -45,18 +46,46 @@ const Cases = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedCasesPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split('=')[1]
+      productService
+        .getSortedCases(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedCases(currentPage, sort)
+      .getAllCasesPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -95,6 +124,7 @@ const Cases = () => {
             brands={brands}
             brandLink={'/componente/brand/'}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

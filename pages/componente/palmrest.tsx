@@ -77,7 +77,7 @@ const Palmrests = () => {
 
   useEffect(() => {
     productService
-      .getAllLaptopsPrice(priceRange, currentPage)
+      .getAllPalmrestsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
       })

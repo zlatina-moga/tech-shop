@@ -19,6 +19,7 @@ const SistemePOS = () => {
   const [selectedSort, setSelectedSort] = useState("/sisteme-pos");
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     productService
@@ -37,20 +38,47 @@ const SistemePOS = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPOSPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPOS(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedPOS(currentPage, sort)
+      .geAllPOSPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
-    useEffect(() => {
+  useEffect(() => {
     sortingService.getBrands(34).then((result) => {
       setBrands(result);
     });
@@ -61,7 +89,6 @@ const SistemePOS = () => {
       setHighestPrice(response[1]);
     });
   }, []);
-
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -87,7 +114,7 @@ const SistemePOS = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -96,12 +123,13 @@ const SistemePOS = () => {
             categories={posCategories}
             breadcrumbs={posBrcrmbs}
             brands={brands}
-            brandLink={'/sisteme-pos/brand/'}
+            brandLink={"/sisteme-pos/brand/"}
             processors={processors}
             processorsLink={"/sisteme-pos/procesor/"}
             sortCriteria={onSort}
-            baseLink='/sisteme-pos'
+            baseLink="/sisteme-pos"
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -144,7 +172,7 @@ const SistemePOS = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };

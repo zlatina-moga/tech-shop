@@ -19,6 +19,7 @@ const POSReader = () => {
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(37).then((result) => {
@@ -50,18 +51,46 @@ const POSReader = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPOSReadersPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split('=')[1]
+      productService
+        .getSortedPOSReaders(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedPOSReaders(currentPage, sort)
+      .getAllPOSReadersPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -102,6 +131,7 @@ const POSReader = () => {
             processors={processors}
             processorsLink={"/sisteme-pos/procesor/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

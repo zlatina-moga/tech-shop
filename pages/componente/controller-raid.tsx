@@ -14,10 +14,13 @@ const Controllers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/componente/controller-raid");
+  const [selectedSort, setSelectedSort] = useState(
+    "/componente/controller-raid"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(86).then((result) => {
@@ -45,18 +48,45 @@ const Controllers = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedControllersPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedControllers(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedControllers(currentPage, sort)
+      .getAllControllersPrice(priceRange, currentPage)
       .then((result) => {
-        setLoading(false);
         setLaptopsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -82,7 +112,7 @@ const Controllers = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -91,10 +121,11 @@ const Controllers = () => {
             categories={componentCategories}
             breadcrumbs={controllerBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/componente/controller-raid'
+            baseLink="/componente/controller-raid"
             brands={brands}
-            brandLink={'/componente/brand/'}
+            brandLink={"/componente/brand/"}
             highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

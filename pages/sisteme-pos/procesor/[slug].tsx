@@ -16,9 +16,13 @@ const ProcDetail = () => {
   const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSort, setSelectedSort] = useState(`/sisteme-pos/procesor/${slug}`);
+  const [selectedSort, setSelectedSort] = useState(
+    `/sisteme-pos/procesor/${slug}`
+  );
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     sortingService.getBrands(34).then((result) => {
@@ -27,7 +31,10 @@ const ProcDetail = () => {
     sortingService.getProcessors(34).then((res) => {
       setProcessors(res);
     });
-  }, []);
+    sortingService.getHighestPriceByProcessor(34, slug).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, [slug]);
 
   useEffect(() => {
     productService
@@ -46,18 +53,45 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    if (priceRange) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPOSByProcessorPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPOSByProcessor(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
     productService
-      .getSortedPOSByProcessor(currentPage, slug, sort)
+      .getAllPOSByProcessorPrice(currentPage, slug,  priceRange)
       .then((result) => {
-        setLoading(false);
         seItemsData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedSort, currentPage]);
+  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 
@@ -82,14 +116,14 @@ const ProcDetail = () => {
   let pageTitle = "";
   if (slug != undefined) {
     let slugToStr = slug as string;
-    pageTitle = slugToStr.replaceAll('-', ' ')
+    pageTitle = slugToStr.replaceAll("-", " ");
   }
 
   return (
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -99,10 +133,12 @@ const ProcDetail = () => {
             sortCriteria={onSort}
             baseLink={`/sisteme-pos/procesor/${slug}`}
             brands={brands}
-            brandLink={'/sisteme-pos/brand/'}
+            brandLink={"/sisteme-pos/brand/"}
             processors={processors}
             processorsLink={"/sisteme-pos/procesor/"}
             categories={posCategories}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
