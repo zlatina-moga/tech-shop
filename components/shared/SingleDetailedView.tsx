@@ -109,7 +109,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
               >
                 {item.title}
               </h1>
-              <div className="row px-xl-5">
+              <div className="row px-xl-5 main-container">
                 <div className="col-lg-5 pb-5">
                   <Swiper
                     navigation={true}

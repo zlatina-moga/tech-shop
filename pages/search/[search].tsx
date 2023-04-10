@@ -30,7 +30,7 @@ const ProcDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [search]);
 
   const notFound = itemData.find((element) => element.is_error);
 

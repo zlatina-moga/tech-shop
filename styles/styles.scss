@@ -9,6 +9,11 @@
   form {
     margin-top: 0;
   }
+  img {
+    max-width: 150px;
+    height: 60px;
+    border-radius: 4px;
+  }
 }
 
 .wrapper {
@@ -351,10 +356,8 @@ form .auth-field {
     }
   }
   .sidebar-link.active {
-    color: white;
+    color: white !important;
     font-weight: 700;
-  }
-  li.sidebar-link.active {
     background-color: #57A046;
   }
 }

@@ -451,3 +451,20 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .page-details {
+    .main-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #footer-container {
+    .main-container {
+      flex-direction: column;
+    }
+  }
+}

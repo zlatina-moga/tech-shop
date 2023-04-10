@@ -28,6 +28,7 @@ interface ILaptopPage {
   baseLink?: string;
   highEnd?: number;
   priceRange?: any;
+  className?: string
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -42,7 +43,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   sortCriteria,
   baseLink,
   highEnd,
-  priceRange
+  priceRange,
+  className
 }) => {
   const [selected, setSelected] = useState("");
   const totalCount = laptopsData.map((l) => l.itemsCount)[0];
@@ -99,8 +101,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           </div>
 
           <div
-            className="row pb-3 justify-content-center, ml-5"
-            style={{ maxWidth: "98rem" }}
+            className={classNames("row pb-3 justify-content-center, ml-5", className)}
+            style={{ maxWidth: "98rem", justifyContent: 'center' }}
           >
             {laptopsData.map((itemData, idx) => (
               <div

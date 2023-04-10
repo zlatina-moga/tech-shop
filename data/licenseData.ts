@@ -22,7 +22,7 @@ export interface ILicence {
 
 export const licenseData: ILicence[] = [
   {
-    id: "licenta-software/windows/windows-10-home-32-64bit",
+    id: "/licenta-software/windows/windows-10-home-32-64bit",
     item: "windows-10-home-32-64bit",
     category: "Windows",
     imgLink: [
@@ -61,7 +61,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/windows/windows-10-pro-32-64bit",
+    id: "/licenta-software/windows/windows-10-pro-32-64bit",
     item: "windows-10-pro-32-64bit",
     category: "Windows",
     imgLink: [
@@ -100,7 +100,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/windows/windows-11-pro-32-64bit",
+    id: "/licenta-software/windows/windows-11-pro-32-64bit",
     item: "windows-11-pro-32-64bit",
     category: "Windows",
     imgLink: [
@@ -135,7 +135,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/windows/windows-11-home-32-64bit",
+    id: "/licenta-software/windows/windows-11-home-32-64bit",
     item: "windows-11-home-32-64bit",
     category: "Windows",
     imgLink: [
@@ -170,7 +170,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/microsoft-visio/microsoft-visio-2019-professional-1pc",
+    id: "/licenta-software/microsoft-visio/microsoft-visio-2019-professional-1pc",
     item: "microsoft-visio-2019-professional-1pc",
     category: "Visio",
     imgLink: [
@@ -205,7 +205,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/microsoft-visio/microsoft-visio-2019-professional-1pc-lifetime-o-singura-instalare",
+    id: "/licenta-software/microsoft-visio/microsoft-visio-2019-professional-1pc-lifetime-o-singura-instalare",
     item: "microsoft-visio-2019-professional-1pc-lifetime-o-singura-instalare",
     category: "Visio",
     imgLink: [
@@ -241,7 +241,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/microsoft-visio/microsoft-visio-2021-professional-1pc-lifetime",
+    id: "/licenta-software/microsoft-visio/microsoft-visio-2021-professional-1pc-lifetime",
     item: "microsoft-visio-2021-professional-1pc-lifetime",
     category: "Visio",
     imgLink: [
@@ -276,7 +276,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/microsoft-visio/microsoft-visio-2021-professional-1pc-lifetime-o-singura-instalare",
+    id: "/licenta-software/microsoft-visio/microsoft-visio-2021-professional-1pc-lifetime-o-singura-instalare",
     item: "microsoft-visio-2021-professional-1pc-lifetime-o-singura-instalare",
     category: "Visio",
     imgLink: [
@@ -312,7 +312,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/office/office-2019-professional-plus-global",
+    id: "/licenta-software/office/office-2019-professional-plus-global",
     item: "office-2019-professional-plus-global",
     category: "Office",
     imgLink: [
@@ -351,7 +351,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/office/microsoft-office-2019-professional-plus-global-retail",
+    id: "/licenta-software/office/microsoft-office-2019-professional-plus-global-retail",
     item: "microsoft-office-2019-professional-plus-global-retail",
     category: "Office",
     imgLink: [
@@ -390,7 +390,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/office/microsoft-office-2021-home-and-business-mac-global-retail",
+    id: "/licenta-software/office/microsoft-office-2021-home-and-business-mac-global-retail",
     item: "microsoft-office-2021-home-and-business-mac-global-retail",
     category: "Office",
     imgLink: [
@@ -429,7 +429,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/office/microsoft-office-2021-professional-plus-global",
+    id: "/licenta-software/office/microsoft-office-2021-professional-plus-global",
     item: "microsoft-office-2021-professional-plus-global",
     category: "Office",
     imgLink: [
@@ -468,7 +468,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/office/microsoft-office-2021-professional-plus-key-phone-activation-global",
+    id: "/licenta-software/office/microsoft-office-2021-professional-plus-key-phone-activation-global",
     item: "microsoft-office-2021-professional-plus-key-phone-activation-global",
     category: "Office",
     imgLink: [
@@ -507,7 +507,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/office/microsoft-office-365-5-devices-one-time-payment",
+    id: "/licenta-software/office/microsoft-office-365-5-devices-one-time-payment",
     item: "microsoft-office-365-5-devices-one-time-payment",
     category: "Office",
     imgLink: [
@@ -546,7 +546,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/office/microsoft-office-365-personal-1-device-one-time-payment",
+    id: "/licenta-software/office/microsoft-office-365-personal-1-device-one-time-payment",
     item: "microsoft-office-365-personal-1-device-one-time-payment",
     category: "Office",
     imgLink: [
@@ -585,7 +585,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/project/microsoft-project-2019-professional-1pc-lifetime",
+    id: "/licenta-software/project/microsoft-project-2019-professional-1pc-lifetime",
     item: "microsoft-project-2019-professional-1pc-lifetime",
     category: "Project",
     imgLink: [
@@ -622,7 +622,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/project/microsoft-project-2019-professional-1pc-lifetime-o-singura-instalare",
+    id: "/licenta-software/project/microsoft-project-2019-professional-1pc-lifetime-o-singura-instalare",
     item: "microsoft-project-2019-professional-1pc-lifetime-o-singura-instalare",
     category: "Project",
     imgLink: [
@@ -660,7 +660,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/project/microsoft-project-2021-professional-1pc-lifetime",
+    id: "/licenta-software/project/microsoft-project-2021-professional-1pc-lifetime",
     item: "microsoft-project-2021-professional-1pc-lifetime",
     category: "Project",
     imgLink: [
@@ -697,7 +697,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/project/microsoft-project-2021-professional-1pc-lifetime-o-singura-instalare",
+    id: "/licenta-software/project/microsoft-project-2021-professional-1pc-lifetime-o-singura-instalare",
     item: "microsoft-project-2021-professional-1pc-lifetime-o-singura-instalare",
     category: "Project",
     imgLink: [
@@ -735,7 +735,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/adobe/adobe-creative-cloud-1-an",
+    id: "/licenta-software/adobe/adobe-creative-cloud-1-an",
     item: "adobe-creative-cloud-1-an",
     category: "Adobe",
     imgLink: [
@@ -757,7 +757,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/antivirus/bitdefender-2022-antivirus-plus-1-pc-1-an",
+    id: "/licenta-software/antivirus/bitdefender-2022-antivirus-plus-1-pc-1-an",
     item: "bitdefender-2022-antivirus-plus-1-pc-1-an",
     category: "Antivirus",
     imgLink: [
@@ -789,7 +789,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/antivirus/bitdefender-2022-antivirus-plus-10-pc-1-an",
+    id: "/licenta-software/antivirus/bitdefender-2022-antivirus-plus-10-pc-1-an",
     item: "bitdefender-2022-antivirus-plus-10-pc-1-an",
     category: "Antivirus",
     imgLink: [
@@ -820,7 +820,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/antivirus/bitdefender-2022-antivirus-plus-5-pc-1-an",
+    id: "/licenta-software/antivirus/bitdefender-2022-antivirus-plus-5-pc-1-an",
     item: "bitdefender-2022-antivirus-plus-5-pc-1-an",
     category: "Antivirus",
     imgLink: [
@@ -851,7 +851,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/antivirus/eset-nod32-antivirus-1-an-1-pc",
+    id: "/licenta-software/antivirus/eset-nod32-antivirus-1-an-1-pc",
     item: "eset-nod32-antivirus-1-an-1-pc",
     category: "Antivirus",
     imgLink: [
@@ -884,7 +884,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/antivirus/eset-nod32-internet-security-1-year-1-pc",
+    id: "/licenta-software/antivirus/eset-nod32-internet-security-1-year-1-pc",
     item: "eset-nod32-internet-security-1-year-1-pc",
     category: "Antivirus",
     imgLink: [
@@ -917,7 +917,7 @@ export const licenseData: ILicence[] = [
     ],
   },
   {
-    id: "licenta-software/antivirus/kaspersky-antivirus-2022-1-an-1-device",
+    id: "/licenta-software/antivirus/kaspersky-antivirus-2022-1-an-1-device",
     item: "kaspersky-antivirus-2022-1-an-1-device",
     category: "Antivirus",
     imgLink: [
@@ -951,7 +951,7 @@ export const licenseData: ILicence[] = [
     postDescr: ["*Softul poate cere crearea unui cont."],
   },
   {
-    id: "licenta-software/antivirus/kaspersky-total-security-2022-1-an-1-device",
+    id: "/licenta-software/antivirus/kaspersky-total-security-2022-1-an-1-device",
     item: "kaspersky-total-security-2022-1-an-1-device",
     category: "Antivirus",
     imgLink: [
@@ -985,7 +985,7 @@ export const licenseData: ILicence[] = [
     postDescr: ["*Softul poate cere crearea unui cont."],
   },
   {
-    id: "licenta-software/antivirus/mcafee-internet-security-2022-1-an-10-pc",
+    id: "/licenta-software/antivirus/mcafee-internet-security-2022-1-an-10-pc",
     item: "mcafee-internet-security-2022-1-an-10-pc",
     category: "Antivirus",
     imgLink: [

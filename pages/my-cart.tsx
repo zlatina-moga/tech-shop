@@ -88,7 +88,7 @@ const MyCard = () => {
                       GRATUIT
                     </h6>
                   ) : (
-                    <h6 className="font-weight-medium">?????</h6>
+                    <h6 className="font-weight-medium">20 lei</h6>
                   )}
                 </div>
                 <div className="d-flex justify-content-between">

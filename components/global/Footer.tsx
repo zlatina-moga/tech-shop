@@ -62,17 +62,22 @@ const Footer = () => {
               />
             </Link>
             <p className="mb-2 mt-4">
-              <i className="fa fa-map-marker-alt text-primary mr-3"></i>Str. Galaxiei nr.29, Sanpetru, Brașov
+              <i className="fa fa-map-marker-alt text-primary mr-3"></i>Str.
+              Galaxiei nr.29, Sanpetru, Brașov
             </p>
             <p className="mb-2">
               <i className="fa fa-envelope text-primary mr-3"></i>salut@pcbun.ro
             </p>
-            <p className="mb-0">
-              <i className="fa fa-phone-alt text-primary mr-3"></i>+40 (721) 909 049
+            <p className="mb-2">
+              <i className="fa fa-phone-alt text-primary mr-3"></i>+40 (721) 909
+              049
             </p>
+            <b className="mb-2">Exclusive Key Licenses SRL</b>
+            <p className="mb-2">CUI 46848581</p>
+            <p className="mb-2">RO70BTRLRONCRT0659572401</p>
           </div>
           <div
-            className="col-lg-8 col-md-12"
+            className="col-lg-8 col-md-12 main-container"
             style={{ display: "flex", justifyContent: "space-between" }}
           >
             <div className="mb-5">

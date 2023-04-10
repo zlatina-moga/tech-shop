@@ -95,18 +95,15 @@ const Navbar = () => {
         className="row align-items-center px-xl-5 collapse show navbar navbar-vertical"
         style={{ maxWidth: "100rem", margin: "0 auto" }}
       >
-        <div className="col-lg-3 d-none d-lg-block container-fluid">
+        <div className="col-3 container-fluid">
           <Link href="/">
-            <Image
+            <img
               src="/images/logo-example.png"
               alt="logo"
-              width={150}
-              height={60}
-              style={{ borderRadius: "4px" }}
             />
           </Link>
         </div>
-        <div className="col-lg-6 col-6 text-left">
+        <div className="col-6 text-left">
           <form onSubmit={onSearch}>
             <div className="input-group">
               <input
@@ -134,7 +131,7 @@ const Navbar = () => {
             </div>
           </form>
         </div>
-        <div className="col-lg-3 col-6 text-right">
+        <div className=" col-3 text-right">
           {user !== null ? userNav : guestNav}
           <Link
             href="/my-cart"

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import RangeSlider from "react-bootstrap-range-slider";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const SideFilter = ({
   categories,
@@ -22,11 +23,21 @@ const SideFilter = ({
 
   const onPriceSet = () => {
     range(value);
+    setTimeout(() => {
+      toast.success("Resetarea prețului cu succes", {
+        style: { marginTop: "100px" },
+      });
+    }, 2500);
   };
 
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", maxWidth: "18rem" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        maxWidth: "18rem",
+        marginBottom: "30px",
+      }}
     >
       <div className="row pr-5">
         <nav aria-label="breadcrumb " className="second ">
@@ -67,7 +78,7 @@ const SideFilter = ({
           style={{ display: "block", maxWidth: "260px" }}
         >
           <div className="row">
-            <div className="d-none d-lg-block">
+            <div className="">
               <nav
                 className="collapse show navbar-vertical navbar-light p-0"
                 id="navbar-vertical-2"
@@ -76,7 +87,7 @@ const SideFilter = ({
                   borderBottomRightRadius: "4px",
                 }}
               >
-                <ul
+                <div
                   className="navbar-nav overflow-hidden relative"
                   style={{
                     borderRadius: "4px",
@@ -84,23 +95,17 @@ const SideFilter = ({
                 >
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
                   {categories.map((c, idx) => (
-                    <li
-                      className={`nav-item nav-link py-3 sidebar-link ${
+                    <Link
+                      href={c.link}
+                      className={`sidebar-link nav-item nav-link py-3 ${
                         router.pathname == c.link ? "active" : ""
                       }`}
                       key={idx}
                     >
-                      <Link
-                        href={c.link}
-                        className={`sidebar-link ${
-                          router.pathname == c.link ? "active" : ""
-                        }`}
-                      >
-                        {c.name}
-                      </Link>
-                    </li>
+                      {c.name}
+                    </Link>
                   ))}
-                </ul>
+                </div>
               </nav>
               <nav
                 className="collapse show navbar navbar-vertical navbar-light align-items-start p-0"
@@ -120,7 +125,7 @@ const SideFilter = ({
           style={{ display: "block", maxWidth: "260px" }}
         >
           <div className="row">
-            <div className="d-none d-lg-block">
+            <div className="">
               <nav
                 className="collapse show navbar-vertical navbar-light p-0"
                 id="navbar-vertical-2"
@@ -139,7 +144,8 @@ const SideFilter = ({
                     Brand
                   </h4>
                   {brands.map((c, idx) => (
-                    <li
+                    <Link
+                      href={`${brandLink}${c.slug}-${c.id}`}
                       className={`nav-item nav-link py-3 sidebar-link ${
                         router.pathname == `${brandLink}${c.slug}-${c.id}`
                           ? "active"
@@ -147,17 +153,8 @@ const SideFilter = ({
                       }`}
                       key={idx}
                     >
-                      <Link
-                        href={`${brandLink}${c.slug}-${c.id}`}
-                        className={`sidebar-link ${
-                          router.pathname == `${brandLink}${c.slug}-${c.id}`
-                            ? "active"
-                            : ""
-                        }`}
-                      >
-                        {c.name}
-                      </Link>
-                    </li>
+                      {c.name}
+                    </Link>
                   ))}
                 </ul>
               </nav>
@@ -198,17 +195,13 @@ const SideFilter = ({
                     Procesor
                   </h4>
                   {processors.map((c, idx) => (
-                    <li
+                    <Link
+                      href={`${processorsLink}${c.slug}-${c.id}`}
                       className="nav-item nav-link py-3 sidebar-link"
                       key={idx}
                     >
-                      <Link
-                        href={`${processorsLink}${c.slug}-${c.id}`}
-                        className="sidebar-link"
-                      >
-                        {c.name}
-                      </Link>
-                    </li>
+                      {c.name}
+                    </Link>
                   ))}
                 </ul>
               </nav>

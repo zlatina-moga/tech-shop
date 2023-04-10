@@ -126,6 +126,7 @@ const Cables = () => {
             brandLink={"/accesorii/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className="flex-nowrap"
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
