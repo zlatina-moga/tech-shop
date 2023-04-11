@@ -246,12 +246,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                     )}
                     {item.price ? (
                       <>
-                        <p className="mb-4 details">
-                          Toate fotografiile produselor prezentate au caracter
-                          informativ, pot diferi fata de produsul vandut si pot
-                          arata accesorii ce nu sunt incluse in pachetul
-                          standard al produsului
-                        </p>
+
                         <div className="d-flex align-items-center img-container">
                           <Image src={qualityIcon} alt="quality" />
                           <p>Garantie la toate produsele comandate</p>

@@ -8,6 +8,13 @@ import serverIcon from "../../public/svg/server.svg";
 import monitorIcon from "../../public/svg/monitor.svg";
 import componentIcon from "../../public/svg/component.svg";
 import softwareIcon from "../../public/svg/software.svg";
+import printerIcon from "../../public/svg/printer.svg";
+import posIcon from "../../public/svg/pos.svg";
+import upsIcon from "../../public/svg/ups.svg";
+import accIcon from "../../public/svg/accessory.svg";
+import netIcon from "../../public/svg/network.svg";
+import solarIcon from "../../public/svg/solar-panel.svg";
+import discountIcon from "../../public/svg/discount.svg";
 
 const Sidebar = () => {
   return (
@@ -376,33 +383,106 @@ const Sidebar = () => {
               style={{ borderRadius: "4px" }}
             >
               <div className="navbar-nav mr-auto py-0">
-                <Link href="/imprimante" className="nav-item nav-link">
-                  Imprimante
-                </Link>
-                <Link href="/sisteme-pos" className="nav-item nav-link">
-                  Sisteme POS
-                </Link>
-                <Link href="/ups" className="nav-item nav-link">
-                  UPS
-                </Link>
-                <Link href="/accesorii" className="nav-item nav-link">
-                  Accesorii
-                </Link>
-                <Link href="/retelistica" className="nav-item nav-link">
-                  Retelistica
-                </Link>
-                <Link
-                  href="/sisteme-solare-fotovoltaice"
-                  className="nav-item nav-link"
-                >
-                  Sisteme solare fotovoltaice
-                </Link>
-                <Link
-                  href="/produse-la-reducere"
-                  className="nav-item nav-link text-danger font-weight-semi-bold"
-                >
-                  Produse la reducere
-                </Link>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <img
+                    src={printerIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  <Link
+                    href="/imprimante"
+                    className="nav-item nav-link font-weight-medium px-1 mr-4"
+                    style={{ fontSize: "18px" }}
+                  >
+                    Imprimante
+                  </Link>
+                </span>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <img
+                    src={posIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  <Link
+                    href="/sisteme-pos"
+                    className="nav-item nav-link font-weight-medium px-1 mr-4"
+                    style={{ fontSize: "18px" }}
+                  >
+                    Sisteme POS
+                  </Link>
+                </span>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <img
+                    src={upsIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  <Link
+                    href="/ups"
+                    className="nav-item nav-link font-weight-medium px-1 mr-4"
+                    style={{ fontSize: "18px" }}
+                  >
+                    UPS
+                  </Link>
+                </span>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <img
+                    src={accIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  <Link
+                    href="/accesorii"
+                    className="nav-item nav-link font-weight-medium px-1 mr-4"
+                    style={{ fontSize: "18px" }}
+                  >
+                    Accesorii
+                  </Link>
+                </span>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <Link
+                    href="/retelistica"
+                    className="nav-item nav-link font-weight-medium px-1 mr-4"
+                    style={{ fontSize: "18px" }}
+                  >
+                    <img
+                      src={netIcon.src}
+                      alt="list"
+                      style={{ height: "18px" }}
+                    />
+                    Retelistica
+                  </Link>
+                </span>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <Link
+                    href="/sisteme-solare-fotovoltaice"
+                    className="nav-item nav-link font-weight-medium px-1 mr-4"
+                    style={{ fontSize: "18px" }}
+                  >
+                    <img
+                      src={solarIcon.src}
+                      alt="list"
+                      style={{ height: "18px" }}
+                    />
+                    Sisteme solare fotovoltaice
+                  </Link>
+                </span>
+
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  {" "}
+                  <img
+                    src={discountIcon.src}
+                    alt="list"
+                    style={{ height: "18px" }}
+                  />
+                  <Link
+                    href="/produse-la-reducere"
+                    className="nav-item nav-link text-danger font-weight-medium px-1"
+                    style={{ fontSize: "18px" }}
+                  >
+                    Produse la reducere
+                  </Link>
+                </span>
               </div>
             </div>
           </nav>

@@ -118,12 +118,6 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                 <div className="col-lg-7 pb-5 parent-container">
                   {item.price ? (
                     <div className="first-container">
-                      <p className="mb-4 details">
-                        Toate fotografiile produselor prezentate au caracter
-                        informativ, pot diferi fata de produsul vandut si pot
-                        arata accesorii ce nu sunt incluse in pachetul standard
-                        al produsului
-                      </p>
                       <div className="d-flex align-items-center img-container">
                         <Image src={qualityIcon} alt="quality" />
                         <p>Garantie la toate produsele comandate</p>

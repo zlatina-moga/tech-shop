@@ -345,7 +345,7 @@ form .auth-field {
   .sidebar-link {
     display: flex;
     align-items: center;
-    font-weight: 500;
+    font-weight: 500 !important;
     color: black;
     img {
       margin-right: 5px;
