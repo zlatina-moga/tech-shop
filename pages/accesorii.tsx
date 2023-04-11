@@ -19,6 +19,7 @@ const Accesorii = () => {
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     productService
@@ -76,10 +77,12 @@ const Accesorii = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllAccessoriesPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -124,6 +127,7 @@ const Accesorii = () => {
             baseLink="/accesorii"
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

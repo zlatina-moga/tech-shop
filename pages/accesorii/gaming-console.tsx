@@ -19,6 +19,7 @@ const Gaming = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(91).then((result) => {
@@ -77,10 +78,12 @@ const Gaming = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllGamingPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -125,6 +128,7 @@ const Gaming = () => {
             brandLink={"/accesorii/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

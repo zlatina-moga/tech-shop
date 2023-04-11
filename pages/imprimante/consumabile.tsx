@@ -19,6 +19,7 @@ const NewPrinters = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(93).then((result) => {
@@ -75,10 +76,12 @@ const NewPrinters = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllPrinterCollateralPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -123,6 +126,7 @@ const NewPrinters = () => {
             brandLink={"/imprimante/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

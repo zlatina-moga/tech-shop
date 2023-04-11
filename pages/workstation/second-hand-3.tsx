@@ -21,6 +21,7 @@ const WorkstationsSecondHand = () => {
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(17).then((result) => {
@@ -81,10 +82,12 @@ const WorkstationsSecondHand = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getSecondHandWorkstationsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -131,6 +134,7 @@ const WorkstationsSecondHand = () => {
             processorsLink={"/workstation/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

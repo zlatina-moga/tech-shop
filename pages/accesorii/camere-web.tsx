@@ -19,6 +19,7 @@ const Cameras = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     productService
@@ -76,10 +77,12 @@ const Cameras = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllCamerasPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -124,6 +127,7 @@ const Cameras = () => {
             brandLink={"/accesorii/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

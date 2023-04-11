@@ -21,6 +21,7 @@ const ProcDetail = () => {
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(9).then((result) => {
@@ -81,10 +82,12 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllServersByProcessorPrice(currentPage, slug,  priceRange)
       .then((result) => {
         setItemsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -137,6 +140,7 @@ const ProcDetail = () => {
             processorsLink={"/servere/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

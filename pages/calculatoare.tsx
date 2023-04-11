@@ -20,6 +20,7 @@ const Calculatoare = () => {
   const [selectedSort, setSelectedSort] = useState("/calculatoare");
   const router = useRouter();
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     productService
@@ -68,10 +69,12 @@ const Calculatoare = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllComputersPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -130,6 +133,7 @@ const Calculatoare = () => {
             baseLink="/calculatoare"
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

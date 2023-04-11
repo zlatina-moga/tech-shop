@@ -19,6 +19,7 @@ const Palmrests = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(82).then((result) => {
@@ -76,10 +77,12 @@ const Palmrests = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllPalmrestsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -124,6 +127,7 @@ const Palmrests = () => {
             brandLink={"/componente/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

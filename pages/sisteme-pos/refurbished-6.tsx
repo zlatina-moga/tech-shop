@@ -22,6 +22,7 @@ const RefurbishedPOS = () => {
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(35).then((result) => {
@@ -82,10 +83,12 @@ const RefurbishedPOS = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllRefurbishedPOSPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -132,6 +135,7 @@ const RefurbishedPOS = () => {
             processorsLink={"/sisteme-pos/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

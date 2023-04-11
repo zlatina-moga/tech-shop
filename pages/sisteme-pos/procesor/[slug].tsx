@@ -23,6 +23,7 @@ const ProcDetail = () => {
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(34).then((result) => {
@@ -83,10 +84,12 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllPOSByProcessorPrice(currentPage, slug,  priceRange)
       .then((result) => {
         seItemsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -139,6 +142,7 @@ const ProcDetail = () => {
             categories={posCategories}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -20,6 +20,7 @@ const BrandDetail = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(40).then((result) => {
@@ -77,10 +78,12 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllUPSBrandsPrice(currentPage, slug,  priceRange)
       .then((result) => {
         seItemsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -131,6 +134,7 @@ const BrandDetail = () => {
             brandLink={"/ups/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

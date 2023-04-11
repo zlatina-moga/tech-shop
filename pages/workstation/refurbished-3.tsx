@@ -21,6 +21,7 @@ const WorkstationsRefurbished = () => {
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(16).then((result) => {
@@ -81,10 +82,12 @@ const WorkstationsRefurbished = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getRefurbishedWorkstationsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -131,6 +134,7 @@ const WorkstationsRefurbished = () => {
             processorsLink={"/workstation/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

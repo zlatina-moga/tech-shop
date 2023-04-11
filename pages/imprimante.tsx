@@ -19,6 +19,7 @@ const Imprimante = () => {
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     productService
@@ -75,10 +76,12 @@ const Imprimante = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getPrintersPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -123,6 +126,7 @@ const Imprimante = () => {
             baseLink="/imprimante"
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

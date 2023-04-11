@@ -20,6 +20,7 @@ const Laptopuri = () => {
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     productService
@@ -80,10 +81,12 @@ const Laptopuri = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllServersPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -130,6 +133,7 @@ const Laptopuri = () => {
             baseLink="/servere"
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

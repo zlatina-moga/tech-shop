@@ -20,6 +20,7 @@ const LaptopuriSecondHand = () => {
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(8).then((result) => {
@@ -80,10 +81,12 @@ const LaptopuriSecondHand = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllSecondHandLaptopsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -130,6 +133,7 @@ const LaptopuriSecondHand = () => {
             brandLink={"/laptop/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

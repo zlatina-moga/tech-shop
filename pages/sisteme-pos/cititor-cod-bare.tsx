@@ -20,6 +20,7 @@ const POSReader = () => {
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(37).then((result) => {
@@ -82,10 +83,12 @@ const POSReader = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllPOSReadersPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -132,6 +135,7 @@ const POSReader = () => {
             processorsLink={"/sisteme-pos/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

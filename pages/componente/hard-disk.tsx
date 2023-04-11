@@ -19,6 +19,7 @@ const HardDisks = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(74).then((result) => {
@@ -76,10 +77,12 @@ const HardDisks = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllHardDisksPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -124,6 +127,7 @@ const HardDisks = () => {
             brandLink={"/componente/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

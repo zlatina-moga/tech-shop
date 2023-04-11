@@ -9,6 +9,7 @@ import { cablesBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
+import classNames from "classnames";
 
 const Cables = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -21,6 +22,7 @@ const Cables = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     productService
@@ -78,10 +80,12 @@ const Cables = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllCablesPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -126,7 +130,7 @@ const Cables = () => {
             brandLink={"/accesorii/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
-            className="flex-nowrap"
+            className={classNames("flex-nowrap", show ? "" : "opacity-50")}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

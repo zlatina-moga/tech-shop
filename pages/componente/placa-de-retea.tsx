@@ -19,6 +19,7 @@ const Networks = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(87).then((result) => {
@@ -77,10 +78,12 @@ const Networks = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllNetworksPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -126,6 +129,7 @@ const Networks = () => {
             brandLink={'/componente/brand/'}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

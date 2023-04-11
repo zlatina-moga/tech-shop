@@ -19,6 +19,7 @@ const Keyboards = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [brands, setBrands] = useState([]);
   const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     sortingService.getBrands(64).then((result) => {
@@ -76,10 +77,12 @@ const Keyboards = () => {
   };
 
   useEffect(() => {
+    setShow(false);
     productService
       .getAllKeyboardsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
+        setShow(true);
       })
       .catch((err) => {
         console.log(err);
@@ -124,6 +127,7 @@ const Keyboards = () => {
             brandLink={"/accesorii/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
