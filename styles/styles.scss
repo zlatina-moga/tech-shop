@@ -360,6 +360,9 @@ form .auth-field {
     font-weight: 700;
     background-color: #57A046;
   }
+  .landing-img-wrapper {
+    height: 410px;
+  }
 }
 
 .laptop-card {
@@ -547,4 +550,15 @@ form .auth-field {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   }
+}
+
+#navbarCollapse {
+  z-index: 1000;
+  background-color: white;
+  width: 15rem;
+  padding: 10px;
+  border-radius: 4px;
+  border: 2px solid #7F7F7F;
+  float: right;
+  margin-right: 10px;
 }

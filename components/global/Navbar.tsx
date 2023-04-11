@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 //import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
+import classNames from "classnames";
 
 const Navbar = () => {
   //const { user } = useContext(AuthContext);
@@ -11,6 +13,7 @@ const Navbar = () => {
   //@ts-ignore
   const user = useSelector((state) => state.user.currentUser);
   const router = useRouter();
+  let [buttonState, setButtonState] = useState<boolean>(true);
 
   const onSearch = (e) => {
     e.preventDefault();
@@ -24,7 +27,7 @@ const Navbar = () => {
     <>
       <span className="nav-item dropdown">
         <div
-          className="btn border dropdown-toggle"
+          className="btn border dropdown-toggle d-none d-lg-inline-block"
           style={{ marginRight: "5px", borderRadius: "4px" }}
           aria-haspopup="true"
           aria-expanded="false"
@@ -38,12 +41,12 @@ const Navbar = () => {
           >
             <li>
               <Link className="dropdown-item" href="/login">
-                Login
+                Autentificare
               </Link>
             </li>
             <li>
               <Link className="dropdown-item" href="/register">
-                Register
+                Inregistrare
               </Link>
             </li>
           </ul>
@@ -57,7 +60,7 @@ const Navbar = () => {
       {user && (
         <span className="nav-item dropdown">
           <div
-            className="btn border dropdown-toggle"
+            className="btn border dropdown-toggle d-none d-lg-inline-block"
             style={{ marginRight: "5px", borderRadius: "4px" }}
             aria-haspopup="true"
             aria-expanded="false"
@@ -74,12 +77,12 @@ const Navbar = () => {
                   className="dropdown-item"
                   href={`/auth/profile/${user._id}`}
                 >
-                  Profile
+                  Profil
                 </Link>
               </li>
               <li>
                 <Link className="dropdown-item" href="/logout">
-                  Logout
+                  Deconectare
                 </Link>
               </li>
             </ul>
@@ -97,10 +100,7 @@ const Navbar = () => {
       >
         <div className="col-3 container-fluid">
           <Link href="/">
-            <img
-              src="/images/logo-example.png"
-              alt="logo"
-            />
+            <img src="/images/logo-example.png" alt="logo" />
           </Link>
         </div>
         <div className="col-6 text-left">
@@ -110,9 +110,10 @@ const Navbar = () => {
                 type="text"
                 name="searchItem"
                 id="searchItem"
-                className="form-control"
+                className="form-control rounded-1 "
                 placeholder="Caută produse"
-                style={{ borderRadius: "4px", textAlign: "left" }}
+                style={{ textAlign: "left" }}
+                onChange={() => setButtonState(false)}
               />
               <div className="input-group-append">
                 <button
@@ -124,6 +125,7 @@ const Navbar = () => {
                     width: "40px",
                     boxShadow: "none",
                   }}
+                  disabled={buttonState}
                 >
                   <i className="fa fa-search"></i>
                 </button>
@@ -131,11 +133,11 @@ const Navbar = () => {
             </div>
           </form>
         </div>
-        <div className=" col-3 text-right">
+        <div className="col-3 text-right d-none d-lg-inline-block">
           {user !== null ? userNav : guestNav}
           <Link
             href="/my-cart"
-            className="btn border"
+            className="btn border "
             style={{ borderRadius: "4px" }}
           >
             <i className="fas fa-shopping-cart text-primary mr-1"></i>
@@ -145,7 +147,86 @@ const Navbar = () => {
             Coș
           </Link>
         </div>
+        <div className="col-3 text-right navbar-expand-lg bg-light navbar-light d-inline-block d-lg-none">
+          <button
+            type="button"
+            className="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarToggleExternalContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+
+          </button>
+        </div>
       </nav>
+      <div className="collapse" id="navbarCollapse">
+              {user ? (
+                <Link
+                  className="nav-item nav-link text-left"
+                  href={`/auth/profile/${user._id}`}
+                >
+                  Profil
+                </Link>
+              ) : (
+                <Link className="nav-item nav-link text-left" href="/login">
+                  Autentificare
+                </Link>
+              )}
+              <Link href="/laptop" className="nav-item nav-link text-left">
+                Laptopuri
+              </Link>
+              <Link
+                href="/calculatoare"
+                className="nav-item nav-link text-left"
+              >
+                Calculatoare
+              </Link>
+              <Link href="/workstation" className="nav-item nav-link text-left">
+                Workstations
+              </Link>
+              <Link href="/servere" className="nav-item nav-link text-left">
+                Servere
+              </Link>
+              <Link href="/monitoare" className="nav-item nav-link text-left">
+                Monitoare
+              </Link>
+              <Link href="/componente" className="nav-item nav-link text-left">
+              Componente
+              </Link>
+              <Link href="/licenta-software" className="nav-item nav-link text-left">
+               Software
+              </Link>
+              <Link href="/imprimante" className="nav-item nav-link text-left">
+                Imprimante
+              </Link>
+              <Link href="/sisteme-pos" className="nav-item nav-link text-left">
+                Sisteme POS
+              </Link>
+              <Link href="/ups" className="nav-item nav-link text-left">
+                UPS
+              </Link>
+              <Link href="/accesorii" className="nav-item nav-link text-left">
+                Accesorii
+              </Link>
+              <Link href="/retelistica" className="nav-item nav-link text-left">
+                Retelistica
+              </Link>
+              <Link
+                href="/sisteme-solare-fotovoltaice"
+                className="nav-item nav-link text-left"
+              >
+                Sisteme solare fotovoltaice
+              </Link>
+              <Link
+                href="/produse-la-reducere"
+                className="nav-item nav-link text-danger font-weight-semi-bold text-left"
+              >
+                Produse la reducere
+              </Link>
+            </div>
     </div>
   );
 };

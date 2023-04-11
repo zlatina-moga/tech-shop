@@ -371,22 +371,6 @@ const Sidebar = () => {
         </div>
         <div className="col-lg-9">
           <nav className="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-            <a href="" className="text-decoration-none d-block d-lg-none">
-              <h1 className="m-0 display-5 font-weight-semi-bold">
-                <span className="text-primary font-weight-bold border px-3 mr-1">
-                  PC
-                </span>
-                BUN
-              </h1>
-            </a>
-            <button
-              type="button"
-              className="navbar-toggler"
-              data-toggle="collapse"
-              data-target="#navbarCollapse"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
             <div
               className="collapse navbar-collapse justify-content-between"
               style={{ borderRadius: "4px" }}
@@ -423,7 +407,7 @@ const Sidebar = () => {
             </div>
           </nav>
           <div className="carousel slide" data-ride="carousel">
-            <div className="carousel-item active" style={{ height: 410 }}>
+            <div className="carousel-item active landing-img-wrapper">
               <div>
                 <Image
                   className="img-fluid"
