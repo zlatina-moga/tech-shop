@@ -209,7 +209,7 @@ export default function Home() {
                     >
                       <Image
                         className="img-fluid"
-                        src="/images/hard-disk.webp"
+                        src="/images/disk.webp"
                         alt=""
                         width={300}
                         height={300}
