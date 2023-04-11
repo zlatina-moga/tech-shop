@@ -1,6 +1,5 @@
-const baseUrl = "http://localhost:5500";
-//const baseUrl = 'https://pc-bun.herokuapp.com/';
-
+//const baseUrl = "http://localhost:5500";
+const baseUrl = 'https://pc-bun-api.herokuapp.com';
 export const create = async (orderData) => {
   let res = await fetch(`${baseUrl}/order`, {
     method: "POST",

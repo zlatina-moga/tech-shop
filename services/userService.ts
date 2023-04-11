@@ -1,5 +1,5 @@
-const baseUrl = "http://localhost:5500";
-//const baseUrl = 'https://pc-bun.herokuapp.com/';
+//const baseUrl = "http://localhost:5500";
+const baseUrl = 'https://pc-bun-api.herokuapp.com';
 
 export const register = async (name, email, password) => {
   let res = await fetch(`${baseUrl}/auth/register`, {
