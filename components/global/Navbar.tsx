@@ -13,7 +13,6 @@ const Navbar = () => {
   const router = useRouter();
   let [buttonState, setButtonState] = useState<boolean>(true);
   const isTablet = useMediaQuery("(max-width:769px)");
-  const [showMenu, setshowMenu] = useState<boolean>(false);
 
   const onSearch = (e) => {
     e.preventDefault();
@@ -92,12 +91,6 @@ const Navbar = () => {
     </>
   );
 
-  if (showMenu && typeof window != "undefined" && window.document) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = 'unset';
-  }
-
   return (
     <div className="w-100" id="nav-container">
       <nav
@@ -166,7 +159,6 @@ const Navbar = () => {
             aria-controls="navbarToggleExternalContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
-            onClick={() => setshowMenu(!showMenu)}
           >
             <span className="navbar-toggler-icon"></span>
           </button>

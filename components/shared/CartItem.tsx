@@ -80,7 +80,7 @@ const CartItem = ({ id, imgLink, img1, title, priceNum, warranty }) => {
               id="remove-btn"
               onClick={() => dispatch(removeItem({ id, priceNum, warranty }))}
             >
-              Remove
+              Șterge
             </button>
           </div>
         </div>

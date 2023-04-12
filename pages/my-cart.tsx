@@ -3,10 +3,13 @@ import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 import CartItem from "../components/shared/CartItem";
 import Footer from "../components/global/Footer";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import ResponsiveCart from "../components/shared/ResponsiveCartItem";
 
 const MyCard = () => {
   //@ts-ignore
   const cart = useSelector((state) => state.cart);
+  const isTablet = useMediaQuery("(max-width:500px)");
 
   return (
     <>
@@ -31,18 +34,10 @@ const MyCard = () => {
       >
         <div className="row px-xl-5">
           <div className="col-lg-8 table-responsive mb-5">
-            <table className="table table-bordered text-center mb-0">
-              <thead className="bg-secondary text-dark">
-                <tr>
-                  <th>Produse</th>
-                  <th>Preț</th>
-                  <th>Garanție</th>
-                  <th>Cantitate</th>
-                </tr>
-              </thead>
-              <tbody className="align-middle">
+            {isTablet ? (
+              <div style={{ display: "flex", flexDirection: "column" }}>
                 {cart.products.map((p) => (
-                  <CartItem
+                  <ResponsiveCart
                     key={p.itemData[0].id}
                     id={p.itemData[0].id}
                     imgLink={p.itemData[0].imgLink}
@@ -52,12 +47,36 @@ const MyCard = () => {
                     warranty={p.warranty}
                   />
                 ))}
-              </tbody>
-            </table>
+              </div>
+            ) : (
+              <table className="table table-bordered text-center mb-0">
+                <thead className="bg-secondary text-dark">
+                  <tr>
+                    <th>Produse</th>
+                    <th>Preț</th>
+                    <th>Garanție</th>
+                    <th>Cantitate</th>
+                  </tr>
+                </thead>
+                <tbody className="align-middle">
+                  {cart.products.map((p) => (
+                    <CartItem
+                      key={p.itemData[0].id}
+                      id={p.itemData[0].id}
+                      imgLink={p.itemData[0].imgLink}
+                      img1={p.itemData[0].img1}
+                      title={p.itemData[0].title}
+                      priceNum={p.itemData[0].priceNum}
+                      warranty={p.warranty}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
           <div className="col-lg-4">
             <form className="mb-3" action="" style={{ marginTop: "-20px" }}>
-              <div className="input-group " id='bonus-points-container'>
+              <div className="input-group " id="bonus-points-container">
                 <input
                   type="text"
                   className="form-control p-4 border border-primary mr-2 rounded-1"

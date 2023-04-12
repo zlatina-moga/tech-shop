@@ -76,7 +76,7 @@ const ProcDetail = () => {
         }}
       >
         <section className="nf-img-section "></section>
-        <section className="nf-form-section w-50 ml-4 mt-2">
+        <section className="nf-form-section w-xl-50 ml-4 mt-2">
           <Image
             src="/images/logo-example.png"
             alt="logo"
