@@ -18,14 +18,20 @@ const cartSlice = createSlice({
       state.total += action.payload.itemData[0].priceNum;
     },
     removeItem: (state, { payload }) => {
-      state.products = state.products.filter(
+      const newCart = state.products.filter(
         (item) => item.itemData[0].id !== payload.id
       );
+      state.products = newCart;
       state.quantity -= 1;
-      state.warranty -= payload.warranty ;
-      state.total -= state.warranty;
-      state.total -= payload.priceNum;
-
+      if (state.products.length == 0) {
+        state.quantity = 0
+        state.warranty = 0 ;
+        state.total = 0 ;
+      } else {
+        state.warranty -= payload.warranty ;
+        state.total -= payload.warranty ;
+        state.total -= payload.priceNum;
+      }
     },
     increase: (state, { payload }) => {
       const cartItem = state.products.find(

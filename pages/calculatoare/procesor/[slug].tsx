@@ -39,7 +39,7 @@ const ProcDetail = () => {
 
   useEffect(() => {
     productService
-      .getAllPOSByProcessor(currentPage, slug)
+      .getAllComputersByProcessor(currentPage, slug)
       .then((result) => {
         setLoading(false);
         setItemsData(result);

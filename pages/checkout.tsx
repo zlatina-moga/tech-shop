@@ -38,11 +38,6 @@ const Checkout = () => {
             style: { marginTop: "100px" },
           });
         });
-    } else {
-      toast.error("Vă rugăm să vă conectați mai întâi în contul dvs", {
-        style: { marginTop: "100px" },
-      });
-      router.push("/login");
     }
   }, []);
 
@@ -92,7 +87,7 @@ const Checkout = () => {
         quantity: c.quantity,
         price: c.itemData[0].priceNum,
         warranty: c.warranty,
-        title: c.itemData[0].title
+        title: c.itemData[0].title,
       }));
 
       orderService
@@ -108,14 +103,14 @@ const Checkout = () => {
           address: address,
           zip: zip,
           amount: cart.total,
-          orderNum: orderNum
+          orderNum: orderNum,
         })
         .then(() => {
           toast.success("Comanda plasata cu succes", {
             style: { marginTop: "100px" },
           });
-          dispatch(empty())
-          router.push('/')
+          dispatch(empty());
+          router.push("/success");
         })
         .catch((err) => {
           toast.error(err, {

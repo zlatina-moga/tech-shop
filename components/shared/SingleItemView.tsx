@@ -17,7 +17,7 @@ import "swiper/css/navigation";
 import { addProduct } from "../../services/redux/cartRedux";
 import classNames from "classnames";
 import emailjs from "emailjs-com";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const SingleItemView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
@@ -202,7 +202,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                         <p className="in-stock">{item.inStock}</p>
 
                         <p className="eco-tax">
-                          Pretul include Eco-Taxa de 6.00 lei
+                          Prețul include Eco-Taxa de 6.00 lei
                         </p>
                         <button
                           className={classNames(
@@ -211,7 +211,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                           )}
                           onClick={handleAddToCart}
                         >
-                          Adauga in cos
+                          Adauga in coș
                         </button>
                         <div className="d-flex align-items-center mb-2 pt-2">
                           <Image
@@ -303,7 +303,6 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                     ))}
                 </div>
               </div>
-              <Toaster position="top-right" />
             </div>
           </div>
         ))}

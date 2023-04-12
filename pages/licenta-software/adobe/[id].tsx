@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import Navbar from "../../../components/global/Navbar";
@@ -12,15 +13,22 @@ import payImg from "../../../public/images/stripe.png";
 import { adobeBrcrmbs } from "../../../data/breadcrumbs";
 import { addProduct } from "../../../services/redux/cartRedux";
 import Footer from "../../../components/global/Footer";
+import toast from "react-hot-toast";
+import classNames from "classnames";
 
 const AdobeDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
+  const [clicked, setClicked] = useState(false);
 
   const handleAddToCart = () => {
-    let itemData = licenseData.filter((el) => el.item == id)
-    dispatch(addProduct({ itemData, quantity: 1 }));
+    let itemData = licenseData.filter((el) => el.item == id);
+    dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
+    setClicked(true);
+    toast.success("Produs adăugat în coș", {
+      style: { marginTop: "100px" },
+    });
   };
 
   return (
@@ -84,28 +92,34 @@ const AdobeDetails = () => {
                         </ul>
                       </div>
                       <div className="second-container">
-                      {item.discount && (
-                      <div style={{ display: "flex" }}>
-                        <div className="discount-container">
-                          <div>
-                            <p>{item.discount}</p>
+                        {item.discount && (
+                          <div style={{ display: "flex" }}>
+                            <div className="discount-container">
+                              <div>
+                                <p>{item.discount}</p>
+                              </div>
+                            </div>
+                            <div className="old-price">
+                              <h6>
+                                <del>{item.oldPrice}</del>
+                              </h6>
+                            </div>
                           </div>
-                        </div>
-                        <div className="old-price">
-                          <h6>
-                            <del>{item.oldPrice}</del>
-                          </h6>
-                        </div>
-                      </div>
-                    )}
+                        )}
                         <div
                           className="price-container"
                           style={{ marginTop: "0" }}
                         >
                           <h3 className="mb-3 price">{item.price} + TVA</h3>
 
-                          <button className="btn btn-primary add-to-cart" onClick={ handleAddToCart}>
-                            Adauga in cos
+                          <button
+                            className={classNames(
+                              "btn btn-primary add-to-cart",
+                              clicked ? "disabled" : ""
+                            )}
+                            onClick={handleAddToCart}
+                          >
+                            Adauga in coș
                           </button>
                           <div className="d-flex align-items-center mb-2 pt-2">
                             <Image

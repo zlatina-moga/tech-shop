@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import Link from "next/link";
 import Navbar from "../../../components/global/Navbar";
 import { licenseData } from "../../../data/licenseData";
@@ -12,15 +13,22 @@ import payImg from "../../../public/images/stripe.png";
 import { windowsBrcrmbs } from "../../../data/breadcrumbs";
 import { addProduct } from "../../../services/redux/cartRedux";
 import Footer from "../../../components/global/Footer";
+import toast from "react-hot-toast";
+import classNames from "classnames";
 
 const WindowsDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
+  const [clicked, setClicked] = useState(false);
 
   const handleAddToCart = () => {
     let itemData = licenseData.filter((el) => el.item == id);
-    dispatch(addProduct({ itemData, quantity: 1 }));
+    dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
+    setClicked(true);
+    toast.success("Produs adăugat în coș", {
+      style: { marginTop: "100px" },
+    });
   };
 
   return (
@@ -105,10 +113,13 @@ const WindowsDetails = () => {
                           <h3 className="mb-3 price">{item.price} + TVA</h3>
 
                           <button
-                            className="btn btn-primary add-to-cart"
+                            className={classNames(
+                              "btn btn-primary add-to-cart",
+                              clicked ? "disabled" : ""
+                            )}
                             onClick={handleAddToCart}
                           >
-                            Adauga in cos
+                            Adauga in coș
                           </button>
                           <div className="d-flex align-items-center mb-2 pt-2">
                             <Image

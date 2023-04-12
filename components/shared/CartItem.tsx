@@ -78,7 +78,7 @@ const CartItem = ({ id, imgLink, img1, title, priceNum, warranty }) => {
                 quantity == 1 ? "" : "d-none"
               )}
               id="remove-btn"
-              onClick={() => dispatch(removeItem({ id, priceNum }))}
+              onClick={() => dispatch(removeItem({ id, priceNum, warranty }))}
             >
               Remove
             </button>

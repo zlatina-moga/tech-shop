@@ -33,18 +33,18 @@ export default function Home() {
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div
                   className="d-flex align-items-center border border-primary mb-4"
-                  style={{ padding: 30, borderRadius: "4px" }}
+                  style={{ padding: 30, borderRadius: "4px", height: '110px' }}
                 >
                   <h1 className="fa fa-check text-primary m-0 mr-3"></h1>
                   <h5 className="font-weight-semi-bold m-0">
-                  Produse intr-o stare foarte buna
+                    Produse intr-o stare foarte buna
                   </h5>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div
                   className="d-flex align-items-center border border-primary mb-4"
-                  style={{ padding: 30, borderRadius: "4px" }}
+                  style={{ padding: 30, borderRadius: "4px", height: '110px' }}
                 >
                   <h1 className="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
                   <h5 className="font-weight-semi-bold m-0">
@@ -55,7 +55,7 @@ export default function Home() {
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div
                   className="d-flex align-items-center border border-primary mb-4"
-                  style={{ padding: 30, borderRadius: "4px" }}
+                  style={{ padding: 30, borderRadius: "4px", height: '110px' }}
                 >
                   <h1 className="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
                   <h5 className="font-weight-semi-bold m-0">
@@ -66,10 +66,12 @@ export default function Home() {
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div
                   className="d-flex align-items-center border mb-4 border-primary"
-                  style={{ padding: 30, borderRadius: "4px" }}
+                  style={{ padding: 30, borderRadius: "4px", height: '110px' }}
                 >
                   <h1 className="fa fa-phone-volume text-primary m-0 mr-3"></h1>
-                  <h5 className="font-weight-semi-bold m-0">Relații Clienți</h5>
+                  <h5 className="font-weight-semi-bold m-0">
+                    Relații Clienți <br /> +40(721) 909 049
+                  </h5>
                 </div>
               </div>
             </div>
@@ -83,12 +85,19 @@ export default function Home() {
                       Dorești un laptop care nu face parte din oferta?
                     </span>
                   </h2>
-                  <p style={{fontSize: '20px'}}>Ne poți suna și te ajutăm imediat!</p>
-                  <a className="mb-2 footer-link font-weight-bold" href="tel:+40(721) 909 049">
+                  <p style={{ fontSize: "20px" }}>
+                    Ne poți suna și te ajutăm imediat!
+                  </p>
+                  <a
+                    className="mb-2 footer-link font-weight-bold"
+                    href="tel:+40(721) 909 049"
+                  >
                     <i className="fa fa-phone-alt text-primary mr-2"></i>
                     +40(721) 909 049
                   </a>
-                  <p className="mt-4" style={{fontSize: '20px'}}>Aducem ORICE echipament IT din lume!</p>
+                  <p className="mt-4" style={{ fontSize: "20px" }}>
+                    Aducem ORICE echipament IT din lume!
+                  </p>
                 </div>
               </div>
             </div>
