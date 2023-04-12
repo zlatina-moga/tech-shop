@@ -18,7 +18,7 @@ import { addProduct } from "../../services/redux/cartRedux";
 import classNames from "classnames";
 import toast, { Toaster } from "react-hot-toast";
 import emailjs from "emailjs-com";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const [clicked, setClicked] = useState(false);
   let [warranty, setWarranty] = useState(0);
   let [warrantyType, setWarrantyType] = useState("");
-  const isTablet = useMediaQuery('(max-width:601px)');
+  const isTablet = useMediaQuery("(max-width:601px)");
 
   const id = itemData.map((element) => element.id).toString();
 
@@ -151,7 +151,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           {item.upgradeOptions.map((option, i) => (
                             <div
                               key={i}
-                              className={isTablet ? "dropdown" :"dropend"}
+                              className={isTablet ? "dropdown" : "dropend"}
                               style={{
                                 borderRadius: "4px",
                                 marginBottom: "1rem",
@@ -162,11 +162,24 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                 type="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
-                                style={{overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '200px'}}
+                                style={{
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                  whiteSpace: "nowrap",
+                                  maxWidth: "200px",
+                                }}
                               >
                                 {option.current_name}
                               </button>
-                              <ul className="dropdown-menu" id="upgrade-links">
+                              <ul
+                                className="dropdown-menu"
+                                id="upgrade-links"
+                                style={{
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                  whiteSpace: "nowrap",
+                                }}
+                              >
                                 {option.components.map((extra, index) => (
                                   <li key={index}>
                                     <Link
@@ -177,6 +190,9 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                         display: "flex",
                                         justifyContent: "space-between",
                                         alignItems: "center",
+                                        overflow: "hidden",
+                                        textOverflow: "ellipsis",
+                                        whiteSpace: "nowrap",
                                       }}
                                     >
                                       {extra.name}
@@ -203,7 +219,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           ))}
                           {item.warrantyOptions && (
                             <div
-                            className={isTablet ? "dropdown" :"dropend"}
+                              className={isTablet ? "dropdown" : "dropend"}
                               style={{
                                 borderRadius: "4px",
                                 marginBottom: "1rem",
@@ -356,7 +372,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           <Image
                             src={payImg}
                             alt="payments"
-                            style={{ maxHeight: "60px", height: 'auto' }}
+                            style={{ maxHeight: "60px", height: "auto" }}
                           />
                         </div>
                         <div className="contact">
@@ -411,7 +427,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                     marginTop: "50px",
                   }}
                 >
-                  <img src={item.techImage} style={{height: 'auto', width: 'auto', maxWidth: '100%'}}/>
+                  <img
+                    src={item.techImage}
+                    style={{ height: "auto", width: "auto", maxWidth: "100%" }}
+                  />
                 </div>
               </div>
               <div>

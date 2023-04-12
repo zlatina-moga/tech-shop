@@ -571,4 +571,7 @@ form .auth-field {
     right: 190px;
     bottom: 25px;
   }
+  ::placeholder {
+    color: white !important;
+  }
 }
