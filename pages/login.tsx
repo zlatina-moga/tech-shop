@@ -93,7 +93,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="wrapper">
+      <div className="wrapper login">
         <div className="container">
           <h1 style={{ color: "white" }}>Autentificare</h1>
           <form className="form" onSubmit={handleSubmit}>
@@ -120,15 +120,9 @@ const Login = () => {
               />
               <Image
                 src={showPassword ? showPasswordIcon : hidePasswordIcon}
-                style={{
-                  height: "15px",
-                  width: "15px",
-                  position: "absolute",
-                  right: "190px",
-                  bottom: "25px",
-                }}
                 onClick={togglePassword}
                 alt="image"
+                id='toggle-password'
               />
             </div>
 

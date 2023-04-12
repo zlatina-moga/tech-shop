@@ -150,7 +150,7 @@ const Navbar = () => {
             Coș
           </Link>
         </div>
-        <div className="col-3 text-right navbar-expand-lg bg-light navbar-light d-inline-block d-lg-none">
+        <div className="col-3 text-right navbar-expand-lg bg-light navbar-light d-inline-block d-lg-none" >
           <button
             type="button"
             className="navbar-toggler"
@@ -164,7 +164,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <div className="collapse" id="navbarCollapse">
+      <div className="collapse" id="navbarCollapse" style={{overflowY: 'scroll', maxHeight: '350px'}}>
         <Link href="/my-cart" className="nav-item nav-link text-left">
           <i className="fas fa-shopping-cart text-primary mr-1"></i>
           <span className="badge" style={{ color: "black" }}>

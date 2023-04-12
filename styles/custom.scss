@@ -519,7 +519,6 @@
   }
 }
 
-
 @media screen and (max-width: 472px) {
   .page-details {
     .description-container {
@@ -528,4 +527,9 @@
       }
     }
   } 
+  .login {
+    #toggle-password {
+      right: 20% !important;
+    }
+  }
 }

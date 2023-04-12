@@ -101,7 +101,7 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div className="wrapper">
+      <div className="wrapper login">
         <div className="container">
           <h1 style={{ color: "white" }}>
             Inregistrează-te pentru a crea un cont nou
@@ -137,16 +137,9 @@ const Register = () => {
               />
               <Image
                 src={showPassword ? showPasswordIcon : hidePasswordIcon}
-                style={{
-                  height: "15px",
-                  width: "15px",
-                  position: "absolute",
-                  right: "190px",
-                  bottom: "25px",
-                  cursor: "pointer",
-                }}
                 onClick={togglePassword}
                 alt="image"
+                id='toggle-password'
               />
             </div>
             <div
@@ -165,16 +158,9 @@ const Register = () => {
               />
               <Image
                 src={showSecondPassword ? showPasswordIcon : hidePasswordIcon}
-                style={{
-                  height: "15px",
-                  width: "15px",
-                  position: "absolute",
-                  right: "190px",
-                  bottom: "25px",
-                  cursor: "pointer",
-                }}
                 onClick={toggleSecondPassword}
                 alt="image"
+                id='toggle-password'
               />
             </div>
 
