@@ -383,7 +383,7 @@ const Sidebar = () => {
               style={{ borderRadius: "4px" }}
             >
               <div className="navbar-nav mr-auto py-0">
-                <span style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
                   <img
                     src={printerIcon.src}
                     alt="list"
@@ -397,7 +397,7 @@ const Sidebar = () => {
                     Imprimante
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
                   <img
                     src={posIcon.src}
                     alt="list"
@@ -411,7 +411,7 @@ const Sidebar = () => {
                     Sisteme POS
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
                   <img
                     src={upsIcon.src}
                     alt="list"
@@ -425,7 +425,7 @@ const Sidebar = () => {
                     UPS
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
                   <img
                     src={accIcon.src}
                     alt="list"
@@ -439,7 +439,7 @@ const Sidebar = () => {
                     Accesorii
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
                   <Link
                     href="/retelistica"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
@@ -453,7 +453,7 @@ const Sidebar = () => {
                     Retelistica
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
                   <Link
                     href="/sisteme-solare-fotovoltaice"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
@@ -468,7 +468,7 @@ const Sidebar = () => {
                   </Link>
                 </span>
 
-                <span style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
                   {" "}
                   <img
                     src={discountIcon.src}

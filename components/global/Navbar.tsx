@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-//import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
-import Image from "next/image";
-import classNames from "classnames";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Navbar = () => {
   //const { user } = useContext(AuthContext);
@@ -14,6 +12,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser);
   const router = useRouter();
   let [buttonState, setButtonState] = useState<boolean>(true);
+  const isTablet = useMediaQuery("(max-width:769px)");
 
   const onSearch = (e) => {
     e.preventDefault();
@@ -100,7 +99,11 @@ const Navbar = () => {
       >
         <div className="col-3 container-fluid">
           <Link href="/">
-            <img src="/images/logo-example.png" alt="logo" />
+            {isTablet ? (
+              <img src="/images/pcbun_icon.png" alt="logo" />
+            ) : (
+              <img src="/images/logo-example.png" alt="logo" />
+            )}
           </Link>
         </div>
         <div className="col-6 text-left">
@@ -158,75 +161,80 @@ const Navbar = () => {
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
-
           </button>
         </div>
       </nav>
       <div className="collapse" id="navbarCollapse">
-              {user ? (
-                <Link
-                  className="nav-item nav-link text-left"
-                  href={`/auth/profile/${user._id}`}
-                >
-                  Profil
-                </Link>
-              ) : (
-                <Link className="nav-item nav-link text-left" href="/login">
-                  Autentificare
-                </Link>
-              )}
-              <Link href="/laptop" className="nav-item nav-link text-left">
-                Laptopuri
-              </Link>
-              <Link
-                href="/calculatoare"
-                className="nav-item nav-link text-left"
-              >
-                Calculatoare
-              </Link>
-              <Link href="/workstation" className="nav-item nav-link text-left">
-                Workstations
-              </Link>
-              <Link href="/servere" className="nav-item nav-link text-left">
-                Servere
-              </Link>
-              <Link href="/monitoare" className="nav-item nav-link text-left">
-                Monitoare
-              </Link>
-              <Link href="/componente" className="nav-item nav-link text-left">
-              Componente
-              </Link>
-              <Link href="/licenta-software" className="nav-item nav-link text-left">
-               Software
-              </Link>
-              <Link href="/imprimante" className="nav-item nav-link text-left">
-                Imprimante
-              </Link>
-              <Link href="/sisteme-pos" className="nav-item nav-link text-left">
-                Sisteme POS
-              </Link>
-              <Link href="/ups" className="nav-item nav-link text-left">
-                UPS
-              </Link>
-              <Link href="/accesorii" className="nav-item nav-link text-left">
-                Accesorii
-              </Link>
-              <Link href="/retelistica" className="nav-item nav-link text-left">
-                Retelistica
-              </Link>
-              <Link
-                href="/sisteme-solare-fotovoltaice"
-                className="nav-item nav-link text-left"
-              >
-                Sisteme solare fotovoltaice
-              </Link>
-              <Link
-                href="/produse-la-reducere"
-                className="nav-item nav-link text-danger font-weight-semi-bold text-left"
-              >
-                Produse la reducere
-              </Link>
-            </div>
+        <Link href="/my-cart" className="nav-item nav-link text-left">
+          <i className="fas fa-shopping-cart text-primary mr-1"></i>
+          <span className="badge" style={{ color: "black" }}>
+            {quantity}
+          </span>
+          Coș
+        </Link>
+        {user ? (
+          <Link
+            className="nav-item nav-link text-left"
+            href={`/auth/profile/${user._id}`}
+          >
+            <i className="fas fa-user text-primary mr-1"></i>
+            Profil
+          </Link>
+        ) : (
+          <Link className="nav-item nav-link text-left" href="/login">
+            <i className="fas fa-user text-primary mr-2"></i>
+            Autentificare
+          </Link>
+        )}
+        <Link href="/laptop" className="nav-item nav-link text-left">
+          Laptopuri
+        </Link>
+        <Link href="/calculatoare" className="nav-item nav-link text-left">
+          Calculatoare
+        </Link>
+        <Link href="/workstation" className="nav-item nav-link text-left">
+          Workstations
+        </Link>
+        <Link href="/servere" className="nav-item nav-link text-left">
+          Servere
+        </Link>
+        <Link href="/monitoare" className="nav-item nav-link text-left">
+          Monitoare
+        </Link>
+        <Link href="/componente" className="nav-item nav-link text-left">
+          Componente
+        </Link>
+        <Link href="/licenta-software" className="nav-item nav-link text-left">
+          Software
+        </Link>
+        <Link href="/imprimante" className="nav-item nav-link text-left">
+          Imprimante
+        </Link>
+        <Link href="/sisteme-pos" className="nav-item nav-link text-left">
+          Sisteme POS
+        </Link>
+        <Link href="/ups" className="nav-item nav-link text-left">
+          UPS
+        </Link>
+        <Link href="/accesorii" className="nav-item nav-link text-left">
+          Accesorii
+        </Link>
+        <Link href="/retelistica" className="nav-item nav-link text-left">
+          Retelistica
+        </Link>
+        <Link
+          href="/sisteme-solare-fotovoltaice"
+          className="nav-item nav-link text-left"
+        >
+          Sisteme solare fotovoltaice
+        </Link>
+        <Link
+          href="/produse-la-reducere"
+          className="nav-item nav-link text-danger font-weight-semi-bold text-left"
+        >
+          Produse la reducere
+        </Link>
+      </div>
     </div>
   );
 };

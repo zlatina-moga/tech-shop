@@ -32,7 +32,7 @@ export default function Home() {
             <div className="row px-xl-5 pb-3">
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div
-                  className="d-flex align-items-center border border-primary mb-4"
+                  className="d-flex align-items-center border border-primary mb-4 features-card"
                   style={{ padding: 30, borderRadius: "4px", height: '110px' }}
                 >
                   <h1 className="fa fa-check text-primary m-0 mr-3"></h1>
@@ -43,7 +43,7 @@ export default function Home() {
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div
-                  className="d-flex align-items-center border border-primary mb-4"
+                  className="d-flex align-items-center border border-primary mb-4 features-card"
                   style={{ padding: 30, borderRadius: "4px", height: '110px' }}
                 >
                   <h1 className="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
@@ -54,7 +54,7 @@ export default function Home() {
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div
-                  className="d-flex align-items-center border border-primary mb-4"
+                  className="d-flex align-items-center border border-primary mb-4 features-card"
                   style={{ padding: 30, borderRadius: "4px", height: '110px' }}
                 >
                   <h1 className="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
@@ -65,7 +65,7 @@ export default function Home() {
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div
-                  className="d-flex align-items-center border mb-4 border-primary"
+                  className="d-flex align-items-center border mb-4 border-primary features-card"
                   style={{ padding: 30, borderRadius: "4px", height: '110px' }}
                 >
                   <h1 className="fa fa-phone-volume text-primary m-0 mr-3"></h1>

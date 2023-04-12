@@ -18,12 +18,13 @@ import { addProduct } from "../../services/redux/cartRedux";
 import classNames from "classnames";
 import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const SingleItemView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
   const [clicked, setClicked] = useState(false);
-
+  const isTablet = useMediaQuery('(max-width:601px)');
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
@@ -54,13 +55,13 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
   const sendItemRequest = (templateId, variables) => {
     emailjs
       .send(process.env.SERVICE_ID, templateId, variables, process.env.USER_ID)
-      .then((res) => {
+      .then(() => {
         toast.success("Mesaj trimis cu succes", {
           style: { marginTop: "100px" },
         });
         setTimeout(() => {
-          router.push('/')
-        }, 2000)
+          router.push("/");
+        }, 2000);
       });
   };
 
@@ -95,7 +96,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
               <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
                 {item.title}
               </h1>
-              <div className="row px-xl-5">
+              <div className="row px-xl-5 main-container">
                 <div className="col-lg-5 pb-5">
                   <Swiper
                     navigation={true}
@@ -108,14 +109,14 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                           <img
                             src={img}
                             alt="image"
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer"}}
                           />
                         </PhotoView>
                       </SwiperSlide>
                     ))}
                   </Swiper>
                 </div>
-                <div className="col-lg-7 pb-5 parent-container">
+                <div className="col-xl-7 pb-5 parent-container">
                   {item.price ? (
                     <div className="first-container">
                       <div className="d-flex align-items-center img-container">
@@ -126,6 +127,10 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                         <Image src={transportIcon} alt="quality" />
                         <p>Livrare gratuita la comanda de peste 250 lei</p>
                       </div>
+                      <p className="mb-4 details">
+                        Produsele noastre arata foarte bine, fara zgarieturi
+                        vizibile.
+                      </p>
                     </div>
                   ) : (
                     <div className="first-container">
@@ -217,7 +222,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                           <Image
                             src={payImg}
                             alt="payments"
-                            style={{ maxHeight: "60px" }}
+                            style={{ maxHeight: "60px", height: 'auto' }}
                           />
                         </div>
                         <div className="contact">

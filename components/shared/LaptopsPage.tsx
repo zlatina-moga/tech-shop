@@ -101,7 +101,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           </div>
 
           <div
-            className={classNames("row pb-3 justify-content-center, ml-5", className)}
+            className={classNames("row pb-3 justify-content-center, ml-xl-5", className)}
             style={{ maxWidth: "98rem", justifyContent: 'center' }}
           >
             {laptopsData.map((itemData, idx) => (

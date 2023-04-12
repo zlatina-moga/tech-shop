@@ -11,7 +11,7 @@ const MyCard = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid bg-secondary mb-3">
+      <div className="container-fluid bg-secondary mb-3 my-cart">
         <div
           className="d-flex flex-column align-items-center justify-content-center"
           style={{ minHeight: "250px" }}
@@ -57,7 +57,7 @@ const MyCard = () => {
           </div>
           <div className="col-lg-4">
             <form className="mb-3" action="" style={{ marginTop: "-20px" }}>
-              <div className="input-group">
+              <div className="input-group " id='bonus-points-container'>
                 <input
                   type="text"
                   className="form-control p-4 border border-primary mr-2 rounded-1"

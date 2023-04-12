@@ -18,15 +18,17 @@ import { addProduct } from "../../services/redux/cartRedux";
 import classNames from "classnames";
 import toast, { Toaster } from "react-hot-toast";
 import emailjs from "emailjs-com";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
   let [warranty, setWarranty] = useState(0);
-  let [warrantyType, setWarrantyType] = useState('');
+  let [warrantyType, setWarrantyType] = useState("");
+  const isTablet = useMediaQuery('(max-width:601px)');
 
-  const id = itemData.map((element => element.id)).toString()
+  const id = itemData.map((element) => element.id).toString();
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: warranty }));
@@ -57,7 +59,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const sendItemRequest = (templateId, variables) => {
     emailjs
       .send(process.env.SERVICE_ID, templateId, variables, process.env.USER_ID)
-      .then((res) => {
+      .then(() => {
         toast.success("Mesaj trimis cu succes", {
           style: { marginTop: "100px" },
         });
@@ -129,7 +131,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                     ))}
                   </Swiper>
                 </div>
-                <div className="col-lg-7 pb-5 parent-container">
+                <div className="col-xl-7 pb-5 parent-container">
                   <div className="first-container">
                     {item.techSpecs && item.upgradeOptions && (
                       <div className="features-list">
@@ -149,7 +151,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           {item.upgradeOptions.map((option, i) => (
                             <div
                               key={i}
-                              className="dropend"
+                              className={isTablet ? "dropdown" :"dropend"}
                               style={{
                                 borderRadius: "4px",
                                 marginBottom: "1rem",
@@ -160,6 +162,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                 type="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
+                                style={{overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '200px'}}
                               >
                                 {option.current_name}
                               </button>
@@ -200,7 +203,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           ))}
                           {item.warrantyOptions && (
                             <div
-                              className="dropend"
+                            className={isTablet ? "dropdown" :"dropend"}
                               style={{
                                 borderRadius: "4px",
                                 marginBottom: "1rem",
@@ -212,7 +215,9 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                               >
-                                {warranty === 0 ? "Alege garantia" : warrantyType}
+                                {warranty === 0
+                                  ? "Alege garantia"
+                                  : warrantyType}
                               </button>
                               <ul className="dropdown-menu" id="upgrade-links">
                                 {item.warrantyOptions.map((w, i) => (
@@ -225,10 +230,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                         alignItems: "center",
                                         color: "black",
                                       }}
-                                      onClick={() =>{
-                                        handleWarranty(w.value_with_vat)
-                                        setWarrantyType(w.name)}
-                                      }
+                                      onClick={() => {
+                                        handleWarranty(w.value_with_vat);
+                                        setWarrantyType(w.name);
+                                      }}
                                     >
                                       {w.name}
                                       <span className="ml-3 font-weight-bold">
@@ -246,7 +251,6 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                     )}
                     {item.price ? (
                       <>
-
                         <div className="d-flex align-items-center img-container">
                           <Image src={qualityIcon} alt="quality" />
                           <p>Garantie la toate produsele comandate</p>
@@ -255,6 +259,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           <Image src={transportIcon} alt="quality" />
                           <p>Livrare gratuita la comanda de peste 250 lei</p>
                         </div>
+                        <p className="mb-4 details">
+                          Produsele noastre arata foarte bine, fara zgarieturi
+                          vizibile.
+                        </p>
                       </>
                     ) : (
                       <>
@@ -342,13 +350,13 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           )}
                           onClick={handleAddToCart}
                         >
-                          Adauga in cos
+                          Adauga in coș
                         </button>
                         <div className="d-flex align-items-center mb-2 pt-2">
                           <Image
                             src={payImg}
                             alt="payments"
-                            style={{ maxHeight: "60px" }}
+                            style={{ maxHeight: "60px", height: 'auto' }}
                           />
                         </div>
                         <div className="contact">
@@ -403,7 +411,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                     marginTop: "50px",
                   }}
                 >
-                  <img src={item.techImage} />
+                  <img src={item.techImage} style={{height: 'auto', width: 'auto', maxWidth: '100%'}}/>
                 </div>
               </div>
               <div>
