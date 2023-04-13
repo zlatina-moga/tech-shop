@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination } from "../../hooks/usePagination";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 import { posCategories } from "../../data/categories";
 import { posNewBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
@@ -63,7 +63,7 @@ const NewPOS = () => {
         });
     } else {
       router.push(selectedSort);
-      const sort = selectedSort.split('=')[1]
+      const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewPOS(currentPage, sort)
         .then((result) => {
@@ -74,7 +74,6 @@ const NewPOS = () => {
           console.log(err);
         });
     }
-
   }, [selectedSort, currentPage]);
 
   const onRangeSelect = (range) => {
@@ -118,7 +117,7 @@ const NewPOS = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -127,9 +126,9 @@ const NewPOS = () => {
             categories={posCategories}
             breadcrumbs={posNewBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/sisteme-pos/noi-8'
+            baseLink="/sisteme-pos/noi-8"
             brands={brands}
-            brandLink={'/sisteme-pos/brand/'}
+            brandLink={"/sisteme-pos/brand/"}
             processors={processors}
             processorsLink={"/sisteme-pos/procesor/"}
             highEnd={highestPrice}
@@ -142,25 +141,26 @@ const NewPOS = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      Previous
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } `}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -168,7 +168,7 @@ const NewPOS = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      Next
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

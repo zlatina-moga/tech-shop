@@ -114,7 +114,7 @@ const Navbar = () => {
                 name="searchItem"
                 id="searchItem"
                 className="form-control rounded-1 "
-                placeholder="Caută produse"
+                placeholder="Caută"
                 style={{ textAlign: "left" }}
                 onChange={() => setButtonState(false)}
               />
@@ -160,7 +160,7 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" style={{width: '25px', height: '25px'}}></span>
           </button>
         </div>
       </nav>

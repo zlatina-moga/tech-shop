@@ -5,7 +5,7 @@ import * as productService from "../../services/productService";
 import * as sortingService from "../../services/sortingService";
 import Footer from "../../components/global/Footer";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination } from "../../hooks/usePagination";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 import { discountCategories } from "../../data/categories";
 import { discountedMonitorBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
@@ -88,14 +88,14 @@ const DiscountedMonitors = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      Previous
+                    <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange.map((page) => (
+                  {paginationRange &&  paginationRange.map((page) => (
                     <li
                       className={`page-item ${
                         currentPage == page ? "active" : ""
-                      } `}
+                      } ${page == DOTS ? "dots" : ""}`}
                       key={page}
                       style={{ cursor: "pointer" }}
                     >
@@ -114,7 +114,7 @@ const DiscountedMonitors = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      Next
+                    <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

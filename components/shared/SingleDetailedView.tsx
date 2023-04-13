@@ -183,6 +183,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                 {option.components.map((extra, index) => (
                                   <li key={index}>
                                     <Link
+                                      id="upgrade-link"
                                       className="dropdown-item"
                                       data-target={extra.url}
                                       href={extra.url.split("/").pop()}
@@ -190,9 +191,6 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                         display: "flex",
                                         justifyContent: "space-between",
                                         alignItems: "center",
-                                        overflow: "hidden",
-                                        textOverflow: "ellipsis",
-                                        whiteSpace: "nowrap",
                                       }}
                                     >
                                       {extra.name}

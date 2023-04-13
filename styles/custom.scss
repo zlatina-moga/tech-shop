@@ -526,10 +526,24 @@
         width: 100%;
       }
     }
+    h1 {
+      font-size: 22px !important;
+    }
+    .features-value {
+      #upgrade-link {
+        max-width: 250px;
+        overflow-y: scroll;
+      }
+    }
   } 
   .login {
     #toggle-password {
       right: 20% !important;
+    }
+  }
+  .sidebar-container {
+    .landing-img-wrapper {
+      height: 110px !important;
     }
   }
 }

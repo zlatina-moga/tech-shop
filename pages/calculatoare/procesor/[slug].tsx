@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import * as productService from "../../../services/productService";
 import LaptopsPage from "../../../components/shared/LaptopsPage";
-import { usePagination } from "../../../hooks/usePagination";
+import { usePagination, DOTS } from "../../../hooks/usePagination";
 import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { procComputersBrcrmbs } from "../../../data/breadcrumbs";
@@ -150,14 +150,14 @@ const ProcDetail = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      Previous
+                    <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
                   {paginationRange && paginationRange.map((page) => (
                     <li
                       className={`page-item ${
                         currentPage == page ? "active" : ""
-                      } `}
+                      } ${page == DOTS ? "dots" : ""}`}
                       key={page}
                       style={{ cursor: "pointer" }}
                     >
@@ -176,7 +176,7 @@ const ProcDetail = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      Next
+                    <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

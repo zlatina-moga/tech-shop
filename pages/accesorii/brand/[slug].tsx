@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import * as productService from "../../../services/productService";
 import LaptopsPage from "../../../components/shared/LaptopsPage";
-import { usePagination } from "../../../hooks/usePagination";
+import { usePagination, DOTS } from "../../../hooks/usePagination";
 import Navbar from "../../../components/global/Navbar";
 import { accessoryBrandBreadCrmbs } from "../../../data/breadcrumbs";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
@@ -43,7 +43,7 @@ const BrandDetail = () => {
 
   useEffect(() => {
     router.push(selectedSort);
-    const sort = selectedSort.split('=')[1]
+    const sort = selectedSort.split("=")[1];
     productService
       .getSortedBrandAccessories(currentPage, slug, sort)
       .then((result) => {
@@ -85,7 +85,7 @@ const BrandDetail = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -95,7 +95,7 @@ const BrandDetail = () => {
             sortCriteria={onSort}
             baseLink={`/accesorii/brand/${slug}`}
             brands={brands}
-            brandLink={'/accesorii/brand/'}
+            brandLink={"/accesorii/brand/"}
             categories={accessoryCategories}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
@@ -104,25 +104,26 @@ const BrandDetail = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      Previous
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } `}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -130,7 +131,7 @@ const BrandDetail = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      Next
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>
@@ -139,7 +140,7 @@ const BrandDetail = () => {
           )}
         </>
       )}
-       <Footer />
+      <Footer />
     </>
   );
 };

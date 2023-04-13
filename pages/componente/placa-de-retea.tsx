@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination } from "../../hooks/usePagination";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 import { componentCategories } from "../../data/categories";
 import { reteaBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
@@ -14,7 +14,9 @@ const Networks = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/componente/placa-de-retea");
+  const [selectedSort, setSelectedSort] = useState(
+    "/componente/placa-de-retea"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
@@ -59,9 +61,9 @@ const Networks = () => {
         });
     } else {
       router.push(selectedSort);
-      const sort = selectedSort.split('=')[1]
+      const sort = selectedSort.split("=")[1];
       productService
-        . getSortedNetworks(currentPage, sort)
+        .getSortedNetworks(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -70,7 +72,6 @@ const Networks = () => {
           console.log(err);
         });
     }
-   
   }, [selectedSort, currentPage]);
 
   const onRangeSelect = (range) => {
@@ -89,7 +90,6 @@ const Networks = () => {
         console.log(err);
       });
   }, [priceRange, currentPage]);
-
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -115,7 +115,7 @@ const Networks = () => {
     <>
       <Navbar />
       {loading ? (
-         <MainSkeleton />
+        <MainSkeleton />
       ) : (
         <>
           <LaptopsPage
@@ -124,9 +124,9 @@ const Networks = () => {
             categories={componentCategories}
             breadcrumbs={reteaBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/componente/placa-de-retea'
+            baseLink="/componente/placa-de-retea"
             brands={brands}
-            brandLink={'/componente/brand/'}
+            brandLink={"/componente/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
@@ -137,25 +137,26 @@ const Networks = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      Previous
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } `}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -163,7 +164,7 @@ const Networks = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      Next
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

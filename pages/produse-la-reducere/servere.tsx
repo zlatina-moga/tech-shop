@@ -5,7 +5,7 @@ import * as productService from "../../services/productService";
 import * as sortingService from "../../services/sortingService";
 import Footer from "../../components/global/Footer";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination } from "../../hooks/usePagination";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 import { discountCategories } from "../../data/categories";
 import { discountedServersBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
@@ -14,7 +14,9 @@ const DiscountedServers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/produse-la-reducere/servere");
+  const [selectedSort, setSelectedSort] = useState(
+    "/produse-la-reducere/servere"
+  );
   const router = useRouter();
 
   useEffect(() => {
@@ -80,7 +82,7 @@ const DiscountedServers = () => {
             categories={discountCategories}
             breadcrumbs={discountedServersBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/produse-la-reducere/servere'
+            baseLink="/produse-la-reducere/servere"
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -88,25 +90,26 @@ const DiscountedServers = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      Previous
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } `}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -114,7 +117,7 @@ const DiscountedServers = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      Next
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>
