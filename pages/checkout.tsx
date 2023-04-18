@@ -14,6 +14,7 @@ import { empty } from "../services/redux/cartRedux";
 const Checkout = () => {
   const [userData, setUserData] = useState<IUser>(initialValues);
   const [checked, setChecked] = useState<boolean>(false);
+  const [payment, setPayment] = useState("card");
   let [selectedState, setSelectedState] = useState("");
   let [selectedCity, setSelectedCity] = useState("");
   let [selectedFirm, setSelectedFirm] = useState<boolean>(false);
@@ -90,33 +91,70 @@ const Checkout = () => {
         title: c.itemData[0].title,
       }));
 
-      orderService
-        .create({
-          userId: user._id,
-          products: cartItems,
-          userName: name,
-          userEmail: email,
-          userPhone: phone,
-          country: "Romania",
-          county: county || selectedState,
-          city: city || selectedCity,
-          address: address,
-          zip: zip,
-          amount: cart.total,
-          orderNum: orderNum,
-        })
-        .then(() => {
-          toast.success("Comanda plasata cu succes", {
-            style: { marginTop: "100px" },
+      if (user) {
+        orderService
+          .create({
+            userId: user._id,
+            products: cartItems,
+            userName: name,
+            userEmail: email,
+            userPhone: phone,
+            country: "Romania",
+            county: county || selectedState,
+            city: city || selectedCity,
+            address: address,
+            zip: zip,
+            amount: cart.total,
+            orderNum: orderNum,
+            payment: payment,
+            firmName: firm,
+            firmCif: firmCif,
+            firmReg: firmReg,
+          })
+          .then(() => {
+            toast.success("Comanda plasata cu succes", {
+              style: { marginTop: "100px" },
+            });
+            dispatch(empty());
+            router.push("/success");
+          })
+          .catch((err) => {
+            toast.error(err, {
+              style: { marginTop: "100px" },
+            });
           });
-          dispatch(empty());
-          router.push("/success");
-        })
-        .catch((err) => {
-          toast.error(err, {
-            style: { marginTop: "100px" },
+      } else {
+        orderService
+          .create({
+            products: cartItems,
+            userName: name,
+            userEmail: email,
+            userPhone: phone,
+            country: "Romania",
+            county: county || selectedState,
+            city: city || selectedCity,
+            address: address,
+            zip: zip,
+            amount: cart.total,
+            orderNum: orderNum,
+            payment: payment,
+            firmName: firm,
+            firmCif: firmCif,
+            firmReg: firmReg,
+          })
+          .then(() => {
+            toast.success("Comanda plasata cu succes", {
+              style: { marginTop: "100px" },
+            });
+            dispatch(empty());
+            router.push("/success");
+          })
+          .catch((err) => {
+            toast.error(err, {
+              style: { marginTop: "100px" },
+            });
           });
-        });
+      }
     } else {
       toast.error("Vă rugăm să completați toate câmpurile", {
         style: { marginTop: "100px" },
@@ -124,12 +162,14 @@ const Checkout = () => {
     }
   };
 
-  const handlePersonal = () => {
+  const handlePersonal = (e) => {
+    e.preventDefault();
     setSelectedPersonal(true);
     setSelectedFirm(false);
   };
 
-  const handleFirm = () => {
+  const handleFirm = (e) => {
+    e.preventDefault();
     setSelectedPersonal(false);
     setSelectedFirm(true);
   };
@@ -643,9 +683,13 @@ const Checkout = () => {
                         type="radio"
                         className="custom-control-input"
                         name="payment"
-                        id="paypal"
+                        id="delivery"
+                        onChange={() => setPayment("delivery")}
                       />
-                      <label className="custom-control-label" htmlFor="paypal">
+                      <label
+                        className="custom-control-label"
+                        htmlFor="delivery"
+                      >
                         Plata ramburs
                       </label>
                     </div>
@@ -657,6 +701,7 @@ const Checkout = () => {
                         className="custom-control-input"
                         name="payment"
                         id="directcheck"
+                        onChange={() => setPayment("directcheck")}
                       />
                       <label
                         className="custom-control-label"
@@ -672,12 +717,10 @@ const Checkout = () => {
                         type="radio"
                         className="custom-control-input"
                         name="payment"
-                        id="banktransfer"
+                        id="card"
+                        onChange={() => setPayment("card")}
                       />
-                      <label
-                        className="custom-control-label"
-                        htmlFor="banktransfer"
-                      >
+                      <label className="custom-control-label" htmlFor="card">
                         Plata cu cardul online
                       </label>
                     </div>

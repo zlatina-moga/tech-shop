@@ -116,15 +116,27 @@ const MyCard = () => {
                 </div>
                 <div className="d-flex justify-content-between">
                   <h6 className="font-weight-medium">Taxa verde</h6>
-                  <h6 className="font-weight-medium text-primary">Inclus</h6>
+                  {cart.products.length == 0 ? (
+                    <h6 className="font-weight-medium text-primary"></h6>
+                  ) : (
+                    <h6 className="font-weight-medium text-primary">Inclus</h6>
+                  )}
                 </div>
               </div>
               <div className="card-footer border-secondary bg-transparent">
                 <div className="d-flex justify-content-between mt-2">
                   <h5 className="font-weight-bold">Total</h5>
-                  <h5 className="font-weight-bold">
-                    {cart.total && cart.total.toFixed(2)} Lei
-                  </h5>
+                  {cart.products.length == 0 ? (
+                    <h5 className="font-weight-bold">0</h5>
+                  ) : cart.total >= 250 ? (
+                    <h5 className="font-weight-bold">
+                      {cart.total && cart.total.toFixed(2)} Lei
+                    </h5>
+                  ) : (
+                    <h5 className="font-weight-bold">
+                      {(Number(cart.total.toFixed(2)) + 20).toFixed(2)} Lei
+                    </h5>
+                  )}
                 </div>
                 {cart.total != 0 ? (
                   <Link

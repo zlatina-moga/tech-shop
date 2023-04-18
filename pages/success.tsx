@@ -6,7 +6,7 @@ const Success = () => {
         <>
         <Navbar/>
         <div className="vh-100 d-flex justify-content-center align-items-center">
-            <div className="col-md-4">
+            <div className="">
                 <div className="border border-3 border-primary"></div>
                 <div className="card  bg-white shadow p-5">
                     <div className="mb-4 text-center">
