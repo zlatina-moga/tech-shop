@@ -52,7 +52,7 @@ export const compCategories = [
   },
   {
     name: "Noi",
-    link: "/calculatoare/noi",
+    link: "/calculatoare/nou",
   },
 ];
 

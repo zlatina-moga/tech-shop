@@ -125,7 +125,7 @@ export const newComputersBrcrmbs = [
     link: "/calculatoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Noi", link: "/calculatoare/noi" },
+  { name: "Noi", link: "/calculatoare/nou" },
 ];
 
 export const secondHandComputersBrcrmbs = [

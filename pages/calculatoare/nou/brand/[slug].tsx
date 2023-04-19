@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import * as productService from "../../../services/productService";
-import LaptopsPage from "../../../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../../../hooks/usePagination";
-import Navbar from "../../../components/global/Navbar";
-import MainSkeleton from "../../../components/shared/MainSkeleton";
-import { procComputersBrcrmbs } from "../../../data/breadcrumbs";
-import Footer from "../../../components/global/Footer";
-import * as sortingService from "../../../services/sortingService";
+import * as productService from "../../../../services/productService";
+import LaptopsPage from "../../../../components/shared/LaptopsPage";
+import { usePagination, DOTS } from "../../../../hooks/usePagination";
+import Navbar from "../../../../components/global/Navbar";
+import MainSkeleton from "../../../../components/shared/MainSkeleton";
+import { brandComputersBrcrmbs } from "../../../../data/breadcrumbs";
+import Footer from "../../../../components/global/Footer";
+import * as sortingService from "../../../../services/sortingService";
 
-const ProcDetail = () => {
+const BrandDetail = () => {
   const router = useRouter();
   const { slug } = router.query;
-  const [itemData, setItemsData] = useState([]);
+  const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(
-    `/calculatoare/procesor/${slug}`
+    `/calculatoare/nou/brand/${slug}`
   );
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
@@ -27,29 +27,29 @@ const ProcDetail = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrandsByProcessor(1, slug).then((result) => {
+    sortingService.getBrands(3).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(1).then((res) => {
+    sortingService.getProcessorsByBrand(3, slug).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPriceByProcessor(1, slug).then((response) => {
+    sortingService.getHighestPriceByBrand(3, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-    sortingService.getProcessorGenerationByProcessor(1, slug).then((r) => {
+    sortingService.getProcessorGenerationByBrand(3, slug).then((r) => {
       setProcessorsGeneration(r);
-    });
-    sortingService.getTypesByProcessor(1, slug).then((r) => {
+    })
+    sortingService.getTypesByBrand(1, slug).then((r) => {
       setCategories(r);
     });
   }, [slug]);
 
   useEffect(() => {
     productService
-      .getAllComputersByProcessor(currentPage, slug)
+      .getAllNewComputersBrand(currentPage, slug)
       .then((result) => {
         setLoading(false);
-        setItemsData(result);
+        setItemData(result);
       })
       .catch((err) => {
         console.log(err);
@@ -64,9 +64,9 @@ const ProcDetail = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedComputersByProcessorPrice(currentPage, slug, sort, priceRange)
+        .getSortedComputersByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
-          setItemsData(result);
+          setItemData(result);
         })
         .catch((err) => {
           console.log(err);
@@ -75,10 +75,10 @@ const ProcDetail = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedComputersByProcessor(currentPage, slug, sort)
+        .getSortedComputersByBrand(currentPage, slug, sort)
         .then((result) => {
           setLoading(false);
-          setItemsData(result);
+          setItemData(result);
         })
         .catch((err) => {
           console.log(err);
@@ -93,9 +93,9 @@ const ProcDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllComputersByProcessorPrice(currentPage, slug,  priceRange)
+      .getAllComputersByBrandPrice(currentPage, slug, priceRange)
       .then((result) => {
-        setItemsData(result);
+        setItemData(result);
         setShow(true);
       })
       .catch((err) => {
@@ -126,7 +126,7 @@ const ProcDetail = () => {
   let pageTitle = "";
   if (slug != undefined) {
     let slugToStr = slug as string;
-    pageTitle = slugToStr.replaceAll("-", " ");
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
   }
 
   return (
@@ -139,19 +139,19 @@ const ProcDetail = () => {
           <LaptopsPage
             title={`Calculatoare ${pageTitle}`}
             laptopsData={itemData}
-            breadcrumbs={procComputersBrcrmbs}
+            breadcrumbs={brandComputersBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/calculatoare/procesor/${slug}`}
+            baseLink={`/calculatoare/nou`}
             brands={brands}
-            brandLink={"/calculatoare/brand/"}
+            brandLink={"/calculatoare/nou/"}
             processors={processors}
-            processorsLink={"/calculatoare/procesor/"}
+            processorsLink={"/calculatoare/nou"}
             categories={categories}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={'/calculatoare/procesor/'}
+            processorsGenerationLink={'/calculatoare'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -159,25 +159,26 @@ const ProcDetail = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                    <i className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange && paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } ${page == DOTS ? "dots" : ""}`}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -185,7 +186,7 @@ const ProcDetail = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                    <i className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>
@@ -199,4 +200,4 @@ const ProcDetail = () => {
   );
 };
 
-export default ProcDetail;
+export default BrandDetail;

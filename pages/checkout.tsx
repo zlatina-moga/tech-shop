@@ -92,68 +92,76 @@ const Checkout = () => {
       }));
 
       if (user) {
-        orderService
-          .create({
-            userId: user._id,
-            products: cartItems,
-            userName: name,
-            userEmail: email,
-            userPhone: phone,
-            country: "Romania",
-            county: county || selectedState,
-            city: city || selectedCity,
-            address: address,
-            zip: zip,
-            amount: cart.total,
-            orderNum: orderNum,
-            payment: payment,
-            firmName: firm,
-            firmCif: firmCif,
-            firmReg: firmReg,
-          })
-          .then(() => {
-            toast.success("Comanda plasata cu succes", {
-              style: { marginTop: "100px" },
+        if (payment == "card") {
+          //card payments
+        } else {
+          orderService
+            .create({
+              userId: user._id,
+              products: cartItems,
+              userName: name,
+              userEmail: email,
+              userPhone: phone,
+              country: "Romania",
+              county: county || selectedState,
+              city: city || selectedCity,
+              address: address,
+              zip: zip,
+              amount: cart.total,
+              orderNum: orderNum,
+              payment: payment,
+              firmName: firm,
+              firmCif: firmCif,
+              firmReg: firmReg,
+            })
+            .then(() => {
+              toast.success("Comanda plasata cu succes", {
+                style: { marginTop: "100px" },
+              });
+              dispatch(empty());
+              router.push("/success");
+            })
+            .catch((err) => {
+              toast.error(err, {
+                style: { marginTop: "100px" },
+              });
             });
-            dispatch(empty());
-            router.push("/success");
-          })
-          .catch((err) => {
-            toast.error(err, {
-              style: { marginTop: "100px" },
-            });
-          });
+        }
       } else {
-        orderService
-          .create({
-            products: cartItems,
-            userName: name,
-            userEmail: email,
-            userPhone: phone,
-            country: "Romania",
-            county: county || selectedState,
-            city: city || selectedCity,
-            address: address,
-            zip: zip,
-            amount: cart.total,
-            orderNum: orderNum,
-            payment: payment,
-            firmName: firm,
-            firmCif: firmCif,
-            firmReg: firmReg,
-          })
-          .then(() => {
-            toast.success("Comanda plasata cu succes", {
-              style: { marginTop: "100px" },
+        if (payment == "card") {
+          //card payments
+        } else {
+          orderService
+            .create({
+              products: cartItems,
+              userName: name,
+              userEmail: email,
+              userPhone: phone,
+              country: "Romania",
+              county: county || selectedState,
+              city: city || selectedCity,
+              address: address,
+              zip: zip,
+              amount: cart.total,
+              orderNum: orderNum,
+              payment: payment,
+              firmName: firm,
+              firmCif: firmCif,
+              firmReg: firmReg,
+            })
+            .then(() => {
+              toast.success("Comanda plasata cu succes", {
+                style: { marginTop: "100px" },
+              });
+              dispatch(empty());
+              router.push("/success");
+            })
+            .catch((err) => {
+              toast.error(err, {
+                style: { marginTop: "100px" },
+              });
             });
-            dispatch(empty());
-            router.push("/success");
-          })
-          .catch((err) => {
-            toast.error(err, {
-              style: { marginTop: "100px" },
-            });
-          });
+        }
       }
     } else {
       toast.error("Vă rugăm să completați toate câmpurile", {

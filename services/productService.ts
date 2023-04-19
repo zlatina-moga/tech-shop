@@ -1,6 +1,6 @@
 import * as request from "./requester";
-//const baseUrl = "http://localhost:5500";
-const baseUrl = 'https://pc-bun-api.herokuapp.com';
+const baseUrl = "http://localhost:5500";
+//const baseUrl = 'https://pc-bun-api.herokuapp.com';
 
 export const getAllProdictsCount = () => request.get(`${baseUrl}`);
 
@@ -162,17 +162,20 @@ export const getSortedSecondHandComputersPrice = (price, page, sort) =>
   );
 
 export const getAllNewComputers = (page) =>
-  request.get(`${baseUrl}/calculatoare/noi?page=${page}`);
+  request.get(`${baseUrl}/calculatoare/nou?page=${page}`);
+
+  export const getAllNewComputersBrand = (page, brand) =>
+  request.get(`${baseUrl}/calculatoare/nou?brand=${brand}&page=${page}`);
 
 export const getAllNewComputersPrice = (price, page) =>
-  request.get(`${baseUrl}/calculatoare/noi?price=1-${price}&page=${page}`);
+  request.get(`${baseUrl}/calculatoare/nou?price=1-${price}&page=${page}`);
 
 export const getSortedNewComputers = (page, sort) =>
-  request.get(`${baseUrl}/calculatoare/noi?sort=${sort}&page=${page}`);
+  request.get(`${baseUrl}/calculatoare/nou?sort=${sort}&page=${page}`);
 
 export const getSortedNewComputersPrice = (price, page, sort) =>
   request.get(
-    `${baseUrl}/calculatoare/noi?price=1-${price}&sort=${sort}&page=${page}`
+    `${baseUrl}/calculatoare/nou?price=1-${price}&sort=${sort}&page=${page}`
   );
 
 export const getAllRefurbishedComputers = (page) =>

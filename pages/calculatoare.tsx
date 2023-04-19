@@ -6,7 +6,6 @@ import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
-import { compCategories } from "../data/categories";
 import { computersBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
 
@@ -21,6 +20,8 @@ const Calculatoare = () => {
   const router = useRouter();
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     productService
@@ -91,6 +92,12 @@ const Calculatoare = () => {
     sortingService.getHighestPrice(1).then((response) => {
       setHighestPrice(response[1]);
     });
+    sortingService.getProcessorGeneration(1).then((r) => {
+      setProcessorsGeneration(r);
+    });
+    sortingService.getTypes(1).then((r) => {
+      setCategories(r);
+    });
   }, []);
 
   const totalPages = laptopsData[0]?.totalPages;
@@ -123,7 +130,7 @@ const Calculatoare = () => {
           <LaptopsPage
             title="Calculatoare"
             laptopsData={laptopsData}
-            categories={compCategories}
+            categories={categories}
             breadcrumbs={computersBrcrmbs}
             brands={brands}
             brandLink={"/calculatoare/brand/"}
@@ -134,6 +141,9 @@ const Calculatoare = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={'/calculatoare/procesor/'}
+            categoryLink={'/calculatoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

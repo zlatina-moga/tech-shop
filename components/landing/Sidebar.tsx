@@ -142,8 +142,8 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/calculatoare/noi"
-                      data-target="/calculatoare/noi"
+                      href="/calculatoare/nou"
+                      data-target="/calculatoare/nou"
                     >
                       <img
                         src={computerIcon.src}

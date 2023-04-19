@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { compCategories } from "../../data/categories";
 import { refComputersBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -21,6 +20,8 @@ const Calculatoare = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(2).then((result) => {
@@ -31,6 +32,12 @@ const Calculatoare = () => {
     });
     sortingService.getHighestPrice(2).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getProcessorGenerationByType(1, 'refurbished-2').then((r) => {
+      setProcessorsGeneration(r);
+    });
+    sortingService.getTypes(1).then((r) => {
+      setCategories(r);
     });
   }, []);
 
@@ -123,7 +130,7 @@ const Calculatoare = () => {
           <LaptopsPage
             title="Calculatoare Refurbished"
             laptopsData={laptopsData}
-            categories={compCategories}
+            categories={categories}
             breadcrumbs={refComputersBrcrmbs}
             sortCriteria={onSort}
             baseLink="/calculatoare/refurbished"
@@ -134,6 +141,9 @@ const Calculatoare = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={'/calculatoare/procesor/'}
+            categoryLink={'/calculatoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

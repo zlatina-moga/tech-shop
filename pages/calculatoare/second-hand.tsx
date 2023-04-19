@@ -21,6 +21,8 @@ const Calculatoare = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(4).then((result) => {
@@ -31,6 +33,12 @@ const Calculatoare = () => {
     });
     sortingService.getHighestPrice(4).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getProcessorGenerationByType(1, 'second-hand-4').then((r) => {
+      setProcessorsGeneration(r);
+    });
+    sortingService.getTypes(1).then((r) => {
+      setCategories(r);
     });
   }, []);
 
@@ -123,7 +131,7 @@ const Calculatoare = () => {
           <LaptopsPage
             title="Calculatoare Second Hand"
             laptopsData={laptopsData}
-            categories={compCategories}
+            categories={categories}
             breadcrumbs={secondHandComputersBrcrmbs}
             sortCriteria={onSort}
             baseLink="/calculatoare/second-hand"
@@ -134,6 +142,9 @@ const Calculatoare = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={'/calculatoare/procesor/'}
+            categoryLink={'/calculatoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

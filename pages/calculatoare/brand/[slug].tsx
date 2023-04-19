@@ -7,7 +7,6 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { brandComputersBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import { compCategories } from "../../../data/categories";
 import * as sortingService from "../../../services/sortingService";
 
 const BrandDetail = () => {
@@ -24,16 +23,24 @@ const BrandDetail = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(1).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(1).then((res) => {
+    sortingService.getProcessorsByBrand(1, slug).then((res) => {
       setProcessors(res);
     });
     sortingService.getHighestPriceByBrand(1, slug).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getProcessorGenerationByBrand(1, slug).then((r) => {
+      setProcessorsGeneration(r);
+    })
+    sortingService.getTypesByBrand(1, slug).then((r) => {
+      setCategories(r);
     });
   }, [slug]);
 
@@ -86,7 +93,7 @@ const BrandDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllComputersByBrandPrice(currentPage, slug,  priceRange)
+      .getAllComputersByBrandPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemData(result);
         setShow(true);
@@ -139,10 +146,12 @@ const BrandDetail = () => {
             brandLink={"/calculatoare/brand/"}
             processors={processors}
             processorsLink={"/calculatoare/procesor/"}
-            categories={compCategories}
+            categories={categories}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={'/calculatoare/procesor/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -150,25 +159,26 @@ const BrandDetail = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                    <i className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange && paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } ${page == DOTS ? "dots" : ""}`}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -176,7 +186,7 @@ const BrandDetail = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                    <i className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

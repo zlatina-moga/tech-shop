@@ -13,6 +13,10 @@ const SideFilter = ({
   processorsLink,
   maxPrice,
   range,
+  processorsGeneration,
+  processorsGenerationLink,
+  categoryLink,
+  //baseLink
 }) => {
   const router = useRouter();
   const [value, setValue] = useState(1);
@@ -104,13 +108,14 @@ const SideFilter = ({
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
                   {categories.map((c, idx) => (
                     <Link
-                      href={c.link}
-                      className={`sidebar-link nav-item nav-link py-3 ${
+                      href={categoryLink + c.slug}
+                      className={`sidebar-link nav-item nav-link py-3 d-flex justify-content-between ${
                         router.pathname == c.link ? "active" : ""
                       }`}
                       key={idx}
                     >
                       {c.name}
+                      <span className="inner-count">({c.count})</span>
                     </Link>
                   ))}
                 </div>
@@ -154,7 +159,7 @@ const SideFilter = ({
                   {brands.map((c, idx) => (
                     <Link
                       href={`${brandLink}${c.slug}-${c.id}`}
-                      className={`nav-item nav-link py-3 sidebar-link ${
+                      className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
                         router.pathname == `${brandLink}${c.slug}-${c.id}`
                           ? "active"
                           : ""
@@ -162,6 +167,7 @@ const SideFilter = ({
                       key={idx}
                     >
                       {c.name}
+                      <span className="inner-count">({c.count})</span>
                     </Link>
                   ))}
                 </ul>
@@ -205,10 +211,59 @@ const SideFilter = ({
                   {processors.map((c, idx) => (
                     <Link
                       href={`${processorsLink}${c.slug}-${c.id}`}
-                      className="nav-item nav-link py-3 sidebar-link"
+                      className="nav-item nav-link py-3 sidebar-link d-flex justify-content-between"
                       key={idx}
                     >
                       {c.name}
+                      <span className="inner-count">({c.count})</span>
+                    </Link>
+                  ))}
+                </ul>
+              </nav>
+              <nav
+                className="collapse show navbar navbar-vertical navbar-light align-items-start p-0"
+                id="navbar-vertical"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              ></nav>
+            </div>
+          </div>
+        </div>
+      )}
+      {processorsGeneration && (
+        <div
+          className="sidebar-container mt-4"
+          style={{ display: "block", maxWidth: "260px" }}
+        >
+          <div className="row">
+            <div className="d-none d-lg-block">
+              <nav
+                className="collapse show navbar-vertical navbar-light p-0"
+                id="navbar-vertical-2"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              >
+                <ul
+                  className="navbar-nav overflow-hidden relative"
+                  style={{
+                    borderRadius: "4px",
+                  }}
+                >
+                  <h4 className="py-2 mb-0 pl-3 bg-primary text-white">
+                    Generatie Procesor
+                  </h4>
+                  {processorsGeneration.map((c, idx) => (
+                    <Link
+                      href={`${processorsGenerationLink}${c.slug}-${c.id}`}
+                      className="nav-item nav-link py-3 sidebar-link d-flex justify-content-between"
+                      key={idx}
+                    >
+                      {c.name}
+                      <span className="inner-count">({c.count})</span>
                     </Link>
                   ))}
                 </ul>

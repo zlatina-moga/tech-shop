@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { compCategories } from "../../data/categories";
 import { newComputersBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -14,13 +13,15 @@ const Calculatoare = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/calculatoare/noi");
+  const [selectedSort, setSelectedSort] = useState("/calculatoare/nou");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(3).then((result) => {
@@ -29,8 +30,14 @@ const Calculatoare = () => {
     sortingService.getProcessors(3).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPrice(3).then((response) => {
+    sortingService.getHighestPriceByType(1, 'nou-3').then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getProcessorGenerationByType(1, 'nou-3').then((r) => {
+      setProcessorsGeneration(r);
+    });
+    sortingService.getTypes(1).then((r) => {
+      setCategories(r);
     });
   }, []);
 
@@ -123,17 +130,20 @@ const Calculatoare = () => {
           <LaptopsPage
             title="Calculatoare Noi"
             laptopsData={laptopsData}
-            categories={compCategories}
+            categories={categories}
             breadcrumbs={newComputersBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/calculatoare/noi"
+            baseLink="/calculatoare/nou"
             brands={brands}
-            brandLink={"/calculatoare/brand/"}
+            brandLink={"/calculatoare/nou/brand/"}
             processors={processors}
-            processorsLink={"/calculatoare/procesor/"}
+            processorsLink={"/calculatoare/nou/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={'/calculatoare/nou/generatie/'}
+            categoryLink={'/calculatoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
