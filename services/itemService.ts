@@ -1,6 +1,6 @@
 import * as request from "./requester";
-//const baseUrl = "http://localhost:5500";
-const baseUrl = 'https://pc-bun-api.herokuapp.com';
+const baseUrl = "http://localhost:5500";
+//const baseUrl = 'https://pc-bun-api.herokuapp.com';
 
 export const getRefurbishedLaptop = (id) => request.get(`${baseUrl}/laptop/refurbished-1/${id}`)
 
@@ -12,7 +12,7 @@ export const getRefurbishedComp = (id) => request.get(`${baseUrl}/calculatoare/r
 
 export const getSecondHandComp = (id) => request.get(`${baseUrl}/calculatoare/second-hand/${id}`)
 
-export const getNewComp = (id) => request.get(`${baseUrl}/calculatoare/nou/${id}`)
+export const getNewComp = (id) => request.get(`${baseUrl}/calculatoare/noi/${id}`)
 
 export const getRefurbishedWorkstation = (id) => request.get(`${baseUrl}/workstation/refurbished-3/${id}`)
 

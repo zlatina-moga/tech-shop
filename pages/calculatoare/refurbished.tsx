@@ -135,14 +135,14 @@ const Calculatoare = () => {
             sortCriteria={onSort}
             baseLink="/calculatoare/refurbished"
             brands={brands}
-            brandLink={"/calculatoare/brand/"}
+            brandLink={"/calculatoare/refurbished/brand/"}
             processors={processors}
-            processorsLink={"/calculatoare/procesor/"}
+            processorsLink={"/calculatoare/refurbished/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={'/calculatoare/procesor/'}
+            processorsGenerationLink={'/calculatoare/refurbished/procesor/'}
             categoryLink={'/calculatoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (

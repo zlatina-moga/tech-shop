@@ -158,6 +158,51 @@ export const brandComputersBrcrmbs = [
   { name: "Brand", link: "#" },
 ];
 
+export const brandNewComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Noi",
+    link: "/calculatoare/nou",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
+export const brandRefComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/calculatoare/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
+export const brandSHComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Second Hand",
+    link: "/calculatoare/second-hand",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
 export const procComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {

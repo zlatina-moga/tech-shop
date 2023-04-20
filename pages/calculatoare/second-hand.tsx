@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { compCategories } from "../../data/categories";
 import { secondHandComputersBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -136,14 +135,14 @@ const Calculatoare = () => {
             sortCriteria={onSort}
             baseLink="/calculatoare/second-hand"
             brands={brands}
-            brandLink={"/calculatoare/brand/"}
+            brandLink={"/calculatoare/second-hand/brand/"}
             processors={processors}
-            processorsLink={"/calculatoare/procesor/"}
+            processorsLink={"/calculatoare/second-hand/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={'/calculatoare/procesor/'}
+            processorsGenerationLink={'/calculatoare/second-hand/procesor/'}
             categoryLink={'/calculatoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (

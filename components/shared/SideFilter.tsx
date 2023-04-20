@@ -76,14 +76,6 @@ const SideFilter = ({
         </div>
       )}
 
-      <button
-        className="btn btn-block btn-primary my-3 py-3 d-none"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-      >
-        Filtrați rezultatele
-      </button>
-
       {categories && (
         <div
           className="sidebar-container"
@@ -110,10 +102,27 @@ const SideFilter = ({
                     <Link
                       href={categoryLink + c.slug}
                       className={`sidebar-link nav-item nav-link py-3 d-flex justify-content-between ${
-                        router.pathname == c.link ? "active" : ""
+                        router.pathname == categoryLink + c.slug ? "active" : ""
                       }`}
                       key={idx}
                     >
+                      {router.pathname == categoryLink + c.slug ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : router.pathname.includes(c.slug) ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : (
+                        ""
+                      )}
                       {c.name}
                       <span className="inner-count">({c.count})</span>
                     </Link>
@@ -160,12 +169,20 @@ const SideFilter = ({
                     <Link
                       href={`${brandLink}${c.slug}-${c.id}`}
                       className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
-                        router.pathname == `${brandLink}${c.slug}-${c.id}`
-                          ? "active"
-                          : ""
+                        router.asPath.includes(c.slug) ? "active" : ""
                       }`}
                       key={idx}
                     >
+                      {router.asPath.includes(c.slug) ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : (
+                        ""
+                      )}
                       {c.name}
                       <span className="inner-count">({c.count})</span>
                     </Link>
@@ -211,9 +228,20 @@ const SideFilter = ({
                   {processors.map((c, idx) => (
                     <Link
                       href={`${processorsLink}${c.slug}-${c.id}`}
-                      className="nav-item nav-link py-3 sidebar-link d-flex justify-content-between"
+                      className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
+                        router.asPath.includes(c.slug) ? "active" : ""
+                      }`}
                       key={idx}
-                    >
+                    >{router.asPath.includes(c.slug) ? (
+                      <i
+                        className="fas fa-check"
+                        style={{
+                          color: "#57A046",
+                        }}
+                      ></i>
+                    ) : (
+                      ""
+                    )}
                       {c.name}
                       <span className="inner-count">({c.count})</span>
                     </Link>
@@ -259,9 +287,20 @@ const SideFilter = ({
                   {processorsGeneration.map((c, idx) => (
                     <Link
                       href={`${processorsGenerationLink}${c.slug}-${c.id}`}
-                      className="nav-item nav-link py-3 sidebar-link d-flex justify-content-between"
+                      className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
+                        router.asPath.includes(c.slug) ? "active" : ""
+                      }`}
                       key={idx}
-                    >
+                    >{router.asPath.includes(c.slug) ? (
+                      <i
+                        className="fas fa-check"
+                        style={{
+                          color: "#57A046",
+                        }}
+                      ></i>
+                    ) : (
+                      ""
+                    )}
                       {c.name}
                       <span className="inner-count">({c.count})</span>
                     </Link>
@@ -280,45 +319,6 @@ const SideFilter = ({
           </div>
         </div>
       )}
-      <div
-        className="modal fade"
-        id="exampleModalCenter"
-        tabIndex={-1}
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLongTitle">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">...</div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

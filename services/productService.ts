@@ -122,10 +122,42 @@ export const getSortedComputersByBrand = (page, slug, sort) =>
     `${baseUrl}/calculatoare/brand?brand=${slug}&sort=${sort}&page=${page}`
   );
 
+export const getSortedNewComputersByBrand = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&sort=${sort}&page=${page}`
+  );
+
 export const getSortedComputersByBrandPrice = (page, slug, sort, price) =>
   request.get(
     `${baseUrl}/calculatoare/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
   );
+
+export const getSortedNewComputersByBrandPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedRefComputersByBrandPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedSHComputersByBrandPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+
+export const getSortedRefComputersByBrand = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&sort=${sort}&page=${page}`
+  );
+
+
+export const getSortedSHComputersByBrand = (page, slug, sort) =>
+request.get(
+  `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&sort=${sort}&page=${page}`
+);
 
 export const getAllComputersByProcessor = (page, slug) =>
   request.get(`${baseUrl}/calculatoare/procesor?procesor=${slug}&page=${page}`);
@@ -164,7 +196,7 @@ export const getSortedSecondHandComputersPrice = (price, page, sort) =>
 export const getAllNewComputers = (page) =>
   request.get(`${baseUrl}/calculatoare/nou?page=${page}`);
 
-  export const getAllNewComputersBrand = (page, brand) =>
+export const getAllNewComputersBrand = (page, brand) =>
   request.get(`${baseUrl}/calculatoare/nou?brand=${brand}&page=${page}`);
 
 export const getAllNewComputersPrice = (price, page) =>
@@ -192,6 +224,16 @@ export const getSortedRefurbishedComputers = (page, sort) =>
 export const getSortedRefurbishedComputersPrice = (price, page, sort) =>
   request.get(
     `${baseUrl}/calculatoare/refurbished?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getAllRefComputersBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished?brand=${brand}&page=${page}`
+  );
+
+  export const getAllSHComputersBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand?brand=${brand}&page=${page}`
   );
 
 export const getAllServers = (page) =>
@@ -916,27 +958,31 @@ export const getSortedPrinterCollateralPrice = (page, sort, price) =>
 export const geAllPOS = (page) =>
   request.get(`${baseUrl}/sisteme-pos?page=${page}`);
 
-  export const geAllPOSPrice = (price, page) =>
+export const geAllPOSPrice = (price, page) =>
   request.get(`${baseUrl}/sisteme-pos?price=1-${price}&page=${page}`);
 
 export const getSortedPOS = (page, sort) =>
   request.get(`${baseUrl}/sisteme-pos?sort=${sort}&page=${page}`);
 
-  export const getSortedPOSPrice = (price, page, sort) =>
-  request.get(`${baseUrl}/sisteme-pos?price=1-${price}&sort=${sort}&page=${page}`);
+export const getSortedPOSPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/sisteme-pos?price=1-${price}&sort=${sort}&page=${page}`
+  );
 
 export const geAllPOSBrands = (page, slug) =>
   request.get(`${baseUrl}/sisteme-pos/brand?brand=${slug}&page=${page}`);
 
-  export const geAllPOSBrandsPrice = (page, slug, price) =>
-  request.get(`${baseUrl}/sisteme-pos/brand?brand=${slug}&price=1-${price}&page=${page}`);
+export const geAllPOSBrandsPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
 
 export const getSortedPOSBrands = (page, slug, sort) =>
   request.get(
     `${baseUrl}/sisteme-pos/brand?brand=${slug}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedPOSBrandsPrice = (page, slug, sort, price) =>
+export const getSortedPOSBrandsPrice = (page, slug, sort, price) =>
   request.get(
     `${baseUrl}/sisteme-pos/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
   );
@@ -944,15 +990,17 @@ export const getSortedPOSBrands = (page, slug, sort) =>
 export const getAllPOSByProcessor = (page, slug) =>
   request.get(`${baseUrl}/sisteme-pos/procesor?procesor=${slug}&page=${page}`);
 
-  export const getAllPOSByProcessorPrice = (page, slug, price) =>
-  request.get(`${baseUrl}/sisteme-pos/procesor?procesor=${slug}&price=1-${price}&page=${page}`);
+export const getAllPOSByProcessorPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/procesor?procesor=${slug}&price=1-${price}&page=${page}`
+  );
 
 export const getSortedPOSByProcessor = (page, slug, sort) =>
   request.get(
     `${baseUrl}/sisteme-pos/procesor?procesor=${slug}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedPOSByProcessorPrice = (page, slug, sort, price) =>
+export const getSortedPOSByProcessorPrice = (page, slug, sort, price) =>
   request.get(
     `${baseUrl}/sisteme-pos/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
   );
@@ -960,51 +1008,63 @@ export const getSortedPOSByProcessor = (page, slug, sort) =>
 export const getAllRefurbishedPOS = (page) =>
   request.get(`${baseUrl}/sisteme-pos/refurbished-6?page=${page}`);
 
-  export const getAllRefurbishedPOSPrice = (price, page) =>
-  request.get(`${baseUrl}/sisteme-pos/refurbished-6?price=1-${price}&page=${page}`);
+export const getAllRefurbishedPOSPrice = (price, page) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/refurbished-6?price=1-${price}&page=${page}`
+  );
 
 export const getSortedRefurbishedPOS = (page, sort) =>
   request.get(`${baseUrl}/sisteme-pos/refurbished-6?sort=${sort}&page=${page}`);
 
-  export const getSortedRefurbishedPOSPrice = (price, page, sort) =>
-  request.get(`${baseUrl}/sisteme-pos/refurbished-6?price=1-${price}&sort=${sort}&page=${page}`);
+export const getSortedRefurbishedPOSPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/refurbished-6?price=1-${price}&sort=${sort}&page=${page}`
+  );
 
 export const getAllSecondHandPOS = (page) =>
   request.get(`${baseUrl}/sisteme-pos/second-hand-6?page=${page}`);
 
-  export const getAllSecondHandPOSPrice = (price, page) =>
-  request.get(`${baseUrl}/sisteme-pos/second-hand-6?price=1-${price}&page=${page}`);
+export const getAllSecondHandPOSPrice = (price, page) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/second-hand-6?price=1-${price}&page=${page}`
+  );
 
 export const getSortedSecondHandPOS = (page, sort) =>
   request.get(`${baseUrl}/sisteme-pos/second-hand-6?sort=${sort}&page=${page}`);
 
-  export const getSortedSecondHandPOSPrice = (price, page, sort) =>
-  request.get(`${baseUrl}/sisteme-pos/second-hand-6?price=1-${price}&sort=${sort}&page=${page}`);
+export const getSortedSecondHandPOSPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/second-hand-6?price=1-${price}&sort=${sort}&page=${page}`
+  );
 
 export const getAllNewPOS = (page) =>
   request.get(`${baseUrl}/sisteme-pos/noi-8?page=${page}`);
 
-  export const getAllNewPOSPrice = (price, page) =>
+export const getAllNewPOSPrice = (price, page) =>
   request.get(`${baseUrl}/sisteme-pos/noi-8?price=1-${price}&page=${page}`);
 
 export const getSortedNewPOS = (page, sort) =>
   request.get(`${baseUrl}/sisteme-pos/noi-8?sort=${sort}&page=${page}`);
 
-  export const getSortedNewPOSPrice = (price, page, sort) =>
-  request.get(`${baseUrl}/sisteme-pos/noi-8?price=1-${price}&sort=${sort}&page=${page}`);
+export const getSortedNewPOSPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/noi-8?price=1-${price}&sort=${sort}&page=${page}`
+  );
 
 export const getAllPOSReaders = (page) =>
   request.get(`${baseUrl}/sisteme-pos/cititor-cod-bare?page=${page}`);
 
-  export const getAllPOSReadersPrice = (price, page) =>
-  request.get(`${baseUrl}/sisteme-pos/cititor-cod-bare?price=1-${price}&page=${page}`);
+export const getAllPOSReadersPrice = (price, page) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/cititor-cod-bare?price=1-${price}&page=${page}`
+  );
 
 export const getSortedPOSReaders = (page, sort) =>
   request.get(
     `${baseUrl}/sisteme-pos/cititor-cod-bare?sort=${sort}&page=${page}`
   );
 
-  export const getSortedPOSReadersPrice = (price, page, sort) =>
+export const getSortedPOSReadersPrice = (price, page, sort) =>
   request.get(
     `${baseUrl}/sisteme-pos/cititor-cod-bare?price=1-${price}&sort=${sort}&page=${page}`
   );
@@ -1012,15 +1072,17 @@ export const getSortedPOSReaders = (page, sort) =>
 export const getAllPOSPrinters = (page) =>
   request.get(`${baseUrl}/sisteme-pos/imprimante-termice-noi?page=${page}`);
 
-  export const getAllPOSPrintersPrice = (price, page) =>
-  request.get(`${baseUrl}/sisteme-pos/imprimante-termice-noi?price=1-${price}&page=${page}`);
+export const getAllPOSPrintersPrice = (price, page) =>
+  request.get(
+    `${baseUrl}/sisteme-pos/imprimante-termice-noi?price=1-${price}&page=${page}`
+  );
 
 export const getSortedPOSPrinters = (page, sort) =>
   request.get(
     `${baseUrl}/sisteme-pos/imprimante-termice-noi?sort=${sort}&page=${page}`
   );
 
-  export const getSortedPOSPrintersPrice = (price, page, sort) =>
+export const getSortedPOSPrintersPrice = (price, page, sort) =>
   request.get(
     `${baseUrl}/sisteme-pos/imprimante-termice-noi?price=1-${price}&sort=${sort}&page=${page}`
   );

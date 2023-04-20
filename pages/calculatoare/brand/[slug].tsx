@@ -24,7 +24,6 @@ const BrandDetail = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(1).then((result) => {
@@ -39,9 +38,6 @@ const BrandDetail = () => {
     sortingService.getProcessorGenerationByBrand(1, slug).then((r) => {
       setProcessorsGeneration(r);
     })
-    sortingService.getTypesByBrand(1, slug).then((r) => {
-      setCategories(r);
-    });
   }, [slug]);
 
   useEffect(() => {
@@ -146,12 +142,12 @@ const BrandDetail = () => {
             brandLink={"/calculatoare/brand/"}
             processors={processors}
             processorsLink={"/calculatoare/procesor/"}
-            categories={categories}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
             processorsGenerationLink={'/calculatoare/procesor/'}
+            categoryLink={'/calculatoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -5,7 +5,7 @@ import LaptopsPage from "../../../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../../../hooks/usePagination";
 import Navbar from "../../../../components/global/Navbar";
 import MainSkeleton from "../../../../components/shared/MainSkeleton";
-import { brandNewComputersBrcrmbs } from "../../../../data/breadcrumbs";
+import { brandSHComputersBrcrmbs } from "../../../../data/breadcrumbs";
 import Footer from "../../../../components/global/Footer";
 import * as sortingService from "../../../../services/sortingService";
 
@@ -16,7 +16,7 @@ const BrandDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(
-    `/calculatoare/nou/brand/${slug}`
+    `/calculatoare/second-hand/brand/${slug}`
   );
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
@@ -26,23 +26,23 @@ const BrandDetail = () => {
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(3).then((result) => {
+    sortingService.getBrands(4).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessorsByBrand(3, slug).then((res) => {
+    sortingService.getProcessorsByBrand(4, slug).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPriceByBrand(3, slug).then((response) => {
+    sortingService.getHighestPriceByBrand(4, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-    sortingService.getProcessorGenerationByBrand(3, slug).then((r) => {
+    sortingService.getProcessorGenerationByBrand(4, slug).then((r) => {
       setProcessorsGeneration(r);
     })
   }, [slug]);
 
   useEffect(() => {
     productService
-      .getAllNewComputersBrand(currentPage, slug)
+      .getAllSHComputersBrand(currentPage, slug)
       .then((result) => {
         setLoading(false);
         setItemData(result);
@@ -60,7 +60,7 @@ const BrandDetail = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedNewComputersByBrandPrice(currentPage, slug, sort, priceRange)
+        .getSortedSHComputersByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemData(result);
         })
@@ -71,7 +71,7 @@ const BrandDetail = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedNewComputersByBrand(currentPage, slug, sort)
+        .getSortedSHComputersByBrand(currentPage, slug, sort)
         .then((result) => {
           setLoading(false);
           setItemData(result);
@@ -133,15 +133,15 @@ const BrandDetail = () => {
       ) : (
         <>
           <LaptopsPage
-            title={`Calculatoare Noi ${pageTitle}`}
+            title={`Calculatoare Second Hand ${pageTitle}`}
             laptopsData={itemData}
-            breadcrumbs={brandNewComputersBrcrmbs}
+            breadcrumbs={brandSHComputersBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/calculatoare/nou/brand/${slug}`}
+            baseLink={`/calculatoare/second-hand/brand/${slug}`}
             brands={brands}
-            brandLink={"/calculatoare/nou/brand/"}
+            brandLink={"/calculatoare/second-hand/brand/"}
             processors={processors}
-            processorsLink={"/calculatoare/nou"}
+            processorsLink={"/calculatoare/second-hand"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
