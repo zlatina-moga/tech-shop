@@ -6,7 +6,6 @@ import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
-import { laptopCategories } from "../data/categories";
 import { laptopBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
 
@@ -21,6 +20,7 @@ const Laptopuri = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     productService
@@ -74,6 +74,9 @@ const Laptopuri = () => {
     sortingService.getHighestPrice(5).then((response) => {
       setHighestPrice(response[1]);
     });
+    sortingService.getTypes(5).then((r) => {
+      setCategories(r);
+    });
   }, []);
 
   const onRangeSelect = (range) => {
@@ -123,7 +126,7 @@ const Laptopuri = () => {
           <LaptopsPage
             title="Laptopuri"
             laptopsData={laptopsData}
-            categories={laptopCategories}
+            categories={categories}
             breadcrumbs={laptopBrcrmbs}
             brands={brands}
             brandLink={"/laptop/brand/"}
@@ -134,6 +137,7 @@ const Laptopuri = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/laptop/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

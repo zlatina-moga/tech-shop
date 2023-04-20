@@ -19,6 +19,7 @@ interface ILaptopPage {
   title: string;
   laptopsData: any[];
   categories?: any[];
+  categories2?: any[];
   breadcrumbs?: any[];
   brands?: any;
   brandLink?: string;
@@ -28,7 +29,10 @@ interface ILaptopPage {
   baseLink?: string;
   highEnd?: number;
   priceRange?: any;
-  className?: string
+  className?: string;
+  processorsGeneration?: any;
+  processorsGenerationLink?: string;
+  categoryLink?: string;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -44,7 +48,11 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   baseLink,
   highEnd,
   priceRange,
-  className
+  className,
+  processorsGeneration,
+  processorsGenerationLink,
+  categoryLink,
+  categories2
 }) => {
   const [selected, setSelected] = useState("");
   const totalCount = laptopsData.map((l) => l.itemsCount)[0];
@@ -75,6 +83,10 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           processorsLink={processorsLink}
           maxPrice={highEnd}
           range={priceRange}
+          processorsGeneration={processorsGeneration}
+          processorsGenerationLink={processorsGenerationLink}
+          categoryLink={categoryLink}
+          categories2={categories2}
         />
         <div>
           <div className="text-center mb-4">

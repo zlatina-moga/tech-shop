@@ -119,7 +119,7 @@ const Headphones = () => {
           <LaptopsPage
             title="Casti"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={headphonesBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/casti"

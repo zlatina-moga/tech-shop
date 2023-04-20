@@ -21,6 +21,7 @@ const SistemePOS = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     productService
@@ -90,6 +91,9 @@ const SistemePOS = () => {
     });
     sortingService.getHighestPrice(34).then((response) => {
       setHighestPrice(response[1]);
+    })
+    sortingService.getTypes(34).then((r) => {
+      setCategories(r);
     });
   }, []);
 
@@ -123,7 +127,7 @@ const SistemePOS = () => {
           <LaptopsPage
             title="Sisteme POS"
             laptopsData={laptopsData}
-            categories={posCategories}
+            categories={categories}
             breadcrumbs={posBrcrmbs}
             brands={brands}
             brandLink={"/sisteme-pos/brand/"}
@@ -134,6 +138,7 @@ const SistemePOS = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/sisteme-pos/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -12,7 +12,7 @@ const Office = () => {
       <LaptopsPage
         title='Microsoft Office'
         laptopsData={licenseData.filter((c) => c.category == 'Office')}
-        categories={softwareCategories}
+        categories2={softwareCategories}
         breadcrumbs={officeBrcrmbs}
       />
       <Footer />

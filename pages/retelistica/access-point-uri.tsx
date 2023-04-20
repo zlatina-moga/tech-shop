@@ -121,7 +121,7 @@ const AccessPoints = () => {
           <LaptopsPage
             title="Access Point-uri"
             laptopsData={laptopsData}
-            categories={networkCategories}
+            categories2={networkCategories}
             breadcrumbs={accessPointskBrcrmbs}
             sortCriteria={onSort}
             baseLink="/retelistica/access-point-uri"

@@ -121,7 +121,7 @@ const DockingStations = () => {
           <LaptopsPage
             title="Docking Station"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={dockingBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/docking-station"

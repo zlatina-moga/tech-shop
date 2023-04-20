@@ -119,7 +119,7 @@ const Switches = () => {
           <LaptopsPage
             title="Switch-uri"
             laptopsData={laptopsData}
-            categories={networkCategories}
+            categories2={networkCategories}
             breadcrumbs={switchBrcrmbs}
             sortCriteria={onSort}
             baseLink="/retelistica/switch-uri"

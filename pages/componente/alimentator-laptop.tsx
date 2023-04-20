@@ -121,7 +121,7 @@ const LaptopChargers = () => {
           <LaptopsPage
             title="Componente Alimentator laptop"
             laptopsData={laptopsData}
-            categories={componentCategories}
+            //categories={componentCategories}
             breadcrumbs={chargerBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/alimentator-laptop"

@@ -119,7 +119,7 @@ const Mice = () => {
           <LaptopsPage
             title="Mouse"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={mouseBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/mouse"

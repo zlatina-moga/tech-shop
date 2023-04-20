@@ -121,7 +121,7 @@ const Videos = () => {
           <LaptopsPage
             title="Videoproiectoare"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={videoBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/videoproiectoare"

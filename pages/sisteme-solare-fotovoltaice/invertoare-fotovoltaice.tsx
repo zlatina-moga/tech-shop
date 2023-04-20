@@ -121,7 +121,7 @@ const Invertors = () => {
           <LaptopsPage
             title="Invertoare fotovoltaice"
             laptopsData={laptopsData}
-            categories={solarCategories}
+            categories2={solarCategories}
             breadcrumbs={solarInvertorsBrcrmbs}
             sortCriteria={onSort}
             baseLink="/sisteme-solare-fotovoltaice/invertoare-fotovoltaice"

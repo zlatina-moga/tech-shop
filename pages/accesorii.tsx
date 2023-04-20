@@ -119,7 +119,7 @@ const Accesorii = () => {
           <LaptopsPage
             title="Accesorii"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={accessoryBreadCrmbs}
             brands={brands}
             brandLink={"/accesorii/brand/"}

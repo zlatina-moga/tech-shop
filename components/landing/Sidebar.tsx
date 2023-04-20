@@ -67,8 +67,8 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/laptop/refurbished-1"
-                      data-target="/laptop/refurbished-1"
+                      href="/laptop/refurbished"
+                      data-target="/laptop/refurbished"
                     >
                       <img
                         src={laptopIcon.src}
@@ -81,8 +81,8 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/laptop/noi-1"
-                      data-target="/laptop/noi-1"
+                      href="/laptop/nou"
+                      data-target="/laptop/nou"
                     >
                       <img
                         src={laptopIcon.src}
@@ -95,8 +95,8 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/laptop/second-hand-1"
-                      data-target="/laptop/second-hand-1"
+                      href="/laptop/second-hand"
+                      data-target="/laptop/second-hand"
                     >
                       <img
                         src={laptopIcon.src}
@@ -142,8 +142,8 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/calculatoare/noi"
-                      data-target="/calculatoare/noi"
+                      href="/calculatoare/nou"
+                      data-target="/calculatoare/nou"
                     >
                       <img
                         src={computerIcon.src}
@@ -189,8 +189,8 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/workstation/refurbished-3"
-                      data-target="/workstation/refurbished-3"
+                      href="/workstation/refurbished"
+                      data-target="/workstation/refurbished"
                       passHref
                     >
                       <img
@@ -204,9 +204,9 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/workstation/second-hand-3"
+                      href="/workstation/second-hand"
                       passHref
-                      data-target="/workstation/second-hand-3"
+                      data-target="/workstation/second-hand"
                     >
                       <img
                         src={workstationIcons.src}
@@ -238,9 +238,9 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/servere/refurbished-2"
+                      href="/servere/refurbished"
                       passHref
-                      data-target="/servere/refurbished-2"
+                      data-target="/servere/refurbished"
                     >
                       <img
                         src={serverIcon.src}
@@ -253,9 +253,9 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/servere/noi-6"
+                      href="/servere/nou"
                       passHref
-                      data-target="/servere/noi-6"
+                      data-target="/servere/nou"
                     >
                       <img
                         src={serverIcon.src}
@@ -268,9 +268,9 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/servere/second-hand-2"
+                      href="/servere/second-hand"
                       passHref
-                      data-target="/servere/second-hand-2"
+                      data-target="/servere/second-hand"
                     >
                       <img
                         src={serverIcon.src}
@@ -302,9 +302,9 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/monitoare/refurbished-4"
+                      href="/monitoare/refurbished"
                       passHref
-                      data-target="/monitoare/refurbished-4"
+                      data-target="/monitoare/refurbished"
                     >
                       <img
                         src={monitorIcon.src}
@@ -317,9 +317,9 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="dropdown-item"
-                      href="/monitoare/noi-4"
+                      href="/monitoare/nou"
                       passHref
-                      data-target="/monitoare/noi-4"
+                      data-target="/monitoare/nou"
                     >
                       <img
                         src={monitorIcon.src}
@@ -332,9 +332,9 @@ const Sidebar = () => {
                   <li className="dropdown-submenu">
                     <Link
                       className="dropdown-item"
-                      href="/monitoare/second-hand-4"
+                      href="/monitoare/second-hand"
                       passHref
-                      data-target="/monitoare/second-hand-4"
+                      data-target="/monitoare/second-hand"
                     >
                       <img
                         src={monitorIcon.src}

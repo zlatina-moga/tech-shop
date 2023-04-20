@@ -121,7 +121,7 @@ const MonitoareTouchRef = () => {
           <LaptopsPage
             title="Monitoare Touchscreen Second Hand"
             laptopsData={laptopsData}
-            categories={monitorCategories}
+            //categories={monitorCategories}
             breadcrumbs={monitorTouchScreenSHBrcrmbs}
             sortCriteria={onSort}
             baseLink="/monitoare/touchscreen-second"

@@ -121,7 +121,7 @@ const SolarPanels = () => {
           <LaptopsPage
             title="Sisteme solare fotovoltaice"
             laptopsData={laptopsData}
-            categories={solarCategories}
+            categories2={solarCategories}
             breadcrumbs={solarpanelsBrcrmbs}
             sortCriteria={onSort}
             baseLink="/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice"

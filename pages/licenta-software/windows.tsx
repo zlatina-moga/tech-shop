@@ -12,7 +12,7 @@ const Windows = () => {
       <LaptopsPage
         title="Windows"
         laptopsData={licenseData.filter((c) => c.category == 'Windows')}
-        categories={softwareCategories}
+        categories2={softwareCategories}
         breadcrumbs={windowsBrcrmbs}
       />
       <Footer />

@@ -119,7 +119,7 @@ const HardDisks = () => {
           <LaptopsPage
             title="Componente Hard Disk"
             laptopsData={laptopsData}
-            categories={componentCategories}
+            //categories={componentCategories}
             breadcrumbs={hardDiskBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/hard-disk"

@@ -7,7 +7,6 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { procComputersBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import { compCategories } from "../../../data/categories";
 import * as sortingService from "../../../services/sortingService";
 
 const ProcDetail = () => {
@@ -24,9 +23,11 @@ const ProcDetail = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(1).then((result) => {
+    sortingService.getBrandsByProcessor(1, slug).then((result) => {
       setBrands(result);
     });
     sortingService.getProcessors(1).then((res) => {
@@ -34,6 +35,12 @@ const ProcDetail = () => {
     });
     sortingService.getHighestPriceByProcessor(1, slug).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getProcessorGenerationByProcessor(1, slug).then((r) => {
+      setProcessorsGeneration(r);
+    });
+    sortingService.getTypesByProcessor(1, slug).then((r) => {
+      setCategories(r);
     });
   }, [slug]);
 
@@ -139,10 +146,12 @@ const ProcDetail = () => {
             brandLink={"/calculatoare/brand/"}
             processors={processors}
             processorsLink={"/calculatoare/procesor/"}
-            categories={compCategories}
+            categories={categories}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={'/calculatoare/procesor/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -12,7 +12,7 @@ const Visio = () => {
       <LaptopsPage
         title='Microsoft Visio'
         laptopsData={licenseData.filter((c) => c.category == 'Visio')}
-        categories={softwareCategories}
+        categories2={softwareCategories}
         breadcrumbs={visioBrcrmbs}
       />
       <Footer />

@@ -119,7 +119,7 @@ const Routers = () => {
           <LaptopsPage
             title="Routere"
             laptopsData={laptopsData}
-            categories={networkCategories}
+            categories2={networkCategories}
             breadcrumbs={routerBrcrmbs}
             sortCriteria={onSort}
             baseLink="/retelistica/routere"

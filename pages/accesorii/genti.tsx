@@ -119,7 +119,7 @@ const Bags = () => {
           <LaptopsPage
             title="Genti"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={bagsBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/genti"

@@ -12,7 +12,7 @@ const Adobe = () => {
       <LaptopsPage
         title='Adobe'
         laptopsData={licenseData.filter((c) => c.category == 'Adobe')}
-        categories={softwareCategories}
+        categories2={softwareCategories}
         breadcrumbs={adobeBrcrmbs}
       />
       <Footer />

@@ -122,7 +122,7 @@ const MascaBays = () => {
           <LaptopsPage
             title="Masca Bay server"
             laptopsData={laptopsData}
-            categories={componentCategories}
+            //categories={componentCategories}
             breadcrumbs={mascaBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/masca-bay-server"

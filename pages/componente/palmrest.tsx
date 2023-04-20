@@ -119,7 +119,7 @@ const Palmrests = () => {
           <LaptopsPage
             title="Componente Palmrest"
             laptopsData={laptopsData}
-            categories={componentCategories}
+            //categories={componentCategories}
             breadcrumbs={palmrestBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/palmrest"

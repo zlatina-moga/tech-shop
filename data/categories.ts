@@ -52,7 +52,7 @@ export const compCategories = [
   },
   {
     name: "Noi",
-    link: "/calculatoare/noi",
+    link: "/calculatoare/nou",
   },
 ];
 
@@ -134,26 +134,26 @@ export const printerCategories = [
   },
   {
     name: "Second Hand",
-    link: "/imprimante/second-hand-5",
+    link: "/imprimante/second-hand",
   },
   {
     name: "Noi",
-    link: "/imprimante/noi-3",
+    link: "/imprimante/nou",
   },
   {
     name: "Refurbished",
-    link: "/imprimante/refurbished-5",
+    link: "/imprimante/refurbished",
   },
 ];
 
 export const laptopCategories = [
   {
     name: "Refurbished",
-    link: "/laptop/refurbished-1",
+    link: "/laptop/refurbished",
   },
   {
     name: "Second Hand",
-    link: "/laptop/second-hand-1",
+    link: "/laptop/second-hand",
   },
   {
     name: "Noi",
@@ -164,15 +164,15 @@ export const laptopCategories = [
 export const monitorCategories = [
   {
     name: "Refurbished",
-    link: "/monitoare/refurbished-4",
+    link: "/monitoare/refurbished",
   },
   {
     name: "Second Hand",
-    link: "/monitoare/second-hand-4",
+    link: "/monitoare/second-hand",
   },
   {
     name: "Noi",
-    link: "/monitoare/noi-4",
+    link: "/monitoare/nou",
   },
   {
     name: "Touchscreen Refurbished",
@@ -253,15 +253,15 @@ export const discountCategories = [
 export const serverCategories = [
   {
     name: "Refurbished",
-    link: "/servere/refurbished-2",
+    link: "/servere/refurbished",
   },
   {
     name: "Second Hand",
-    link: "/servere/second-hand-2",
+    link: "/servere/second-hand",
   },
   {
     name: "Noi",
-    link: "/servere/noi-6",
+    link: "/servere/nou",
   },
   {
     name: "Cabinet Rack Refurbished ",
@@ -272,15 +272,15 @@ export const serverCategories = [
 export const posCategories = [
   {
     name: "Refurbished",
-    link: "/sisteme-pos/refurbished-6",
+    link: "/sisteme-pos/refurbished",
   },
   {
     name: "Second Hand",
-    link: "/sisteme-pos/second-hand-6",
+    link: "/sisteme-pos/second-hand",
   },
   {
     name: "Noi",
-    link: "/sisteme-pos/noi-8",
+    link: "/sisteme-pos/nou",
   },
   {
     name: "Cititor Coduri Bare",
@@ -321,11 +321,11 @@ export const upsCategories = [
 export const workstationCategories = [
   {
     name: "Refurbished",
-    link: "/workstation/refurbished-3",
+    link: "/workstation/refurbished",
   },
   {
     name: "Second Hand",
-    link: "/workstation/second-hand-3",
+    link: "/workstation/second-hand",
   },
 ];
 

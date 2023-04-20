@@ -133,7 +133,7 @@ const BrandDetail = () => {
             breadcrumbs={serverBrandBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/servere/brand/${slug}`}
-            categories={serverCategories}
+            //categories={serverCategories}
             brands={brands}
             brandLink={"/servere/brand/"}
             processors={processors}

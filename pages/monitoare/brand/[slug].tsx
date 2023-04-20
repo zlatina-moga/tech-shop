@@ -129,7 +129,7 @@ const BrandDetail = () => {
             breadcrumbs={monitorBrandBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/monitoare/brand/${slug}`}
-            categories={monitorCategories}
+            //categories={monitorCategories}
             brands={brands}
             brandLink={"/monitoare/brand/"}
             highEnd={highestPrice}

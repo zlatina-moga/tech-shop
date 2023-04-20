@@ -119,7 +119,7 @@ const Keyboards = () => {
           <LaptopsPage
             title="Tastaturi"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={keyboardBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/tastaturi"

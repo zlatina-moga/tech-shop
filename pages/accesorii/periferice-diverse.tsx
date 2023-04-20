@@ -121,7 +121,7 @@ const Keyboards = () => {
           <LaptopsPage
             title="Periferice Diverse"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={diverseBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/periferice-diverse"
