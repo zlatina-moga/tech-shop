@@ -70,3 +70,6 @@ export const getTypesByProcessor = (category, processor) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}`
   );
+
+  export const getProcessorsBrands = (category, type, processor) =>
+  request.get(`${baseUrl}/brand/brand?filter[category]=${category}&filter[qualities]=${type}&filter[a-procesor-132]=${processor}`);

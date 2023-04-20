@@ -203,6 +203,22 @@ export const brandSHComputersBrcrmbs = [
   { name: "Brand", link: "#" },
 ];
 
+export const componentSHComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Second Hand",
+    link: "/calculatoare/second-hand",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
+
 export const procComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {

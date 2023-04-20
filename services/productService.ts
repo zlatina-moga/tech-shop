@@ -162,6 +162,25 @@ request.get(
 export const getAllComputersByProcessor = (page, slug) =>
   request.get(`${baseUrl}/calculatoare/procesor?procesor=${slug}&page=${page}`);
 
+
+export const getAllSHComputersByProcessor = (page, slug) =>
+request.get(`${baseUrl}/calculatoare/second-hand/procesor?procesor=${slug}&page=${page}`);
+
+export const getAllSHComputersByProcessorPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/procesor?procesor=${slug}&price=1-${price}&page=${page}`
+  );
+
+  export const getSortedSHComputersByProcessorPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedSHComputersByProcessor = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/procesor?procesor=${slug}&sort=${sort}&page=${page}`
+  );
+
 export const getAllComputersByProcessorPrice = (page, slug, price) =>
   request.get(
     `${baseUrl}/calculatoare/procesor?procesor=${slug}&price=1-${price}&page=${page}`
