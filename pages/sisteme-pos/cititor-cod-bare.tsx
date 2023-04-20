@@ -125,7 +125,7 @@ const POSReader = () => {
           <LaptopsPage
             title="Cititor Coduri Bare"
             laptopsData={laptopsData}
-            categories={posCategories}
+            //categories2={posCategories}
             breadcrumbs={posReadersBrcrmbs}
             sortCriteria={onSort}
             baseLink="/sisteme-pos/cititor-cod-bare"

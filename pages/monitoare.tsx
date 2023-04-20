@@ -6,7 +6,6 @@ import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
-import { monitorCategories } from "../data/categories";
 import { monitorBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
 
@@ -20,6 +19,7 @@ const Monitoare = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     productService
@@ -70,6 +70,9 @@ const Monitoare = () => {
     sortingService.getHighestPrice(18).then((response) => {
       setHighestPrice(response[1]);
     });
+    sortingService.getTypes(18).then((r) => {
+      setCategories(r);
+    });
   }, []);
 
   const onRangeSelect = (range) => {
@@ -119,7 +122,7 @@ const Monitoare = () => {
           <LaptopsPage
             title="Monitoare"
             laptopsData={laptopsData}
-            categories={monitorCategories}
+            categories={categories}
             breadcrumbs={monitorBrcrmbs}
             brands={brands}
             brandLink={"/monitoare/brand/"}
@@ -128,6 +131,7 @@ const Monitoare = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/monitoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

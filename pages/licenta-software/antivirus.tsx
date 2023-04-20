@@ -12,7 +12,7 @@ const Antivirus = () => {
       <LaptopsPage
         title="Antivirus"
         laptopsData={licenseData.filter((c) => c.category == "Antivirus")}
-        categories={softwareCategories}
+        categories2={softwareCategories}
         breadcrumbs={antivurusBrcrmbs}
       />
       <Footer />

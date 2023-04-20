@@ -45,7 +45,7 @@ const Software = () => {
       <LaptopsPage
         title="Software"
         laptopsData={laptopsData}
-        categories={softwareCategories}
+        categories2={softwareCategories}
         breadcrumbs={softwareBrcrmbs}
         sortCriteria={onSort}
         baseLink="/licenta-software"

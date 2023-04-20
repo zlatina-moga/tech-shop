@@ -4,41 +4,39 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { posCategories } from "../../data/categories";
-import { posSHBrcrmbs } from "../../data/breadcrumbs";
+import { monitorCategories } from "../../data/categories";
+import { monitorNewBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 
-const SecondHandPOS = () => {
+const MonitoareNew = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState(
-    "/sisteme-pos/second-hand-6"
-  );
+  const [selectedSort, setSelectedSort] = useState("/monitoare/nou");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
-  const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(36).then((result) => {
+    sortingService.getBrands(54).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(36).then((res) => {
-      setProcessors(res);
-    });
-    sortingService.getHighestPrice(36).then((response) => {
+    sortingService.getHighestPrice(54).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(54).then((r) => {
+      setCategories(r);
     });
   }, []);
 
   useEffect(() => {
     productService
-      .getAllSecondHandPOS(currentPage)
+      .geAllNewMonitors(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -56,7 +54,7 @@ const SecondHandPOS = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedSecondHandPOSPrice(priceRange, currentPage, sort)
+        .geSortedNewMonitorsPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
@@ -67,7 +65,7 @@ const SecondHandPOS = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedSecondHandPOS(currentPage, sort)
+        .geSortedNewMonitors(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -85,7 +83,7 @@ const SecondHandPOS = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllSecondHandPOSPrice(priceRange, currentPage)
+      .geAllNewMonitorsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
         setShow(true);
@@ -123,19 +121,18 @@ const SecondHandPOS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Sisteme POS Second Hand"
+            title="Monitoare Noi"
             laptopsData={laptopsData}
-            categories={posCategories}
-            breadcrumbs={posSHBrcrmbs}
+            categories={categories}
+            breadcrumbs={monitorNewBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/sisteme-pos/second-hand-6"
+            baseLink="/monitoare/nou"
             brands={brands}
-            brandLink={"/sisteme-pos/brand/"}
-            processors={processors}
-            processorsLink={"/sisteme-pos/procesor/"}
+            brandLink={"/monitoare/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/monitoare/nou/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -184,4 +181,4 @@ const SecondHandPOS = () => {
   );
 };
 
-export default SecondHandPOS;
+export default MonitoareNew;

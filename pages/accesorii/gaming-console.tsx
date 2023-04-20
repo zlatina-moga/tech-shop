@@ -119,7 +119,7 @@ const Gaming = () => {
           <LaptopsPage
             title="Accesorii Gaming & Console"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={gamingBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/gaming-console"

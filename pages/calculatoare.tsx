@@ -92,9 +92,9 @@ const Calculatoare = () => {
     sortingService.getHighestPrice(1).then((response) => {
       setHighestPrice(response[1]);
     });
-    sortingService.getProcessorGeneration(1).then((r) => {
-      setProcessorsGeneration(r);
-    });
+    //sortingService.getProcessorGeneration(1).then((r) => {
+      //setProcessorsGeneration(r);
+    //});
     sortingService.getTypes(1).then((r) => {
       setCategories(r);
     });

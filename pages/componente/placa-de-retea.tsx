@@ -121,7 +121,7 @@ const Networks = () => {
           <LaptopsPage
             title="Componente Placa de retea"
             laptopsData={laptopsData}
-            categories={componentCategories}
+            //categories={componentCategories}
             breadcrumbs={reteaBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/placa-de-retea"

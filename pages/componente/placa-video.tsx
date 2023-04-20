@@ -119,7 +119,7 @@ const VideoCards = () => {
           <LaptopsPage
             title="Componente Placa Video"
             laptopsData={laptopsData}
-            categories={componentCategories}
+           // categories={componentCategories}
             breadcrumbs={videoCardBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/placa-video"

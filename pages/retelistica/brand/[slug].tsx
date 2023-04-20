@@ -131,7 +131,7 @@ const BrandDetail = () => {
             breadcrumbs={networkBrandsBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/retelistica/brand/${slug}`}
-            categories={networkCategories}
+            //categories={networkCategories}
             brands={brands}
             brandLink={"/retelistica/brand/"}
             highEnd={highestPrice}

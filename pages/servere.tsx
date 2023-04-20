@@ -21,6 +21,7 @@ const Laptopuri = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     productService
@@ -74,6 +75,9 @@ const Laptopuri = () => {
     sortingService.getHighestPrice(9).then((response) => {
       setHighestPrice(response[1]);
     });
+    sortingService.getTypes(9).then((r) => {
+      setCategories(r);
+    });
   }, []);
 
   const onRangeSelect = (range) => {
@@ -123,7 +127,7 @@ const Laptopuri = () => {
           <LaptopsPage
             title="Servere"
             laptopsData={laptopsData}
-            categories={serverCategories}
+            categories={categories}
             breadcrumbs={serverBrcrmbs}
             brands={brands}
             brandLink={"/servere/brand/"}
@@ -134,6 +138,7 @@ const Laptopuri = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/servere/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

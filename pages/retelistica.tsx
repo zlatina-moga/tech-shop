@@ -119,7 +119,7 @@ const Retails = () => {
           <LaptopsPage
             title="Retelistica"
             laptopsData={laptopsData}
-            categories={networkCategories}
+            categories2={networkCategories}
             breadcrumbs={networkBrcrmbs}
             brands={brands}
             brandLink={"/retelistica/brand/"}
@@ -128,6 +128,7 @@ const Retails = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={"/retelistica/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

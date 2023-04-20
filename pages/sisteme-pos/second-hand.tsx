@@ -4,39 +4,45 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { serverCategories } from "../../data/categories";
-import { serverSHBrcrmbs } from "../../data/breadcrumbs";
+import { posCategories } from "../../data/categories";
+import { posSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 
-const SecondHandServers = () => {
+const SecondHandPOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/servere/second-hand-2");
+  const [selectedSort, setSelectedSort] = useState(
+    "/sisteme-pos/second-hand"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(11).then((result) => {
+    sortingService.getBrands(36).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(11).then((res) => {
+    sortingService.getProcessors(36).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPrice(11).then((response) => {
+    sortingService.getHighestPrice(36).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(36).then((r) => {
+      setCategories(r);
     });
   }, []);
 
   useEffect(() => {
     productService
-      .getAllSecondHandServers(currentPage)
+      .getAllSecondHandPOS(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -54,7 +60,7 @@ const SecondHandServers = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedSecondHandServersPrice(priceRange, currentPage, sort)
+        .getSortedSecondHandPOSPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
@@ -65,7 +71,7 @@ const SecondHandServers = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedSecondHandServers(currentPage, sort)
+        .getSortedSecondHandPOS(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -83,7 +89,7 @@ const SecondHandServers = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllSecondHandServersPrice(priceRange, currentPage)
+      .getAllSecondHandPOSPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
         setShow(true);
@@ -121,19 +127,20 @@ const SecondHandServers = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Servere Second Hand"
+            title="Sisteme POS Second Hand"
             laptopsData={laptopsData}
-            categories={serverCategories}
-            breadcrumbs={serverSHBrcrmbs}
+            categories={categories}
+            breadcrumbs={posSHBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/servere/second-hand-2"
+            baseLink="/sisteme-pos/second-hand"
             brands={brands}
-            brandLink={"/servere/brand/"}
+            brandLink={"/sisteme-pos/brand/"}
             processors={processors}
-            processorsLink={"/servere/procesor/"}
+            processorsLink={"/sisteme-pos/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/sisteme-pos/second-hand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -182,4 +189,4 @@ const SecondHandServers = () => {
   );
 };
 
-export default SecondHandServers;
+export default SecondHandPOS;

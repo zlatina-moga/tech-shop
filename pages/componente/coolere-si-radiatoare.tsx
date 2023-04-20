@@ -121,7 +121,7 @@ const Coolers = () => {
           <LaptopsPage
             title="Componente Coolere si radiatoare"
             laptopsData={laptopsData}
-            categories={componentCategories}
+            //categories={componentCategories}
             breadcrumbs={coolerBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/coolere-si-radiatoare"

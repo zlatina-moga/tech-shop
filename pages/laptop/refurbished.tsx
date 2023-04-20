@@ -4,35 +4,43 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { monitorCategories } from "../../data/categories";
-import { monitorNewBrcrmbs } from "../../data/breadcrumbs";
+import { laptopCategories } from "../../data/categories";
+import { laptopRefurbishedBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 
-const MonitoareNew = () => {
+const LaptopuriRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/monitoare/noi-4");
+  const [selectedSort, setSelectedSort] = useState("/laptop/refurbished");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
+  const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(54).then((result) => {
+    sortingService.getBrands(7).then((result) => {
       setBrands(result);
     });
-    sortingService.getHighestPrice(54).then((response) => {
+    sortingService.getProcessors(7).then((res) => {
+      setProcessors(res);
+    });
+    sortingService.getHighestPrice(7).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(7).then((r) => {
+      setCategories(r);
     });
   }, []);
 
   useEffect(() => {
     productService
-      .geAllNewMonitors(currentPage)
+      .getAllRefurbishedLaptops(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -50,7 +58,7 @@ const MonitoareNew = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .geSortedNewMonitorsPrice(priceRange, currentPage, sort)
+        .getSortedRefurbishedLaptopsPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
@@ -61,7 +69,7 @@ const MonitoareNew = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .geSortedNewMonitors(currentPage, sort)
+        .getSortedRefurbishedLaptops(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -79,7 +87,7 @@ const MonitoareNew = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .geAllNewMonitorsPrice(priceRange, currentPage)
+      .getAllRefurbishedLaptopsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
         setShow(true);
@@ -117,17 +125,20 @@ const MonitoareNew = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Monitoare Noi"
+            title="Laptopuri Refurbished"
             laptopsData={laptopsData}
-            categories={monitorCategories}
-            breadcrumbs={monitorNewBrcrmbs}
+            categories={categories}
+            breadcrumbs={laptopRefurbishedBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/monitoare/noi-4"
+            baseLink="/laptop/refurbished"
             brands={brands}
-            brandLink={"/monitoare/brand/"}
+            processors={processors}
+            processorsLink={"/laptop/procesor/"}
+            brandLink={"/laptop/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/laptop/refurbished'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -135,26 +146,25 @@ const MonitoareNew = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      <i className="fas fa-arrow-left text-primary mr-1"></i>
+                    <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange &&
-                    paginationRange.map((page) => (
-                      <li
-                        className={`page-item ${
-                          currentPage == page ? "active" : ""
-                        } ${page == DOTS ? "dots" : ""}`}
-                        key={page}
-                        style={{ cursor: "pointer" }}
+                  {paginationRange && paginationRange.map((page) => (
+                    <li
+                      className={`page-item ${
+                        currentPage == page ? "active" : ""
+                      } ${page == DOTS ? "dots" : ""} `}
+                      key={page}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <a
+                        className="page-link"
+                        onClick={() => setCurrentPage(page)}
                       >
-                        <a
-                          className="page-link"
-                          onClick={() => setCurrentPage(page)}
-                        >
-                          {page}
-                        </a>
-                      </li>
-                    ))}
+                        {page}
+                      </a>
+                    </li>
+                  ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -162,7 +172,7 @@ const MonitoareNew = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      <i className="fas fa-arrow-right text-primary mr-1"></i>
+                    <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>
@@ -176,4 +186,4 @@ const MonitoareNew = () => {
   );
 };
 
-export default MonitoareNew;
+export default LaptopuriRefurbished;

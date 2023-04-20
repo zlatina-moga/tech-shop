@@ -90,7 +90,7 @@ const POSReader = () => {
           <LaptopsPage
             title="Imprimante Termice Noi"
             laptopsData={laptopsData}
-            categories={posCategories}
+            //categories={posCategories}
             breadcrumbs={posPrinterBrcrmbs}
             sortCriteria={onSort}
             baseLink="/sisteme-pos/imprimante-termice-noi"

@@ -125,7 +125,7 @@ const RackServers = () => {
           <LaptopsPage
             title="Servere Cabinet Rack Refurbished"
             laptopsData={laptopsData}
-            categories={serverCategories}
+            //categories={serverCategories}
             breadcrumbs={serverRackBrcrmbs}
             sortCriteria={onSort}
             baseLink="/servere/cabinet-rack-refurbished"

@@ -21,6 +21,7 @@ const Workstations = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     productService
@@ -74,6 +75,9 @@ const Workstations = () => {
     sortingService.getHighestPrice(15).then((response) => {
       setHighestPrice(response[1]);
     });
+    sortingService.getTypes(15).then((r) => {
+      setCategories(r);
+    });
   }, []);
 
   const onRangeSelect = (range) => {
@@ -123,7 +127,7 @@ const Workstations = () => {
           <LaptopsPage
             title="Workstation"
             laptopsData={laptopsData}
-            categories={workstationCategories}
+            categories={categories}
             breadcrumbs={workstationBrcrmbs}
             brands={brands}
             brandLink={"/workstation/brand/"}
@@ -134,6 +138,7 @@ const Workstations = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/workstation/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

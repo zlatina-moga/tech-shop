@@ -12,7 +12,7 @@ const Projects = () => {
       <LaptopsPage
         title='Microsoft Project'
         laptopsData={licenseData.filter((c) => c.category == 'Project')}
-        categories={softwareCategories}
+        categories2={softwareCategories}
         breadcrumbs={projectBrcrmbs}
       />
       <Footer />

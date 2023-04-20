@@ -19,6 +19,7 @@ interface ILaptopPage {
   title: string;
   laptopsData: any[];
   categories?: any[];
+  categories2?: any[];
   breadcrumbs?: any[];
   brands?: any;
   brandLink?: string;
@@ -50,7 +51,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   className,
   processorsGeneration,
   processorsGenerationLink,
-  categoryLink
+  categoryLink,
+  categories2
 }) => {
   const [selected, setSelected] = useState("");
   const totalCount = laptopsData.map((l) => l.itemsCount)[0];
@@ -84,6 +86,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           processorsGeneration={processorsGeneration}
           processorsGenerationLink={processorsGenerationLink}
           categoryLink={categoryLink}
+          categories2={categories2}
         />
         <div>
           <div className="text-center mb-4">

@@ -119,7 +119,7 @@ const Componente = () => {
           <LaptopsPage
             title="Componente"
             laptopsData={laptopsData}
-            categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={componentBrcrmbs}
             brands={brands}
             brandLink={"/componente/brand/"}
@@ -128,6 +128,7 @@ const Componente = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/componente/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

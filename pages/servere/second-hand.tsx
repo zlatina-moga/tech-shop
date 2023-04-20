@@ -4,39 +4,43 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { laptopCategories } from "../../data/categories";
-import { laptopNewdBrcrmbs } from "../../data/breadcrumbs";
+import { serverCategories } from "../../data/categories";
+import { serverSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 
-const LaptopuriNoi = () => {
+const SecondHandServers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/laptop/noi-1");
+  const [selectedSort, setSelectedSort] = useState("/servere/second-hand");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(49).then((result) => {
+    sortingService.getBrands(11).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(49).then((res) => {
+    sortingService.getProcessors(11).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPrice(49).then((response) => {
+    sortingService.getHighestPrice(11).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(11).then((r) => {
+      setCategories(r);
     });
   }, []);
 
   useEffect(() => {
     productService
-      .getAllNewLaptops(currentPage)
+      .getAllSecondHandServers(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -54,7 +58,7 @@ const LaptopuriNoi = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedNewLaptopsPrice(priceRange, currentPage, sort)
+        .getSortedSecondHandServersPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
@@ -65,7 +69,7 @@ const LaptopuriNoi = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedNewLaptops(currentPage, sort)
+        .getSortedSecondHandServers(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -83,7 +87,7 @@ const LaptopuriNoi = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllNewLaptopsPrice(priceRange, currentPage)
+      .getAllSecondHandServersPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
         setShow(true);
@@ -121,19 +125,20 @@ const LaptopuriNoi = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Laptopuri Noi"
+            title="Servere Second Hand"
             laptopsData={laptopsData}
-            categories={laptopCategories}
-            breadcrumbs={laptopNewdBrcrmbs}
+            categories={categories}
+            breadcrumbs={serverSHBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/laptop/noi-1"
+            baseLink="/servere/second-hand"
             brands={brands}
+            brandLink={"/servere/brand/"}
             processors={processors}
-            processorsLink={"/laptop/procesor/"}
-            brandLink={"/laptop/brand/"}
+            processorsLink={"/servere/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/servere/second-hand'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -182,4 +187,4 @@ const LaptopuriNoi = () => {
   );
 };
 
-export default LaptopuriNoi;
+export default SecondHandServers;

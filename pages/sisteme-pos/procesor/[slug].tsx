@@ -139,7 +139,7 @@ const ProcDetail = () => {
             brandLink={"/sisteme-pos/brand/"}
             processors={processors}
             processorsLink={"/sisteme-pos/procesor/"}
-            categories={posCategories}
+           // categories={posCategories}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}

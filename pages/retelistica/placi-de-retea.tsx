@@ -121,7 +121,7 @@ const Network = () => {
           <LaptopsPage
             title="Placi de retea"
             laptopsData={laptopsData}
-            categories={networkCategories}
+            categories2={networkCategories}
             breadcrumbs={networkCardsBrcrmbs}
             sortCriteria={onSort}
             baseLink="/retelistica/placi-de-retea"

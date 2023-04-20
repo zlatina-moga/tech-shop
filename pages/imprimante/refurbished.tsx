@@ -14,12 +14,13 @@ const RefPrinters = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/imprimante/refurbished-5");
+  const [selectedSort, setSelectedSort] = useState("/imprimante/refurbished");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(30).then((result) => {
@@ -27,6 +28,9 @@ const RefPrinters = () => {
     });
     sortingService.getHighestPrice(30).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(30).then((r) => {
+      setCategories(r);
     });
   }, []);
 
@@ -119,15 +123,16 @@ const RefPrinters = () => {
           <LaptopsPage
             title="Imprimante Refurbished"
             laptopsData={laptopsData}
-            categories={printerCategories}
+            categories={categories}
             breadcrumbs={printerRefBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/imprimante/refurbished-5"
+            baseLink="/imprimante/refurbished"
             brands={brands}
             brandLink={"/imprimante/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/imprimante/refurbished/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

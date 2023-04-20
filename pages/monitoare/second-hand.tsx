@@ -3,42 +3,40 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../../hooks/usePagination";
-import { posCategories } from "../../data/categories";
-import { posRefBrcrmbs } from "../../data/breadcrumbs";
+import {usePagination, DOTS} from "../../hooks/usePagination";
+import { monitorCategories } from "../../data/categories";
+import { monitorSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 
-const RefurbishedPOS = () => {
+const MonitoareSecondHand = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState(
-    "/sisteme-pos/refurbished-6"
-  );
+  const [selectedSort, setSelectedSort] = useState("/monitoare/second-hand");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
-  const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(35).then((result) => {
+    sortingService.getBrands(20).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(35).then((res) => {
-      setProcessors(res);
-    });
-    sortingService.getHighestPrice(35).then((response) => {
+    sortingService.getHighestPrice(20).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(20).then((r) => {
+      setCategories(r);
     });
   }, []);
 
   useEffect(() => {
     productService
-      .getAllRefurbishedPOS(currentPage)
+      .geAllSecondHandMonitors(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -56,7 +54,7 @@ const RefurbishedPOS = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedRefurbishedPOSPrice(priceRange, currentPage, sort)
+        .geSortedSecondHandMonitorsPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
@@ -67,7 +65,7 @@ const RefurbishedPOS = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedRefurbishedPOS(currentPage, sort)
+        .geSortedSecondHandMonitors(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -85,7 +83,7 @@ const RefurbishedPOS = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllRefurbishedPOSPrice(priceRange, currentPage)
+      .geAllSecondHandMonitorsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
         setShow(true);
@@ -123,19 +121,18 @@ const RefurbishedPOS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Sisteme POS Refurbished"
+            title="Monitoare Second Hand"
             laptopsData={laptopsData}
-            categories={posCategories}
-            breadcrumbs={posRefBrcrmbs}
+            categories={categories}
+            breadcrumbs={monitorSHBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/sisteme-pos/refurbished-6"
+            baseLink="/monitoare/second-hand"
             brands={brands}
-            brandLink={"/sisteme-pos/brand/"}
-            processors={processors}
-            processorsLink={"/sisteme-pos/procesor/"}
+            brandLink={"/monitoare/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/monitoare/second-hand/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -143,26 +140,25 @@ const RefurbishedPOS = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      <i className="fas fa-arrow-left text-primary mr-1"></i>
+                    <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange &&
-                    paginationRange.map((page) => (
-                      <li
-                        className={`page-item ${
-                          currentPage == page ? "active" : ""
-                        } ${page == DOTS ? "dots" : ""}`}
-                        key={page}
-                        style={{ cursor: "pointer" }}
+                  {paginationRange && paginationRange.map((page) => (
+                    <li
+                      className={`page-item ${
+                        currentPage == page ? "active" : ""
+                      } ${page == DOTS ? "dots" : ""}`}
+                      key={page}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <a
+                        className="page-link"
+                        onClick={() => setCurrentPage(page)}
                       >
-                        <a
-                          className="page-link"
-                          onClick={() => setCurrentPage(page)}
-                        >
-                          {page}
-                        </a>
-                      </li>
-                    ))}
+                        {page}
+                      </a>
+                    </li>
+                  ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -170,7 +166,7 @@ const RefurbishedPOS = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      <i className="fas fa-arrow-right text-primary mr-1"></i>
+                    <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>
@@ -184,4 +180,4 @@ const RefurbishedPOS = () => {
   );
 };
 
-export default RefurbishedPOS;
+export default MonitoareSecondHand;

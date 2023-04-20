@@ -121,7 +121,7 @@ const Adaptors = () => {
           <LaptopsPage
             title="Adaptoare Wireless"
             laptopsData={laptopsData}
-            categories={networkCategories}
+            categories2={networkCategories}
             breadcrumbs={adaptorskBrcrmbs}
             sortCriteria={onSort}
             baseLink="/retelistica/adaptoare-wireless"

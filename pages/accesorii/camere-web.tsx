@@ -119,7 +119,7 @@ const Cameras = () => {
           <LaptopsPage
             title="Camere Web"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={camerasBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/camere-web"

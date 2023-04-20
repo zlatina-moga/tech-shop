@@ -14,13 +14,14 @@ const NewServers = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/servere/noi-6");
+  const [selectedSort, setSelectedSort] = useState("/servere/nou");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(56).then((result) => {
@@ -31,6 +32,9 @@ const NewServers = () => {
     });
     sortingService.getHighestPrice(56).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(56).then((r) => {
+      setCategories(r);
     });
   }, []);
 
@@ -123,10 +127,10 @@ const NewServers = () => {
           <LaptopsPage
             title="Servere Noi"
             laptopsData={laptopsData}
-            categories={serverCategories}
+            categories={categories}
             breadcrumbs={serverNewBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/servere/noi-6"
+            baseLink="/servere/nou"
             brands={brands}
             brandLink={"/servere/brand/"}
             processors={processors}
@@ -134,6 +138,7 @@ const NewServers = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/servere/nou'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

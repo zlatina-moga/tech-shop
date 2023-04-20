@@ -4,40 +4,39 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { workstationCategories } from "../../data/categories";
-import { workstationRefBrcrmbs } from "../../data/breadcrumbs";
+import { printerCategories } from "../../data/categories";
+import { printerNewBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 
-const WorkstationsRefurbished = () => {
+const NewPrinters = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState(
-    "/workstation/refurbished-3"
-  );
+  const [selectedSort, setSelectedSort] = useState("/imprimante/nou");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
-  const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(16).then((result) => {
+    sortingService.getBrands(53).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(16).then((res) => {
-      setProcessors(res);
-    });
-    sortingService.getHighestPrice(16).then((response) => {
+    sortingService.getHighestPrice(53).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(53).then((r) => {
+      setCategories(r);
     });
   }, []);
 
   useEffect(() => {
     productService
-      .getRefurbishedWorkstations(currentPage)
+      .getAllNewPrinters(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -55,7 +54,7 @@ const WorkstationsRefurbished = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedRefurbishedWorkstationsPrice(priceRange, currentPage, sort)
+        .getSortedNewPrintersPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
@@ -66,7 +65,7 @@ const WorkstationsRefurbished = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedRefurbishedWorkstations(currentPage, sort)
+        .getSortedNewPrinters(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -84,7 +83,7 @@ const WorkstationsRefurbished = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getRefurbishedWorkstationsPrice(priceRange, currentPage)
+      .getAllNewPrintersPrice(currentPage, priceRange)
       .then((result) => {
         setLaptopsData(result);
         setShow(true);
@@ -122,19 +121,18 @@ const WorkstationsRefurbished = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Workstation Refurbished"
+            title="Imprimante Noi"
             laptopsData={laptopsData}
-            categories={workstationCategories}
-            breadcrumbs={workstationRefBrcrmbs}
+            categories={categories}
+            breadcrumbs={printerNewBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/workstation/refurbished-3"
+            baseLink="/imprimante/nou"
             brands={brands}
-            brandLink={"/workstation/brand/"}
-            processors={processors}
-            processorsLink={"/workstation/procesor/"}
+            brandLink={"/imprimante/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/imprimante/nou/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -150,7 +148,7 @@ const WorkstationsRefurbished = () => {
                       <li
                         className={`page-item ${
                           currentPage == page ? "active" : ""
-                        }  ${page == DOTS ? "dots" : ""}`}
+                        } ${page == DOTS ? "dots" : ""} `}
                         key={page}
                         style={{ cursor: "pointer" }}
                       >
@@ -178,8 +176,9 @@ const WorkstationsRefurbished = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };
 
-export default WorkstationsRefurbished;
+export default NewPrinters;

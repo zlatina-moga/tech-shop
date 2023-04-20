@@ -133,7 +133,7 @@ const BrandDetail = () => {
             breadcrumbs={laptopBrandBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/laptop/brand/${slug}`}
-            categories={laptopCategories}
+            //categories={laptopCategories}
             brands={brands}
             processors={processors}
             processorsLink={"/laptop/procesor/"}

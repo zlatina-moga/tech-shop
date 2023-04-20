@@ -140,7 +140,7 @@ const ProcDetail = () => {
             breadcrumbs={workstationProcBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/workstation/procesor/${slug}`}
-            categories={workstationCategories}
+            //categories={workstationCategories}
             brands={brands}
             brandLink={"/workstation/brand/"}
             processors={processors}

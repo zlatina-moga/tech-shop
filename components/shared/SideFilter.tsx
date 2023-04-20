@@ -16,6 +16,7 @@ const SideFilter = ({
   processorsGeneration,
   processorsGenerationLink,
   categoryLink,
+  categories2,
   //baseLink
 }) => {
   const router = useRouter();
@@ -141,6 +142,73 @@ const SideFilter = ({
           </div>
         </div>
       )}
+      {categories2 && (
+        <div
+          className="sidebar-container"
+          style={{ display: "block", maxWidth: "260px" }}
+        >
+          <div className="row">
+            <div className="">
+              <nav
+                className="collapse show navbar-vertical navbar-light p-0"
+                id="navbar-vertical-2"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              >
+                <div
+                  className="navbar-nav overflow-hidden relative"
+                  style={{
+                    borderRadius: "4px",
+                  }}
+                >
+                  <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
+                  {categories2.map((c, idx) => (
+                    <Link
+                      href={c.link}
+                      className={`sidebar-link nav-item nav-link py-3 d-flex justify-content-between ${
+                        router.pathname == c.link ? "active" : ""
+                      }`}
+                      key={idx}
+                    >
+                      {router.pathname == c.link ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : router.pathname.includes(c.slug) ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : (
+                        ""
+                      )}
+                      {c.name}
+                      {c.count && (
+                        <span className="inner-count">({c.count})</span>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </nav>
+              <nav
+                className="collapse show navbar navbar-vertical navbar-light align-items-start p-0"
+                id="navbar-vertical"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              ></nav>
+            </div>
+          </div>
+        </div>
+      )}
       {brands && (
         <div
           className="sidebar-container mt-4"
@@ -232,16 +300,17 @@ const SideFilter = ({
                         router.asPath.includes(c.slug) ? "active" : ""
                       }`}
                       key={idx}
-                    >{router.asPath.includes(c.slug) ? (
-                      <i
-                        className="fas fa-check"
-                        style={{
-                          color: "#57A046",
-                        }}
-                      ></i>
-                    ) : (
-                      ""
-                    )}
+                    >
+                      {router.asPath.includes(c.slug) ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : (
+                        ""
+                      )}
                       {c.name}
                       <span className="inner-count">({c.count})</span>
                     </Link>
@@ -291,16 +360,17 @@ const SideFilter = ({
                         router.asPath.includes(c.slug) ? "active" : ""
                       }`}
                       key={idx}
-                    >{router.asPath.includes(c.slug) ? (
-                      <i
-                        className="fas fa-check"
-                        style={{
-                          color: "#57A046",
-                        }}
-                      ></i>
-                    ) : (
-                      ""
-                    )}
+                    >
+                      {router.asPath.includes(c.slug) ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : (
+                        ""
+                      )}
                       {c.name}
                       <span className="inner-count">({c.count})</span>
                     </Link>

@@ -6,7 +6,6 @@ import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
-import { printerCategories } from "../data/categories";
 import { printerBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
 
@@ -20,6 +19,7 @@ const Imprimante = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     productService
@@ -68,6 +68,9 @@ const Imprimante = () => {
     });
     sortingService.getHighestPrice(29).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(29).then((r) => {
+      setCategories(r);
     });
   }, []);
 
@@ -118,7 +121,7 @@ const Imprimante = () => {
           <LaptopsPage
             title="Imprimante"
             laptopsData={laptopsData}
-            categories={printerCategories}
+            categories={categories}
             breadcrumbs={printerBrcrmbs}
             brands={brands}
             brandLink={"/imprimante/brand/"}
@@ -127,6 +130,7 @@ const Imprimante = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/imprimante/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

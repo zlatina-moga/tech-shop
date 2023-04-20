@@ -129,7 +129,7 @@ const BrandDetail = () => {
             breadcrumbs={componentBrandBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/componente/brand/${slug}`}
-            categories={componentCategories}
+            //categories={componentCategories}
             brands={brands}
             brandLink={"/componente/brand/"}
             highEnd={highestPrice}

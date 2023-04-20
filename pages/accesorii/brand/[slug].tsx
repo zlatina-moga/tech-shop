@@ -96,7 +96,7 @@ const BrandDetail = () => {
             baseLink={`/accesorii/brand/${slug}`}
             brands={brands}
             brandLink={"/accesorii/brand/"}
-            categories={accessoryCategories}
+            //categories={accessoryCategories}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

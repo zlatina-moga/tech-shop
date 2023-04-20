@@ -133,7 +133,7 @@ const BrandDetail = () => {
             baseLink={`/sisteme-solare-fotovoltaice/brand/${slug}`}
             brands={brands}
             brandLink={"/sisteme-solare-fotovoltaice/brand/"}
-            categories={solarCategories}
+            categories2={solarCategories}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}

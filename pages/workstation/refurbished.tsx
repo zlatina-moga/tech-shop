@@ -4,39 +4,44 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { posCategories } from "../../data/categories";
-import { posNewBrcrmbs } from "../../data/breadcrumbs";
+import { workstationCategories } from "../../data/categories";
+import { workstationRefBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
-import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 
-const NewPOS = () => {
+const WorkstationsRefurbished = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/sisteme-pos/noi-8");
+  const [selectedSort, setSelectedSort] = useState(
+    "/workstation/refurbished"
+  );
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    sortingService.getBrands(58).then((result) => {
+    sortingService.getBrands(16).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(58).then((res) => {
+    sortingService.getProcessors(16).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPrice(58).then((response) => {
+    sortingService.getHighestPrice(16).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(16).then((r) => {
+      setCategories(r);
     });
   }, []);
 
   useEffect(() => {
     productService
-      .getAllNewPOS(currentPage)
+      .getRefurbishedWorkstations(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -54,7 +59,7 @@ const NewPOS = () => {
     if (priceRange) {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedNewPOSPrice(priceRange, currentPage, sort)
+        .getSortedRefurbishedWorkstationsPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
@@ -65,7 +70,7 @@ const NewPOS = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedNewPOS(currentPage, sort)
+        .getSortedRefurbishedWorkstations(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -83,7 +88,7 @@ const NewPOS = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllNewPOSPrice(priceRange, currentPage)
+      .getRefurbishedWorkstationsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
         setShow(true);
@@ -121,19 +126,20 @@ const NewPOS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Sisteme POS Noi"
+            title="Workstation Refurbished"
             laptopsData={laptopsData}
-            categories={posCategories}
-            breadcrumbs={posNewBrcrmbs}
+            categories={categories}
+            breadcrumbs={workstationRefBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/sisteme-pos/noi-8"
+            baseLink="/workstation/refurbished"
             brands={brands}
-            brandLink={"/sisteme-pos/brand/"}
+            brandLink={"/workstation/brand/"}
             processors={processors}
-            processorsLink={"/sisteme-pos/procesor/"}
+            processorsLink={"/workstation/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            categoryLink={'/workstation/refurbished'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -149,7 +155,7 @@ const NewPOS = () => {
                       <li
                         className={`page-item ${
                           currentPage == page ? "active" : ""
-                        } ${page == DOTS ? "dots" : ""}`}
+                        }  ${page == DOTS ? "dots" : ""}`}
                         key={page}
                         style={{ cursor: "pointer" }}
                       >
@@ -177,9 +183,8 @@ const NewPOS = () => {
           )}
         </>
       )}
-      <Footer />
     </>
   );
 };
 
-export default NewPOS;
+export default WorkstationsRefurbished;

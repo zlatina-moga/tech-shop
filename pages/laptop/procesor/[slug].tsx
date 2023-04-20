@@ -133,7 +133,7 @@ const ProcDetail = () => {
             breadcrumbs={procLaptopsBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/laptop/procesor/${slug}`}
-            categories={laptopCategories}
+            //categories={laptopCategories}
             brands={brands}
             processors={processors}
             processorsLink={"/laptop/procesor/"}

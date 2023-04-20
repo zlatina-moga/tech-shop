@@ -122,7 +122,7 @@ const Cables = () => {
           <LaptopsPage
             title="Cabluri si Adaptoare"
             laptopsData={laptopsData}
-            categories={accessoryCategories}
+            categories2={accessoryCategories}
             breadcrumbs={cablesBreadCrmbs}
             sortCriteria={onSort}
             baseLink="/accesorii/cabluri-si-adaptoare"

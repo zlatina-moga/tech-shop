@@ -121,7 +121,7 @@ const MonitoareTouchSH = () => {
           <LaptopsPage
             title="Monitoare Touchscreen Refurbished"
             laptopsData={laptopsData}
-            categories={monitorCategories}
+            //categories={monitorCategories}
             breadcrumbs={monitorTouchSHBrcrmbs}
             sortCriteria={onSort}
             baseLink="/monitoare/touchscreen-refurbished"

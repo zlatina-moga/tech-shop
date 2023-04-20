@@ -121,7 +121,7 @@ const Railkits = () => {
           <LaptopsPage
             title="Componente RailKit server"
             laptopsData={laptopsData}
-            categories={componentCategories}
+            //categories={componentCategories}
             breadcrumbs={railkitBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/railkit-server"
