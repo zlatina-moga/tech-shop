@@ -121,7 +121,7 @@ const MotherBoards = () => {
           <LaptopsPage
             title="Componente Placa de baza calculator"
             laptopsData={laptopsData}
-            //categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={mbBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/placa-de-baza-calculator"

@@ -79,7 +79,7 @@ const DiscountedServers = () => {
           <LaptopsPage
             title="Servere la reducere"
             laptopsData={laptopsData}
-            categories={discountCategories}
+            categories2={discountCategories}
             breadcrumbs={discountedServersBrcrmbs}
             sortCriteria={onSort}
             baseLink="/produse-la-reducere/servere"

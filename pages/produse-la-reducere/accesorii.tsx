@@ -77,7 +77,7 @@ const DiscountedAccessories = () => {
           <LaptopsPage
             title="Accesorii la reducere"
             laptopsData={laptopsData}
-            categories={discountCategories}
+            categories2={discountCategories}
             breadcrumbs={discountedAccBrcrmbs}
             sortCriteria={onSort}
             baseLink='/produse-la-reducere/accesorii'

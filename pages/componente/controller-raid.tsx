@@ -121,7 +121,7 @@ const Controllers = () => {
           <LaptopsPage
             title="Componente Controller Raid"
             laptopsData={laptopsData}
-            //categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={controllerBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/controller-raid"

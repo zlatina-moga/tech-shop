@@ -119,7 +119,7 @@ const Caddys = () => {
           <LaptopsPage
             title="Caddy server"
             laptopsData={laptopsData}
-            //categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={caddyBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/caddy-server"

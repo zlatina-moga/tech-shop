@@ -77,7 +77,7 @@ const DiscountedMonitors = () => {
           <LaptopsPage
             title="Monitoare la reducere"
             laptopsData={laptopsData}
-            categories={discountCategories}
+            categories2={discountCategories}
             breadcrumbs={discountedMonitorBrcrmbs}
             sortCriteria={onSort}
             baseLink='/produse-la-reducere/monitoare'

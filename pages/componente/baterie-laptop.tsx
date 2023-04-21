@@ -121,7 +121,7 @@ const LaptopBatteries = () => {
           <LaptopsPage
             title="Componente Baterie Laptop"
             laptopsData={laptopsData}
-            //categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={batteriesBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/baterie-laptop"

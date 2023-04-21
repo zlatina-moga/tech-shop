@@ -79,7 +79,7 @@ const DiscountedComps = () => {
           <LaptopsPage
             title="Calculatoare la reducere"
             laptopsData={laptopsData}
-            categories={discountCategories}
+            categories2={discountCategories}
             breadcrumbs={discountedCompBrcrmbs}
             sortCriteria={onSort}
             baseLink="/produse-la-reducere/calculatoare"

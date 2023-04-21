@@ -77,7 +77,7 @@ const DiscountedUPS = () => {
           <LaptopsPage
             title="UPS la reducere"
             laptopsData={laptopsData}
-            categories={discountCategories}
+            categories2={discountCategories}
             breadcrumbs={discountedUPSBrcrmbs}
             sortCriteria={onSort}
             baseLink="/produse-la-reducere/ups"

@@ -24,6 +24,7 @@ const BrandDetail = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(2).then((result) => {
@@ -38,6 +39,9 @@ const BrandDetail = () => {
     sortingService.getProcessorGenerationByBrand(2, slug).then((r) => {
       setProcessorsGeneration(r);
     })
+    sortingService.getTypes(2).then((r) => {
+      setCategories(r);
+    });
   }, [slug]);
 
   useEffect(() => {
@@ -136,6 +140,7 @@ const BrandDetail = () => {
             title={`Calculatoare Refurbished ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={brandRefComputersBrcrmbs}
+            categories={categories}
             sortCriteria={onSort}
             baseLink={`/calculatoare/refurbished/brand/${slug}`}
             brands={brands}

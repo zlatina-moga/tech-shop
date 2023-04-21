@@ -79,7 +79,7 @@ const DiscountedPOS = () => {
           <LaptopsPage
             title="Sisteme POS la reducere"
             laptopsData={laptopsData}
-            categories={discountCategories}
+            categories2={discountCategories}
             breadcrumbs={discountedPOSrBrcrmbs}
             sortCriteria={onSort}
             baseLink="/produse-la-reducere/sisteme-pos"

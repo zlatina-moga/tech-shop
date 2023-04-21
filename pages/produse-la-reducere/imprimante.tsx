@@ -77,7 +77,7 @@ const DiscountedPrinters = () => {
           <LaptopsPage
             title="Imprimante la reducere"
             laptopsData={laptopsData}
-            categories={discountCategories}
+            categories2={discountCategories}
             breadcrumbs={discountedPrinterBrcrmbs}
             sortCriteria={onSort}
             baseLink='/produse-la-reducere/imprimante'

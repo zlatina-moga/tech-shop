@@ -36,7 +36,7 @@ const Calculatoare = () => {
     sortingService.getProcessorGenerationByType(1, 'refurbished-2').then((r) => {
       setProcessorsGeneration(r);
     });
-    sortingService.getTypes(1).then((r) => {
+    sortingService.getTypes(2).then((r) => {
       setCategories(r);
     });
   }, []);

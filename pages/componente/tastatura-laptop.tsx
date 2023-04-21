@@ -121,7 +121,7 @@ const LaptopKeyboards = () => {
           <LaptopsPage
             title="Componente Tastatura laptop"
             laptopsData={laptopsData}
-           // categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={laptopKeyboardBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/tastatura-laptop"

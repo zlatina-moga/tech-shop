@@ -119,7 +119,7 @@ const Procesors = () => {
           <LaptopsPage
             title="Componente Procesor"
             laptopsData={laptopsData}
-            //categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={processorBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/procesor"

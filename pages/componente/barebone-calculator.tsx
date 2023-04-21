@@ -120,7 +120,7 @@ const Barebone = () => {
           <LaptopsPage
             title="Componente Barebone calculator"
             laptopsData={laptopsData}
-            //categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={bareboneBrcrmbs}
             sortCriteria={onSort}
             baseLink='/componente/barebone-calculator'

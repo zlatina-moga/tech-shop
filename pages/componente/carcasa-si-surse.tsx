@@ -120,7 +120,7 @@ const Cases = () => {
           <LaptopsPage
             title="Componente Carcasa si Surse"
             laptopsData={laptopsData}
-            //categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={carcasaBrcrmbs}
             sortCriteria={onSort}
             baseLink='/componente/carcasa-si-surse'

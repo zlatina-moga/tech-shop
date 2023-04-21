@@ -24,6 +24,7 @@ const BrandDetail = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(3).then((result) => {
@@ -38,6 +39,9 @@ const BrandDetail = () => {
     sortingService.getProcessorGenerationByBrand(3, slug).then((r) => {
       setProcessorsGeneration(r);
     })
+    sortingService.getTypes(3).then((r) => {
+      setCategories(r);
+    });
   }, [slug]);
 
   useEffect(() => {
@@ -136,6 +140,7 @@ const BrandDetail = () => {
             title={`Calculatoare Noi ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={brandNewComputersBrcrmbs}
+            categories={categories}
             sortCriteria={onSort}
             baseLink={`/calculatoare/nou/brand/${slug}`}
             brands={brands}

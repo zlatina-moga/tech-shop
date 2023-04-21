@@ -119,7 +119,7 @@ const RAM = () => {
           <LaptopsPage
             title="Componente Memorie RAM"
             laptopsData={laptopsData}
-            //categories={componentCategories}
+            categories2={componentCategories}
             breadcrumbs={ramBrcrmbs}
             sortCriteria={onSort}
             baseLink="/componente/memorie-ram"
