@@ -275,7 +275,7 @@ const SideFilter = ({
           style={{ display: "block", maxWidth: "260px" }}
         >
           <div className="row">
-            <div className="d-none d-lg-block">
+            <div className="">
               <nav
                 className="collapse show navbar-vertical navbar-light p-0"
                 id="navbar-vertical-2"
@@ -335,7 +335,7 @@ const SideFilter = ({
           style={{ display: "block", maxWidth: "260px" }}
         >
           <div className="row">
-            <div className="d-none d-lg-block">
+            <div className="">
               <nav
                 className="collapse show navbar-vertical navbar-light p-0"
                 id="navbar-vertical-2"
