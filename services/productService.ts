@@ -117,6 +117,11 @@ export const getSortedComputersPrice = (price, page, sort) =>
     `${baseUrl}/calculatoare/generatie?generatie=${slug}&price=1-${price}&page=${page}`
   );
 
+  export const getAllComputersGenerationAndProcessor = (page, slug, processor) =>
+  request.get(
+    `${baseUrl}/calculatoare/generatie?generatie=${slug}&procesor=${processor}&page=${page}`
+  );
+
 export const getAllComputersByBrand = (page, slug) =>
   request.get(`${baseUrl}/calculatoare/brand?brand=${slug}&page=${page}`);
 

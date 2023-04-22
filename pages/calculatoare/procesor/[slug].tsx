@@ -11,7 +11,7 @@ import * as sortingService from "../../../services/sortingService";
 
 const ProcDetail = () => {
   const router = useRouter();
-  const { slug, brand } = router.query;
+  const { slug, brand, generatie } = router.query;
   const [itemData, setItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -52,6 +52,17 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (generatie) {
+      productService
+        .getAllComputersGenerationAndProcessor(currentPage, generatie, slug)
+        .then((result) => {
+          setLoading(false);
+          setItemsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       productService
         .getAllComputersByProcessor(currentPage, slug)
@@ -63,7 +74,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, brand]);
+  }, [currentPage, slug, brand, generatie]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -160,7 +171,7 @@ const ProcDetail = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={"/calculatoare/procesor/"}
+            processorsGenerationLink={`/calculatoare/procesor/${slug}?generatie=`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
