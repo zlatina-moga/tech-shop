@@ -1,6 +1,6 @@
 import * as request from "./requester";
-//const baseUrl = "http://localhost:5500";
-const baseUrl = 'https://pc-bun-api.herokuapp.com';
+const baseUrl = "http://localhost:5500";
+//const baseUrl = 'https://pc-bun-api.herokuapp.com';
 
 export const getAllProdictsCount = () => request.get(`${baseUrl}`);
 
@@ -117,6 +117,16 @@ export const getAllComputersByBrandPrice = (page, slug, price) =>
     `${baseUrl}/calculatoare/brand?brand=${slug}&price=1-${price}&page=${page}`
   );
 
+  export const getAllRefComputersByProcessorPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/procesor?procesor=${slug}&price=1-${price}&page=${page}`
+  );
+
+  export const getAllNewComputersByProcessorPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/procesor?procesor=${slug}&price=1-${price}&page=${page}`
+  );
+
 export const getSortedComputersByBrand = (page, slug, sort) =>
   request.get(
     `${baseUrl}/calculatoare/brand?brand=${slug}&sort=${sort}&page=${page}`
@@ -142,6 +152,16 @@ export const getSortedRefComputersByBrandPrice = (page, slug, sort, price) =>
     `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
+  export const getSortedRefComputersByProcessorPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedNewComputersByProcessorPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
 export const getSortedRefComputersByBrandPriceAndProcessor = (
   page,
   slug,
@@ -161,6 +181,16 @@ export const getSortedSHComputersByBrandPrice = (page, slug, sort, price) =>
 export const getSortedRefComputersByBrand = (page, slug, sort) =>
   request.get(
     `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedRefComputersByProcessor = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/procesor?procesor=${slug}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedNewComputersByProcessor = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/procesor?procesor=${slug}&sort=${sort}&page=${page}`
   );
 
 export const getSortedRefComputersByBrandAndProcessor = (
@@ -269,6 +299,17 @@ export const getAllRefComputersBrand = (page, brand) =>
   request.get(
     `${baseUrl}/calculatoare/refurbished?brand=${brand}&page=${page}`
   );
+
+  export const getAllRefComputersProcessor = (page, processor) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished?procesor=${processor}&page=${page}`
+  );
+
+  export const getAllNewComputersProcessor = (page, processor) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/procesor?procesor=${processor}&page=${page}`
+  );
+
 
 export const getAllRefComputersBrandAndProcessor = (page, brand, processor) =>
   request.get(

@@ -203,7 +203,7 @@ export const brandSHComputersBrcrmbs = [
   { name: "Brand", link: "#" },
 ];
 
-export const componentSHComputersBrcrmbs = [
+export const compSHComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
@@ -213,6 +213,36 @@ export const componentSHComputersBrcrmbs = [
   {
     name: "Second Hand",
     link: "/calculatoare/second-hand",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
+export const compRefComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/calculatoare/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
+export const compNewComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Noi",
+    link: "/calculatoare/nou",
     linkIcon: "fa fa-angle-double-right",
   },
   { name: "Procesor", link: "#" },

@@ -233,13 +233,13 @@ const SideFilter = ({
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
                     Brand
                   </h4>
-                  {brands.map((c, idx) => (
+                  {brands.map((c) => (
                     <Link
                       href={`${brandLink}${c.slug}-${c.id}`}
                       className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
                         router.asPath.includes(c.slug) ? "active" : ""
                       }`}
-                      key={idx}
+                      key={c.id}
                     >
                       {router.asPath.includes(c.slug) ? (
                         <i
