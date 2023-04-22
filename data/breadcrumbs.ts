@@ -158,6 +158,17 @@ export const brandComputersBrcrmbs = [
   { name: "Brand", link: "#" },
 ];
 
+export const generationComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
+
 export const brandNewComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {

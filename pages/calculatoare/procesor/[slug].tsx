@@ -11,7 +11,7 @@ import * as sortingService from "../../../services/sortingService";
 
 const ProcDetail = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { slug, brand } = router.query;
   const [itemData, setItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -24,7 +24,7 @@ const ProcDetail = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     sortingService.getBrandsByProcessor(1, slug).then((result) => {
@@ -39,22 +39,31 @@ const ProcDetail = () => {
     sortingService.getProcessorGenerationByProcessor(1, slug).then((r) => {
       setProcessorsGeneration(r);
     });
-    sortingService.getTypesByProcessor(1, slug).then((r) => {
-      setCategories(r);
-    });
   }, [slug]);
-
   useEffect(() => {
-    productService
-      .getAllComputersByProcessor(currentPage, slug)
-      .then((result) => {
-        setLoading(false);
-        setItemsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentPage, slug]);
+    if (brand) {
+      productService
+        .getAllComputersBrandAndProcessor(currentPage, brand, slug)
+        .then((result) => {
+          setLoading(false);
+          setItemsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      productService
+        .getAllComputersByProcessor(currentPage, slug)
+        .then((result) => {
+          setLoading(false);
+          setItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, slug, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -67,6 +76,7 @@ const ProcDetail = () => {
         .getSortedComputersByProcessorPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemsData(result);
+          setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
@@ -79,6 +89,7 @@ const ProcDetail = () => {
         .then((result) => {
           setLoading(false);
           setItemsData(result);
+          setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
@@ -93,17 +104,16 @@ const ProcDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllComputersByProcessorPrice(currentPage, slug,  priceRange)
+      .getAllComputersByProcessorPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemsData(result);
+        setTotalPages(result[0].totalPages);
         setShow(true);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [priceRange, currentPage]);
-
-  const totalPages = itemData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -143,15 +153,14 @@ const ProcDetail = () => {
             sortCriteria={onSort}
             baseLink={`/calculatoare/procesor/${slug}`}
             brands={brands}
-            brandLink={"/calculatoare/brand/"}
+            brandLink={`/calculatoare/procesor/${slug}?brand=`}
             processors={processors}
-            processorsLink={"/calculatoare/procesor/"}
-            categories={categories}
+            processorsLink={`/calculatoare/procesor/`}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={'/calculatoare/procesor/'}
+            processorsGenerationLink={"/calculatoare/procesor/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -159,25 +168,26 @@ const ProcDetail = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                    <i className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange && paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } ${page == DOTS ? "dots" : ""}`}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -185,7 +195,7 @@ const ProcDetail = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                    <i className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

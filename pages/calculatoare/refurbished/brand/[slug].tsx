@@ -173,7 +173,7 @@ const BrandDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllComputersByBrandPrice(currentPage, slug, priceRange)
+      .getAllRefComputersByBrandPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemData(result);
         setTotalPages(result[0].totalPages);

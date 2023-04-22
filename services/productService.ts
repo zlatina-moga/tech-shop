@@ -109,12 +109,25 @@ export const getSortedComputersPrice = (price, page, sort) =>
     `${baseUrl}/calculatoare?price=1-${price}&sort=${sort}&page=${page}`
   );
 
+  export const getAllComputersByGeneration = (page, slug) =>
+  request.get(`${baseUrl}/calculatoare/generatie?generatie=${slug}&page=${page}`);
+
+  export const getAllComputersByGenerationPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/generatie?generatie=${slug}&price=1-${price}&page=${page}`
+  );
+
 export const getAllComputersByBrand = (page, slug) =>
   request.get(`${baseUrl}/calculatoare/brand?brand=${slug}&page=${page}`);
 
 export const getAllComputersByBrandPrice = (page, slug, price) =>
   request.get(
     `${baseUrl}/calculatoare/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
+
+  export const getAllRefComputersByBrandPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&price=1-${price}&page=${page}`
   );
 
   export const getAllRefComputersByProcessorPrice = (page, slug, price) =>
@@ -140,6 +153,16 @@ export const getSortedNewComputersByBrand = (page, slug, sort) =>
 export const getSortedComputersByBrandPrice = (page, slug, sort, price) =>
   request.get(
     `${baseUrl}/calculatoare/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedComputersByGenerationPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/generatie?generatie=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedComputersByGeneration = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/calculatoare/generatie?generatie=${slug}&sort=${sort}&page=${page}`
   );
 
 export const getSortedNewComputersByBrandPrice = (page, slug, sort, price) =>
@@ -310,6 +333,10 @@ export const getAllRefComputersBrand = (page, brand) =>
     `${baseUrl}/calculatoare/nou/procesor?procesor=${processor}&page=${page}`
   );
 
+  export const getAllComputersBrandAndProcessor = (page, brand, processor) =>
+  request.get(
+    `${baseUrl}/calculatoare/brand?brand=${brand}&procesor=${processor}&page=${page}`
+  );
 
 export const getAllRefComputersBrandAndProcessor = (page, brand, processor) =>
   request.get(

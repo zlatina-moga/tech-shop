@@ -32,7 +32,7 @@ const Footer = () => {
     emailjs
       .send(process.env.SERVICE_ID, templateId, variables, process.env.USER_ID)
       .then(() => {
-        toast.success("Multumim! V-ati abonat cu succes", {
+        toast.success("Mulțumim! V-ați abonat cu succes", {
           style: { marginTop: "100px" },
         });
         setTimeout(() => {
