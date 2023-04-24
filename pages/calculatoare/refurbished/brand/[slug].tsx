@@ -47,10 +47,11 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (procesor) {
+      setShow(false);
       productService
         .getAllRefComputersBrandAndProcessor(currentPage, slug, procesor)
         .then((result) => {
-          setLoading(false);
+          setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -58,10 +59,11 @@ const BrandDetail = () => {
           console.log(err);
         });
     } else {
+      setShow(false);
       productService
         .getAllRefComputersBrand(currentPage, slug)
         .then((result) => {
-          setLoading(false);
+          setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -77,11 +79,13 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefComputersByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemData(result);
+          setShow(true)
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
@@ -90,10 +94,11 @@ const BrandDetail = () => {
     } else {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
+      setShow(false)
       productService
         .getSortedRefComputersByBrand(currentPage, slug, sort)
         .then((result) => {
-          setLoading(false);
+          setShow(true)
           setItemData(result);
           setTotalPages(result[0].totalPages);
         })

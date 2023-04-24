@@ -47,10 +47,11 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (procesor) {
+      setShow(false)
       productService
         .getAllSHComputersBrandAndProcessor(currentPage, slug, procesor)
         .then((result) => {
-          setLoading(false);
+          setShow(true)
           setItemData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -58,10 +59,11 @@ const BrandDetail = () => {
           console.log(err);
         });
     } else {
+      setShow(false)
       productService
       .getAllSHComputersBrand(currentPage, slug)
       .then((result) => {
-        setLoading(false);
+        setShow(true)
         setItemData(result);
         setTotalPages(result[0].totalPages);
       })
@@ -77,12 +79,14 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSHComputersByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true)
         })
         .catch((err) => {
           console.log(err);
@@ -90,10 +94,11 @@ const BrandDetail = () => {
     } else {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
+      setShow(false)
       productService
         .getSortedSHComputersByBrand(currentPage, slug, sort)
         .then((result) => {
-          setLoading(false);
+          setShow(true)
           setItemData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -110,7 +115,7 @@ const BrandDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllComputersByBrandPrice(currentPage, slug, priceRange)
+      .getAllSHComputersByBrandPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemData(result);
         setTotalPages(result[0].totalPages);

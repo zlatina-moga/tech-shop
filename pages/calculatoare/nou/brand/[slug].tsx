@@ -47,29 +47,30 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (procesor) {
+      setShow(false);
       productService
         .getAllNewComputersBrandAndProcessor(currentPage, slug, procesor)
         .then((result) => {
           setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
+      setShow(false);
       productService
         .getAllNewComputersBrand(currentPage, slug)
         .then((result) => {
           setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
+          setShow(true);
         });
     }
-  }, [currentPage, slug]);
+  }, [currentPage, slug, procesor]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -77,12 +78,14 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewComputersByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -90,12 +93,14 @@ const BrandDetail = () => {
     } else {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
+      setShow(false);
       productService
         .getSortedNewComputersByBrand(currentPage, slug, sort)
         .then((result) => {
           setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -110,7 +115,7 @@ const BrandDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllComputersByBrandPrice(currentPage, slug, priceRange)
+      .getAllNewComputersByBrandPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemData(result);
         setTotalPages(result[0].totalPages);
@@ -119,7 +124,7 @@ const BrandDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [priceRange, currentPage]);
+  }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
     currentPage,

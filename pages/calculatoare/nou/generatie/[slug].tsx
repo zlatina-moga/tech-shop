@@ -117,7 +117,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, slug]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);

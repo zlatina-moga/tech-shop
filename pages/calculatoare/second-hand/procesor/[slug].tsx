@@ -43,27 +43,29 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (brand) {
+      setShow(false)
       productService
         .getAllSHComputersBrandAndProcessor(currentPage, brand, slug)
         .then((result) => {
-          setLoading(false);
+          setShow(true)
           setItemData(result);
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
         });
-    }
-    productService
+    } else {
+      productService
       .getAllSHComputersByProcessor(currentPage, slug)
       .then((result) => {
-        setLoading(false);
         setItemData(result);
         setTotalPages(result[0].totalPages);
       })
       .catch((err) => {
         console.log(err);
       });
+    }
+
   }, [currentPage, slug, brand]);
 
   const onSort = (sort) => {
@@ -96,7 +98,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, slug]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);

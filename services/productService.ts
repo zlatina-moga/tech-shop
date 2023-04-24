@@ -175,6 +175,17 @@ export const getAllComputersByBrandPrice = (page, slug, price) =>
     `${baseUrl}/calculatoare/brand?brand=${slug}&price=1-${price}&page=${page}`
   );
 
+  export const getAllNewComputersByBrandPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
+
+  export const getAllSHComputersByBrandPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
+
+
   export const getAllRefComputersByBrandPrice = (page, slug, price) =>
   request.get(
     `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&price=1-${price}&page=${page}`

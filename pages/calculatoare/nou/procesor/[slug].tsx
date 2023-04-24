@@ -27,11 +27,9 @@ const ProcDetail = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    sortingService
-      .getProcessorsBrands(3, "nou-3", slug)
-      .then((result) => {
-        setBrands(result);
-      });
+    sortingService.getProcessorsBrands(3, "nou-3", slug).then((result) => {
+      setBrands(result);
+    });
     sortingService.getProcessors(3).then((res) => {
       setProcessors(res);
     });
@@ -45,21 +43,23 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (brand) {
+      setShow(false);
       productService
         .getAllNewComputersBrandAndProcessor(currentPage, brand, slug)
         .then((result) => {
-          setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
+      setShow(false);
       productService
         .getAllNewComputersProcessor(currentPage, slug)
         .then((result) => {
-          setLoading(false);
+          setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -75,6 +75,7 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewComputersByProcessorPrice(
@@ -86,6 +87,7 @@ const ProcDetail = () => {
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -93,10 +95,11 @@ const ProcDetail = () => {
     } else {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
+      setShow(false);
       productService
         .getSortedNewComputersByProcessor(currentPage, slug, sort)
         .then((result) => {
-          setLoading(false);
+          setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -122,7 +125,7 @@ const ProcDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [priceRange, currentPage]);
+  }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
     currentPage,
