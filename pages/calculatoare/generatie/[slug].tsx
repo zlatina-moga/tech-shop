@@ -11,7 +11,7 @@ import * as sortingService from "../../../services/sortingService";
 
 const BrandDetail = () => {
   const router = useRouter();
-  const { slug, procesor } = router.query;
+  const { slug, procesor, brand } = router.query;
   const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -43,12 +43,28 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (procesor) {
+      setShow(false);
       productService
         .getAllComputersGenerationAndProcessor(currentPage, slug, procesor)
         .then((result) => {
           setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } 
+    else if (brand) {
+      setShow(false);
+      productService
+        .getAllComputersGenerationAndBrand(currentPage, slug, brand)
+        .then((result) => {
+          setLoading(false);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -64,7 +80,7 @@ const BrandDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage, slug, procesor]);
+  }, [currentPage, slug, procesor, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -155,7 +171,7 @@ const BrandDetail = () => {
             sortCriteria={onSort}
             baseLink={`/calculatoare/generatie/${slug}`}
             brands={brands}
-            brandLink={"/calculatoare/brand/"}
+            brandLink={`/calculatoare/generatie/${slug}?brand=`}
             processors={processors}
             processorsLink={`/calculatoare/generatie/${slug}?procesor=`}
             highEnd={highestPrice}

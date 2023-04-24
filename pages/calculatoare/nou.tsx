@@ -30,10 +30,10 @@ const Calculatoare = () => {
     sortingService.getProcessors(3).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPriceByType(1, 'nou-3').then((response) => {
+    sortingService.getHighestPriceByType(1, "nou-3").then((response) => {
       setHighestPrice(response[1]);
     });
-    sortingService.getProcessorGenerationByType(1, 'nou-3').then((r) => {
+    sortingService.getProcessorGenerationByType(1, "nou-3").then((r) => {
       setProcessorsGeneration(r);
     });
     sortingService.getTypes(3).then((r) => {
@@ -142,8 +142,8 @@ const Calculatoare = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={'/calculatoare/nou/generatie/'}
-            categoryLink={'/calculatoare/'}
+            processorsGenerationLink={"/calculatoare/nou/generatie/"}
+            categoryLink={"/calculatoare/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

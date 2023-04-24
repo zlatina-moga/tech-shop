@@ -89,3 +89,9 @@ export const getProcessorsBrands = (category, type, processor) =>
   request.get(
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[qualities]=${type}&filter[a-procesor-132]=${processor}`
   );
+
+  export const getGenerationBrands = (category, type, gen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[qualities]=${type}&filter[a-generatie-procesor-277]=${gen}`
+  );
+

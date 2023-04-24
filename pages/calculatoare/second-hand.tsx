@@ -142,7 +142,7 @@ const Calculatoare = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={'/calculatoare/second-hand/procesor/'}
+            processorsGenerationLink={'/calculatoare/second-hand/generatie/'}
             categoryLink={'/calculatoare/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (

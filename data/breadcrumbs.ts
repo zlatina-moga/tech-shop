@@ -128,6 +128,51 @@ export const newComputersBrcrmbs = [
   { name: "Noi", link: "/calculatoare/nou" },
 ];
 
+export const newGenerationComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Noi",
+    link: "/calculatoare/nou",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
+export const refGenerationComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/calculatoare/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
+export const secondHandGenerationComputersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Calculatoare",
+    link: "/calculatoare",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Second Hand",
+    link: "/calculatoare/second-hand",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
 export const secondHandComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
@@ -167,7 +212,6 @@ export const generationComputersBrcrmbs = [
   },
   { name: "Generație", link: "#" },
 ];
-
 
 export const brandNewComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
@@ -258,7 +302,6 @@ export const compNewComputersBrcrmbs = [
   },
   { name: "Procesor", link: "#" },
 ];
-
 
 export const procComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
@@ -646,7 +689,7 @@ export const discountedItemsBrcrmbs = [
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
-  }
+  },
 ];
 
 export const discountedServersBrcrmbs = [
@@ -748,7 +791,6 @@ export const discountedAccBrcrmbs = [
   },
   { name: "Accesorii", link: "#" },
 ];
-
 
 export const networkBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
