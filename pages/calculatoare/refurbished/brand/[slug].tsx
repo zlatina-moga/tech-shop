@@ -53,6 +53,7 @@ const BrandDetail = () => {
         .then((result) => {
           setShow(true);
           setItemData(result);
+          setLoading(false)
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
@@ -65,6 +66,7 @@ const BrandDetail = () => {
         .then((result) => {
           setShow(true);
           setItemData(result);
+          setLoading(false)
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
@@ -85,6 +87,7 @@ const BrandDetail = () => {
         .getSortedRefComputersByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemData(result);
+          setLoading(false)
           setShow(true)
           setTotalPages(result[0].totalPages);
         })
@@ -100,6 +103,7 @@ const BrandDetail = () => {
         .then((result) => {
           setShow(true)
           setItemData(result);
+          setLoading(false)
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
@@ -181,6 +185,7 @@ const BrandDetail = () => {
       .getAllRefComputersByBrandPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemData(result);
+        setLoading(false)
         setTotalPages(result[0].totalPages);
         setShow(true);
       })

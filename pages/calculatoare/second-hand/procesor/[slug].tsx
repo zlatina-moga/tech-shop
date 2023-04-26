@@ -50,6 +50,7 @@ const BrandDetail = () => {
           setShow(true)
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setLoading(false)
         })
         .catch((err) => {
           console.log(err);
@@ -60,6 +61,7 @@ const BrandDetail = () => {
       .then((result) => {
         setItemData(result);
         setTotalPages(result[0].totalPages);
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);
@@ -80,6 +82,7 @@ const BrandDetail = () => {
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setLoading(false)
         })
         .catch((err) => {
           console.log(err);
@@ -112,6 +115,7 @@ const BrandDetail = () => {
         setItemData(result);
         setTotalPages(result[0].totalPages);
         setShow(true);
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);

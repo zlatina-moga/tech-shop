@@ -51,6 +51,7 @@ const ProcDetail = () => {
         .then((result) => {
           setShow(true)
           setItemData(result);
+          setLoading(false)
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
@@ -63,6 +64,7 @@ const ProcDetail = () => {
         .then((result) => {
           setShow(true)
           setItemData(result);
+          setLoading(false)
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
@@ -88,6 +90,7 @@ const ProcDetail = () => {
         )
         .then((result) => {
           setItemData(result);
+          setLoading(false)
           setTotalPages(result[0].totalPages);
           setShow(true)
         })
@@ -103,6 +106,7 @@ const ProcDetail = () => {
         .then((result) => {
           setShow(true)
           setItemData(result);
+          setLoading(false)
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
@@ -123,6 +127,7 @@ const ProcDetail = () => {
         setItemData(result);
         setTotalPages(result[0].totalPages);
         setShow(true);
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);
