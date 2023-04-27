@@ -7,12 +7,11 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { procLaptopsBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import { laptopCategories } from "../../../data/categories";
 import * as sortingService from "../../../services/sortingService";
 
 const ProcDetail = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { slug, brand, generatie } = router.query;
   const [itemData, setItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -22,21 +21,12 @@ const ProcDetail = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+
 
   useEffect(() => {
-    productService
-      .getAllLaptopsByProcessor(currentPage, slug)
-      .then((result) => {
-        setLoading(false);
-        setItemsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentPage, slug]);
-
-  useEffect(() => {
-    sortingService.getBrands(5).then((result) => {
+    sortingService.getBrandsByProcessor(5,slug).then((result) => {
       setBrands(result);
     });
     sortingService.getProcessors(5).then((res) => {
@@ -45,7 +35,51 @@ const ProcDetail = () => {
     sortingService.getHighestPriceByProcessor(5, slug).then((response) => {
       setHighestPrice(response[1]);
     });
+    sortingService.getProcessorGenerationByProcessor(5, slug).then((r) => {
+      setProcessorsGeneration(r);
+    });
   }, [slug]);
+
+  useEffect(() => {
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllLaptopsBrandAndProcessor(currentPage, brand, slug)
+        .then((result) => {
+          setLoading(false);
+          setItemsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (generatie) {
+      setShow(false);
+      productService
+        .getAllLaptopsGenerationAndProcessor(currentPage, generatie, slug)
+        .then((result) => {
+          setLoading(false);
+          setItemsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      productService
+        .getAllLaptopsByProcessor(currentPage, slug)
+        .then((result) => {
+          setLoading(false);
+          setItemsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, slug, brand, generatie]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -58,6 +92,7 @@ const ProcDetail = () => {
         .getSortedLaptopsByProcessorPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemsData(result);
+          setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
@@ -70,6 +105,7 @@ const ProcDetail = () => {
         .then((result) => {
           setLoading(false);
           setItemsData(result);
+          setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
@@ -87,6 +123,7 @@ const ProcDetail = () => {
       .getAllLaptopsByProcessorPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemsData(result);
+        setTotalPages(result[0].totalPages);
         setShow(true);
       })
       .catch((err) => {
@@ -94,7 +131,6 @@ const ProcDetail = () => {
       });
   }, [priceRange, currentPage]);
 
-  const totalPages = itemData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -133,14 +169,15 @@ const ProcDetail = () => {
             breadcrumbs={procLaptopsBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/laptop/procesor/${slug}`}
-            //categories={laptopCategories}
             brands={brands}
             processors={processors}
             processorsLink={"/laptop/procesor/"}
-            brandLink={"/laptop/brand/"}
+            brandLink={`/laptop/procesor/${slug}?brand=`}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={`/laptop/procesor/${slug}?generatie=`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

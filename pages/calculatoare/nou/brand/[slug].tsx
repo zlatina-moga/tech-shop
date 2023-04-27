@@ -174,7 +174,7 @@ const BrandDetail = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={"/calculatoare"}
+            processorsGenerationLink={`/calculatoare/nou/brand/${slug}?generatie=`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

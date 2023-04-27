@@ -21,6 +21,7 @@ const Laptopuri = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
 
   useEffect(() => {
     productService
@@ -62,7 +63,7 @@ const Laptopuri = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   useEffect(() => {
     sortingService.getBrands(5).then((result) => {
@@ -76,6 +77,9 @@ const Laptopuri = () => {
     });
     sortingService.getTypes(5).then((r) => {
       setCategories(r);
+    });
+    sortingService.getProcessorGeneration(5).then((r) => {
+      setProcessorsGeneration(r);
     });
   }, []);
 
@@ -138,6 +142,8 @@ const Laptopuri = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             categoryLink={'/laptop/'}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={'/laptop/generatie/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

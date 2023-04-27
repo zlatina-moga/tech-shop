@@ -174,7 +174,7 @@ const ProcDetail = () => {
             laptopsData={itemData}
             breadcrumbs={newGenerationComputersBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/calculatoare/nou/generatie/${slug}`}
+            baseLink={`/calculatoare/nou/generatie`}
             brands={brands}
             brandLink={`/calculatoare/nou/generatie/${slug}?brand=`}
             processors={processors}

@@ -40,6 +40,7 @@ const ProcDetail = () => {
       setProcessorsGeneration(r);
     });
   }, [slug]);
+  
   useEffect(() => {
     if (brand) {
       setShow(false);

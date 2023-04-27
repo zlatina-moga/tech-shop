@@ -213,6 +213,16 @@ export const generationComputersBrcrmbs = [
   { name: "Generație", link: "#" },
 ];
 
+export const generationLaptosBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
 export const brandNewComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
@@ -223,6 +233,21 @@ export const brandNewComputersBrcrmbs = [
   {
     name: "Noi",
     link: "/calculatoare/nou",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
+export const brandNewLaptopsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Noi",
+    link: "/laptop/nou",
     linkIcon: "fa fa-angle-double-right",
   },
   { name: "Brand", link: "#" },
