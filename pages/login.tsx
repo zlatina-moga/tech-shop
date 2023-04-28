@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { loginFailure, loginStart, loginSuccess } from "../services/redux/userRedux";
+import {
+  loginFailure,
+  loginStart,
+  loginSuccess,
+} from "../services/redux/userRedux";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
 import Image from "next/image";
@@ -27,7 +31,7 @@ const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   //@ts-ignore
-  const {isFetching } = useSelector(state => state.user)
+  const { isFetching } = useSelector((state) => state.user);
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -54,7 +58,7 @@ const Login = () => {
     if (formValues.email && formValues.password) {
       if (isFetching) {
         toast.loading("Vă rugăm asteptați", {
-          style: { marginTop: "100px" }
+          style: { marginTop: "100px" },
         });
       }
 
@@ -63,11 +67,11 @@ const Login = () => {
   }
 
   async function login() {
-    dispatch(loginStart())
+    dispatch(loginStart());
     userService
       .login(formValues.email, formValues.password)
       .then((authData) => {
-        dispatch(loginSuccess(authData))
+        dispatch(loginSuccess(authData));
         setFormValues(initialValues);
         toast.success("Bine ai venit!", {
           style: { marginTop: "100px" },
@@ -77,7 +81,7 @@ const Login = () => {
         }, 2500);
       })
       .catch((err) => {
-        dispatch(loginFailure())
+        dispatch(loginFailure());
         toast.error(err, {
           style: { marginTop: "100px" },
         });
@@ -122,7 +126,7 @@ const Login = () => {
                 src={showPassword ? showPasswordIcon : hidePasswordIcon}
                 onClick={togglePassword}
                 alt="image"
-                id='toggle-password'
+                id="toggle-password"
               />
             </div>
 
@@ -133,6 +137,20 @@ const Login = () => {
             >
               Autentificare
             </button>
+            <p className="auth-field">
+              <span>
+                <span>
+                  Parola uitată? Click {" "}
+                  <Link
+                    className="linkBtn"
+                    href="/reset"
+                    style={{ textDecoration: "underline" }}
+                  >
+                    aici
+                  </Link>
+                </span>
+              </span>
+            </p>
             <p className="auth-field">
               <span>
                 <span>
