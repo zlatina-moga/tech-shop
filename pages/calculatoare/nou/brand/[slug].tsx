@@ -11,7 +11,7 @@ import * as sortingService from "../../../../services/sortingService";
 
 const BrandDetail = () => {
   const router = useRouter();
-  const { slug, procesor } = router.query;
+  const { slug, procesor, generatie } = router.query;
   const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -59,6 +59,19 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (generatie) {
+      setShow(false);
+      productService
+        .getAllNewComputersGenerationAndBrand(currentPage, generatie, slug)
+        .then((result) => {
+          setLoading(false);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       setShow(false);
       productService
@@ -70,7 +83,7 @@ const BrandDetail = () => {
           setShow(true);
         });
     }
-  }, [currentPage, slug, procesor]);
+  }, [currentPage, slug, procesor, generatie]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

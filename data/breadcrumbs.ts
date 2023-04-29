@@ -143,6 +143,21 @@ export const newGenerationComputersBrcrmbs = [
   { name: "Generație", link: "#" },
 ];
 
+export const newGenerationLaptopsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Noi",
+    link: "/laptop/nou",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
 export const refGenerationComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {

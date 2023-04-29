@@ -5,18 +5,18 @@ import LaptopsPage from "../../../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../../../hooks/usePagination";
 import Navbar from "../../../../components/global/Navbar";
 import MainSkeleton from "../../../../components/shared/MainSkeleton";
-import { brandNewLaptopsBrcrmbs } from "../../../../data/breadcrumbs";
+import { newGenerationLaptopsBrcrmbs } from "../../../../data/breadcrumbs";
 import Footer from "../../../../components/global/Footer";
 import * as sortingService from "../../../../services/sortingService";
 
-const BrandDetail = () => {
+const ProcDetail = () => {
   const router = useRouter();
-  const { slug, procesor, generatie } = router.query;
+  const { slug, procesor, brand } = router.query;
   const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(
-    `/laptop/nou/brand/${slug}`
+    `/laptop/nou/generatie/${slug}`
   );
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
@@ -24,24 +24,20 @@ const BrandDetail = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    sortingService.getBrands(49).then((result) => {
+    sortingService.getGenerationBrands(49, "nou-3", slug).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessorsByBrand(49, slug).then((res) => {
+    sortingService.getProcessorsByGeneration(49, slug).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPriceByBrand(49, slug).then((response) => {
+    sortingService.getHighestPriceByGen(49, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-    sortingService.getProcessorGenerationByBrand(49, slug).then((r) => {
+    sortingService.getProcessorGenerationByType(49, "nou-3").then((r) => {
       setProcessorsGeneration(r);
-    });
-    sortingService.getTypes(49).then((r) => {
-      setCategories(r);
     });
   }, [slug]);
 
@@ -49,7 +45,7 @@ const BrandDetail = () => {
     if (procesor) {
       setShow(false);
       productService
-        .getAllNewLaptopsBrandAndProcessor(currentPage, slug, procesor)
+        .getAllNewLaptopsGenerationAndProcessor(currentPage, slug, procesor)
         .then((result) => {
           setLoading(false);
           setItemData(result);
@@ -59,10 +55,10 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (generatie) {
+    } else if (brand) {
       setShow(false);
       productService
-        .getAllNewLaptopsGenerationAndBrand(currentPage, generatie, slug)
+        .getAllNewLaptopsGenerationAndBrand(currentPage, slug, brand)
         .then((result) => {
           setLoading(false);
           setItemData(result);
@@ -71,75 +67,27 @@ const BrandDetail = () => {
         })
         .catch((err) => {
           console.log(err);
-        });
-    }  else {
-      setShow(false);
-      productService
-        .getAllNewLaptopsBrand(currentPage, slug)
-        .then((result) => {
-          setLoading(false);
-          setItemData(result);
-          setTotalPages(result[0].totalPages);
-          setShow(true);
         });
     }
-  }, [currentPage, slug, procesor, generatie]);
+    productService
+      .getAllNewLaptopsByGeneration(currentPage, slug)
+      .then((result) => {
+        setLoading(false);
+        setItemData(result);
+        setTotalPages(result[0].totalPages);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [currentPage, slug, procesor, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
-  useEffect(() => {
-    if (priceRange) {
-      setShow(false);
-      const sort = selectedSort.split("=")[1];
-      productService
-        .getSortedNewLaptopsByBrandPrice(currentPage, slug, sort, priceRange)
-        .then((result) => {
-          setItemData(result);
-          setTotalPages(result[0].totalPages);
-          setLoading(false)
-          setShow(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      router.push(selectedSort);
-      const sort = selectedSort.split("=")[1];
-      setShow(false);
-      productService
-        .getSortedNewLaptopsByBrand(currentPage, slug, sort)
-        .then((result) => {
-          setLoading(false);
-          setItemData(result);
-          setTotalPages(result[0].totalPages);
-          setShow(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [selectedSort, currentPage]);
-
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getAllNewLaptopsByBrandPrice(currentPage, slug, priceRange)
-      .then((result) => {
-        setItemData(result);
-        setTotalPages(result[0].totalPages);
-        setShow(true);
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -162,7 +110,7 @@ const BrandDetail = () => {
   let pageTitle = "";
   if (slug != undefined) {
     let slugToStr = slug as string;
-    pageTitle = slugToStr.split("-")[0].toUpperCase();
+    pageTitle = slugToStr.split("-").slice(0, -1).join(" ");
   }
 
   return (
@@ -175,19 +123,18 @@ const BrandDetail = () => {
           <LaptopsPage
             title={`Laptopuri Noi ${pageTitle}`}
             laptopsData={itemData}
-            breadcrumbs={brandNewLaptopsBrcrmbs}
-            categories={categories}
+            breadcrumbs={newGenerationLaptopsBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/laptop/nou/brand/${slug}`}
+            baseLink={`/laptop/nou/generatie`}
             brands={brands}
-            brandLink={"/laptop/nou/brand/"}
+            brandLink={`/laptop/nou/generatie/${slug}?brand=`}
             processors={processors}
-            processorsLink={`/laptop/nou/brand/${slug}?procesor=`}
+            processorsLink={`/laptop/nou/generatie/${slug}?procesor=`}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={`/laptop/nou/brand/${slug}?generatie=`}
+            processorsGenerationLink={`/laptop/nou/generatie/`}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -236,4 +183,4 @@ const BrandDetail = () => {
   );
 };
 
-export default BrandDetail;
+export default ProcDetail;
