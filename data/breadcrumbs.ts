@@ -158,6 +158,37 @@ export const newGenerationLaptopsBrcrmbs = [
   { name: "Generație", link: "#" },
 ];
 
+export const refGenerationLaptopsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/laptop/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
+export const sHGenerationLaptopsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Second Hand",
+    link: "/laptop/second-hand",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
+
 export const refGenerationComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
@@ -268,6 +299,36 @@ export const brandNewLaptopsBrcrmbs = [
   { name: "Brand", link: "#" },
 ];
 
+export const brandRefLaptopsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/laptop/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
+export const brandSHLaptopsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Second Hand",
+    link: "/laptop/second-hand",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
 export const brandRefComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
@@ -338,6 +399,52 @@ export const compNewComputersBrcrmbs = [
   {
     name: "Noi",
     link: "/calculatoare/nou",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
+export const compNewLaptopBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name:  "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Noi",
+    link: "/laptop/nou",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
+
+export const refLaptopsProcessorBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/laptop/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
+export const sHLaptopsProcessorBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Laptopuri",
+    link: "/laptop",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Second Hand",
+    link: "/laptop/second-hand",
     linkIcon: "fa fa-angle-double-right",
   },
   { name: "Procesor", link: "#" },

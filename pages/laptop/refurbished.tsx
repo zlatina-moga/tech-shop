@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { laptopCategories } from "../../data/categories";
 import { laptopRefurbishedBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -22,6 +21,7 @@ const LaptopuriRefurbished = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(7).then((result) => {
@@ -35,6 +35,9 @@ const LaptopuriRefurbished = () => {
     });
     sortingService.getTypes(7).then((r) => {
       setCategories(r);
+    });
+    sortingService.getProcessorGeneration(7).then((r) => {
+      setProcessorsGeneration(r);
     });
   }, []);
 
@@ -133,12 +136,14 @@ const LaptopuriRefurbished = () => {
             baseLink="/laptop/refurbished"
             brands={brands}
             processors={processors}
-            processorsLink={"/laptop/procesor/"}
-            brandLink={"/laptop/brand/"}
+            processorsLink={"/laptop/refurbished/procesor/"}
+            brandLink={"/laptop/refurbished/brand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             categoryLink={'/laptop/refurbished'}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={"/laptop/refurbished/generatie/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
