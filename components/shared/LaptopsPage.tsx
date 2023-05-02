@@ -33,6 +33,7 @@ interface ILaptopPage {
   processorsGeneration?: any;
   processorsGenerationLink?: string;
   categoryLink?: string;
+  multipleQueries?: boolean;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -52,11 +53,11 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   processorsGeneration,
   processorsGenerationLink,
   categoryLink,
-  categories2
+  categories2,
+  multipleQueries,
 }) => {
   const [selected, setSelected] = useState("");
   const totalCount = laptopsData.map((l) => l.itemsCount)[0];
-
 
   const handleSort = (e) => {
     setSelected(e.target.value);
@@ -73,7 +74,6 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           display: "flex",
         }}
       >
-
         <SideFilter
           categories={categories}
           breadcrumbs={breadcrumbs}
@@ -94,27 +94,52 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
             <p className="font-weight-medium">{totalCount}</p>
             <div>
               <label className="mr-2">Sortează după:</label>
-              <select
-                className="border border-primary p-2 rounded-1"
-                onChange={handleSort}
-                value={selected}
-              >
-                <option value={baseLink}>Cele mai vândute</option>
-                <option value={`${baseLink}?sort=views`}>
-                  Cele mai accesate
-                </option>
-                <option value={`${baseLink}?sort=deals`}>Reduceri</option>
-                <option value={`${baseLink}?sort=price`}>Preț ascendent</option>
-                <option value={`${baseLink}?sort=-price`}>
-                  Preț descendent
-                </option>
-              </select>
+              {multipleQueries ? (
+                <select
+                  className="border border-primary p-2 rounded-1"
+                  onChange={handleSort}
+                  value={selected}
+                >
+                  <option value={baseLink}>Cele mai vândute</option>
+                  <option value={`${baseLink}&sort=views`}>
+                    Cele mai accesate
+                  </option>
+                  <option value={`${baseLink}&sort=deals`}>Reduceri</option>
+                  <option value={`${baseLink}&sort=price`}>
+                    Preț ascendent
+                  </option>
+                  <option value={`${baseLink}&sort=-price`}>
+                    Preț descendent
+                  </option>
+                </select>
+              ) : (
+                <select
+                  className="border border-primary p-2 rounded-1"
+                  onChange={handleSort}
+                  value={selected}
+                >
+                  <option value={baseLink}>Cele mai vândute</option>
+                  <option value={`${baseLink}?sort=views`}>
+                    Cele mai accesate
+                  </option>
+                  <option value={`${baseLink}?sort=deals`}>Reduceri</option>
+                  <option value={`${baseLink}?sort=price`}>
+                    Preț ascendent
+                  </option>
+                  <option value={`${baseLink}?sort=-price`}>
+                    Preț descendent
+                  </option>
+                </select>
+              )}
             </div>
           </div>
 
           <div
-            className={classNames("row pb-3 justify-content-center, ml-xl-5", className)}
-            style={{ maxWidth: "98rem", justifyContent: 'center' }}
+            className={classNames(
+              "row pb-3 justify-content-center, ml-xl-5",
+              className
+            )}
+            style={{ maxWidth: "98rem", justifyContent: "center" }}
           >
             {laptopsData.map((itemData, idx) => (
               <div

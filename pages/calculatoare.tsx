@@ -50,7 +50,8 @@ const Calculatoare = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort) {
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -58,6 +59,7 @@ const Calculatoare = () => {
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -142,8 +144,8 @@ const Calculatoare = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={'/calculatoare/generatie/'}
-            categoryLink={'/calculatoare/'}
+            processorsGenerationLink={"/calculatoare/generatie/"}
+            categoryLink={"/calculatoare/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -154,7 +156,8 @@ const Calculatoare = () => {
                       <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange &&  paginationRange.map((page) => (
+                  {paginationRange &&
+                    paginationRange.map((page) => (
                       <li
                         className={`page-item ${
                           currentPage == page ? "active" : ""

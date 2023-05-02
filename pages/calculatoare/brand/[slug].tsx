@@ -25,6 +25,8 @@ const BrandDetail = () => {
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(`/calculatoare/brand/${slug}`)
 
   useEffect(() => {
     sortingService.getBrands(1).then((result) => {
@@ -51,6 +53,7 @@ const BrandDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setBaseLink(`/calculatoare/brand/${slug}?procesor=${procesor}`)
         })
         .catch((err) => {
           console.log(err);
@@ -68,7 +71,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    }else {
+    } else {
       productService
         .getAllComputersByBrand(currentPage, slug)
         .then((result) => {
@@ -98,7 +101,26 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (procesor && selectedSort) {
+      router.push(selectedSort);
+      setMultupleSelected(true)
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedComputersByBrandAndProcessor(
+          currentPage,
+          slug,
+          sort,
+          procesor
+        )
+        .then((result) => {
+          setLoading(false);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -112,7 +134,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -168,7 +190,7 @@ const BrandDetail = () => {
             laptopsData={itemData}
             breadcrumbs={brandComputersBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/calculatoare/brand/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={"/calculatoare/brand/"}
             processors={processors}
@@ -179,6 +201,7 @@ const BrandDetail = () => {
             processorsGeneration={processorsGeneration}
             processorsGenerationLink={`/calculatoare/brand/${slug}?generatie=`}
             categoryLink={"/calculatoare/"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

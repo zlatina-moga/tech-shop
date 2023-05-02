@@ -422,6 +422,16 @@ export const getSortedComputersByBrand = (page, slug, sort) =>
     `${baseUrl}/calculatoare/brand?brand=${slug}&sort=${sort}&page=${page}`
   );
 
+  export const getSortedComputersByBrandAndProcessor = (
+    page,
+    slug,
+    sort,
+    processor
+  ) =>
+    request.get(
+      `${baseUrl}/calculatoare/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+    );
+
 export const getSortedNewComputersByBrand = (page, slug, sort) =>
   request.get(
     `${baseUrl}/calculatoare/nou/brand?brand=${slug}&sort=${sort}&page=${page}`
