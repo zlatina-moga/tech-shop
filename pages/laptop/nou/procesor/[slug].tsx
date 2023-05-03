@@ -25,9 +25,11 @@ const ProcDetail = () => {
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(`/laptop/nou/procesor/${slug}`);
 
   useEffect(() => {
-    sortingService.getProcessorsBrands(49, "nou-3", slug).then((result) => {
+    sortingService.getProcessorsBrands(5, "nou-3", slug).then((result) => {
       setBrands(result);
     });
     sortingService.getProcessors(49).then((res) => {
@@ -50,10 +52,16 @@ const ProcDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
-          setLoading(false);
+          setMultupleSelected(true);
+          setBaseLink(`/laptop/nou/procesor/${slug}?brand=${brand}`);
         })
         .catch((err) => {
           console.log(err);
+        });
+      sortingService
+        .getHighestPriceByBrandTypeAndProcessor(5, brand, slug, "nou-3")
+        .then((response) => {
+          setHighestPrice(response[1]);
         });
     } else if (generatie) {
       setShow(false);
@@ -64,6 +72,10 @@ const ProcDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/laptop/nou/procesor/${slug}?generatie=${generatie}`
+          );
         })
         .catch((err) => {
           console.log(err);
@@ -82,7 +94,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, brand,generatie]);
+  }, [currentPage, slug, brand, generatie]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -108,7 +120,45 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (brand && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedNewLaptopsByBrandAndProcessor(
+          currentPage,
+          brand,
+          sort,
+          slug
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (generatie && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedNewLaptopsByGenerationAndProcessor(
+          currentPage,
+          slug,
+          sort,
+          generatie
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }  else if (selectedSort) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       setShow(false);
@@ -124,7 +174,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -181,7 +231,7 @@ const ProcDetail = () => {
             laptopsData={itemData}
             breadcrumbs={compNewLaptopBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/laptop/nou/procesor/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={`/laptop/nou/procesor/${slug}?brand=`}
             processors={processors}
@@ -191,6 +241,7 @@ const ProcDetail = () => {
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
             processorsGenerationLink={`/laptop/nou/procesor/${slug}?generatie=`}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

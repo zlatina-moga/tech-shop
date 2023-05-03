@@ -104,6 +104,7 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedComputersByGenerationPrice(
@@ -115,6 +116,7 @@ const BrandDetail = () => {
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);

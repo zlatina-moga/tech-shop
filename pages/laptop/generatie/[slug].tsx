@@ -15,9 +15,7 @@ const BrandDetail = () => {
   const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSort, setSelectedSort] = useState(
-    `/laptop/generatie/${slug}`
-  );
+  const [selectedSort, setSelectedSort] = useState(`/laptop/generatie/${slug}`);
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
@@ -25,6 +23,8 @@ const BrandDetail = () => {
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(`/laptop/generatie/${slug}`);
 
   useEffect(() => {
     sortingService.getBrandsByGeneration(5, slug).then((result) => {
@@ -38,7 +38,7 @@ const BrandDetail = () => {
     });
     sortingService.getProcessorGeneration(5).then((r) => {
       setProcessorsGeneration(r);
-    })
+    });
   }, [slug]);
 
   useEffect(() => {
@@ -47,16 +47,21 @@ const BrandDetail = () => {
       productService
         .getAllLaptopsGenerationAndProcessor(currentPage, slug, procesor)
         .then((result) => {
-          setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/laptop/generatie/${slug}?procesor=${procesor}`);
         })
         .catch((err) => {
           console.log(err);
         });
-    } 
-    else if (brand) {
+      sortingService
+        .getHighestPriceByGenerationAndProcessor(5, slug, procesor)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (brand) {
       setShow(false);
       productService
         .getAllLaptopsGenerationAndBrand(currentPage, slug, brand)
@@ -65,21 +70,31 @@ const BrandDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/laptop/generatie/${slug}?brand=${brand}`);
         })
         .catch((err) => {
           console.log(err);
         });
-    } 
-    productService
-      .getAllLaptopssByGeneration(currentPage, slug)
-      .then((result) => {
-        setLoading(false);
-        setItemData(result);
-        setTotalPages(result[0].totalPages);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      sortingService
+        .getHighestPriceByBrandAndGeneration(5, brand, slug)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllLaptopssByGeneration(currentPage, slug)
+        .then((result) => {
+          setLoading(false);
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [currentPage, slug, procesor, brand]);
 
   const onSort = (sort) => {
@@ -88,17 +103,57 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptopsByGenerationPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (procesor && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedLaptopsByGenerationAndProcessor(
+          currentPage,
+          slug,
+          sort,
+          procesor
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedLaptopsByBrandAndGeneration(
+          currentPage,
+          brand,
+          sort,
+          slug
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }  else if (selectedSort) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -112,7 +167,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -131,7 +186,6 @@ const BrandDetail = () => {
         console.log(err);
       });
   }, [priceRange, currentPage, slug]);
-
 
   const paginationRange = usePagination({
     currentPage,
@@ -169,7 +223,7 @@ const BrandDetail = () => {
             laptopsData={itemData}
             breadcrumbs={generationLaptosBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/laptop/generatie/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={`/laptop/generatie/${slug}?brand=`}
             processors={processors}
@@ -179,7 +233,8 @@ const BrandDetail = () => {
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
             processorsGenerationLink={`/laptop/generatie/`}
-            categoryLink={'/laptop/'}
+            categoryLink={"/laptop/"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

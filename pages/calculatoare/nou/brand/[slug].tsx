@@ -163,7 +163,6 @@ const BrandDetail = () => {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
-      setShow(false);
       productService
         .getSortedNewComputersByBrand(currentPage, slug, sort)
         .then((result) => {

@@ -78,7 +78,7 @@ const ProcDetail = () => {
           console.log(err);
         });
         sortingService
-        .getHighestPriceByGenerationAndProcessor(3, generatie, slug)
+        .getHighestPriceByGenerationAndProcessor(1, generatie, slug)
         .then((response) => {
           setHighestPrice(response[1]);
         });
@@ -104,11 +104,13 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedComputersByProcessorPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemsData(result);
+          setShow(true);
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {

@@ -23,7 +23,8 @@ const ProcDetail = () => {
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
-
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(`/laptop/procesor/${slug}`);
 
   useEffect(() => {
     sortingService.getBrandsByProcessor(5,slug).then((result) => {
@@ -50,9 +51,16 @@ const ProcDetail = () => {
           setItemsData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/laptop/procesor/${slug}?brand=${brand}`);
         })
         .catch((err) => {
           console.log(err);
+        });
+        sortingService
+        .getHighestPriceByBrandAndProcessor(5, brand, slug)
+        .then((response) => {
+          setHighestPrice(response[1]);
         });
     } else if (generatie) {
       setShow(false);
@@ -63,15 +71,24 @@ const ProcDetail = () => {
           setItemsData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/laptop/procesor/${slug}?generatie=${generatie}`);
         })
         .catch((err) => {
           console.log(err);
         });
+        sortingService
+        .getHighestPriceByGenerationAndProcessor(5, generatie, slug)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
     } else {
+      setShow(false);
       productService
         .getAllLaptopsByProcessor(currentPage, slug)
         .then((result) => {
           setLoading(false);
+          setShow(true);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -87,23 +104,59 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptopsByProcessorPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
+          setItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedLaptopsByBrandAndProcessor(currentPage, brand, sort, slug)
+        .then((result) => {
+          setShow(true);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (generatie && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedLaptopsByGenerationAndProcessor(
+          currentPage,
+          slug,
+          sort,
+          generatie
+        )
+        .then((result) => {
+          setShow(true);
+          setItemsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort) {
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptopsByProcessor(currentPage, slug, sort)
         .then((result) => {
-          setLoading(false);
+          setShow(true);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -111,7 +164,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -129,7 +182,7 @@ const ProcDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [priceRange, currentPage]);
+  }, [priceRange, currentPage, slug]);
 
 
   const paginationRange = usePagination({
@@ -168,7 +221,7 @@ const ProcDetail = () => {
             laptopsData={itemData}
             breadcrumbs={procLaptopsBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/laptop/procesor/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             processors={processors}
             processorsLink={"/laptop/procesor/"}
@@ -178,6 +231,7 @@ const ProcDetail = () => {
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
             processorsGenerationLink={`/laptop/procesor/${slug}?generatie=`}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
