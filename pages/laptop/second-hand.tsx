@@ -34,7 +34,7 @@ const LaptopuriSecondHand = () => {
       setHighestPrice(response[1]);
     });
     sortingService.getTypes(8).then((r) => {
-      setCategories(r);
+     setCategories(r);
     });
     sortingService.getProcessorGeneration(8).then((r) => {
       setProcessorsGeneration(r);

@@ -11,7 +11,7 @@ import * as sortingService from "../../../../services/sortingService";
 
 const ProcDetail = () => {
   const router = useRouter();
-  const { slug, brand } = router.query;
+  const { slug, brand, generatie } = router.query;
   const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -25,10 +25,14 @@ const ProcDetail = () => {
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(
+    `/calculatoare/refurbished/procesor/${slug}`
+  );
 
   useEffect(() => {
     sortingService
-      .getProcessorsBrands(2, "refurbished-2", slug)
+      .getProcessorsBrands(1, "refurbished-2", slug)
       .then((result) => {
         setBrands(result);
       });
@@ -45,33 +49,62 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (brand) {
-      setShow(false)
+      setShow(false);
       productService
         .getAllRefComputersBrandAndProcessor(currentPage, brand, slug)
         .then((result) => {
-          setShow(true)
+          setShow(true);
           setItemData(result);
-          setLoading(false)
           setTotalPages(result[0].totalPages);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/calculatoare/refurbished/procesor/${slug}?brand=${brand}`
+          );
         })
         .catch((err) => {
           console.log(err);
         });
+      sortingService
+        .getHighestPriceByBrandTypeAndProcessor(1, brand, slug, "refurbished-2")
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (generatie) {
+      setShow(false);
+      productService
+        .getAllRefComputersGenerationAndProcessor(currentPage, generatie, slug)
+        .then((result) => {
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/calculatoare/nou/procesor/${slug}?generatie=${generatie}`
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      sortingService
+        .getHighestPriceByGenerationAndProcessor(2, generatie, slug)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
     } else {
-      setShow(false)
+      setShow(false);
       productService
         .getAllRefComputersProcessor(currentPage, slug)
         .then((result) => {
-          setShow(true)
+          setShow(true);
           setItemData(result);
-          setLoading(false)
+          setLoading(false);
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, brand]);
+  }, [currentPage, slug, brand, generatie]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -79,7 +112,7 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
-      setShow(false)
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefComputersByProcessorPrice(
@@ -90,30 +123,67 @@ const ProcDetail = () => {
         )
         .then((result) => {
           setItemData(result);
-          setLoading(false)
           setTotalPages(result[0].totalPages);
-          setShow(true)
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (brand && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefComputersByBrandAndProcessor(
+          currentPage,
+          brand,
+          sort,
+          slug
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (generatie && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefComputersByGenerationAndProcessor(
+          currentPage,
+          slug,
+          sort,
+          generatie
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
-      setShow(false)
+      setShow(false);
       productService
         .getSortedRefComputersByProcessor(currentPage, slug, sort)
         .then((result) => {
-          setShow(true)
+          setShow(true);
           setItemData(result);
-          setLoading(false)
+          setLoading(false);
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -127,12 +197,12 @@ const ProcDetail = () => {
         setItemData(result);
         setTotalPages(result[0].totalPages);
         setShow(true);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [priceRange, currentPage]);
+  }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -170,7 +240,7 @@ const ProcDetail = () => {
             laptopsData={itemData}
             breadcrumbs={compRefComputersBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/calculatoare/refurbished/procesor/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={`/calculatoare/refurbished/procesor/${slug}?brand=`}
             processors={processors}
@@ -179,7 +249,8 @@ const ProcDetail = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={"/calculatoare/"}
+            processorsGenerationLink={`/calculatoare/refurbished/procesor/${slug}?generatie=`}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -11,7 +11,7 @@ import * as sortingService from "../../../../services/sortingService";
 
 const BrandDetail = () => {
   const router = useRouter();
-  const {slug, procesor, generatie} = router.query;
+  const { slug, procesor, generatie } = router.query;
   const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -26,6 +26,10 @@ const BrandDetail = () => {
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
   const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(
+    `/calculatoare/second-hand/brand/${slug}`
+  );
 
   useEffect(() => {
     sortingService.getBrands(4).then((result) => {
@@ -39,7 +43,7 @@ const BrandDetail = () => {
     });
     sortingService.getProcessorGenerationByBrand(4, slug).then((r) => {
       setProcessorsGeneration(r);
-    })
+    });
     sortingService.getTypes(4).then((r) => {
       setCategories(r);
     });
@@ -47,17 +51,31 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (procesor) {
-      setShow(false)
+      setShow(false);
       productService
         .getAllSHComputersBrandAndProcessor(currentPage, slug, procesor)
         .then((result) => {
-          setShow(true)
+          setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
-          setLoading(false)
+          setLoading(false);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/calculatoare/second-hand/brand/${slug}?procesor=${procesor}`
+          );
         })
         .catch((err) => {
           console.log(err);
+        });
+      sortingService
+        .getHighestPriceByBrandTypeAndProcessor(
+          1,
+          slug,
+          procesor,
+          "second-hand-4"
+        )
+        .then((response) => {
+          setHighestPrice(response[1]);
         });
     } else if (generatie) {
       setShow(false);
@@ -68,23 +86,32 @@ const BrandDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/calculatoare/second-hand/brand/${slug}?generatie=${generatie}`
+          );
         })
         .catch((err) => {
           console.log(err);
         });
-    }  else {
-      setShow(false)
+      sortingService
+        .getHighestPriceByBrandAndGeneration(4, slug, generatie)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
       productService
-      .getAllSHComputersBrand(currentPage, slug)
-      .then((result) => {
-        setShow(true)
-        setItemData(result);
-        setLoading(false)
-        setTotalPages(result[0].totalPages);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .getAllSHComputersBrand(currentPage, slug)
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setLoading(false);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [currentPage, slug, procesor, generatie]);
 
@@ -94,36 +121,74 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
-      setShow(false)
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSHComputersByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
-          setShow(true)
-          setLoading(false)
+          setShow(true);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (procesor && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedSHComputersByBrandAndProcessor(
+          currentPage,
+          slug,
+          sort,
+          procesor
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }  else if (generatie && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedSHComputersByBrandAndGeneration(
+          currentPage,
+          slug,
+          sort,
+          generatie
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }  else if (selectedSort) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
-      setShow(false)
+      setShow(false);
       productService
         .getSortedSHComputersByBrand(currentPage, slug, sort)
         .then((result) => {
-          setShow(true)
+          setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
-          setLoading(false)
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -137,12 +202,12 @@ const BrandDetail = () => {
         setItemData(result);
         setTotalPages(result[0].totalPages);
         setShow(true);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [priceRange, currentPage]);
+  }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -181,7 +246,7 @@ const BrandDetail = () => {
             breadcrumbs={brandSHComputersBrcrmbs}
             categories={categories}
             sortCriteria={onSort}
-            baseLink={`/calculatoare/second-hand/brand/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={"/calculatoare/second-hand/brand/"}
             processors={processors}
@@ -191,6 +256,7 @@ const BrandDetail = () => {
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
             processorsGenerationLink={`/calculatoare/second-hand/brand/${slug}?generatie=`}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

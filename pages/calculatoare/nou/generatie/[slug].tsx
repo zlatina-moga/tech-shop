@@ -31,7 +31,7 @@ const ProcDetail = () => {
   );
 
   useEffect(() => {
-    sortingService.getGenerationBrands(3, "nou-3", slug).then((result) => {
+    sortingService.getGenerationBrands(1, "nou-3", slug).then((result) => {
       setBrands(result);
     });
     sortingService.getProcessorsByGeneration(3, slug).then((res) => {
@@ -40,7 +40,7 @@ const ProcDetail = () => {
     sortingService.getHighestPriceByGen(3, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-    sortingService.getProcessorGenerationByType(3, "nou-3").then((r) => {
+    sortingService.getProcessorGenerationByType(1, "nou-3").then((r) => {
       setProcessorsGeneration(r);
     });
   }, [slug]);
