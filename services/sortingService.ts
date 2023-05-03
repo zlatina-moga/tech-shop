@@ -37,6 +37,16 @@ export const getHighestPriceByBrand = (category, brand) =>
     `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}`
   );
 
+  export const getHighestPriceByBrandAndProcessor = (category, brand, processor) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}`
+  );
+
+  export const getHighestPriceByBrandAndGeneration = (category, brand, generation) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}`
+  );
+
 export const getHighestPriceByProcessor = (category, processor) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-procesor-132]=${processor}`
