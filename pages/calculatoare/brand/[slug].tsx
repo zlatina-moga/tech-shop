@@ -77,13 +77,12 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-      if (generatie) {
-        sortingService
-          .getHighestPriceByBrandAndGeneration(1, slug, generatie)
-          .then((response) => {
-            setHighestPrice(response[1]);
-          });
-      }
+
+      sortingService
+        .getHighestPriceByBrandAndGeneration(1, slug, generatie)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
     } else {
       setShow(false);
       productService
@@ -106,12 +105,14 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedComputersByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -187,7 +188,7 @@ const BrandDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [priceRange, currentPage]);
+  }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
     currentPage,

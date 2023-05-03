@@ -14,6 +14,16 @@ export const getProcessorsByBrand = (category, brand) =>
     `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[brand]=${brand}`
   );
 
+  export const getProcessorsByBrandAndType = (category, brand, type) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[qualities]=${type}&filter[brand]=${brand}`
+  );
+
+  export const getProcessorGenerationByBrandAndType = (category, brand, type) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[qualities]=${type}&filter[brand]=${brand}`
+  );
+
 export const getBrandsByProcessor = (category, processor) =>
   request.get(
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-procesor-132]=${processor}`
@@ -40,6 +50,26 @@ export const getHighestPriceByBrand = (category, brand) =>
   export const getHighestPriceByBrandAndProcessor = (category, brand, processor) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}`
+  );
+
+  export const getHighestPriceByGenerationAndProcessor = (category, generation, processor) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}`
+  );
+
+  export const getHighestPriceByGenerationTypeAndProcessor = (category, generation, processor, type) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${generation}&filter[qualities]=${type}&filter[a-procesor-132]=${processor}`
+  );
+
+  export const getHighestPriceByBrandTypeAndProcessor = (category, brand, processor, type) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[qualities]=${type}&filter[a-procesor-132]=${processor}`
+  );
+
+  export const getHighestPriceByBrandTypeAndGeneration = (category, brand, generation, type) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[qualities]=${type}&filter[a-generatie-procesor-277]=${generation}`
   );
 
   export const getHighestPriceByBrandAndGeneration = (category, brand, generation) =>

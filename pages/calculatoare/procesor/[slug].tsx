@@ -25,6 +25,8 @@ const ProcDetail = () => {
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(`/calculatoare/procesor/${slug}`);
 
   useEffect(() => {
     sortingService.getBrandsByProcessor(1, slug).then((result) => {
@@ -40,40 +42,55 @@ const ProcDetail = () => {
       setProcessorsGeneration(r);
     });
   }, [slug]);
-  
+
   useEffect(() => {
     if (brand) {
       setShow(false);
       productService
         .getAllComputersBrandAndProcessor(currentPage, brand, slug)
         .then((result) => {
-          setLoading(false);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/calculatoare/procesor/${slug}?brand=${brand}`);
         })
         .catch((err) => {
           console.log(err);
+        });
+      sortingService
+        .getHighestPriceByBrandAndProcessor(1, brand, slug)
+        .then((response) => {
+          setHighestPrice(response[1]);
         });
     } else if (generatie) {
       setShow(false);
       productService
         .getAllComputersGenerationAndProcessor(currentPage, generatie, slug)
         .then((result) => {
-          setLoading(false);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/calculatoare/procesor/${slug}?generatie=${generatie}`);
         })
         .catch((err) => {
           console.log(err);
         });
+        sortingService
+        .getHighestPriceByGenerationAndProcessor(3, generatie, slug)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
     } else {
+      setShow(false);
       productService
         .getAllComputersByProcessor(currentPage, slug)
         .then((result) => {
+          setShow(true);
           setLoading(false);
           setItemsData(result);
+          setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
@@ -97,13 +114,47 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (brand && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedComputersByBrandAndProcessor(currentPage, brand, sort, slug)
+        .then((result) => {
+          setShow(true);
+          setItemsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (generatie && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedComputersByGenerationAndProcessor(
+          currentPage,
+          slug,
+          sort,
+          generatie
+        )
+        .then((result) => {
+          setShow(true);
+          setItemsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort) {
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedComputersByProcessor(currentPage, slug, sort)
         .then((result) => {
-          setLoading(false);
+          setShow(true);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
         })
@@ -111,7 +162,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -129,7 +180,7 @@ const ProcDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [priceRange, currentPage]);
+  }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -167,7 +218,7 @@ const ProcDetail = () => {
             laptopsData={itemData}
             breadcrumbs={procComputersBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/calculatoare/procesor/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={`/calculatoare/procesor/${slug}?brand=`}
             processors={processors}
@@ -177,6 +228,7 @@ const ProcDetail = () => {
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
             processorsGenerationLink={`/calculatoare/procesor/${slug}?generatie=`}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

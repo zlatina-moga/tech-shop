@@ -459,6 +459,52 @@ export const getSortedComputersByBrandAndProcessor = (
     `${baseUrl}/calculatoare/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
   );
 
+export const getSortedNewComputersByBrandAndProcessor = (
+  page,
+  slug,
+  sort,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedNewComputersByBrandAndGeneration = (
+  page,
+  slug,
+  sort,
+  generatie
+) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&generatie=${generatie}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedComputersByGenerationAndProcessor = (
+  page,
+  slug,
+  sort,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/calculatoare/generatie?generatie=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedNewComputersByGenerationAndProcessor = (
+  page,
+  slug,
+  sort,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+  );
+
+  export const getAllNewComputersByGenerationPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&price=1-${price}&page=${page}`
+  );
+
+
 export const getSortedComputersByBrandAndGeneration = (
   page,
   slug,
@@ -482,6 +528,21 @@ export const getSortedComputersByBrandPrice = (page, slug, sort, price) =>
 export const getSortedComputersByGenerationPrice = (page, slug, sort, price) =>
   request.get(
     `${baseUrl}/calculatoare/generatie?generatie=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedNewComputersByGenerationPrice = (
+  page,
+  slug,
+  sort,
+  price
+) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedNewComputersByGeneration = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&sort=${sort}&page=${page}`
   );
 
 export const getSortedComputersByGeneration = (page, slug, sort) =>
