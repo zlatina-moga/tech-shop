@@ -5,7 +5,6 @@ import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
-import { workstationCategories } from "../data/categories";
 import { workstationBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
 import Footer from "../components/global/Footer";
@@ -22,6 +21,7 @@ const Workstations = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
 
   useEffect(() => {
     productService
@@ -41,29 +41,32 @@ const Workstations = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedWorkstationsPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
+          setShow(true)
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
+      setShow(false)
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedWorkstations(currentPage, sort)
         .then((result) => {
-          setLoading(false);
+          setShow(true)
           setLaptopsData(result);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   useEffect(() => {
     sortingService.getBrands(15).then((result) => {
@@ -77,6 +80,9 @@ const Workstations = () => {
     });
     sortingService.getTypes(15).then((r) => {
       setCategories(r);
+    });
+    sortingService.getProcessorGeneration(15).then((r) => {
+      setProcessorsGeneration(r);
     });
   }, []);
 
@@ -139,6 +145,8 @@ const Workstations = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             categoryLink={'/workstation/'}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={'/workstation/generatie/'}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

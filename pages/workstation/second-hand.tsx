@@ -23,6 +23,7 @@ const WorkstationsSecondHand = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
+  const [processorsGeneration, setProcessorsGeneration] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(17).then((result) => {
@@ -36,6 +37,9 @@ const WorkstationsSecondHand = () => {
     });
     sortingService.getTypes(17).then((r) => {
       setCategories(r);
+    });
+    sortingService.getProcessorGeneration(17).then((r) => {
+      setProcessorsGeneration(r);
     });
   }, []);
 
@@ -133,13 +137,15 @@ const WorkstationsSecondHand = () => {
             sortCriteria={onSort}
             baseLink="/workstation/second-hand"
             brands={brands}
-            brandLink={"/workstation/brand/"}
+            brandLink={"/workstation/second-hand/brand/"}
             processors={processors}
-            processorsLink={"/workstation/procesor/"}
+            processorsLink={"/workstation/second-hand/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             categoryLink={'/workstation/second-hand/'}
+            processorsGeneration={processorsGeneration}
+            processorsGenerationLink={"/workstation/second-hand/generatie/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

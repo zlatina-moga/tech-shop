@@ -169,7 +169,7 @@ const Sidebar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
+              <li className="nav-item nav-link py-3 sidebar-link">
                 <Link
                   href="/workstation"
                   className="sidebar-link"
@@ -180,43 +180,8 @@ const Sidebar = () => {
                     alt="list"
                     style={{ height: "18px" }}
                   />
-                  Workstations
+                  Workstation
                 </Link>
-                <ul
-                  className="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/workstation/refurbished"
-                      data-target="/workstation/refurbished"
-                      passHref
-                    >
-                      <img
-                        src={workstationIcons.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Refurbished
-                    </Link>
-                  </li>
-                  <li className="dropdown-submenu">
-                    <Link
-                      className="dropdown-item"
-                      href="/workstation/second-hand"
-                      passHref
-                      data-target="/workstation/second-hand"
-                    >
-                      <img
-                        src={workstationIcons.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Second Hand
-                    </Link>
-                  </li>
-                </ul>
               </li>
               <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
                 <Link

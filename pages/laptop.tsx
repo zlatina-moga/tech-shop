@@ -41,23 +41,26 @@ const Laptopuri = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptopsPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
+          setShow(true)
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
+      setShow(false)
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptops(currentPage, sort)
         .then((result) => {
-          setLoading(false);
           setLaptopsData(result);
+          setShow(true)
         })
         .catch((err) => {
           console.log(err);

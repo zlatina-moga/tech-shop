@@ -173,6 +173,21 @@ export const refGenerationLaptopsBrcrmbs = [
   { name: "Generație", link: "#" },
 ];
 
+export const refGenerationWorkstationBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Workstation",
+    link: "/workstation",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/workstation/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
 export const sHGenerationLaptopsBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
@@ -269,6 +284,16 @@ export const generationLaptosBrcrmbs = [
   { name: "Generație", link: "#" },
 ];
 
+export const generationWorkstationBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Workstation",
+    link: "/workstation",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Generație", link: "#" },
+];
+
 export const brandNewComputersBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
@@ -313,6 +338,22 @@ export const brandRefLaptopsBrcrmbs = [
   },
   { name: "Brand", link: "#" },
 ];
+
+export const brandRefWorkstationsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Workstation",
+    link: "/workstation",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/workstation/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
 
 export const brandSHLaptopsBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
@@ -430,6 +471,21 @@ export const refLaptopsProcessorBrcrmbs = [
   {
     name: "Refurbished",
     link: "/laptop/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
+export const refWorkstationProcessorBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Workstation",
+    link: "/workstation",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/workstation/refurbished",
     linkIcon: "fa fa-angle-double-right",
   },
   { name: "Procesor", link: "#" },
