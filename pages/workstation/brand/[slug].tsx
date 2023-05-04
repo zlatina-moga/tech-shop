@@ -103,10 +103,12 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedWorkstationsByBrandPrice(currentPage, slug, sort, priceRange)
         .then((result) => {
+          setShow(true);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
         })

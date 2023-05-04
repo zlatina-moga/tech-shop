@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { serverCategories } from "../../data/categories";
 import { serverNewBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -132,9 +131,9 @@ const NewServers = () => {
             sortCriteria={onSort}
             baseLink="/servere/nou"
             brands={brands}
-            brandLink={"/servere/brand/"}
+            brandLink={"/servere/nou/brand/"}
             processors={processors}
-            processorsLink={"/servere/procesor/"}
+            processorsLink={"/servere/nou/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}

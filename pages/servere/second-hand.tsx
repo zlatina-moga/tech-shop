@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { serverCategories } from "../../data/categories";
 import { serverSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -132,9 +131,9 @@ const SecondHandServers = () => {
             sortCriteria={onSort}
             baseLink="/servere/second-hand"
             brands={brands}
-            brandLink={"/servere/brand/"}
+            brandLink={"/servere/second-hand/brand/"}
             processors={processors}
-            processorsLink={"/servere/procesor/"}
+            processorsLink={"/servere/second-hand/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}

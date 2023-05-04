@@ -324,6 +324,51 @@ export const brandNewLaptopsBrcrmbs = [
   { name: "Brand", link: "#" },
 ];
 
+export const brandNewServersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Servere",
+    link: "/servere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Noi",
+    link: "/servere/nou",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
+export const brandSHServersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Servere",
+    link: "/servere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Second Hand",
+    link: "/servere/second-hand",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
+export const brandRefServersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Servere",
+    link: "/servere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/servere/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Brand", link: "#" },
+];
+
 export const brandRefLaptopsBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
@@ -459,6 +504,37 @@ export const compNewLaptopBrcrmbs = [
   },
   { name: "Procesor", link: "#" },
 ];
+
+export const compNewServersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name:  "Servere",
+    link: "/servere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Noi",
+    link: "/servere/nou",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
+export const compRefServersBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name:  "Servere",
+    link: "/servere",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Refurbished",
+    link: "/servere/refurbished",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Procesor", link: "#" },
+];
+
 
 
 export const refLaptopsProcessorBrcrmbs = [

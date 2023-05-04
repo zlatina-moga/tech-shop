@@ -5,7 +5,6 @@ import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
-import { serverCategories } from "../data/categories";
 import { serverBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
 import Footer from "../components/global/Footer";
@@ -41,11 +40,13 @@ const Laptopuri = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedServersPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
+          setShow(true)
         })
         .catch((err) => {
           console.log(err);

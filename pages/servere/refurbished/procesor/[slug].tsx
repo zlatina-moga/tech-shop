@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import * as productService from "../../../services/productService";
-import LaptopsPage from "../../../components/shared/LaptopsPage";
-import { usePagination, DOTS } from "../../../hooks/usePagination";
-import Navbar from "../../../components/global/Navbar";
-import MainSkeleton from "../../../components/shared/MainSkeleton";
-import { serverBrandBrcrmbs } from "../../../data/breadcrumbs";
-import Footer from "../../../components/global/Footer";
-import * as sortingService from "../../../services/sortingService";
+import * as productService from "../../../../services/productService";
+import LaptopsPage from "../../../../components/shared/LaptopsPage";
+import { usePagination, DOTS } from "../../../../hooks/usePagination";
+import Navbar from "../../../../components/global/Navbar";
+import MainSkeleton from "../../../../components/shared/MainSkeleton";
+import { compRefServersBrcrmbs } from "../../../../data/breadcrumbs";
+import Footer from "../../../../components/global/Footer";
+import * as sortingService from "../../../../services/sortingService";
 
-const BrandDetail = () => {
+const ProcDetail = () => {
   const router = useRouter();
-  const { slug, procesor } = router.query;
-  const [itemData, setItemsData] = useState([]);
+  const { slug, brand } = router.query;
+  const [itemData, setItemData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSort, setSelectedSort] = useState(`/servere/brand/${slug}`);
+  const [selectedSort, setSelectedSort] = useState(
+    `/servere/refurbished/procesor/${slug}`
+  );
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
@@ -23,54 +25,56 @@ const BrandDetail = () => {
   const [show, setShow] = useState<boolean>(true);
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
-  const [baseLink, setBaseLink] = useState(`/servere/brand/${slug}`);
+  const [baseLink, setBaseLink] = useState(`/servere/refurbished/procesor/${slug}`);
 
   useEffect(() => {
-    sortingService.getBrands(9).then((result) => {
+    sortingService.getProcessorsBrands(9, "refurbished-2", slug).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessorsByBrand(9, slug).then((res) => {
+    sortingService.getProcessors(10).then((res) => {
       setProcessors(res);
     });
-    sortingService.getHighestPriceByBrand(9, slug).then((response) => {
+    sortingService.getHighestPriceByProcessor(10, slug).then((response) => {
       setHighestPrice(response[1]);
     });
   }, [slug]);
 
   useEffect(() => {
-    if (procesor) {
+    if (brand) {
       setShow(false);
       productService
-        .getAllServerBrandAndProcessor(currentPage, slug, procesor)
+        .getAllRefServerBrandAndProcessor(currentPage, brand, slug)
         .then((result) => {
-          setItemsData(result);
+          setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
           setMultupleSelected(true);
-          setBaseLink(`/servere/brand/${slug}?procesor=${procesor}`);
+          setBaseLink(`/servere/refurbished/procesor/${slug}?brand=${brand}`);
         })
         .catch((err) => {
           console.log(err);
         });
       sortingService
-        .getHighestPriceByBrandAndProcessor(9, slug, procesor)
+        .getHighestPriceByBrandTypeAndProcessor(9, brand, slug, "refurbished-2")
         .then((response) => {
           setHighestPrice(response[1]);
         });
     } else {
+      setShow(false);
       productService
-        .getAllServersByBrand(currentPage, slug)
+        .getAllRefServersByProcessor(currentPage, slug)
         .then((result) => {
+          setShow(true);
+          setItemData(result);
           setLoading(false);
-          setItemsData(result);
           setTotalPages(result[0].totalPages);
-          setBaseLink(`/servere/brand/${slug}`);
+          setBaseLink(`/servere/refurbished/procesor/${slug}`);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, procesor]);
+  }, [currentPage, slug, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -81,40 +85,51 @@ const BrandDetail = () => {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedServersByBrandPrice(currentPage, slug, sort, priceRange)
+        .getSortedRefServersByProcessorPrice(
+          currentPage,
+          slug,
+          sort,
+          priceRange
+        )
         .then((result) => {
-          setItemsData(result);
+          setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else if (procesor && selectedSort) {
+    } else if (brand && selectedSort) {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
       productService
-        .getSortedServerByBrandAndProcessor(currentPage, slug, sort, procesor)
+        .getSortedRefServersByBrandAndProcessor(
+          currentPage,
+          brand,
+          sort,
+          slug
+        )
         .then((result) => {
           setShow(true);
-          setItemsData(result);
+          setItemData(result);
           setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
         });
     } else if (selectedSort) {
-      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
+      setShow(false);
       productService
-        .getSortedServersByBrand(currentPage, slug, sort)
+        .getSortedRefServersByProcessor(currentPage, slug, sort)
         .then((result) => {
-          setLoading(false);
-          setItemsData(result);
-          setTotalPages(result[0].totalPages);
           setShow(true);
+          setItemData(result);
+          setLoading(false);
+          setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
@@ -129,11 +144,12 @@ const BrandDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllServersByBrandPrice(currentPage, slug, priceRange)
+      .getAllRefServersByProcessorPrice(currentPage, slug, priceRange)
       .then((result) => {
-        setItemsData(result);
+        setItemData(result);
         setTotalPages(result[0].totalPages);
         setShow(true);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -161,7 +177,7 @@ const BrandDetail = () => {
   let pageTitle = "";
   if (slug != undefined) {
     let slugToStr = slug as string;
-    pageTitle = slugToStr.split("-")[0].toUpperCase();
+    pageTitle = slugToStr.split("-").slice(0, -1).join(" ");
   }
 
   return (
@@ -172,15 +188,15 @@ const BrandDetail = () => {
       ) : (
         <>
           <LaptopsPage
-            title={`Servere ${pageTitle}`}
+            title={`Servere Refurbished ${pageTitle}`}
             laptopsData={itemData}
-            breadcrumbs={serverBrandBrcrmbs}
+            breadcrumbs={compRefServersBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}
             brands={brands}
-            brandLink={"/servere/brand/"}
+            brandLink={`/servere/refurbished/procesor/${slug}?brand=`}
             processors={processors}
-            processorsLink={`/servere/brand/${slug}?procesor=`}
+            processorsLink={"/servere/refurbished/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
@@ -233,4 +249,4 @@ const BrandDetail = () => {
   );
 };
 
-export default BrandDetail;
+export default ProcDetail;

@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { serverCategories } from "../../data/categories";
 import { serverRefBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -56,11 +55,13 @@ const RefurbishedServers = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefurbishedServersPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -78,7 +79,7 @@ const RefurbishedServers = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -133,9 +134,9 @@ const RefurbishedServers = () => {
             sortCriteria={onSort}
             baseLink="/servere/refurbished"
             brands={brands}
-            brandLink={"/servere/brand/"}
+            brandLink={"/servere/refurbished/brand/"}
             processors={processors}
-            processorsLink={"/servere/procesor/"}
+            processorsLink={"/servere/refurbished/procesor/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}

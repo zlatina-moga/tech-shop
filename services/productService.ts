@@ -1095,6 +1095,180 @@ export const getSortedRackServersPrice = (price, page, sort) =>
     `${baseUrl}/servere/cabinet-rack-refurbished?price=1-${price}&sort=${sort}&page=${page}`
   );
 
+export const getAllServerBrandAndProcessor = (page, brand, processor) =>
+  request.get(
+    `${baseUrl}/servere/brand?brand=${brand}&procesor=${processor}&page=${page}`
+  );
+
+export const getSortedServerByBrandAndProcessor = (
+  page,
+  slug,
+  sort,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/servere/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+  );
+
+export const getAllNewServerBrandAndProcessor = (page, brand, processor) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/brand?brand=${brand}&procesor=${processor}&page=${page}`
+  );
+
+export const getAllNewServersBrand = (page, brand) =>
+  request.get(`${baseUrl}/servere/noi-6?brand=${brand}&page=${page}`);
+
+export const getSortedNewLServersByBrandPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedNewServersByBrandAndProcessor = (
+  page,
+  slug,
+  sort,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedNewServersByBrand = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/brand?brand=${slug}&sort=${sort}&page=${page}`
+  );
+
+export const getAllNewServerByBrandPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
+
+export const getAllNewServersByProcessor = (page, slug) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/procesor?procesor=${slug}&page=${page}`
+  );
+
+export const getSortedNewServersByProcessorPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedNewServersByProcessor = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/procesor?procesor=${slug}&sort=${sort}&page=${page}`
+  );
+
+export const getAllNewServersByProcessorPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/procesor?procesor=${slug}&price=1-${price}&page=${page}`
+  );
+
+export const getAllSHServerBrandAndProcessor = (page, brand, processor) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/brand?brand=${brand}&procesor=${processor}&page=${page}`
+  );
+
+export const getAllSHServersBrand = (page, brand) =>
+  request.get(`${baseUrl}/servere/second-hand-2?brand=${brand}&page=${page}`);
+
+export const getSortedSHLServersByBrandPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedSHServersByBrandAndProcessor = (
+  page,
+  slug,
+  sort,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedSHServersByBrand = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/brand?brand=${slug}&sort=${sort}&page=${page}`
+  );
+
+export const getAllSHServerByBrandPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
+
+export const getAllSHServersByProcessor = (page, slug) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/procesor?procesor=${slug}&page=${page}`
+  );
+
+export const getSortedSHServersByProcessorPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedSHServersByProcessor = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/procesor?procesor=${slug}&sort=${sort}&page=${page}`
+  );
+
+export const getAllSHServersByProcessorPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/procesor?procesor=${slug}&price=1-${price}&page=${page}`
+  );
+
+export const getAllRefServerBrandAndProcessor = (page, brand, processor) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/brand?brand=${brand}&procesor=${processor}&page=${page}`
+  );
+
+export const getAllRefServersBrand = (page, brand) =>
+  request.get(`${baseUrl}/servere/refurbished-2?brand=${brand}&page=${page}`);
+
+export const getSortedRefServersByBrandPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedRefServersByBrandAndProcessor = (
+  page,
+  slug,
+  sort,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedRefServersByBrand = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/brand?brand=${slug}&sort=${sort}&page=${page}`
+  );
+
+export const getAllRefServerByBrandPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
+
+  export const getAllRefServersByProcessor = (page, slug) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/procesor?procesor=${slug}&page=${page}`
+  );
+
+  export const getSortedRefServersByProcessorPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedRefServersByProcessor = (page, slug, sort) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/procesor?procesor=${slug}&sort=${sort}&page=${page}`
+  );
+
+  export const getAllRefServersByProcessorPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/procesor?procesor=${slug}&price=1-${price}&page=${page}`
+  );
+
 export const getAllWorkstationsBrandAndProcessor = (page, brand, processor) =>
   request.get(
     `${baseUrl}/workstation/brand?brand=${brand}&procesor=${processor}&page=${page}`
@@ -1232,49 +1406,52 @@ export const getAllRefWorkstationGenerationAndProcessor = (
     `${baseUrl}/workstation/refurbished-3/generatie?generatie=${slug}&procesor=${processor}&page=${page}`
   );
 
-  export const getAllRefWorkstationByGeneration = (page, slug) =>
+export const getAllRefWorkstationByGeneration = (page, slug) =>
   request.get(
     `${baseUrl}/workstation/refurbished-3/generatie?generatie=${slug}&page=${page}`
   );
 
-  export const getSortedRefWorkstationByGenerationAndProcessor = (
-    page,
-    slug,
-    sort,
-    processor
-  ) =>
-    request.get(
-      `${baseUrl}/workstation/refurbished-3/generatie?generatie=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
-    );
+export const getSortedRefWorkstationByGenerationAndProcessor = (
+  page,
+  slug,
+  sort,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/workstation/refurbished-3/generatie?generatie=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+  );
 
-    
-  export const getSortedRefWorkstationsByGenPrice = (page, slug, sort, price) =>
+export const getSortedRefWorkstationsByGenPrice = (page, slug, sort, price) =>
   request.get(
     `${baseUrl}/workstation/refurbished-3/generatie?generatie=${slug}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedRefWorkstationByGeneration = (page, slug, sort) =>
+export const getSortedRefWorkstationByGeneration = (page, slug, sort) =>
   request.get(
     `${baseUrl}/workstation/refurbished-3/generatie?generatie=${slug}&sort=${sort}&page=${page}`
   );
 
-  export const getAllRefWorkstationByGenerationPrice = (page, slug, price) =>
+export const getAllRefWorkstationByGenerationPrice = (page, slug, price) =>
   request.get(
     `${baseUrl}/workstation/refurbished-3/generatie?generatie=${slug}&price=1-${price}&page=${page}`
   );
 
-
-export const getSortedRefWorkstationByProcessorPrice = (page, slug, sort, price) =>
-request.get(
-  `${baseUrl}/workstation/refurbished-3/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
-);
+export const getSortedRefWorkstationByProcessorPrice = (
+  page,
+  slug,
+  sort,
+  price
+) =>
+  request.get(
+    `${baseUrl}/workstation/refurbished-3/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
 
 export const getSortedRefWorkstationByProcessor = (page, slug, sort) =>
   request.get(
     `${baseUrl}/workstation/refurbished-3/procesor?procesor=${slug}&sort=${sort}&page=${page}`
   );
 
-  export const getAllRefWorkstationByProcessorPrice = (page, slug, price) =>
+export const getAllRefWorkstationByProcessorPrice = (page, slug, price) =>
   request.get(
     `${baseUrl}/workstation/refurbished-3/procesor?procesor=${slug}&price=1-${price}&page=${page}`
   );
