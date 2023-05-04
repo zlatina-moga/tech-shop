@@ -26,6 +26,8 @@ const BrandDetail = () => {
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
   const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(`/laptop/refurbished/brand/${slug}`);
 
   useEffect(() => {
     sortingService.getBrands(7).then((result) => {
@@ -55,9 +57,21 @@ const BrandDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/laptop/refurbished/brand/${slug}?procesor=${procesor}`);
         })
         .catch((err) => {
           console.log(err);
+        });
+      sortingService
+        .getHighestPriceByBrandTypeAndProcessor(
+          5,
+          slug,
+          procesor,
+          "refurbished-2"
+        )
+        .then((response) => {
+          setHighestPrice(response[1]);
         });
     } else if (generatie) {
       setShow(false);
@@ -68,20 +82,28 @@ const BrandDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/laptop/refurbished/brand/${slug}?generatie=${generatie}`
+          );
         })
         .catch((err) => {
           console.log(err);
         });
-    }  else {
-      setShow(false);
-      productService
-        .getAllRefLaptopsBrand(currentPage, slug)
-        .then((result) => {
-          setLoading(false);
-          setItemData(result);
-          setTotalPages(result[0].totalPages);
-          setShow(true);
+      sortingService
+        .getHighestPriceByBrandAndGeneration(7, slug, generatie)
+        .then((response) => {
+          setHighestPrice(response[1]);
         });
+    } else {
+      setShow(false);
+      productService.getAllRefLaptopsBrand(currentPage, slug).then((result) => {
+        setLoading(false);
+        setItemData(result);
+        setTotalPages(result[0].totalPages);
+        setShow(true);
+        setBaseLink(`/laptop/refurbished/brand/${slug}`);
+      });
     }
   }, [currentPage, slug, procesor, generatie]);
 
@@ -98,13 +120,51 @@ const BrandDetail = () => {
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
-          setLoading(false)
+          setLoading(false);
           setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (procesor && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefLaptopsByBrandAndProcessor(
+          currentPage,
+          slug,
+          sort,
+          procesor
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (generatie && selectedSort) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefLaptopsByBrandAndGeneration(
+          currentPage,
+          slug,
+          sort,
+          generatie
+        )
+        .then((result) => {
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       setShow(false);
@@ -120,7 +180,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -134,7 +194,7 @@ const BrandDetail = () => {
         setItemData(result);
         setTotalPages(result[0].totalPages);
         setShow(true);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -178,7 +238,7 @@ const BrandDetail = () => {
             breadcrumbs={brandRefLaptopsBrcrmbs}
             categories={categories}
             sortCriteria={onSort}
-            baseLink={`/laptop/refurbished/brand/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={"/laptop/refurbished/brand/"}
             processors={processors}
@@ -188,6 +248,7 @@ const BrandDetail = () => {
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
             processorsGenerationLink={`/laptop/refurbished/brand/${slug}?generatie=`}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

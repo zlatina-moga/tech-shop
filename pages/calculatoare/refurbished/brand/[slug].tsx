@@ -27,7 +27,7 @@ const BrandDetail = () => {
   const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
-  const [baseLink, setBaseLink] = useState(`/calculatoare/nou/brand/${slug}`);
+  const [baseLink, setBaseLink] = useState(`/calculatoare/refurbished/brand/${slug}`);
 
   useEffect(() => {
     sortingService.getBrands(2).then((result) => {
@@ -110,6 +110,7 @@ const BrandDetail = () => {
           setItemData(result);
           setLoading(false);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/refurbished/brand/${slug}`);
         })
         .catch((err) => {
           console.log(err);

@@ -89,6 +89,7 @@ const BrandDetail = () => {
           setShow(true);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/laptop/brand/${slug}`);
         })
         .catch((err) => {
           console.log(err);

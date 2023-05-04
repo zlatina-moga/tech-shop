@@ -111,6 +111,7 @@ const ProcDetail = () => {
           setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/refurbished/generatie/${slug}`);
         })
         .catch((err) => {
           console.log(err);

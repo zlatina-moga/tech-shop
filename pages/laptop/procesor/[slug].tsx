@@ -91,6 +91,7 @@ const ProcDetail = () => {
           setShow(true);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/laptop/procesor/${slug}`);
         })
         .catch((err) => {
           console.log(err);

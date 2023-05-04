@@ -466,6 +466,27 @@ export const getAllNewLaptopsByProcessorPrice = (page, slug, price) =>
     `${baseUrl}/laptop/noi-1/procesor?procesor=${slug}&price=1-${price}&page=${page}`
   );
 
+  export const getSortedRefLaptopsByBrandAndProcessor = (
+    page,
+    slug,
+    sort,
+    processor
+  ) =>
+    request.get(
+      `${baseUrl}/laptop/refurbished-1/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
+    );
+
+    export const getSortedRefLaptopsByBrandAndGeneration = (
+      page,
+      slug,
+      sort,
+      generatie
+    ) =>
+      request.get(
+        `${baseUrl}/laptop/refurbished/brand?brand=${slug}&generatie=${generatie}&sort=${sort}&page=${page}`
+      );
+    
+
 export const getAllNewComputersGenerationAndBrand = (page, slug, brand) =>
   request.get(
     `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&brand=${brand}&page=${page}`

@@ -96,6 +96,7 @@ const BrandDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setShow(true);
+          setBaseLink(`/laptop/nou/brand/${slug}`);
         });
     }
   }, [currentPage, slug, procesor, generatie]);

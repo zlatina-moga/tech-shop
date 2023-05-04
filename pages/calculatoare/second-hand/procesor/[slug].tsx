@@ -93,6 +93,7 @@ const BrandDetail = () => {
         setTotalPages(result[0].totalPages);
         setLoading(false);
         setShow(true);
+        setBaseLink(`/calculatoare/second-hand/procesor/${slug}`);
       })
       .catch((err) => {
         console.log(err);

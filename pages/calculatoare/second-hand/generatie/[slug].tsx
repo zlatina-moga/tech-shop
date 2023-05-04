@@ -31,18 +31,22 @@ const ProcDetail = () => {
   );
 
   useEffect(() => {
-    sortingService.getGenerationBrands(1, "second-hand-4", slug).then((result) => {
-      setBrands(result);
-    });
+    sortingService
+      .getGenerationBrands(1, "second-hand-4", slug)
+      .then((result) => {
+        setBrands(result);
+      });
     sortingService.getProcessorsByGeneration(4, slug).then((res) => {
       setProcessors(res);
     });
     sortingService.getHighestPriceByGen(4, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-    sortingService.getProcessorGenerationByType(1, "second-hand-4").then((r) => {
-      setProcessorsGeneration(r);
-    });
+    sortingService
+      .getProcessorGenerationByType(1, "second-hand-4")
+      .then((r) => {
+        setProcessorsGeneration(r);
+      });
   }, [slug]);
 
   useEffect(() => {
@@ -62,7 +66,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-        sortingService
+      sortingService
         .getHighestPriceByGenerationTypeAndProcessor(
           1,
           slug,
@@ -88,7 +92,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-        sortingService
+      sortingService
         .getHighestPriceByBrandTypeAndGeneration(
           1,
           brand,
@@ -101,16 +105,17 @@ const ProcDetail = () => {
     } else {
       setShow(false);
       productService
-      .getAllSHComputersByGeneration(currentPage, slug)
-      .then((result) => {
-        setLoading(false);
-        setShow(true);
-        setItemData(result);
-        setTotalPages(result[0].totalPages);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .getAllSHComputersByGeneration(currentPage, slug)
+        .then((result) => {
+          setLoading(false);
+          setShow(true);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/second-hand/generatie/${slug}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [currentPage, slug, procesor, brand]);
 

@@ -92,6 +92,7 @@ const BrandDetail = () => {
           setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/brand/${slug}`);
         })
         .catch((err) => {
           console.log(err);

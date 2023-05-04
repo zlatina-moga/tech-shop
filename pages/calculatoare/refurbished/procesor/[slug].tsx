@@ -99,6 +99,7 @@ const ProcDetail = () => {
           setItemData(result);
           setLoading(false);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/refurbished/procesor/${slug}`);
         })
         .catch((err) => {
           console.log(err);

@@ -89,6 +89,7 @@ const ProcDetail = () => {
           setItemData(result);
           setLoading(false);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/laptop/nou/procesor/${slug}`);
         })
         .catch((err) => {
           console.log(err);

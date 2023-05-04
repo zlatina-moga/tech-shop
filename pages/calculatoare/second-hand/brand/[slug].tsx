@@ -108,6 +108,7 @@ const BrandDetail = () => {
           setItemData(result);
           setLoading(false);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/second-hand/brand/${slug}`);
         })
         .catch((err) => {
           console.log(err);
@@ -153,7 +154,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    }  else if (generatie && selectedSort) {
+    } else if (generatie && selectedSort) {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
@@ -172,7 +173,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    }  else if (selectedSort) {
+    } else if (selectedSort) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       setShow(false);

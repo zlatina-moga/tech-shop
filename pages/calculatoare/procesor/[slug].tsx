@@ -91,6 +91,7 @@ const ProcDetail = () => {
           setLoading(false);
           setItemsData(result);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/procesor/${slug}`);
         })
         .catch((err) => {
           console.log(err);

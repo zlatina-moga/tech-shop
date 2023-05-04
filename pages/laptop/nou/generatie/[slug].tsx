@@ -56,14 +56,12 @@ const ProcDetail = () => {
           setTotalPages(result[0].totalPages);
           setShow(true);
           setMultupleSelected(true);
-          setBaseLink(
-            `/laptop/nou/generatie/${slug}?procesor=${procesor}`
-          );
+          setBaseLink(`/laptop/nou/generatie/${slug}?procesor=${procesor}`);
         })
         .catch((err) => {
           console.log(err);
         });
-        sortingService
+      sortingService
         .getHighestPriceByGenerationTypeAndProcessor(5, slug, procesor, "nou-3")
         .then((response) => {
           setHighestPrice(response[1]);
@@ -83,23 +81,24 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-        sortingService
+      sortingService
         .getHighestPriceByBrandTypeAndGeneration(5, brand, slug, "nou-3")
         .then((response) => {
           setHighestPrice(response[1]);
         });
     } else {
       productService
-      .getAllNewLaptopsByGeneration(currentPage, slug)
-      .then((result) => {
-        setLoading(false);
-        setItemData(result);
-        setTotalPages(result[0].totalPages);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .getAllNewLaptopsByGeneration(currentPage, slug)
+        .then((result) => {
+          setLoading(false);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setBaseLink(`/calculatoare/nou/generatie/${slug}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [currentPage, slug, procesor, brand]);
 
@@ -109,7 +108,7 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
-      setShow(false)
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewLaptopsByGenerationPrice(
@@ -121,7 +120,7 @@ const ProcDetail = () => {
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
-          setShow(true)
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -150,12 +149,7 @@ const ProcDetail = () => {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
       productService
-        .getSortedNewLaptopsByBrandAndGeneration(
-          currentPage,
-          brand,
-          sort,
-          slug
-        )
+        .getSortedNewLaptopsByBrandAndGeneration(currentPage, brand, sort, slug)
         .then((result) => {
           setShow(true);
           setItemData(result);
@@ -187,11 +181,7 @@ const ProcDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllNewLaptopsByGenerationPrice(
-        currentPage,
-        slug,
-        priceRange
-      )
+      .getAllNewLaptopsByGenerationPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemData(result);
         setTotalPages(result[0].totalPages);

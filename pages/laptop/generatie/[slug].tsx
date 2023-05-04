@@ -90,6 +90,7 @@ const BrandDetail = () => {
           setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/laptop/generatie/${slug}`);
         })
         .catch((err) => {
           console.log(err);

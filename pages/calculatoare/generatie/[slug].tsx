@@ -91,6 +91,7 @@ const BrandDetail = () => {
           setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/generatie/${slug}`);
         })
         .catch((err) => {
           console.log(err);

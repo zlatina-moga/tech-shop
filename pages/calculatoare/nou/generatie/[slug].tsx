@@ -95,6 +95,7 @@ const ProcDetail = () => {
           setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setBaseLink(`/calculatoare/nou/generatie/${slug}`);
         })
         .catch((err) => {
           console.log(err);
@@ -108,7 +109,7 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
-      setShow(false)
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewComputersByGenerationPrice(
@@ -120,7 +121,7 @@ const ProcDetail = () => {
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
-          setShow(true)
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -186,11 +187,7 @@ const ProcDetail = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllNewComputersByGenerationPrice(
-        currentPage,
-        slug,
-        priceRange
-      )
+      .getAllNewComputersByGenerationPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemData(result);
         setTotalPages(result[0].totalPages);
