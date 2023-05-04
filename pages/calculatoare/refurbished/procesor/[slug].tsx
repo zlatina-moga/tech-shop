@@ -79,7 +79,7 @@ const ProcDetail = () => {
           setShow(true);
           setMultupleSelected(true);
           setBaseLink(
-            `/calculatoare/nou/procesor/${slug}?generatie=${generatie}`
+            `/calculatoare/refurbished/procesor/${slug}?generatie=${generatie}`
           );
         })
         .catch((err) => {

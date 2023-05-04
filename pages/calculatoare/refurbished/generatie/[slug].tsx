@@ -125,6 +125,7 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefComputersByGenerationPrice(
@@ -136,6 +137,7 @@ const ProcDetail = () => {
         .then((result) => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -179,6 +181,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     } else if (selectedSort) {
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -187,6 +190,7 @@ const ProcDetail = () => {
           setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);

@@ -179,6 +179,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     } else if (selectedSort) {
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -187,6 +188,7 @@ const ProcDetail = () => {
           setLoading(false);
           setItemData(result);
           setTotalPages(result[0].totalPages);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);

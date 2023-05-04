@@ -35,13 +35,13 @@ const BrandDetail = () => {
     sortingService.getBrands(4).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessorsByBrand(4, slug).then((res) => {
+    sortingService.getProcessorsByBrandAndType(1, slug, "second-hand-4").then((res) => {
       setProcessors(res);
     });
     sortingService.getHighestPriceByBrand(4, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-    sortingService.getProcessorGenerationByBrand(4, slug).then((r) => {
+    sortingService.getProcessorGenerationByBrandAndType(1, slug, "second-hand-4").then((r) => {
       setProcessorsGeneration(r);
     });
     sortingService.getTypes(4).then((r) => {
@@ -58,7 +58,6 @@ const BrandDetail = () => {
           setShow(true);
           setItemData(result);
           setTotalPages(result[0].totalPages);
-          setLoading(false);
           setMultupleSelected(true);
           setBaseLink(
             `/calculatoare/second-hand/brand/${slug}?procesor=${procesor}`
