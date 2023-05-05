@@ -25,6 +25,7 @@ const MonitoareNew = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/monitoare/nou");
+  const [screensLink, setScreensLink] = useState("/monitoare/nou?screen=");
 
   useEffect(() => {
     sortingService.getBrands(54).then((result) => {
@@ -42,7 +43,24 @@ const MonitoareNew = () => {
   }, []);
 
   useEffect(() => {
-    if (screen) {
+    if (screen && brand) {
+      setShow(false);
+      productService
+        .getNewMonitorScreensAndBrand(screen, currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/monitoare/second-hand?screen=${screen}&brand=${brand}`);
+        });
+      sortingService
+        .getHighestPriceByScreenAndBrand(54, screen, brand)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (screen) {
       setShow(false);
       productService
         .getNewMonitorScreens(screen, currentPage)
@@ -70,6 +88,10 @@ const MonitoareNew = () => {
       sortingService.getHighestPriceByBrand(54, brand).then((response) => {
         setHighestPrice(response[1]);
       });
+      sortingService.getScreenSizesByBrand(54, brand).then((res) => {
+        setScreens(res);
+      });
+      setScreensLink(`/monitoare/nou?brand=${brand}&screen=`);
     } else {
       setShow(false);
       productService
@@ -92,7 +114,26 @@ const MonitoareNew = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && selectedSort != "/monitoare/nou") {
+    if (priceRange && screen && brand && selectedSort != "/monitoare/nou") {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSortedNewMonitorsScreensBrandPrice(
+          screen,
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && screen && selectedSort != "/monitoare/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -118,22 +159,11 @@ const MonitoareNew = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && screen) {
+    } else if (screen && brand && selectedSort != "/monitoare/nou") {
       setShow(false);
+      const sort = selectedSort.split("=")[3];
       productService
-        .getNewMonitorsScreensByPrice(screen, priceRange, currentPage)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange && brand) {
-      setShow(false);
-      productService
-        .getNewMonitorsBrandsByPrice(brand, priceRange, currentPage)
+        .getSortedNewMonitorsBrandScreen(brand, screen, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
           setShow(true);
@@ -184,7 +214,7 @@ const MonitoareNew = () => {
           console.log(err);
         });
     } else if (selectedSort != "/monitoare/nou") {
-      setShow(false)
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -198,7 +228,7 @@ const MonitoareNew = () => {
         .catch((err) => {
           console.log(err);
         });
-    } 
+    }
   }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
@@ -206,17 +236,60 @@ const MonitoareNew = () => {
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .geAllNewMonitorsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (priceRange && screen && brand) {
+      setShow(false);
+      productService
+        .getNewMonitorsScreensBrandByPrice(
+          screen,
+          priceRange,
+          currentPage,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && screen) {
+      setShow(false);
+      productService
+        .getNewMonitorsScreensByPrice(screen, priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && brand) {
+      setShow(false);
+      productService
+        .getNewMonitorsBrandsByPrice(brand, priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .geAllNewMonitorsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage, priceRange]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -245,7 +318,6 @@ const MonitoareNew = () => {
     pageTitle = slugToStr.split("-").slice(0, -1).join(" ");
   }
 
-
   return (
     <>
       <Navbar />
@@ -267,7 +339,7 @@ const MonitoareNew = () => {
             className={show ? "" : "opacity-50"}
             categoryLink={"/monitoare/nou/"}
             screens={screens}
-            screensLink={"/monitoare/nou?screen="}
+            screensLink={screensLink}
             multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (

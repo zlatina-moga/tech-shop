@@ -25,6 +25,9 @@ const MonitoareRefurbished = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/monitoare/refurbished");
+  const [screensLink, setScreensLink] = useState(
+    "/monitoare/refurbished?screen="
+  );
 
   useEffect(() => {
     sortingService.getBrands(19).then((result) => {
@@ -42,7 +45,24 @@ const MonitoareRefurbished = () => {
   }, []);
 
   useEffect(() => {
-    if (screen) {
+    if (screen && brand) {
+      setShow(false);
+      productService
+        .getRefMonitorScreensAndBrand(screen, currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/monitoare/refurbished?screen=${screen}&brand=${brand}`);
+        });
+      sortingService
+        .getHighestPriceByScreenAndBrand(19, screen, brand)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (screen) {
       setShow(false);
       productService
         .getRefMonitorScreens(screen, currentPage)
@@ -70,6 +90,10 @@ const MonitoareRefurbished = () => {
       sortingService.getHighestPriceByBrand(19, brand).then((response) => {
         setHighestPrice(response[1]);
       });
+      sortingService.getScreenSizesByBrand(19, brand).then((res) => {
+        setScreens(res);
+      });
+      setScreensLink(`/monitoare/refurbished?brand=${brand}&screen=`);
     } else {
       setShow(false);
       productService
@@ -92,7 +116,26 @@ const MonitoareRefurbished = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && selectedSort != "/monitoare/refurbished") {
+    if (priceRange && screen && brand && selectedSort != "/monitoare/refurbished") {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSortedRefMonitorsScreensBrandPrice(
+          screen,
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && screen && selectedSort != "/monitoare/refurbished" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -105,11 +148,7 @@ const MonitoareRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (
-      priceRange &&
-      brand &&
-      selectedSort != "/monitoare/refurbished"
-    ) {
+    } else if ( priceRange && brand && selectedSort != "/monitoare/refurbished" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -122,22 +161,11 @@ const MonitoareRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && screen) {
+    } else if (screen && brand && selectedSort != "/monitoare/second-hand") {
       setShow(false);
+      const sort = selectedSort.split("=")[3];
       productService
-        .getRefMonitorsScreensByPrice(screen, priceRange, currentPage)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange && brand) {
-      setShow(false);
-      productService
-        .getRefMonitorsBrandsByPrice(brand, priceRange, currentPage)
+        .getSortedRefMonitorsBrandScreen(brand, screen, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
           setShow(true);
@@ -188,7 +216,7 @@ const MonitoareRefurbished = () => {
           console.log(err);
         });
     } else if (selectedSort != "/monitoare/refurbished") {
-      setShow(false)
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -210,17 +238,60 @@ const MonitoareRefurbished = () => {
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .geAllRefurbishedMonitorsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (priceRange && screen && brand) {
+      setShow(false);
+      productService
+        .getRefMonitorsScreensBrandByPrice(
+          screen,
+          priceRange,
+          currentPage,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && screen) {
+      setShow(false);
+      productService
+        .getRefMonitorsScreensByPrice(screen, priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && brand) {
+      setShow(false);
+      productService
+        .getRefMonitorsBrandsByPrice(brand, priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .geAllRefurbishedMonitorsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage, priceRange]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -270,7 +341,7 @@ const MonitoareRefurbished = () => {
             className={show ? "" : "opacity-50"}
             categoryLink={"/monitoare/refurbished/"}
             screens={screens}
-            screensLink={"/monitoare/refurbished?screen="}
+            screensLink={screensLink}
             multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
