@@ -1249,22 +1249,22 @@ export const getAllRefServerByBrandPrice = (page, slug, price) =>
     `${baseUrl}/servere/refurbished-2/brand?brand=${slug}&price=1-${price}&page=${page}`
   );
 
-  export const getAllRefServersByProcessor = (page, slug) =>
+export const getAllRefServersByProcessor = (page, slug) =>
   request.get(
     `${baseUrl}/servere/refurbished-2/procesor?procesor=${slug}&page=${page}`
   );
 
-  export const getSortedRefServersByProcessorPrice = (page, slug, sort, price) =>
+export const getSortedRefServersByProcessorPrice = (page, slug, sort, price) =>
   request.get(
     `${baseUrl}/servere/refurbished-2/procesor?procesor=${slug}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedRefServersByProcessor = (page, slug, sort) =>
+export const getSortedRefServersByProcessor = (page, slug, sort) =>
   request.get(
     `${baseUrl}/servere/refurbished-2/procesor?procesor=${slug}&sort=${sort}&page=${page}`
   );
 
-  export const getAllRefServersByProcessorPrice = (page, slug, price) =>
+export const getAllRefServersByProcessorPrice = (page, slug, price) =>
   request.get(
     `${baseUrl}/servere/refurbished-2/procesor?procesor=${slug}&price=1-${price}&page=${page}`
   );
@@ -1556,6 +1556,169 @@ export const geSortedMonitorsPrice = (price, page, sort) =>
   request.get(
     `${baseUrl}/monitoare?price=1-${price}&sort=${sort}&page=${page}`
   );
+
+export const getRefMonitorBrands = (brand, page) =>
+  request.get(`${baseUrl}/monitoare/refurbished-4?brand=${brand}&page=${page}`);
+
+export const getRefMonitorScreens = (screen, page) =>
+  request.get(
+    `${baseUrl}/monitoare/refurbished-4?screen=${screen}&page=${page}`
+  );
+
+export const getmonitorScreens = (screen, page) =>
+  request.get(`${baseUrl}/monitoare?screen=${screen}&page=${page}`);
+
+export const getSortedMonitorScreens = (screen, sort, page) =>
+  request.get(
+    `${baseUrl}/monitoare?screen=${screen}&sort=${sort}&page=${page}`
+  );
+
+export const getMonitorsScreensByPrice = (screen, price, page) =>
+  request.get(
+    `${baseUrl}/monitoare?screen=${screen}&price=1-${price}&page=${page}`
+  );
+
+export const getSortedMonitorsScreensPrice = (screen, price, page, sort) =>
+  request.get(
+    `${baseUrl}/monitoare?screen=${screen}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getMonitorScreensByBrand = (screen, brand, page) =>
+  request.get(
+    `${baseUrl}/monitoare?brand?brand=${brand}&screen=${screen}&page=${page}`
+  );
+
+export const getSortedBrandMonitorsScreens = (page, slug, sort, screen) =>
+  request.get(
+    `${baseUrl}/monitoare/brand?brand=${slug}&screen=${screen}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedRefMonitorsScreensPrice = (screen, price, page, sort) =>
+  request.get(
+    `${baseUrl}/monitoare/refurbished-4?screen=${screen}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedRefMonitorsBrandPrice = (brand, price, page, sort) =>
+  request.get(
+    `${baseUrl}/monitoare/refurbished-4?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getRefMonitorsScreensByPrice = (screen, price, page) =>
+  request.get(
+    `${baseUrl}/monitoare/refurbished-4?screen=${screen}&price=1-${price}&page=${page}`
+  );
+
+export const getRefMonitorsBrandsByPrice = (brand, price, page) =>
+  request.get(
+    `${baseUrl}/monitoare/refurbished-4?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getSortedRefMonitorScreens = (screen, sort, page) =>
+  request.get(
+    `${baseUrl}/monitoare/refurbished-4?screen=${screen}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedRefMonitorBrands = (brand, sort, page) =>
+  request.get(
+    `${baseUrl}/monitoare/refurbished-4?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getNewMonitorScreens = (screen, page) =>
+  request.get(`${baseUrl}/monitoare/noi-4?screen=${screen}&page=${page}`);
+
+  export const getNewMonitorBrands = (brand, page) =>
+  request.get(`${baseUrl}/monitoare/noi-4?brand=${brand}&page=${page}`);
+
+  export const getSortedNewMonitorsScreensPrice = (screen, price, page, sort) =>
+  request.get(
+    `${baseUrl}/monitoare/noi-4?screen=${screen}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedNewMonitorsBrandPrice = (brand, price, page, sort) =>
+  request.get(
+    `${baseUrl}/monitoare/noi-4?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getNewMonitorsScreensByPrice = (screen, price, page) =>
+  request.get(
+    `${baseUrl}/monitoare/noi-4?screen=${screen}&price=1-${price}&page=${page}`
+  );
+
+  export const getNewMonitorsBrandsByPrice = (brand, price, page) =>
+  request.get(
+    `${baseUrl}/monitoare/noi-4?brand=${brand}&price=1-${price}&page=${page}`
+  );
+  
+  export const getSortedNewMonitorScreens = (screen, sort, page) =>
+  request.get(
+    `${baseUrl}/monitoare/noi-4?screen=${screen}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedNewMonitorBrands = (brand, sort, page) =>
+  request.get(
+    `${baseUrl}/monitoare/noi-4?brand=${brand}&sort=${sort}&page=${page}`
+  ); 
+
+  export const getSHMonitorScreens = (screen, page) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?screen=${screen}&page=${page}`
+  );
+
+  export const getSHMonitorBrands = (brand, page) =>
+  request.get(`${baseUrl}/monitoare/second-hand-4?brand=${brand}&page=${page}`);
+
+  export const getSortedSHMonitorsScreensPrice = (screen, price, page, sort) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?screen=${screen}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedSHMonitorsBrandPrice = (brand, price, page, sort) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSHMonitorsScreensByPrice = (screen, price, page) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?screen=${screen}&price=1-${price}&page=${page}`
+  );
+
+  export const getSHMonitorsBrandsByPrice = (brand, price, page) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+  export const getSortedSHMonitorScreens = (screen, sort, page) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?screen=${screen}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedSHMonitorBrands = (brand, sort, page) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getSHMonitorScreensAndBrand = (screen, page, brand) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?screen=${screen}&brand=${brand}&page=${page}`
+  );
+  
+
+  export const getSortedSHMonitorsScreensBrandPrice = (screen, price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?screen=${screen}&brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSHMonitorsScreensBrandByPrice = (screen, price, page, brand) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?screen=${screen}&brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+  export const getSortedSHMonitorsBrandScreen = (brand, screen, page, sort) =>
+  request.get(
+    `${baseUrl}/monitoare/second-hand-4?brand=${brand}&screen=${screen}&sort=${sort}&page=${page}`
+  );
+
+
 
 export const geAllBrandMonitors = (page, slug) =>
   request.get(`${baseUrl}/monitoare/brand?brand=${slug}&page=${page}`);

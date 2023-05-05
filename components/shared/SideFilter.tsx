@@ -17,6 +17,8 @@ const SideFilter = ({
   processorsGenerationLink,
   categoryLink,
   categories2,
+  screens,
+  screensLink
   //baseLink
 }) => {
   const router = useRouter();
@@ -356,6 +358,66 @@ const SideFilter = ({
                   {processorsGeneration.map((c, idx) => (
                     <Link
                       href={`${processorsGenerationLink}${c.slug}-${c.id}`}
+                      className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
+                        router.asPath.includes(c.slug) ? "active" : ""
+                      }`}
+                      key={idx}
+                    >
+                      {router.asPath.includes(c.slug) ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : (
+                        ""
+                      )}
+                      {c.name}
+                      <span className="inner-count">({c.count})</span>
+                    </Link>
+                  ))}
+                </ul>
+              </nav>
+              <nav
+                className="collapse show navbar navbar-vertical navbar-light align-items-start p-0"
+                id="navbar-vertical"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              ></nav>
+            </div>
+          </div>
+        </div>
+      )}
+      {screens && (
+        <div
+          className="sidebar-container mt-4"
+          style={{ display: "block", maxWidth: "260px" }}
+        >
+          <div className="row">
+            <div className="">
+              <nav
+                className="collapse show navbar-vertical navbar-light p-0"
+                id="navbar-vertical-2"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              >
+                <ul
+                  className="navbar-nav overflow-hidden relative"
+                  style={{
+                    borderRadius: "4px",
+                  }}
+                >
+                  <h4 className="py-2 mb-0 pl-3 bg-primary text-white">
+                    Diagonala
+                  </h4>
+                  {screens.map((c, idx) => (
+                    <Link
+                      href={`${screensLink}${c.slug}-${c.id}`}
                       className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
                         router.asPath.includes(c.slug) ? "active" : ""
                       }`}

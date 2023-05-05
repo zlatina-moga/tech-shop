@@ -34,6 +34,8 @@ interface ILaptopPage {
   processorsGenerationLink?: string;
   categoryLink?: string;
   multipleQueries?: boolean;
+  screens?: any;
+  screensLink?: string
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -55,6 +57,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   categoryLink,
   categories2,
   multipleQueries,
+  screens,
+  screensLink
 }) => {
   const [selected, setSelected] = useState("");
   const totalCount = laptopsData.map((l) => l.itemsCount)[0];
@@ -87,6 +91,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           processorsGenerationLink={processorsGenerationLink}
           categoryLink={categoryLink}
           categories2={categories2}
+          screens={screens}
+          screensLink={screensLink}
         />
         <div>
           <div className="text-center mb-4">
