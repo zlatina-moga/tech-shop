@@ -22,6 +22,12 @@ const Networks = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(
+    "/componente/placa-de-retea"
+  );
 
   useEffect(() => {
     sortingService.getBrands(87).then((result) => {
@@ -33,23 +39,69 @@ const Networks = () => {
   }, []);
 
   useEffect(() => {
-    productService
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllNetworkMyByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/componente/placa-de-retea?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(87, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      productService
       .getAllNetworks(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/componente/placa-de-retea`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage,  brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/componente/placa-de-retea") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedNetworkPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/componente/placa-de-retea") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedNetworkBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNetworksPrice(priceRange, currentPage, sort)
@@ -59,7 +111,7 @@ const Networks = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/componente/placa-de-retea") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -72,26 +124,40 @@ const Networks = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllNetworksPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getNetworkPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllNetworksPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    
   }, [priceRange, currentPage]);
-
-  const totalPages = laptopsData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -111,6 +177,13 @@ const Networks = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
+
   return (
     <>
       <Navbar />
@@ -119,17 +192,18 @@ const Networks = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Componente Placa de retea"
+            title={`Componente Placa de retea ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={componentCategories}
             breadcrumbs={reteaBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/componente/placa-de-retea"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/componente/brand/"}
+            brandLink={"/componente/placa-de-retea?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

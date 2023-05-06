@@ -20,6 +20,12 @@ const VideoCards = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(
+    "/componente/placa-video"
+  );
 
   useEffect(() => {
     sortingService.getBrands(76).then((result) => {
@@ -31,23 +37,69 @@ const VideoCards = () => {
   }, []);
 
   useEffect(() => {
-    productService
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllVideoCardsByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/componente/placa-video?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(76, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      productService
       .getAllVideoCards(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/componente/placa-video`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/componente/placa-video") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedVideoCardsPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/componente/placa-video") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedVideoCardsBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedVideoCardsPrice(priceRange, currentPage, sort)
@@ -57,7 +109,7 @@ const VideoCards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/componente/placa-video") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -70,26 +122,40 @@ const VideoCards = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllVideoCardsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getVideoCardsPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllVideoCardsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -109,6 +175,12 @@ const VideoCards = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -117,17 +189,18 @@ const VideoCards = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Componente Placa Video"
+            title={`Componente Placa Video ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={componentCategories}
             breadcrumbs={videoCardBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/componente/placa-video"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/componente/brand/"}
+            brandLink={"/componente/placa-video?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

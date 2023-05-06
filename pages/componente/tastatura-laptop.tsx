@@ -22,6 +22,12 @@ const LaptopKeyboards = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(
+    "/componente/tastatura-laptop"
+  );
 
   useEffect(() => {
     sortingService.getBrands(79).then((result) => {
@@ -33,23 +39,70 @@ const LaptopKeyboards = () => {
   }, []);
 
   useEffect(() => {
-    productService
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllLaptopKeyboardsByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/componente/tastatura-laptop?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(79, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      productService
       .getAllLaptopKeyboards(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setShow(true);
+        setMultupleSelected(true);
+        setBaseLink(`/componente/tastatura-laptop?brand=${brand}`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/componente/tastatura-laptop") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedLaptopKeyboardsPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/componente/tastatura-laptop") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedLaptopKeyboardsBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptopKeyboardsPrice(priceRange, currentPage, sort)
@@ -59,7 +112,7 @@ const LaptopKeyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/componente/tastatura-laptop") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -72,26 +125,39 @@ const LaptopKeyboards = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllLaptopKeyboardsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getLaptopKeyboardsPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllLaptopKeyboardsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    
   }, [priceRange, currentPage]);
-
-  const totalPages = laptopsData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -111,6 +177,12 @@ const LaptopKeyboards = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -119,17 +191,18 @@ const LaptopKeyboards = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Componente Tastatura laptop"
+            title={`Componente Tastatura laptop ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={componentCategories}
             breadcrumbs={laptopKeyboardBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/componente/tastatura-laptop"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/componente/brand/"}
+            brandLink="/componente/tastatura-laptop?brand="
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

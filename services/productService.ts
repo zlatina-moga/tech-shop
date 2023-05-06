@@ -1585,12 +1585,28 @@ export const getSortedMonitorsScreensPrice = (screen, price, page, sort) =>
 
 export const getMonitorScreensByBrand = (screen, brand, page) =>
   request.get(
-    `${baseUrl}/monitoare?brand?brand=${brand}&screen=${screen}&page=${page}`
+    `${baseUrl}/monitoare/brand?brand=${brand}&screen=${screen}&page=${page}`
   );
 
 export const getSortedBrandMonitorsScreens = (page, slug, sort, screen) =>
   request.get(
     `${baseUrl}/monitoare/brand?brand=${slug}&screen=${screen}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedMonitorsScreensBrandPrice = (
+  screen,
+  price,
+  page,
+  sort,
+  slug
+) =>
+  request.get(
+    `${baseUrl}/monitoare/brand?brand=${slug}&screen=${screen}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getMonitorsScreensBrandByPrice = (screen, price, page, slug) =>
+  request.get(
+    `${baseUrl}/monitoare/brand?brand=${slug}&screen=${screen}&price=1-${price}&page=${page}`
   );
 
 export const getSortedRefMonitorsScreensPrice = (screen, price, page, sort) =>
@@ -1623,137 +1639,154 @@ export const getSortedRefMonitorBrands = (brand, sort, page) =>
     `${baseUrl}/monitoare/refurbished-4?brand=${brand}&sort=${sort}&page=${page}`
   );
 
-  export const getRefMonitorScreensAndBrand = (screen, page, brand) =>
+export const getRefMonitorScreensAndBrand = (screen, page, brand) =>
   request.get(
     `${baseUrl}/monitoare/refurbished-4?screen=${screen}&brand=${brand}&page=${page}`
   );
-  
-  export const getSortedRefMonitorsScreensBrandPrice = (screen, price, page, sort, brand) =>
+
+export const getSortedRefMonitorsScreensBrandPrice = (
+  screen,
+  price,
+  page,
+  sort,
+  brand
+) =>
   request.get(
     `${baseUrl}/monitoare/refurbished-4?screen=${screen}&brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getRefMonitorsScreensBrandByPrice = (screen, price, page, brand) =>
+export const getRefMonitorsScreensBrandByPrice = (screen, price, page, brand) =>
   request.get(
     `${baseUrl}/monitoare/refurbished-4?screen=${screen}&brand=${brand}&price=1-${price}&page=${page}`
   );
 
-  export const getSortedRefMonitorsBrandScreen = (brand, screen, page, sort) =>
+export const getSortedRefMonitorsBrandScreen = (brand, screen, page, sort) =>
   request.get(
     `${baseUrl}/monitoare/refurbished-4?brand=${brand}&screen=${screen}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedNewMonitorsScreensBrandPrice = (screen, price, page, sort, brand) =>
+export const getSortedNewMonitorsScreensBrandPrice = (
+  screen,
+  price,
+  page,
+  sort,
+  brand
+) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?screen=${screen}&brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getNewMonitorScreens = (screen, page) =>
+export const getNewMonitorScreens = (screen, page) =>
   request.get(`${baseUrl}/monitoare/noi-4?screen=${screen}&page=${page}`);
 
-  export const getNewMonitorBrands = (brand, page) =>
+export const getNewMonitorBrands = (brand, page) =>
   request.get(`${baseUrl}/monitoare/noi-4?brand=${brand}&page=${page}`);
 
-  export const getSortedNewMonitorsScreensPrice = (screen, price, page, sort) =>
+export const getSortedNewMonitorsScreensPrice = (screen, price, page, sort) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?screen=${screen}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedNewMonitorsBrandPrice = (brand, price, page, sort) =>
+export const getSortedNewMonitorsBrandPrice = (brand, price, page, sort) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getNewMonitorsScreensByPrice = (screen, price, page) =>
+export const getNewMonitorsScreensByPrice = (screen, price, page) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?screen=${screen}&price=1-${price}&page=${page}`
   );
 
-  export const getNewMonitorsBrandsByPrice = (brand, price, page) =>
+export const getNewMonitorsBrandsByPrice = (brand, price, page) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?brand=${brand}&price=1-${price}&page=${page}`
   );
-  
-  export const getSortedNewMonitorScreens = (screen, sort, page) =>
+
+export const getSortedNewMonitorScreens = (screen, sort, page) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?screen=${screen}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedNewMonitorBrands = (brand, sort, page) =>
+export const getSortedNewMonitorBrands = (brand, sort, page) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?brand=${brand}&sort=${sort}&page=${page}`
-  ); 
+  );
 
-  export const getNewMonitorScreensAndBrand = (screen, page, brand) =>
+export const getNewMonitorScreensAndBrand = (screen, page, brand) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?screen=${screen}&brand=${brand}&page=${page}`
   );
 
-  export const getSortedNewMonitorsBrandScreen = (brand, screen, page, sort) =>
+export const getSortedNewMonitorsBrandScreen = (brand, screen, page, sort) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?brand=${brand}&screen=${screen}&sort=${sort}&page=${page}`
   );
 
-  export const getNewMonitorsScreensBrandByPrice = (screen, price, page, brand) =>
+export const getNewMonitorsScreensBrandByPrice = (screen, price, page, brand) =>
   request.get(
     `${baseUrl}/monitoare/noi-4?screen=${screen}&brand=${brand}&price=1-${price}&page=${page}`
   );
 
-  export const getSHMonitorScreens = (screen, page) =>
+export const getSHMonitorScreens = (screen, page) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?screen=${screen}&page=${page}`
   );
 
-  export const getSHMonitorBrands = (brand, page) =>
+export const getSHMonitorBrands = (brand, page) =>
   request.get(`${baseUrl}/monitoare/second-hand-4?brand=${brand}&page=${page}`);
 
-  export const getSortedSHMonitorsScreensPrice = (screen, price, page, sort) =>
+export const getSortedSHMonitorsScreensPrice = (screen, price, page, sort) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?screen=${screen}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedSHMonitorsBrandPrice = (brand, price, page, sort) =>
+export const getSortedSHMonitorsBrandPrice = (brand, price, page, sort) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getSHMonitorsScreensByPrice = (screen, price, page) =>
+export const getSHMonitorsScreensByPrice = (screen, price, page) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?screen=${screen}&price=1-${price}&page=${page}`
   );
 
-  export const getSHMonitorsBrandsByPrice = (brand, price, page) =>
+export const getSHMonitorsBrandsByPrice = (brand, price, page) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?brand=${brand}&price=1-${price}&page=${page}`
   );
 
-  export const getSortedSHMonitorScreens = (screen, sort, page) =>
+export const getSortedSHMonitorScreens = (screen, sort, page) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?screen=${screen}&sort=${sort}&page=${page}`
   );
 
-  export const getSortedSHMonitorBrands = (brand, sort, page) =>
+export const getSortedSHMonitorBrands = (brand, sort, page) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?brand=${brand}&sort=${sort}&page=${page}`
   );
 
-  export const getSHMonitorScreensAndBrand = (screen, page, brand) =>
+export const getSHMonitorScreensAndBrand = (screen, page, brand) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?screen=${screen}&brand=${brand}&page=${page}`
   );
-  
 
-  export const getSortedSHMonitorsScreensBrandPrice = (screen, price, page, sort, brand) =>
+export const getSortedSHMonitorsScreensBrandPrice = (
+  screen,
+  price,
+  page,
+  sort,
+  brand
+) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?screen=${screen}&brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
   );
 
-  export const getSHMonitorsScreensBrandByPrice = (screen, price, page, brand) =>
+export const getSHMonitorsScreensBrandByPrice = (screen, price, page, brand) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?screen=${screen}&brand=${brand}&price=1-${price}&page=${page}`
   );
 
-  export const getSortedSHMonitorsBrandScreen = (brand, screen, page, sort) =>
+export const getSortedSHMonitorsBrandScreen = (brand, screen, page, sort) =>
   request.get(
     `${baseUrl}/monitoare/second-hand-4?brand=${brand}&screen=${screen}&sort=${sort}&page=${page}`
   );
@@ -1875,6 +1908,32 @@ export const getSortedComponentsPrice = (price, page, sort) =>
 export const geAllBrandComponents = (page, slug) =>
   request.get(`${baseUrl}/componente/brand?brand=${slug}&page=${page}`);
 
+export const geAllBrandComponentsByType = (page, slug, componenta) =>
+  request.get(
+    `${baseUrl}/componente/brand?brand=${slug}&componenta=${componenta}&page=${page}`
+  );
+
+export const getSortedBrandTypeComponents = (page, slug, sort, componenta) =>
+  request.get(
+    `${baseUrl}/componente/brand?brand=${slug}&componenta=${componenta}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedBrandTypeComponentsPrice = (
+  page,
+  slug,
+  sort,
+  price,
+  componenta
+) =>
+  request.get(
+    `${baseUrl}/componente/brand?brand=${slug}&componenta=${componenta}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getBrandTypeComponentsPrice = (page, slug, price, componenta) =>
+  request.get(
+    `${baseUrl}/componente/brand?brand=${slug}&componenta=${componenta}&price=1-${price}&page=${page}`
+  );
+
 export const geAllBrandComponentsPrice = (page, slug, price) =>
   request.get(
     `${baseUrl}/componente/brand?brand=${slug}&price=1-${price}&page=${page}`
@@ -1893,6 +1952,26 @@ export const getSortedBrandComponentsPrice = (page, slug, sort, price) =>
 export const getAllHardDisks = (page) =>
   request.get(`${baseUrl}/componente/hard-disk?page=${page}`);
 
+  export const getAllHardDisksByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/hard-disk?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedHardDisksPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/hard-disk?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedHardDisksBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/hard-disk?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getHardDisksPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/hard-disk?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllHardDisksPrice = (price, page) =>
   request.get(`${baseUrl}/componente/hard-disk?price=1-${price}&page=${page}`);
 
@@ -1906,6 +1985,27 @@ export const getSortedHardDisksPrice = (price, page, sort) =>
 
 export const getAllRAM = (page) =>
   request.get(`${baseUrl}/componente/memorie-ram?page=${page}`);
+
+  export const getAllRAMyByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/memorie-ram?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedRAMPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/memorie-ram?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedRAMBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/memorie-ram?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getRAMPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/memorie-ram?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 
 export const getAllRAMPrice = (price, page) =>
   request.get(
@@ -1923,6 +2023,27 @@ export const getSortedRAMPrice = (price, page, sort) =>
 export const getAllVideoCards = (page) =>
   request.get(`${baseUrl}/componente/placa-video?page=${page}`);
 
+  export const getAllVideoCardsByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-video?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedVideoCardsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-video?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedVideoCardsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-video?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getVideoCardsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-video?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+
 export const getAllVideoCardsPrice = (price, page) =>
   request.get(
     `${baseUrl}/componente/placa-video?price=1-${price}&page=${page}}`
@@ -1939,6 +2060,26 @@ export const getSortedVideoCardsPrice = (price, page, sort) =>
 export const getAllProcesors = (page) =>
   request.get(`${baseUrl}/componente/procesor?page=${page}`);
 
+  export const getAllProcesorsByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/procesor?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedProcesorsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/procesor?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedProcesorsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/procesor?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getProcesorsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/procesor?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllProcesorsPrice = (price, page) =>
   request.get(`${baseUrl}/componente/procesor?price=1-${price}&page=${page}}`);
 
@@ -1952,6 +2093,26 @@ export const getSortedProcesorsPrice = (price, page, sort) =>
 
 export const getAllLaptopKeyboards = (page) =>
   request.get(`${baseUrl}/componente/tastatura-laptop?page=${page}`);
+
+  export const getAllLaptopKeyboardsByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/tastatura-laptop?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedLaptopKeyboardsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/tastatura-laptop?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedLaptopKeyboardsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/tastatura-laptop?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getLaptopKeyboardsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/tastatura-laptop?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllLaptopKeyboardsPrice = (price, page) =>
   request.get(
@@ -1970,6 +2131,31 @@ export const getSortedLaptopKeyboardsPrice = (price, page, sort) =>
 export const getAllLaptopBatteries = (page) =>
   request.get(`${baseUrl}/componente/baterie-laptop?page=${page}`);
 
+export const getAlLaptopBatteriesByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/baterie-laptop?brand=${brand}&page=${page}`
+  );
+
+export const getSortedLaptopBatteriesPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/componente/baterie-laptop?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedLaptopBatteriesBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/baterie-laptop?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getLaptopBatteriesPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/baterie-laptop?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllLaptopBatteriesPrice = (price, page) =>
   request.get(
     `${baseUrl}/componente/baterie-laptop?price=1-${price}&page=${page}}`
@@ -1985,6 +2171,31 @@ export const getSortedLaptopBatteriesPrice = (price, page, sort) =>
 
 export const getAllLaptopChargers = (page) =>
   request.get(`${baseUrl}/componente/alimentator-laptop?page=${page}`);
+
+export const getAllLaptopChargersByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/alimentator-laptop?brand=${brand}&page=${page}`
+  );
+
+export const getSortedLaptopChargersPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/componente/alimentator-laptop?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedLaptopChargersBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/alimentator-laptop?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getLaptopChargersPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/alimentator-laptop?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllLaptopChargersPrice = (price, page) =>
   request.get(
@@ -2004,6 +2215,27 @@ export const getSortedLaptopChargersPrice = (price, page, sort) =>
 export const getAllPalmrests = (page) =>
   request.get(`${baseUrl}/componente/palmrest?page=${page}`);
 
+  export const getAlPalmrestsMyByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/palmrest?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedPalmrestsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/palmrest?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedPalmrestsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/palmrest?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getPalmrestsriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/palmrest?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+
 export const getAllPalmrestsPrice = (price, page) =>
   request.get(`${baseUrl}/componente/palmrest?price=1-${price}&page=${page}}`);
 
@@ -2017,6 +2249,24 @@ export const getSortedPalmrestsPrice = (price, page, sort) =>
 
 export const getAllCaddy = (page) =>
   request.get(`${baseUrl}/componente/caddy-server?page=${page}`);
+
+export const getAllCaddyByBrand = (page, brand) =>
+  request.get(`${baseUrl}/componente/caddy-server?brand=${brand}&page=${page}`);
+
+export const getSortedCaddyPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/caddy-server?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedCaddyBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/caddy-server?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getCaddyPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/caddy-server?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllCaddyPrice = (price, page) =>
   request.get(
@@ -2034,6 +2284,26 @@ export const getSortedCaddyPrice = (price, page, sort) =>
 export const getAllRailkit = (page) =>
   request.get(`${baseUrl}/componente/railkit-server?page=${page}`);
 
+  export const getAllRailkitsByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/railkit-server?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedRailkitPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/railkit-server?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedRailkitBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/railkit-server?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getRailkitPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/railkit-server?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllRailkitPrice = (price, page) =>
   request.get(
     `${baseUrl}/componente/railkit-server?price=1-${price}&page=${page}}`
@@ -2049,6 +2319,27 @@ export const getSortedRailkitPrice = (price, page, sort) =>
 
 export const getAllMascaBay = (page) =>
   request.get(`${baseUrl}/componente/masca-bay-server?page=${page}`);
+
+  export const getAllMascaBayByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/masca-bay-server?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedMascaBayPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/masca-bay-server?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedMascaBayBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/masca-bay-server?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+
+  export const getMascaBayPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/masca-bay-server?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllMascaBayPrice = (price, page) =>
   request.get(
@@ -2068,6 +2359,26 @@ export const getSortedMascaBayPrice = (price, page, sort) =>
 export const getAllControllers = (page) =>
   request.get(`${baseUrl}/componente/controller-raid?page=${page}`);
 
+  export const getAllControllersByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/controller-raid?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedControllersPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/controller-raid?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedControllersBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/controller-raid?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getControllersPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/controller-raid?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllControllersPrice = (price, page) =>
   request.get(
     `${baseUrl}/componente/controller-raid?price=1-${price}&page=${page}}`
@@ -2086,6 +2397,27 @@ export const getSortedControllersPrice = (price, page, sort) =>
 export const getAllNetworks = (page) =>
   request.get(`${baseUrl}/componente/placa-de-retea?page=${page}`);
 
+  export const getAllNetworkMyByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-de-retea?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedNetworkPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-de-retea?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedNetworkBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-de-retea?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getNetworkPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-de-retea?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+
 export const getAllNetworksPrice = (price, page) =>
   request.get(
     `${baseUrl}/componente/placa-de-retea?price=1-${price}&page=${page}}`
@@ -2102,6 +2434,26 @@ export const getSortedNetworksPrice = (price, page, sort) =>
 export const getAllCases = (page) =>
   request.get(`${baseUrl}/componente/carcasa-si-surse?page=${page}`);
 
+export const getAllCasesByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/carcasa-si-surse?brand=${brand}&page=${page}`
+  );
+
+export const getSortedCasesPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/carcasa-si-surse?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedCasesBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/carcasa-si-surse?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getCasesPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/carcasa-si-surse?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllCasesPrice = (price, page) =>
   request.get(
     `${baseUrl}/componente/carcasa-si-surse?price=1-${price}&page=${page}`
@@ -2115,6 +2467,26 @@ export const getSortedCases = (page, sort) =>
 export const getSortedCasesPrice = (price, page, sort) =>
   request.get(
     `${baseUrl}/componente/carcasa-si-surse?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getAllBareboneByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/barebone-calculator?brand=${brand}&page=${page}`
+  );
+
+export const getSortedBarebonePriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/barebone-calculator?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedBareboneBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/barebone-calculator?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getBarebonePriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/barebone-calculator?brand=${brand}&price=1-${price}&page=${page}`
   );
 
 export const getAllBarebone = (page) =>
@@ -2138,6 +2510,27 @@ export const getSortedBarebonePrice = (price, page, sort) =>
 export const getAllCoolers = (page) =>
   request.get(`${baseUrl}/componente/coolere-si-radiatoare?page=${page}`);
 
+  export const getAllCoolersByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/coolere-si-radiatoare?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedCoolersPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/coolere-si-radiatoare?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedCoolersBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/coolere-si-radiatoare?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getCoolersPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/coolere-si-radiatoare?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+
 export const getAllCoolersPrice = (price, page) =>
   request.get(
     `${baseUrl}/componente/coolere-si-radiatoare?price=1-${price}&page=${page}`
@@ -2155,6 +2548,27 @@ export const getSortedCoolersPrice = (price, page, sort) =>
 
 export const getAllMotherBoards = (page) =>
   request.get(`${baseUrl}/componente/placa-de-baza-calculator?page=${page}`);
+
+  export const getAllMotherBoardsMyByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-de-baza-calculator?brand=${brand}&page=${page}`
+  );
+
+  export const getSortedMotherBoardsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-de-baza-calculator?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedMotherBoardsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-de-baza-calculator?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+  export const getMotherBoardsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/componente/placa-de-baza-calculator?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 
 export const getAllMotherBoardsPrice = (price, page) =>
   request.get(

@@ -62,7 +62,7 @@ const BrandDetail = () => {
         .then((result) => {
           setLoading(false);
           seItemsData(result);
-          setShow(true)
+          setShow(true);
           setTotalPages(result[0].totalPages);
           setBaseLink(`/monitoare/brand/${slug}`);
         })
@@ -77,17 +77,26 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
-      const sort = selectedSort.split("=")[1];
+    if (priceRange && screen && selectedSort != `/monitoare/brand/${slug}`) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
       productService
-        .getSortedBrandMonitorsPrice(currentPage, slug, sort, priceRange)
+        .getSortedMonitorsScreensBrandPrice(
+          screen,
+          priceRange,
+          currentPage,
+          sort,
+          slug
+        )
         .then((result) => {
           seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else if (screen && selectedSort) {
+    } else if (screen && selectedSort != `/monitoare/brand/${slug}`) {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
@@ -101,7 +110,17 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort) {
+    } else if (priceRange && !screen) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedBrandMonitorsPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort != `/monitoare/brand/${slug}`) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -121,17 +140,31 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .geAllBrandMonitorsPrice(currentPage, slug, priceRange)
-      .then((result) => {
-        seItemsData(result);
-        setTotalPages(result[0].totalPages);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange && screen) {
+      setShow(false);
+      productService
+        .getMonitorsScreensBrandByPrice(screen, priceRange, currentPage, slug)
+        .then((result) => {
+          seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .geAllBrandMonitorsPrice(currentPage, slug, priceRange)
+        .then((result) => {
+          seItemsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({

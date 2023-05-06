@@ -18,7 +18,8 @@ const SideFilter = ({
   categoryLink,
   categories2,
   screens,
-  screensLink
+  screensLink,
+  secTitle
   //baseLink
 }) => {
   const router = useRouter();
@@ -293,7 +294,7 @@ const SideFilter = ({
                   }}
                 >
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
-                    Procesor
+                    {secTitle ? secTitle : 'Procesor'}
                   </h4>
                   {processors.map((c, idx) => (
                     <Link

@@ -20,6 +20,10 @@ const Palmrests = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/componente/palmrest");
 
   useEffect(() => {
     sortingService.getBrands(82).then((result) => {
@@ -31,23 +35,69 @@ const Palmrests = () => {
   }, []);
 
   useEffect(() => {
-    productService
+    if (brand) {
+      setShow(false);
+      productService
+        .getAlPalmrestsMyByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/componente/palmrest?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(82, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      productService
       .getAllPalmrests(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/componente/palmrest`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/componente/palmrest") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedPalmrestsPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/componente/palmrest") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedPalmrestsBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedPalmrestsPrice(priceRange, currentPage, sort)
@@ -57,7 +107,7 @@ const Palmrests = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/componente/palmrest"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -70,26 +120,41 @@ const Palmrests = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllPalmrestsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getPalmrestsriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllPalmrestsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
   }, [priceRange, currentPage]);
 
-  const totalPages = laptopsData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -109,6 +174,12 @@ const Palmrests = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -117,17 +188,18 @@ const Palmrests = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Componente Palmrest"
+            title={`Componente Palmrest ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={componentCategories}
             breadcrumbs={palmrestBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/componente/palmrest"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/componente/brand/"}
+            brandLink={"/componente/palmrest?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

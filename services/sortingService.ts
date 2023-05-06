@@ -169,3 +169,7 @@ export const getHighestPriceByScreen = (category, screen) => request.get(`${base
 export const getScreenSizesByBrand = (category, brand) => request.get(`${baseUrl}/attributes/a-diagonala-25?filter[category]=${category}&filter[brand]=${brand}`)
 
 export const getHighestPriceByScreenAndBrand = (category, screen, brand) => request.get(`${baseUrl}/price/price?filter[category]=${category}&filter[a-diagonala-25]=${screen}&filter[brand]=${brand}`)
+
+export const getComponentsByBrand = (category, brand) => request.get(`${baseUrl}/attributes/a-tip-componenta-237?filter[category]=${category}&filter[brand]=${brand}`)
+
+export const getHighestPriceByComponentAndBrand = (category, brand, component) => request.get(`${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-tip-componenta-237]=${component}`)
