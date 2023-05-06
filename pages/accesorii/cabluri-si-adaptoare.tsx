@@ -23,18 +23,44 @@ const Cables = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/accesorii/cabluri-si-adaptoare");
 
   useEffect(() => {
-    productService
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllCablesByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/accesorii/cabluri-si-adaptoare?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(68, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      setShow(false);
+      productService
       .getAllCables(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setShow(true);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/accesorii/cabluri-si-adaptoare`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand]);
 
   useEffect(() => {
     sortingService.getBrands(68).then((result) => {
@@ -50,7 +76,38 @@ const Cables = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/accesorii/cabluri-si-adaptoare" ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedCablesPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/accesorii/cabluri-si-adaptoare") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedCablesBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedCablesPrice(priceRange, currentPage, sort)
@@ -60,7 +117,7 @@ const Cables = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/accesorii/cabluri-si-adaptoare") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -73,26 +130,40 @@ const Cables = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllCablesPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getCablesPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllCablesPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -112,6 +183,12 @@ const Cables = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -120,17 +197,18 @@ const Cables = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Cabluri si Adaptoare"
+            title={`Cabluri si Adaptoare ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={accessoryCategories}
             breadcrumbs={cablesBreadCrmbs}
             sortCriteria={onSort}
-            baseLink="/accesorii/cabluri-si-adaptoare"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/accesorii/brand/"}
+            brandLink={"/accesorii/cabluri-si-adaptoare?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={classNames("flex-nowrap", show ? "" : "opacity-50")}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

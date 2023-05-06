@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import {usePagination, DOTS } from "../../hooks/usePagination";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { keyboardBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
@@ -20,6 +20,10 @@ const Keyboards = () => {
   const [brands, setBrands] = useState([]);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/accesorii/tastaturi");
 
   useEffect(() => {
     sortingService.getBrands(64).then((result) => {
@@ -31,23 +35,69 @@ const Keyboards = () => {
   }, []);
 
   useEffect(() => {
-    productService
-      .getAllKeyboards(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllKeyboardsByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/accesorii/tastaturi?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(64, brand).then((response) => {
+        setHighestPrice(response[1]);
       });
-  }, [currentPage]);
+    } else {
+      productService
+        .getAllKeyboards(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/componente/tastaturi`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/componente/tastaturi") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedKeyboardsPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/componente/tastaturi") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedKeyboardsBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedKeyboardsPrice(priceRange, currentPage, sort)
@@ -57,7 +107,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/componente/tastaturi") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -70,26 +120,39 @@ const Keyboards = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllKeyboardsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getKeyboardsPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllKeyboardsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -109,6 +172,12 @@ const Keyboards = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -117,17 +186,18 @@ const Keyboards = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Tastaturi"
+            title={`Tastaturi ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={accessoryCategories}
             breadcrumbs={keyboardBreadCrmbs}
             sortCriteria={onSort}
-            baseLink="/accesorii/tastaturi"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/accesorii/brand/"}
+            brandLink={"/accesorii/tastaturi?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -135,25 +205,26 @@ const Keyboards = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                    <i className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange && paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } ${page == DOTS ? "dots" : ""}`}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -161,7 +232,7 @@ const Keyboards = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                    <i className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

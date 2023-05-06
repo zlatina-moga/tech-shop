@@ -2942,6 +2942,42 @@ export const getSortedAccessoriesPrice = (price, page, sort) =>
 export const getAllBrandAccessories = (page, slug) =>
   request.get(`${baseUrl}/accesorii/brand?brand=${slug}&page=${page}`);
 
+export const getAllBrandAccessoriessByType = (page, slug, componenta) =>
+  request.get(
+    `${baseUrl}/accesorii/brand?brand=${slug}&tip=${componenta}&page=${page}`
+  );
+
+export const getSortedBrandTypeAccessoriessPrice = (
+  page,
+  slug,
+  sort,
+  price,
+  componenta
+) =>
+  request.get(
+    `${baseUrl}/accesorii/brand?brand=${slug}&tip=${componenta}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedBrandTypeAccessories = (page, slug, sort, componenta) =>
+  request.get(
+    `${baseUrl}/accesorii/brand?brand=${slug}&tip=${componenta}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedBrandAccessoriesPrice = (page, slug, sort, price) =>
+  request.get(
+    `${baseUrl}/accesorii/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getBrandTypeAccessoriesPrice = (page, slug, price, componenta) =>
+  request.get(
+    `${baseUrl}/accesorii/brand?brand=${slug}&tip=${componenta}&price=1-${price}&page=${page}`
+  );
+
+export const geAllBrandAccessoriesPrice = (page, slug, price) =>
+  request.get(
+    `${baseUrl}/accesorii/brand?brand=${slug}&price=1-${price}&page=${page}`
+  );
+
 export const getSortedBrandAccessories = (page, slug, sort) =>
   request.get(
     `${baseUrl}/accesorii/brand?brand=${slug}&sort=${sort}&page=${page}`
@@ -3020,6 +3056,26 @@ export const getSortedSolarPanelsBrandsPrice = (page, slug, sort, price) =>
 export const getAllCables = (page) =>
   request.get(`${baseUrl}/accesorii/cabluri-si-adaptoare?page=${page}`);
 
+export const getAllCablesByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/cabluri-si-adaptoare?brand=${brand}&page=${page}`
+  );
+
+export const getSortedCablesPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/cabluri-si-adaptoare?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedCablesBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/cabluri-si-adaptoare?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getCablesPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/cabluri-si-adaptoare?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllCablesPrice = (price, page) =>
   request.get(
     `${baseUrl}/accesorii/cabluri-si-adaptoare?price=1-${price}&page=${page}`
@@ -3038,6 +3094,24 @@ export const getSortedCablesPrice = (price, page, sort) =>
 export const getAllMice = (page) =>
   request.get(`${baseUrl}/accesorii/mouse?page=${page}`);
 
+export const getAllMiceByBrand = (page, brand) =>
+  request.get(`${baseUrl}/accesorii/mouse?brand=${brand}&page=${page}`);
+
+export const getSortedMicePriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/mouse?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedMiceBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/mouse?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getMicePriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/mouse?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllMicePrice = (price, page) =>
   request.get(`${baseUrl}/accesorii/mouse?price=1-${price}&page=${page}`);
 
@@ -3052,6 +3126,24 @@ export const getSortedMicePrice = (price, page, sort) =>
 export const getAllKeyboards = (page) =>
   request.get(`${baseUrl}/accesorii/tastaturi?page=${page}`);
 
+  export const getAllKeyboardsByBrand = (page, brand) =>
+  request.get(`${baseUrl}/accesorii/tastaturi?brand=${brand}&page=${page}`);
+
+export const getSortedKeyboardsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/tastaturi?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedKeyboardsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/tastaturi?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getKeyboardsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/tastaturi?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllKeyboardsPrice = (price, page) =>
   request.get(`${baseUrl}/accesorii/tastaturi?price=1-${price}&page=${page}`);
 
@@ -3065,6 +3157,25 @@ export const getSortedKeyboardsPrice = (price, page, sort) =>
 
 export const getAllOtherAccessories = (page) =>
   request.get(`${baseUrl}/accesorii/periferice-diverse?page=${page}`);
+
+  export const getAllOtherAccessoriesByBrand = (page, brand) =>
+  request.get(`${baseUrl}/accesorii/periferice-diverse?brand=${brand}&page=${page}`);
+
+export const getSortedOtherAccessoriesPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/periferice-diverse?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedOtherAccessoriesBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/periferice-diverse?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getOtherAccessoriesPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/periferice-diverse?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 
 export const getAllOtherAccessoriesPrice = (price, page) =>
   request.get(
@@ -3084,6 +3195,31 @@ export const getSortedOtherAccessoriesPrice = (price, page, sort) =>
 export const getAllDockingStations = (page) =>
   request.get(`${baseUrl}/accesorii/docking-station?page=${page}`);
 
+export const getAllDockingStationsByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/docking-station?brand=${brand}&page=${page}`
+  );
+
+export const getSortedDockingStationsPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/accesorii/docking-station?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDockingStationsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/docking-station?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getDockingStationsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/docking-station?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllDockingStationsPrice = (price, page) =>
   request.get(
     `${baseUrl}/accesorii/docking-station?price=1-${price}&page=${page}`
@@ -3100,6 +3236,24 @@ export const getSortedDockingStationsPrice = (price, page, sort) =>
 export const getAllBags = (page) =>
   request.get(`${baseUrl}/accesorii/genti?page=${page}`);
 
+export const getAllBagsByBrand = (page, brand) =>
+  request.get(`${baseUrl}/accesorii/genti?brand=${brand}&page=${page}`);
+
+export const getSortedBagsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/genti?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedBagsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/genti?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getBagsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/genti?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllBagsPrice = (price, page) =>
   request.get(`${baseUrl}/accesorii/genti?price=1-${price}&page=${page}`);
 
@@ -3113,6 +3267,24 @@ export const getSortedBagsPrice = (price, page, sort) =>
 
 export const getAllCameras = (page) =>
   request.get(`${baseUrl}/accesorii/camere-web?page=${page}`);
+
+export const getAllCamerasByBrand = (page, brand) =>
+  request.get(`${baseUrl}/accesorii/camere-web?brand=${brand}&page=${page}`);
+
+export const getSortedCamerasPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/camere-web?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedCamerasBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/camere-web?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getCamerasPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/camere-web?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllCamerasPrice = (price, page) =>
   request.get(`${baseUrl}/accesorii/camere-web?price=1-${price}&page=${page}`);
@@ -3128,6 +3300,24 @@ export const getSortedCamerasPrice = (price, page, sort) =>
 export const getAllHeadPhones = (page) =>
   request.get(`${baseUrl}/accesorii/casti?page=${page}`);
 
+export const getAllHeadPhonesByBrand = (page, brand) =>
+  request.get(`${baseUrl}/accesorii/casti?brand=${brand}&page=${page}`);
+
+export const getSortedHeadPhonesPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/casti?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedHeadPhonesBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/casti?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getHeadPhonesPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/casti?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllHeadPhonesPrice = (price, page) =>
   request.get(`${baseUrl}/accesorii/casti?price=1-${price}&page=${page}`);
 
@@ -3141,6 +3331,26 @@ export const getSortedHeadPhonesPrice = (price, page, sort) =>
 
 export const getAllGaming = (page) =>
   request.get(`${baseUrl}/accesorii/gaming-console?page=${page}`);
+
+export const getAllGamingByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/gaming-console?brand=${brand}&page=${page}`
+  );
+
+export const getSortedGamingPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/gaming-console?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedGamingBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/gaming-console?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getGamingPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/gaming-console?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllGamingPrice = (price, page) =>
   request.get(
@@ -3157,6 +3367,24 @@ export const getSortedGamingPrice = (price, page, sort) =>
 
 export const getAllVideo = (page) =>
   request.get(`${baseUrl}/accesorii/videoproiectoare?page=${page}`);
+
+  export const getAllVideoByBrand = (page, brand) =>
+  request.get(`${baseUrl}/accesorii/videoproiectoare?brand=${brand}&page=${page}`);
+
+export const getSortedVideoPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/videoproiectoare?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedVideoBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/videoproiectoare?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getVideoPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/videoproiectoare?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllVideoPrice = (price, page) =>
   request.get(

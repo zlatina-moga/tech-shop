@@ -22,6 +22,10 @@ const Keyboards = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/accesorii/periferice-diverse");
 
   useEffect(() => {
     sortingService.getBrands(65).then((result) => {
@@ -33,23 +37,74 @@ const Keyboards = () => {
   }, []);
 
   useEffect(() => {
-    productService
-      .getAllOtherAccessories(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllOtherAccessoriesByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/accesorii/periferice-diverse?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(65, brand).then((response) => {
+        setHighestPrice(response[1]);
       });
-  }, [currentPage]);
+    } else {
+      productService
+        .getAllOtherAccessories(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/componente/periferice-diverse`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if ( priceRange && brand && selectedSort != "/componente/periferice-diverse"  ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedOtherAccessoriesPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/componente/periferice-diverse") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedOtherAccessoriesBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedOtherAccessoriesPrice(priceRange, currentPage, sort)
@@ -59,7 +114,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/componente/periferice-diverse") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -72,26 +127,38 @@ const Keyboards = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllOtherAccessoriesPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getOtherAccessoriesPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllOtherAccessoriesPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [priceRange, currentPage]);
-
-  const totalPages = laptopsData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -111,6 +178,12 @@ const Keyboards = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -119,17 +192,18 @@ const Keyboards = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Periferice Diverse"
+            title={`Periferice Diverse ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={accessoryCategories}
             breadcrumbs={diverseBreadCrmbs}
             sortCriteria={onSort}
-            baseLink="/accesorii/periferice-diverse"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/accesorii/brand/"}
+            brandLink={"/accesorii/periferice-diverse?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

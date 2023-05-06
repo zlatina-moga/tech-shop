@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import {usePagination, DOTS } from "../../hooks/usePagination";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 import { accessoryCategories } from "../../data/categories";
 import { camerasBreadCrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
@@ -20,18 +20,40 @@ const Cameras = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/accesorii/camere-web");
 
   useEffect(() => {
-    productService
-      .getAllCameras(currentPage)
-      .then((result) => {
+    if (brand) {
+      setShow(false);
+      productService.getAllCamerasByBrand(currentPage, brand).then((result) => {
         setLoading(false);
         setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+        setTotalPages(result[0].totalPages);
+        setShow(true);
+        setMultupleSelected(true);
+        setBaseLink(`/accesorii/camere-web?brand=${brand}`);
       });
-  }, [currentPage]);
+      sortingService.getHighestPriceByBrand(62, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      productService
+        .getAllCameras(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/componente/camere-web`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   useEffect(() => {
     sortingService.getBrands(62).then((result) => {
@@ -47,7 +69,33 @@ const Cameras = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/componente/camere-web") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedCamerasPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/componente/camere-web") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedCamerasBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedCamerasPrice(priceRange, currentPage, sort)
@@ -57,7 +105,7 @@ const Cameras = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/componente/camere-web") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -70,26 +118,40 @@ const Cameras = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllCamerasPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getCamerasPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllCamerasPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -109,6 +171,12 @@ const Cameras = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -117,17 +185,18 @@ const Cameras = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Camere Web"
+            title={`Camere Web ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={accessoryCategories}
             breadcrumbs={camerasBreadCrmbs}
             sortCriteria={onSort}
-            baseLink="/accesorii/camere-web"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/accesorii/brand/"}
+            brandLink={"/accesorii/camere-web?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -135,25 +204,26 @@ const Cameras = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                    <i className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange && paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } ${page == DOTS ? "dots" : "" }`}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -161,7 +231,7 @@ const Cameras = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                    <i className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

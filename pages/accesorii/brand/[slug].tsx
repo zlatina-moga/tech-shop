@@ -8,54 +8,165 @@ import { accessoryBrandBreadCrmbs } from "../../../data/breadcrumbs";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import Footer from "../../../components/global/Footer";
 import * as sortingService from "../../../services/sortingService";
-import { accessoryCategories } from "../../../data/categories";
 
 const BrandDetail = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { slug, tip } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSort, setSelectedSort] = useState(`/accesorii/brand/${slug}`);
   const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
+  const [categories, setCategories] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(`/accesorii/brand/${slug}`);
 
   useEffect(() => {
     sortingService.getBrands(47).then((result) => {
       setBrands(result);
     });
-  }, []);
+    sortingService.getHighestPriceByBrand(47, slug).then((response) => {
+      setHighestPrice(response[1]);
+    });
+    sortingService.getAccessoriesByBrand(47, slug).then((res) => {
+      setCategories(res);
+    });
+  }, [slug]);
 
   useEffect(() => {
-    productService
-      .getAllBrandAccessories(currentPage, slug)
-      .then((result) => {
-        setLoading(false);
-        seItemsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentPage, slug]);
+    if (tip) {
+      setShow(false);
+      productService
+        .getAllBrandAccessoriessByType(currentPage, slug, tip)
+        .then((result) => {
+          setLoading(false);
+          seItemsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/accesorii/brand/${slug}?tip=${tip}`);
+        });
+      sortingService
+        .getHighestPriceByComponentAndBrand(47, slug, tip)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllBrandAccessories(currentPage, slug)
+        .then((result) => {
+          setLoading(false);
+          seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/accesorii/brand/${slug}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, slug, tip]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedBrandAccessories(currentPage, slug, sort)
-      .then((result) => {
-        setLoading(false);
-        seItemsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedSort, currentPage]);
+    if (priceRange && tip && selectedSort != `/accesorii/brand/${slug}`) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedBrandTypeAccessoriessPrice(
+          currentPage,
+          slug,
+          sort,
+          priceRange,
+          tip
+        )
+        .then((result) => {
+          seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (tip && selectedSort != `/accesorii/brand/${slug}`) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedBrandTypeAccessories(currentPage, slug, sort, tip)
+        .then((result) => {
+          setShow(true);
+          seItemsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !tip) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedBrandAccessoriesPrice(currentPage, slug, sort, priceRange)
+        .then((result) => {
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort != `/accesorii/brand/${slug}`) {
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedBrandAccessories(currentPage, slug, sort)
+        .then((result) => {
+          setLoading(false);
+          seItemsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage, priceRange]);
 
-  const totalPages = itemData[0]?.totalPages;
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    if (priceRange && tip) {
+      setShow(false);
+      productService
+        .getBrandTypeAccessoriesPrice(currentPage, slug, priceRange, tip)
+        .then((result) => {
+          seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .geAllBrandAccessoriesPrice(currentPage, slug, priceRange)
+        .then((result) => {
+          seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage, slug]);
+
 
   const paginationRange = usePagination({
     currentPage,
@@ -93,10 +204,16 @@ const BrandDetail = () => {
             laptopsData={itemData}
             breadcrumbs={accessoryBrandBreadCrmbs}
             sortCriteria={onSort}
-            baseLink={`/accesorii/brand/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={"/accesorii/brand/"}
-            //categories={accessoryCategories}
+            highEnd={highestPrice}
+            secTitle={"Tip"}
+            processors={categories}
+            processorsLink={`/accesorii/brand/${slug}?tip=`}
+            priceRange={onRangeSelect}
+            className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
