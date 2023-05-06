@@ -8,7 +8,6 @@ import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { printerBrandBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
 import * as sortingService from "../../../services/sortingService";
-import { printerCategories } from "../../../data/categories";
 
 const BrandDetail = () => {
   const router = useRouter();
@@ -49,29 +48,33 @@ const BrandDetail = () => {
 
   useEffect(() => {
     if (priceRange) {
+      setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedBrandByPricePrinters(currentPage, slug, sort, priceRange)
         .then((result) => {
           seItemsData(result);
+          setShow(true)
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
       router.push(selectedSort);
+      setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedBrandPrinters(currentPage, slug, sort)
         .then((result) => {
           setLoading(false);
           seItemsData(result);
+          setShow(true)
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
@@ -131,7 +134,6 @@ const BrandDetail = () => {
             baseLink={`/imprimante/brand/${slug}`}
             brands={brands}
             brandLink={"/imprimante/brand/"}
-            categories={printerCategories}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}

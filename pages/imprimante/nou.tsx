@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { printerCategories } from "../../data/categories";
 import { printerNewBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -21,6 +20,10 @@ const NewPrinters = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/imprimante/nou");
 
   useEffect(() => {
     sortingService.getBrands(53).then((result) => {
@@ -35,23 +38,71 @@ const NewPrinters = () => {
   }, []);
 
   useEffect(() => {
-    productService
-      .getAllNewPrinters(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllNewBrandPrinters(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/imprimante/nou?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(53, brand).then((response) => {
+        setHighestPrice(response[1]);
       });
-  }, [currentPage]);
+    } else {
+      setShow(false);
+      productService
+        .getAllNewPrinters(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/imprimante/nou`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/imprimante/nou") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedNewBrandByPricePrinters(currentPage, brand, sort, priceRange)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/imprimante/nou") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedNewPrintersBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    if (priceRange && !brand) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewPrintersPrice(priceRange, currentPage, sort)
@@ -61,7 +112,7 @@ const NewPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/imprimante/nou") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -74,26 +125,39 @@ const NewPrinters = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllNewPrintersPrice(currentPage, priceRange)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getBrandByPriceNewPrinters(currentPage, brand, priceRange)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllNewPrintersPrice(currentPage, priceRange)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [priceRange, currentPage]);
-
-  const totalPages = laptopsData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -113,6 +177,12 @@ const NewPrinters = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -121,18 +191,19 @@ const NewPrinters = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Imprimante Noi"
+            title={`Imprimante Noi ${pageTitle}`}
             laptopsData={laptopsData}
             categories={categories}
             breadcrumbs={printerNewBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/imprimante/nou"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/imprimante/brand/"}
+            brandLink={"/imprimante/nou?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
-            categoryLink={'/imprimante/nou/'}
+            categoryLink={"/imprimante/nou/"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
