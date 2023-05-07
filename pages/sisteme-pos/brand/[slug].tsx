@@ -7,12 +7,11 @@ import Navbar from "../../../components/global/Navbar";
 import MainSkeleton from "../../../components/shared/MainSkeleton";
 import { posBrandsBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import { posCategories } from "../../../data/categories";
 import * as sortingService from "../../../services/sortingService";
 
 const BrandDetail = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { slug, procesor } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState<boolean>(true);
@@ -24,37 +23,98 @@ const BrandDetail = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState(`/sisteme-pos/brand/${slug}`);
 
   useEffect(() => {
     sortingService.getBrands(34).then((result) => {
       setBrands(result);
     });
-    sortingService.getProcessors(34).then((res) => {
+    sortingService.getProcessorsByBrand(34, slug).then((res) => {
       setProcessors(res);
     });
     sortingService.getHighestPriceByBrand(34, slug).then((response) => {
       setHighestPrice(response[1]);
     });
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
-    productService
-      .geAllPOSBrands(currentPage, slug)
-      .then((result) => {
-        setLoading(false);
-        seItemsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentPage, slug]);
+    if (procesor) {
+      setShow(false);
+      productService
+        .getAlPOSBrandAndProcessor(currentPage, slug, procesor)
+        .then((result) => {
+          seItemsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/sisteme-pos/brand/${slug}?procesor=${procesor}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      sortingService
+        .getHighestPriceByBrandAndProcessor(34, slug, procesor)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
+        .geAllPOSBrands(currentPage, slug)
+        .then((result) => {
+          setLoading(false);
+          setShow(true);
+          seItemsData(result);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/sisteme-pos/brand/${slug}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, slug, procesor]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && procesor && selectedSort != `/sisteme-pos/brand/${slug}`) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedBrandTypePOSPrice(
+          currentPage,
+          slug,
+          sort,
+          priceRange,
+          procesor
+        )
+        .then((result) => {
+          seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (procesor && selectedSort != `/sisteme-pos/brand/${slug}`) {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedBrandTypePOS(currentPage, slug, sort, procesor)
+        .then((result) => {
+          setShow(true);
+          seItemsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !procesor) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedPOSBrandsPrice(currentPage, slug, sort, priceRange)
@@ -64,7 +124,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != `/sisteme-pos/brand/${slug}`) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -77,26 +137,40 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .geAllPOSBrandsPrice(currentPage, slug, priceRange)
-      .then((result) => {
-        seItemsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (priceRange && procesor) {
+      setShow(false);
+      productService
+        .getBrandTypePOSPrice(currentPage, slug, priceRange, procesor)
+        .then((result) => {
+          seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .geAllPOSBrandsPrice(currentPage, slug, priceRange)
+        .then((result) => {
+          seItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = itemData[0]?.totalPages;
+  }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -134,15 +208,15 @@ const BrandDetail = () => {
             laptopsData={itemData}
             breadcrumbs={posBrandsBrcrmbs}
             sortCriteria={onSort}
-            baseLink={`/sisteme-pos/brand/${slug}`}
+            baseLink={baseLink}
             brands={brands}
             brandLink={"/sisteme-pos/brand/"}
             processors={processors}
-            processorsLink={"/sisteme-pos/procesor/"}
-            //categories={posCategories}
+            processorsLink={`/sisteme-pos/brand/${slug}?procesor=`}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
