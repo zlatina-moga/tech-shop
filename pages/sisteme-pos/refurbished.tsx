@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { posCategories } from "../../data/categories";
 import { posRefBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -14,9 +13,7 @@ const RefurbishedPOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState(
-    "/sisteme-pos/refurbished"
-  );
+  const [selectedSort, setSelectedSort] = useState("/sisteme-pos/refurbished");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [processors, setProcessors] = useState([]);
@@ -24,6 +21,13 @@ const RefurbishedPOS = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
+  const { procesor, brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/sisteme-pos/refurbished");
+  const [processorsLink, setProcessorsLink] = useState(
+    "/sisteme-pos/refurbished?procesor="
+  );
 
   useEffect(() => {
     sortingService.getBrands(35).then((result) => {
@@ -41,23 +45,169 @@ const RefurbishedPOS = () => {
   }, []);
 
   useEffect(() => {
-    productService
+    if (procesor && brand) {
+      setShow(false);
+      productService
+        .getRefurbishedPOSScreensAndBrand(procesor, currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/sisteme-pos/refurbished?procesor=${procesor}&brand=${brand}`
+          );
+        });
+      sortingService
+        .getHighestPriceByBrandAndProcessor(35, brand, procesor)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (procesor) {
+      setShow(false);
+      productService
+        .getRefMonitorProcessors(procesor, currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/sisteme-pos/refurbished?procesor=${procesor}`);
+        });
+      sortingService
+        .getHighestPriceByProcessor(35, procesor)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (brand) {
+      setShow(false);
+      productService.getRefurbishedPOSBrands(brand, currentPage).then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+        setTotalPages(result[0].totalPages);
+        setShow(true);
+        setMultupleSelected(true);
+        setBaseLink(`/sisteme-pos/refurbished?brand=${brand}`);
+      });
+      sortingService.getHighestPriceByBrand(35, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+      sortingService.getProcessorsByBrand(35, brand).then((res) => {
+        setProcessors(res);
+      });
+      setProcessorsLink(`/sisteme-pos/refurbished?brand=${brand}&procesor=`);
+    } else {
+      setShow(false);
+      productService
       .getAllRefurbishedPOS(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setShow(true);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/sisteme-pos/refurbished`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand, procesor]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && procesor && brand && selectedSort != "/sisteme-pos/refurbished") {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getRefurbishedNewPOSProcesorBrandPrice(
+          procesor,
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && procesor && selectedSort != "/sisteme-pos/refurbished") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefurbishedPOSProcesorPrice(procesor, priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && brand && selectedSort != "/sisteme-pos/refurbished") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefurbishedPOSBrandPrice(brand, priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (procesor && brand && selectedSort != "/sisteme-pos/refurbished") {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSortedRefurbishedPOSBrandProcesor(brand, procesor, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (procesor && selectedSort != "/sisteme-pos/refurbished") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefurbishedPOSProcesor(procesor, sort, currentPage)
+        .then((result) => {
+          setShow(true);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/sisteme-pos/refurbished") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefurbishedPOSBrands(brand, sort, currentPage)
+        .then((result) => {
+          setShow(true);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange  && !brand && !procesor) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefurbishedPOSPrice(priceRange, currentPage, sort)
@@ -67,7 +217,7 @@ const RefurbishedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else  if (selectedSort != "/sisteme-pos/refurbished"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -80,26 +230,68 @@ const RefurbishedPOS = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllRefurbishedPOSPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (priceRange && procesor && brand) {
+      setShow(false);
+      productService
+        .getRefurbishedPOSProcesorsBrandByPrice(
+          procesor,
+          priceRange,
+          currentPage,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && procesor) {
+      setShow(false);
+      productService
+        .getRefurbishedPOSProcesorByPrice(procesor, priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && brand) {
+      setShow(false);
+      productService
+        .getRefurbishedPOSBrandsByPrice(brand, priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllRefurbishedPOSPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage, priceRange]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -119,6 +311,16 @@ const RefurbishedPOS = () => {
     }
   };
 
+  let pageTitle = "";
+  if (procesor != undefined) {
+    let slugToStr = procesor as string;
+    pageTitle = slugToStr.split("-").slice(0, -1).join(" ");
+  } else if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-").slice(0, -1).join(" ");
+  }
+
+
   return (
     <>
       <Navbar />
@@ -127,20 +329,21 @@ const RefurbishedPOS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Sisteme POS Refurbished"
+            title={`Sisteme POS Refurbished ${pageTitle}`}
             laptopsData={laptopsData}
             categories={categories}
             breadcrumbs={posRefBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/sisteme-pos/refurbished"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/sisteme-pos/brand/"}
+            brandLink={"/sisteme-pos/refurbished?brand="}
             processors={processors}
-            processorsLink={"/sisteme-pos/procesor/"}
+            processorsLink={processorsLink}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
-            categoryLink={'/sisteme-pos/refurbished/'}
+            categoryLink={"/sisteme-pos/refurbished/"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

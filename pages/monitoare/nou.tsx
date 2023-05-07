@@ -53,7 +53,7 @@ const MonitoareNew = () => {
           setTotalPages(result[0].totalPages);
           setShow(true);
           setMultupleSelected(true);
-          setBaseLink(`/monitoare/second-hand?screen=${screen}&brand=${brand}`);
+          setBaseLink(`/monitoare/nou?screen=${screen}&brand=${brand}`);
         });
       sortingService
         .getHighestPriceByScreenAndBrand(54, screen, brand)

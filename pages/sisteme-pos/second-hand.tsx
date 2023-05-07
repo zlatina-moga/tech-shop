@@ -24,6 +24,13 @@ const SecondHandPOS = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
+  const { procesor, brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/sisteme-pos/second-hand");
+  const [processorsLink, setProcessorsLink] = useState(
+    "/sisteme-pos/second-hand?procesor="
+  );
 
   useEffect(() => {
     sortingService.getBrands(36).then((result) => {
@@ -41,23 +48,169 @@ const SecondHandPOS = () => {
   }, []);
 
   useEffect(() => {
-    productService
+    if (procesor && brand) {
+      setShow(false);
+      productService
+        .getSecondHandPOSScreensAndBrand(procesor, currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/sisteme-pos/second-hand?procesor=${procesor}&brand=${brand}`
+          );
+        });
+      sortingService
+        .getHighestPriceByBrandAndProcessor(36, brand, procesor)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (procesor) {
+      setShow(false);
+      productService
+        .getSecondHandPOSProcessors(procesor, currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/sisteme-pos/second-hand?procesor=${procesor}`);
+        });
+      sortingService
+        .getHighestPriceByProcessor(36, procesor)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (brand) {
+      setShow(false);
+      productService.getSecondHandPOSBrands(brand, currentPage).then((result) => {
+        setLoading(false);
+        setLaptopsData(result);
+        setTotalPages(result[0].totalPages);
+        setShow(true);
+        setMultupleSelected(true);
+        setBaseLink(`/sisteme-pos/second-hand?brand=${brand}`);
+      });
+      sortingService.getHighestPriceByBrand(36, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+      sortingService.getProcessorsByBrand(36, brand).then((res) => {
+        setProcessors(res);
+      });
+      setProcessorsLink(`/sisteme-pos/second-hand?brand=${brand}&procesor=`);
+    } else {
+      setShow(false);
+      productService
       .getAllSecondHandPOS(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setShow(true);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/sisteme-pos/second-hand`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand, procesor]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && procesor && brand && selectedSort != "/sisteme-pos/second-hand") {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSecondHandPOSProcesorBrandPrice(
+          procesor,
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && procesor && selectedSort != "/sisteme-pos/second-hand") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedSecondHandPOSProcesorPrice(procesor, priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && brand && selectedSort != "/sisteme-pos/second-hand") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedSecondHandPOSBrandPrice(brand, priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (procesor && brand && selectedSort != "/sisteme-pos/second-hand") {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSortedSecondHandPOSBrandProcesor(brand, procesor, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (procesor && selectedSort != "/sisteme-pos/second-hand") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedSecondHandPOSProcesor(procesor, sort, currentPage)
+        .then((result) => {
+          setShow(true);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/sisteme-pos/second-hand") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedSecondHandPOSBrands(brand, sort, currentPage)
+        .then((result) => {
+          setShow(true);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand && !procesor) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSecondHandPOSPrice(priceRange, currentPage, sort)
@@ -67,7 +220,7 @@ const SecondHandPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/sisteme-pos/second-hand") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -80,26 +233,68 @@ const SecondHandPOS = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllSecondHandPOSPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (priceRange && procesor && brand) {
+      setShow(false);
+      productService
+        .getSecondHandPOSProcesorsBrandByPrice(
+          procesor,
+          priceRange,
+          currentPage,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && procesor) {
+      setShow(false);
+      productService
+        .getSecondHandPOSProcesorByPrice(procesor, priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && brand) {
+      setShow(false);
+      productService
+        .getSecondHanddPOSBrandsByPrice(brand, priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllSecondHandPOSPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage, priceRange]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -119,6 +314,15 @@ const SecondHandPOS = () => {
     }
   };
 
+  let pageTitle = "";
+  if (procesor != undefined) {
+    let slugToStr = procesor as string;
+    pageTitle = slugToStr.split("-").slice(0, -1).join(" ");
+  } else if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-").slice(0, -1).join(" ");
+  }
+
   return (
     <>
       <Navbar />
@@ -127,20 +331,21 @@ const SecondHandPOS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Sisteme POS Second Hand"
+            title={`Sisteme POS Second Hand ${pageTitle}`}
             laptopsData={laptopsData}
             categories={categories}
             breadcrumbs={posSHBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/sisteme-pos/second-hand"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/sisteme-pos/brand/"}
+            brandLink={"/sisteme-pos/second-hand?brand="}
             processors={processors}
-            processorsLink={"/sisteme-pos/procesor/"}
+            processorsLink={processorsLink}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             categoryLink={'/sisteme-pos/second-hand/'}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
