@@ -9,6 +9,7 @@ import { usePagination, DOTS } from "../../hooks/usePagination";
 import { discountCategories } from "../../data/categories";
 import { discountedCompBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import classNames from "classnames";
 
 const DiscountedComps = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -18,38 +19,159 @@ const DiscountedComps = () => {
     "/produse-la-reducere/calculatoare"
   );
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/produse-la-reducere/calculatoare");
 
   useEffect(() => {
-    productService
+    sortingService.getDiscountedItemsBrands(1).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getDiscountedItemsHighestPrice(1).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllDiscountedComputersByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/produse-la-reducere/calculatoare?brand=${brand}`);
+        });
+      sortingService
+        .getDiscountedItemsHighestPriceBrand(1, brand)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
       .getDiscountedComputers(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setShow(true);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/produse-la-reducere/calculatoare`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedDiscountedComputers(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedSort, currentPage]);
+    if (priceRange && brand && selectedSort != "/produse-la-reducere/calculatoare") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedDiscountedComputersPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/produse-la-reducere/calculatoare") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedDiscounteComputersBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedComputersPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort != "/produse-la-reducere/calculatoare") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedComputers(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [selectedSort, currentPage, priceRange]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getDiscountedComputersPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllDiscountedComputersPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -69,6 +191,12 @@ const DiscountedComps = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -77,12 +205,18 @@ const DiscountedComps = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Calculatoare la reducere"
+            title={`Calculatoare la reducere ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={discountCategories}
             breadcrumbs={discountedCompBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/produse-la-reducere/calculatoare"
+            baseLink={baseLink}
+            brands={brands}
+            brandLink={"/produse-la-reducere/calculatoare?brand="}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
+            className={classNames( show ? "" : "opacity-50")}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

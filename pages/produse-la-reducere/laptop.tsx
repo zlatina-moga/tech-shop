@@ -9,6 +9,7 @@ import { usePagination, DOTS } from "../../hooks/usePagination";
 import { discountCategories } from "../../data/categories";
 import { discountedLaptopBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import classNames from "classnames";
 
 const DiscountedLaptops = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -18,38 +19,157 @@ const DiscountedLaptops = () => {
     "/produse-la-reducere/laptop"
   );
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/produse-la-reducere/laptop");
 
   useEffect(() => {
-    productService
-      .getDiscountedLaptops(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentPage]);
+    sortingService.getDiscountedItemsBrands(5).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getDiscountedItemsHighestPrice(5).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllDiscountedLaptopsByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/produse-la-reducere/laptop?brand=${brand}`);
+        });
+      sortingService
+        .getDiscountedItemsHighestPriceBrand(5, brand)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getDiscountedLaptops(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/produse-la-reducere/laptop`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedDiscountedLaptops(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedSort, currentPage]);
+    if (priceRange && brand && selectedSort != "/produse-la-reducere/laptop") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedDiscountedLaptopsPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/produse-la-reducere/laptop") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedDiscounteLaptopsBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedLaptopsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort != "/produse-la-reducere/laptop") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedLaptops(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage, priceRange]);
 
-  const totalPages = laptopsData[0]?.totalPages;
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getDiscountedLaptopsPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllDiscountedLaptopsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -69,6 +189,12 @@ const DiscountedLaptops = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -77,12 +203,18 @@ const DiscountedLaptops = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Laptopuri la reducere"
+            title={`Laptopuri la reducere ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={discountCategories}
             breadcrumbs={discountedLaptopBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/produse-la-reducere/laptop"
+            baseLink={baseLink}
+            brands={brands}
+            brandLink={"/produse-la-reducere/laptop?brand="}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
+            className={classNames( show ? "" : "opacity-50")}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

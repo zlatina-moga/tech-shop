@@ -9,6 +9,7 @@ import { usePagination, DOTS } from "../../hooks/usePagination";
 import { discountCategories } from "../../data/categories";
 import { discountedComponentsBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import classNames from "classnames";
 
 const DiscountedComponents = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -16,38 +17,159 @@ const DiscountedComponents = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/produse-la-reducere/componente");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/produse-la-reducere/componente");
 
   useEffect(() => {
-    productService
+    sortingService.getDiscountedItemsBrands(24).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getDiscountedItemsHighestPrice(24).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllDiscountedComponentsByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/produse-la-reducere/componente?brand=${brand}`);
+        });
+      sortingService
+        .getDiscountedItemsHighestPriceBrand(24, brand)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
       .getDiscountedComponents(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setShow(true);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/produse-la-reducere/componente`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedDiscountedComponents(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedSort, currentPage]);
+    if ( priceRange &&  brand && selectedSort != "/produse-la-reducere/componente"  ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedDiscountedComponentsPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/produse-la-reducere/componente") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscounteComponentsBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedComponentsPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort != "/produse-la-reducere/componente") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedComponents(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [selectedSort, currentPage, priceRange]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getDiscountedComponentsPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllDiscountedComponentsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -67,6 +189,12 @@ const DiscountedComponents = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -75,12 +203,18 @@ const DiscountedComponents = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Componente la reducere"
+            title={`Componente la reducere ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={discountCategories}
             breadcrumbs={discountedComponentsBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/produse-la-reducere/componente'
+            baseLink={baseLink}
+            brands={brands}
+            brandLink={"/produse-la-reducere/componente?brand="}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
+            className={classNames( show ? "" : "opacity-50")}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

@@ -9,6 +9,7 @@ import { usePagination, DOTS } from "../../hooks/usePagination";
 import { discountCategories } from "../../data/categories";
 import { discountedUPSBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import classNames from "classnames";
 
 const DiscountedUPS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -16,38 +17,159 @@ const DiscountedUPS = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/produse-la-reducere/ups");
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/produse-la-reducere/ups");
 
   useEffect(() => {
-    productService
+    sortingService.getDiscountedItemsBrands(40).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getDiscountedItemsHighestPrice(40).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllDiscountedUPSByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/produse-la-reducere/ups?brand=${brand}`);
+        });
+      sortingService
+        .getDiscountedItemsHighestPriceBrand(40, brand)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
       .getDiscountedUPS(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setShow(true);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/produse-la-reducere/ups`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedDiscountedAccessories(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedSort, currentPage]);
+    if (priceRange && brand && selectedSort != "/produse-la-reducere/ups" ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedDiscountedUPSPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/produse-la-reducere/ups") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedUPSBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedUPSPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort != "/produse-la-reducere/ups") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedAccessories(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [selectedSort, currentPage, priceRange]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getDiscountedUPSPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllDiscountedUPSPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -67,6 +189,12 @@ const DiscountedUPS = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -75,12 +203,18 @@ const DiscountedUPS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="UPS la reducere"
+            title={`UPS la reducere ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={discountCategories}
             breadcrumbs={discountedUPSBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/produse-la-reducere/ups"
+            baseLink={baseLink}
+            brands={brands}
+            brandLink={"/produse-la-reducere/ups?brand="}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
+            className={classNames( show ? "" : "opacity-50")}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

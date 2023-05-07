@@ -9,6 +9,7 @@ import { usePagination, DOTS } from "../../hooks/usePagination";
 import { discountCategories } from "../../data/categories";
 import { discountedPOSrBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import classNames from "classnames";
 
 const DiscountedPOS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
@@ -18,38 +19,157 @@ const DiscountedPOS = () => {
     "/produse-la-reducere/sisteme-pos"
   );
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/produse-la-reducere/sisteme-pos");
 
   useEffect(() => {
-    productService
-      .getDiscountedPOS(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentPage]);
+    sortingService.getDiscountedItemsBrands(34).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getDiscountedItemsHighestPrice(34).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllDiscountedPOSByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/produse-la-reducere/sisteme-pos?brand=${brand}`);
+        });
+      sortingService
+        .getDiscountedItemsHighestPriceBrand(34, brand)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getDiscountedPOS(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/produse-la-reducere/sisteme-pos`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedDiscountedPOS(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedSort, currentPage]);
+    if ( priceRange &&  brand && selectedSort != "/produse-la-reducere/sisteme-pos"  ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedDiscountedPOSPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/produse-la-reducere/sisteme-pos") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedPOSBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedPOSPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort != "/produse-la-reducere/sisteme-pos") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedPOS(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSort, currentPage, priceRange]);
 
-  const totalPages = laptopsData[0]?.totalPages;
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getDiscountedPOSPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllDiscountedPOSPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -69,6 +189,12 @@ const DiscountedPOS = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -77,12 +203,18 @@ const DiscountedPOS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Sisteme POS la reducere"
+            title={`Sisteme POS la reducere ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={discountCategories}
             breadcrumbs={discountedPOSrBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/produse-la-reducere/sisteme-pos"
+            baseLink={baseLink}
+            brands={brands}
+            brandLink={"/produse-la-reducere/sisteme-pos?brand="}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
+            className={classNames( show ? "" : "opacity-50")}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

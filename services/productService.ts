@@ -3969,11 +3969,73 @@ export const getSortedDiscountedItems = (page, sort) =>
 export const getDiscountedServers = (page) =>
   request.get(`${baseUrl}/promotii/servere?page=${page}`);
 
+  export const getAllDiscountedServersByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/servere?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedServersPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/promotii/servere?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscounteServersBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/servere?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedServersPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/servere?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedServersPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/servere?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedServersPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/servere?price=1-${price}&page=${page}`);
+
 export const getSortedDiscountedServers = (page, sort) =>
   request.get(`${baseUrl}/promotii/servere?sort=${sort}&page=${page}`);
 
 export const getDiscountedWorkstations = (page) =>
   request.get(`${baseUrl}/promotii/workstation?page=${page}`);
+
+  export const getAllDiscountedWorkstationsByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/workstation?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedWorkstationsPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/promotii/workstation?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscounteWorkstationsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/workstation?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedWorkstationsPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/workstation?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedWorkstationsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/workstation?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedWorkstationssPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/workstation?price=1-${price}&page=${page}`);
 
 export const getSortedDiscountedWorkstations = (page, sort) =>
   request.get(`${baseUrl}/promotii/workstation?sort=${sort}&page=${page}`);
@@ -3981,11 +4043,73 @@ export const getSortedDiscountedWorkstations = (page, sort) =>
 export const getDiscountedComputers = (page) =>
   request.get(`${baseUrl}/promotii/calculatoare?page=${page}`);
 
+export const getAllDiscountedComputersByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/calculatoare?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedComputersPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/promotii/calculatoare?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscounteComputersBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/calculatoare?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedComputersPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/calculatoare?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedComputersPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/calculatoare?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedComputersPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/calculatoare?price=1-${price}&page=${page}`);
+
 export const getSortedDiscountedComputers = (page, sort) =>
   request.get(`${baseUrl}/promotii/calculatoare?sort=${sort}&page=${page}`);
 
 export const getDiscountedLaptops = (page) =>
   request.get(`${baseUrl}/promotii/laptop?page=${page}`);
+
+export const getAllDiscountedLaptopsByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/laptop?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedLaptopsPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/promotii/laptop?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscounteLaptopsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/laptop?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedLaptopsPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/laptop?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedLaptopsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/laptop?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedLaptopsPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/laptop?price=1-${price}&page=${page}`);
 
 export const getSortedDiscountedLaptops = (page, sort) =>
   request.get(`${baseUrl}/promotii/laptop?sort=${sort}&page=${page}`);
@@ -3993,11 +4117,73 @@ export const getSortedDiscountedLaptops = (page, sort) =>
 export const getDiscountedMonitors = (page) =>
   request.get(`${baseUrl}/promotii/monitoare?page=${page}`);
 
+export const getAllDiscountedMonitorsByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/monitoare?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedMonitorsPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/promotii/monitoare?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscounteMonitorsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/monitoare?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedMonitorsPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/monitoare?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedMonitorsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/monitoare?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedMonitorsPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/monitoare?price=1-${price}&page=${page}`);
+
 export const getSortedDiscountedMonitors = (page, sort) =>
   request.get(`${baseUrl}/promotii/monitoare?sort=${sort}&page=${page}`);
 
 export const getDiscountedComponents = (page) =>
   request.get(`${baseUrl}/promotii/componente?page=${page}`);
+
+export const getAllDiscountedComponentsByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/componente?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedComponentsPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/promotii/componente?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscounteComponentsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/componente?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedComponentsPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/componente?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedComponentsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/componente?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedComponentsPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/componente?price=1-${price}&page=${page}`);
 
 export const getSortedDiscountedComponents = (page, sort) =>
   request.get(`${baseUrl}/promotii/componente?sort=${sort}&page=${page}`);
@@ -4005,17 +4191,100 @@ export const getSortedDiscountedComponents = (page, sort) =>
 export const getDiscountedPrinters = (page) =>
   request.get(`${baseUrl}/promotii/imprimante?page=${page}`);
 
+export const getAllDiscountedPrintersByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/imprimante?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedPrintersPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/promotii/imprimante?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountePrintersBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/imprimante?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedPrintersPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/imprimante?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedPrintersPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/imprimante?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedPrintersPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/imprimante?price=1-${price}&page=${page}`);
+
 export const getSortedDiscountedPrinters = (page, sort) =>
   request.get(`${baseUrl}/promotii/imprimante?sort=${sort}&page=${page}`);
 
 export const getDiscountedPOS = (page) =>
   request.get(`${baseUrl}/promotii/sisteme-pos?page=${page}`);
 
+export const getAllDiscountedPOSByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/sisteme-pos?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedPOSPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/sisteme-pos?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedPOSBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/sisteme-pos?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedPOSPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/sisteme-pos?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedPOSPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/sisteme-pos?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedPOSPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/sisteme-pos?price=1-${price}&page=${page}`);
+
 export const getSortedDiscountedPOS = (page, sort) =>
   request.get(`${baseUrl}/promotii/sisteme-pos?sort=${sort}&page=${page}`);
 
 export const getDiscountedUPS = (page) =>
   request.get(`${baseUrl}/promotii/ups?page=${page}`);
+
+export const getAllDiscountedUPSByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/ups?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedUPSPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/ups?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedUPSBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/ups?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedUPSPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/ups?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedUPSPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/ups?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedUPSPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/ups?price=1-${price}&page=${page}`);
 
 export const getSortedDiscountedUPS = (page, sort) =>
   request.get(`${baseUrl}/promotii/ups?sort=${sort}&page=${page}`);
@@ -4025,3 +4294,34 @@ export const getDiscountedAccessories = (page) =>
 
 export const getSortedDiscountedAccessories = (page, sort) =>
   request.get(`${baseUrl}/promotii/accesorii?sort=${sort}&page=${page}`);
+
+export const getAllDiscountedAccessoriesByBrand = (page, brand) =>
+  request.get(`${baseUrl}/promotii/accesorii?brand=${brand}&page=${page}`);
+
+export const getSortedDiscountedAccessoriesPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
+  request.get(
+    `${baseUrl}/promotii/accesorii?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedAccessoriesBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/promotii/accesorii?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedDiscountedAccessoriesPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/promotii/accesorii?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getDiscountedAccessoriesPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/promotii/accesorii?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
+export const getAllDiscountedAccessoriesPrice = (price, page) =>
+  request.get(`${baseUrl}/promotii/accesorii?price=1-${price}&page=${page}`);

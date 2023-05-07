@@ -5,49 +5,172 @@ import * as productService from "../../services/productService";
 import * as sortingService from "../../services/sortingService";
 import Footer from "../../components/global/Footer";
 import LaptopsPage from "../../components/shared/LaptopsPage";
-import { usePagination, DOTS  } from "../../hooks/usePagination";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 import { discountCategories } from "../../data/categories";
 import { discountedPrinterBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
+import classNames from "classnames";
 
 const DiscountedPrinters = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/produse-la-reducere/imprimante");
+  const [selectedSort, setSelectedSort] = useState(
+    "/produse-la-reducere/imprimante"
+  );
   const router = useRouter();
+  const [brands, setBrands] = useState([]);
+  const [highestPrice, setHighestPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState("");
+  const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/produse-la-reducere/imprimante");
 
   useEffect(() => {
-    productService
-      .getDiscountedPrinters(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentPage]);
+    sortingService.getDiscountedItemsBrands(29).then((result) => {
+      setBrands(result);
+    });
+    sortingService.getDiscountedItemsHighestPrice(29).then((response) => {
+      setHighestPrice(response[1]);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllDiscountedPrintersByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/produse-la-reducere/imprimante?brand=${brand}`);
+        });
+      sortingService
+        .getDiscountedItemsHighestPriceBrand(29, brand)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getDiscountedPrinters(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/produse-la-reducere/imprimante`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedDiscountedPrinters(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedSort, currentPage]);
+    if ( priceRange &&  brand && selectedSort != "/produse-la-reducere/imprimante"  ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedDiscountedPrintersPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/produse-la-reducere/imprimante") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountePrintersBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedPrintersPrice(priceRange, currentPage, sort)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (selectedSort != "/produse-la-reducere/imprimante") {
+      setShow(false);
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedPrinters(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [selectedSort, currentPage, priceRange]);
+
+  const onRangeSelect = (range) => {
+    setPriceRange(range);
+  };
+
+  useEffect(() => {
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getDiscountedPrintersPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllDiscountedPrintersPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -67,6 +190,13 @@ const DiscountedPrinters = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
+
   return (
     <>
       <Navbar />
@@ -75,12 +205,18 @@ const DiscountedPrinters = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Imprimante la reducere"
+            title={`Imprimante la reducere ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={discountCategories}
             breadcrumbs={discountedPrinterBrcrmbs}
             sortCriteria={onSort}
-            baseLink='/produse-la-reducere/imprimante'
+            baseLink={baseLink}
+            brands={brands}
+            brandLink={"/produse-la-reducere/imprimante?brand="}
+            highEnd={highestPrice}
+            priceRange={onRangeSelect}
+            className={classNames( show ? "" : "opacity-50")}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -88,25 +224,26 @@ const DiscountedPrinters = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                    <i className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
-                  {paginationRange &&  paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } ${page == DOTS ? "dots" : ""} `}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""} `}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -114,7 +251,7 @@ const DiscountedPrinters = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                    <i className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>
