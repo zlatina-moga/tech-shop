@@ -2886,6 +2886,24 @@ export const getSortedUPSBrandsPrice = (page, slug, sort, price) =>
 export const getAllRefurbishedUPS = (page) =>
   request.get(`${baseUrl}/ups/refurbished-7?page=${page}`);
 
+export const getAllRefUPSByBrand = (page, brand) =>
+  request.get(`${baseUrl}/ups/refurbished-7?brand=${brand}&page=${page}`);
+
+export const getSortedRefUPSPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/ups/refurbished-7?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedRefUPSBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/ups/refurbished-7?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getRefUPSPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/ups/refurbished-7?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllRefurbishedUPSPrice = (price, page) =>
   request.get(`${baseUrl}/ups/refurbished-7?price=1-${price}&page=${page}`);
 
@@ -2900,6 +2918,22 @@ export const getSortedRefurbishedUPSPrice = (price, page, sort) =>
 export const getAlllNewUPS = (page) =>
   request.get(`${baseUrl}/ups/noi-7?page=${page}`);
 
+export const getAllNewUPSByBrand = (page, brand) =>
+  request.get(`${baseUrl}/ups/noi-7?brand=${brand}&page=${page}`);
+
+export const getSortedNewUPSPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/ups/noi-7?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedNewUPSBrand = (page, sort, brand) =>
+  request.get(`${baseUrl}/ups/noi-7?brand=${brand}&sort=${sort}&page=${page}`);
+
+export const getNewUPSPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/ups/noi-7?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAlllNewUPSPrice = (price, page) =>
   request.get(`${baseUrl}/ups/noi-7?price=1-${price}&page=${page}`);
 
@@ -2913,6 +2947,24 @@ export const getSortedlNewUPSPrice = (price, page, sort) =>
 
 export const getAllSecondHandUPS = (page) =>
   request.get(`${baseUrl}/ups/second-hand-7?page=${page}`);
+
+export const getAllSecondHandUPSByBrand = (page, brand) =>
+  request.get(`${baseUrl}/ups/second-hand-7?brand=${brand}&page=${page}`);
+
+export const getSortedSecondHandUPSPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/ups/second-hand-7?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedSecondHandUPSBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/ups/second-hand-7?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSecondHandUPSPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/ups/second-hand-7?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllSecondHandUPSPrice = (price, page) =>
   request.get(`${baseUrl}/ups/second-hand-7?price=1-${price}&page=${page}`);
@@ -2995,6 +3047,32 @@ export const getSortedRetails = (page, sort) =>
 export const getSortedRetailsPrice = (price, page, sort) =>
   request.get(
     `${baseUrl}/retelistica?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getAllBrandRetailsByType = (page, slug, componenta) =>
+  request.get(
+    `${baseUrl}/retelistica/brand?brand=${slug}&tip=${componenta}&page=${page}`
+  );
+
+  export const getSortedBrandTypeRetailsPrice = (
+    page,
+    slug,
+    sort,
+    price,
+    componenta
+  ) =>
+    request.get(
+      `${baseUrl}/retelistica/brand?brand=${slug}&tip=${componenta}&price=1-${price}&sort=${sort}&page=${page}`
+    );
+
+    export const getSortedBrandTypeRetails = (page, slug, sort, componenta) =>
+  request.get(
+    `${baseUrl}/retelistica/brand?brand=${slug}&tip=${componenta}&sort=${sort}&page=${page}`
+  );
+
+  export const getBrandTypeRetailsPrice = (page, slug, price, componenta) =>
+  request.get(
+    `${baseUrl}/retelistica/brand?brand=${slug}&tip=${componenta}&price=1-${price}&page=${page}`
   );
 
 export const geAllRetailsBrand = (page, slug) =>
@@ -3126,7 +3204,7 @@ export const getSortedMicePrice = (price, page, sort) =>
 export const getAllKeyboards = (page) =>
   request.get(`${baseUrl}/accesorii/tastaturi?page=${page}`);
 
-  export const getAllKeyboardsByBrand = (page, brand) =>
+export const getAllKeyboardsByBrand = (page, brand) =>
   request.get(`${baseUrl}/accesorii/tastaturi?brand=${brand}&page=${page}`);
 
 export const getSortedKeyboardsPriceAndBrand = (price, page, sort, brand) =>
@@ -3158,10 +3236,17 @@ export const getSortedKeyboardsPrice = (price, page, sort) =>
 export const getAllOtherAccessories = (page) =>
   request.get(`${baseUrl}/accesorii/periferice-diverse?page=${page}`);
 
-  export const getAllOtherAccessoriesByBrand = (page, brand) =>
-  request.get(`${baseUrl}/accesorii/periferice-diverse?brand=${brand}&page=${page}`);
+export const getAllOtherAccessoriesByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/periferice-diverse?brand=${brand}&page=${page}`
+  );
 
-export const getSortedOtherAccessoriesPriceAndBrand = (price, page, sort, brand) =>
+export const getSortedOtherAccessoriesPriceAndBrand = (
+  price,
+  page,
+  sort,
+  brand
+) =>
   request.get(
     `${baseUrl}/accesorii/periferice-diverse?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
   );
@@ -3175,7 +3260,6 @@ export const getOtherAccessoriesPriceAndBrand = (price, page, brand) =>
   request.get(
     `${baseUrl}/accesorii/periferice-diverse?brand=${brand}&price=1-${price}&page=${page}`
   );
-
 
 export const getAllOtherAccessoriesPrice = (price, page) =>
   request.get(
@@ -3368,8 +3452,10 @@ export const getSortedGamingPrice = (price, page, sort) =>
 export const getAllVideo = (page) =>
   request.get(`${baseUrl}/accesorii/videoproiectoare?page=${page}`);
 
-  export const getAllVideoByBrand = (page, brand) =>
-  request.get(`${baseUrl}/accesorii/videoproiectoare?brand=${brand}&page=${page}`);
+export const getAllVideoByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/accesorii/videoproiectoare?brand=${brand}&page=${page}`
+  );
 
 export const getSortedVideoPriceAndBrand = (price, page, sort, brand) =>
   request.get(
@@ -3404,6 +3490,26 @@ export const getSortedVideoPrice = (price, page, sort) =>
 export const getAllNetwork = (page) =>
   request.get(`${baseUrl}/retelistica/placi-de-retea?page=${page}`);
 
+export const getAllNetworksByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/placi-de-retea?brand=${brand}&page=${page}`
+  );
+
+export const getSortedNetworksPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/placi-de-retea?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedNetworksBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/placi-de-retea?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getNetworksPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/placi-de-retea?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllNetworkPrice = (price, page) =>
   request.get(
     `${baseUrl}/retelistica/placi-de-retea?price=1-${price}&page=${page}`
@@ -3421,6 +3527,26 @@ export const getSortedNetworkPrice = (price, page, sort) =>
 
 export const getAllAdaptors = (page) =>
   request.get(`${baseUrl}/retelistica/adaptoare-wireless?page=${page}`);
+
+export const getAllAdaptorsByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/adaptoare-wireless?brand=${brand}&page=${page}`
+  );
+
+export const getSortedAdaptorsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/adaptoare-wireless?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedAdaptorsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/adaptoare-wireless?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getAdaptorsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/adaptoare-wireless?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllAdaptorsPrice = (price, page) =>
   request.get(
@@ -3440,6 +3566,24 @@ export const getSortedAdaptorsPrice = (price, page, sort) =>
 export const getAllRouters = (page) =>
   request.get(`${baseUrl}/retelistica/routere?page=${page}`);
 
+export const getAllRoutersByBrand = (page, brand) =>
+  request.get(`${baseUrl}/retelistica/routere?brand=${brand}&page=${page}`);
+
+export const getSortedRoutersPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/routere?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedRoutersBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/routere?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getRoutersPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/routere?brand=${brand}&price=1-${price}&page=${page}`
+  );
+
 export const getAllRoutersPrice = (price, page) =>
   request.get(`${baseUrl}/retelistica/routere?price=1-${price}&page=${page}`);
 
@@ -3453,6 +3597,24 @@ export const getSortedRoutersPrice = (price, page, sort) =>
 
 export const getAllSwitch = (page) =>
   request.get(`${baseUrl}/retelistica/switch-uri?page=${page}`);
+
+  export const getAllSwitchByBrand = (page, brand) =>
+  request.get(`${baseUrl}/retelistica/switch-uri?brand=${brand}&page=${page}`);
+
+export const getSortedSwitchPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/switch-uri?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSortedSwitchBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/switch-uri?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getSwitchPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/switch-uri?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllSwitchPrice = (price, page) =>
   request.get(
@@ -3469,6 +3631,26 @@ export const getSortedSwitchPrice = (price, page, sort) =>
 
 export const getAllAccessPoints = (page) =>
   request.get(`${baseUrl}/retelistica/access-point-uri?page=${page}`);
+
+export const getAllAccessPointsByBrand = (page, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/access-point-uri?brand=${brand}&page=${page}`
+  );
+
+export const getSortedAccessPointsPriceAndBrand = (price, page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/access-point-uri?brand=${brand}&price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+export const getSorteAccessPointsBrand = (page, sort, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/access-point-uri?brand=${brand}&sort=${sort}&page=${page}`
+  );
+
+export const getAccessPointsPriceAndBrand = (price, page, brand) =>
+  request.get(
+    `${baseUrl}/retelistica/access-point-uri?brand=${brand}&price=1-${price}&page=${page}`
+  );
 
 export const getAllAccessPointsPrice = (price, page) =>
   request.get(

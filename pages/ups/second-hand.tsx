@@ -4,64 +4,123 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { upsCategories } from "../../data/categories";
-import { upsNewBrcrmbs } from "../../data/breadcrumbs";
+import { upsSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 
-const NewUPS = () => {
+const SecondHandUPS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/ups/noi-7");
+  const [selectedSort, setSelectedSort] = useState("/ups/second-hand");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [categories, setCategories] = useState([]);
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/ups/second-hand");
 
   useEffect(() => {
-    sortingService.getBrands(57).then((result) => {
+    sortingService.getBrands(42).then((result) => {
       setBrands(result);
     });
-    sortingService.getHighestPrice(57).then((response) => {
+    sortingService.getHighestPrice(42).then((response) => {
       setHighestPrice(response[1]);
+    });
+    sortingService.getTypes(42).then((r) => {
+      setCategories(r);
     });
   }, []);
 
   useEffect(() => {
-    productService
-      .getAlllNewUPS(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllSecondHandUPSByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/ups/second-hand?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(42, brand).then((response) => {
+        setHighestPrice(response[1]);
       });
-  }, [currentPage]);
+    } else {
+      setShow(false);
+      productService
+        .getAllSecondHandUPS(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/ups/second-hand`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/ups/second-hand") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedSecondHandUPSPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/ups/second-hand") {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedlNewUPSPrice(priceRange, currentPage, sort)
+        .getSortedSecondHandUPSBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand ) {
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedSecondHandUPSPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/ups/second-hand"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedlNewUPS(currentPage, sort)
+        .getSortedSecondHandUPS(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -70,26 +129,40 @@ const NewUPS = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAlllNewUPSPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getSecondHandUPSPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllSecondHandUPSPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -109,6 +182,12 @@ const NewUPS = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -117,17 +196,19 @@ const NewUPS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="UPS Noi"
+            title={`UPS Second Hand ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={upsCategories}
-            breadcrumbs={upsNewBrcrmbs}
+            categories={categories}
+            breadcrumbs={upsSHBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/ups/noi-7"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/ups/brand/"}
+            brandLink={"/ups/second-hand?brand="}
+            categoryLink={"/ups/second-hand/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -176,4 +257,4 @@ const NewUPS = () => {
   );
 };
 
-export default NewUPS;
+export default SecondHandUPS;

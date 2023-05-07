@@ -22,6 +22,10 @@ const AccessPoints = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/retelistica/access-point-uri");
 
   useEffect(() => {
     sortingService.getBrands(73).then((result) => {
@@ -33,23 +37,75 @@ const AccessPoints = () => {
   }, []);
 
   useEffect(() => {
-    productService
-      .getAllAccessPoints(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllAccessPointsByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/retelistica/access-point-uri?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(73, brand).then((response) => {
+        setHighestPrice(response[1]);
       });
-  }, [currentPage]);
+    } else {
+      setShow(false);
+      productService
+        .getAllAccessPoints(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/retelistica/access-point-uri`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/retelistica/access-point-uri"  ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedAccessPointsPriceAndBrand(
+          priceRange,
+          currentPage,
+          sort,
+          brand
+        )
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/retelistica/access-point-uri") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSorteAccessPointsBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedAccessPointsPrice(priceRange, currentPage, sort)
@@ -59,7 +115,7 @@ const AccessPoints = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/retelistica/access-point-uri") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -72,26 +128,40 @@ const AccessPoints = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllAccessPointsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getAccessPointsPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllAccessPointsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -111,6 +181,12 @@ const AccessPoints = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -119,17 +195,18 @@ const AccessPoints = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Access Point-uri"
+            title={`Access Point-uri ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={networkCategories}
             breadcrumbs={accessPointskBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/retelistica/access-point-uri"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/retelistica/brand/"}
+            brandLink={"/retelistica/access-point-uri?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

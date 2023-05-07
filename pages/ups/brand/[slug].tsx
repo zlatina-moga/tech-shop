@@ -129,7 +129,6 @@ const BrandDetail = () => {
             breadcrumbs={upsBrandsBrcrmbs}
             sortCriteria={onSort}
             baseLink={`/ups/brand/${slug}`}
-            categories={upsCategories}
             brands={brands}
             brandLink={"/ups/brand/"}
             highEnd={highestPrice}

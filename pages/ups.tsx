@@ -19,6 +19,7 @@ const UPS = () => {
   const router = useRouter();
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [categories, setCategories] = useState([]);
   const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
@@ -69,6 +70,9 @@ const UPS = () => {
     });
     sortingService.getHighestPrice(40).then((response) => {
       setHighestPrice(response[1]);
+    sortingService.getTypes(40).then((r) => {
+        setCategories(r);
+      });
     });
   }, []);
 
@@ -119,12 +123,13 @@ const UPS = () => {
           <LaptopsPage
             title="UPS"
             laptopsData={laptopsData}
-            categories={upsCategories}
+            categories={categories}
             breadcrumbs={upsBrcrmbs}
             brands={brands}
             brandLink={"/ups/brand/"}
             sortCriteria={onSort}
             baseLink="/ups"
+            categoryLink={"/ups/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}

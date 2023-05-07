@@ -22,6 +22,10 @@ const Adaptors = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/retelistica/adaptoare-wireless");
 
   useEffect(() => {
     sortingService.getBrands(71).then((result) => {
@@ -33,23 +37,70 @@ const Adaptors = () => {
   }, []);
 
   useEffect(() => {
-    productService
-      .getAllAdaptors(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllAdaptorsByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/retelistica/adaptoare-wireless?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(71, brand).then((response) => {
+        setHighestPrice(response[1]);
       });
-  }, [currentPage]);
+    } else {
+      setShow(false);
+      productService
+        .getAllAdaptors(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/retelistica/adaptoare-wireless`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange &&  brand &&  selectedSort != "/retelistica/adaptoare-wireless" ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedAdaptorsPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/retelistica/adaptoare-wireless") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedAdaptorsBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedAdaptorsPrice(priceRange, currentPage, sort)
@@ -59,7 +110,7 @@ const Adaptors = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/retelistica/adaptoare-wireless") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -72,26 +123,39 @@ const Adaptors = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllAdaptorsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getAdaptorsPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllAdaptorsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [priceRange, currentPage]);
-
-  const totalPages = laptopsData[0]?.totalPages;
 
   const paginationRange = usePagination({
     currentPage,
@@ -111,6 +175,12 @@ const Adaptors = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -119,16 +189,17 @@ const Adaptors = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Adaptoare Wireless"
+            title={`Adaptoare Wireless ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={networkCategories}
             breadcrumbs={adaptorskBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/retelistica/adaptoare-wireless"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/retelistica/brand/"}
+            brandLink={"/retelistica/adaptoare-wireless?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
+            multipleQueries={multipleSelected}
             className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (

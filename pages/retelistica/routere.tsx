@@ -20,6 +20,10 @@ const Routers = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/retelistica/routere");
 
   useEffect(() => {
     sortingService.getBrands(69).then((result) => {
@@ -31,23 +35,68 @@ const Routers = () => {
   }, []);
 
   useEffect(() => {
-    productService
-      .getAllRouters(currentPage)
-      .then((result) => {
+    if (brand) {
+      setShow(false);
+      productService.getAllRoutersByBrand(currentPage, brand).then((result) => {
         setLoading(false);
         setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+        setTotalPages(result[0].totalPages);
+        setShow(true);
+        setMultupleSelected(true);
+        setBaseLink(`/retelistica/routere?brand=${brand}`);
       });
-  }, [currentPage]);
+      sortingService.getHighestPriceByBrand(69, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      setShow(false);
+      productService
+        .getAllRouters(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/retelistica/routere`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange &&  brand &&  selectedSort != "/retelistica/routere" ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRoutersPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/retelistica/routere") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRoutersBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRoutersPrice(priceRange, currentPage, sort)
@@ -57,7 +106,7 @@ const Routers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/retelistica/routere") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -70,26 +119,40 @@ const Routers = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllRoutersPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getRoutersPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllRoutersPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -109,6 +172,12 @@ const Routers = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -117,17 +186,18 @@ const Routers = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Routere"
+            title={`Routere ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={networkCategories}
             breadcrumbs={routerBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/retelistica/routere"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/retelistica/brand/"}
+            brandLink={"/retelistica/routere?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

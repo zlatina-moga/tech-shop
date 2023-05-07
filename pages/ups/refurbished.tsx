@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { upsCategories } from "../../data/categories";
 import { upsRefBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -14,12 +13,17 @@ const RefurbishedUPS = () => {
   const [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSort, setSelectedSort] = useState("/ups/refurbished-7");
+  const [selectedSort, setSelectedSort] = useState("/ups/refurbished");
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
+  const [categories, setCategories] = useState([]);
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/ups/refurbished");
 
   useEffect(() => {
     sortingService.getBrands(41).then((result) => {
@@ -28,26 +32,74 @@ const RefurbishedUPS = () => {
     sortingService.getHighestPrice(41).then((response) => {
       setHighestPrice(response[1]);
     });
+    sortingService.getTypes(41).then((r) => {
+      setCategories(r);
+    });
   }, []);
 
   useEffect(() => {
-    productService
-      .getAllRefurbishedUPS(currentPage)
-      .then((result) => {
+    if (brand) {
+      setShow(false);
+      productService.getAllRefUPSByBrand(currentPage, brand).then((result) => {
         setLoading(false);
         setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
+        setTotalPages(result[0].totalPages);
+        setShow(true);
+        setMultupleSelected(true);
+        setBaseLink(`/ups/refurbished?brand=${brand}`);
       });
-  }, [currentPage]);
+      sortingService.getHighestPriceByBrand(41, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      setShow(false);
+      productService
+        .getAllRefurbishedUPS(currentPage)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+          setBaseLink(`/ups/refurbished`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand && selectedSort != "/ups/refurbished") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedRefUPSPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/ups/refurbished") {
+      setShow(false);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedRefUPSBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange  && !brand ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefurbishedUPSPrice(priceRange, currentPage, sort)
@@ -57,7 +109,7 @@ const RefurbishedUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/ups/refurbished") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -70,26 +122,40 @@ const RefurbishedUPS = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllRefurbishedUPSPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getRefUPSPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllRefurbishedUPSPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -109,6 +175,12 @@ const RefurbishedUPS = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -117,17 +189,19 @@ const RefurbishedUPS = () => {
       ) : (
         <>
           <LaptopsPage
-            title="UPS Refurbished"
+            title={`UPS Refurbished ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={upsCategories}
+            categories={categories}
             breadcrumbs={upsRefBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/ups/refurbished-7"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/ups/brand/"}
+            brandLink={"/ups/refurbished?brand="}
+            categoryLink={"/ups/refurbished/"}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

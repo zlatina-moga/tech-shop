@@ -22,6 +22,10 @@ const Network = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
+  const { brand } = router.query;
+  const [totalPages, setTotalPages] = useState(1);
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/retelistica/placi-de-retea");
 
   useEffect(() => {
     sortingService.getBrands(70).then((result) => {
@@ -33,23 +37,71 @@ const Network = () => {
   }, []);
 
   useEffect(() => {
-    productService
+    if (brand) {
+      setShow(false);
+      productService
+        .getAllNetworksByBrand(currentPage, brand)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(`/retelistica/placi-de-retea?brand=${brand}`);
+        });
+      sortingService.getHighestPriceByBrand(70, brand).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else {
+      setShow(false);
+      productService
       .getAllNetwork(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
+        setShow(true);
+        setTotalPages(result[0].totalPages);
+        setBaseLink(`/retelistica/placi-de-retea`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]);
+    }
+
+  }, [currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange &&  brand &&  selectedSort != "/retelistica/placi-de-retea" ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedNetworksPriceAndBrand(priceRange, currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (brand && selectedSort != "/retelistica/placi-de-retea") {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedNetworksBrand(currentPage, sort, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange  && !brand ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNetworkPrice(priceRange, currentPage, sort)
@@ -59,7 +111,7 @@ const Network = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/retelistica/placi-de-retea") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -72,26 +124,40 @@ const Network = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllNetworkPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
+    if (brand && priceRange) {
+      setShow(false);
+      productService
+        .getNetworksPriceAndBrand(priceRange, currentPage, brand)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllNetworkPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-  const totalPages = laptopsData[0]?.totalPages;
+  }, [priceRange, currentPage]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -111,6 +177,12 @@ const Network = () => {
     }
   };
 
+  let pageTitle = "";
+  if (brand != undefined) {
+    let slugToStr = brand as string;
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
+  }
+
   return (
     <>
       <Navbar />
@@ -119,17 +191,18 @@ const Network = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Placi de retea"
+            title={`Placi de retea ${pageTitle}`}
             laptopsData={laptopsData}
             categories2={networkCategories}
             breadcrumbs={networkCardsBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/retelistica/placi-de-retea"
+            baseLink={baseLink}
             brands={brands}
-            brandLink={"/retelistica/brand/"}
+            brandLink={"/retelistica/placi-de-retea?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
+            multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
