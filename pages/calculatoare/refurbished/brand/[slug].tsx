@@ -28,6 +28,8 @@ const BrandDetail = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState(`/calculatoare/refurbished/brand/${slug}`);
+  const [processorsGenerationLink, setProcessorsGenerationlink] = useState(`/calculatoare/refurbished/brand/${slug}?generatie=`);
+  const [processorsLink, setProcessorsLink] = useState(`/calculatoare/refurbished/brand/${slug}?procesor=`)
 
   useEffect(() => {
     sortingService.getBrands(2).then((result) => {
@@ -52,7 +54,26 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
-    if (procesor) {
+    if (procesor && generatie) {
+      setShow(false);
+      productService
+        .getAllRefComputersGenerationBrandAndProcesor(currentPage, generatie, slug, procesor)
+        .then((result) => {
+          setLoading(false);
+          setItemData(result);
+          setTotalPages(result[0].totalPages);
+          setShow(true);
+          setMultupleSelected(true);
+          setBaseLink(
+            `/calculatoare/refurbished/brand/${slug}?procesor=${procesor}&generatie=${generatie}`
+          );
+        });
+      sortingService
+        .getHighestPriceByBrandGenerationAndProcessor(2, slug, generatie, procesor)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (procesor) {
       setShow(false);
       productService
         .getAllRefComputersBrandAndProcessor(currentPage, slug, procesor)
@@ -79,10 +100,16 @@ const BrandDetail = () => {
         .then((response) => {
           setHighestPrice(response[1]);
         });
+        sortingService.getGenerationsByProcessor(2, slug, procesor).then((r) => {
+          setProcessorsGeneration(r);
+        });
+        setProcessorsGenerationlink(
+          `/calculatoare/refurbished/brand/${slug}?procesor=${procesor}&generatie=`
+        );
     } else if (generatie) {
       setShow(false);
       productService
-        .getAllRefComputersGenerationAndBrand(currentPage, generatie, slug)
+        .getAllRefwComputersGenerationAndBrand(currentPage, generatie, slug)
         .then((result) => {
           setLoading(false);
           setItemData(result);
@@ -101,6 +128,12 @@ const BrandDetail = () => {
         .then((response) => {
           setHighestPrice(response[1]);
         });
+        sortingService.getProcessorsByGenerationAndBrand(2, generatie, slug).then((r) => {
+          setProcessors(r);
+        });
+        setProcessorsLink(
+          `/calculatoare/refurbished/brand/${slug}?generatie=${generatie}&procesor=`
+        );
     } else {
       setShow(false);
       productService
@@ -123,7 +156,84 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && procesor && generatie && selectedSort != `/calculatoare/refurbished/brand/${slug}`) {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSortedRefComputersByBrandProcessorAndGenerationPrice(
+          currentPage,
+          slug,
+          sort,
+          procesor,
+          generatie,
+          priceRange
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && procesor && selectedSort != `/calculatoare/refurbished/brand/${slug}` ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSortedRefComputersByBrandProcessorPrice(
+          currentPage,
+          slug,
+          sort,
+          procesor,
+          priceRange
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && generatie && selectedSort != `/calculatoare/refurbished/brand/${slug}`) {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSortedRefComputersByBrandGenerationPrice(
+          currentPage,
+          slug,
+          sort,
+          generatie,
+          priceRange
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (procesor && generatie && selectedSort != `/calculatoare/refurbished/brand/${slug}` ) {
+      setShow(false);
+      const sort = selectedSort.split("=")[3];
+      productService
+        .getSortedRefComputersByBrandProcessorAndGeneration(
+          currentPage,
+          slug,
+          sort,
+          procesor,
+          generatie
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !procesor && !generatie) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -137,7 +247,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (procesor && selectedSort) {
+    } else if (procesor && selectedSort != `/calculatoare/refurbished/brand/${slug}`) {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
@@ -156,7 +266,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (generatie && selectedSort) {
+    } else if (generatie && selectedSort != `/calculatoare/refurbished/brand/${slug}`) {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
@@ -175,7 +285,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort) {
+    } else if (selectedSort != `/calculatoare/refurbished/brand/${slug}`) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       setShow(false);
@@ -198,18 +308,72 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    setShow(false);
+    if (priceRange && procesor && generatie) {
+      setShow(false);
+      productService
+        .getAllRefComputersByBrandProcessorAndGenerationPrice(
+          currentPage,
+          slug,
+          procesor,
+          generatie,
+          priceRange
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && procesor) {
+      setShow(false);
+      productService
+        .getAllRefComputersByBrandProcessorPrice(
+          currentPage,
+          slug,
+          procesor,
+          priceRange
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && generatie) {
+      setShow(false);
+      productService
+        .getAllRefComputersByBrandGenerationPrice(
+          currentPage,
+          slug,
+          generatie,
+          priceRange
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
     productService
       .getAllRefComputersByBrandPrice(currentPage, slug, priceRange)
       .then((result) => {
         setItemData(result);
         setLoading(false);
-        setTotalPages(result[0].totalPages);
+       //setTotalPages(result[0].totalPages);
         setShow(true);
       })
       .catch((err) => {
         console.log(err);
       });
+    }
   }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
@@ -253,12 +417,12 @@ const BrandDetail = () => {
             brands={brands}
             brandLink={"/calculatoare/refurbished/brand/"}
             processors={processors}
-            processorsLink={`/calculatoare/refurbished/brand/${slug}?procesor=`}
+            processorsLink={processorsLink}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             processorsGeneration={processorsGeneration}
-            processorsGenerationLink={`/calculatoare/refurbished/brand/${slug}?generatie=`}
+            processorsGenerationLink={processorsGenerationLink}
             multipleQueries={multipleSelected}
           />
           {currentPage === 0 || totalPages < 2 ? null : (

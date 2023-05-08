@@ -660,6 +660,88 @@ export const getSortedNewComputersByBrandAndProcessor = (
     `${baseUrl}/calculatoare/nou/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
   );
 
+
+  export const getAllNewComputersGenerationBrandAndProcesor = (page, slug, brand, procesor) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&brand=${brand}&procesor=${procesor}&page=${page}`
+  );
+
+  export const getSortedNewComputersByBrandProcessorAndGenerationPrice = (page, slug, sort, processor, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedNewComputersByBrandProcessorPrice = (page, slug, sort, processor, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&procesor=${processor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedNewComputersByBrandGenerationPrice = (page, slug, sort, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&generatie=${generatie}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedNewComputersByBrandProcessorAndGeneration = (page, slug, sort, processor, generatie) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&sort=${sort}&page=${page}`
+);
+
+export const getAllNewComputersByBrandProcessorAndGenerationPrice = (page, slug, processor, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&price=1-${price}&page=${page}`
+);
+
+export const getAllNewComputersByBrandProcessorPrice = (page, slug, processor, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&procesor=${processor}&price=1-${price}&page=${page}`
+);
+
+export const getAllNewComputersByBrandGenerationPrice = (page, slug, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/nou/brand?brand=${slug}&generatie=${generatie}&price=1-${price}&page=${page}`
+);
+
+export const getSortedNewComputersByGenerationProcessorPrice = (page, slug, sort, procesor, price) =>
+request.get(
+  `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&procesor=${procesor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedNewComputersByGenerationBrandProcessor = (page, slug, sort, procesor, brand) =>
+request.get(
+  `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&brand=${brand}&procesor=${procesor}&sort=${sort}&page=${page}`
+);
+
+export const getNewComputersByGenerationProcessorPrice = (page, slug, procesor, price) =>
+request.get(
+  `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&procesor=${procesor}&price=1-${price}&page=${page}`
+);
+
+export const getNewComputersByGenerationBrandPrice = (page, slug, brand, price) =>
+request.get(
+  `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&brand=${brand}&price=1-${price}&page=${page}`
+);
+
+export const getSortedNewComputersByGenerationBrand = (page, slug, sort, brand) =>
+request.get(
+  `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&brand=${brand}&sort=${sort}&page=${page}`
+);
+
+export const getNewComputersByGenerationBrandProcessorPrice = (page, slug, procesor, brand, price) =>
+request.get(
+  `${baseUrl}/calculatoare/nou/generatie?generatie=${slug}&brand=${brand}&procesor=${procesor}&price=1-${price}&page=${page}`
+);
+
+export const getSortedRefComputersByGenerationBrand = (page, slug, sort, brand) =>
+request.get(
+  `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&brand=${brand}&sort=${sort}&page=${page}`
+);
+
+export const getRefComputersByGenerationBrandProcessorPrice = (page, slug, procesor, brand, price) =>
+request.get(
+  `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&brand=${brand}&procesor=${procesor}&price=1-${price}&page=${page}`
+);
+
+
 export const getSortedNewComputersByBrandAndGeneration = (
   page,
   slug,
@@ -714,6 +796,73 @@ export const getSortedRefComputersByGenerationAndProcessor = (
   request.get(
     `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
   );
+
+  export const getAllRefComputersGenerationBrandAndProcesor = (page, slug, brand, procesor) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&brand=${brand}&procesor=${procesor}&page=${page}`
+  );
+
+  export const getAllRefwComputersGenerationAndBrand = (page, slug, brand) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&brand=${brand}&page=${page}`
+  );
+
+  export const getSortedRefComputersByBrandProcessorAndGenerationPrice = (page, slug, sort, processor, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedRefComputersByBrandProcessorPrice = (page, slug, sort, processor, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&procesor=${processor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedRefComputersByBrandGenerationPrice = (page, slug, sort, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&generatie=${generatie}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedRefComputersByBrandProcessorAndGeneration = (page, slug, sort, processor, generatie) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&sort=${sort}&page=${page}`
+);
+
+export const getAllRefComputersByBrandProcessorAndGenerationPrice = (page, slug, processor, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&price=1-${price}&page=${page}`
+);
+
+export const getAllRefComputersByBrandProcessorPrice = (page, slug, processor, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&procesor=${processor}&price=1-${price}&page=${page}`
+);
+
+export const getAllRefComputersByBrandGenerationPrice = (page, slug, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/refurbished/brand?brand=${slug}&generatie=${generatie}&price=1-${price}&page=${page}`
+);
+
+export const getSortedRefComputersByGenerationProcessorPrice = (page, slug, sort, procesor, price) =>
+request.get(
+  `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&procesor=${procesor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedRefComputersByGenerationBrandProcessor = (page, slug, sort, procesor, brand) =>
+request.get(
+  `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&brand=${brand}&procesor=${procesor}&sort=${sort}&page=${page}`
+);
+
+export const getRefComputersByGenerationProcessorPrice = (page, slug, procesor, price) =>
+request.get(
+  `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&procesor=${procesor}&price=1-${price}&page=${page}`
+);
+
+export const getRefComputersByGenerationBrandPrice = (page, slug, brand, price) =>
+request.get(
+  `${baseUrl}/calculatoare/refurbished/generatie?generatie=${slug}&brand=${brand}&price=1-${price}&page=${page}`
+);
+
+
 
 export const getAllRefComputersByGenerationPrice = (page, slug, price) =>
   request.get(
@@ -830,6 +979,72 @@ export const getSortedSHComputersByGeneration = (page, slug, sort) =>
   request.get(
     `${baseUrl}/calculatoare/second-hand/generatie?generatie=${slug}&sort=${sort}&page=${page}`
   );
+
+  export const getAllSHComputersGenerationBrandAndProcesor = (page, slug, brand, procesor) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/generatie?generatie=${slug}&brand=${brand}&procesor=${procesor}&page=${page}`
+  );
+
+  export const getSortedSHComputersByBrandProcessorAndGenerationPrice = (page, slug, sort, processor, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedSHComputersByBrandProcessorPrice = (page, slug, sort, processor, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&procesor=${processor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedSHComputersByBrandGenerationPrice = (page, slug, sort, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&generatie=${generatie}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSortedSHComputersByBrandProcessorAndGeneration = (page, slug, sort, processor, generatie) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&sort=${sort}&page=${page}`
+);
+
+export const getAllSHComputersByBrandProcessorAndGenerationPrice = (page, slug, processor, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&procesor=${processor}&generatie=${generatie}&price=1-${price}&page=${page}`
+);
+
+export const getAllSHComputersByBrandProcessorPrice = (page, slug, processor, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&procesor=${processor}&price=1-${price}&page=${page}`
+);
+
+export const getAllSHComputersByBrandGenerationPrice = (page, slug, generatie, price) =>
+  request.get(
+    `${baseUrl}/calculatoare/second-hand/brand?brand=${slug}&generatie=${generatie}&price=1-${price}&page=${page}`
+);
+
+export const getSortedSHComputersByGenerationProcessorPrice = (page, slug, sort, procesor, price) =>
+request.get(
+  `${baseUrl}/calculatoare/second-hand/generatie?generatie=${slug}&procesor=${procesor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getSHComputersByGenerationProcessorPrice = (page, slug, procesor, price) =>
+request.get(
+  `${baseUrl}/calculatoare/second-hand/generatie?generatie=${slug}&procesor=${procesor}&price=1-${price}&page=${page}`
+);
+
+export const getSHComputersByGenerationBrandPrice = (page, slug, brand, price) =>
+request.get(
+  `${baseUrl}/calculatoare/second-hand/generatie?generatie=${slug}&brand=${brand}&price=1-${price}&page=${page}`
+);
+
+export const getSortedSHComputersByGenerationBrand = (page, slug, sort, brand) =>
+request.get(
+  `${baseUrl}/calculatoare/second-hand/generatie?generatie=${slug}&brand=${brand}&sort=${sort}&page=${page}`
+);
+
+export const getSHComputersByGenerationBrandProcessorPrice = (page, slug, procesor, brand, price) =>
+request.get(
+  `${baseUrl}/calculatoare/second-hand/generatie?generatie=${slug}&brand=${brand}&procesor=${procesor}&price=1-${price}&page=${page}`
+);
+
 
 export const getSortedSHComputersByGenerationPrice = (
   page,
