@@ -87,7 +87,7 @@ const ProcDetail = () => {
       selectedSort != `/sisteme-pos/procesor/${slug}`
     ) {
       setShow(false);
-      const sort = selectedSort.split("=")[2];
+      const sort = selectedSort.split("=")[1];
       productService
         .getSortedBrandTypePOSPrice(currentPage, brand, sort, priceRange, slug)
         .then((result) => {
@@ -189,7 +189,7 @@ const ProcDetail = () => {
   let pageTitle = "";
   if (slug != undefined) {
     let slugToStr = slug as string;
-    pageTitle = slugToStr.replaceAll("-", " ");
+    pageTitle = slugToStr.split("-")[0].toUpperCase();
   }
 
   return (

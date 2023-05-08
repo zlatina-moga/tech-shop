@@ -34,6 +34,11 @@ export const getBrandsByGeneration = (category, gen) =>
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}`
   );
 
+  export const getBrandsByGenerationAndProcessor = (category, gen, procesor) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}`
+  );
+
 export const getHighestPrice = (category) =>
   request.get(`${baseUrl}/price/price?filter[category]=${category}`);
 
@@ -104,6 +109,16 @@ export const getHighestPriceByBrandAndGeneration = (
     `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}`
   );
 
+export const getHighestPriceByBrandGenerationAndProcessor = (
+  category,
+  brand,
+  generation,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}`
+  );
+
 export const getHighestPriceByProcessor = (category, processor) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-procesor-132]=${processor}`
@@ -117,6 +132,11 @@ export const getHighestPriceByGen = (category, gen) =>
 export const getProcessorsByGeneration = (category, gen) =>
   request.get(
     `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}`
+  );
+
+  export const getProcessorsByGenerationAndBrand = (category, gen, brand) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}`
   );
 
 export const getProcessorGeneration = (category) =>
@@ -162,24 +182,63 @@ export const getGenerationBrands = (category, type, gen) =>
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[qualities]=${type}&filter[a-generatie-procesor-277]=${gen}`
   );
 
-export const getScreenSizes = (category) => request.get(`${baseUrl}/attributes/a-diagonala-25?filter[category]=${category}`)
+export const getScreenSizes = (category) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-25?filter[category]=${category}`
+  );
 
-export const getHighestPriceByScreen = (category, screen) => request.get(`${baseUrl}/price/price?filter[category]=${category}&filter[a-diagonala-25]=${screen}`)
+export const getHighestPriceByScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-diagonala-25]=${screen}`
+  );
 
-export const getScreenSizesByBrand = (category, brand) => request.get(`${baseUrl}/attributes/a-diagonala-25?filter[category]=${category}&filter[brand]=${brand}`)
+export const getScreenSizesByBrand = (category, brand) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-25?filter[category]=${category}&filter[brand]=${brand}`
+  );
 
-export const getHighestPriceByScreenAndBrand = (category, screen, brand) => request.get(`${baseUrl}/price/price?filter[category]=${category}&filter[a-diagonala-25]=${screen}&filter[brand]=${brand}`)
+export const getHighestPriceByScreenAndBrand = (category, screen, brand) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-diagonala-25]=${screen}&filter[brand]=${brand}`
+  );
 
-export const getComponentsByBrand = (category, brand) => request.get(`${baseUrl}/attributes/a-tip-componenta-237?filter[category]=${category}&filter[brand]=${brand}`)
+export const getComponentsByBrand = (category, brand) =>
+  request.get(
+    `${baseUrl}/attributes/a-tip-componenta-237?filter[category]=${category}&filter[brand]=${brand}`
+  );
 
-export const getHighestPriceByComponentAndBrand = (category, brand, component) => request.get(`${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-tip-componenta-237]=${component}`)
+export const getHighestPriceByComponentAndBrand = (
+  category,
+  brand,
+  component
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-tip-componenta-237]=${component}`
+  );
 
-export const getAccessoriesByBrand = (category, brand) => request.get(`${baseUrl}/attributes/a-tip-accesoriu-252?filter[category]=${category}&filter[brand]=${brand}`)
+export const getAccessoriesByBrand = (category, brand) =>
+  request.get(
+    `${baseUrl}/attributes/a-tip-accesoriu-252?filter[category]=${category}&filter[brand]=${brand}`
+  );
 
-export const getNetworkTypesByBrand = (category, brand) => request.get(`${baseUrl}/attributes/a-tip-261?filter[category]=${category}&filter[brand]=${brand}`)
+export const getNetworkTypesByBrand = (category, brand) =>
+  request.get(
+    `${baseUrl}/attributes/a-tip-261?filter[category]=${category}&filter[brand]=${brand}`
+  );
 
-export const getDiscountedItemsBrands = (category) => request.get(`${baseUrl}/brand/brand?filter[category]=${category}&filter[availability]=sale`)
+export const getDiscountedItemsBrands = (category) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[availability]=sale`
+  );
 
-export const getDiscountedItemsHighestPrice = (category) => request.get(`${baseUrl}/price/price?filter[category]=${category}&filter[availability]=sale`)
+export const getDiscountedItemsHighestPrice = (category) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[availability]=sale`
+  );
 
-export const getDiscountedItemsHighestPriceBrand = (category, brand) => request.get(`${baseUrl}/price/price?filter[category]=${category}&filter[availability]=sale&filter[brand]=${brand}`)
+export const getDiscountedItemsHighestPriceBrand = (category, brand) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[availability]=sale&filter[brand]=${brand}`
+  );
+
+  export const getGenerationsByProcessor = (category, brand, processor) => request.get(`${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}`)
