@@ -1569,6 +1569,16 @@ export const getAllServersByBrandPrice = (page, slug, price) =>
     `${baseUrl}/servere/brand?brand=${slug}&price=1-${price}&page=${page}`
   );
 
+  export const getSortedServersByBrandProcessorPrice = (page, slug, sort, processor, price) =>
+  request.get(
+    `${baseUrl}/servere/brand?brand=${slug}&procesor=${processor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getAllServersByBrandProcessorPrice = (page, slug, processor, price) =>
+  request.get(
+    `${baseUrl}/servere/brand?brand=${slug}&procesor=${processor}&price=1-${price}&page=${page}`
+);
+
 export const getSortedServersByBrand = (page, slug, sort) =>
   request.get(
     `${baseUrl}/servere/brand?brand=${slug}&sort=${sort}&page=${page}`
@@ -1695,6 +1705,17 @@ export const getSortedNewServersByBrandAndProcessor = (
     `${baseUrl}/servere/noi-6/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
   );
 
+  export const getSortedNewServersByBrandProcessorPrice = (page, slug, sort, processor, price) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/brand?brand=${slug}&procesor=${processor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getAllNewServersByBrandProcessorPrice = (page, slug, processor, price) =>
+  request.get(
+    `${baseUrl}/servere/noi-6/brand?brand=${slug}&procesor=${processor}&price=1-${price}&page=${page}`
+);
+
+
 export const getSortedNewServersByBrand = (page, slug, sort) =>
   request.get(
     `${baseUrl}/servere/noi-6/brand?brand=${slug}&sort=${sort}&page=${page}`
@@ -1748,6 +1769,17 @@ export const getSortedSHServersByBrandAndProcessor = (
     `${baseUrl}/servere/second-hand-2/brand?brand=${slug}&procesor=${processor}&sort=${sort}&page=${page}`
   );
 
+  export const getSortedSHServersByBrandProcessorPrice = (page, slug, sort, processor, price) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/brand?brand=${slug}&procesor=${processor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getAllSHServersByBrandProcessorPrice = (page, slug, processor, price) =>
+  request.get(
+    `${baseUrl}/servere/second-hand-2/brand?brand=${slug}&procesor=${processor}&price=1-${price}&page=${page}`
+);
+
+
 export const getSortedSHServersByBrand = (page, slug, sort) =>
   request.get(
     `${baseUrl}/servere/second-hand-2/brand?brand=${slug}&sort=${sort}&page=${page}`
@@ -1790,6 +1822,17 @@ export const getSortedRefServersByBrandPrice = (page, slug, sort, price) =>
   request.get(
     `${baseUrl}/servere/refurbished-2/brand?brand=${slug}&price=1-${price}&sort=${sort}&page=${page}`
   );
+
+  export const getSortedRefServersByBrandProcessorPrice = (page, slug, sort, processor, price) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/brand?brand=${slug}&procesor=${processor}&price=1-${price}&sort=${sort}&page=${page}`
+);
+
+export const getAllRefServersByBrandProcessorPrice = (page, slug, processor, price) =>
+  request.get(
+    `${baseUrl}/servere/refurbished-2/brand?brand=${slug}&procesor=${processor}&price=1-${price}&page=${page}`
+);
+
 
 export const getSortedRefServersByBrandAndProcessor = (
   page,

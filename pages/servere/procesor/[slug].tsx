@@ -23,7 +23,7 @@ const ProcDetail = () => {
   const [show, setShow] = useState<boolean>(true);
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
-  const [baseLink, setBaseLink] = useState(`/workstation/procesor/${slug}`);
+  const [baseLink, setBaseLink] = useState(`/servere/procesor/${slug}`);
 
   useEffect(() => {
     sortingService.getBrandsByProcessor(9, slug).then((result) => {
@@ -80,7 +80,26 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && brand  && selectedSort != `/servere/brand/${slug}`) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedServersByBrandProcessorPrice (
+          currentPage,
+          brand,
+          sort,
+          slug,
+          priceRange
+        )
+        .then((result) => {
+          setItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !brand) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -93,7 +112,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort) {
+    } else if (brand && selectedSort != `/servere/brand/${slug}`) {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
@@ -107,7 +126,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort) {
+    } else if (selectedSort != `/servere/brand/${slug}`) {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
@@ -129,17 +148,37 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllServersByProcessorPrice(currentPage, slug, priceRange)
-      .then((result) => {
-        setItemsData(result);
-        setTotalPages(result[0].totalPages);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange && brand) {
+      setShow(false);
+      productService
+        .getAllServersByBrandProcessorPrice(
+          currentPage,
+          brand,
+          slug,
+          priceRange
+        )
+        .then((result) => {
+          setItemsData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllServersByProcessorPrice(currentPage, slug, priceRange)
+        .then((result) => {
+          setItemsData(result);
+          //setTotalPages(result[0].totalPages);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
   }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({

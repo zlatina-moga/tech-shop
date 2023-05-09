@@ -23,7 +23,6 @@ const BrandDetail = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState(`/servere/second-hand/brand/${slug}`);
@@ -37,9 +36,6 @@ const BrandDetail = () => {
     });
     sortingService.getHighestPriceByBrand(11, slug).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(11).then((r) => {
-      setCategories(r);
     });
   }, [slug]);
 
@@ -82,7 +78,26 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange && procesor  && selectedSort != `/servere/second-hand/brand/${slug}`) {
+      setShow(false);
+      const sort = selectedSort.split("=")[2];
+      productService
+        .getSortedSHServersByBrandProcessorPrice (
+          currentPage,
+          slug,
+          sort,
+          procesor,
+          priceRange
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange && !procesor) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -96,7 +111,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (procesor && selectedSort) {
+    } else if (procesor && selectedSort != `/servere/second-hand/brand/${slug}`) {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
@@ -115,7 +130,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort) {
+    } else if (selectedSort != `/servere/second-hand/brand/${slug}`) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       setShow(false);
@@ -138,18 +153,38 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllSHServerByBrandPrice(currentPage, slug, priceRange)
-      .then((result) => {
-        setItemData(result);
-        setTotalPages(result[0].totalPages);
-        setShow(true);
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange && procesor) {
+      setShow(false);
+      productService
+        .getAllSHServersByBrandProcessorPrice(
+          currentPage,
+          slug,
+          procesor,
+          priceRange
+        )
+        .then((result) => {
+          setItemData(result);
+          setShow(true);
+          setTotalPages(result[0].totalPages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShow(false);
+      productService
+        .getAllSHServerByBrandPrice(currentPage, slug, priceRange)
+        .then((result) => {
+          setItemData(result);
+          //setTotalPages(result[0].totalPages);
+          setShow(true);
+          setLoading(false)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
   }, [priceRange, currentPage, slug]);
 
   const paginationRange = usePagination({
@@ -187,7 +222,6 @@ const BrandDetail = () => {
             title={`Servere Second Hand ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={brandSHServersBrcrmbs}
-            categories={categories}
             sortCriteria={onSort}
             baseLink={baseLink}
             brands={brands}

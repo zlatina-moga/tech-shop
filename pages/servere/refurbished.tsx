@@ -20,7 +20,6 @@ const RefurbishedServers = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(10).then((result) => {
@@ -31,9 +30,6 @@ const RefurbishedServers = () => {
     });
     sortingService.getHighestPrice(10).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(10).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -129,7 +125,6 @@ const RefurbishedServers = () => {
           <LaptopsPage
             title="Servere Refurbished"
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={serverRefBrcrmbs}
             sortCriteria={onSort}
             baseLink="/servere/refurbished"

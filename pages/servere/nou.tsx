@@ -20,7 +20,6 @@ const NewServers = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(56).then((result) => {
@@ -31,9 +30,6 @@ const NewServers = () => {
     });
     sortingService.getHighestPrice(56).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(56).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -126,7 +122,6 @@ const NewServers = () => {
           <LaptopsPage
             title="Servere Noi"
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={serverNewBrcrmbs}
             sortCriteria={onSort}
             baseLink="/servere/nou"

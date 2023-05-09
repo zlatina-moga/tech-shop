@@ -20,7 +20,6 @@ const SecondHandServers = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(11).then((result) => {
@@ -31,9 +30,6 @@ const SecondHandServers = () => {
     });
     sortingService.getHighestPrice(11).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(11).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -126,7 +122,6 @@ const SecondHandServers = () => {
           <LaptopsPage
             title="Servere Second Hand"
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={serverSHBrcrmbs}
             sortCriteria={onSort}
             baseLink="/servere/second-hand"
