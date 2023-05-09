@@ -19,7 +19,6 @@ const MonitoareNew = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const [screens, setScreens] = useState([]);
   const { screen, brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
@@ -33,9 +32,6 @@ const MonitoareNew = () => {
     });
     sortingService.getHighestPrice(54).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(54).then((r) => {
-      setCategories(r);
     });
     sortingService.getScreenSizes(54).then((res) => {
       setScreens(res);
@@ -328,7 +324,6 @@ const MonitoareNew = () => {
           <LaptopsPage
             title={`Monitoare Noi ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={monitorNewBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

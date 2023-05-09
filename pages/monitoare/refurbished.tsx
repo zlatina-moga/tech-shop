@@ -19,7 +19,6 @@ const MonitoareRefurbished = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const [screens, setScreens] = useState([]);
   const { screen, brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
@@ -35,9 +34,6 @@ const MonitoareRefurbished = () => {
     });
     sortingService.getHighestPrice(19).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(19).then((r) => {
-      setCategories(r);
     });
     sortingService.getScreenSizes(19).then((res) => {
       setScreens(res);
@@ -330,7 +326,6 @@ const MonitoareRefurbished = () => {
           <LaptopsPage
             title={`Monitoare Refurbished ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={monitorRefBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

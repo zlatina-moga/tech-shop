@@ -20,7 +20,6 @@ const RefurbishedPOS = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const { procesor, brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
@@ -38,9 +37,6 @@ const RefurbishedPOS = () => {
     });
     sortingService.getHighestPrice(35).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(35).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -331,7 +327,6 @@ const RefurbishedPOS = () => {
           <LaptopsPage
             title={`Sisteme POS Refurbished ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={posRefBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

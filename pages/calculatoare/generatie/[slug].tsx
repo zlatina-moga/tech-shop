@@ -159,7 +159,7 @@ const BrandDetail = () => {
         });
     } else if (priceRange && procesor && selectedSort != `/calculatoare/generatie/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedComputersByGenerationProcessorPrice(
           currentPage,
@@ -178,7 +178,7 @@ const BrandDetail = () => {
         });
     } else if (priceRange && brand && selectedSort != `/calculatoare/generatie/${slug}`) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedComputersByGenerationBrandPrice(
           currentPage,
@@ -197,7 +197,7 @@ const BrandDetail = () => {
         });
     } else if (procesor && brand && selectedSort != `/calculatoare/generatie/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedComputersByGenerationBrandProcessor(
           currentPage,

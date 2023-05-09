@@ -19,7 +19,6 @@ const NewPrinters = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const { brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
@@ -31,9 +30,6 @@ const NewPrinters = () => {
     });
     sortingService.getHighestPrice(53).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(53).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -193,7 +189,6 @@ const NewPrinters = () => {
           <LaptopsPage
             title={`Imprimante Noi ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={printerNewBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

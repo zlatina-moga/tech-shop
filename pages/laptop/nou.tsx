@@ -20,7 +20,6 @@ const LaptopuriNoi = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
 
   useEffect(() => {
@@ -32,9 +31,6 @@ const LaptopuriNoi = () => {
     });
     sortingService.getHighestPrice(49).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(49).then((r) => {
-      setCategories(r);
     });
     sortingService.getProcessorGeneration(49).then((r) => {
       setProcessorsGeneration(r);
@@ -130,7 +126,6 @@ const LaptopuriNoi = () => {
           <LaptopsPage
             title="Laptopuri Noi"
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={laptopNewdBrcrmbs}
             sortCriteria={onSort}
             baseLink="/laptop/nou"

@@ -27,9 +27,7 @@ const BrandDetail = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState(`/calculatoare/brand/${slug}`);
-  const [processorsGenerationLink, setProcessorsGenerationlink] = useState(
-    `/calculatoare/brand/${slug}?generatie=`
-  );
+  const [processorsGenerationLink, setProcessorsGenerationlink] = useState(`/calculatoare/brand/${slug}?generatie=`);
   const [processorsLink, setProcessorsLink] = useState(`/calculatoare/brand/${slug}?procesor=`)
 
   useEffect(() => {
@@ -162,7 +160,7 @@ const BrandDetail = () => {
         });
     } else if (priceRange && procesor && selectedSort != `/calculatoare/brand/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedComputersByBrandProcessorPrice(
           currentPage,
@@ -181,7 +179,7 @@ const BrandDetail = () => {
         });
     } else if (priceRange && generatie && selectedSort != `/calculatoare/brand/${slug}`) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedComputersByBrandGenerationPrice(
           currentPage,
@@ -200,7 +198,7 @@ const BrandDetail = () => {
         });
     } else if (procesor && generatie && selectedSort != `/calculatoare/brand/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedComputersByBrandProcessorAndGeneration(
           currentPage,

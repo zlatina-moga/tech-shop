@@ -71,8 +71,7 @@ const ProcDetail = () => {
         .then((response) => {
           setHighestPrice(response[1]);
         });
-    }
-    if (procesor) {
+    } else if (procesor) {
       setShow(false);
       productService
         .getAllSHComputersGenerationAndProcessor(currentPage, slug, procesor)
@@ -180,7 +179,7 @@ const ProcDetail = () => {
         });
     } else if (priceRange && procesor && selectedSort != `/calculatoare/second-hand/generatie/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedSHComputersByGenerationProcessorPrice(
           currentPage,
@@ -199,7 +198,7 @@ const ProcDetail = () => {
         });
     } else if (priceRange && brand && selectedSort != `/calculatoare/second-hand/generatie/${slug}`) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedSHComputersByBrandGenerationPrice(
           currentPage,
@@ -218,7 +217,7 @@ const ProcDetail = () => {
         });
     } else if (procesor && brand && selectedSort != `/calculatoare/second-hand/generatie/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedRefComputersByGenerationBrandProcessor(
           currentPage,

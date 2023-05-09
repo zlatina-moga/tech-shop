@@ -19,7 +19,6 @@ const MonitoareSecondHand = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const [screens, setScreens] = useState([]);
   const { screen, brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
@@ -35,9 +34,6 @@ const MonitoareSecondHand = () => {
     });
     sortingService.getHighestPrice(20).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(20).then((r) => {
-      setCategories(r);
     });
     sortingService.getScreenSizes(20).then((res) => {
       setScreens(res);
@@ -328,7 +324,6 @@ const MonitoareSecondHand = () => {
           <LaptopsPage
             title={`Monitoare Second Hand ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={monitorSHBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

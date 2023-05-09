@@ -19,7 +19,6 @@ const RefPrinters = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const { brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
@@ -31,9 +30,6 @@ const RefPrinters = () => {
     });
     sortingService.getHighestPrice(30).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(30).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -192,7 +188,6 @@ const RefPrinters = () => {
           <LaptopsPage
             title={`Imprimante Refurbished ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={printerRefBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

@@ -21,7 +21,6 @@ const Calculatoare = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     sortingService.getBrands(2).then((result) => {
@@ -35,9 +34,6 @@ const Calculatoare = () => {
     });
     sortingService.getProcessorGenerationByType(1, 'refurbished-2').then((r) => {
       setProcessorsGeneration(r);
-    });
-    sortingService.getTypes(2).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -130,7 +126,6 @@ const Calculatoare = () => {
           <LaptopsPage
             title="Calculatoare Refurbished"
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={refComputersBrcrmbs}
             sortCriteria={onSort}
             baseLink="/calculatoare/refurbished"

@@ -24,7 +24,6 @@ const BrandDetail = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState(`/calculatoare/refurbished/brand/${slug}`);
@@ -48,9 +47,6 @@ const BrandDetail = () => {
       .then((r) => {
         setProcessorsGeneration(r);
       });
-    sortingService.getTypes(2).then((r) => {
-      setCategories(r);
-    });
   }, [slug]);
 
   useEffect(() => {
@@ -178,7 +174,7 @@ const BrandDetail = () => {
         });
     } else if (priceRange && procesor && selectedSort != `/calculatoare/refurbished/brand/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedRefComputersByBrandProcessorPrice(
           currentPage,
@@ -197,7 +193,7 @@ const BrandDetail = () => {
         });
     } else if (priceRange && generatie && selectedSort != `/calculatoare/refurbished/brand/${slug}`) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedRefComputersByBrandGenerationPrice(
           currentPage,
@@ -216,7 +212,7 @@ const BrandDetail = () => {
         });
     } else if (procesor && generatie && selectedSort != `/calculatoare/refurbished/brand/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedRefComputersByBrandProcessorAndGeneration(
           currentPage,
@@ -411,7 +407,6 @@ const BrandDetail = () => {
             title={`Calculatoare Refurbished ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={brandRefComputersBrcrmbs}
-            categories={categories}
             sortCriteria={onSort}
             baseLink={baseLink}
             brands={brands}

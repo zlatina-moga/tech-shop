@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { posCategories } from "../../data/categories";
 import { posSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -23,7 +22,6 @@ const SecondHandPOS = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const { procesor, brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
@@ -41,9 +39,6 @@ const SecondHandPOS = () => {
     });
     sortingService.getHighestPrice(36).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(36).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -333,7 +328,6 @@ const SecondHandPOS = () => {
           <LaptopsPage
             title={`Sisteme POS Second Hand ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={posSHBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

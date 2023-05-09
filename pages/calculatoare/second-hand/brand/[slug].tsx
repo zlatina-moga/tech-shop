@@ -24,7 +24,6 @@ const BrandDetail = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState(
@@ -45,9 +44,6 @@ const BrandDetail = () => {
     });
     sortingService.getProcessorGenerationByBrandAndType(1, slug, "second-hand-4").then((r) => {
       setProcessorsGeneration(r);
-    });
-    sortingService.getTypes(4).then((r) => {
-      setCategories(r);
     });
   }, [slug]);
 
@@ -175,7 +171,7 @@ const BrandDetail = () => {
         });
     } else if (priceRange && procesor && selectedSort != `/calculatoare/second-hand/brand/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedSHComputersByBrandProcessorPrice(
           currentPage,
@@ -194,7 +190,7 @@ const BrandDetail = () => {
         });
     } else if (priceRange && generatie && selectedSort != `/calculatoare/second-hand/brand/${slug}`) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedSHComputersByBrandGenerationPrice(
           currentPage,
@@ -213,7 +209,7 @@ const BrandDetail = () => {
         });
     } else if (procesor && generatie && selectedSort != `/calculatoare/second-hand/brand/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedSHComputersByBrandProcessorAndGeneration(
           currentPage,
@@ -230,7 +226,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange  && !procesor && !generatie) {
+    } else if (priceRange && !procesor && !generatie) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -409,7 +405,6 @@ const BrandDetail = () => {
             title={`Calculatoare Second Hand ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={brandSHComputersBrcrmbs}
-            categories={categories}
             sortCriteria={onSort}
             baseLink={baseLink}
             brands={brands}

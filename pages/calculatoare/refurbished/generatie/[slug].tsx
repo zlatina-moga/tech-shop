@@ -179,7 +179,7 @@ const ProcDetail = () => {
         });
     } else if (priceRange && procesor && selectedSort != `/calculatoare/refurbished/generatie/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedRefComputersByGenerationProcessorPrice(
           currentPage,
@@ -198,7 +198,7 @@ const ProcDetail = () => {
         });
     } else if (priceRange && brand && selectedSort != `/calculatoare/refurbished/generatie/${slug}`) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedRefComputersByBrandGenerationPrice(
           currentPage,
@@ -217,7 +217,7 @@ const ProcDetail = () => {
         });
     } else if (procesor && brand && selectedSort != `/calculatoare/refurbished/generatie/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedRefComputersByGenerationBrandProcessor(
           currentPage,

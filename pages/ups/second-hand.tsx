@@ -18,7 +18,6 @@ const SecondHandUPS = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
-  const [categories, setCategories] = useState([]);
   const [show, setShow] = useState<boolean>(true);
   const { brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
@@ -31,9 +30,6 @@ const SecondHandUPS = () => {
     });
     sortingService.getHighestPrice(42).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(42).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -198,7 +194,6 @@ const SecondHandUPS = () => {
           <LaptopsPage
             title={`UPS Second Hand ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={upsSHBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

@@ -20,7 +20,6 @@ const NewPOS = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const { procesor, brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
@@ -38,9 +37,6 @@ const NewPOS = () => {
     });
     sortingService.getHighestPrice(58).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(58).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -327,7 +323,6 @@ const NewPOS = () => {
           <LaptopsPage
             title={`Sisteme POS Noi ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={posNewBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

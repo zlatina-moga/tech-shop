@@ -161,7 +161,7 @@ const ProcDetail = () => {
         });
     } else if (priceRange && generatie && selectedSort != `/calculatoare/nou/procesor/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedNewComputersByGenerationProcessorPrice(
           currentPage,
@@ -180,7 +180,7 @@ const ProcDetail = () => {
         });
     } else if (priceRange && brand && selectedSort != `/calculatoare/nou/procesor/${slug}`) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
         .getSortedNewComputersByBrandProcessorPrice(
           currentPage,
@@ -199,12 +199,13 @@ const ProcDetail = () => {
         });
     } else if (generatie && brand && selectedSort != `/calculatoare/nou/procesor/${slug}` ) {
       setShow(false);
-      const sort = selectedSort.split("=")[3];
+      const sort = selectedSort.split("=")[2];
       productService
-        .getSortedNewComputersByGenerationBrand(
+        .getSortedNewComputersByBrandProcessorAndGeneration(
           currentPage,
           generatie,
           sort,
+          slug,
           brand
         )
         .then((result) => {

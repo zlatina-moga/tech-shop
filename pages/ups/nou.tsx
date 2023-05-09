@@ -17,7 +17,6 @@ const NewUPS = () => {
   const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
-  const [categories, setCategories] = useState([]);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const { brand } = router.query;
@@ -31,9 +30,6 @@ const NewUPS = () => {
     });
     sortingService.getHighestPrice(57).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(57).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -191,7 +187,6 @@ const NewUPS = () => {
           <LaptopsPage
             title={`UPS Noi ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={upsNewBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}

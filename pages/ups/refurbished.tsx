@@ -18,7 +18,6 @@ const RefurbishedUPS = () => {
   const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
-  const [categories, setCategories] = useState([]);
   const [show, setShow] = useState<boolean>(true);
   const { brand } = router.query;
   const [totalPages, setTotalPages] = useState(1);
@@ -31,9 +30,6 @@ const RefurbishedUPS = () => {
     });
     sortingService.getHighestPrice(41).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(41).then((r) => {
-      setCategories(r);
     });
   }, []);
 
@@ -191,7 +187,6 @@ const RefurbishedUPS = () => {
           <LaptopsPage
             title={`UPS Refurbished ${pageTitle}`}
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={upsRefBrcrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}
