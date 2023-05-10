@@ -43,8 +43,6 @@ const Profile = () => {
   const user = useSelector((state) => state.user.currentUser);
   const isTablet = useMediaQuery("(max-width:500px)");
 
-  console.log(userData);
-
   useEffect(() => {
     if (user != null) {
       userService
@@ -268,7 +266,7 @@ const Profile = () => {
                             <table className="table table-bordered text-center mb-0">
                               <thead className="bg-secondary text-dark">
                                 <tr>
-                                  <th>Date</th>
+                                  <th>Data comenzii</th>
                                   <th>Produse</th>
                                   <th>Preț</th>
                                   <th>Garanție</th>

@@ -38,7 +38,7 @@ const VerifiedEmail = () => {
             </div>
             <h1>E-mail verificat cu succes!</h1>
             <Link href="/login">
-              <button>Autentificare</button>
+              <button>Intra în cont</button>
             </Link>
           </div>
         ) : (

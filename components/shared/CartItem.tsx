@@ -32,7 +32,7 @@ const CartItem = ({
 
   return (
     <tr key={id}>
-      {profile && <td className="align-middle product-item">{createdAt}</td>}
+      {profile && <td className="align-middle product-item">{createdAt.split('T')[0]}</td>}
       <td className="align-middle product-item">
         <img
           src={imgLink ? imgLink : img1}
