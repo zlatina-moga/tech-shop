@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../../components/global/Navbar";
 import Footer from "../../../components/global/Footer";
 import * as userService from "../../../services/userService";
 import { Country, State, City } from "country-state-city";
 import toast from "react-hot-toast";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import ResponsiveCart from "../../../components/shared/ResponsiveCartItem";
+import CartItem from "../../../components/shared/CartItem";
 
 export interface IUser {
   name: string;
@@ -16,6 +20,7 @@ export interface IUser {
   county?: string;
   country?: string;
   zip?: string;
+  orders?: any;
 }
 
 export const initialValues: IUser = {
@@ -27,6 +32,7 @@ export const initialValues: IUser = {
   county: "",
   country: "",
   zip: "",
+  orders: [],
 };
 
 const Profile = () => {
@@ -35,6 +41,9 @@ const Profile = () => {
   const [userData, setUserData] = useState<IUser>(initialValues);
   //@ts-ignore
   const user = useSelector((state) => state.user.currentUser);
+  const isTablet = useMediaQuery("(max-width:500px)");
+
+  console.log(userData);
 
   useEffect(() => {
     if (user != null) {
@@ -44,7 +53,7 @@ const Profile = () => {
           setUserData(result);
         })
         .catch((err) => {
-          toast.error(err, {
+          toast.error(err.message, {
             style: { marginTop: "100px" },
           });
         });
@@ -70,7 +79,7 @@ const Profile = () => {
     const address = formData.get("cf-address");
     const zip = formData.get("cf-zip");
     const county = formData.get("cf-county");
-    const city = formData.get("cf-city")
+    const city = formData.get("cf-city");
 
     userService
       .update(
@@ -232,6 +241,60 @@ const Profile = () => {
                         </button>
                       </div>
                     </div>
+                    {userData.orders && userData.orders.length != 0 && (
+                      <div className="row mt-5">
+                         <h4 className="mb-4 mt-4">Istoric comenzi</h4>
+                        <div className="table-responsive mb-5">
+                          {isTablet ? (
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              {userData.orders.map((p, idx) => (
+                                <ResponsiveCart
+                                  key={idx}
+                                  id={p.idLink}
+                                  imgLink={p.imgLink}
+                                  img1={p.img1}
+                                  title={p.title}
+                                  priceNum={p.price}
+                                  warranty={p.warranty}
+                                />
+                              ))}
+                            </div>
+                          ) : (
+                            <table className="table table-bordered text-center mb-0">
+                              <thead className="bg-secondary text-dark">
+                                <tr>
+                                  <th>Date</th>
+                                  <th>Produse</th>
+                                  <th>Preț</th>
+                                  <th>Garanție</th>
+                                  <th>Cantitate</th>
+                                </tr>
+                              </thead>
+                              <tbody className="align-middle">
+                                {userData.orders.map((p, idx) => (
+                                  <CartItem
+                                    key={idx}
+                                    id={p.idLink}
+                                    imgLink={p.imgLink}
+                                    img1={p.img1}
+                                    title={p.title}
+                                    priceNum={p.price}
+                                    warranty={p.warranty}
+                                    profile
+                                    createdAt={p.createdAt}
+                                  />
+                                ))}
+                              </tbody>
+                            </table>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

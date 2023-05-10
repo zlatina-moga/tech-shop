@@ -40,7 +40,7 @@ const Checkout = () => {
           });
         });
     }
-  }, []);
+  }, [user]);
 
   const countries = Country.getAllCountries().filter(
     (c) => c.name === "Romania"
@@ -89,6 +89,9 @@ const Checkout = () => {
         price: c.itemData[0].priceNum,
         warranty: c.warranty,
         title: c.itemData[0].title,
+        img1: c.itemData[0].img1,
+        imgLink: c.itemData[0].imgLink,
+        idLink: c.itemData[0].id
       }));
 
       if (user) {
@@ -123,6 +126,20 @@ const Checkout = () => {
               style: { marginTop: "100px" },
             });
           });
+        userService.update(
+          user._id,
+          {
+            name,
+            email,
+            phone,
+            country: "Romania",
+            county: county || selectedState,
+            city: city || selectedCity,
+            address,
+            zip,
+          },
+          user.accessToken
+        );
       } else {
         orderService
           .create({
@@ -657,7 +674,7 @@ const Checkout = () => {
                         GRATUIT
                       </h6>
                     ) : (
-                      <h6 className="font-weight-medium">?????</h6>
+                      <h6 className="font-weight-medium">20 Lei</h6>
                     )}
                   </div>
                 </div>
@@ -665,7 +682,15 @@ const Checkout = () => {
                   <div className="d-flex justify-content-between mt-2">
                     <h5 className="font-weight-bold">Total</h5>
                     <h5 className="font-weight-bold">
-                      {cart.total && cart.total.toFixed(2)} Lei
+                      {cart.total >= 250 ? (
+                        <h5 className="font-weight-bold">
+                          {cart.total && cart.total.toFixed(2)} Lei
+                        </h5>
+                      ) : (
+                        <h5 className="font-weight-bold">
+                          {(Number(cart.total.toFixed(2)) + 20).toFixed(2)} Lei
+                        </h5>
+                      )}
                     </h5>
                   </div>
                 </div>

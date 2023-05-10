@@ -1,5 +1,6 @@
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
+import Link from "next/link";
 
 const Success = () => {
     return (
@@ -20,7 +21,7 @@ const Success = () => {
                     <div className="text-center">
                         <h1>Mulțumim pentru comanda !</h1>
                         <p>Aceasta va intra în procesare și va fi livrata cât mai repede posibil. </p>
-                        <button className="btn btn-outline-primary rounded-1">Înapoi la produse</button>
+                        <button className="btn btn-outline-primary rounded-1"><Link href={'/'} className="footer-link">Înapoi la produse</Link></button>
                     </div>
                 </div>
             </div>

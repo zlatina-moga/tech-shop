@@ -68,6 +68,8 @@ const MyCard = () => {
                       title={p.itemData[0].title}
                       priceNum={p.itemData[0].priceNum}
                       warranty={p.warranty}
+                      profile={false}
+                      createdAt
                     />
                   ))}
                 </tbody>
