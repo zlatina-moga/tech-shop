@@ -12,16 +12,10 @@ const VerifiedEmail = () => {
   const router = useRouter();
   const { id, token } = router.query;
 
-  let newToken = "";
-  if (token != undefined) {
-    let tokenToString = token as string;
-    newToken = tokenToString.slice(0, -1);
-  }
-
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const url = `http://localhost:5500/auth/${id}/verify/${newToken}`;
+        const url = `http://localhost:5500/auth/${id}/verify/${token}`;
         const { data } = await axios.get(url);
         setValidUrl(true);
       } catch (err) {

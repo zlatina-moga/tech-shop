@@ -68,3 +68,39 @@ export const del = (userId, token) => {
     },
   });
 };
+
+export const passwordReset = async (email) => {
+  let res = await fetch(`${baseUrl}/auth/reset`, {
+    method: "POST",
+    body: JSON.stringify({ email }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  let jsonResult = await res.json();
+
+  if (res.ok) {
+    return jsonResult;
+  } else {
+    throw jsonResult.message;
+  }
+}
+
+export const passwordUpdate = async (userId, token, password) => {
+  let res = await fetch(`${baseUrl}/auth/new-password`, {
+    method: "POST",
+    body: JSON.stringify({ userId, token, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  let jsonResult = await res.json();
+
+  if (res.ok) {
+    return jsonResult;
+  } else {
+    throw jsonResult.message;
+  }
+}

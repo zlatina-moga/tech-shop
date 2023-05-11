@@ -1,25 +1,22 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  loginFailure,
-  loginStart,
-  loginSuccess,
-} from "../services/redux/userRedux";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
 import toast from "react-hot-toast";
 import localFont from "@next/font/local";
+import * as userService from "../services/userService";
+import Link from "next/link";
 
 const veneer = localFont({
-    src: [
-      {
-        path: "../public/fonts/Veneer-Three.ttf",
-        weight: "400",
-      },
-    ],
-    variable: "--font-verneer",
-  });
+  src: [
+    {
+      path: "../public/fonts/Veneer-Three.ttf",
+      weight: "400",
+    },
+  ],
+  variable: "--font-verneer",
+});
 
 interface IFillTheForm {
   email: string;
@@ -38,7 +35,6 @@ const Reset = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     validateForm(formValues);
   };
 
@@ -47,19 +43,29 @@ const Reset = () => {
       toast.error("Vă rugăm să introduceți adresa de e-mail", {
         style: { marginTop: "100px" },
       });
-    }
-    
-      if (isFetching) {
-        toast.loading("Vă rugăm asteptați", {
-          style: { marginTop: "100px" },
-        });
+    } else {
+      toast.loading("Vă rugăm asteptați", {
+        style: { marginTop: "100px" },
+        duration: 1500,
+      });
       await reset();
     }
   }
 
   async function reset() {
-    dispatch(loginStart());
-
+    userService
+      .passwordReset(formValues.email)
+      .then(() => {
+        setFormValues(initialValues);
+        toast.success("Vă rugăm să vă verificați adresa de e-mail", {
+          style: { marginTop: "100px" },
+        });
+      })
+      .catch((err) => {
+        toast.error(err, {
+          style: { marginTop: "100px" },
+        });
+      });
   }
 
   const handleChange = (e: any) => {
@@ -72,8 +78,15 @@ const Reset = () => {
       <Navbar />
       <div className="wrapper login">
         <div className="container">
-          <h1 className={`font-${veneer.variable} font-sans`} style={{ color: "#f1c606" }}>Autentificare</h1>
-          <p className="text-white">Vă rugăm să introduceți adresa dvs. de e-mail de utilizator</p>
+          <h1
+            className={`font-${veneer.variable} font-sans`}
+            style={{ color: "#f1c606" }}
+          >
+             Schimbarea parolei
+          </h1>
+          <p className="text-white">
+            Vă rugăm să introduceți adresa dvs. de e-mail de utilizator
+          </p>
           <form className="form" onSubmit={handleSubmit}>
             <input
               type="text"
@@ -88,9 +101,22 @@ const Reset = () => {
               id="login-button"
               style={{ marginTop: "50px" }}
             >
-              Reseteaza parola
+              Confirmați adresa de e-mail
             </button>
           </form>
+          <p className="auth-field mt-2">
+            <span className="text-white">
+              Înapoi la {' '}
+              <span>
+                <Link
+                  href="/register"
+                  style={{ textDecoration: "underline", color: "#F3CF47" }}
+                >
+                  Autentificare
+                </Link>
+              </span>
+            </span>
+          </p>
         </div>
         <ul className="bg-bubbles">
           <li></li>
