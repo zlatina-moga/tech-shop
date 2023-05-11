@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 import Image from "next/image";
@@ -26,6 +27,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showSecondPassword, setShowSecondPassword] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<IFillTheForm>(initialValues);
+  const router = useRouter();
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -81,13 +83,9 @@ const Register = () => {
       .register(formValues.name, formValues.email, formValues.password)
       .then(() => {
         setFormValues(initialValues);
-        toast.success("Vă rog să vă verificați adresa de email", {
-          style: { marginTop: "100px" },
-          duration: 5000,
-        });
+        router.push('/auth/verify')
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err, {
           style: { marginTop: "100px" },
         });
