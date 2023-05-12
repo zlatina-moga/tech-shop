@@ -45,7 +45,9 @@ const SideFilter = ({
         flexDirection: "column",
         maxWidth: "18rem",
         marginBottom: "30px",
+        width: '30%'
       }}
+      id='sidebar-wrapper'
     >
       <div className="row pr-5">
         <nav aria-label="breadcrumb " className="second ">

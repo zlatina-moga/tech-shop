@@ -39,7 +39,7 @@ const CartItem = ({
           alt=""
           style={{ width: "50px", marginRight: "10px" }}
         />{" "}
-        <Link href={"/"} id="product-link">
+        <Link href={id} id="product-link">
           {title}
         </Link>
       </td>

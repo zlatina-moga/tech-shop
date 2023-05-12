@@ -38,6 +38,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    setLoading(true)
     if (tip) {
       setShow(false);
       productService

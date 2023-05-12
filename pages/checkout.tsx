@@ -14,7 +14,7 @@ import { empty } from "../services/redux/cartRedux";
 const Checkout = () => {
   const [userData, setUserData] = useState<IUser>(initialValues);
   const [checked, setChecked] = useState<boolean>(false);
-  const [payment, setPayment] = useState("card");
+  const [payment, setPayment] = useState("");
   let [selectedState, setSelectedState] = useState("");
   let [selectedCity, setSelectedCity] = useState("");
   let [selectedFirm, setSelectedFirm] = useState<boolean>(false);
@@ -73,6 +73,12 @@ const Checkout = () => {
     const firmReg = formData.get("cf-reg");
 
     const orderNum = Math.floor(100000 + Math.random() * 900000);
+
+    if (payment == ''){
+      toast.error("Please select payment method", {
+        style: { marginTop: "100px" },
+      });
+    }
 
     if (
       name &&

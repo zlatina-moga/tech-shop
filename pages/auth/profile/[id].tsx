@@ -133,7 +133,7 @@ const Profile = () => {
               <hr />
             </div>
 
-            <form className="mt-0 px-5" onSubmit={onSubmit}>
+            <form className="mt-0" onSubmit={onSubmit}>
               <div className="row mb-5 gx-5 justify-content-center">
                 <div className="mb-5 mb-xxl-0">
                   <div className="bg-secondary-soft px-4 py-5 rounded">

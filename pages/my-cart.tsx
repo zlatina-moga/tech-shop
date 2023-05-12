@@ -145,7 +145,7 @@ const MyCard = () => {
                     className="btn btn-block btn-primary my-3 py-3"
                     href="/checkout"
                   >
-                    Finalizeaza Comanda
+                    Urmatorul pas
                   </Link>
                 ) : (
                   <Link
