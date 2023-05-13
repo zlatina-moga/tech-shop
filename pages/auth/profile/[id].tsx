@@ -266,7 +266,8 @@ const Profile = () => {
                             <table className="table table-bordered text-center mb-0">
                               <thead className="bg-secondary text-dark">
                                 <tr>
-                                  <th>Data comenzii</th>
+                                  <th>Comanda ID</th>
+                                  <th>Data</th>
                                   <th>Produse</th>
                                   <th>Preț</th>
                                   <th>Garanție</th>
@@ -285,6 +286,7 @@ const Profile = () => {
                                     warranty={p.warranty}
                                     profile
                                     createdAt={p.createdAt}
+                                    orderNum={p._id}
                                   />
                                 ))}
                               </tbody>

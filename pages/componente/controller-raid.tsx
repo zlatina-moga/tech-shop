@@ -73,7 +73,7 @@ const Controllers = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/controller-raid") {
+    if (priceRange != '' && brand && selectedSort != "/componente/controller-raid") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -99,7 +99,7 @@ const Controllers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/controller-raid") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedControllersPrice(priceRange, currentPage, sort)
@@ -129,7 +129,7 @@ const Controllers = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getControllersPriceAndBrand(priceRange, currentPage, brand)
@@ -141,7 +141,7 @@ const Controllers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllControllersPrice(priceRange, currentPage)

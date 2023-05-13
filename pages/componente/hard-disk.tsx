@@ -71,7 +71,7 @@ const HardDisks = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/hard-disk") {
+    if (priceRange != '' && brand && selectedSort != "/componente/hard-disk") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -97,7 +97,7 @@ const HardDisks = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/componente/hard-disk") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedHardDisksPrice(priceRange, currentPage, sort)
@@ -127,7 +127,7 @@ const HardDisks = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getHardDisksPriceAndBrand(priceRange, currentPage, brand)
@@ -139,7 +139,7 @@ const HardDisks = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllHardDisksPrice(priceRange, currentPage)

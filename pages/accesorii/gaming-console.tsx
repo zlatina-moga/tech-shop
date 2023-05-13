@@ -35,6 +35,7 @@ const Gaming = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService.getAllGamingByBrand(currentPage, brand).then((result) => {
@@ -69,7 +70,7 @@ const Gaming = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/gaming-console") {
+    if (priceRange != '' && brand && selectedSort != "/componente/gaming-console") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -95,7 +96,7 @@ const Gaming = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/gaming-console") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedGamingPrice(priceRange, currentPage, sort)
@@ -125,7 +126,7 @@ const Gaming = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getGamingPriceAndBrand(priceRange, currentPage, brand)
@@ -137,7 +138,7 @@ const Gaming = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllGamingPrice(priceRange, currentPage)

@@ -71,7 +71,7 @@ const Palmrests = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/palmrest") {
+    if (priceRange != '' && brand && selectedSort != "/componente/palmrest") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -97,7 +97,7 @@ const Palmrests = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/componente/palmrest") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedPalmrestsPrice(priceRange, currentPage, sort)
@@ -127,7 +127,7 @@ const Palmrests = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getPalmrestsriceAndBrand(priceRange, currentPage, brand)
@@ -139,7 +139,7 @@ const Palmrests = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllPalmrestsPrice(priceRange, currentPage)

@@ -37,6 +37,7 @@ const Videos = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService
@@ -74,7 +75,7 @@ const Videos = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/videoproiectoare") {
+    if (priceRange != '' && brand && selectedSort != "/componente/videoproiectoare") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -100,7 +101,7 @@ const Videos = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/componente/videoproiectoare") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedVideoPrice(priceRange, currentPage, sort)
@@ -130,7 +131,7 @@ const Videos = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getVideoPriceAndBrand(priceRange, currentPage, brand)
@@ -142,7 +143,7 @@ const Videos = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllVideoPrice(priceRange, currentPage)

@@ -73,7 +73,7 @@ const VideoCards = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/placa-video") {
+    if (priceRange != '' && brand && selectedSort != "/componente/placa-video") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -99,7 +99,7 @@ const VideoCards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/componente/placa-video" ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedVideoCardsPrice(priceRange, currentPage, sort)
@@ -129,7 +129,7 @@ const VideoCards = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getVideoCardsPriceAndBrand(priceRange, currentPage, brand)
@@ -141,7 +141,7 @@ const VideoCards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllVideoCardsPrice(priceRange, currentPage)

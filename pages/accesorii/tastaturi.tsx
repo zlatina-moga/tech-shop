@@ -35,6 +35,7 @@ const Keyboards = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService
@@ -71,7 +72,7 @@ const Keyboards = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/tastaturi") {
+    if (priceRange != '' && brand && selectedSort != "/componente/tastaturi") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -97,7 +98,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/tastaturi") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedKeyboardsPrice(priceRange, currentPage, sort)
@@ -127,7 +128,7 @@ const Keyboards = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getKeyboardsPriceAndBrand(priceRange, currentPage, brand)
@@ -139,7 +140,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllKeyboardsPrice(priceRange, currentPage)

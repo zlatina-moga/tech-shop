@@ -73,7 +73,7 @@ const LaptopBatteries = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/baterie-laptop") {
+    if (priceRange != '' && brand && selectedSort != "/componente/baterie-laptop") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -104,7 +104,7 @@ const LaptopBatteries = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/baterie-laptop") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptopBatteriesPrice(priceRange, currentPage, sort)
@@ -134,7 +134,7 @@ const LaptopBatteries = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getLaptopBatteriesPriceAndBrand(priceRange, currentPage, brand)
@@ -146,7 +146,7 @@ const LaptopBatteries = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllLaptopBatteriesPrice(priceRange, currentPage)

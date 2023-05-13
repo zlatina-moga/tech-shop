@@ -26,6 +26,7 @@ const Headphones = () => {
   const [baseLink, setBaseLink] = useState("/accesorii/casti");
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService.getAllHeadPhonesByBrand(currentPage, brand).then((result) => {
@@ -70,7 +71,7 @@ const Headphones = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/casti") {
+    if (priceRange != '' && brand && selectedSort != "/componente/casti") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -96,7 +97,7 @@ const Headphones = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/casti") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedHeadPhonesPrice(priceRange, currentPage, sort)
@@ -126,7 +127,7 @@ const Headphones = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getHeadPhonesPriceAndBrand(priceRange, currentPage, brand)
@@ -138,7 +139,7 @@ const Headphones = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllHeadPhonesPrice(priceRange, currentPage)

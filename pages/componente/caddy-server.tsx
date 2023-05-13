@@ -71,7 +71,7 @@ const Caddys = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/caddy-server") {
+    if (priceRange != '' && brand && selectedSort != "/componente/caddy-server") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -102,7 +102,7 @@ const Caddys = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/caddy-server") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedCaddyPrice(priceRange, currentPage, sort)
@@ -132,7 +132,7 @@ const Caddys = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getCaddyPriceAndBrand(priceRange, currentPage, brand)
@@ -144,7 +144,7 @@ const Caddys = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllCaddyPrice(priceRange, currentPage)

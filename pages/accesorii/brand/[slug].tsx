@@ -38,7 +38,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     if (tip) {
       setShow(false);
       productService
@@ -78,7 +78,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && tip && selectedSort != `/accesorii/brand/${slug}`) {
+    if (priceRange != '' && tip && selectedSort != `/accesorii/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -111,7 +111,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !tip) {
+    } else if (priceRange != '' && !tip && selectedSort != `/accesorii/brand/${slug}`) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedBrandAccessoriesPrice(currentPage, slug, sort, priceRange)
@@ -141,7 +141,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && tip) {
+    if (priceRange != '' && tip) {
       setShow(false);
       productService
         .getBrandTypeAccessoriesPrice(currentPage, slug, priceRange, tip)
@@ -153,7 +153,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .geAllBrandAccessoriesPrice(currentPage, slug, priceRange)
@@ -166,7 +166,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [priceRange, currentPage, slug]);
+  }, [priceRange, currentPage]);
 
 
   const paginationRange = usePagination({

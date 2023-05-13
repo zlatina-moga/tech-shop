@@ -26,6 +26,7 @@ const Mice = () => {
   const [baseLink, setBaseLink] = useState("/accesorii/mouse");
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService.getAllMiceByBrand(currentPage, brand).then((result) => {
@@ -70,7 +71,7 @@ const Mice = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/mouse") {
+    if (priceRange != '' && brand && selectedSort != "/componente/mouse") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -96,7 +97,7 @@ const Mice = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/mouse") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedMicePrice(priceRange, currentPage, sort)
@@ -126,7 +127,7 @@ const Mice = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getMicePriceAndBrand(priceRange, currentPage, brand)
@@ -138,7 +139,7 @@ const Mice = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllMicePrice(priceRange, currentPage)

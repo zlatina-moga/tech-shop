@@ -37,6 +37,7 @@ const Keyboards = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService
@@ -73,7 +74,7 @@ const Keyboards = () => {
   };
 
   useEffect(() => {
-    if ( priceRange && brand && selectedSort != "/componente/periferice-diverse"  ) {
+    if ( priceRange != '' && brand && selectedSort != "/componente/periferice-diverse"  ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -104,7 +105,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/periferice-diverse") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedOtherAccessoriesPrice(priceRange, currentPage, sort)
@@ -134,7 +135,7 @@ const Keyboards = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getOtherAccessoriesPriceAndBrand(priceRange, currentPage, brand)
@@ -146,7 +147,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllOtherAccessoriesPrice(priceRange, currentPage)

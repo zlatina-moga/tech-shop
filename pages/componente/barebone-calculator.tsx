@@ -74,7 +74,7 @@ const Barebone = () => {
   };
 
   useEffect(() => {
-    if ( priceRange && brand && selectedSort != "/componente/barebone-calculator" ) {
+    if ( priceRange != '' && brand && selectedSort != "/componente/barebone-calculator" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -100,7 +100,7 @@ const Barebone = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/barebone-calculator") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedBarebonePrice(priceRange, currentPage, sort)
@@ -130,7 +130,7 @@ const Barebone = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getBarebonePriceAndBrand(priceRange, currentPage, brand)
@@ -142,7 +142,7 @@ const Barebone = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllBarebonePrice(priceRange, currentPage)

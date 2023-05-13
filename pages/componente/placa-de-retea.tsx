@@ -75,7 +75,7 @@ const Networks = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/placa-de-retea") {
+    if (priceRange != '' && brand && selectedSort != "/componente/placa-de-retea") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -101,7 +101,7 @@ const Networks = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/placa-de-retea" ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNetworksPrice(priceRange, currentPage, sort)
@@ -131,7 +131,7 @@ const Networks = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getNetworkPriceAndBrand(priceRange, currentPage, brand)
@@ -143,7 +143,7 @@ const Networks = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllNetworksPrice(priceRange, currentPage)

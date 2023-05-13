@@ -76,7 +76,7 @@ const Railkits = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/railkit-server") {
+    if (priceRange != '' && brand && selectedSort != "/componente/railkit-server") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -102,7 +102,7 @@ const Railkits = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/railkit-server") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRailkitPrice(priceRange, currentPage, sort)
@@ -132,7 +132,7 @@ const Railkits = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getRailkitPriceAndBrand(priceRange, currentPage, brand)
@@ -144,7 +144,7 @@ const Railkits = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllRailkitPrice(priceRange, currentPage)

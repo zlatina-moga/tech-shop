@@ -72,7 +72,7 @@ const Cases = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/carcasa-si-surse") {
+    if (priceRange != '' && brand && selectedSort != "/componente/carcasa-si-surse") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -98,7 +98,7 @@ const Cases = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/carcasa-si-surse") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedCasesPrice(priceRange, currentPage, sort)
@@ -128,7 +128,7 @@ const Cases = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getCasesPriceAndBrand(priceRange, currentPage, brand)
@@ -140,7 +140,7 @@ const Cases = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllCasesPrice(priceRange, currentPage)

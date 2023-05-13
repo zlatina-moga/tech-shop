@@ -123,12 +123,14 @@ const BrandDetail = () => {
           setItemsData(result);
           setTotalPages(result[0].totalPages);
           setBaseLink(`/laptop/brand/${slug}`);
+          setProcessorsLink(`${baseLink}?procesor=`)
+          setProcessorsGenerationlink(`${baseLink}?generatie=`)
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, procesor, generatie]);
+  }, [currentPage, slug, procesor, generatie, baseLink]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

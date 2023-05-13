@@ -26,6 +26,7 @@ const Cameras = () => {
   const [baseLink, setBaseLink] = useState("/accesorii/camere-web");
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService.getAllCamerasByBrand(currentPage, brand).then((result) => {
@@ -69,7 +70,7 @@ const Cameras = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/camere-web") {
+    if (priceRange != '' && brand && selectedSort != "/componente/camere-web") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -95,7 +96,7 @@ const Cameras = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/camere-web") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedCamerasPrice(priceRange, currentPage, sort)
@@ -125,7 +126,7 @@ const Cameras = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getCamerasPriceAndBrand(priceRange, currentPage, brand)
@@ -137,7 +138,7 @@ const Cameras = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllCamerasPrice(priceRange, currentPage)

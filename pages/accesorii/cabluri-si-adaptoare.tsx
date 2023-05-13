@@ -29,6 +29,7 @@ const Cables = () => {
   const [baseLink, setBaseLink] = useState("/accesorii/cabluri-si-adaptoare");
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService
@@ -76,7 +77,7 @@ const Cables = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/accesorii/cabluri-si-adaptoare" ) {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/cabluri-si-adaptoare" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -107,7 +108,7 @@ const Cables = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/cabluri-si-adaptoare") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedCablesPrice(priceRange, currentPage, sort)
@@ -137,7 +138,7 @@ const Cables = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getCablesPriceAndBrand(priceRange, currentPage, brand)
@@ -149,7 +150,7 @@ const Cables = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllCablesPrice(priceRange, currentPage)

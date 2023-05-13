@@ -38,6 +38,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    setLoading(true);
     if (componenta) {
       setShow(false);
       productService
@@ -77,7 +78,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if ( priceRange && componenta && selectedSort != `/componente/brand/${slug}`) {
+    if ( priceRange != '' && componenta && selectedSort != `/componente/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -110,7 +111,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !componenta) {
+    } else if (priceRange != '' && !componenta && selectedSort != `/componente/brand/${slug}`) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedBrandComponentsPrice(currentPage, slug, sort, priceRange)
@@ -140,7 +141,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && componenta) {
+    if (priceRange != '' && componenta) {
       setShow(false);
       productService
         .getBrandTypeComponentsPrice(currentPage, slug, priceRange, componenta)
@@ -152,7 +153,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .geAllBrandComponentsPrice(currentPage, slug, priceRange)

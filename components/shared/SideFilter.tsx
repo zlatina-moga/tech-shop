@@ -20,7 +20,6 @@ const SideFilter = ({
   screens,
   screensLink,
   secTitle
-  //baseLink
 }) => {
   const router = useRouter();
   const [value, setValue] = useState(1);

@@ -74,7 +74,7 @@ const MotherBoards = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/placa-de-baza-calculator") {
+    if (priceRange != '' && brand && selectedSort != "/componente/placa-de-baza-calculator") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -100,7 +100,7 @@ const MotherBoards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/placa-de-baza-calculator") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedMotherBoardsPrice(priceRange, currentPage, sort)
@@ -130,7 +130,7 @@ const MotherBoards = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getMotherBoardsPriceAndBrand(priceRange, currentPage, brand)
@@ -142,7 +142,7 @@ const MotherBoards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllMotherBoardsPrice(priceRange, currentPage)

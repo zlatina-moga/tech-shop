@@ -72,7 +72,7 @@ const Coolers = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/coolere-si-radiatoare") {
+    if (priceRange != '' && brand && selectedSort != "/componente/coolere-si-radiatoare") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -98,7 +98,7 @@ const Coolers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/coolere-si-radiatoare" ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedCoolersPrice(priceRange, currentPage, sort)
@@ -128,7 +128,7 @@ const Coolers = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getCoolersPriceAndBrand(priceRange, currentPage, brand)
@@ -140,7 +140,7 @@ const Coolers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllCoolersPrice(priceRange, currentPage)

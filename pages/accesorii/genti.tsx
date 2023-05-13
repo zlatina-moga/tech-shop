@@ -35,6 +35,7 @@ const Bags = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService.getAllBagsByBrand(currentPage, brand).then((result) => {
@@ -70,7 +71,7 @@ const Bags = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/genti") {
+    if (priceRange != '' && brand && selectedSort != "/componente/genti") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -96,7 +97,7 @@ const Bags = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/genti") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedBagsPrice(priceRange, currentPage, sort)
@@ -126,7 +127,7 @@ const Bags = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getBagsPriceAndBrand(priceRange, currentPage, brand)
@@ -138,7 +139,7 @@ const Bags = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllBagsPrice(priceRange, currentPage)

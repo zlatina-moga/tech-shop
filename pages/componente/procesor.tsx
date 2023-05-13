@@ -73,7 +73,7 @@ const Procesors = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/procesor") {
+    if (priceRange != '' && brand && selectedSort != "/componente/procesor") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -99,7 +99,7 @@ const Procesors = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange  && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/componente/procesor")  {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedProcesorsPrice(priceRange, currentPage, sort)
@@ -129,7 +129,7 @@ const Procesors = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getProcesorsPriceAndBrand(priceRange, currentPage, brand)
@@ -141,7 +141,7 @@ const Procesors = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllProcesorsPrice(priceRange, currentPage)

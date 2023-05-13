@@ -12,7 +12,8 @@ const CartItem = ({
   priceNum,
   warranty,
   profile,
-  createdAt
+  createdAt,
+  orderNum
 }) => {
   const dispatch = useDispatch();
 
@@ -32,6 +33,7 @@ const CartItem = ({
 
   return (
     <tr key={id}>
+      {profile && <td className="align-middle product-item">{orderNum}</td>}
       {profile && <td className="align-middle product-item">{createdAt.split('T')[0]}</td>}
       <td className="align-middle product-item">
         <img

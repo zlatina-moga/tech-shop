@@ -37,6 +37,7 @@ const DockingStations = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService.getAllDockingStationsByBrand(currentPage, brand).then((result) => {
@@ -72,7 +73,7 @@ const DockingStations = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/docking-station") {
+    if (priceRange != '' && brand && selectedSort != "/componente/docking-station") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -98,7 +99,7 @@ const DockingStations = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/componente/docking-station") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedDockingStationsPrice(priceRange, currentPage, sort)
@@ -128,7 +129,7 @@ const DockingStations = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getDockingStationsPriceAndBrand(priceRange, currentPage, brand)
@@ -140,7 +141,7 @@ const DockingStations = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllDockingStationsPrice(priceRange, currentPage)

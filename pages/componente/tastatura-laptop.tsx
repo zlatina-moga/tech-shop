@@ -76,7 +76,7 @@ const LaptopKeyboards = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/tastatura-laptop") {
+    if (priceRange != '' && brand && selectedSort != "/componente/tastatura-laptop") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -102,7 +102,7 @@ const LaptopKeyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/componente/tastatura-laptop") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptopKeyboardsPrice(priceRange, currentPage, sort)
@@ -132,7 +132,7 @@ const LaptopKeyboards = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getLaptopKeyboardsPriceAndBrand(priceRange, currentPage, brand)
@@ -144,7 +144,7 @@ const LaptopKeyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllLaptopKeyboardsPrice(priceRange, currentPage)

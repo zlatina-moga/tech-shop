@@ -37,6 +37,7 @@ const LaptopChargers = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     if (brand) {
       setShow(false);
       productService
@@ -74,7 +75,7 @@ const LaptopChargers = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/alimentator-laptop" ) {
+    if (priceRange != '' && brand && selectedSort != "/componente/alimentator-laptop" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -105,7 +106,7 @@ const LaptopChargers = () => {
         .catch((err) => {
           console.log(err);
         });
-    }  else if (priceRange && !brand) {
+    }  else if (priceRange != '' && !brand && selectedSort != "/componente/alimentator-laptop") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedLaptopChargersPrice(priceRange, currentPage, sort)
@@ -135,7 +136,7 @@ const LaptopChargers = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getLaptopChargersPriceAndBrand(priceRange, currentPage, brand)
@@ -147,7 +148,7 @@ const LaptopChargers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllLaptopChargersPrice(priceRange, currentPage)

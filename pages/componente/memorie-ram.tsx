@@ -71,7 +71,7 @@ const RAM = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/componente/memorie-ram") {
+    if (priceRange != '' && brand && selectedSort != "/componente/memorie-ram") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -97,7 +97,7 @@ const RAM = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/componente/memorie-ram") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRAMPrice(priceRange, currentPage, sort)
@@ -127,7 +127,7 @@ const RAM = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getRAMPriceAndBrand(priceRange, currentPage, brand)
@@ -139,7 +139,7 @@ const RAM = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllRAMPrice(priceRange, currentPage)
