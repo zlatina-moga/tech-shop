@@ -16,6 +16,7 @@ const DiscountedItems = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/produse-la-reducere");
   const router = useRouter();
+  const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
     productService
@@ -34,17 +35,22 @@ const DiscountedItems = () => {
   };
 
   useEffect(() => {
-    router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
-    productService
-      .getSortedDiscountedItems(currentPage, sort)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (selectedSort != "/produse-la-reducere") {
+      setShow(false)
+      router.push(selectedSort);
+      const sort = selectedSort.split("=")[1];
+      productService
+        .getSortedDiscountedItems(currentPage, sort)
+        .then((result) => {
+          setLoading(false);
+          setLaptopsData(result);
+          setShow(true)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
   }, [selectedSort, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
@@ -81,6 +87,7 @@ const DiscountedItems = () => {
             breadcrumbs={discountedItemsBrcrmbs}
             sortCriteria={onSort}
             baseLink='/produse-la-reducere'
+            className={show ? "" : "opacity-50"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

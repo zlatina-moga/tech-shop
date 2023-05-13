@@ -114,7 +114,7 @@ const NewPOS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && brand && selectedSort != "/sisteme-pos/nou") {
+    if (priceRange != '' && procesor && brand && selectedSort != "/sisteme-pos/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -133,7 +133,7 @@ const NewPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor && selectedSort != "/sisteme-pos/nou") {
+    } else if (priceRange != '' && procesor && selectedSort != "/sisteme-pos/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -146,7 +146,7 @@ const NewPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand && selectedSort != "/sisteme-pos/nou") {
+    } else if (priceRange != '' && brand && selectedSort != "/sisteme-pos/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -200,7 +200,7 @@ const NewPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange  && !brand && !procesor ) {
+    } else if (priceRange != ''  && !brand && !procesor && selectedSort != "/sisteme-pos/nou") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewPOSPrice(priceRange, currentPage, sort)
@@ -230,7 +230,7 @@ const NewPOS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && brand) {
+    if (priceRange != '' && procesor && brand) {
       setShow(false);
       productService
         .getNewPOSProcesorsBrandByPrice(
@@ -247,7 +247,7 @@ const NewPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor) {
+    } else if (priceRange != '' && procesor) {
       setShow(false);
       productService
         .getNewPOSProcesorByPrice(procesor, priceRange, currentPage)
@@ -259,7 +259,7 @@ const NewPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand) {
+    } else if (priceRange != ''&& brand) {
       setShow(false);
       productService
         .getNewPOSBrandsByPrice(brand, priceRange, currentPage)
@@ -271,7 +271,7 @@ const NewPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllNewPOSPrice(priceRange, currentPage)

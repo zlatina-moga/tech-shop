@@ -69,7 +69,7 @@ const NewUPS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/ups/nou") {
+    if (priceRange != '' && brand && selectedSort != "/ups/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -95,7 +95,7 @@ const NewUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != ''  && !brand && selectedSort != "/ups/nou") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedlNewUPSPrice(priceRange, currentPage, sort)
@@ -125,7 +125,7 @@ const NewUPS = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getNewUPSPriceAndBrand(priceRange, currentPage, brand)
@@ -137,7 +137,7 @@ const NewUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAlllNewUPSPrice(priceRange, currentPage)

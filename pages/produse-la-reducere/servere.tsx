@@ -75,7 +75,7 @@ const DiscountedServers = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/produse-la-reducere/servere") {
+    if (priceRange != ''&& brand && selectedSort != "/produse-la-reducere/servere") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -106,7 +106,7 @@ const DiscountedServers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/produse-la-reducere/servere") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -142,7 +142,7 @@ const DiscountedServers = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange  != '') {
       setShow(false);
       productService
         .getDiscountedServersPriceAndBrand(priceRange, currentPage, brand)
@@ -154,7 +154,7 @@ const DiscountedServers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if(priceRange  != '') {
       setShow(false);
       productService
         .getAllDiscountedServersPrice(priceRange, currentPage)

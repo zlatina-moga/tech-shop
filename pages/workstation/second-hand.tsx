@@ -4,7 +4,6 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { workstationCategories } from "../../data/categories";
 import { workstationSHBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import * as sortingService from "../../services/sortingService";
@@ -22,7 +21,6 @@ const WorkstationsSecondHand = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const [categories, setCategories] = useState([]);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
 
   useEffect(() => {
@@ -34,9 +32,6 @@ const WorkstationsSecondHand = () => {
     });
     sortingService.getHighestPrice(17).then((response) => {
       setHighestPrice(response[1]);
-    });
-    sortingService.getTypes(17).then((r) => {
-      setCategories(r);
     });
     sortingService.getProcessorGeneration(17).then((r) => {
       setProcessorsGeneration(r);
@@ -60,7 +55,7 @@ const WorkstationsSecondHand = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/workstation/second-hand" ) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSecondHandWorkstationsPrice(priceRange, currentPage, sort)
@@ -70,7 +65,7 @@ const WorkstationsSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/workstation/second-hand") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -82,25 +77,23 @@ const WorkstationsSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getSecondHandWorkstationsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getSecondHandWorkstationsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -132,7 +125,6 @@ const WorkstationsSecondHand = () => {
           <LaptopsPage
             title="Workstation Second Hand"
             laptopsData={laptopsData}
-            categories={categories}
             breadcrumbs={workstationSHBrcrmbs}
             sortCriteria={onSort}
             baseLink="/workstation/second-hand"

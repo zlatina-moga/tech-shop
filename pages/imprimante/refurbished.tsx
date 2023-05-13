@@ -71,7 +71,7 @@ const RefPrinters = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/imprimante/refurbished") {
+    if (priceRange != ''&& brand && selectedSort != "/imprimante/refurbished") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -97,7 +97,7 @@ const RefPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/imprimante/refurbished") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefPrintersPrice(priceRange, currentPage, sort)
@@ -127,7 +127,7 @@ const RefPrinters = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getBrandByPriceRefPrinters(currentPage, brand, priceRange)
@@ -139,7 +139,7 @@ const RefPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllRefPrintersPrice(currentPage, priceRange)

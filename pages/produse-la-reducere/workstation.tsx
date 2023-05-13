@@ -76,7 +76,7 @@ const DiscountedWorkstations = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/produse-la-reducere/workstation") {
+    if (priceRange != '' && brand && selectedSort != "/produse-la-reducere/workstation") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -107,7 +107,7 @@ const DiscountedWorkstations = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/produse-la-reducere/workstation") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -142,7 +142,7 @@ const DiscountedWorkstations = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getDiscountedWorkstationsPriceAndBrand(priceRange, currentPage, brand)
@@ -154,7 +154,7 @@ const DiscountedWorkstations = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllDiscountedWorkstationssPrice(priceRange, currentPage)

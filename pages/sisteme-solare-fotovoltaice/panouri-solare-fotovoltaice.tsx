@@ -49,7 +49,7 @@ const SolarPanels = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort!= "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedPanelsPrice(priceRange, currentPage, sort)
@@ -59,7 +59,7 @@ const SolarPanels = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort!= "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

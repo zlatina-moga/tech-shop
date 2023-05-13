@@ -54,7 +54,7 @@ const LaptopuriSecondHand = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/laptop/second-hand") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSecondHandLaptopsPrice(priceRange, currentPage, sort)
@@ -64,7 +64,7 @@ const LaptopuriSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/laptop/second-hand") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -76,25 +76,23 @@ const LaptopuriSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getAllSecondHandLaptopsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getAllSecondHandLaptopsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 

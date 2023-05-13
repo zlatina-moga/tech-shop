@@ -74,7 +74,7 @@ const Adaptors = () => {
   };
 
   useEffect(() => {
-    if (priceRange &&  brand &&  selectedSort != "/retelistica/adaptoare-wireless" ) {
+    if (priceRange != '' &&  brand &&  selectedSort != "/retelistica/adaptoare-wireless" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -100,7 +100,7 @@ const Adaptors = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/retelistica/adaptoare-wireless") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedAdaptorsPrice(priceRange, currentPage, sort)
@@ -130,7 +130,7 @@ const Adaptors = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getAdaptorsPriceAndBrand(priceRange, currentPage, brand)
@@ -142,7 +142,7 @@ const Adaptors = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllAdaptorsPrice(priceRange, currentPage)

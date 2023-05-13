@@ -49,7 +49,7 @@ const Invertors = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/sisteme-solare-fotovoltaice/invertoare-fotovoltaice") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedInvertorsPrice(priceRange, currentPage, sort)
@@ -59,7 +59,7 @@ const Invertors = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/sisteme-solare-fotovoltaice/invertoare-fotovoltaice") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

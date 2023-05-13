@@ -146,6 +146,8 @@ const ProcDetail = () => {
           setItemData(result);
           setTotalPages(result[0].totalPages);
           setBaseLink(`/workstation/refurbished/generatie/${slug}`);
+          setProcessorslink(`${baseLink}?procesor=`)
+          setBrandLink(`${baseLink}?brand=`)
         })
         .catch((err) => {
           console.log(err);
@@ -158,7 +160,7 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && brand && selectedSort != `/workstation/refurbished/generatie/${slug}`) {
+    if (priceRange != '' && procesor && brand && selectedSort != `/workstation/refurbished/generatie/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -178,7 +180,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor && selectedSort != `/workstation/refurbished/generatie/${slug}` ) {
+    } else if (priceRange != '' && procesor && selectedSort != `/workstation/refurbished/generatie/${slug}` ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -197,7 +199,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand && selectedSort != `/workstation/refurbished/generatie/${slug}`) {
+    } else if (priceRange != '' && brand && selectedSort != `/workstation/refurbished/generatie/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -235,7 +237,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand && !procesor) {
+    } else if (priceRange != '' && !brand && !procesor && selectedSort != `/workstation/refurbished/generatie/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -309,7 +311,7 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && brand) {
+    if (priceRange != '' && procesor && brand) {
       setShow(false);
       productService
         .getAllRefWorkstationsByBrandProcessorAndGenerationPrice(
@@ -327,7 +329,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor) {
+    } else if (priceRange != ''&& procesor) {
       setShow(false);
       productService
         .getRefWorkstationsByGenerationProcessorPrice(
@@ -344,7 +346,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand) {
+    } else if (priceRange != ''&& brand) {
       setShow(false);
       productService
         .getRefWorkstationsByGenerationBrandPrice(
@@ -361,7 +363,8 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else { setShow(false);
+    } else if (priceRange != '') {
+       setShow(false);
     productService
       .getAllRefWorkstationByGenerationPrice(currentPage, slug, priceRange)
       .then((result) => {

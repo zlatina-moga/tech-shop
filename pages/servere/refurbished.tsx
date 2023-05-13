@@ -50,7 +50,7 @@ const RefurbishedServers = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '') {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService

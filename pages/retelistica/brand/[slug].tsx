@@ -79,7 +79,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && tip && selectedSort != `/retelistica/brand/${slug}`) {
+    if (priceRange != '' && tip && selectedSort != `/retelistica/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -112,7 +112,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !tip) {
+    } else if (priceRange != ''  && !tip && selectedSort != `/retelistica/brand/${slug}`) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRetailsBrandPrice(currentPage, slug, sort, priceRange)
@@ -142,7 +142,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && tip) {
+    if (priceRange != '' && tip) {
       setShow(false);
       productService
         .getBrandTypeRetailsPrice(currentPage, slug, priceRange, tip)
@@ -154,7 +154,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else  if (priceRange != '') {
       setShow(false);
       productService
         .geAllRetailsBrandPrice(currentPage, slug, priceRange)

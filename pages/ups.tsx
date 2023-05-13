@@ -5,7 +5,6 @@ import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
-import { upsCategories } from "../data/categories";
 import { upsBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
 import Footer from "../components/global/Footer";
@@ -39,7 +38,7 @@ const UPS = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/ups") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedUPSPrice(priceRange, currentPage, sort)
@@ -49,7 +48,7 @@ const UPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/ups"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -61,8 +60,19 @@ const UPS = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getAllUPSPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   useEffect(() => {
     sortingService.getBrands(40).then((result) => {
@@ -79,19 +89,6 @@ const UPS = () => {
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getAllUPSPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 

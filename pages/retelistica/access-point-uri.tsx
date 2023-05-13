@@ -74,7 +74,7 @@ const AccessPoints = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/retelistica/access-point-uri"  ) {
+    if (priceRange != '' && brand && selectedSort != "/retelistica/access-point-uri"  ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -105,7 +105,7 @@ const AccessPoints = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/retelistica/access-point-uri") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedAccessPointsPrice(priceRange, currentPage, sort)
@@ -135,7 +135,7 @@ const AccessPoints = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getAccessPointsPriceAndBrand(priceRange, currentPage, brand)
@@ -147,7 +147,7 @@ const AccessPoints = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if(priceRange != '') {
       setShow(false);
       productService
         .getAllAccessPointsPrice(priceRange, currentPage)

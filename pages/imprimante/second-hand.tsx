@@ -71,7 +71,7 @@ const NewPrinters = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/imprimante/second-hand") {
+    if (priceRange != '' && brand && selectedSort != "/imprimante/second-hand") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -84,7 +84,7 @@ const NewPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    }  else if (brand && selectedSort != "/imprimante/second-hand") {
+    } else if (brand && selectedSort != "/imprimante/second-hand") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -97,7 +97,7 @@ const NewPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/imprimante/second-hand") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSHPrintersPrice(priceRange, currentPage, sort)
@@ -127,7 +127,7 @@ const NewPrinters = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getBrandByPriceSHPrinters(currentPage, brand, priceRange)
@@ -139,7 +139,7 @@ const NewPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllSHPrintersPrice(currentPage, priceRange)

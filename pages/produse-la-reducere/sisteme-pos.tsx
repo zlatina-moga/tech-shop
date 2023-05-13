@@ -77,7 +77,7 @@ const DiscountedPOS = () => {
   };
 
   useEffect(() => {
-    if ( priceRange &&  brand && selectedSort != "/produse-la-reducere/sisteme-pos"  ) {
+    if ( priceRange != '' &&  brand && selectedSort != "/produse-la-reducere/sisteme-pos"  ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -108,7 +108,7 @@ const DiscountedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/produse-la-reducere/sisteme-pos") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -144,7 +144,7 @@ const DiscountedPOS = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange!= '') {
       setShow(false);
       productService
         .getDiscountedPOSPriceAndBrand(priceRange, currentPage, brand)
@@ -156,7 +156,7 @@ const DiscountedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if(priceRange!= '') {
       setShow(false);
       productService
         .getAllDiscountedPOSPrice(priceRange, currentPage)

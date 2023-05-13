@@ -77,7 +77,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && selectedSort != `/monitoare/brand/${slug}`) {
+    if (priceRange != '' && screen && selectedSort != `/monitoare/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -110,7 +110,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !screen) {
+    } else if (priceRange != '' && !screen && selectedSort != `/monitoare/brand/${slug}`) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedBrandMonitorsPrice(currentPage, slug, sort, priceRange)
@@ -140,7 +140,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen) {
+    if (priceRange != '' && screen) {
       setShow(false);
       productService
         .getMonitorsScreensBrandByPrice(screen, priceRange, currentPage, slug)
@@ -152,7 +152,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .geAllBrandMonitorsPrice(currentPage, slug, priceRange)

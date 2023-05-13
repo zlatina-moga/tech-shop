@@ -50,7 +50,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != `/sisteme-solare-fotovoltaice/brand/${slug}`) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSolarPanelsBrandsPrice(currentPage, slug, sort, priceRange)
@@ -60,7 +60,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != `/sisteme-solare-fotovoltaice/brand/${slug}`) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

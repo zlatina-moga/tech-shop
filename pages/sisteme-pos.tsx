@@ -40,7 +40,7 @@ const SistemePOS = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange!= '' && selectedSort != "/sisteme-pos") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedPOSPrice(priceRange, currentPage, sort)
@@ -50,7 +50,7 @@ const SistemePOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/sisteme-pos"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -62,25 +62,23 @@ const SistemePOS = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange!= '') {
+      setShow(false);
+      productService
+        .geAllPOSPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .geAllPOSPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   useEffect(() => {
     sortingService.getBrands(34).then((result) => {

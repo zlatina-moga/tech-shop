@@ -76,7 +76,7 @@ const DiscountedUPS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/produse-la-reducere/ups" ) {
+    if (priceRange != '' && brand && selectedSort != "/produse-la-reducere/ups" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -107,7 +107,7 @@ const DiscountedUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/produse-la-reducere/ups") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -144,7 +144,7 @@ const DiscountedUPS = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getDiscountedUPSPriceAndBrand(priceRange, currentPage, brand)
@@ -156,7 +156,7 @@ const DiscountedUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if(priceRange != '') {
       setShow(false);
       productService
         .getAllDiscountedUPSPrice(priceRange, currentPage)

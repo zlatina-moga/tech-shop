@@ -82,7 +82,7 @@ const ProcDetail = () => {
 
   useEffect(() => {
     if (
-      priceRange &&
+      priceRange != '' &&
       brand &&
       selectedSort != `/sisteme-pos/procesor/${slug}`
     ) {
@@ -112,7 +112,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != `/sisteme-pos/procesor/${slug}`) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedPOSByProcessorPrice(currentPage, slug, sort, priceRange)
@@ -142,7 +142,7 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand) {
+    if (priceRange != '' && brand) {
       setShow(false);
       productService
         .getBrandTypePOSPrice(currentPage, brand, priceRange, slug)
@@ -154,7 +154,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllPOSByProcessorPrice(currentPage, slug, priceRange)

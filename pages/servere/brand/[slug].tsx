@@ -77,7 +77,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor  && selectedSort != `/servere/brand/${slug}`) {
+    if (priceRange != '' && procesor  && selectedSort != `/servere/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -96,7 +96,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !procesor) {
+    } else if (priceRange != '' && !procesor && selectedSort != `/servere/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -146,7 +146,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-  if (priceRange && procesor) {
+  if (priceRange != ''  && procesor) {
       setShow(false);
       productService
         .getAllServersByBrandProcessorPrice(
@@ -163,7 +163,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllServersByBrandPrice(currentPage, slug, priceRange)

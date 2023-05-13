@@ -38,7 +38,7 @@ const Retails = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort!= "/retelistica") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRetailsPrice(priceRange, currentPage, sort)
@@ -48,7 +48,7 @@ const Retails = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort!= "/retelistica"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -60,25 +60,23 @@ const Retails = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != '' ) {
+      setShow(false);
+      productService
+        .geAllRetailsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .geAllRetailsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   useEffect(() => {
     sortingService.getBrands(44).then((result) => {

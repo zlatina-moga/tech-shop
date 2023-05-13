@@ -137,7 +137,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && generatie && selectedSort != `/laptop/brand/${slug}`) {
+    if (priceRange != '' && procesor && generatie && selectedSort != `/laptop/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -157,7 +157,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor && selectedSort != `/laptop/brand/${slug}` ) {
+    } else if (priceRange != '' && procesor && selectedSort != `/laptop/brand/${slug}` ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -176,7 +176,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && generatie && selectedSort != `/laptop/brand/${slug}`) {
+    } else if (priceRange != '' && generatie && selectedSort != `/laptop/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -214,7 +214,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !procesor && !generatie ) {
+    } else if (priceRange != '' && !procesor && !generatie && selectedSort != `/laptop/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -282,7 +282,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && generatie) {
+    if (priceRange != '' && procesor && generatie) {
       setShow(false);
       productService
         .getAllLaptopsByBrandProcessorAndGenerationPrice(
@@ -300,7 +300,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor) {
+    } else if (priceRange != '' && procesor) {
       setShow(false);
       productService
         .getAllLaptopsByBrandProcessorPrice(
@@ -317,7 +317,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && generatie) {
+    } else if (priceRange != '' && generatie) {
       setShow(false);
       productService
         .getAllLaptopssByBrandGenerationPrice(
@@ -334,7 +334,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != ''){
       setShow(false);
       productService
         .getAllLaptopsByBrandPrice(currentPage, slug, priceRange)

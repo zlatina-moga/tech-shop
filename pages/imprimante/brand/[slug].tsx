@@ -47,7 +47,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != (`/imprimante/brand/${slug}`)) {
       setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
@@ -59,7 +59,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != (`/imprimante/brand/${slug}`)) {
       router.push(selectedSort);
       setShow(false)
       const sort = selectedSort.split("=")[1];
@@ -73,25 +73,23 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getBrandByPricePrinters(currentPage, slug, priceRange)
+        .then((result) => {
+          seItemsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getBrandByPricePrinters(currentPage, slug, priceRange)
-      .then((result) => {
-        seItemsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = itemData[0]?.totalPages;
 

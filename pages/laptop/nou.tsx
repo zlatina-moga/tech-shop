@@ -54,7 +54,7 @@ const LaptopuriNoi = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/laptop/nou") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewLaptopsPrice(priceRange, currentPage, sort)
@@ -64,7 +64,7 @@ const LaptopuriNoi = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/laptop/nou") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -76,25 +76,23 @@ const LaptopuriNoi = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getAllNewLaptopsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getAllNewLaptopsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 

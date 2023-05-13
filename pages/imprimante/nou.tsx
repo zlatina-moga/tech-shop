@@ -71,7 +71,7 @@ const NewPrinters = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/imprimante/nou") {
+    if (priceRange != '' && brand && selectedSort != "/imprimante/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -97,8 +97,7 @@ const NewPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    }
-    if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/imprimante/nou") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewPrintersPrice(priceRange, currentPage, sort)
@@ -128,7 +127,7 @@ const NewPrinters = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange  != '') {
       setShow(false);
       productService
         .getBrandByPriceNewPrinters(currentPage, brand, priceRange)
@@ -140,7 +139,7 @@ const NewPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllNewPrintersPrice(currentPage, priceRange)

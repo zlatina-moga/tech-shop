@@ -48,7 +48,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != `/ups/brand/${slug}`) {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedUPSBrandsPrice(currentPage, slug, sort, priceRange)
@@ -58,7 +58,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != `/ups/brand/${slug}`) {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

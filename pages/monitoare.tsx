@@ -77,7 +77,7 @@ const Monitoare = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && selectedSort != "/monitoare") {
+    if (priceRange != '' && screen && selectedSort != "/monitoare") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -90,7 +90,7 @@ const Monitoare = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && screen) {
+    } else if (priceRange != '' && screen  && selectedSort != "/monitoare") {
       setShow(false);
       productService
         .getMonitorsScreensByPrice(screen, priceRange, currentPage)
@@ -102,7 +102,7 @@ const Monitoare = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && selectedSort != "/monitoare") {
+    } else if (priceRange != '' && selectedSort != "/monitoare") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -115,7 +115,7 @@ const Monitoare = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (screen && selectedSort) {
+    } else if (screen && selectedSort != "/monitoare") {
       setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[2];
@@ -144,7 +144,7 @@ const Monitoare = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !screen) {
+    } else if (priceRange != '' && !screen && selectedSort != "/monitoare") {
       setShow(false);
       productService
         .geAllMonitorsPrice(priceRange, currentPage)

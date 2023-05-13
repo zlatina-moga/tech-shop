@@ -110,7 +110,7 @@ const MonitoareNew = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && brand && selectedSort != "/monitoare/nou") {
+    if (priceRange != '' && screen && brand && selectedSort != "/monitoare/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -129,7 +129,7 @@ const MonitoareNew = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && screen && selectedSort != "/monitoare/nou") {
+    } else if (priceRange != ''  && screen && selectedSort != "/monitoare/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -142,7 +142,7 @@ const MonitoareNew = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand && selectedSort != "/monitoare/nou") {
+    } else if (priceRange != ''  && brand && selectedSort != "/monitoare/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -196,7 +196,7 @@ const MonitoareNew = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand && !screen) {
+    } else if (priceRange != '' && !brand && !screen && selectedSort != "/monitoare/nou") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -232,7 +232,7 @@ const MonitoareNew = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && brand) {
+    if (priceRange != '' && screen && brand) {
       setShow(false);
       productService
         .getNewMonitorsScreensBrandByPrice(
@@ -249,7 +249,7 @@ const MonitoareNew = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && screen) {
+    } else if (priceRange != '' && screen) {
       setShow(false);
       productService
         .getNewMonitorsScreensByPrice(screen, priceRange, currentPage)
@@ -261,7 +261,7 @@ const MonitoareNew = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand) {
+    } else if (priceRange != ''  && brand) {
       setShow(false);
       productService
         .getNewMonitorsBrandsByPrice(brand, priceRange, currentPage)
@@ -273,7 +273,7 @@ const MonitoareNew = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .geAllNewMonitorsPrice(priceRange, currentPage)

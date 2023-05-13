@@ -119,7 +119,7 @@ const SecondHandPOS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && brand && selectedSort != "/sisteme-pos/second-hand") {
+    if (priceRange != '' && procesor && brand && selectedSort != "/sisteme-pos/second-hand") {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -138,7 +138,7 @@ const SecondHandPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor && selectedSort != "/sisteme-pos/second-hand") {
+    } else if (priceRange != '' && procesor && selectedSort != "/sisteme-pos/second-hand") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -151,7 +151,7 @@ const SecondHandPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand && selectedSort != "/sisteme-pos/second-hand") {
+    } else if (priceRange!= '' && brand && selectedSort != "/sisteme-pos/second-hand") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -205,7 +205,7 @@ const SecondHandPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand && !procesor) {
+    } else if (priceRange!= '' && !brand && !procesor  && selectedSort != "/sisteme-pos/second-hand") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSecondHandPOSPrice(priceRange, currentPage, sort)
@@ -235,7 +235,7 @@ const SecondHandPOS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && brand) {
+    if (priceRange!= '' && procesor && brand) {
       setShow(false);
       productService
         .getSecondHandPOSProcesorsBrandByPrice(
@@ -252,7 +252,7 @@ const SecondHandPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor) {
+    } else if (priceRange != ''&& procesor) {
       setShow(false);
       productService
         .getSecondHandPOSProcesorByPrice(procesor, priceRange, currentPage)
@@ -264,7 +264,7 @@ const SecondHandPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand) {
+    } else if (priceRange != '' && brand) {
       setShow(false);
       productService
         .getSecondHanddPOSBrandsByPrice(brand, priceRange, currentPage)
@@ -276,7 +276,7 @@ const SecondHandPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllSecondHandPOSPrice(priceRange, currentPage)

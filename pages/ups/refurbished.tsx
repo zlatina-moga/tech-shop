@@ -69,7 +69,7 @@ const RefurbishedUPS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/ups/refurbished") {
+    if (priceRange != '' && brand && selectedSort != "/ups/refurbished") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -95,7 +95,7 @@ const RefurbishedUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange  && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/ups/refurbished") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefurbishedUPSPrice(priceRange, currentPage, sort)
@@ -125,7 +125,7 @@ const RefurbishedUPS = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getRefUPSPriceAndBrand(priceRange, currentPage, brand)
@@ -137,7 +137,7 @@ const RefurbishedUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllRefurbishedUPSPrice(priceRange, currentPage)

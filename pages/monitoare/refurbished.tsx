@@ -112,7 +112,7 @@ const MonitoareRefurbished = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && brand && selectedSort != "/monitoare/refurbished") {
+    if (priceRange != '' && screen && brand && selectedSort != "/monitoare/refurbished") {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -131,7 +131,7 @@ const MonitoareRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && screen && selectedSort != "/monitoare/refurbished" ) {
+    } else if (priceRange != '' && screen && selectedSort != "/monitoare/refurbished" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -144,7 +144,7 @@ const MonitoareRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if ( priceRange && brand && selectedSort != "/monitoare/refurbished" ) {
+    } else if ( priceRange != '' && brand && selectedSort != "/monitoare/refurbished" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -170,7 +170,7 @@ const MonitoareRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand && !screen) {
+    } else if (priceRange != '' && !brand && !screen && selectedSort != "/monitoare/second-hand") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -234,7 +234,7 @@ const MonitoareRefurbished = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && brand) {
+    if (priceRange != '' && screen && brand) {
       setShow(false);
       productService
         .getRefMonitorsScreensBrandByPrice(
@@ -251,7 +251,7 @@ const MonitoareRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && screen) {
+    } else if (priceRange != '' && screen) {
       setShow(false);
       productService
         .getRefMonitorsScreensByPrice(screen, priceRange, currentPage)
@@ -263,7 +263,7 @@ const MonitoareRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand) {
+    } else if (priceRange != '' && brand) {
       setShow(false);
       productService
         .getRefMonitorsBrandsByPrice(brand, priceRange, currentPage)
@@ -275,7 +275,7 @@ const MonitoareRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .geAllRefurbishedMonitorsPrice(priceRange, currentPage)

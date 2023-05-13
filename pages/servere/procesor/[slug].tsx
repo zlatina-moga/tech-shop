@@ -80,7 +80,7 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand  && selectedSort != `/servere/brand/${slug}`) {
+    if (priceRange != '' && brand  && selectedSort != `/servere/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -99,7 +99,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != `/servere/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -148,7 +148,7 @@ const ProcDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand) {
+    if (priceRange != '' && brand) {
       setShow(false);
       productService
         .getAllServersByBrandProcessorPrice(
@@ -165,7 +165,7 @@ const ProcDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllServersByProcessorPrice(currentPage, slug, priceRange)

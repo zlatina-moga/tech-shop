@@ -50,7 +50,7 @@ const NewServers = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '') {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNewServersPrice(priceRange, currentPage, sort)

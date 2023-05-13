@@ -39,19 +39,19 @@ const Laptopuri = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
-      setShow(false)
+    if (priceRange != "" && selectedSort != "/servere") {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedServersPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
-          setShow(true)
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/servere") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -63,8 +63,19 @@ const Laptopuri = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != "") {
+      setShow(false);
+      productService
+        .getAllServersPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   useEffect(() => {
     sortingService.getBrands(9).then((result) => {
@@ -84,19 +95,6 @@ const Laptopuri = () => {
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getAllServersPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 
@@ -139,7 +137,7 @@ const Laptopuri = () => {
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
-            categoryLink={'/servere/'}
+            categoryLink={"/servere/"}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

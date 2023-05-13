@@ -24,7 +24,6 @@ const BrandDetail = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const [processorsGeneration, setProcessorsGeneration] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState(`/laptop/nou/brand/${slug}`);
@@ -43,9 +42,6 @@ const BrandDetail = () => {
     });
     sortingService.getProcessorGenerationByBrand(49, slug).then((r) => {
       setProcessorsGeneration(r);
-    });
-    sortingService.getTypes(49).then((r) => {
-      setCategories(r);
     });
   }, [slug]);
 
@@ -130,16 +126,18 @@ const BrandDetail = () => {
           setTotalPages(result[0].totalPages);
           setShow(true);
           setBaseLink(`/laptop/nou/brand/${slug}`);
+          setProcessorsLink(`${baseLink}?procesor=`)
+          setProcessorsGenerationlink(`${baseLink}?generatie=`)
         });
     }
-  }, [currentPage, slug, procesor, generatie]);
+  }, [currentPage, slug, procesor, generatie, baseLink]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange && procesor && generatie && selectedSort != `/laptop/nou/brand/${slug}`) {
+    if (priceRange != '' && procesor && generatie && selectedSort != `/laptop/nou/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -159,7 +157,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor && selectedSort != `/laptop/nou/brand/${slug}` ) {
+    } else if (priceRange != '' && procesor && selectedSort != `/laptop/nou/brand/${slug}` ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -178,7 +176,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && generatie && selectedSort != `/laptop/nou/brand/${slug}`) {
+    } else if (priceRange != '' && generatie && selectedSort != `/laptop/nou/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -216,7 +214,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !procesor && !generatie) {
+    } else if (priceRange != '' && !procesor && !generatie  && selectedSort != `/laptop/nou/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -291,7 +289,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && generatie) {
+    if (priceRange != ''  && procesor && generatie) {
       setShow(false);
       productService
         .getAllNewLaptopsByBrandProcessorAndGenerationPrice(
@@ -309,7 +307,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor) {
+    } else if (priceRange != ''  && procesor) {
       setShow(false);
       productService
         .getAllNewLaptopsByBrandProcessorPrice(
@@ -326,7 +324,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && generatie) {
+    } else if (priceRange != ''  && generatie) {
       setShow(false);
       productService
         .getAllNewLaptopsByBrandGenerationPrice(
@@ -343,7 +341,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllNewLaptopsByBrandPrice(currentPage, slug, priceRange)
@@ -395,7 +393,6 @@ const BrandDetail = () => {
             title={`Laptopuri Noi ${pageTitle}`}
             laptopsData={itemData}
             breadcrumbs={brandNewLaptopsBrcrmbs}
-            categories={categories}
             sortCriteria={onSort}
             baseLink={baseLink}
             brands={brands}

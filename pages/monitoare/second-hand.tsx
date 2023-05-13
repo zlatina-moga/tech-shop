@@ -110,7 +110,7 @@ const MonitoareSecondHand = () => {
   };
 
   useEffect(() => {
-    if ( priceRange && screen && brand &&  selectedSort != "/monitoare/second-hand" ) {
+    if ( priceRange != '' && screen && brand &&  selectedSort != "/monitoare/second-hand" ) {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -129,7 +129,7 @@ const MonitoareSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if ( priceRange && screen && selectedSort != "/monitoare/second-hand" ) {
+    } else if ( priceRange != '' && screen && selectedSort != "/monitoare/second-hand" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -142,7 +142,7 @@ const MonitoareSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if ( priceRange && brand && selectedSort != "/monitoare/second-hand" ) {
+    } else if ( priceRange != '' && brand && selectedSort != "/monitoare/second-hand" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -168,7 +168,7 @@ const MonitoareSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand && !screen) {
+    } else if (priceRange != '' && !brand && !screen && selectedSort != "/monitoare/second-hand") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -232,7 +232,7 @@ const MonitoareSecondHand = () => {
   };
 
   useEffect(() => {
-    if (priceRange && screen && brand) {
+    if (priceRange != ''  && screen && brand) {
       setShow(false);
       productService
         .getSHMonitorsScreensBrandByPrice(
@@ -249,7 +249,7 @@ const MonitoareSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && screen) {
+    } else if (priceRange != ''  && screen) {
       setShow(false);
       productService
         .getSHMonitorsScreensByPrice(screen, priceRange, currentPage)
@@ -261,7 +261,7 @@ const MonitoareSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand) {
+    } else if (priceRange != '' && brand) {
       setShow(false);
       productService
         .getSHMonitorsBrandsByPrice(brand, priceRange, currentPage)
@@ -273,7 +273,7 @@ const MonitoareSecondHand = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .geAllSecondHandMonitorsPrice(priceRange, currentPage)

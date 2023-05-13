@@ -78,7 +78,7 @@ const DiscountedComps = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/produse-la-reducere/calculatoare") {
+    if (priceRange != '' && brand && selectedSort != "/produse-la-reducere/calculatoare") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -109,7 +109,7 @@ const DiscountedComps = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/produse-la-reducere/calculatoare") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -146,7 +146,7 @@ const DiscountedComps = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '' ) {
       setShow(false);
       productService
         .getDiscountedComputersPriceAndBrand(priceRange, currentPage, brand)
@@ -158,7 +158,7 @@ const DiscountedComps = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllDiscountedComputersPrice(priceRange, currentPage)

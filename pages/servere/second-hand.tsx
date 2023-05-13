@@ -50,7 +50,7 @@ const SecondHandServers = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '') {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSecondHandServersPrice(priceRange, currentPage, sort)

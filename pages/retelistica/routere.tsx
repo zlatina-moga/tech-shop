@@ -70,7 +70,7 @@ const Routers = () => {
   };
 
   useEffect(() => {
-    if (priceRange &&  brand &&  selectedSort != "/retelistica/routere" ) {
+    if (priceRange != '' &&  brand &&  selectedSort != "/retelistica/routere" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -96,7 +96,7 @@ const Routers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/retelistica/routere") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRoutersPrice(priceRange, currentPage, sort)
@@ -126,7 +126,7 @@ const Routers = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getRoutersPriceAndBrand(priceRange, currentPage, brand)
@@ -138,7 +138,7 @@ const Routers = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if ( priceRange != '') {
       setShow(false);
       productService
         .getAllRoutersPrice(priceRange, currentPage)

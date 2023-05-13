@@ -40,7 +40,7 @@ const Workstations = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/workstation") {
       setShow(false)
       const sort = selectedSort.split("=")[1];
       productService
@@ -52,7 +52,7 @@ const Workstations = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/workstation"){
       setShow(false)
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
@@ -61,6 +61,17 @@ const Workstations = () => {
         .then((result) => {
           setShow(true)
           setLaptopsData(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getAllWorkstationsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
@@ -89,19 +100,6 @@ const Workstations = () => {
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getAllWorkstationsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 

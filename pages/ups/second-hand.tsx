@@ -71,7 +71,7 @@ const SecondHandUPS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && brand && selectedSort != "/ups/second-hand") {
+    if (priceRange != '' && brand && selectedSort != "/ups/second-hand") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -102,7 +102,7 @@ const SecondHandUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/ups/second-hand") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSecondHandUPSPrice(priceRange, currentPage, sort)
@@ -132,7 +132,7 @@ const SecondHandUPS = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getSecondHandUPSPriceAndBrand(priceRange, currentPage, brand)
@@ -144,7 +144,7 @@ const SecondHandUPS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllSecondHandUPSPrice(priceRange, currentPage)

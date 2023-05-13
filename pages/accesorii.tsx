@@ -38,17 +38,20 @@ const Accesorii = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/accesorii") {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedAccessoriesPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/accesorii") {
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -56,12 +59,24 @@ const Accesorii = () => {
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getAllAccessoriesPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   useEffect(() => {
     sortingService.getBrands(47).then((result) => {
@@ -75,20 +90,6 @@ const Accesorii = () => {
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getAllAccessoriesPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
-
   const totalPages = laptopsData[0]?.totalPages;
 
   const paginationRange = usePagination({

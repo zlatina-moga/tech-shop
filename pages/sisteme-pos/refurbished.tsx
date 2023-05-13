@@ -117,7 +117,7 @@ const RefurbishedPOS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && brand && selectedSort != "/sisteme-pos/refurbished") {
+    if (priceRange != '' && procesor && brand && selectedSort != "/sisteme-pos/refurbished") {
       setShow(false);
       const sort = selectedSort.split("=")[3];
       productService
@@ -136,7 +136,7 @@ const RefurbishedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor && selectedSort != "/sisteme-pos/refurbished") {
+    } else if (priceRange!= ''&& procesor && selectedSort != "/sisteme-pos/refurbished") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -149,7 +149,7 @@ const RefurbishedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand && selectedSort != "/sisteme-pos/refurbished") {
+    } else if (priceRange!= '' && brand && selectedSort != "/sisteme-pos/refurbished") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -203,7 +203,7 @@ const RefurbishedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange  && !brand && !procesor) {
+    } else if (priceRange != '' && !brand && !procesor && selectedSort != "/sisteme-pos/refurbished") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefurbishedPOSPrice(priceRange, currentPage, sort)
@@ -233,7 +233,7 @@ const RefurbishedPOS = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor && brand) {
+    if (priceRange != '' && procesor && brand) {
       setShow(false);
       productService
         .getRefurbishedPOSProcesorsBrandByPrice(
@@ -250,7 +250,7 @@ const RefurbishedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && procesor) {
+    } else if (priceRange != ''&& procesor) {
       setShow(false);
       productService
         .getRefurbishedPOSProcesorByPrice(procesor, priceRange, currentPage)
@@ -262,7 +262,7 @@ const RefurbishedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && brand) {
+    } else if (priceRange != ''&& brand) {
       setShow(false);
       productService
         .getRefurbishedPOSBrandsByPrice(brand, priceRange, currentPage)
@@ -274,7 +274,7 @@ const RefurbishedPOS = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllRefurbishedPOSPrice(priceRange, currentPage)

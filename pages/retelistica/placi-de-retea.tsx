@@ -75,7 +75,7 @@ const Network = () => {
   };
 
   useEffect(() => {
-    if (priceRange &&  brand &&  selectedSort != "/retelistica/placi-de-retea" ) {
+    if (priceRange != '' &&  brand &&  selectedSort != "/retelistica/placi-de-retea" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -101,7 +101,7 @@ const Network = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange  && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/retelistica/placi-de-retea") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedNetworkPrice(priceRange, currentPage, sort)
@@ -131,7 +131,7 @@ const Network = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getNetworksPriceAndBrand(priceRange, currentPage, brand)
@@ -143,7 +143,7 @@ const Network = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllNetworkPrice(priceRange, currentPage)

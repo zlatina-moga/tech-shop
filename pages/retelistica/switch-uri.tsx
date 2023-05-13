@@ -71,7 +71,7 @@ const Switches = () => {
   };
 
   useEffect(() => {
-    if (priceRange &&  brand &&  selectedSort != "/retelistica/switch-uri" ) {
+    if (priceRange != '' &&  brand &&  selectedSort != "/retelistica/switch-uri" ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -97,7 +97,7 @@ const Switches = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand ) {
+    } else if (priceRange != '' && !brand && selectedSort != "/retelistica/switch-uri") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedSwitchPrice(priceRange, currentPage, sort)
@@ -127,7 +127,7 @@ const Switches = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getSwitchPriceAndBrand(priceRange, currentPage, brand)
@@ -139,7 +139,7 @@ const Switches = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllSwitchPrice(priceRange, currentPage)

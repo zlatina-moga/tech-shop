@@ -78,7 +78,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor  && selectedSort != `/servere/second-hand/brand/${slug}`) {
+    if (priceRange != '' && procesor  && selectedSort != `/servere/second-hand/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -97,7 +97,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !procesor) {
+    } else if (priceRange != '' && !procesor && selectedSort != `/servere/second-hand/brand/${slug}`) {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -153,7 +153,7 @@ const BrandDetail = () => {
   };
 
   useEffect(() => {
-    if (priceRange && procesor) {
+    if (priceRange != '' && procesor) {
       setShow(false);
       productService
         .getAllSHServersByBrandProcessorPrice(
@@ -170,7 +170,7 @@ const BrandDetail = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllSHServerByBrandPrice(currentPage, slug, priceRange)

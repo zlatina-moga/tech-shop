@@ -54,7 +54,7 @@ const LaptopuriRefurbished = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/laptop/refurbished") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedRefurbishedLaptopsPrice(priceRange, currentPage, sort)
@@ -64,7 +64,7 @@ const LaptopuriRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/laptop/refurbished") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -76,25 +76,23 @@ const LaptopuriRefurbished = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getAllRefurbishedLaptopsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getAllRefurbishedLaptopsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 

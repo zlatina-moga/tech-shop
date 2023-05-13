@@ -77,7 +77,7 @@ const DiscountedPrinters = () => {
   };
 
   useEffect(() => {
-    if ( priceRange &&  brand && selectedSort != "/produse-la-reducere/imprimante"  ) {
+    if ( priceRange != '' &&  brand && selectedSort != "/produse-la-reducere/imprimante"  ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -108,7 +108,7 @@ const DiscountedPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand && selectedSort != "/produse-la-reducere/imprimante") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -145,7 +145,7 @@ const DiscountedPrinters = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange != '') {
       setShow(false);
       productService
         .getDiscountedPrintersPriceAndBrand(priceRange, currentPage, brand)
@@ -157,7 +157,7 @@ const DiscountedPrinters = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllDiscountedPrintersPrice(priceRange, currentPage)

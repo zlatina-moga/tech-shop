@@ -38,7 +38,7 @@ const Imprimante = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/imprimante") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedPrintersPrice(priceRange, currentPage, sort)
@@ -48,7 +48,7 @@ const Imprimante = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/imprimante"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -59,8 +59,19 @@ const Imprimante = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .getPrintersPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   useEffect(() => {
     sortingService.getBrands(29).then((result) => {
@@ -77,19 +88,6 @@ const Imprimante = () => {
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(false);
-    productService
-      .getPrintersPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 

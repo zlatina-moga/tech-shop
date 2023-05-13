@@ -38,17 +38,20 @@ const Componente = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/componente") {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedComponentsPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/componente") {
+      setShow(false);
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -56,12 +59,24 @@ const Componente = () => {
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (priceRange != '') {
+      setShow(false);
+      productService
+        .geAllComponentsPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   useEffect(() => {
     sortingService.getBrands(24).then((result) => {
@@ -75,19 +90,6 @@ const Componente = () => {
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
-
-  useEffect(() => {
-    setShow(true);
-    productService
-      .geAllComponentsPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
 

@@ -76,7 +76,7 @@ const DiscountedComponents = () => {
   };
 
   useEffect(() => {
-    if ( priceRange &&  brand && selectedSort != "/produse-la-reducere/componente"  ) {
+    if ( priceRange != '' &&  brand && selectedSort != "/produse-la-reducere/componente"  ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -107,7 +107,7 @@ const DiscountedComponents = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange && !brand) {
+    } else if (priceRange != '' && !brand  && selectedSort != "/produse-la-reducere/componente") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -144,7 +144,7 @@ const DiscountedComponents = () => {
   };
 
   useEffect(() => {
-    if (brand && priceRange) {
+    if (brand && priceRange  != '') {
       setShow(false);
       productService
         .getDiscountedComponentsPriceAndBrand(priceRange, currentPage, brand)
@@ -156,7 +156,7 @@ const DiscountedComponents = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (priceRange != '') {
       setShow(false);
       productService
         .getAllDiscountedComponentsPrice(priceRange, currentPage)
