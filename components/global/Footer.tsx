@@ -75,6 +75,13 @@ const Footer = () => {
             <b className="mb-2">Exclusive Key Licenses SRL</b>
             <p className="mb-2">CUI 46848581</p>
             <p className="mb-2">RO70BTRLRONCRT0659572401</p>
+            <Image
+              className="img-fluid"
+              src="/images/netopia.jpg"
+              alt=""
+              width={300}
+              height={300}
+            />
           </div>
           <div
             className="col-lg-8 col-md-12 main-container"
@@ -94,6 +101,9 @@ const Footer = () => {
                 </Link>
                 <Link className="footer-link mb-2" href="/workstation">
                   <i className="fa fa-angle-right mr-2"></i>Workstation
+                </Link>
+                <Link className="footer-link mb-2" href="/licenta-software">
+                  <i className="fa fa-angle-right mr-2"></i>Software
                 </Link>
                 <Link className=" footer-link mb-2" href="/my-cart">
                   <i className="fa fa-angle-right mr-2"></i>Coș de cumpărături
@@ -120,6 +130,9 @@ const Footer = () => {
                 </Link>
                 <Link className=" footer-link mb-2" href="/cum-cumpar">
                   <i className="fa fa-angle-right mr-2"></i>Cum cumpar?
+                </Link>
+                <Link className=" footer-link mb-2" href="/transport">
+                  <i className="fa fa-angle-right mr-2"></i>Transport și retur
                 </Link>
               </div>
             </div>
@@ -151,6 +164,23 @@ const Footer = () => {
                   </button>
                 </div>
               </form>
+              <div className="d-flex flex-column align-items-center">
+                {" "}
+                <Image
+                  className="img-fluid mb-2"
+                  src="/images/anpc.jpg"
+                  alt=""
+                  width={100}
+                  height={25}
+                />
+                <Image
+                  className="img-fluid"
+                  src="/images/anpc-2.jpg"
+                  alt=""
+                  width={200}
+                  height={200}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -176,7 +206,7 @@ const Footer = () => {
               </a>
             </p>
           </div>
-          <div className="col-md-6 px-xl-0 text-center text-md-right">
+          <div className=" px-xl-0 text-center text-md-right">
             <Image
               className="img-fluid"
               src="/images/payments.png"
