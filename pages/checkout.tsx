@@ -266,6 +266,10 @@ const Checkout = () => {
             let orderTotal = res._doc.amount;
             if (payment === "card") {
               setShowModal(true);
+              orderService.verify()
+                .then(() => {
+                  router.push("/success");
+              })
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
@@ -293,8 +297,8 @@ const Checkout = () => {
             userEmail: email2,
             userPhone: phone2,
             country: "Romania",
-            county:  selectedState,
-            city:  selectedCity,
+            county: selectedState,
+            city: selectedCity,
             address: address2,
             zip: zip2,
             amount: amountToPay,

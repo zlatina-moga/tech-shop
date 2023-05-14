@@ -274,8 +274,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           <p>Livrare gratuita la comanda de peste 250 lei</p>
                         </div>
                         <p className="mb-4 details">
-                          Produsele noastre arata foarte bine, fara zgarieturi
-                          vizibile.
+                          Produsele noastre arată foarte bine, fără zgârieturi vizibile (in cazul produselor Second hand sau Refurbished)
                         </p>
                       </>
                     ) : (

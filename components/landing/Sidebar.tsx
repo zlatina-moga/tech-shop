@@ -169,20 +169,18 @@ const Sidebar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item nav-link py-3 sidebar-link">
-                <Link
-                  href="/workstation"
-                  className="sidebar-link"
-                  data-target="/workstation"
-                >
-                  <img
-                    src={workstationIcons.src}
-                    alt="list"
-                    style={{ height: "18px" }}
-                  />
-                  Workstation
-                </Link>
-              </li>
+              <Link
+                href="/workstation"
+                className="nav-item nav-link py-3 sidebar-link"
+                data-target="/workstation"
+              >
+                <img
+                  src={workstationIcons.src}
+                  alt="list"
+                  style={{ height: "18px" }}
+                />
+                Workstation
+              </Link>
               <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
                 <Link
                   href="/servere"
@@ -311,33 +309,29 @@ const Sidebar = () => {
                   </li>
                 </ul>
               </li>
-              <li>
-                <Link
-                  href="/componente"
-                  className="nav-item nav-link py-3 sidebar-link"
-                >
-                  <img
-                    src={componentIcon.src}
-                    alt="list"
-                    style={{ height: "18px" }}
-                  />
-                  Componente
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/licenta-software"
-                  className="nav-item nav-link py-3 sidebar-link"
-                  style={{ borderBottom: "none" }}
-                >
-                  <img
-                    src={softwareIcon.src}
-                    alt="list"
-                    style={{ height: "18px" }}
-                  />
-                  Software
-                </Link>
-              </li>
+              <Link
+                href="/componente"
+                className="nav-item nav-link py-3 sidebar-link"
+              >
+                <img
+                  src={componentIcon.src}
+                  alt="list"
+                  style={{ height: "18px" }}
+                />
+                Componente
+              </Link>
+              <Link
+                href="/licenta-software"
+                className="nav-item nav-link py-3 sidebar-link"
+                style={{ borderBottom: "none" }}
+              >
+                <img
+                  src={softwareIcon.src}
+                  alt="list"
+                  style={{ height: "18px" }}
+                />
+                Software
+              </Link>
             </ul>
           </nav>
         </div>
@@ -348,7 +342,10 @@ const Sidebar = () => {
               style={{ borderRadius: "4px" }}
             >
               <div className="navbar-nav mr-auto py-0">
-                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
+                <span
+                  style={{ display: "flex", alignItems: "center" }}
+                  className="icon-wrapper"
+                >
                   <img
                     src={printerIcon.src}
                     alt="list"
@@ -362,7 +359,10 @@ const Sidebar = () => {
                     Imprimante
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
+                <span
+                  style={{ display: "flex", alignItems: "center" }}
+                  className="icon-wrapper"
+                >
                   <img
                     src={posIcon.src}
                     alt="list"
@@ -376,7 +376,10 @@ const Sidebar = () => {
                     Sisteme POS
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
+                <span
+                  style={{ display: "flex", alignItems: "center" }}
+                  className="icon-wrapper"
+                >
                   <img
                     src={upsIcon.src}
                     alt="list"
@@ -390,7 +393,10 @@ const Sidebar = () => {
                     UPS
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
+                <span
+                  style={{ display: "flex", alignItems: "center" }}
+                  className="icon-wrapper"
+                >
                   <img
                     src={accIcon.src}
                     alt="list"
@@ -404,7 +410,10 @@ const Sidebar = () => {
                     Accesorii
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
+                <span
+                  style={{ display: "flex", alignItems: "center" }}
+                  className="icon-wrapper"
+                >
                   <Link
                     href="/retelistica"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
@@ -418,7 +427,10 @@ const Sidebar = () => {
                     Retelistica
                   </Link>
                 </span>
-                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
+                <span
+                  style={{ display: "flex", alignItems: "center" }}
+                  className="icon-wrapper"
+                >
                   <Link
                     href="/sisteme-solare-fotovoltaice"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
@@ -433,7 +445,10 @@ const Sidebar = () => {
                   </Link>
                 </span>
 
-                <span style={{ display: "flex", alignItems: "center" }} className="icon-wrapper">
+                <span
+                  style={{ display: "flex", alignItems: "center" }}
+                  className="icon-wrapper"
+                >
                   {" "}
                   <img
                     src={discountIcon.src}
