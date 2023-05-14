@@ -109,6 +109,8 @@ const MyCard = () => {
                       {" "}
                       GRATUIT
                     </h6>
+                  ) : cart.isSoftware ? (
+                    <h6>-</h6>
                   ) : (
                     <h6 className="font-weight-medium">20 lei</h6>
                   )}
@@ -132,6 +134,10 @@ const MyCard = () => {
                   {cart.products.length == 0 ? (
                     <h5 className="font-weight-bold">0</h5>
                   ) : cart.total >= 250 ? (
+                    <h5 className="font-weight-bold">
+                      {cart.total && cart.total.toFixed(2)} Lei
+                    </h5>
+                  ) : cart.isSoftware ? (
                     <h5 className="font-weight-bold">
                       {cart.total && cart.total.toFixed(2)} Lei
                     </h5>

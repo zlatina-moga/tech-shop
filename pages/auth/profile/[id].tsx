@@ -259,6 +259,7 @@ const Profile = () => {
                                   title={p.title}
                                   priceNum={p.price}
                                   warranty={p.warranty}
+                                  profile
                                 />
                               ))}
                             </div>

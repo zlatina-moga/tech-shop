@@ -9,7 +9,8 @@ const cartSlice = createSlice({
     warranty: 0,
     total: 0,
     orderNumber: '',
-    orderTotal: 0
+    orderTotal: 0,
+    isSoftware: false
   },
   reducers: {
     addProduct: (state, action) => {
@@ -18,6 +19,7 @@ const cartSlice = createSlice({
       state.warranty += action.payload.warranty;
       state.total += action.payload.warranty;
       state.total += action.payload.itemData[0].priceNum;
+      state.isSoftware = action.payload.isSoftware;
     },
     removeItem: (state, { payload }) => {
       const newCart = state.products.filter(

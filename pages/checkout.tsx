@@ -60,7 +60,7 @@ const Checkout = () => {
   };
 
   let amountToPay = 0;
-  if (cart.total < 250) {
+  if (cart.total < 250 && !cart.isSoftware) {
     amountToPay = (cart.total + 20).toFixed(2);
   } else {
     amountToPay = cart.total.toFixed(2);
@@ -85,6 +85,12 @@ const Checkout = () => {
     const firmCif = formData.get("cf-cif");
     const firmReg = formData.get("cf-reg");
 
+    const name2 = formData.get("cf-name-2");
+    const email2 = formData.get("cf-email-2");
+    const phone2 = formData.get("cf-phone-2");
+    const address2 = formData.get("cf-address-2");
+    const zip2 = formData.get("cf-zip-2");
+
     if (payment == "") {
       toast.error("Please select payment method", {
         style: { marginTop: "100px" },
@@ -98,7 +104,8 @@ const Checkout = () => {
       (city || selectedCity) &&
       (county || selectedState) &&
       address &&
-      zip
+      zip &&
+      !checked
     ) {
       let cartItems = cart.products.map((c) => ({
         productId: c.itemData[0].idCode,
@@ -181,6 +188,115 @@ const Checkout = () => {
             city: city || selectedCity,
             address: address,
             zip: zip,
+            amount: amountToPay,
+            payment: payment,
+            firmName: firm,
+            firmCif: firmCif,
+            firmReg: firmReg,
+          })
+          .then((res) => {
+            setPaymentData(res);
+            let orderNum = res._doc._id;
+            let orderTotal = res._doc.amount;
+            if (payment === "card") {
+              setShowModal(true);
+            } else if (payment == "directcheck") {
+              dispatch(
+                addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
+              );
+              dispatch(empty());
+              router.push("/order-success");
+            } else {
+              toast.success("Comanda plasata cu succes", {
+                style: { marginTop: "100px" },
+              });
+              dispatch(empty());
+              router.push("/success");
+            }
+          })
+          .catch((err) => {
+            toast.error(err, {
+              style: { marginTop: "100px" },
+            });
+          });
+      }
+    } else if (
+      checked &&
+      name2 &&
+      email2 &&
+      phone &&
+      selectedCity &&
+      selectedState &&
+      address2 &&
+      zip2
+    ) {
+      let cartItems = cart.products.map((c) => ({
+        productId: c.itemData[0].idCode,
+        quantity: c.quantity,
+        price: c.itemData[0].priceNum,
+        warranty: c.warranty,
+        title: c.itemData[0].title,
+        img1: c.itemData[0].img1,
+        imgLink: c.itemData[0].imgLink,
+        idLink: c.itemData[0].id,
+      }));
+
+      if (user) {
+        orderService
+          .create({
+            userId: user._id,
+            products: cartItems,
+            userName: name2,
+            userEmail: email2,
+            userPhone: phone2,
+            country: "Romania",
+            county: selectedState,
+            city: selectedCity,
+            address: address2,
+            zip: zip2,
+            amount: amountToPay,
+            payment: payment,
+            firmName: firm,
+            firmCif: firmCif,
+            firmReg: firmReg,
+          })
+          .then((res) => {
+            setPaymentData(res);
+            let orderNum = res._doc._id;
+            let orderTotal = res._doc.amount;
+            if (payment === "card") {
+              setShowModal(true);
+            } else if (payment == "directcheck") {
+              dispatch(
+                addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
+              );
+              dispatch(empty());
+              router.push("/order-success");
+            } else {
+              toast.success("Comanda plasata cu succes", {
+                style: { marginTop: "100px" },
+              });
+              dispatch(empty());
+              router.push("/success");
+            }
+          })
+          .catch((err) => {
+            toast.error(err, {
+              style: { marginTop: "100px" },
+            });
+          });
+      } else {
+        orderService
+          .create({
+            products: cartItems,
+            userName: name2,
+            userEmail: email2,
+            userPhone: phone2,
+            country: "Romania",
+            county:  selectedState,
+            city:  selectedCity,
+            address: address2,
+            zip: zip2,
             amount: amountToPay,
             payment: payment,
             firmName: firm,
@@ -591,7 +707,7 @@ const Checkout = () => {
                     <input
                       className="form-control text-start border border-primary rounded-1"
                       type="text"
-                      name="cf-name"
+                      name="cf-name-2"
                     />
                   </div>
                   <div className="col-md-6 form-group">
@@ -599,7 +715,7 @@ const Checkout = () => {
                     <input
                       className="form-control text-start border border-primary rounded-1"
                       type="text"
-                      name="cf-email"
+                      name="cf-email-2"
                     />
                   </div>
                   <div className="col-md-6 form-group">
@@ -607,7 +723,7 @@ const Checkout = () => {
                     <input
                       className="form-control text-start border border-primary rounded-1"
                       type="text"
-                      name="cf-phone"
+                      name="cf-phone-2"
                     />
                   </div>
                   <div className="col-md-6 form-group">
@@ -647,8 +763,7 @@ const Checkout = () => {
                     <select
                       className="form-control text-start border border-primary w-100 rounded-1"
                       onChange={handleCityChange}
-                      //value={selectedCity}
-                      defaultValue={userData.city}
+                      value={selectedCity}
                     >
                       {cities
                         .filter((c) => c.stateCode === selectedState)
@@ -668,6 +783,7 @@ const Checkout = () => {
                     <input
                       className="form-control border border-primary rounded-1"
                       type="text"
+                      name="cf-address-2"
                     />
                   </div>
 
@@ -676,6 +792,7 @@ const Checkout = () => {
                     <input
                       className="form-control border border-primary rounded-1"
                       type="text"
+                      name="cf-zip-2"
                     />
                   </div>
                 </div>
@@ -714,25 +831,31 @@ const Checkout = () => {
                         {" "}
                         GRATUIT
                       </h6>
+                    ) : cart.isSoftware ? (
+                      <h6>-</h6>
                     ) : (
-                      <h6 className="font-weight-medium">20 Lei</h6>
+                      <h6 className="font-weight-medium">20 lei</h6>
                     )}
                   </div>
                 </div>
                 <div className="card-footer border-secondary bg-transparent">
                   <div className="d-flex justify-content-between mt-2">
                     <h5 className="font-weight-bold">Total</h5>
-                    <h5 className="font-weight-bold">
-                      {cart.total >= 250 ? (
-                        <h5 className="font-weight-bold">
-                          {cart.total && cart.total.toFixed(2)} Lei
-                        </h5>
-                      ) : (
-                        <h5 className="font-weight-bold">
-                          {(Number(cart.total.toFixed(2)) + 20).toFixed(2)} Lei
-                        </h5>
-                      )}
-                    </h5>
+                    {cart.products.length == 0 ? (
+                      <h5 className="font-weight-bold">0</h5>
+                    ) : cart.total >= 250 ? (
+                      <h5 className="font-weight-bold">
+                        {cart.total && cart.total.toFixed(2)} Lei
+                      </h5>
+                    ) : cart.isSoftware ? (
+                      <h5 className="font-weight-bold">
+                        {cart.total && cart.total.toFixed(2)} Lei
+                      </h5>
+                    ) : (
+                      <h5 className="font-weight-bold">
+                        {(Number(cart.total.toFixed(2)) + 20).toFixed(2)} Lei
+                      </h5>
+                    )}
                   </div>
                 </div>
               </div>

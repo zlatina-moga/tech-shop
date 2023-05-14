@@ -11,6 +11,7 @@ const ResponsiveCart = ({
   title,
   priceNum,
   warranty,
+  profile,
 }) => {
   const dispatch = useDispatch();
 
@@ -44,46 +45,55 @@ const ResponsiveCart = ({
         <p>Garanție: {warranty} Lei</p>
       </div>
       <div className="input-group quantity mx-auto" style={{ width: "100px" }}>
-        <div className="input-group-btn">
-          <button
-            className={classNames(
-              "btn btn-sm btn-primary btn-minus",
-              quantity == 1 ? "disabled" : ""
-            )}
-            onClick={() => handleLowerQuantity()}
-          >
-            <i className="fa fa-minus"></i>
-          </button>
-        </div>
+        {!profile && (
+          <div className="input-group-btn">
+            <button
+              className={classNames(
+                "btn btn-sm btn-primary btn-minus",
+                quantity == 1 ? "disabled" : ""
+              )}
+              onClick={() => handleLowerQuantity()}
+            >
+              <i className="fa fa-minus"></i>
+            </button>
+          </div>
+        )}
         <input
           type="text"
           className="form-control form-control-sm bg-secondary text-center"
           value={quantity}
         />
-        <div className="input-group-btn">
-          <button
-            className="btn btn-sm btn-primary btn-plus"
-            onClick={() => handleQuantity()}
+        {!profile && (
+          <div className="input-group-btn">
+            <button
+              className="btn btn-sm btn-primary btn-plus"
+              onClick={() => handleQuantity()}
+            >
+              <i className="fa fa-plus"></i>
+            </button>
+          </div>
+        )}
+        {!profile && (
+          <div
+            className="input-group-btn"
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "5px",
+            }}
           >
-            <i className="fa fa-plus"></i>
-          </button>
-        </div>
-        <div
-          className="input-group-btn"
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginTop: "5px",
-          }}
-        >
-          <button
-            className={classNames("btn btn-sm", quantity == 1 ? "" : "d-none")}
-            id="remove-btn"
-            onClick={() => dispatch(removeItem({ id, priceNum, warranty }))}
-          >
-            Șterge
-          </button>
-        </div>
+            <button
+              className={classNames(
+                "btn btn-sm",
+                quantity == 1 ? "" : "d-none"
+              )}
+              id="remove-btn"
+              onClick={() => dispatch(removeItem({ id, priceNum, warranty }))}
+            >
+              Șterge
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

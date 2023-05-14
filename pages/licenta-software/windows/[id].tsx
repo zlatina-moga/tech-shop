@@ -24,7 +24,7 @@ const WindowsDetails = () => {
 
   const handleAddToCart = () => {
     let itemData = licenseData.filter((el) => el.item == id);
-    dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
+    dispatch(addProduct({ itemData, quantity: 1, warranty: 0 , isSoftware: true}));
     setClicked(true);
     toast.success("Produs adăugat în coș", {
       style: { marginTop: "100px" },
@@ -69,7 +69,7 @@ const WindowsDetails = () => {
                         modules={[Navigation]}
                         className="mySwiper"
                       >
-                        {item.imgLink.map((img, idx) => (
+                        {item.imgLink1.map((img, idx) => (
                           <SwiperSlide key={idx}>
                             <PhotoView src={img}>
                               <img

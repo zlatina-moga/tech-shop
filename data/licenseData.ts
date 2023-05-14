@@ -2,7 +2,7 @@ export interface ILicence {
   id: string;
   item?: string;
   category: string;
-  imgLink: string[];
+  imgLink1: string[];
   version: string;
   title: string;
   price: string;
@@ -18,6 +18,8 @@ export interface ILicence {
   oldPrice?: string;
   discount?: string;
   discountNum?: number;
+  idCode: string;
+  img1: string;
 }
 
 export const licenseData: ILicence[] = [
@@ -25,7 +27,8 @@ export const licenseData: ILicence[] = [
     id: "/licenta-software/windows/windows-10-home-32-64bit",
     item: "windows-10-home-32-64bit",
     category: "Windows",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-7.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-7.jpeg",
     ],
     version: "10 HOME 32/64BIT",
@@ -59,12 +62,14 @@ export const licenseData: ILicence[] = [
       "5. Insereaza cheia produsului",
       "6. Gata, este activat!",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/windows/windows-10-pro-32-64bit",
     item: "windows-10-pro-32-64bit",
     category: "Windows",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-8.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-8.jpeg",
     ],
     version: "10 PRO 32/64BIT",
@@ -98,12 +103,14 @@ export const licenseData: ILicence[] = [
       "5. Insereaza cheia produsului",
       "6. Gata, este activat!",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/windows/windows-11-pro-32-64bit",
     item: "windows-11-pro-32-64bit",
     category: "Windows",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-10.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-10.jpeg",
     ],
     version: "11 PRO 32/64BIT",
@@ -133,12 +140,14 @@ export const licenseData: ILicence[] = [
       "2. Selecteaza limba si regiunea",
       "3. Introdu cheia",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/windows/windows-11-home-32-64bit",
     item: "windows-11-home-32-64bit",
     category: "Windows",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-9.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-9.jpeg",
     ],
     version: "11 HOME 32/64BIT",
@@ -168,12 +177,14 @@ export const licenseData: ILicence[] = [
       "2. Selecteaza limba si regiunea",
       "3. Introdu cheia",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/microsoft-visio/microsoft-visio-2019-professional-1pc",
     item: "microsoft-visio-2019-professional-1pc",
     category: "Visio",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2019-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600-2.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2019-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600-2.png",
     ],
     version: "2019 Professional",
@@ -203,12 +214,14 @@ export const licenseData: ILicence[] = [
       "2. Selecteaza limba si descarca kitul de instalare",
       "3. Porneste softul si introdu inca o data codul in cazul in care este nevoie",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/microsoft-visio/microsoft-visio-2019-professional-1pc-lifetime-o-singura-instalare",
     item: "microsoft-visio-2019-professional-1pc-lifetime-o-singura-instalare",
     category: "Visio",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2019-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600-2.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2019-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600-2.png",
     ],
     version: "2019 Professional",
@@ -239,12 +252,14 @@ export const licenseData: ILicence[] = [
       "2. Selecteaza limba si descarca kitul de instalare",
       "3. Porneste softul si introdu inca o data codul in cazul in care este nevoie",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/microsoft-visio/microsoft-visio-2021-professional-1pc-lifetime",
     item: "microsoft-visio-2021-professional-1pc-lifetime",
     category: "Visio",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2021-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2021-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600.png",
     ],
     version: "2021 Professional",
@@ -274,12 +289,14 @@ export const licenseData: ILicence[] = [
       "2. Selecteaza limba si descarca kitul de instalare",
       "3. Porneste softul si introdu inca o data codul in cazul in care este nevoie",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/microsoft-visio/microsoft-visio-2021-professional-1pc-lifetime-o-singura-instalare",
     item: "microsoft-visio-2021-professional-1pc-lifetime-o-singura-instalare",
     category: "Visio",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2021-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Visio-Professional-2021-download-digital-licence_89a65c3f-b534-475b-8a12-c68d472fe097_600x600.png",
     ],
     version: "2021 Professional",
@@ -310,12 +327,14 @@ export const licenseData: ILicence[] = [
       "2. Selecteaza limba si descarca kitul de instalare",
       "3. Porneste softul si introdu inca o data codul in cazul in care este nevoie",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/office/office-2019-professional-plus-global",
     item: "office-2019-professional-plus-global",
     category: "Office",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-3.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-3.jpeg",
     ],
     version: "2019 Professional PLUS | Global | Asociat cont MS",
@@ -349,12 +368,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/office/microsoft-office-2019-professional-plus-global-retail",
     item: "microsoft-office-2019-professional-plus-global-retail",
     category: "Office",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-3.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-3.jpeg",
     ],
     version: "2019 Professional PLUS | Global | Retail",
@@ -388,12 +409,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/office/microsoft-office-2021-home-and-business-mac-global-retail",
     item: "microsoft-office-2021-home-and-business-mac-global-retail",
     category: "Office",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/11/office2021bus_nologo-500x500-1.webp",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/11/office2021bus_nologo-500x500-1.webp",
     ],
     version: "2021 Home and Business MAC | Global | Retail",
@@ -427,12 +450,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/office/microsoft-office-2021-professional-plus-global",
     item: "microsoft-office-2021-professional-plus-global",
     category: "Office",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-4.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-4.jpeg",
     ],
     version: "2021 Professional Plus | Global | Asociat cont MS",
@@ -466,12 +491,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/office/microsoft-office-2021-professional-plus-key-phone-activation-global",
     item: "microsoft-office-2021-professional-plus-key-phone-activation-global",
     category: "Office",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-4.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-9.29.13-PM-4.jpeg",
     ],
     version: "2021 Professional Plus | KEY PHONE ACTIVATION | Global",
@@ -505,12 +532,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/project/microsoft-project-2019-professional-1pc-lifetime",
     item: "microsoft-project-2019-professional-1pc-lifetime",
     category: "Project",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2019-download-digital-licence_600x600-2.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2019-download-digital-licence_600x600-2.png",
     ],
     version: "2019 Professional",
@@ -542,12 +571,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/project/microsoft-project-2019-professional-1pc-lifetime-o-singura-instalare",
     item: "microsoft-project-2019-professional-1pc-lifetime-o-singura-instalare",
     category: "Project",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2019-download-digital-licence_600x600-2.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2019-download-digital-licence_600x600-2.png",
     ],
     version: "2019 Professional",
@@ -580,12 +611,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/project/microsoft-project-2021-professional-1pc-lifetime",
     item: "microsoft-project-2021-professional-1pc-lifetime",
     category: "Project",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2021-download-digital-licence_600x600.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2021-download-digital-licence_600x600.png",
     ],
     version: "2021 Professional",
@@ -617,12 +650,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/project/microsoft-project-2021-professional-1pc-lifetime-o-singura-instalare",
     item: "microsoft-project-2021-professional-1pc-lifetime-o-singura-instalare",
     category: "Project",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2021-download-digital-licence_600x600.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/Microsoft-Project-Professional-2021-download-digital-licence_600x600.png",
     ],
     version: "2021 Professional",
@@ -655,12 +690,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "Licențele pentru softuri sunt create pentru a fi folosite în calculatoare și sisteme digitale, în comerț sau în echipamente industriale. Excluive Key Licenses S.R.L. lucrează cu numeroși distribuitori, de licențe de softuri care nu sunt folosite sau nu au fost instalate. Datorită modului de achiziționare, nu trebuie să suportăm costuri de livrare, de depozitare și de personal, astfel putem oferi prețuri foarte favorabile.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/adobe/adobe-creative-cloud-1-an",
     item: "adobe-creative-cloud-1-an",
     category: "Adobe",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/10/adobe-creative-cloud-abonament-1-an.png",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/10/adobe-creative-cloud-abonament-1-an.png",
     ],
     version: "Creative Cloud ",
@@ -677,12 +714,14 @@ export const licenseData: ILicence[] = [
       "Valabilitate 1 an – posibilitate reinnoire.",
       "Livrarea se va face imediat in contul dvs.",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/antivirus/bitdefender-2022-antivirus-plus-1-pc-1-an",
     item: "bitdefender-2022-antivirus-plus-1-pc-1-an",
     category: "Antivirus",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg",
     ],
     version: "Bitdefender 2022 Antivirus Plus",
@@ -709,12 +748,14 @@ export const licenseData: ILicence[] = [
       "3. Selecteaza tabul “My Subscription”",
       "3. Selecteaza butonul “Activation Code” in coltul din dreapta sus si adauga cheia",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/antivirus/bitdefender-2022-antivirus-plus-10-pc-1-an",
     item: "bitdefender-2022-antivirus-plus-10-pc-1-an",
     category: "Antivirus",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg",
     ],
     version: "Bitdefender 2022 Antivirus Plus",
@@ -740,12 +781,14 @@ export const licenseData: ILicence[] = [
       "3. Selecteaza tabul “My Subscription”",
       "3. Selecteaza butonul “Activation Code” in coltul din dreapta sus si adauga cheia",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/antivirus/bitdefender-2022-antivirus-plus-5-pc-1-an",
     item: "bitdefender-2022-antivirus-plus-5-pc-1-an",
     category: "Antivirus",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.38-PM-2.jpeg",
     ],
     version: "Bitdefender 2022 Antivirus Plus",
@@ -771,12 +814,14 @@ export const licenseData: ILicence[] = [
       "3. Selecteaza tabul “My Subscription”",
       "3. Selecteaza butonul “Activation Code” in coltul din dreapta sus si adauga cheia",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/antivirus/eset-nod32-antivirus-1-an-1-pc",
     item: "eset-nod32-antivirus-1-an-1-pc",
     category: "Antivirus",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.44-PM-1.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.44-PM-1.jpeg",
     ],
     version: "ESET NOD32",
@@ -804,12 +849,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "*Nu vă puteți conecta această licență la propriul cont sau nu vă puteți crea/conecta la un cont de acasă ESET atunci când utilizați software-ul antivirus, licența este legată numai de client/dispozitiv",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/antivirus/eset-nod32-internet-security-1-year-1-pc",
     item: "eset-nod32-internet-security-1-year-1-pc",
     category: "Antivirus",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.44-PM.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.44-PM.jpeg",
     ],
     version: "ESET NOD32 Internet Security",
@@ -837,12 +884,14 @@ export const licenseData: ILicence[] = [
     postDescr: [
       "*Nu vă puteți conecta această licență la propriul cont sau nu vă puteți crea/conecta la un cont de acasă ESET atunci când utilizați software-ul antivirus, licența este legată numai de client/dispozitiv",
     ],
+    idCode: "",
   },
   {
     id: "/licenta-software/antivirus/kaspersky-antivirus-2022-1-an-1-device",
     item: "kaspersky-antivirus-2022-1-an-1-device",
     category: "Antivirus",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.31-PM.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.31-PM.jpeg",
     ],
     version: "Kaspersky AntiVirus 2022",
@@ -871,12 +920,14 @@ export const licenseData: ILicence[] = [
       "5. Introdu codul si selecteaza “Activate”",
     ],
     postDescr: ["*Softul poate cere crearea unui cont."],
+    idCode: "",
   },
   {
     id: "/licenta-software/antivirus/kaspersky-total-security-2022-1-an-1-device",
     item: "kaspersky-total-security-2022-1-an-1-device",
     category: "Antivirus",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.31-PM-1.jpeg",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-26-at-10.23.31-PM-1.jpeg",
     ],
     version: "Kaspersky Total Security 2022",
@@ -905,12 +956,14 @@ export const licenseData: ILicence[] = [
       "5. Introdu codul si selecteaza “Activate”",
     ],
     postDescr: ["*Softul poate cere crearea unui cont."],
+    idCode: "",
   },
   {
     id: "/licenta-software/antivirus/mcafee-internet-security-2022-1-an-10-pc",
     item: "mcafee-internet-security-2022-1-an-10-pc",
     category: "Antivirus",
-    imgLink: [
+    img1: "https://ialicenta.ro/wp-content/uploads/2022/11/McAfee-Internet-Security-2021-4.webp",
+    imgLink1: [
       "https://ialicenta.ro/wp-content/uploads/2022/11/McAfee-Internet-Security-2021-4.webp",
     ],
     version: "MCAFEE Internet Security 2022",
@@ -941,5 +994,6 @@ export const licenseData: ILicence[] = [
       "4. Descarca software gata licentiat",
     ],
     postDescr: ["*Softul poate cere crearea unui cont."],
+    idCode: "",
   },
 ];
