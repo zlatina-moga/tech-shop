@@ -103,8 +103,7 @@ const Reset = () => {
             >
               Confirmați adresa de e-mail
             </button>
-          </form>
-          <p className="auth-field mt-2">
+            <p className="auth-field mt-4">
             <span className="text-white">
               Înapoi la {' '}
               <span>
@@ -117,6 +116,8 @@ const Reset = () => {
               </span>
             </span>
           </p>
+          </form>
+
         </div>
         <ul className="bg-bubbles">
           <li></li>

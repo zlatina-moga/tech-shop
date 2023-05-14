@@ -4,7 +4,6 @@ export const create = async (orderData) => {
   let res = await fetch(`${baseUrl}/order`, {
     method: "POST",
     headers: {
-      //"X-Authorization": token,
       "Content-type": "application/json",
     },
     body: JSON.stringify(orderData),

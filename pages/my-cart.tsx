@@ -70,6 +70,7 @@ const MyCard = () => {
                       warranty={p.warranty}
                       profile={false}
                       createdAt
+                      orderNum
                     />
                   ))}
                 </tbody>

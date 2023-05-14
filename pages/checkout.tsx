@@ -9,16 +9,22 @@ import * as userService from "../services/userService";
 import toast from "react-hot-toast";
 import { Country, State, City } from "country-state-city";
 import * as orderService from "../services/orderService";
-import { empty } from "../services/redux/cartRedux";
+import { empty, addOrderNum } from "../services/redux/cartRedux";
 
 const Checkout = () => {
   const [userData, setUserData] = useState<IUser>(initialValues);
   const [checked, setChecked] = useState<boolean>(false);
-  const [payment, setPayment] = useState("");
+  const [payment, setPayment] = useState("card");
   let [selectedState, setSelectedState] = useState("");
   let [selectedCity, setSelectedCity] = useState("");
   let [selectedFirm, setSelectedFirm] = useState<boolean>(false);
   let [selectedPersonal, setSelectedPersonal] = useState<boolean>(true);
+  let [paymentData, setPaymentData] = useState({
+    url: "",
+    env_key: "",
+    data: "",
+  });
+  const [showModal, setShowModal] = useState<boolean>(false);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -53,6 +59,13 @@ const Checkout = () => {
     setSelectedState(e.target.value);
   };
 
+  let amountToPay = 0;
+  if (cart.total < 250) {
+    amountToPay = (cart.total + 20).toFixed(2);
+  } else {
+    amountToPay = cart.total.toFixed(2);
+  }
+
   const handleCityChange = (e) => {
     setSelectedCity(e.target.value);
   };
@@ -72,9 +85,7 @@ const Checkout = () => {
     const firmCif = formData.get("cf-cif");
     const firmReg = formData.get("cf-reg");
 
-    const orderNum = Math.floor(100000 + Math.random() * 900000);
-
-    if (payment == ''){
+    if (payment == "") {
       toast.error("Please select payment method", {
         style: { marginTop: "100px" },
       });
@@ -97,7 +108,7 @@ const Checkout = () => {
         title: c.itemData[0].title,
         img1: c.itemData[0].img1,
         imgLink: c.itemData[0].imgLink,
-        idLink: c.itemData[0].id
+        idLink: c.itemData[0].id,
       }));
 
       if (user) {
@@ -113,19 +124,31 @@ const Checkout = () => {
             city: city || selectedCity,
             address: address,
             zip: zip,
-            amount: cart.total,
-            orderNum: orderNum,
+            amount: amountToPay,
             payment: payment,
             firmName: firm,
             firmCif: firmCif,
             firmReg: firmReg,
           })
-          .then(() => {
-            toast.success("Comanda plasata cu succes", {
-              style: { marginTop: "100px" },
-            });
-            dispatch(empty());
-            router.push("/success");
+          .then((res) => {
+            setPaymentData(res);
+            let orderNum = res._doc._id;
+            let orderTotal = res._doc.amount;
+            if (payment === "card") {
+              setShowModal(true);
+            } else if (payment == "directcheck") {
+              dispatch(
+                addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
+              );
+              dispatch(empty());
+              router.push("/order-success");
+            } else {
+              toast.success("Comanda plasata cu succes", {
+                style: { marginTop: "100px" },
+              });
+              dispatch(empty());
+              router.push("/success");
+            }
           })
           .catch((err) => {
             toast.error(err, {
@@ -158,19 +181,31 @@ const Checkout = () => {
             city: city || selectedCity,
             address: address,
             zip: zip,
-            amount: cart.total,
-            orderNum: orderNum,
+            amount: amountToPay,
             payment: payment,
             firmName: firm,
             firmCif: firmCif,
             firmReg: firmReg,
           })
-          .then(() => {
-            toast.success("Comanda plasata cu succes", {
-              style: { marginTop: "100px" },
-            });
-            dispatch(empty());
-            router.push("/success");
+          .then((res) => {
+            setPaymentData(res);
+            let orderNum = res._doc._id;
+            let orderTotal = res._doc.amount;
+            if (payment === "card") {
+              setShowModal(true);
+            } else if (payment == "directcheck") {
+              dispatch(
+                addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
+              );
+              dispatch(empty());
+              router.push("/order-success");
+            } else {
+              toast.success("Comanda plasata cu succes", {
+                style: { marginTop: "100px" },
+              });
+              dispatch(empty());
+              router.push("/success");
+            }
           })
           .catch((err) => {
             toast.error(err, {
@@ -750,6 +785,7 @@ const Checkout = () => {
                         name="payment"
                         id="card"
                         onChange={() => setPayment("card")}
+                        defaultChecked
                       />
                       <label className="custom-control-label" htmlFor="card">
                         Plata cu cardul online
@@ -768,6 +804,55 @@ const Checkout = () => {
         </form>
       </div>
       <Footer />
+      <div
+        className={classNames("modal", showModal ? "d-block" : "d-none")}
+        id="exampleModal"
+        aria-hidden="true"
+        style={{
+          paddingTop: "150px",
+          backgroundColor: "rgba(208, 212, 217, 0.5)",
+        }}
+      >
+        <div className="modal-dialog ">
+          <div className="modal-content border-primary rounded">
+            <div className="modal-header justify-content-center">
+              <h5 className="modal-title fw-bold">
+                Vă rugăm să confirmați plata cu cardul
+              </h5>
+            </div>
+            <div className="modal-footer justify-content-center border-top-0">
+              <form
+                className="modal-footer border-top-0 flex-nowrap"
+                action={paymentData.url}
+                method="post"
+              >
+                <div className="d-none">
+                  <input
+                    value={paymentData.env_key}
+                    id="env_key"
+                    name="env_key"
+                  />
+                  <input value={paymentData.data} id="data" name="data" />
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-block rounded px-4 mr-4"
+                  data-bs-dismiss="modal"
+                  onClick={() => setShowModal(false)}
+                >
+                  Anulare
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block px-4"
+                >
+                  Continua
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

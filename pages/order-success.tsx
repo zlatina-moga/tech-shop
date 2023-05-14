@@ -6,12 +6,10 @@ import { useSelector } from "react-redux";
 const Success = () => {
   //@ts-ignore
   const cart = useSelector((state) => state.cart);
-  //@ts-ignore
-  const user = useSelector((state) => state.user.currentUser);
   return (
     <>
       <Navbar />
-      <div className="vh-100 d-flex justify-content-center align-items-center success-page">
+      <div className="vh-100 d-flex justify-content-center align-items-center">
         <div className="">
           <div className="border border-3 border-primary"></div>
           <div className="card  bg-white shadow p-5">
@@ -29,25 +27,35 @@ const Success = () => {
               </svg>
             </div>
             <div className="text-center">
-              <h1>Mulțumim pentru comanda</h1>
+              <h1 className="mb-4">Mulțumim pentru comanda !</h1>
+              <p>
+                Vă rugăm să efectuați o plată de{" "}
+                <strong>{cart.orderTotal} Lei</strong> în acest cont bancar
+              </p>
+              <div className="border border-primary py-4 rounded">
+                <p>
+                  Nume titular: <strong>Popescu Vlad-Nicolae</strong>
+                </p>
+                <p>
+                  {" "}
+                  IBAN: <strong>RO70BTRLRONCRT0659572401</strong>{" "}
+                </p>
+                <p>
+                  SWIFT: <strong>BTRLRO22</strong>
+                </p>
+                <p>
+                  Vă rugăm să indicați numărul comenzii ca bază de plată <br />{" "}
+                  <strong>{cart.orderNumber}</strong>{" "}
+                </p>
+              </div>
 
-              <h3>
-                cu număr{" "}
-                <strong style={{ color: "gray" }}>{cart.orderNumber}</strong>
-              </h3>
               <p className="mt-2">
-                Aceasta va intra în procesare și va fi livrata cât mai repede
-                posibil.{" "}
+                După primirea plății, comanda vă va fi trimisă
               </p>
               <p>
-                Puteți vedea comenzile dvs. la pagina
-                <Link href={`/auth/profile/${user._id}`} className="footer-link ml-2 fw-bold">Profil</Link>
-              </p>
-              <p>
-                Pentru orice fel de informații suplimentare, nu ezitați sa ne
-                contactați <br />{" "}
+                Dacă aveți întrebări, nu ezitați să ne sunați <br />{" "}
                 <a
-                  className="mb-2 footer-link font-weight-bold mt-2"
+                  className="mb-2 footer-link font-weight-bold ml-2"
                   href="tel:+40(721) 909 049"
                 >
                   <i className="fa fa-phone-alt text-primary mr-2"></i>
