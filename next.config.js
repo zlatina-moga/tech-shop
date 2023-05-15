@@ -6,7 +6,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['api.citgrup.ro']
+    domains: ['api.citgrup.ro'],
+    unoptimized: true,
   },
   env: {
     TEMPLATE_ID: process.env.TEMPLATE_ID,

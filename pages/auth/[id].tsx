@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import checkedImg from "../../../../public/images/checked.jpeg";
+import checkedImg from "../../public/images/checked.jpeg";
 import axios from "axios";
-import Navbar from "../../../../components/global/Navbar";
-import Footer from "../../../../components/global/Footer";
+import Navbar from "../../components/global/Navbar";
+import Footer from "../../components/global/Footer";
 
 const VerifiedEmail = () => {
   const [validUrl, setValidUrl] = useState<boolean>(false);
@@ -15,11 +15,12 @@ const VerifiedEmail = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const url = `https://pcbun.ro/auth/${id}/verify/${token}`;
+        const url = `https://pc-bun-api.herokuapp.com/auth/${id}?token=${token}`;
         const { data } = await axios.get(url);
+        console.log('data: ', data)
         setValidUrl(true);
       } catch (err) {
-        //console.log(err);
+        console.log(err.message);
         setValidUrl(false);
       }
     };
