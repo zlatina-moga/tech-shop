@@ -39,10 +39,17 @@ const Success = () => {
                 Aceasta va intra în procesare și va fi livrata cât mai repede
                 posibil.{" "}
               </p>
-              <p>
-                Puteți vedea comenzile dvs. la pagina
-                <Link href={`/auth/profile/${user._id}`} className="footer-link ml-2 fw-bold">Profil</Link>
-              </p>
+              {user && (
+                <p>
+                  Puteți vedea comenzile dvs. la pagina
+                  <Link
+                    href={`/auth/profile/${user._id}`}
+                    className="footer-link ml-2 fw-bold"
+                  >
+                    Profil
+                  </Link>
+                </p>
+              )}
               <p>
                 Pentru orice fel de informații suplimentare, nu ezitați sa ne
                 contactați <br />{" "}

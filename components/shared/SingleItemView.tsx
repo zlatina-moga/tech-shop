@@ -9,7 +9,7 @@ import { Navigation } from "swiper";
 import Image from "next/image";
 import qualityIcon from "../../public/svg/quality.svg";
 import transportIcon from "../../public/svg/transport.svg";
-import payImg from "../../public/images/stripe.png";
+import payImg from "../../public/images/netopia-3.png";
 import truckIcon from "../../public/svg/truck.svg";
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css";
@@ -217,7 +217,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                         >
                           Adauga in coș
                         </button>
-                        <div className="d-flex align-items-center mb-2 pt-2">
+                        <div className="d-flex align-items-start mb-2 pt-2">
                           <Image
                             src={payImg}
                             alt="payments"

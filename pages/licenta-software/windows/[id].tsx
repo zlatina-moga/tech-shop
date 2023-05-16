@@ -9,7 +9,7 @@ import Meta from "../../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";
-import payImg from "../../../public/images/stripe.png";
+import payImg from "../../../public/images/netopia-3.png";
 import { windowsBrcrmbs } from "../../../data/breadcrumbs";
 import { addProduct } from "../../../services/redux/cartRedux";
 import Footer from "../../../components/global/Footer";

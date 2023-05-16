@@ -77,7 +77,7 @@ const Footer = () => {
             <p className="mb-2">RO70BTRLRONCRT0659572401</p>
             <Image
               className="img-fluid"
-              src="/images/netopia.jpg"
+              src="/images/netopia.png"
               alt=""
               width={300}
               height={300}
@@ -205,15 +205,6 @@ const Footer = () => {
                 Website
               </a>
             </p>
-          </div>
-          <div className=" px-xl-0 text-center text-md-right">
-            <Image
-              className="img-fluid"
-              src="/images/payments.png"
-              alt=""
-              width={300}
-              height={300}
-            />
           </div>
         </div>
         <button

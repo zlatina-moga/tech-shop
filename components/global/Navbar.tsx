@@ -5,7 +5,6 @@ import Link from "next/link";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Navbar = () => {
-  //const { user } = useContext(AuthContext);
   //@ts-ignore
   const quantity = useSelector((state) => state.cart.quantity);
   //@ts-ignore
