@@ -266,10 +266,8 @@ const Checkout = () => {
             let orderTotal = res._doc.amount;
             if (payment === "card") {
               setShowModal(true);
-              orderService.verify()
-                .then(() => {
-                  router.push("/success");
-              })
+              //dispatch(empty());
+             //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
