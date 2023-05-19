@@ -4652,6 +4652,26 @@ export const getAllPanels = (page) =>
     `${baseUrl}/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice?page=${page}`
   );
 
+  export const getAllSystems = (page) =>
+  request.get(
+    `${baseUrl}/sisteme-solare-fotovoltaice/sisteme-fotovoltaice?page=${page}`
+  );
+
+  export const getSortedSystemsPrice = (price, page, sort) =>
+  request.get(
+    `${baseUrl}/sisteme-solare-fotovoltaice/sisteme-fotovoltaice?price=1-${price}&sort=${sort}&page=${page}`
+  );
+
+  export const getSortedSystems = (page, sort) =>
+  request.get(
+    `${baseUrl}/sisteme-solare-fotovoltaice/sisteme-fotovoltaice?sort=${sort}&page=${page}`
+  );
+
+  export const getAllSystemsPrice = (price, page) =>
+  request.get(
+    `${baseUrl}/sisteme-solare-fotovoltaice/sisteme-fotovoltaice?price=1-${price}&page=${page}`
+  );
+
 export const getAllPanelsPrice = (price, page) =>
   request.get(
     `${baseUrl}/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice?price=1-${price}&page=${page}`

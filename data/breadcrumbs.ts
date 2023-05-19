@@ -1286,7 +1286,7 @@ export const solarInvertorsBrcrmbs = [
   },
 ];
 
-export const solarpanelsBrcrmbs = [
+export const solarSystemBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme Solare Fotovoltaice",
@@ -1295,6 +1295,19 @@ export const solarpanelsBrcrmbs = [
   },
   {
     name: "Sisteme Solare Fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice/sisteme-fotovoltaice",
+  },
+];
+
+export const solarpanelsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Sisteme Solare Fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  {
+    name: "Panouri solare fotovoltaice",
     link: "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice",
   },
 ];

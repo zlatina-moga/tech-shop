@@ -298,8 +298,12 @@ export const solarCategories = [
     link: "/sisteme-solare-fotovoltaice/invertoare-fotovoltaice",
   },
   {
-    name: "Sisteme solare fotovoltaice",
+    name: "Panouri solare fotovoltaice",
     link: "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice",
+  },
+  {
+    name: "Sisteme solare fotovoltaice",
+    link: "/sisteme-solare-fotovoltaice/sisteme-fotovoltaice",
   },
 ];
 

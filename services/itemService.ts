@@ -127,3 +127,5 @@ export const getAccessPoint = (id) => request.get(`${baseUrl}/retelistica/access
 export const getSolarPanel = (id) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice/${id}`)
 
 export const getInvertor = (id) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice/invertoare-fotovoltaice/${id}`)
+
+export const getSolarSystem = (id) => request.get(`${baseUrl}/sisteme-solare-fotovoltaice/sisteme-fotovoltaice/${id}`)

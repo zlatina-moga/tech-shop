@@ -5,7 +5,7 @@ import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { solarCategories } from "../../data/categories";
-import { solarpanelsBrcrmbs } from "../../data/breadcrumbs";
+import { solarSystemBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
@@ -15,26 +15,22 @@ const SolarPanels = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState(
-    "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice"
+    "/sisteme-solare-fotovoltaice/sisteme-fotovoltaice"
   );
   const router = useRouter();
-  const [brands, setBrands] = useState([]);
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
 
   useEffect(() => {
-    sortingService.getBrands(96).then((result) => {
-      setBrands(result);
-    });
-    sortingService.getHighestPrice(96).then((response) => {
+    sortingService.getHighestPrice(99).then((response) => {
       setHighestPrice(response[1]);
     });
   }, []);
 
   useEffect(() => {
     productService
-      .getAllPanels(currentPage)
+      .getAllSystems(currentPage)
       .then((result) => {
         setLoading(false);
         setLaptopsData(result);
@@ -49,21 +45,21 @@ const SolarPanels = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && selectedSort!= "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice") {
+    if (priceRange != '' && selectedSort!= "/sisteme-solare-fotovoltaice/sisteme-fotovoltaice") {
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedPanelsPrice(priceRange, currentPage, sort)
+        .getSortedSystemsPrice(priceRange, currentPage, sort)
         .then((result) => {
           setLaptopsData(result);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort!= "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice") {
+    } else if (selectedSort!= "/sisteme-solare-fotovoltaice/sisteme-fotovoltaice") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
-        .getSortedPanels(currentPage, sort)
+        .getSortedSystems(currentPage, sort)
         .then((result) => {
           setLoading(false);
           setLaptopsData(result);
@@ -81,7 +77,7 @@ const SolarPanels = () => {
   useEffect(() => {
     setShow(false);
     productService
-      .getAllPanelsPrice(priceRange, currentPage)
+      .getAllSystemsPrice(priceRange, currentPage)
       .then((result) => {
         setLaptopsData(result);
         setShow(true);
@@ -119,14 +115,12 @@ const SolarPanels = () => {
       ) : (
         <>
           <LaptopsPage
-            title="Panouri solare fotovoltaice"
+            title="Sisteme solare fotovoltaice"
             laptopsData={laptopsData}
             categories2={solarCategories}
-            breadcrumbs={solarpanelsBrcrmbs}
+            breadcrumbs={solarSystemBrcrmbs}
             sortCriteria={onSort}
-            baseLink="/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice"
-            brands={brands}
-            brandLink={"/sisteme-solare-fotovoltaice/brand/"}
+            baseLink="/sisteme-solare-fotovoltaice/sisteme-fotovoltaice"
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
