@@ -19,4 +19,4 @@ export const create = async (orderData) => {
   }
 };
 
-//export const verify = () => request.get(`${baseUrl}/order/success`)
+export const verify = () => request.get(`${baseUrl}/order/success`)

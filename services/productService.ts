@@ -3303,9 +3303,6 @@ export const getSortedMotherBoardsPrice = (price, page, sort) =>
     `${baseUrl}/componente/placa-de-baza-calculator?price=1-${price}&sort=${sort}&page=${page}`
   );
 
-export const geAllSoftware = (page) =>
-  request.get(`${baseUrl}/licenta-software?page=${page}`);
-
 export const geAllPrinters = (page) =>
   request.get(`${baseUrl}/imprimante?page=${page}`);
 
