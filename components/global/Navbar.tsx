@@ -203,6 +203,9 @@ const Navbar = () => {
         <Link href="/componente" className="nav-item nav-link text-left">
           Componente
         </Link>
+        <Link href="/licenta-software" className="nav-item nav-link text-left">
+          Software
+        </Link>
         <Link href="/imprimante" className="nav-item nav-link text-left">
           Imprimante
         </Link>

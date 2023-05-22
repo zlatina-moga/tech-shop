@@ -320,6 +320,18 @@ const Sidebar = () => {
                 />
                 Componente
               </Link>
+              <Link
+                href="/licenta-software"
+                className="nav-item nav-link py-3 sidebar-link"
+                style={{ borderBottom: "none" }}
+              >
+                <img
+                  src={softwareIcon.src}
+                  alt="list"
+                  style={{ height: "18px" }}
+                />
+                Software
+              </Link>
             </ul>
           </nav>
         </div>

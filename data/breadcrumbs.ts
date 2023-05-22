@@ -1386,3 +1386,67 @@ export const workstationSHBrcrmbs = [
   { name: "Second Hand", link: "/workstation/second-hand" },
 ];
 
+export const softwareBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Software", link: "/licenta-software" },
+];
+
+export const windowsBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Windows", link: "/licenta-software/windows" },
+];
+
+export const officeBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Microsoft Office", link: "/licenta-software/office" },
+];
+
+export const visioBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Microsoft Visio", link: "/licenta-software/microsoft-visio" },
+];
+
+export const projectBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Microsoft Project", link: "/licenta-software/project" },
+];
+
+export const adobeBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Adobe", link: "/licenta-software/adobe" },
+];
+
+export const antivurusBrcrmbs = [
+  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  {
+    name: "Software",
+    link: "/licenta-software",
+    linkIcon: "fa fa-angle-double-right",
+  },
+  { name: "Antivirus", link: "/licenta-software/antivirus" },
+];

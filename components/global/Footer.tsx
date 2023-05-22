@@ -102,6 +102,9 @@ const Footer = () => {
                 <Link className="footer-link mb-2" href="/workstation">
                   <i className="fa fa-angle-right mr-2"></i>Workstation
                 </Link>
+                <Link className="footer-link mb-2" href="/licenta-software">
+                  <i className="fa fa-angle-right mr-2"></i>Software
+                </Link>
                 <Link className=" footer-link mb-2" href="/my-cart">
                   <i className="fa fa-angle-right mr-2"></i>Coș de cumpărături
                 </Link>
