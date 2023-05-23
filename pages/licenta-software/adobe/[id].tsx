@@ -15,6 +15,7 @@ import { addProduct } from "../../../services/redux/cartRedux";
 import Footer from "../../../components/global/Footer";
 import toast from "react-hot-toast";
 import classNames from "classnames";
+import * as ga from "../../../lib/gtag";
 
 const AdobeDetails = () => {
   const router = useRouter();
@@ -24,8 +25,25 @@ const AdobeDetails = () => {
 
   const handleAddToCart = () => {
     let itemData = licenseData.filter((el) => el.item == id);
-    dispatch(addProduct({ itemData, quantity: 1, warranty: 0, isSoftware: true }));
+    dispatch(
+      addProduct({ itemData, quantity: 1, warranty: 0, isSoftware: true })
+    );
     setClicked(true);
+
+    ga.event({
+      action: "add_to_cart",
+      params: {
+        currency: "RON",
+        value: itemData[0].priceNum,
+        items: [
+          {
+            item_id: itemData[0].id,
+            item_name: itemData[0].title,
+          },
+        ],
+      },
+    });
+
     toast.success("Produs adăugat în coș", {
       style: { marginTop: "100px" },
     });

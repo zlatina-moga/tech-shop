@@ -5,11 +5,68 @@ import CartItem from "../components/shared/CartItem";
 import Footer from "../components/global/Footer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ResponsiveCart from "../components/shared/ResponsiveCartItem";
+import * as ga from '../lib/gtag';
 
 const MyCard = () => {
   //@ts-ignore
   const cart = useSelector((state) => state.cart);
   const isTablet = useMediaQuery("(max-width:500px)");
+
+  const handleEvent = () => {
+    ga.event({
+      action: "begin_checkout",
+      params: {
+        currency: "RON",
+        value: cart.total.toFixed(2),
+        items: [
+          {
+            item_id: cart.products[0].itemData[0].id,
+            item_name: cart.products[0].itemData[0].title
+          },
+          {
+            item_id: cart.products[1].itemData[0].id,
+            item_name: cart.products[1].itemData[0].title
+          },
+          {
+            item_id: cart.products[2].itemData[0].id,
+            item_name: cart.products[2].itemData[0].title
+          },
+          {
+            item_id: cart.products[3].itemData[0].id,
+            item_name: cart.products[3].itemData[0].title
+          },
+          {
+            item_id: cart.products[4].itemData[0].id,
+            item_name: cart.products[4].itemData[0].title
+          },
+          {
+            item_id: cart.products[5].itemData[0].id,
+            item_name: cart.products[5].itemData[0].title
+          },
+          {
+            item_id: cart.products[6].itemData[0].id,
+            item_name: cart.products[6].itemData[0].title
+          },
+          {
+            item_id: cart.products[7].itemData[0].id,
+            item_name: cart.products[7].itemData[0].title
+          },
+          {
+            item_id: cart.products[8].itemData[0].id,
+            item_name: cart.products[8].itemData[0].title
+          },
+          {
+            item_id: cart.products[9].itemData[0].id,
+            item_name: cart.products[9].itemData[0].title
+          },
+          {
+            item_id: cart.products[10].itemData[0].id,
+            item_name: cart.products[10].itemData[0].title
+          },
+        ],
+      },
+    });
+  }
 
   return (
     <>
@@ -149,12 +206,16 @@ const MyCard = () => {
                   )}
                 </div>
                 {cart.total != 0 ? (
-                  <Link
-                    className="btn btn-block btn-primary my-3 py-3"
-                    href="/checkout"
-                  >
-                    Urmatorul pas
-                  </Link>
+                  <button className="btn btn-block btn-primary my-3" onClick={handleEvent}>
+                    {" "}
+                    <Link
+                      className="text-white btn btn-block w-100 py-3 font-weight-bold text-uppercase"
+                      href="/checkout"
+                      
+                    >
+                      Urmatorul pas
+                    </Link>
+                  </button>
                 ) : (
                   <Link
                     className="btn btn-block btn-primary my-3 py-3"

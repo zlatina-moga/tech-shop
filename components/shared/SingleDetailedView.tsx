@@ -19,6 +19,7 @@ import classNames from "classnames";
 import toast, { Toaster } from "react-hot-toast";
 import emailjs from "emailjs-com";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import * as ga from "../../lib/gtag";
 
 const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,21 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: warranty }));
     setClicked(true);
+
+    ga.event({
+      action: "add_to_cart",
+      params: {
+        currency: "RON",
+        value: itemData[0].priceNum,
+        items: [
+          {
+            item_id: itemData[0].idCode,
+            item_name: itemData[0].title,
+          },
+        ],
+      },
+    });
+
     toast.success("Produs adăugat în coș", {
       style: { marginTop: "100px" },
     });
@@ -274,7 +290,9 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                           <p>Livrare gratuita la comanda de peste 250 lei</p>
                         </div>
                         <p className="mb-4 details">
-                          Produsele noastre arată foarte bine, fără zgârieturi vizibile (in cazul produselor Second hand sau Refurbished)
+                          Produsele noastre arată foarte bine, fără zgârieturi
+                          vizibile (in cazul produselor Second hand sau
+                          Refurbished)
                         </p>
                       </>
                     ) : (

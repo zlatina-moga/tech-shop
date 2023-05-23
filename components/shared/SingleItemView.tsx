@@ -19,6 +19,7 @@ import classNames from "classnames";
 import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
 import useMediaQuery from '@mui/material/useMediaQuery';
+import * as ga from "../../lib/gtag";
 
 const SingleItemView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
@@ -29,6 +30,21 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
     setClicked(true);
+
+    ga.event({
+      action: "add_to_cart",
+      params: {
+        currency: "RON",
+        value: itemData[0].priceNum,
+        items: [
+          {
+            item_id: itemData[0].idCode,
+            item_name: itemData[0].title,
+          },
+        ],
+      },
+    });
+
     toast.success("Produs adăugat în coș", {
       style: { marginTop: "100px" },
     });
