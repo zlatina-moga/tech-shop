@@ -48,7 +48,7 @@ const Cameras = () => {
           setLaptopsData(result);
           setShow(true);
           setTotalPages(result[0].totalPages);
-          setBaseLink(`/componente/camere-web`);
+          setBaseLink(`/accesorii/camere-web`);
         })
         .catch((err) => {
           console.log(err);
@@ -70,7 +70,7 @@ const Cameras = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/componente/camere-web") {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/camere-web") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -83,7 +83,7 @@ const Cameras = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/camere-web") {
+    } else if (brand && selectedSort != "/accesorii/camere-web") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -96,7 +96,7 @@ const Cameras = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand && selectedSort != "/componente/camere-web") {
+    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/camere-web") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedCamerasPrice(priceRange, currentPage, sort)
@@ -106,7 +106,7 @@ const Cameras = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/camere-web") {
+    } else if (selectedSort != "/accesorii/camere-web") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

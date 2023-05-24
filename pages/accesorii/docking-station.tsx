@@ -59,7 +59,7 @@ const DockingStations = () => {
         setLaptopsData(result);
         setShow(true);
         setTotalPages(result[0].totalPages);
-        setBaseLink(`/componente/docking-station`);
+        setBaseLink(`/accesorii/docking-station`);
       })
       .catch((err) => {
         console.log(err);
@@ -73,7 +73,7 @@ const DockingStations = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/componente/docking-station") {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/docking-station") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -86,7 +86,7 @@ const DockingStations = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/docking-station") {
+    } else if (brand && selectedSort != "/accesorii/docking-station") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -99,7 +99,7 @@ const DockingStations = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand  && selectedSort != "/componente/docking-station") {
+    } else if (priceRange != '' && !brand  && selectedSort != "/accesorii/docking-station") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedDockingStationsPrice(priceRange, currentPage, sort)
@@ -109,7 +109,7 @@ const DockingStations = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/docking-station"){
+    } else if (selectedSort != "/accesorii/docking-station"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

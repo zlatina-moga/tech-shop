@@ -61,7 +61,7 @@ const Videos = () => {
         setLaptopsData(result);
         setShow(true);
         setTotalPages(result[0].totalPages);
-        setBaseLink(`/componente/videoproiectoare`);
+        setBaseLink(`/accesorii/videoproiectoare`);
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +75,7 @@ const Videos = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/componente/videoproiectoare") {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/videoproiectoare") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -88,7 +88,7 @@ const Videos = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/videoproiectoare") {
+    } else if (brand && selectedSort != "/accesorii/videoproiectoare") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -101,7 +101,7 @@ const Videos = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand  && selectedSort != "/componente/videoproiectoare") {
+    } else if (priceRange != '' && !brand  && selectedSort != "/accesorii/videoproiectoare") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedVideoPrice(priceRange, currentPage, sort)
@@ -111,7 +111,7 @@ const Videos = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/videoproiectoare"){
+    } else if (selectedSort != "/accesorii/videoproiectoare"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

@@ -57,7 +57,7 @@ const Gaming = () => {
           setLaptopsData(result);
           setShow(true);
           setTotalPages(result[0].totalPages);
-          setBaseLink(`/componente/gaming-console`);
+          setBaseLink(`/accesorii/gaming-console`);
         })
         .catch((err) => {
           console.log(err);
@@ -70,7 +70,7 @@ const Gaming = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/componente/gaming-console") {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/gaming-console") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -83,7 +83,7 @@ const Gaming = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/gaming-console") {
+    } else if (brand && selectedSort != "/accesorii/gaming-console") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -96,7 +96,7 @@ const Gaming = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand && selectedSort != "/componente/gaming-console") {
+    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/gaming-console") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedGamingPrice(priceRange, currentPage, sort)
@@ -106,7 +106,7 @@ const Gaming = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/gaming-console") {
+    } else if (selectedSort != "/accesorii/gaming-console") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

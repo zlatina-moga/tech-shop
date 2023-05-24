@@ -48,7 +48,7 @@ const Mice = () => {
         setLaptopsData(result);
         setShow(true);
         setTotalPages(result[0].totalPages);
-        setBaseLink(`/componente/mouse`);
+        setBaseLink(`/accesorii/mouse`);
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +71,7 @@ const Mice = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/componente/mouse") {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/mouse") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -84,7 +84,7 @@ const Mice = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/mouse") {
+    } else if (brand && selectedSort != "/accesorii/mouse") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -97,7 +97,7 @@ const Mice = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand && selectedSort != "/componente/mouse") {
+    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/mouse") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedMicePrice(priceRange, currentPage, sort)
@@ -107,7 +107,7 @@ const Mice = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/mouse"){
+    } else if (selectedSort != "/accesorii/mouse"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

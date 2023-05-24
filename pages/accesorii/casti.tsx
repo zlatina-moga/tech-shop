@@ -48,7 +48,7 @@ const Headphones = () => {
         setLaptopsData(result);
         setShow(true);
         setTotalPages(result[0].totalPages);
-        setBaseLink(`/componente/casti`);
+        setBaseLink(`/accesorii/casti`);
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +71,7 @@ const Headphones = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/componente/casti") {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/casti") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -84,7 +84,7 @@ const Headphones = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/casti") {
+    } else if (brand && selectedSort != "/accesorii/casti") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -97,7 +97,7 @@ const Headphones = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand && selectedSort != "/componente/casti") {
+    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/casti") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedHeadPhonesPrice(priceRange, currentPage, sort)
@@ -107,7 +107,7 @@ const Headphones = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/casti") {
+    } else if (selectedSort != "/accesorii/casti") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

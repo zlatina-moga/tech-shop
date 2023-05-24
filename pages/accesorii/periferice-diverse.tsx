@@ -61,7 +61,7 @@ const Keyboards = () => {
           setLaptopsData(result);
           setShow(true);
           setTotalPages(result[0].totalPages);
-          setBaseLink(`/componente/periferice-diverse`);
+          setBaseLink(`/accesorii/periferice-diverse`);
         })
         .catch((err) => {
           console.log(err);
@@ -74,7 +74,7 @@ const Keyboards = () => {
   };
 
   useEffect(() => {
-    if ( priceRange != '' && brand && selectedSort != "/componente/periferice-diverse"  ) {
+    if ( priceRange != '' && brand && selectedSort != "/accesorii/periferice-diverse"  ) {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -92,7 +92,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/periferice-diverse") {
+    } else if (brand && selectedSort != "/accesorii/periferice-diverse") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -105,7 +105,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand && selectedSort != "/componente/periferice-diverse") {
+    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/periferice-diverse") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedOtherAccessoriesPrice(priceRange, currentPage, sort)
@@ -115,7 +115,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/periferice-diverse") {
+    } else if (selectedSort != "/accesorii/periferice-diverse") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

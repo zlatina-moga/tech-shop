@@ -57,7 +57,7 @@ const Bags = () => {
         setLaptopsData(result);
         setShow(true);
         setTotalPages(result[0].totalPages);
-        setBaseLink(`/componente/genti`);
+        setBaseLink(`/accesorii/genti`);
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +71,7 @@ const Bags = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/componente/genti") {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/genti") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -84,7 +84,7 @@ const Bags = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/genti") {
+    } else if (brand && selectedSort != "/accesorii/genti") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -97,7 +97,7 @@ const Bags = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand && selectedSort != "/componente/genti") {
+    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/genti") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedBagsPrice(priceRange, currentPage, sort)
@@ -107,7 +107,7 @@ const Bags = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/genti"){
+    } else if (selectedSort != "/accesorii/genti"){
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService

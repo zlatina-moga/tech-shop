@@ -59,7 +59,7 @@ const Keyboards = () => {
           setLaptopsData(result);
           setShow(true);
           setTotalPages(result[0].totalPages);
-          setBaseLink(`/componente/tastaturi`);
+          setBaseLink(`/accesorii/tastaturi`);
         })
         .catch((err) => {
           console.log(err);
@@ -72,7 +72,7 @@ const Keyboards = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/componente/tastaturi") {
+    if (priceRange != '' && brand && selectedSort != "/accesorii/tastaturi") {
       setShow(false);
       const sort = selectedSort.split("=")[2];
       productService
@@ -85,7 +85,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (brand && selectedSort != "/componente/tastaturi") {
+    } else if (brand && selectedSort != "/accesorii/tastaturi") {
       setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
@@ -98,7 +98,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (priceRange != '' && !brand && selectedSort != "/componente/tastaturi") {
+    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/tastaturi") {
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedKeyboardsPrice(priceRange, currentPage, sort)
@@ -108,7 +108,7 @@ const Keyboards = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (selectedSort != "/componente/tastaturi") {
+    } else if (selectedSort != "/accesorii/tastaturi") {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
