@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import qualityIcon from "../../public/svg/quality.svg";
 import transportIcon from "../../public/svg/transport.svg";
-import payImg from "../../public/images/netopia-3.png";
+import payImg from "../../public/images/secure.png";
 import truckIcon from "../../public/svg/truck.svg";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
@@ -383,11 +383,11 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                         >
                           Adauga in coș
                         </button>
-                        <div className="d-flex align-items-start mb-2 pt-2">
+                        <div className="d-flex align-items-start mb-4 pt-4">
                           <Image
                             src={payImg}
                             alt="payments"
-                            style={{ maxHeight: "60px", height: "auto" }}
+                            style={{ maxHeight: "100px", height: "auto" }}
                           />
                         </div>
                         <div className="contact">

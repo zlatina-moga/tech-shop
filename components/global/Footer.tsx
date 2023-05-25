@@ -77,7 +77,7 @@ const Footer = () => {
             <p className="mb-2">RO70BTRLRONCRT0659572401</p>
             <Image
               className="img-fluid"
-              src="/images/netopia.png"
+              src="/images/payu.gif"
               alt=""
               width={300}
               height={300}

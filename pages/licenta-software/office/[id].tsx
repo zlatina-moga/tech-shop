@@ -9,7 +9,7 @@ import Meta from "../../../components/layouts/Meta";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";
-import payImg from "../../../public/images/netopia-3.png";
+import payImg from "../../../public/images/secure.png";
 import { officeBrcrmbs } from "../../../data/breadcrumbs";
 import { addProduct } from "../../../services/redux/cartRedux";
 import Footer from "../../../components/global/Footer";
@@ -138,11 +138,11 @@ const OfficeDetails = () => {
                           >
                             Adauga in coș
                           </button>
-                          <div className="d-flex align-items-center mb-2 pt-2">
+                          <div className="d-flex align-items-center mb-4 pt-4">
                             <Image
                               src={payImg}
                               alt="payments"
-                              style={{ maxHeight: "60px" }}
+                              style={{ maxHeight: "100px", margin: 'auto' }}
                             />
                           </div>
                         </div>
