@@ -518,6 +518,20 @@ const Checkout = () => {
                         <input
                           type="checkbox"
                           className="custom-control-input "
+                          checked
+                        />
+                        <label
+                          className="custom-control-label"
+                        >
+                          Sunt de acord cu termenii și condițiile
+                        </label>
+                      </div>
+                    </div>
+                    <div className="col-md-12 form-group">
+                      <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input "
                           id="shipto"
                           onChange={() => setChecked(!checked)}
                         />

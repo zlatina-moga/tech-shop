@@ -116,13 +116,7 @@ const definitions: IData[] = [
   {
     title: "-Vânzătorul",
     description: [
-      "este Compania Exclusive Key Licenses SRL sau orice partener al acesteia, persoană juridică și/sau orice entitate juridică – distribuitori sau firme de distribuție - care deține în Statutuil firmei codul CAEN specific pentru comerțul cu amănuntul al calculatoarelor, unităților periferice, software-rurilor, electronicelor, electrocasnicelor etcetera, în magazine specializate sau de tip electronic.",
-    ],
-  },
-  {
-    title: "-Ditribuitorul",
-    description: [
-      "este persoană calificată sau firmă specializată în distribuția unor bunuri, produse, materiale, etcetera.",
+      "este Compania Exclusive Key Licenses SRL",
     ],
   },
   {
