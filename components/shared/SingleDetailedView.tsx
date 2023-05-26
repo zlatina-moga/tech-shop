@@ -31,6 +31,13 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
 
   const id = itemData.map((element) => element.id).toString();
 
+  itemData = itemData.map(item => {
+    return {
+      ...item,
+      "productDetails": item.productDetails.replace('citgrup.ro', 'pcbun.ro'),
+    }
+});
+
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: warranty }));
     setClicked(true);

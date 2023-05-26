@@ -206,9 +206,10 @@ const MyCard = () => {
                   )}
                 </div>
                 {cart.total != 0 ? (
-                  <button className="btn btn-block btn-primary my-3" onClick={handleEvent}>
+                  <button  className="btn btn-block btn-primary my-3" onClick={handleEvent}>
                     {" "}
                     <Link
+                    id='my-cart-button'
                       className="text-white btn btn-block w-100 py-3 font-weight-bold text-uppercase"
                       href="/checkout"
                       

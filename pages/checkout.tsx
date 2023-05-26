@@ -24,7 +24,6 @@ const Checkout = () => {
     env_key: "",
     data: "",
   });
-  const [showModal, setShowModal] = useState<boolean>(false);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -142,7 +141,8 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              setShowModal(true);
+              //setShowModal(true);
+              dispatch(empty());
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
@@ -199,7 +199,7 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              setShowModal(true);
+              dispatch(empty());
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
@@ -264,9 +264,8 @@ const Checkout = () => {
             setPaymentData(res);
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
-            if (payment === "card") {
-              setShowModal(true);
-              //dispatch(empty());
+            if (payment === "card") {     
+              dispatch(empty());
              //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
@@ -310,7 +309,7 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              setShowModal(true);
+              dispatch(empty());
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
@@ -943,55 +942,6 @@ const Checkout = () => {
         </form>
       </div>
       <Footer />
-      <div
-        className={classNames("modal", showModal ? "d-block" : "d-none")}
-        id="exampleModal"
-        aria-hidden="true"
-        style={{
-          paddingTop: "150px",
-          backgroundColor: "rgba(208, 212, 217, 0.5)",
-        }}
-      >
-        <div className="modal-dialog ">
-          <div className="modal-content border-primary rounded">
-            <div className="modal-header justify-content-center">
-              <h5 className="modal-title fw-bold">
-                Vă rugăm să confirmați plata cu cardul
-              </h5>
-            </div>
-            <div className="modal-footer justify-content-center border-top-0">
-              <form
-                className="modal-footer border-top-0 flex-nowrap"
-                action={paymentData.url}
-                method="post"
-              >
-                <div className="d-none">
-                  <input
-                    value={paymentData.env_key}
-                    id="env_key"
-                    name="env_key"
-                  />
-                  <input value={paymentData.data} id="data" name="data" />
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-secondary btn-block rounded px-4 mr-4"
-                  data-bs-dismiss="modal"
-                  onClick={() => setShowModal(false)}
-                >
-                  Anulare
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block px-4"
-                >
-                  Continua
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 };

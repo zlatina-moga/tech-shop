@@ -18,14 +18,22 @@ import { addProduct } from "../../services/redux/cartRedux";
 import classNames from "classnames";
 import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 import * as ga from "../../lib/gtag";
 
 const SingleItemView = ({ itemData, breadcrumbs }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
-  const isTablet = useMediaQuery('(max-width:601px)');
+  const isTablet = useMediaQuery("(max-width:601px)");
+
+  itemData = itemData.map(item => {
+    return {
+      ...item,
+      "productDetails": item.productDetails.replace('citgrup.ro', 'pcbun.ro'),
+    }
+});
+
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
@@ -125,7 +133,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                           <img
                             src={img}
                             alt="image"
-                            style={{ cursor: "pointer"}}
+                            style={{ cursor: "pointer" }}
                           />
                         </PhotoView>
                       </SwiperSlide>
@@ -144,7 +152,9 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                         <p>Livrare gratuita la comanda de peste 250 lei</p>
                       </div>
                       <p className="mb-4 details">
-                      Produsele noastre arată foarte bine, fără zgârieturi vizibile (in cazul produselor Second hand sau Refurbished)
+                        Produsele noastre arată foarte bine, fără zgârieturi
+                        vizibile (in cazul produselor Second hand sau
+                        Refurbished)
                       </p>
                     </div>
                   ) : (
@@ -237,7 +247,7 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                           <Image
                             src={payImg}
                             alt="payments"
-                            style={{ maxHeight: "100px", height: 'auto' }}
+                            style={{ maxHeight: "100px", height: "auto" }}
                           />
                         </div>
                         <div className="contact">
