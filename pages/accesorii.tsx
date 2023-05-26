@@ -136,7 +136,7 @@ const Accesorii = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      <i className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i id='arrow' className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
                   {paginationRange.map((page) => (
@@ -162,7 +162,7 @@ const Accesorii = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      <i className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i id='arrow' className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>

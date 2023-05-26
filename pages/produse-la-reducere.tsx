@@ -94,8 +94,8 @@ const DiscountedItems = () => {
               <ul className="pagination justify-content-center flex-wrap">
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
-                    <a className="page-link" onClick={prevPage}>
-                      Previous
+                  <a className="page-link" onClick={prevPage}>
+                      <i id='arrow' className="fas fa-arrow-left text-primary mr-1"></i>
                     </a>
                   </li>
                   {paginationRange.map((page) => (
@@ -121,7 +121,7 @@ const DiscountedItems = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      Next
+                      <i id='arrow' className="fas fa-arrow-right text-primary mr-1"></i>
                     </a>
                   </li>
                 </>
