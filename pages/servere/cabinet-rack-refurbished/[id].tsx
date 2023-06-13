@@ -6,12 +6,14 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleDetailedView from "../../../components/shared/SingleItemView";
 import {serverRackBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import * as techSpecsService from '../../../services/techSpecsService';
 
 const RackServerDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     itemService
@@ -25,10 +27,21 @@ const RackServerDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    techSpecsService
+      .getProductSpecs(id)
+      .then((result) => {
+        setTechDetails(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={serverRackBrcrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={serverRackBrcrmbs}  techSpecs={techDetails} />}
       <Footer />
     </>
   );

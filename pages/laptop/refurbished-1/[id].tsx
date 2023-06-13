@@ -6,12 +6,15 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { laptopRefurbishedBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import * as techSpecsService from '../../../services/techSpecsService';
 
 const RefurbishedLaptopDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [techDetails, setTechDetails] = useState([]);
+  const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
     itemService
@@ -19,6 +22,28 @@ const RefurbishedLaptopDetails = () => {
       .then((result) => {
         setLoading(false);
         seItemsData(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    techSpecsService
+      .getProductSpecs(id)
+      .then((result) => {
+        setTechDetails(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    techSpecsService
+      .getUpgrade(id)
+      .then((result) => {
+        setProductDetails(result);
       })
       .catch((err) => {
         console.log(err);
@@ -34,6 +59,7 @@ const RefurbishedLaptopDetails = () => {
         <SingleDetailedView
           itemData={itemData}
           breadcrumbs={laptopRefurbishedBrcrmbs}
+          techSpecs={techDetails} upgradeOptions={productDetails[40]} warrantyOptions={productDetails[24]}
         />
       )}
 

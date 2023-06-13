@@ -6,12 +6,14 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { palmrestBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import * as techSpecsService from '../../../services/techSpecsService';
 
 const PalmrestDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     itemService
@@ -25,10 +27,21 @@ const PalmrestDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    techSpecsService
+      .getProductSpecs(id)
+      .then((result) => {
+        setTechDetails(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={palmrestBrcrmbs} />}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={palmrestBrcrmbs} techSpecs={techDetails} />}
       <Footer />
     </>
   );

@@ -6,12 +6,14 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { bareboneBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import * as techSpecsService from '../../../services/techSpecsService';
 
 const BareboneDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     itemService
@@ -25,10 +27,22 @@ const BareboneDetails = () => {
       });
   }, [id]);
 
+
+  useEffect(() => {
+    techSpecsService
+      .getProductSpecs(id)
+      .then((result) => {
+        setTechDetails(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={bareboneBrcrmbs} />}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={bareboneBrcrmbs} techSpecs={techDetails} />}
       <Footer />
     </>
   );

@@ -6,12 +6,14 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { gamingBreadCrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
+import * as techSpecsService from '../../../services/techSpecsService';
 
 const GamingDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     itemService
@@ -25,10 +27,21 @@ const GamingDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    techSpecsService
+      .getProductSpecs(id)
+      .then((result) => {
+        setTechDetails(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={gamingBreadCrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={gamingBreadCrmbs} techSpecs={techDetails}/>}
       <Footer />
     </>
   );

@@ -21,7 +21,7 @@ import toast from "react-hot-toast";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as ga from "../../lib/gtag";
 
-const SingleItemView = ({ itemData, breadcrumbs }) => {
+const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
@@ -309,14 +309,14 @@ const SingleItemView = ({ itemData, breadcrumbs }) => {
                 </div>
               </div>
               <div>
-                {item.techSpecs && (
+                {techSpecs && (
                   <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
                     {item.techSpecsTitle}
                   </h4>
                 )}
                 <div className="description-container">
-                  {item.techSpecs &&
-                    item.techSpecs.map((item, idx) => (
+                  {techSpecs &&
+                    techSpecs.map((item, idx) => (
                       <div className="description-feature" key={idx}>
                         <h4>{item.name}</h4>
                         {item.items.map((attr, i) => (

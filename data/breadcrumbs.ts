@@ -880,7 +880,7 @@ export const laptopRefurbishedBrcrmbs = [
 export const laptopNewdBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
-  { name: "Noi", link: "/laptop/noi-1" },
+  { name: "Noi", link: "/laptop/nou" },
 ];
 
 export const laptopSHBrcrmbs = [
@@ -1326,19 +1326,19 @@ export const upsBrandsBrcrmbs = [
 export const upsNewBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
-  { name: "Noi", link: "/ups/noi-7" },
+  { name: "Noi", link: "/ups/nou" },
 ];
 
 export const upsRefBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
-  { name: "Refurbished", link: "/ups/refurbished-7" },
+  { name: "Refurbished", link: "/ups/refurbished" },
 ];
 
 export const upsSHBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
-  { name: "Second Hand", link: "/ups/second-hand-7" },
+  { name: "Second Hand", link: "/ups/second-hand" },
 ];
 
 export const workstationBrcrmbs = [

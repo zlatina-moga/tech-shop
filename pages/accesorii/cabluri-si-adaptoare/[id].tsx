@@ -6,12 +6,14 @@ import SingleItemView from "../../../components/shared/SingleItemView";
 import { cablesBreadCrmbs } from "../../../data/breadcrumbs";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import Footer from "../../../components/global/Footer";
+import * as techSpecsService from '../../../services/techSpecsService';
 
 const CableDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     itemService
@@ -25,10 +27,21 @@ const CableDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    techSpecsService
+      .getProductSpecs(id)
+      .then((result) => {
+        setTechDetails(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={cablesBreadCrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={cablesBreadCrmbs} techSpecs={techDetails} />}
       <Footer />
     </>
   );

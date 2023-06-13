@@ -4,7 +4,7 @@ import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
-import { printerCategories } from "../../data/categories";
+//import { printerCategories } from "../../data/categories";
 import { printerConsumablesBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
@@ -47,17 +47,19 @@ const NewPrinters = () => {
   };
 
   useEffect(() => {
-    if (priceRange) {
+    if (priceRange != '' && selectedSort != "/imprimante/consumabile") {
+      setShow(false);
       const sort = selectedSort.split("=")[1];
       productService
         .getSortedPrinterCollateralPrice(currentPage, sort, priceRange)
         .then((result) => {
           setLaptopsData(result);
+          setShow(true);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else if (selectedSort != "/imprimante/consumabile")  {
       router.push(selectedSort);
       const sort = selectedSort.split("=")[1];
       productService
@@ -69,23 +71,26 @@ const NewPrinters = () => {
           console.log(err);
         });
     }
-  }, [selectedSort, currentPage]);
+  }, [selectedSort, currentPage, priceRange]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    setShow(false);
-    productService
-      .getAllPrinterCollateralPrice(priceRange, currentPage)
-      .then((result) => {
-        setLaptopsData(result);
-        setShow(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (priceRange != '') {
+      setShow(false);
+      productService
+        .getAllPrinterCollateralPrice(priceRange, currentPage)
+        .then((result) => {
+          setLaptopsData(result);
+          setShow(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
   }, [priceRange, currentPage]);
 
   const totalPages = laptopsData[0]?.totalPages;
@@ -118,7 +123,7 @@ const NewPrinters = () => {
           <LaptopsPage
             title="Imprimante Consumabile"
             laptopsData={laptopsData}
-            categories={printerCategories}
+            //categories={printerCategories}
             breadcrumbs={printerConsumablesBrcrmbs}
             sortCriteria={onSort}
             baseLink="/imprimante/consumabile"

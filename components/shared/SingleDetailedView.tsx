@@ -21,7 +21,7 @@ import emailjs from "emailjs-com";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as ga from "../../lib/gtag";
 
-const SingleDetailedView = ({ itemData, breadcrumbs }) => {
+const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, warrantyOptions }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
@@ -156,22 +156,22 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                 </div>
                 <div className="col-xl-7 pb-5 parent-container">
                   <div className="first-container">
-                    {item.techSpecs && item.upgradeOptions && (
+                    {techSpecs && upgradeOptions && (
                       <div className="features-list">
                         <div className="features-key">
-                          {item.upgradeOptions.map((f, idx) => (
+                          {upgradeOptions.map((f, idx) => (
                             <p className="text-primary" key={idx}>
                               {f.name}:
                             </p>
                           ))}
-                          {item.warrantyOptions && (
+                          {warrantyOptions && (
                             <p className="text-primary">
                               Adauga extra garantie:
                             </p>
                           )}
                         </div>
                         <div className="features-value">
-                          {item.upgradeOptions.map((option, i) => (
+                          {upgradeOptions.map((option, i) => (
                             <div
                               key={i}
                               className={isTablet ? "dropdown" : "dropend"}
@@ -238,7 +238,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                               </ul>
                             </div>
                           ))}
-                          {item.warrantyOptions && (
+                          {warrantyOptions && (
                             <div
                               className={isTablet ? "dropdown" : "dropend"}
                               style={{
@@ -257,7 +257,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                                   : warrantyType}
                               </button>
                               <ul className="dropdown-menu" id="upgrade-links">
-                                {item.warrantyOptions.map((w, i) => (
+                                {warrantyOptions.map((w, i) => (
                                   <li key={i}>
                                     <button
                                       className="dropdown-item"
@@ -286,7 +286,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                         </div>
                       </div>
                     )}
-                    {item.price ? (
+                    {item && item.price ? (
                       <>
                         <div className="d-flex align-items-center img-container">
                           <Image src={qualityIcon} alt="quality" />
@@ -365,7 +365,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                       </div>
                     )}
 
-                    {item.price ? (
+                    {item && item.price ? (
                       <div className="price-container">
                         <h3 className="mb-3 price">
                           {item.price} (TVA inclus)
@@ -456,14 +456,14 @@ const SingleDetailedView = ({ itemData, breadcrumbs }) => {
                 </div>
               </div>
               <div>
-                {item.techSpecs && (
+                {techSpecs && (
                   <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
                     {item.techSpecsTitle}
                   </h4>
                 )}
                 <div className="description-container">
-                  {item.techSpecs &&
-                    item.techSpecs.map((item, idx) => (
+                  {techSpecs &&
+                    techSpecs.map((item, idx) => (
                       <div className="description-feature" key={idx}>
                         <h4>{item.name}</h4>
                         {item.items.map((attr, i) => (

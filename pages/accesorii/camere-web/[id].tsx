@@ -6,12 +6,14 @@ import SingleItemView from "../../../components/shared/SingleItemView";
 import { camerasBreadCrmbs } from "../../../data/breadcrumbs";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import Footer from "../../../components/global/Footer";
+import * as techSpecsService from '../../../services/techSpecsService';
 
 const CameraDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [itemData, seItemsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     itemService
@@ -25,10 +27,22 @@ const CameraDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    techSpecsService
+      .getProductSpecs(id)
+      .then((result) => {
+        setTechDetails(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
+
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={camerasBreadCrmbs}/>}
+      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={camerasBreadCrmbs} techSpecs={techDetails} />}
       <Footer />
     </>
   );
