@@ -16,6 +16,7 @@ const MouseDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getMouse(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const MouseDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

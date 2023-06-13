@@ -41,6 +41,7 @@ const RefurbishedPOS = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (procesor && brand) {
       setShow(false);
       productService
@@ -110,7 +111,7 @@ const RefurbishedPOS = () => {
       });
     }
 
-  }, [currentPage, brand, procesor]);
+  }, [router.isReady, currentPage, brand, procesor]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

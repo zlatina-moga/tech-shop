@@ -37,6 +37,7 @@ const DockingStations = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -52,6 +53,7 @@ const DockingStations = () => {
         setHighestPrice(response[1]);
       });
     } else {
+      setShow(false);
       productService
       .getAllDockingStations(currentPage)
       .then((result) => {
@@ -66,7 +68,7 @@ const DockingStations = () => {
       });
     }
 
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

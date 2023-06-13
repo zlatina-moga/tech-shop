@@ -16,6 +16,7 @@ const NewPrinterDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getSHPrinter(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const NewPrinterDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

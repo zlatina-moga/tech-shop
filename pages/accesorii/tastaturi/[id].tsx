@@ -28,6 +28,7 @@ const KeyboardDetails = () => {
   }, [id]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     techSpecsService
       .getProductSpecs(id)
       .then((result) => {
@@ -36,7 +37,7 @@ const KeyboardDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   return (
     <>

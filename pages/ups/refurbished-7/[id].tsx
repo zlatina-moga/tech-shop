@@ -16,6 +16,7 @@ const RefurbishedUPSDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getRefurbishedUPS(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const RefurbishedUPSDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

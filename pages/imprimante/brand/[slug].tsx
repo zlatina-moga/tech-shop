@@ -31,6 +31,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     productService
       .geAllBrandPrinters(currentPage, slug)
       .then((result) => {
@@ -40,7 +41,7 @@ const BrandDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage, slug]);
+  }, [router.isReady, currentPage, slug]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

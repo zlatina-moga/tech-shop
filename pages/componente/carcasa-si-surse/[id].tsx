@@ -16,6 +16,7 @@ const CarcasaDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getCarcasa(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const CarcasaDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

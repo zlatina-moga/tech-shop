@@ -16,6 +16,7 @@ const DockingStationDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getDockingStation(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const DockingStationDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

@@ -43,6 +43,7 @@ const SecondHandPOS = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (procesor && brand) {
       setShow(false);
       productService
@@ -112,7 +113,7 @@ const SecondHandPOS = () => {
       });
     }
 
-  }, [currentPage, brand, procesor]);
+  }, [router.isReady, currentPage, brand, procesor]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

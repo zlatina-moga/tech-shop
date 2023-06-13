@@ -26,6 +26,7 @@ const Headphones = () => {
   const [baseLink, setBaseLink] = useState("/accesorii/casti");
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -41,6 +42,7 @@ const Headphones = () => {
         setHighestPrice(response[1]);
       });
     } else {
+      setShow(false);
       productService
       .getAllHeadPhones(currentPage)
       .then((result) => {
@@ -55,7 +57,7 @@ const Headphones = () => {
       });
     }
 
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   useEffect(() => {
     sortingService.getBrands(67).then((result) => {

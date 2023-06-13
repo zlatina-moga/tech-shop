@@ -16,6 +16,7 @@ const MascaBayDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getMascaBay(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const MascaBayDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

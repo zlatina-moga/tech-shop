@@ -50,6 +50,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (procesor && generatie) {
       setShow(false);
       productService
@@ -147,7 +148,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, procesor, generatie, baseLink]);
+  }, [router.isReady, currentPage, slug, procesor, generatie, baseLink]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

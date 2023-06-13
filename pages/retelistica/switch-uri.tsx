@@ -35,6 +35,7 @@ const Switches = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand) {
       setShow(false);
       productService.getAllSwitchByBrand(currentPage, brand).then((result) => {
@@ -64,7 +65,7 @@ const Switches = () => {
       });
     }
 
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

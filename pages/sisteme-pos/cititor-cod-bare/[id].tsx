@@ -16,6 +16,7 @@ const POSReaderDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getPOSReader(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const POSReaderDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

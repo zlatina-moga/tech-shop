@@ -26,6 +26,7 @@ const Mice = () => {
   const [baseLink, setBaseLink] = useState("/accesorii/mouse");
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -41,6 +42,7 @@ const Mice = () => {
         setHighestPrice(response[1]);
       });
     } else {
+      setShow(false);
       productService
       .getAllMice(currentPage)
       .then((result) => {
@@ -55,7 +57,7 @@ const Mice = () => {
       });
     }
 
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   useEffect(() => {
     sortingService.getBrands(61).then((result) => {

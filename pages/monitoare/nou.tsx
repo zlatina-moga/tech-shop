@@ -39,6 +39,7 @@ const MonitoareNew = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (screen && brand) {
       setShow(false);
       productService
@@ -103,7 +104,7 @@ const MonitoareNew = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand, screen]);
+  }, [router.isReady, currentPage, brand, screen]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

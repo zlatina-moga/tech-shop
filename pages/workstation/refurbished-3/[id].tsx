@@ -17,6 +17,7 @@ const RefurnishedWorkstationDetails = () => {
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getRefurbishedWorkstation(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const RefurnishedWorkstationDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

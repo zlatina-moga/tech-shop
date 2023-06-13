@@ -40,6 +40,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (procesor) {
       setShow(false);
       productService
@@ -71,7 +72,7 @@ const BrandDetail = () => {
           setBaseLink(`/servere/second-hand/brand/${slug}`);
         });
     }
-  }, [currentPage, slug, procesor]);
+  }, [router.isReady, currentPage, slug, procesor]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

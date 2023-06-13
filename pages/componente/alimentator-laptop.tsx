@@ -37,6 +37,7 @@ const LaptopChargers = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -68,7 +69,7 @@ const LaptopChargers = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

@@ -34,6 +34,7 @@ const NewPrinters = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand) {
       setShow(false);
       productService
@@ -64,7 +65,7 @@ const NewPrinters = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

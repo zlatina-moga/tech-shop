@@ -35,6 +35,7 @@ const Routers = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand) {
       setShow(false);
       productService.getAllRoutersByBrand(currentPage, brand).then((result) => {
@@ -63,7 +64,7 @@ const Routers = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

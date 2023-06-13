@@ -16,6 +16,7 @@ const OtherAccessoryDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getOtherAccessoryDetails(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const OtherAccessoryDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

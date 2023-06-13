@@ -16,6 +16,7 @@ const NewMonitorDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getNewMonitor(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const NewMonitorDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

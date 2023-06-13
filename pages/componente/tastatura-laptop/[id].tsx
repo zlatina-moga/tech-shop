@@ -16,6 +16,7 @@ const KeyBoardDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getKeyboard(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const KeyBoardDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

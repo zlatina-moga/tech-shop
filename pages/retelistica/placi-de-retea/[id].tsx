@@ -16,6 +16,7 @@ const NetworkDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getNetwork(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const NetworkDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

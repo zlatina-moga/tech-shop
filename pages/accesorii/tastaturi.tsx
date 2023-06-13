@@ -35,6 +35,7 @@ const Keyboards = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -52,6 +53,7 @@ const Keyboards = () => {
         setHighestPrice(response[1]);
       });
     } else {
+      setShow(false);
       productService
         .getAllKeyboards(currentPage)
         .then((result) => {
@@ -65,7 +67,7 @@ const Keyboards = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

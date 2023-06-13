@@ -37,6 +37,7 @@ const Coolers = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand) {
       setShow(false);
       productService.getAllCoolersByBrand(currentPage, brand).then((result) => {
@@ -65,7 +66,7 @@ const Coolers = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

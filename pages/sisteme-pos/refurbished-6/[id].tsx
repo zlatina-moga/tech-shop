@@ -17,6 +17,7 @@ const RefurbishedPOSDetails = () => {
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getRefurbishedPOS(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const RefurbishedPOSDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

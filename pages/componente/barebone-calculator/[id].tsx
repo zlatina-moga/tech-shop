@@ -16,6 +16,7 @@ const BareboneDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getBarebone(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const BareboneDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
 
   useEffect(() => {

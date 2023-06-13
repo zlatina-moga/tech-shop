@@ -17,6 +17,7 @@ const SecondHandCompDetails = () => {
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getSecondHandComp(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const SecondHandCompDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

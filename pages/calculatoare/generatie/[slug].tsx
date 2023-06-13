@@ -46,6 +46,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand && procesor) {
       setShow(false);
       productService
@@ -132,7 +133,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, procesor, brand, baseLink]);
+  }, [router.isReady, currentPage, slug, procesor, brand, baseLink]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

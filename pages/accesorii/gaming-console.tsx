@@ -35,6 +35,7 @@ const Gaming = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -50,6 +51,7 @@ const Gaming = () => {
         setHighestPrice(response[1]);
       });
     } else {
+      setShow(false);
       productService
         .getAllGaming(currentPage)
         .then((result) => {
@@ -63,7 +65,7 @@ const Gaming = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

@@ -38,6 +38,7 @@ const MascaBays = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand) {
       setShow(false);
       productService
@@ -67,7 +68,7 @@ const MascaBays = () => {
       });
     }
     
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

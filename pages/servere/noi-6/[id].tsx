@@ -17,6 +17,7 @@ const NewServerDetails = () => {
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getNewServer(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const NewServerDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

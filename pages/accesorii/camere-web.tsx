@@ -26,6 +26,7 @@ const Cameras = () => {
   const [baseLink, setBaseLink] = useState("/accesorii/camere-web");
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -41,6 +42,7 @@ const Cameras = () => {
         setHighestPrice(response[1]);
       });
     } else {
+      setShow(false);
       productService
         .getAllCameras(currentPage)
         .then((result) => {
@@ -54,7 +56,7 @@ const Cameras = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   useEffect(() => {
     sortingService.getBrands(62).then((result) => {

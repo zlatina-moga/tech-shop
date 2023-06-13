@@ -37,6 +37,7 @@ const Videos = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -54,6 +55,7 @@ const Videos = () => {
         setHighestPrice(response[1]);
       });
     } else {
+      setShow(false);
       productService
       .getAllVideo(currentPage)
       .then((result) => {
@@ -68,7 +70,7 @@ const Videos = () => {
       });
     }
 
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

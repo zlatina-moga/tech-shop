@@ -40,6 +40,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (tip) {
       setShow(false);
       productService
@@ -72,7 +73,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, tip]);
+  }, [router.isReady, currentPage, slug, tip]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

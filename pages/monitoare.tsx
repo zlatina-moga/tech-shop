@@ -42,6 +42,7 @@ const Monitoare = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (screen) {
       setShow(false);
       productService.getmonitorScreens(screen, currentPage).then((result) => {
@@ -70,7 +71,7 @@ const Monitoare = () => {
           console.log(err);
         });
     }
-  }, [currentPage, screen]);
+  }, [router.isReady, currentPage, screen]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

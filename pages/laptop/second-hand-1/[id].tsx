@@ -17,6 +17,7 @@ const SecondHandLaptopDetails = () => {
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getSecondHandLaptop(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const SecondHandLaptopDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService
@@ -34,9 +35,6 @@ const SecondHandLaptopDetails = () => {
       .then((result) => {
         setTechDetails(result);
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }, [id]);
 
   useEffect(() => {
@@ -45,10 +43,7 @@ const SecondHandLaptopDetails = () => {
       .then((result) => {
         setProductDetails(result);
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
+  }, [id])
 
   return (
     <>

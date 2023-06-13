@@ -16,6 +16,7 @@ const ProcesorDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getProcesor(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const ProcesorDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

@@ -29,6 +29,7 @@ const Cables = () => {
   const [baseLink, setBaseLink] = useState("/accesorii/cabluri-si-adaptoare");
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -61,7 +62,7 @@ const Cables = () => {
       });
     }
 
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   useEffect(() => {
     sortingService.getBrands(68).then((result) => {

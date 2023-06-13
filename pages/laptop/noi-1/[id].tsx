@@ -16,6 +16,7 @@ const NewLaptopDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getNewLaptop(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const NewLaptopDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

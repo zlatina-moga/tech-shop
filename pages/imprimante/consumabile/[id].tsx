@@ -6,7 +6,7 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { printerConsumablesBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
 
 const NewPrinterDetails = () => {
   const router = useRouter();
@@ -16,6 +16,7 @@ const NewPrinterDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getPrinterCollateral(id)
       .then((result) => {
@@ -25,25 +26,26 @@ const NewPrinterDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
-    techSpecsService
-      .getProductSpecs(id)
-      .then((result) => {
-        setTechDetails(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    techSpecsService.getProductSpecs(id).then((result) => {
+      setTechDetails(result);
+    });
   }, [id]);
 
   return (
     <>
       <Navbar />
       {loading ? (
-       <DetailPageSkeleton />
-      ) : <SingleItemView itemData={itemData} breadcrumbs={printerConsumablesBrcrmbs} techSpecs={techDetails}/>}
+        <DetailPageSkeleton />
+      ) : (
+        <SingleItemView
+          itemData={itemData}
+          breadcrumbs={printerConsumablesBrcrmbs}
+          techSpecs={techDetails}
+        />
+      )}
       <Footer />
     </>
   );

@@ -38,6 +38,7 @@ const BrandDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (componenta) {
       setShow(false);
@@ -71,7 +72,7 @@ const BrandDetail = () => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, componenta]);
+  }, [router.isReady, currentPage, slug, componenta]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

@@ -16,6 +16,7 @@ const HardDiskDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getHardDisk(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const HardDiskDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

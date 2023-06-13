@@ -17,6 +17,7 @@ const RefurbishedServerDetails = () => {
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getRefurbishedServer(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const RefurbishedServerDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

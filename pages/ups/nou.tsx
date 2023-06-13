@@ -34,6 +34,7 @@ const NewUPS = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand) {
       setShow(false);
       productService.getAllNewUPSByBrand(currentPage, brand).then((result) => {
@@ -62,7 +63,7 @@ const NewUPS = () => {
           console.log(err);
         });
     }
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

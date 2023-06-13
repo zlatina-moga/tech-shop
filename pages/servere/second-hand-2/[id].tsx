@@ -17,6 +17,7 @@ const SecondHandServerDetails = () => {
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getSecondHandServer(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const SecondHandServerDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

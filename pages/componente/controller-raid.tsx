@@ -37,6 +37,7 @@ const Controllers = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand) {
       setShow(false);
       productService.getAllControllersByBrand(currentPage, brand).then((result) => {
@@ -66,7 +67,7 @@ const Controllers = () => {
       });
     }
     
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

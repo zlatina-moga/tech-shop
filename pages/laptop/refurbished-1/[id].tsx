@@ -17,6 +17,7 @@ const RefurbishedLaptopDetails = () => {
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getRefurbishedLaptop(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const RefurbishedLaptopDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

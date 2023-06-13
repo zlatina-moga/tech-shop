@@ -16,6 +16,7 @@ const VideoCardDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getVideoCard(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const VideoCardDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

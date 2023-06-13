@@ -16,6 +16,7 @@ const SecondHandMonitorDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getSecondHandMonitor(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const SecondHandMonitorDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

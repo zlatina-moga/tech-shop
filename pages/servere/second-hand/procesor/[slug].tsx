@@ -40,6 +40,7 @@ const ProcDetail = () => {
   }, [slug]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (brand) {
       setShow(false);
       productService
@@ -74,7 +75,7 @@ const ProcDetail = () => {
           console.log(err);
         });
     }
-  }, [currentPage, slug, brand]);
+  }, [router.isReady, currentPage, slug, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

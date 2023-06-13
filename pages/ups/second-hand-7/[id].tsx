@@ -16,6 +16,7 @@ const SecondHandUPSDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getSecondHandUPS(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const SecondHandUPSDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

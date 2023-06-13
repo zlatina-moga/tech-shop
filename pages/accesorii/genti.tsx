@@ -35,6 +35,7 @@ const Bags = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     setLoading(true);
     if (brand) {
       setShow(false);
@@ -50,6 +51,7 @@ const Bags = () => {
         setHighestPrice(response[1]);
       });
     } else {
+      setShow(false);
       productService
       .getAllBags(currentPage)
       .then((result) => {
@@ -64,7 +66,7 @@ const Bags = () => {
       });
     }
 
-  }, [currentPage, brand]);
+  }, [router.isReady, currentPage, brand]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);

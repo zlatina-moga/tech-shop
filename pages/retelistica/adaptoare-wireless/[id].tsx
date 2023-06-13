@@ -16,6 +16,7 @@ const AdaptorDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getAdaptor(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const AdaptorDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

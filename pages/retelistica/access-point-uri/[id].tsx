@@ -16,6 +16,7 @@ const AccessPointDetails = () => {
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getAccessPoint(id)
       .then((result) => {
@@ -25,7 +26,7 @@ const AccessPointDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

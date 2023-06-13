@@ -17,6 +17,7 @@ const NewUPSDetails = () => {
 
 
   useEffect(() => {
+    if (!router.isReady) return;
     itemService
       .getNewUPS(id)
       .then((result) => {
@@ -26,7 +27,7 @@ const NewUPSDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
     techSpecsService

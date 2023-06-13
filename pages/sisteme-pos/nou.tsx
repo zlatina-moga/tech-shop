@@ -41,6 +41,7 @@ const NewPOS = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (procesor && brand) {
       setShow(false);
       productService
@@ -107,7 +108,7 @@ const NewPOS = () => {
         console.log(err);
       });
     }
-  }, [currentPage, brand, procesor]);
+  }, [router.isReady, currentPage, brand, procesor]);
 
   const onSort = (sort) => {
     setSelectedSort(sort);
