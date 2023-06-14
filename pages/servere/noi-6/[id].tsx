@@ -54,7 +54,7 @@ const NewServerDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={serverNewBrcrmbs} techSpecs={techDetails} upgradeOptions={productDetails[40]} warrantyOptions={productDetails[24]} />}
+      {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={serverNewBrcrmbs} techSpecs={techDetails}/>}
       <Footer />
     </>
   );

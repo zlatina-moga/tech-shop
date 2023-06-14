@@ -1,6 +1,7 @@
 import * as request from "./requester";
 //const baseUrl = "http://localhost:5500";
-const baseUrl = 'https://pc-bun-api.herokuapp.com';
+//const baseUrl = 'https://pc-bun-api.herokuapp.com';
+const baseUrl = "https://pc-bun-api.onrender.com";
 
 export const getAllProdictsCount = () => request.get(`${baseUrl}`);
 
