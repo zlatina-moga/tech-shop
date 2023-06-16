@@ -9,6 +9,7 @@ const range = (start, end) => {
 
 export const usePagination = ({
   totalCount,
+  pageSize = 64,
   siblingCount = 1,
   currentPage
 }) => {

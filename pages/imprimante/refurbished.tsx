@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
-import * as productService from "../../services/productService";
 import LaptopsPage from "../../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import { printerRefBrcrmbs } from "../../data/breadcrumbs";
 import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
+import { usePapaParse } from "react-papaparse";
 
 const RefPrinters = () => {
-  const [laptopsData, setLaptopsData] = useState([]);
+  let [laptopsData, setLaptopsData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState("/imprimante/refurbished");
@@ -20,9 +20,26 @@ const RefPrinters = () => {
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
   const { brand } = router.query;
-  const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/imprimante/refurbished");
+  const { readRemoteFile } = usePapaParse();
+
+  useEffect(() => {
+    //@ts-ignore
+    readRemoteFile("https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante",  {
+        skipEmptyLines: true,
+        complete: (results) => {
+          let data = results.data.filter((r) => r[2] == "Refurbished");
+          console.log(data);
+          setLaptopsData(data);
+          console.log(results.data);
+          setLoading(false);
+        },
+      }
+    );
+  }, [readRemoteFile]);
+
+  const totalPages = Math.ceil(laptopsData.length / 64);
 
   useEffect(() => {
     sortingService.getBrands(30).then((result) => {
@@ -33,127 +50,39 @@ const RefPrinters = () => {
     });
   }, []);
 
-  useEffect(() => {
-    if (!router.isReady) return;
-    if (brand) {
-      setShow(false);
-      productService
-        .getAllRefBrandPrinters(currentPage, brand)
-        .then((result) => {
-          setLoading(false);
-          setLaptopsData(result);
-          setTotalPages(result[0].totalPages);
-          setShow(true);
-          setMultupleSelected(true);
-          setBaseLink(`/imprimante/refurbished?brand=${brand}`);
-        });
-      sortingService.getHighestPriceByBrand(30, brand).then((response) => {
-        setHighestPrice(response[1]);
-      });
-    } else {
-      setShow(false);
-      productService
-        .getAllRefPrinters(currentPage)
-        .then((result) => {
-          setLoading(false);
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-          setBaseLink(`/imprimante/refurbished`);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [router.isReady, currentPage, brand]);
-
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange != ''&& brand && selectedSort != "/imprimante/refurbished") {
-      setShow(false);
-      const sort = selectedSort.split("=")[2];
-      productService
-        .getSortedRefBrandByPricePrinters(currentPage, brand, sort, priceRange)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (brand && selectedSort != "/imprimante/refurbished") {
-      setShow(false);
-      const sort = selectedSort.split("=")[1];
-      productService
-        .getSortedRefPrintersBrand(currentPage, sort, brand)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange != '' && !brand && selectedSort != "/imprimante/refurbished") {
-      const sort = selectedSort.split("=")[1];
-      productService
-        .getSortedRefPrintersPrice(priceRange, currentPage, sort)
-        .then((result) => {
-          setLaptopsData(result);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (selectedSort != "/imprimante/refurbished") {
-      router.push(selectedSort);
-      const sort = selectedSort.split("=")[1];
-      productService
-        .getSortedRefPrinters(currentPage, sort)
-        .then((result) => {
-          setLoading(false);
-          setLaptopsData(result);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    router.push(selectedSort);
+    const sort = selectedSort.split("=")[1];
+
+    if (sort === "views") {
+      laptopsData = [...laptopsData].sort((a, b) => (a[3] > b[3] ? 1 : -1));
+      setLaptopsData(laptopsData);
+    } else if (sort === "deals") {
+      laptopsData = [...laptopsData].sort((a, b) => b[16] - a[16]);
+      setLaptopsData(laptopsData);
+    } else if (sort === "price") {
+      laptopsData = [...laptopsData].sort((a, b) => a[17] - b[17]);
+      setLaptopsData(laptopsData);
+    } else if (sort === "-price") {
+      laptopsData = [...laptopsData].sort((a, b) => b[17] - a[17]);
+      setLaptopsData(laptopsData);
     }
-  }, [selectedSort, currentPage, priceRange]);
+  }, [selectedSort]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    if (brand && priceRange != '' ) {
-      setShow(false);
-      productService
-        .getBrandByPriceRefPrinters(currentPage, brand, priceRange)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange != '') {
-      setShow(false);
-      productService
-        .getAllRefPrintersPrice(currentPage, priceRange)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [priceRange, currentPage]);
+    if (priceRange != "") setShow(false);
+    let arr = [...laptopsData].filter((r) => r[17] <= Number(priceRange));
+    setLaptopsData(arr);
+    setShow(true);
+  }, [priceRange]);
 
   const paginationRange = usePagination({
     currentPage,
@@ -206,7 +135,10 @@ const RefPrinters = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                      <i id='arrow' className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i
+                        id="arrow"
+                        className="fas fa-arrow-left text-primary mr-1"
+                      ></i>
                     </a>
                   </li>
                   {paginationRange &&
@@ -233,7 +165,10 @@ const RefPrinters = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                      <i id='arrow' className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i
+                        id="arrow"
+                        className="fas fa-arrow-right text-primary mr-1"
+                      ></i>
                     </a>
                   </li>
                 </>

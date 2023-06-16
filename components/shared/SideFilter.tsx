@@ -23,6 +23,7 @@ const SideFilter = ({
 }) => {
   const router = useRouter();
   const [value, setValue] = useState(1);
+  const [brand, setBrand] = useState('');
 
   const onPriceChange = (changeEvent) => {
     setValue(changeEvent.target.value);
@@ -244,6 +245,7 @@ const SideFilter = ({
                         router.asPath.includes(c.slug) ? "active" : ""
                       }`}
                       key={c.id}
+                      onClick={() => setBrand(c.slug)}
                     >
                       {router.asPath.includes(c.slug) ? (
                         <i
