@@ -6,19 +6,20 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { laptopKeyboardBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
+import * as productService from "../../../services/productService";
 
 const KeyBoardDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     if (!router.isReady) return;
-    itemService
-      .getKeyboard(id)
+    productService
+      .getProductDetails(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -42,7 +43,16 @@ const KeyBoardDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={laptopKeyboardBrcrmbs} techSpecs={techDetails} />}
+      {loading ? (
+        <DetailPageSkeleton />
+      ) : (
+        <SingleItemView
+          itemData={itemData}
+          breadcrumbs={laptopKeyboardBrcrmbs}
+          techSpecs={techDetails}
+          images={itemData[16]}
+        />
+      )}
       <Footer />
     </>
   );

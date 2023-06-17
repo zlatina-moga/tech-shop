@@ -6,19 +6,20 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { adaptorskBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
+import * as productService from "../../../services/productService";
 
 const AdaptorDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     if (!router.isReady) return;
-    itemService
-      .getAdaptor(id)
+    productService
+      .getProductDetails(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -42,7 +43,16 @@ const AdaptorDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={adaptorskBrcrmbs}  techSpecs={techDetails} />}
+      {loading ? (
+        <DetailPageSkeleton />
+      ) : (
+        <SingleItemView
+          itemData={itemData}
+          breadcrumbs={adaptorskBrcrmbs}
+          techSpecs={techDetails}
+          images={itemData[16]}
+        />
+      )}
       <Footer />
     </>
   );

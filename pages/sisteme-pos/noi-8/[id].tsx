@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
-import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { posNewBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
+import * as productService from "../../../services/productService";
 
 const NewPOSDetails = () => {
   const router = useRouter();
@@ -18,8 +18,8 @@ const NewPOSDetails = () => {
 
   useEffect(() => {
     if (!router.isReady) return;
-    itemService
-      .getNewPOS(id)
+    productService
+    .getProductDetails(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -54,7 +54,18 @@ const NewPOSDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={posNewBrcrmbs}  techSpecs={techDetails} upgradeOptions={productDetails[40]} warrantyOptions={productDetails[24]} />}
+      {loading ? (
+        <DetailPageSkeleton />
+      ) : (
+        <SingleDetailedView
+          itemData={itemData}
+          breadcrumbs={posNewBrcrmbs}
+          techSpecs={techDetails}
+          upgradeOptions={productDetails[40]}
+          warrantyOptions={productDetails[24]}
+          images={itemData[16]}
+        />
+      )}
       <Footer />
     </>
   );

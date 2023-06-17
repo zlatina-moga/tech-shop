@@ -6,20 +6,21 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { refComputersBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
+import * as productService from "../../../services/productService";
 
 const RefurbishedCompDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
     if (!router.isReady) return;
-    itemService
-      .getRefurbishedComp(id)
+    productService
+      .getProductDetails(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -55,9 +56,16 @@ const RefurbishedCompDetails = () => {
     <>
       <Navbar />
       {loading ? (
-       <DetailPageSkeleton />
+        <DetailPageSkeleton />
       ) : (
-        <SingleDetailedView itemData={itemData} breadcrumbs={refComputersBrcrmbs} techSpecs={techDetails} upgradeOptions={productDetails[40]} warrantyOptions={productDetails[24]} />
+        <SingleDetailedView
+          itemData={itemData}
+          breadcrumbs={refComputersBrcrmbs}
+          techSpecs={techDetails}
+          upgradeOptions={productDetails[40]}
+          warrantyOptions={productDetails[24]}
+          images={itemData[16]}
+        />
       )}
       <Footer />
     </>

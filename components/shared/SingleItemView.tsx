@@ -21,19 +21,13 @@ import toast from "react-hot-toast";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as ga from "../../lib/gtag";
 
-const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
+const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
   const isTablet = useMediaQuery("(max-width:601px)");
 
-  itemData = itemData.map(item => {
-    return {
-      ...item,
-      "productDetails": item.productDetails.replace('citgrup.ro', 'pcbun.ro'),
-    }
-});
-
+  itemData[11] = itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
@@ -43,11 +37,11 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
       action: "add_to_cart",
       params: {
         currency: "RON",
-        value: itemData[0].priceNum,
+        value: itemData[35],
         items: [
           {
-            item_id: itemData[0].idCode,
-            item_name: itemData[0].title,
+            item_id: itemData[0],
+            item_name: itemData[9],
           },
         ],
       },
@@ -92,8 +86,7 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
   return (
     <div className="page-details">
       <PhotoProvider>
-        {itemData.map((item, idx) => (
-          <div key={idx}>
+          <div >
             <div className="row px-5">
               <nav aria-label="breadcrumb " className="second ">
                 <ol className="breadcrumb indigo lighten-6 first px-md-4">
@@ -112,13 +105,13 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
               </nav>
             </div>
             <Meta
-              title={item.title}
-              keywords={item.title}
-              description={item.title}
+              title={itemData[3]}
+              keywords={itemData[5]}
+              description={itemData[4]}
             />
             <div className="container-fluid py-5">
               <h1 style={{ textAlign: "center", paddingBottom: "30px" }}>
-                {item.title}
+                {itemData[10]}
               </h1>
               <div className="row px-xl-5 main-container">
                 <div className="col-lg-5 pb-5">
@@ -127,21 +120,22 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
                     modules={[Navigation]}
                     className="mySwiper"
                   >
-                    {item.images.map((img, idx) => (
-                      <SwiperSlide key={idx}>
-                        <PhotoView src={img}>
-                          <img
-                            src={img}
-                            alt="image"
-                            style={{ cursor: "pointer" }}
-                          />
-                        </PhotoView>
-                      </SwiperSlide>
-                    ))}
+                    {images &&
+                      images.map((img, idx) => (
+                        <SwiperSlide key={idx}>
+                          <PhotoView src={img.src}>
+                            <img
+                              src={img.src}
+                              alt="image"
+                              style={{ cursor: "pointer" }}
+                            />
+                          </PhotoView>
+                        </SwiperSlide>
+                      ))}
                   </Swiper>
                 </div>
                 <div className="col-xl-7 pb-5 parent-container">
-                  {item.price ? (
+                  {itemData[34] != "" ? (
                     <div className="first-container">
                       <div className="d-flex align-items-center img-container">
                         <Image src={qualityIcon} alt="quality" />
@@ -185,12 +179,8 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
                         <textarea
                           className="form-control"
                           name="cf-message"
-                          defaultValue={`Sunt interesat de produsul cu ${
-                            item.productDetailsTitle.split(",")[1]
-                          }`}
-                          placeholder={`Sunt interesat de produsul cu ${
-                            item.productDetailsTitle.split(",")[1]
-                          }`}
+                          defaultValue={`Sunt interesat de produsul cu ${itemData[0]}`}
+                          placeholder={`Sunt interesat de produsul cu ${itemData[0]}`}
                         ></textarea>
                         <button
                           type="submit"
@@ -204,24 +194,24 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
                     </div>
                   )}
                   <div className="second-container">
-                    {item.discount && (
+                    {itemData[36] && (
                       <div style={{ display: "flex" }}>
                         <div className="discount-container">
                           <div>
-                            <p>{item.discount}</p>
+                            <p>{itemData[37]}</p>
                           </div>
                         </div>
                         <div className="old-price">
                           <h6>
-                            <del>{item.oldPrice}</del>
+                            <del style={{fontWeight: 'bold'}}>{itemData[31]} Lei + TVA</del>
                           </h6>
                         </div>
                       </div>
                     )}
-                    {item.price ? (
+                    {itemData[35] ? (
                       <div className="price-container">
                         <h3 className="mb-3 price">
-                          {item.price} (TVA inclus)
+                          {itemData[35]} (TVA inclus)
                         </h3>
                         <div className="delivery mb-3">
                           <Image src={truckIcon} alt="delivery" />
@@ -229,7 +219,7 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
                             Livrare in <b>1-2 zile</b>
                           </p>
                         </div>
-                        <p className="in-stock">{item.inStock}</p>
+                        <p className="in-stock">{itemData[13]}</p>
 
                         <p className="eco-tax">
                           Prețul include Eco-Taxa de 6.00 lei
@@ -262,7 +252,7 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
                             </p>
                             <p>
                               <b>ID Produs: </b>
-                              {item.idCode}
+                              {itemData[0]}
                             </p>
                           </div>
                         </div>
@@ -292,12 +282,10 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
               </div>
 
               <div>
-                {item.productDetails && (
                   <h3 style={{ fontWeight: "600" }}>
-                    {item.productDetailsTitle}
+                    Specificatii produs {itemData[28]} {itemData[6]}
                   </h3>
-                )}
-                <p>{item.productDetails}</p>
+                <section dangerouslySetInnerHTML={{__html: itemData[11]}}></section>
                 <div
                   style={{
                     display: "flex",
@@ -305,15 +293,10 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
                     marginTop: "50px",
                   }}
                 >
-                  <img src={item.techImage} />
+                  
                 </div>
               </div>
               <div>
-                {techSpecs && (
-                  <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
-                    {item.techSpecsTitle}
-                  </h4>
-                )}
                 <div className="description-container">
                   {techSpecs &&
                     techSpecs.map((item, idx) => (
@@ -335,7 +318,6 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs }) => {
               </div>
             </div>
           </div>
-        ))}
       </PhotoProvider>
     </div>
   );

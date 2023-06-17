@@ -10,6 +10,12 @@ export const getPrinters =  async () => {
   return await axios.get('https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante')
 }
 
+
+export const getProductDetails = (id) => request.get(`https://api.citgrup.ro/public/products/${id}`)
+
+
+//<-------------------------------------------------------------------------------->
+
 export const getAllLaptops = (page) =>
   request.get(`${baseUrl}/laptop?page=${page}`);
 

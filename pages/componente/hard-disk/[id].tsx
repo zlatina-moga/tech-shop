@@ -6,19 +6,20 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { hardDiskBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
+import * as productService from "../../../services/productService";
 
 const HardDiskDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
     if (!router.isReady) return;
-    itemService
-      .getHardDisk(id)
+    productService
+    .getProductDetails(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -44,7 +45,14 @@ const HardDiskDetails = () => {
       <Navbar />
       {loading ? (
         <DetailPageSkeleton />
-      ) : <SingleItemView itemData={itemData} breadcrumbs={hardDiskBrcrmbs} techSpecs={techDetails} />}
+      ) : (
+        <SingleItemView
+          itemData={itemData}
+          breadcrumbs={hardDiskBrcrmbs}
+          techSpecs={techDetails}
+          images={itemData[16]}
+        />
+      )}
       <Footer />
     </>
   );

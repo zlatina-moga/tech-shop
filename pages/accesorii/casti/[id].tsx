@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/global/Navbar";
-import * as itemService from "../../../services/itemService";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleItemView from "../../../components/shared/SingleItemView";
 import { headphonesBreadCrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
+import * as productService from "../../../services/productService";
 
 const HeadphonesDetails = () => {
   const router = useRouter();
@@ -17,8 +17,8 @@ const HeadphonesDetails = () => {
 
   useEffect(() => {
     if (!router.isReady) return;
-    itemService
-      .getHeadPhones(id)
+    productService
+      .getProductDetails(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -42,7 +42,16 @@ const HeadphonesDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={headphonesBreadCrmbs} techSpecs={techDetails}/>}
+      {loading ? (
+        <DetailPageSkeleton />
+      ) : (
+        <SingleItemView
+          itemData={itemData}
+          breadcrumbs={headphonesBreadCrmbs}
+          techSpecs={techDetails}
+          images={itemData[16]}
+        />
+      )}
       <Footer />
     </>
   );

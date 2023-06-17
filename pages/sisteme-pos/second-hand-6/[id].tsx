@@ -6,20 +6,21 @@ import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import SingleDetailedView from "../../../components/shared/SingleDetailedView";
 import { posSHBrcrmbs } from "../../../data/breadcrumbs";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
+import * as productService from "../../../services/productService";
 
 const SecondHandPOSDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
   const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
     if (!router.isReady) return;
-    itemService
-      .getSecondHandPOS(id)
+    productService
+      .getProductDetails(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -54,7 +55,18 @@ const SecondHandPOSDetails = () => {
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleDetailedView itemData={itemData} breadcrumbs={posSHBrcrmbs} techSpecs={techDetails} upgradeOptions={productDetails[40]} warrantyOptions={productDetails[24]}/>}
+      {loading ? (
+        <DetailPageSkeleton />
+      ) : (
+        <SingleDetailedView
+          itemData={itemData}
+          breadcrumbs={posSHBrcrmbs}
+          techSpecs={techDetails}
+          upgradeOptions={productDetails[40]}
+          warrantyOptions={productDetails[24]}
+          images={itemData[16]}
+        />
+      )}
       <Footer />
     </>
   );

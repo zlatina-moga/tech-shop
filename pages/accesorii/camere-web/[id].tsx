@@ -6,19 +6,19 @@ import SingleItemView from "../../../components/shared/SingleItemView";
 import { camerasBreadCrmbs } from "../../../data/breadcrumbs";
 import DetailPageSkeleton from "../../../components/shared/DetailPageSkeleton";
 import Footer from "../../../components/global/Footer";
-import * as techSpecsService from '../../../services/techSpecsService';
+import * as techSpecsService from "../../../services/techSpecsService";
+import * as productService from "../../../services/productService";
 
 const CameraDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [itemData, seItemsData] = useState([]);
+  const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
 
   useEffect(() => {
-    if (!router.isReady) return;
-    itemService
-      .getCamera(id)
+    productService
+    .getProductDetails(id)
       .then((result) => {
         setLoading(false);
         seItemsData(result);
@@ -26,7 +26,7 @@ const CameraDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [router.isReady, id]);
+  }, [id]);
 
   useEffect(() => {
     techSpecsService
@@ -39,11 +39,19 @@ const CameraDetails = () => {
       });
   }, [id]);
 
-
   return (
     <>
       <Navbar />
-      {loading ? <DetailPageSkeleton /> : <SingleItemView itemData={itemData} breadcrumbs={camerasBreadCrmbs} techSpecs={techDetails} />}
+      {loading ? (
+        <DetailPageSkeleton />
+      ) : (
+        <SingleItemView
+          itemData={itemData}
+          breadcrumbs={camerasBreadCrmbs}
+          techSpecs={techDetails}
+          images={itemData[16]}
+        />
+      )}
       <Footer />
     </>
   );

@@ -21,7 +21,7 @@ import emailjs from "emailjs-com";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as ga from "../../lib/gtag";
 
-const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, warrantyOptions }) => {
+const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, warrantyOptions, images }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
@@ -29,14 +29,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
   let [warrantyType, setWarrantyType] = useState("");
   const isTablet = useMediaQuery("(max-width:601px)");
 
-  const id = itemData.map((element) => element.id).toString();
-
-  itemData = itemData.map(item => {
-    return {
-      ...item,
-      "productDetails": item.productDetails.replace('citgrup.ro', 'pcbun.ro'),
-    }
-});
+  itemData[11] = itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: warranty }));
@@ -46,11 +39,11 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
       action: "add_to_cart",
       params: {
         currency: "RON",
-        value: itemData[0].priceNum,
+        value: itemData[35],
         items: [
           {
-            item_id: itemData[0].idCode,
-            item_name: itemData[0].title,
+            item_id: itemData[0],
+            item_name: itemData[9],
           },
         ],
       },
@@ -99,8 +92,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
   return (
     <div className="page-details">
       <PhotoProvider>
-        {itemData.map((item, idx) => (
-          <div key={idx}>
+          <div>
             <div className="row px-5">
               <nav aria-label="breadcrumb " className="second ">
                 <ol className="breadcrumb indigo lighten-6 first px-md-4">
@@ -119,9 +111,9 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
               </nav>
             </div>
             <Meta
-              title={item.title}
-              keywords={item.title}
-              description={item.title}
+              title={itemData[3]}
+              keywords={itemData[5]}
+              description={itemData[4]}
             />
             <div className="container-fluid py-5">
               <h1
@@ -132,7 +124,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                   fontSize: "30px",
                 }}
               >
-                {item.title}
+                {itemData[10]}
               </h1>
               <div className="row px-xl-5 main-container">
                 <div className="col-lg-5 pb-5">
@@ -141,11 +133,11 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                     modules={[Navigation]}
                     className="mySwiper"
                   >
-                    {item.images.map((img, idx) => (
+                    {images && images.map((img, idx) => (
                       <SwiperSlide key={idx}>
-                        <PhotoView src={img}>
+                        <PhotoView src={img.src}>
                           <img
-                            src={img}
+                            src={img.src}
                             alt="image"
                             style={{ cursor: "pointer" }}
                           />
@@ -286,7 +278,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                         </div>
                       </div>
                     )}
-                    {item && item.price ? (
+                    {itemData[34] != "" ? (
                       <>
                         <div className="d-flex align-items-center img-container">
                           <Image src={qualityIcon} alt="quality" />
@@ -330,12 +322,8 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                           <textarea
                             className="form-control"
                             name="cf-message"
-                            defaultValue={`Sunt interesat de produsul cu ${
-                              item.productDetailsTitle.split(",")[1]
-                            }`}
-                            placeholder={`Sunt interesat de produsul cu ${
-                              item.productDetailsTitle.split(",")[1]
-                            }`}
+                            defaultValue={`Sunt interesat de produsul cu ${itemData[0]}`}
+                            placeholder={`Sunt interesat de produsul cu ${itemData[0]}`}
                           ></textarea>
                           <button
                             type="submit"
@@ -350,25 +338,25 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                     )}
                   </div>
                   <div className="second-container">
-                    {item.discount && (
+                    {itemData[36] && (
                       <div style={{ display: "flex" }}>
                         <div className="discount-container">
                           <div>
-                            <p>{item.discount}</p>
+                            <p>{itemData[37]}</p>
                           </div>
                         </div>
                         <div className="old-price">
                           <h6>
-                            <del>{item.oldPrice}</del>
+                          <del style={{fontWeight: 'bold'}}>{itemData[31]} Lei + TVA</del>
                           </h6>
                         </div>
                       </div>
                     )}
 
-                    {item && item.price ? (
+                    {itemData[35] ? (
                       <div className="price-container">
                         <h3 className="mb-3 price">
-                          {item.price} (TVA inclus)
+                        {itemData[35]} (TVA inclus)
                         </h3>
                         <div className="delivery mb-3">
                           <Image src={truckIcon} alt="delivery" />
@@ -377,7 +365,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                           </p>
                         </div>
 
-                        <p className="in-stock">{item.inStock}</p>
+                        <p className="in-stock">{itemData[13]}</p>
                         <p className="eco-tax">
                           Pretul include Eco-Taxa de 6.00 lei
                         </p>
@@ -409,7 +397,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                             </p>
                             <p>
                               <b>ID Produs: </b>
-                              {item.idCode}
+                              {itemData[0]}
                             </p>
                           </div>
                         </div>
@@ -438,10 +426,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                 </div>
               </div>
               <div>
-                <h3 style={{ fontWeight: "600" }}>
-                  {item.productDetailsTitle}
-                </h3>
-                <p>{item.productDetails}</p>
+                  <h3 style={{ fontWeight: "600" }}>
+                    Specificatii produs {itemData[28]} {itemData[6]}
+                  </h3>
+                <section dangerouslySetInnerHTML={{__html: itemData[11]}}></section>
                 <div
                   style={{
                     display: "flex",
@@ -449,18 +437,10 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                     marginTop: "50px",
                   }}
                 >
-                  <img
-                    src={item.techImage}
-                    style={{ height: "auto", width: "auto", maxWidth: "100%" }}
-                  />
+                  
                 </div>
               </div>
               <div>
-                {techSpecs && (
-                  <h4 style={{ fontWeight: "600", marginTop: "50px" }}>
-                    {item.techSpecsTitle}
-                  </h4>
-                )}
                 <div className="description-container">
                   {techSpecs &&
                     techSpecs.map((item, idx) => (
@@ -483,7 +463,6 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
               <Toaster position="top-right" />
             </div>
           </div>
-        ))}
       </PhotoProvider>
     </div>
   );
