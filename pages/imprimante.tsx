@@ -11,6 +11,8 @@ import { usePapaParse } from "react-papaparse";
 
 const Imprimante = () => {
   let [laptopsData, setLaptopsData] = useState([]);
+  let [filteredData, setFilteredData] = useState([]);
+  let [doubleFilteredData, setDoubleFilteredData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
@@ -21,17 +23,20 @@ const Imprimante = () => {
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
   const { readRemoteFile } = usePapaParse();
+  const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
+  const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
 
   let pageSize = 64;
-  laptopsData = laptopsData.slice(1);
-  const totalPages = Math.ceil(laptopsData.length / pageSize );
+  //laptopsData = laptopsData.slice(1);
+  const totalPages = Math.ceil(laptopsData.length / pageSize);
 
   useEffect(() => {
     //@ts-ignore
-    readRemoteFile(  "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante", {
+    readRemoteFile("https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante", {
         skipEmptyLines: true,
         complete: (results) => {
-          setLaptopsData(results.data);
+          setLaptopsData(results.data.slice(1));
           //console.log(results.data);
           setLoading(false);
         },
@@ -85,10 +90,74 @@ const Imprimante = () => {
     setShow(true);
   }, [priceRange]);
 
+  const onCatSelect = (cat) => {
+    router.push(`/imprimante?category=${cat}`);
+    setMultupleSelected(true);
+    setCategory(cat);
+  };
+
+  useEffect(() => {
+    if (category == "refurbished") {
+      let arr = laptopsData.filter((r) => r[2] == "Refurbished");
+      setFilteredData(arr);
+      sortingService.getBrands(30).then((result) => {
+        setBrands(result);
+      });
+      sortingService.getHighestPrice(30).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else if (category == "second-hand") {
+      let arr = laptopsData.filter((r) => r[2] == "Second Hand");
+      setFilteredData(arr);
+      sortingService.getBrands(31).then((result) => {
+        setBrands(result);
+      });
+      sortingService.getHighestPrice(31).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else if (category == "nou") {
+      let arr = laptopsData.filter((r) => r[2] == "Noi");
+      setFilteredData(arr);
+      sortingService.getBrands(53).then((result) => {
+        setBrands(result);
+      });
+      sortingService.getHighestPrice(53).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    } else if (category == "consumabile") {
+      let arr = laptopsData.filter((r) => r[2] == "Consumabile");
+      setFilteredData(arr);
+      sortingService.getBrands(93).then((result) => {
+        setBrands(result);
+      });
+      sortingService.getHighestPrice(93).then((response) => {
+        setHighestPrice(response[1]);
+      });
+    }
+  }, [category]);
+
+  const onBrandSelect = (br) => {
+    router.push(`/imprimante?brand=${br}`);
+    setMultupleSelected(true);
+    setBrand(br);
+  };
+
+  useEffect(() => {
+    if (category != '' && brand != "") {
+      let arr = filteredData.filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+      setDoubleFilteredData(arr);
+    }
+    if (brand != "") {
+      console.log(brand)
+      let arr = laptopsData.filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+      setFilteredData(arr);
+    }
+  }, [brand, category]);
+
   const paginationRange = usePagination({
     currentPage,
     totalCount: totalPages,
-    siblingCount: 1
+    siblingCount: 1,
   });
 
   const nextPage = () => {
@@ -108,7 +177,6 @@ const Imprimante = () => {
     const lastPageIndex = firstPageIndex + pageSize;
     return data.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);*/
-
 
   return (
     <>
@@ -130,6 +198,10 @@ const Imprimante = () => {
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
             categoryLink={"/imprimante/"}
+            catSelect={onCatSelect}
+            brandSelect={onBrandSelect}
+            filteredData={filteredData}
+            doubleFilteredData={doubleFilteredData}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

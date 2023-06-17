@@ -18,6 +18,8 @@ const veneer = localFont({
 interface ILaptopPage {
   title: string;
   laptopsData: any[];
+  filteredData?: any[];
+  doubleFilteredData?: any[];
   categories?: any[];
   categories2?: any[];
   breadcrumbs?: any[];
@@ -37,11 +39,15 @@ interface ILaptopPage {
   screens?: any;
   screensLink?: string;
   secTitle?: string;
+  catSelect?: any;
+  brandSelect?: any;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
   title,
   laptopsData,
+  filteredData,
+  doubleFilteredData,
   categories,
   breadcrumbs,
   brands,
@@ -61,6 +67,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   screens,
   screensLink,
   secTitle,
+  catSelect,
+  brandSelect,
 }) => {
   const [selected, setSelected] = useState("");
   const totalCount = laptopsData.length;
@@ -96,11 +104,17 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           screens={screens}
           screensLink={screensLink}
           secTitle={secTitle}
+          selectCategory={catSelect}
+          selectBrand={brandSelect}
         />
         <div style={{ width: "80%" }}>
           <div className="text-center mb-4">
             <h1 className={`font-${veneer.variable} font-sans`}>{title}</h1>
-            <p className="font-weight-medium">Total {totalCount} produse</p>
+            {totalCount > 1 ? (
+              <p className="font-weight-medium">Total {totalCount} produse</p>
+            ) : (
+              <p className="font-weight-medium">Total {totalCount} produs</p>
+            )}
             <div>
               <label className="mr-2">Sortează după:</label>
               {multipleQueries ? (
@@ -150,104 +164,422 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
             )}
             style={{ maxWidth: "98rem", justifyContent: "center" }}
           >
-            {laptopsData.map((itemData, idx) => (
-              <div
-                className={classNames(`pb-1`, "laptop-card")}
-                key={idx}
-                style={{ maxWidth: "270px" }}
-              >
-                <div
-                  className={classNames(
-                    "card product-item border border-gray rounded mb-4",
-                    "inner-container"
-                  )}
-                  style={{ alignItems: "stretch", height: "550px" }}
-                >
-                  <Link href={itemData[9].replace("citgrup", "pcbun")}>
+            {doubleFilteredData.length > 0
+              ? doubleFilteredData.map((itemData, idx) => (
+                  <div
+                    className={classNames(`pb-1`, "laptop-card")}
+                    key={idx}
+                    style={{ maxWidth: "270px" }}
+                  >
                     <div
                       className={classNames(
-                        "card-header product-img position-relative overflow-hidden bg-transparent",
-                        "img-wrapper"
+                        "card product-item border border-gray rounded mb-4",
+                        "inner-container"
                       )}
+                      style={{ alignItems: "stretch", height: "550px" }}
                     >
-                      {itemData[16].split(".")[1] && (
-                        <div className="discount-container">
-                          <div>
-                            {itemData[16].split(".")[1] == 2 ? 
-                              <p>20%</p>
-                             : itemData[16].split(".")[1] == 4 ? 
-                              <p>40%</p>
-                              :
-                              <p>{itemData[16].split(".")[1]}%</p>
-                            }
-                          </div>
+                      <Link href={itemData[9].replace("citgrup", "pcbun")}>
+                        <div
+                          className={classNames(
+                            "card-header product-img position-relative overflow-hidden bg-transparent",
+                            "img-wrapper"
+                          )}
+                        >
+                          {itemData[16].split(".")[1] && (
+                            <div className="discount-container">
+                              <div>
+                                {itemData[16].split(".")[1] == 2 ? (
+                                  <p>20%</p>
+                                ) : itemData[16].split(".")[1] == 4 ? (
+                                  <p>40%</p>
+                                ) : (
+                                  <p>{itemData[16].split(".")[1]}%</p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          <img
+                            className="img-fluid w-100"
+                            src={itemData[8]}
+                            alt=""
+                            //style={{maxWidth: '200px'}}
+                          />
                         </div>
-                      )}
+                      </Link>
+                      <div className="card-body text-center p-3 pt-4 relative">
+                        <h6
+                          className="mb-3"
+                          style={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            maxHeight: "95px",
+                          }}
+                        >
+                          {itemData[3]}
+                        </h6>
+                        {itemData[16].split(".")[1] && (
+                          <div className="d-flex justify-content-center">
+                            {itemData[16].split(".")[1] == 2 ? (
+                              <del>
+                                {(
+                                  Number(itemData[4]) +
+                                  Number(itemData[4] * 0.2)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 25 ? (
+                              <del>
+                                {(
+                                  Number(itemData[5]) +
+                                  Number(itemData[5] * 0.25)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 3 ? (
+                              <del>
+                                {(
+                                  Number(itemData[6]) +
+                                  Number(itemData[6] * 0.3)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 35 ? (
+                              <del>
+                                {(
+                                  Number(itemData[7]) +
+                                  Number(itemData[7] * 0.35)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 4 ? (
+                              <del>
+                                {(
+                                  Number(itemData[7]) +
+                                  Number(itemData[7] * 0.4)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        )}
 
-                      <img
-                        className="img-fluid w-100"
-                        src={itemData[8]}
-                        alt=""
-                        //style={{maxWidth: '200px'}}
-                      />
-                    </div>
-                  </Link>
-                  <div className="card-body text-center p-3 pt-4 relative">
-                    <h6
-                      className="mb-3"
-                      style={{
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        maxHeight: "95px",
-                      }}
-                    >
-                      {itemData[3]}
-                    </h6>
-                    {itemData[16].split(".")[1] && (
-                      <div className="d-flex justify-content-center">
-                        {itemData[16].split(".")[1] == 2 ? (
-                          <del>{(Number(itemData[4]) + Number(itemData[4] * 0.2)).toFixed(2)} Lei + TVA</del>
-                      ) : itemData[16].split(".")[1] == 25 ? (
-                        <del>{(Number(itemData[5]) + Number(itemData[5] * 0.25)).toFixed(2)} Lei + TVA</del>
-                      ) : itemData[16].split(".")[1] == 3 ? (
-                        <del>{(Number(itemData[6]) + Number(itemData[6] * 0.3)).toFixed(2)} Lei + TVA</del>
-                      ) : itemData[16].split(".")[1] == 35 ? (
-                        <del>{(Number(itemData[7]) + Number(itemData[7] * 0.35)).toFixed(2)} Lei + TVA</del>
-                      ) : itemData[16].split(".")[1] == 4 ? (
-                        <del>{(Number(itemData[7]) + Number(itemData[7] * 0.4)).toFixed(2)} Lei + TVA</del>
-                      ) : (
-                       ''
-                      )}
+                        <div className="d-flex justify-content-center">
+                          {itemData[16].split(".")[1] == 2 ? (
+                            <h6 className="discount">
+                              {itemData[4]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 25 ? (
+                            <h6 className="discount">
+                              {itemData[5]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 3 ? (
+                            <h6 className="discount">
+                              {itemData[6]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 35 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 4 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : (
+                            <h6 className="price">{itemData[17]} Lei + TVA</h6>
+                          )}
+                        </div>
                       </div>
-                    )}
-
-                    <div className="d-flex justify-content-center">
-                      {itemData[16].split(".")[1] == 2 ? (
-                        <h6 className="price">{itemData[4]} Lei + TVA</h6>
-                      ) : itemData[16].split(".")[1] == 25 ? (
-                        <h6 className="price">{itemData[5]} Lei + TVA</h6>
-                      ) : itemData[16].split(".")[1] == 3 ? (
-                        <h6 className="price">{itemData[6]} Lei + TVA</h6>
-                      ) : itemData[16].split(".")[1] == 35 ? (
-                        <h6 className="price">{itemData[7]} Lei + TVA</h6>
-                      ) : itemData[16].split(".")[1] == 4 ? (
-                        <h6 className="price">{itemData[7]} Lei + TVA</h6>
-                      ) : (
-                        <h6 className="price">{itemData[17]} Lei + TVA</h6>
-                      )}
+                      <div className="card-footer w-100 bg-light">
+                        <Link
+                          href={itemData[9].replace("citgrup", "pcbun")}
+                          className="btn btn-primary add-to-cart"
+                        >
+                          Vezi detalii
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                  <div className="card-footer w-100 bg-light">
-                    <Link
-                      href={itemData[9].replace("citgrup", "pcbun")}
-                      className="btn btn-primary add-to-cart"
+                ))
+              : filteredData.length > 0
+              ? filteredData.map((itemData, idx) => (
+                  <div
+                    className={classNames(`pb-1`, "laptop-card")}
+                    key={idx}
+                    style={{ maxWidth: "270px" }}
+                  >
+                    <div
+                      className={classNames(
+                        "card product-item border border-gray rounded mb-4",
+                        "inner-container"
+                      )}
+                      style={{ alignItems: "stretch", height: "550px" }}
                     >
-                      Vezi detalii
-                    </Link>
+                      <Link href={itemData[9].replace("citgrup", "pcbun")}>
+                        <div
+                          className={classNames(
+                            "card-header product-img position-relative overflow-hidden bg-transparent",
+                            "img-wrapper"
+                          )}
+                        >
+                          {itemData[16].split(".")[1] && (
+                            <div className="discount-container">
+                              <div>
+                                {itemData[16].split(".")[1] == 2 ? (
+                                  <p>20%</p>
+                                ) : itemData[16].split(".")[1] == 4 ? (
+                                  <p>40%</p>
+                                ) : (
+                                  <p>{itemData[16].split(".")[1]}%</p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          <img
+                            className="img-fluid w-100"
+                            src={itemData[8]}
+                            alt=""
+                            //style={{maxWidth: '200px'}}
+                          />
+                        </div>
+                      </Link>
+                      <div className="card-body text-center p-3 pt-4 relative">
+                        <h6
+                          className="mb-3"
+                          style={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            maxHeight: "95px",
+                          }}
+                        >
+                          {itemData[3]}
+                        </h6>
+                        {itemData[16].split(".")[1] && (
+                          <div className="d-flex justify-content-center">
+                            {itemData[16].split(".")[1] == 2 ? (
+                              <del>
+                                {(
+                                  Number(itemData[4]) +
+                                  Number(itemData[4] * 0.2)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 25 ? (
+                              <del>
+                                {(
+                                  Number(itemData[5]) +
+                                  Number(itemData[5] * 0.25)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 3 ? (
+                              <del>
+                                {(
+                                  Number(itemData[6]) +
+                                  Number(itemData[6] * 0.3)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 35 ? (
+                              <del>
+                                {(
+                                  Number(itemData[7]) +
+                                  Number(itemData[7] * 0.35)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 4 ? (
+                              <del>
+                                {(
+                                  Number(itemData[7]) +
+                                  Number(itemData[7] * 0.4)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        )}
+
+                        <div className="d-flex justify-content-center">
+                          {itemData[16].split(".")[1] == 2 ? (
+                            <h6 className="discount">
+                              {itemData[4]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 25 ? (
+                            <h6 className="discount">
+                              {itemData[5]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 3 ? (
+                            <h6 className="discount">
+                              {itemData[6]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 35 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 4 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : (
+                            <h6 className="price">{itemData[17]} Lei + TVA</h6>
+                          )}
+                        </div>
+                      </div>
+                      <div className="card-footer w-100 bg-light">
+                        <Link
+                          href={itemData[9].replace("citgrup", "pcbun")}
+                          className="btn btn-primary add-to-cart"
+                        >
+                          Vezi detalii
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))
+              : laptopsData.map((itemData, idx) => (
+                  <div
+                    className={classNames(`pb-1`, "laptop-card")}
+                    key={idx}
+                    style={{ maxWidth: "270px" }}
+                  >
+                    <div
+                      className={classNames(
+                        "card product-item border border-gray rounded mb-4",
+                        "inner-container"
+                      )}
+                      style={{ alignItems: "stretch", height: "550px" }}
+                    >
+                      <Link href={itemData[9].replace("citgrup", "pcbun")}>
+                        <div
+                          className={classNames(
+                            "card-header product-img position-relative overflow-hidden bg-transparent",
+                            "img-wrapper"
+                          )}
+                        >
+                          {itemData[16].split(".")[1] && (
+                            <div className="discount-container">
+                              <div>
+                                {itemData[16].split(".")[1] == 2 ? (
+                                  <p>20%</p>
+                                ) : itemData[16].split(".")[1] == 4 ? (
+                                  <p>40%</p>
+                                ) : (
+                                  <p>{itemData[16].split(".")[1]}%</p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          <img
+                            className="img-fluid w-100"
+                            src={itemData[8]}
+                            alt=""
+                            //style={{maxWidth: '200px'}}
+                          />
+                        </div>
+                      </Link>
+                      <div className="card-body text-center p-3 pt-4 relative">
+                        <h6
+                          className="mb-3"
+                          style={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            maxHeight: "95px",
+                          }}
+                        >
+                          {itemData[3]}
+                        </h6>
+                        {itemData[16].split(".")[1] && (
+                          <div className="d-flex justify-content-center">
+                            {itemData[16].split(".")[1] == 2 ? (
+                              <del>
+                                {(
+                                  Number(itemData[4]) +
+                                  Number(itemData[4] * 0.2)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 25 ? (
+                              <del>
+                                {(
+                                  Number(itemData[5]) +
+                                  Number(itemData[5] * 0.25)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 3 ? (
+                              <del>
+                                {(
+                                  Number(itemData[6]) +
+                                  Number(itemData[6] * 0.3)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 35 ? (
+                              <del>
+                                {(
+                                  Number(itemData[7]) +
+                                  Number(itemData[7] * 0.35)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : itemData[16].split(".")[1] == 4 ? (
+                              <del>
+                                {(
+                                  Number(itemData[7]) +
+                                  Number(itemData[7] * 0.4)
+                                ).toFixed(2)}{" "}
+                                Lei + TVA
+                              </del>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        )}
+
+                        <div className="d-flex justify-content-center">
+                          {itemData[16].split(".")[1] == 2 ? (
+                            <h6 className="discount">
+                              {itemData[4]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 25 ? (
+                            <h6 className="discount">
+                              {itemData[5]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 3 ? (
+                            <h6 className="discount">
+                              {itemData[6]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 35 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 4 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : (
+                            <h6 className="price">{itemData[17]} Lei + TVA</h6>
+                          )}
+                        </div>
+                      </div>
+                      <div className="card-footer w-100 bg-light">
+                        <Link
+                          href={itemData[9].replace("citgrup", "pcbun")}
+                          className="btn btn-primary add-to-cart"
+                        >
+                          Vezi detalii
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </div>

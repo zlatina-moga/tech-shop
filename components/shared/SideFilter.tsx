@@ -19,11 +19,12 @@ const SideFilter = ({
   categories2,
   screens,
   screensLink,
-  secTitle
+  secTitle,
+  selectCategory,
+  selectBrand
 }) => {
   const router = useRouter();
   const [value, setValue] = useState(1);
-  const [brand, setBrand] = useState('');
 
   const onPriceChange = (changeEvent) => {
     setValue(changeEvent.target.value);
@@ -45,9 +46,9 @@ const SideFilter = ({
         flexDirection: "column",
         maxWidth: "18rem",
         marginBottom: "30px",
-        width: '30%'
+        width: "30%",
       }}
-      id='sidebar-wrapper'
+      id="sidebar-wrapper"
     >
       <div className="row pr-5">
         <nav aria-label="breadcrumb " className="second ">
@@ -105,21 +106,19 @@ const SideFilter = ({
                 >
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
                   {categories.map((c, idx) => (
-                    <Link
-                      href={categoryLink + c.slug}
-                      className={`sidebar-link nav-item nav-link py-3 d-flex justify-content-between ${
-                        router.pathname == categoryLink + c.slug ? "active" : ""
+                    <button
+                      onClick={() => selectCategory(c.slug)}
+                      className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
+                        router.asPath.includes(c.slug) ? "active" : ""
                       }`}
                       key={idx}
+                      style={{
+                        background: "transparent",
+                        border: "none",
+                        borderBottom: "1px solid #EDF1FF",
+                      }}
                     >
-                      {router.pathname == categoryLink + c.slug ? (
-                        <i
-                          className="fas fa-check"
-                          style={{
-                            color: "#57A046",
-                          }}
-                        ></i>
-                      ) : router.pathname.includes(c.slug) ? (
+                      {router.asPath.includes(c.slug) ? (
                         <i
                           className="fas fa-check"
                           style={{
@@ -131,7 +130,7 @@ const SideFilter = ({
                       )}
                       {c.name}
                       <span className="inner-count">({c.count})</span>
-                    </Link>
+                    </button>
                   ))}
                 </div>
               </nav>
@@ -239,13 +238,17 @@ const SideFilter = ({
                     Brand
                   </h4>
                   {brands.map((c) => (
-                    <Link
-                      href={`${brandLink}${c.slug}-${c.id}`}
+                    <button
                       className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
                         router.asPath.includes(c.slug) ? "active" : ""
                       }`}
                       key={c.id}
-                      onClick={() => setBrand(c.slug)}
+                      onClick={() => selectBrand(c.slug)}
+                      style={{
+                        background: "transparent",
+                        border: "none",
+                        borderBottom: "1px solid #EDF1FF",
+                      }}
                     >
                       {router.asPath.includes(c.slug) ? (
                         <i
@@ -259,7 +262,7 @@ const SideFilter = ({
                       )}
                       {c.name}
                       <span className="inner-count">({c.count})</span>
-                    </Link>
+                    </button>
                   ))}
                 </ul>
               </nav>
@@ -297,7 +300,7 @@ const SideFilter = ({
                   }}
                 >
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
-                    {secTitle ? secTitle : 'Procesor'}
+                    {secTitle ? secTitle : "Procesor"}
                   </h4>
                   {processors.map((c, idx) => (
                     <Link
