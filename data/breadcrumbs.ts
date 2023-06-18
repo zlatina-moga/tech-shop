@@ -20,7 +20,7 @@ export const cablesBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Cabluri si Adaptoare", link: "/accesorii/cabluri-si-adaptoare" },
+  { name: "Cabluri si Adaptoare", link: "#" },
 ];
 
 export const camerasBreadCrmbs = [
@@ -30,7 +30,7 @@ export const camerasBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Camere Web", link: "/accesorii/camere-web" },
+  { name: "Camere Web",  link: "#"   },
 ];
 
 export const headphonesBreadCrmbs = [
@@ -40,7 +40,7 @@ export const headphonesBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Casti", link: "/accesorii/casti" },
+  { name: "Casti", link: "#"  },
 ];
 
 export const dockingBreadCrmbs = [
@@ -50,7 +50,7 @@ export const dockingBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Docking Station", link: "/accesorii/docking-station" },
+  { name: "Docking Station",  link: "#"  },
 ];
 
 export const gamingBreadCrmbs = [
@@ -60,7 +60,7 @@ export const gamingBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Gaming & Console", link: "/accesorii/gaming-console" },
+  { name: "Gaming & Console",  link: "#" },
 ];
 
 export const bagsBreadCrmbs = [
@@ -70,7 +70,7 @@ export const bagsBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Genti", link: "/accesorii/genti" },
+  { name: "Genti",  link: "#"  },
 ];
 
 export const mouseBreadCrmbs = [
@@ -80,7 +80,7 @@ export const mouseBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Mouse", link: "/accesorii/mouse" },
+  { name: "Mouse", link: "#"  },
 ];
 
 export const diverseBreadCrmbs = [
@@ -90,7 +90,7 @@ export const diverseBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Periferice Diverse", link: "/accesorii/periferice-diverse" },
+  { name: "Periferice Diverse",  link: "#"  },
 ];
 
 export const keyboardBreadCrmbs = [
@@ -100,7 +100,7 @@ export const keyboardBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Tastaturi", link: "/accesorii/tastaturi" },
+  { name: "Tastaturi",  link: "#"  },
 ];
 
 export const videoBreadCrmbs = [
@@ -110,7 +110,7 @@ export const videoBreadCrmbs = [
     link: "/accesorii",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Videoproiectoare", link: "/accesorii/videoproiectoare" },
+  { name: "Videoproiectoare", link: "#" },
 ];
 
 export const computersBrcrmbs = [
@@ -125,7 +125,7 @@ export const newComputersBrcrmbs = [
     link: "/calculatoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Noi", link: "/calculatoare/nou" },
+  { name: "Noi",  link: "#"  },
 ];
 
 export const newGenerationComputersBrcrmbs = [
@@ -241,7 +241,7 @@ export const secondHandComputersBrcrmbs = [
     link: "/calculatoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Second Hand", link: "/calculatoare/second-hand" },
+  { name: "Second Hand",  link: "#"  },
 ];
 
 export const refComputersBrcrmbs = [
@@ -251,7 +251,7 @@ export const refComputersBrcrmbs = [
     link: "/calculatoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Refurbished", link: "/calculatoare/refurbished" },
+  { name: "Refurbished", link: "#"  },
 ];
 
 export const brandComputersBrcrmbs = [
@@ -624,7 +624,7 @@ export const chargerBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Alimentator laptop", link: "/componente/alimentator-laptop" },
+  { name: "Alimentator laptop", link: "#"  },
 ];
 
 export const bareboneBrcrmbs = [
@@ -634,7 +634,7 @@ export const bareboneBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Barebone calculator", link: "/componente/barebone-calculator" },
+  { name: "Barebone calculator",  link: "#"  },
 ];
 
 export const batteriesBrcrmbs = [
@@ -644,7 +644,7 @@ export const batteriesBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Baterie Laptop", link: "/componente/baterie-laptop" },
+  { name: "Baterie Laptop",  link: "#"  },
 ];
 
 export const caddyBrcrmbs = [
@@ -654,7 +654,7 @@ export const caddyBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Caddy server", link: "/componente/caddy-server" },
+  { name: "Caddy server",  link: "#" },
 ];
 
 export const carcasaBrcrmbs = [
@@ -664,7 +664,7 @@ export const carcasaBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Carcasa si Surse", link: "/componente/carcasa-si-surse" },
+  { name: "Carcasa si Surse", link: "#"  },
 ];
 
 export const controllerBrcrmbs = [
@@ -674,7 +674,7 @@ export const controllerBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Controller Raid", link: "/componente/controller-raid" },
+  { name: "Controller Raid",  link: "#"  },
 ];
 
 export const coolerBrcrmbs = [
@@ -684,7 +684,7 @@ export const coolerBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Coolere si radiatoare", link: "/componente/coolere-si-radiatoare" },
+  { name: "Coolere si radiatoare",  link: "#" },
 ];
 
 export const hardDiskBrcrmbs = [
@@ -704,7 +704,7 @@ export const mascaBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Masca Bay server", link: "/componente/masca-bay-server" },
+  { name: "Masca Bay server", link: "#"  },
 ];
 
 export const ramBrcrmbs = [
@@ -714,7 +714,7 @@ export const ramBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Memorie RAM", link: "/componente/memorie-ram" },
+  { name: "Memorie RAM",  link: "#"  },
 ];
 
 export const palmrestBrcrmbs = [
@@ -724,7 +724,7 @@ export const palmrestBrcrmbs = [
     link: "/componente",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Palmrest", link: "/componente/palmrest" },
+  { name: "Palmrest",  link: "#"  },
 ];
 
 export const mbBrcrmbs = [
@@ -736,7 +736,7 @@ export const mbBrcrmbs = [
   },
   {
     name: "Placa de baza calculator",
-    link: "/componente/placa-de-baza-calculator",
+    link: "#" 
   },
 ];
 
@@ -749,7 +749,7 @@ export const reteaBrcrmbs = [
   },
   {
     name: "Placa de retea",
-    link: "/componente/placa-de-retea",
+    link: "#" 
   },
 ];
 
@@ -762,7 +762,7 @@ export const videoCardBrcrmbs = [
   },
   {
     name: "Placa Video",
-    link: "/componente/placa-video",
+    link: "#" 
   },
 ];
 
@@ -775,7 +775,7 @@ export const processorBrcrmbs = [
   },
   {
     name: "Procesor",
-    link: "/componente/procesor",
+    link: "#" 
   },
 ];
 
@@ -788,7 +788,7 @@ export const railkitBrcrmbs = [
   },
   {
     name: "RailKit server",
-    link: "/componente/railkit-server",
+    link: "#" 
   },
 ];
 
@@ -801,7 +801,7 @@ export const laptopKeyboardBrcrmbs = [
   },
   {
     name: "Tastatura laptop",
-    link: "/componente/tastatura-laptop",
+    link: "#" 
   },
 ];
 
@@ -827,7 +827,7 @@ export const printerConsumablesBrcrmbs = [
     link: "/imprimante",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Consumabile", link: "/imprimante/consumabile" },
+  { name: "Consumabile", link: "#" },
 ];
 
 export const printerNewBrcrmbs = [
@@ -837,7 +837,7 @@ export const printerNewBrcrmbs = [
     link: "/imprimante",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Noi", link: "/imprimante/nou" },
+  { name: "Noi", link: "#"  },
 ];
 
 export const printerSHBrcrmbs = [
@@ -847,7 +847,7 @@ export const printerSHBrcrmbs = [
     link: "/imprimante",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Second Hand", link: "/imprimante/second-hand" },
+  { name: "Second Hand",  link: "#"  },
 ];
 
 export const printerRefBrcrmbs = [
@@ -857,7 +857,7 @@ export const printerRefBrcrmbs = [
     link: "/imprimante",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Refurbished", link: "/imprimante/refurbished" },
+  { name: "Refurbished",  link: "#"  },
 ];
 
 export const laptopBrcrmbs = [
@@ -874,19 +874,19 @@ export const laptopBrandBrcrmbs = [
 export const laptopRefurbishedBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
-  { name: "Refurbished", link: "/laptop/refurbished" },
+  { name: "Refurbished",  link: "#"  },
 ];
 
 export const laptopNewdBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
-  { name: "Noi", link: "/laptop/nou" },
+  { name: "Noi",  link: "#"  },
 ];
 
 export const laptopSHBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
-  { name: "Second Hand", link: "/laptop/second-hand" },
+  { name: "Second Hand",  link: "#"  },
 ];
 
 export const laptopProcesorBrcrmbs = [
@@ -917,7 +917,7 @@ export const monitorNewBrcrmbs = [
     link: "/monitoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Noi", link: "/monitoare/nou" },
+  { name: "Noi",  link: "#"  },
 ];
 
 export const monitorRefBrcrmbs = [
@@ -927,7 +927,7 @@ export const monitorRefBrcrmbs = [
     link: "/monitoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Refurbished", link: "/monitoare/refurbished" },
+  { name: "Refurbished",  link: "#"  },
 ];
 
 export const monitorSHBrcrmbs = [
@@ -937,7 +937,7 @@ export const monitorSHBrcrmbs = [
     link: "/monitoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Second Hand", link: "/monitoare/second-hand" },
+  { name: "Second Hand",  link: "#" },
 ];
 
 export const monitorTouchSHBrcrmbs = [
@@ -949,7 +949,7 @@ export const monitorTouchSHBrcrmbs = [
   },
   {
     name: "Touchscreen Refurbished",
-    link: "/monitoare/touchscreen-refurbished",
+    link: "#" 
   },
 ];
 
@@ -960,7 +960,7 @@ export const monitorTouchScreenSHBrcrmbs = [
     link: "/monitoare",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Touchscreen Second Hand", link: "/monitoare/touchscreen-second" },
+  { name: "Touchscreen Second Hand",  link: "#"  },
 ];
 
 export const discountedItemsBrcrmbs = [
@@ -1093,7 +1093,7 @@ export const accessPointskBrcrmbs = [
     link: "/retelistica",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Access Point-uri", link: "/retelistica/access-point-uri" },
+  { name: "Access Point-uri", link: "#"  },
 ];
 
 export const adaptorskBrcrmbs = [
@@ -1103,7 +1103,7 @@ export const adaptorskBrcrmbs = [
     link: "/retelistica",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Adaptoare Wireless", link: "/retelistica/adaptoare-wireless" },
+  { name: "Adaptoare Wireless",  link: "#"  },
 ];
 
 export const networkCardsBrcrmbs = [
@@ -1113,7 +1113,7 @@ export const networkCardsBrcrmbs = [
     link: "/retelistica",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Placi de retea", link: "/retelistica/placi-de-retea" },
+  { name: "Placi de retea",  link: "#"  },
 ];
 
 export const routerBrcrmbs = [
@@ -1123,7 +1123,7 @@ export const routerBrcrmbs = [
     link: "/retelistica",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Routere", link: "/retelistica/routere" },
+  { name: "Routere",  link: "#" },
 ];
 
 export const switchBrcrmbs = [
@@ -1133,7 +1133,7 @@ export const switchBrcrmbs = [
     link: "/retelistica",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Switch-uri", link: "/retelistica/switch-uri" },
+  { name: "Switch-uri",  link: "#" },
 ];
 
 export const serverBrcrmbs = [
@@ -1156,13 +1156,13 @@ export const serverProcBrcrmbs = [
 export const serverRefBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
-  { name: "Refurbished ", link: "/servere/refurbished" },
+  { name: "Refurbished ",  link: "#" },
 ];
 
 export const serverNewBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
-  { name: "Noi ", link: "/servere/nou" },
+  { name: "Noi ",  link: "#"  },
 ];
 
 export const serverRackBrcrmbs = [
@@ -1170,14 +1170,14 @@ export const serverRackBrcrmbs = [
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Cabinet Rack Refurbished ",
-    link: "/servere/cabinet-rack-refurbished",
+    link: "#" 
   },
 ];
 
 export const serverSHBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
-  { name: "Second Hand", link: "/servere/second-hand" },
+  { name: "Second Hand",  link: "#"  },
 ];
 
 export const posBrcrmbs = [
@@ -1212,7 +1212,7 @@ export const posReadersBrcrmbs = [
     link: "/sisteme-pos",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Cititor Coduri Bare", link: "/sisteme-pos/cititor-cod-bare" },
+  { name: "Cititor Coduri Bare", link: "#"  },
 ];
 
 export const posPrinterBrcrmbs = [
@@ -1224,7 +1224,7 @@ export const posPrinterBrcrmbs = [
   },
   {
     name: "Imprimante Termice Noi",
-    link: "/sisteme-pos/imprimante-termice-noi",
+    link: "#" 
   },
 ];
 
@@ -1235,7 +1235,7 @@ export const posNewBrcrmbs = [
     link: "/sisteme-pos",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Noi", link: "/sisteme-pos/nou" },
+  { name: "Noi", link: "#" },
 ];
 
 export const posRefBrcrmbs = [
@@ -1245,7 +1245,7 @@ export const posRefBrcrmbs = [
     link: "/sisteme-pos",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Refurbished", link: "/sisteme-pos/refurbished" },
+  { name: "Refurbished",  link: "#"  },
 ];
 
 export const posSHBrcrmbs = [
@@ -1255,7 +1255,7 @@ export const posSHBrcrmbs = [
     link: "/sisteme-pos",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Second Hand", link: "/sisteme-pos/second-hand" },
+  { name: "Second Hand", link: "#"  },
 ];
 
 export const solarBrcrmbs = [
@@ -1282,7 +1282,7 @@ export const solarInvertorsBrcrmbs = [
   },
   {
     name: "Invertoare fotovoltaice",
-    link: "/sisteme-solare-fotovoltaice/invertoare-fotovoltaice",
+    link: "#" 
   },
 ];
 
@@ -1295,7 +1295,7 @@ export const solarSystemBrcrmbs = [
   },
   {
     name: "Sisteme Solare Fotovoltaice",
-    link: "/sisteme-solare-fotovoltaice/sisteme-fotovoltaice",
+    link: "#" 
   },
 ];
 
@@ -1308,7 +1308,7 @@ export const solarpanelsBrcrmbs = [
   },
   {
     name: "Panouri solare fotovoltaice",
-    link: "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice",
+    link: "#" 
   },
 ];
 
@@ -1326,19 +1326,19 @@ export const upsBrandsBrcrmbs = [
 export const upsNewBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
-  { name: "Noi", link: "/ups/nou" },
+  { name: "Noi",  link: "#"  },
 ];
 
 export const upsRefBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
-  { name: "Refurbished", link: "/ups/refurbished" },
+  { name: "Refurbished",  link: "#"  },
 ];
 
 export const upsSHBrcrmbs = [
   { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
-  { name: "Second Hand", link: "/ups/second-hand" },
+  { name: "Second Hand",  link: "#"  },
 ];
 
 export const workstationBrcrmbs = [
@@ -1373,7 +1373,7 @@ export const workstationRefBrcrmbs = [
     link: "/workstation",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Refurbished", link: "/workstation/refurbished" },
+  { name: "Refurbished",  link: "#"  },
 ];
 
 export const workstationSHBrcrmbs = [
@@ -1383,7 +1383,7 @@ export const workstationSHBrcrmbs = [
     link: "/workstation",
     linkIcon: "fa fa-angle-double-right",
   },
-  { name: "Second Hand", link: "/workstation/second-hand" },
+  { name: "Second Hand",  link: "#" },
 ];
 
 export const softwareBrcrmbs = [

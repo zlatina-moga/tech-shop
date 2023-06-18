@@ -8,20 +8,19 @@ const SideFilter = ({
   categories,
   breadcrumbs,
   brands,
-  brandLink,
   processors,
   processorsLink,
   maxPrice,
   range,
   processorsGeneration,
   processorsGenerationLink,
-  categoryLink,
   categories2,
   screens,
   screensLink,
   secTitle,
   selectCategory,
-  selectBrand
+  selectBrand,
+  countShow,
 }) => {
   const router = useRouter();
   const [value, setValue] = useState(1);
@@ -129,7 +128,9 @@ const SideFilter = ({
                         ""
                       )}
                       {c.name}
-                      <span className="inner-count">({c.count})</span>
+                      {countShow && (
+                        <span className="inner-count">({c.count})</span>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -169,21 +170,19 @@ const SideFilter = ({
                 >
                   <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
                   {categories2.map((c, idx) => (
-                    <Link
-                      href={c.link}
-                      className={`sidebar-link nav-item nav-link py-3 d-flex justify-content-between ${
-                        router.pathname == c.link ? "active" : ""
+                    <button
+                      onClick={() => selectCategory(c.slug)}
+                      className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
+                        router.asPath.includes(c.slug) ? "active" : ""
                       }`}
                       key={idx}
+                      style={{
+                        background: "transparent",
+                        border: "none",
+                        borderBottom: "1px solid #EDF1FF",
+                      }}
                     >
-                      {router.pathname == c.link ? (
-                        <i
-                          className="fas fa-check"
-                          style={{
-                            color: "#57A046",
-                          }}
-                        ></i>
-                      ) : router.pathname.includes(c.slug) ? (
+                      {router.asPath.includes(c.slug) ? (
                         <i
                           className="fas fa-check"
                           style={{
@@ -194,10 +193,10 @@ const SideFilter = ({
                         ""
                       )}
                       {c.name}
-                      {c.count && (
+                      {countShow && (
                         <span className="inner-count">({c.count})</span>
                       )}
-                    </Link>
+                    </button>
                   ))}
                 </div>
               </nav>

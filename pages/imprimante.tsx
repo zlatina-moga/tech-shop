@@ -12,7 +12,6 @@ import { usePapaParse } from "react-papaparse";
 const Imprimante = () => {
   let [laptopsData, setLaptopsData] = useState([]);
   let [filteredData, setFilteredData] = useState([]);
-  let [doubleFilteredData, setDoubleFilteredData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
@@ -26,14 +25,14 @@ const Imprimante = () => {
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
+  const [baseLink, setBaseLink] = useState("/imprimante");
 
   let pageSize = 64;
-  //laptopsData = laptopsData.slice(1);
   const totalPages = Math.ceil(laptopsData.length / pageSize);
 
   useEffect(() => {
     //@ts-ignore
-    readRemoteFile("https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante", {
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante", {
         skipEmptyLines: true,
         complete: (results) => {
           setLaptopsData(results.data.slice(1));
@@ -62,20 +61,36 @@ const Imprimante = () => {
 
   useEffect(() => {
     router.push(selectedSort);
-    const sort = selectedSort.split("=")[1];
+    const sort = selectedSort.split("sort=")[1];
 
-    if (sort === "views") {
-      laptopsData = [...laptopsData].sort((a, b) => (a[3] > b[3] ? 1 : -1));
-      setLaptopsData(laptopsData);
-    } else if (sort === "deals") {
-      laptopsData = [...laptopsData].sort((a, b) => b[16] - a[16]);
-      setLaptopsData(laptopsData);
-    } else if (sort === "price") {
-      laptopsData = [...laptopsData].sort((a, b) => a[17] - b[17]);
-      setLaptopsData(laptopsData);
-    } else if (sort === "-price") {
-      laptopsData = [...laptopsData].sort((a, b) => b[17] - a[17]);
-      setLaptopsData(laptopsData);
+    if (filteredData.length > 0) {
+      if (sort === "views") {
+        filteredData = [...filteredData].sort((a, b) => (a[3] > b[3] ? 1 : -1));
+        setFilteredData(filteredData);
+      } else if (sort === "deals") {
+        filteredData = [...filteredData].sort((a, b) => b[16] - a[16]);
+        setFilteredData(filteredData);
+      } else if (sort === "price") {
+        filteredData = [...filteredData].sort((a, b) => a[17] - b[17]);
+        setFilteredData(filteredData);
+      } else if (sort === "-price") {
+        filteredData = [...filteredData].sort((a, b) => b[17] - a[17]);
+        setFilteredData(filteredData);
+      }
+    } else {
+      if (sort === "views") {
+        laptopsData = [...laptopsData].sort((a, b) => (a[3] > b[3] ? 1 : -1));
+        setLaptopsData(laptopsData);
+      } else if (sort === "deals") {
+        laptopsData = [...laptopsData].sort((a, b) => b[16] - a[16]);
+        setLaptopsData(laptopsData);
+      } else if (sort === "price") {
+        laptopsData = [...laptopsData].sort((a, b) => a[17] - b[17]);
+        setLaptopsData(laptopsData);
+      } else if (sort === "-price") {
+        laptopsData = [...laptopsData].sort((a, b) => b[17] - a[17]);
+        setLaptopsData(laptopsData);
+      }
     }
   }, [selectedSort]);
 
@@ -84,73 +99,150 @@ const Imprimante = () => {
   };
 
   useEffect(() => {
-    if (priceRange != "") setShow(false);
-    let arr = [...laptopsData].filter((r) => r[17] <= Number(priceRange));
-    setLaptopsData(arr);
-    setShow(true);
+    if (priceRange != "" && category != "" && brand != "") {
+      setShow(false);
+      let arr = filteredData.filter((r) => r[17] <= Number(priceRange));
+      setFilteredData(arr);
+      setShow(true);
+    } else if (priceRange != "" && (category != "" || brand != "")) {
+      setShow(false);
+      let arr = filteredData.filter((r) => r[17] <= Number(priceRange));
+      setFilteredData(arr);
+      setShow(true);
+    } else if (priceRange != "") {
+      setShow(false);
+      let arr = laptopsData.filter((r) => r[17] <= Number(priceRange));
+      setLaptopsData(arr);
+      setShow(true);
+    }
   }, [priceRange]);
 
   const onCatSelect = (cat) => {
-    router.push(`/imprimante?category=${cat}`);
+    if (brand != "" && category != "") {
+      setBrand("");
+      setFilteredData(laptopsData);
+      setBaseLink(`/imprimante?category=${cat}`);
+      router.push(`/imprimante?category=${cat}`);
+    } else if (brand != "") {
+      setBaseLink(`/imprimante?brand=${brand}&category=${cat}`);
+      router.push(`/imprimante?brand=${brand}&category=${cat}`);
+    } else {
+      setBaseLink(`/imprimante?category=${cat}`);
+      router.push(`/imprimante?category=${cat}`);
+    }
     setMultupleSelected(true);
     setCategory(cat);
   };
 
-  useEffect(() => {
-    if (category == "refurbished") {
-      let arr = laptopsData.filter((r) => r[2] == "Refurbished");
-      setFilteredData(arr);
-      sortingService.getBrands(30).then((result) => {
-        setBrands(result);
-      });
-      sortingService.getHighestPrice(30).then((response) => {
-        setHighestPrice(response[1]);
-      });
-    } else if (category == "second-hand") {
-      let arr = laptopsData.filter((r) => r[2] == "Second Hand");
-      setFilteredData(arr);
-      sortingService.getBrands(31).then((result) => {
-        setBrands(result);
-      });
-      sortingService.getHighestPrice(31).then((response) => {
-        setHighestPrice(response[1]);
-      });
-    } else if (category == "nou") {
-      let arr = laptopsData.filter((r) => r[2] == "Noi");
-      setFilteredData(arr);
-      sortingService.getBrands(53).then((result) => {
-        setBrands(result);
-      });
-      sortingService.getHighestPrice(53).then((response) => {
-        setHighestPrice(response[1]);
-      });
-    } else if (category == "consumabile") {
-      let arr = laptopsData.filter((r) => r[2] == "Consumabile");
-      setFilteredData(arr);
-      sortingService.getBrands(93).then((result) => {
-        setBrands(result);
-      });
-      sortingService.getHighestPrice(93).then((response) => {
-        setHighestPrice(response[1]);
-      });
-    }
-  }, [category]);
-
   const onBrandSelect = (br) => {
-    router.push(`/imprimante?brand=${br}`);
+    if (category != "") {
+      setBaseLink(`/imprimante?category=${category}&brand=${br}`);
+      router.push(`/imprimante?category=${category}&brand=${br}`);
+    } else {
+      setBaseLink(`/imprimante?brand=${br}`);
+      router.push(`/imprimante?brand=${br}`);
+    }
     setMultupleSelected(true);
     setBrand(br);
   };
 
+  let matchBrand = brands.find((x) => x.slug == brand);
+
   useEffect(() => {
-    if (category != '' && brand != "") {
-      let arr = filteredData.filter((r) => r[18].toUpperCase() == brand.toUpperCase());
-      setDoubleFilteredData(arr);
-    }
-    if (brand != "") {
-      console.log(brand)
-      let arr = laptopsData.filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+    if (category != "" && brand != "") {
+      if (category == "refurbished") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Refurbished")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+        setFilteredData(arr);
+        sortingService.getBrands(30).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByBrand(30, `${matchBrand.slug}-${matchBrand.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+      } else if (category == "second-hand") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Second Hand")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+        setFilteredData(arr);
+        sortingService.getBrands(31).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByBrand(31, `${matchBrand.slug}-${matchBrand.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+      } else if (category == "nou") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Noi")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+        let arr2 = laptopsData
+          .filter((r) => r[2] == "Consumabile")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+        let newArr = arr.concat(arr2);
+        setFilteredData(newArr);
+        sortingService.getBrands(53).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByBrand(53, `${matchBrand.slug}-${matchBrand.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+      }
+    } else if (brand != "") {
+      let arr = laptopsData.filter(
+        (r) => r[18].toUpperCase() == brand.toUpperCase()
+      );
       setFilteredData(arr);
+      sortingService
+        .getTypesByBrand(29, `${matchBrand.slug}-${matchBrand.id}`)
+        .then((result) => {
+          setCategories(result);
+        });
+      sortingService
+        .getHighestPriceByBrand(29, `${matchBrand.slug}-${matchBrand.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (category != "") {
+      if (category == "refurbished") {
+        let arr = laptopsData.filter((r) => r[2] == "Refurbished");
+        //setLaptopsData(arr);
+        setFilteredData(arr);
+        sortingService.getBrands(30).then((result) => {
+          setBrands(result);
+        });
+        sortingService.getHighestPrice(30).then((response) => {
+          setHighestPrice(response[1]);
+        });
+      } else if (category == "second-hand") {
+        let arr = laptopsData.filter((r) => r[2] == "Second Hand");
+        setFilteredData(arr);
+        //setLaptopsData(arr);
+        sortingService.getBrands(31).then((result) => {
+          setBrands(result);
+        });
+        sortingService.getHighestPrice(31).then((response) => {
+          setHighestPrice(response[1]);
+        });
+      } else if (category == "nou") {
+        let arr = laptopsData.filter((r) => r[2] == "Noi");
+        let arr2 = laptopsData.filter((r) => r[2] == "Consumabile");
+        let newArr = arr.concat(arr2);
+        setFilteredData(newArr);
+        //setLaptopsData(arr);
+        sortingService.getBrands(53).then((result) => {
+          setBrands(result);
+        });
+        sortingService.getHighestPrice(53).then((response) => {
+          setHighestPrice(response[1]);
+        });
+      }
     }
   }, [brand, category]);
 
@@ -191,17 +283,16 @@ const Imprimante = () => {
             categories={categories}
             breadcrumbs={printerBrcrmbs}
             brands={brands}
-            brandLink={"/imprimante/brand/"}
             sortCriteria={onSort}
-            baseLink="/imprimante"
+            baseLink={baseLink}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
-            categoryLink={"/imprimante/"}
             catSelect={onCatSelect}
             brandSelect={onBrandSelect}
             filteredData={filteredData}
-            doubleFilteredData={doubleFilteredData}
+            multipleQueries={multipleSelected}
+            countShow
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

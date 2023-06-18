@@ -2,42 +2,52 @@ export const accessoryCategories = [
   {
     name: "Cabluri si Adaptoare",
     link: "/accesorii/cabluri-si-adaptoare",
+    slug: 'cabluri-si-adaptoare'
   },
   {
     name: "Mouse",
     link: "/accesorii/mouse",
+    slug: 'mouse'
   },
   {
     name: "Tastaturi",
     link: "/accesorii/tastaturi",
+    slug: 'tastaturi'
   },
   {
     name: "Periferice Diverse",
     link: "/accesorii/periferice-diverse",
+    slug: 'periferice-diverse'
   },
   {
     name: "Docking Station",
     link: "/accesorii/docking-station",
+    slug: 'docking-station'
   },
   {
     name: "Genti",
     link: "/accesorii/genti",
+    slug: 'genti'
   },
   {
     name: "Camere Web",
     link: "/accesorii/camere-web",
+    slug: 'camere-web'
   },
   {
     name: "Casti",
     link: "/accesorii/casti",
+    slug: 'casti'
   },
   {
     name: "Gaming & Console",
     link: "/accesorii/gaming-console",
+    slug: 'gaming-console'
   },
   {
     name: "Videoproiectoare",
     link: "/accesorii/videoproiectoare",
+    slug: 'videoproiectoare'
   },
 ];
 

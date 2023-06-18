@@ -216,6 +216,12 @@ export const getHighestPriceByComponentAndBrand = (
     `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-tip-componenta-237]=${component}`
   );
 
+  export const getAccessoriesTypes = (category) =>
+  request.get(
+    `${baseUrl}/attributes/a-tip-accesoriu-252?filter[category]=${category}`
+  );
+
+
 export const getAccessoriesByBrand = (category, brand) =>
   request.get(
     `${baseUrl}/attributes/a-tip-accesoriu-252?filter[category]=${category}&filter[brand]=${brand}`
