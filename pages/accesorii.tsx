@@ -27,10 +27,20 @@ const Accesorii = () => {
   const [brand, setBrand] = useState("");
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/accesorii");
+  const [totalPages, setTotalPages] = useState(1);
 
   let pageSize = 64;
-  const totalPages = Math.ceil(laptopsData.length / pageSize);
+  const getTotalPages = Math.ceil(laptopsData.length / pageSize);
   const totalCount = laptopsData.length;
+
+  useEffect(() => {
+    if (filteredData.length > 0) {
+      let getPages = Math.ceil(filteredData.length / pageSize);
+      setTotalPages(getPages);
+    } else {
+      setTotalPages(getTotalPages);
+    }
+  }, [getTotalPages, filteredData.length, pageSize])
 
   useEffect(() => {
     //@ts-ignore
@@ -116,17 +126,16 @@ const Accesorii = () => {
       setLaptopsData(arr);
       setShow(true);
     }
-  }, [priceRange]);
+  }, [priceRange, brand, category]);
 
   const onCatSelect = (cat) => {
-    if (brand != "" && category != "") {
-      setBrand("");
-      setFilteredData(laptopsData);
+    setCurrentPage(1);
+    if (brand != "" && !(router.asPath.includes('category'))) {
+      setBaseLink(`/accesorii?category=${cat}&brand=${brand}`);
+      router.push(`/accesorii?category=${cat}&brand=${brand}`);
+    } else if (router.asPath.includes('category')) {
       setBaseLink(`/accesorii?category=${cat}`);
       router.push(`/accesorii?category=${cat}`);
-    } else if (brand != "") {
-      setBaseLink(`/accesorii?brand=${brand}&category=${cat}`);
-      router.push(`/accesorii?brand=${brand}&category=${cat}`);
     } else {
       setBaseLink(`/accesorii?category=${cat}`);
       router.push(`/accesorii?category=${cat}`);
@@ -136,9 +145,13 @@ const Accesorii = () => {
   };
 
   const onBrandSelect = (br) => {
-    if (category != "") {
+    setCurrentPage(1);
+    if (category != "" && !(router.asPath.includes('brand'))) {
       setBaseLink(`/accesorii?category=${category}&brand=${br}`);
       router.push(`/accesorii?category=${category}&brand=${br}`);
+    } else if (router.asPath.includes('brand')) {
+      setBaseLink(`/accesorii?brand=${br}`);
+      router.push(`/accesorii?brand=${br}`);
     } else {
       setBaseLink(`/accesorii?brand=${br}`);
       router.push(`/accesorii?brand=${br}`);
@@ -288,12 +301,12 @@ const Accesorii = () => {
       );
       setFilteredData(arr);
       sortingService
-        .getTypesByBrand(29, `${matchBrand.slug}-${matchBrand.id}`)
+        .getTypesByBrand(47, `${matchBrand.slug}-${matchBrand.id}`)
         .then((result) => {
           setCategories(result);
         });
       sortingService
-        .getHighestPriceByBrand(29, `${matchBrand.slug}-${matchBrand.id}`)
+        .getHighestPriceByBrand(47, `${matchBrand.slug}-${matchBrand.id}`)
         .then((response) => {
           setHighestPrice(response[1]);
         });
@@ -410,11 +423,17 @@ const Accesorii = () => {
     }
   };
 
+  
   let data = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * pageSize || 1;
+    const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return laptopsData.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, laptopsData, pageSize]);
+    if (filteredData.length > 0) {
+      return filteredData.slice(firstPageIndex, lastPageIndex);
+    } else if (laptopsData.length > 0) {
+      return laptopsData.slice(firstPageIndex, lastPageIndex);
+    }
+    
+  }, [currentPage, laptopsData, pageSize, filteredData]);
 
   return (
     <>
@@ -436,7 +455,7 @@ const Accesorii = () => {
             className={show ? "" : "opacity-50"}
             catSelect={onCatSelect}
             brandSelect={onBrandSelect}
-            filteredData={filteredData}
+            filteredData={data}
             multipleQueries={multipleSelected}
             countShow={false}
             totalCount={totalCount}

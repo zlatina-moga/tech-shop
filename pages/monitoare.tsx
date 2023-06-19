@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo  } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
-import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import { usePagination, DOTS } from "../hooks/usePagination";
 import { monitorBrcrmbs } from "../data/breadcrumbs";
 import MainSkeleton from "../components/shared/MainSkeleton";
+import { usePapaParse } from "react-papaparse";
 
 const Monitoare = () => {
-  const [laptopsData, setLaptopsData] = useState([]);
+  let [laptopsData, setLaptopsData] = useState([]);
+  let [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [brands, setBrands] = useState([]);
@@ -21,10 +22,38 @@ const Monitoare = () => {
   const [show, setShow] = useState<boolean>(true);
   const [categories, setCategories] = useState([]);
   const [screens, setScreens] = useState([]);
-  const { screen } = router.query;
   const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/monitoare");
+  const { readRemoteFile } = usePapaParse();
+  const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
+  const [screen, setScreen] = useState("");
+
+  let pageSize = 64;
+  const getTotalPages = Math.ceil(laptopsData.length / pageSize);
+  const totalCount = laptopsData.length;
+
+  useEffect(() => {
+    if (filteredData.length > 0) {
+      let getPages = Math.ceil(filteredData.length / pageSize);
+      setTotalPages(getPages);
+    } else {
+      setTotalPages(getTotalPages);
+    }
+  }, [getTotalPages, filteredData.length, pageSize])
+
+  useEffect(() => {
+    //@ts-ignore
+    readRemoteFile("https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_monitoare", {
+        skipEmptyLines: true,
+        complete: (results) => {
+          setLaptopsData(results.data.slice(1));
+          setLoading(false);
+        },
+      }
+    );
+  }, [readRemoteFile]);
 
   useEffect(() => {
     sortingService.getBrands(18).then((result) => {
@@ -41,128 +70,410 @@ const Monitoare = () => {
     });
   }, []);
 
-  useEffect(() => {
-    if (!router.isReady) return;
-    if (screen) {
-      setShow(false);
-      productService.getmonitorScreens(screen, currentPage).then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-        setTotalPages(result[0].totalPages);
-        setShow(true);
-        setMultupleSelected(true);
-        setBaseLink(`/monitoare?screen=${screen}`);
-      });
-      sortingService.getHighestPriceByScreen(18, screen).then((response) => {
-        setHighestPrice(response[1]);
-      });
-    } else {
-      setShow(false);
-      productService
-        .geAllMonitors(currentPage)
-        .then((result) => {
-          setLoading(false);
-          setLaptopsData(result);
-          setTotalPages(result[0].totalPages);
-          setBaseLink(`/monitoare`);
-          setShow(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [router.isReady, currentPage, screen]);
-
   const onSort = (sort) => {
     setSelectedSort(sort);
   };
 
   useEffect(() => {
-    if (priceRange != '' && screen && selectedSort != "/monitoare") {
-      setShow(false);
-      const sort = selectedSort.split("=")[2];
-      productService
-        .getSortedMonitorsScreensPrice(screen, priceRange, currentPage, sort)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange != '' && screen  && selectedSort != "/monitoare") {
-      setShow(false);
-      productService
-        .getMonitorsScreensByPrice(screen, priceRange, currentPage)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange != '' && selectedSort != "/monitoare") {
-      setShow(false);
-      const sort = selectedSort.split("=")[1];
-      productService
-        .geSortedMonitorsPrice(priceRange, currentPage, sort)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (screen && selectedSort != "/monitoare") {
-      setShow(false);
-      router.push(selectedSort);
-      const sort = selectedSort.split("=")[2];
-      productService
-        .getSortedMonitorScreens(screen, sort, currentPage)
-        .then((result) => {
-          setShow(true);
-          setLaptopsData(result);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (selectedSort != "/monitoare") {
-      router.push(selectedSort);
-      const sort = selectedSort.split("=")[1];
-      setShow(false);
-      productService
-        .geSortedMonitors(currentPage, sort)
-        .then((result) => {
-          setLoading(false);
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange != '' && !screen && selectedSort != "/monitoare") {
-      setShow(false);
-      productService
-        .geAllMonitorsPrice(priceRange, currentPage)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } 
-  }, [selectedSort, currentPage, priceRange]);
+    router.push(selectedSort);
+    const sort = selectedSort.split("sort=")[1];
+
+    if (filteredData.length > 0) {
+      if (sort === "views") {
+        filteredData = [...filteredData].sort((a, b) => (a[3] > b[3] ? 1 : -1));
+        setFilteredData(filteredData);
+      } else if (sort === "deals") {
+        filteredData = [...filteredData].sort((a, b) => b[16] - a[16]);
+        setFilteredData(filteredData);
+      } else if (sort === "price") {
+        filteredData = [...filteredData].sort((a, b) => a[17] - b[17]);
+        setFilteredData(filteredData);
+      } else if (sort === "-price") {
+        filteredData = [...filteredData].sort((a, b) => b[17] - a[17]);
+        setFilteredData(filteredData);
+      }
+    } else {
+      if (sort === "views") {
+        laptopsData = [...laptopsData].sort((a, b) => (a[3] > b[3] ? 1 : -1));
+        setLaptopsData(laptopsData);
+      } else if (sort === "deals") {
+        laptopsData = [...laptopsData].sort((a, b) => b[16] - a[16]);
+        setLaptopsData(laptopsData);
+      } else if (sort === "price") {
+        laptopsData = [...laptopsData].sort((a, b) => a[17] - b[17]);
+        setLaptopsData(laptopsData);
+      } else if (sort === "-price") {
+        laptopsData = [...laptopsData].sort((a, b) => b[17] - a[17]);
+        setLaptopsData(laptopsData);
+      }
+    }
+  }, [selectedSort]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
+
+  useEffect(() => {
+    if (priceRange != "" && category != "" && brand != "" && screen != '') {
+      setShow(false);
+      let arr = filteredData.filter((r) => r[17] <= Number(priceRange));
+      setFilteredData(arr);
+      setShow(true);
+    } else if (priceRange != "" && (category != "" || brand != "" || screen != '')) {
+      setShow(false);
+      let arr = filteredData.filter((r) => r[17] <= Number(priceRange));
+      setFilteredData(arr);
+      setShow(true);
+    } else if (priceRange != "") {
+      setShow(false);
+      let arr = laptopsData.filter((r) => r[17] <= Number(priceRange));
+      setLaptopsData(arr);
+      setShow(true);
+    }
+  }, [priceRange, brand, category, screen]);
+
+  const onCatSelect = (cat) => {
+    setCurrentPage(1);
+    if (brand != "" && screen !='' && !(router.asPath.includes('category'))) {
+      setBaseLink(`/monitoare?brand=${brand}&screen=${screen}&category=${cat}`);
+      router.push(`/monitoare?brand=${brand}&screen=${screen}&category=${cat}`);
+    } else if (screen != "" && !(router.asPath.includes('category'))) {
+      setBaseLink(`/monitoare?screen=${screen}&category=${cat}`);
+      router.push(`/monitoare?screen=${screen}&category=${cat}`);
+    } else if (brand != "" && !(router.asPath.includes('category'))) {
+      setBaseLink(`/monitoare?brand=${brand}&category=${cat}`);
+      router.push(`/monitoare?brand=${brand}&category=${cat}`);
+    } else if (router.asPath.includes('category')){
+      setBaseLink(`/monitoare?category=${cat}`);
+      router.push(`/monitoare?category=${cat}`);
+    } else {
+      setBaseLink(`/monitoare?category=${cat}`);
+      router.push(`/monitoare?category=${cat}`);
+    }
+    setMultupleSelected(true);
+    setCategory(cat);
+  };
+
+  const onBrandSelect = (br) => {
+    setCurrentPage(1);
+    if (category != "" && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/monitoare?brand=${brand}&screen=${screen}&category=${category}`);
+      router.push(`/monitoare?brand=${brand}&screen=${screen}&category=${category}`);
+    } else if (screen != "" && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/monitoare?screen=${screen}&brand=${br}`);
+      router.push(`/monitoare?screen=${screen}&brand=${br}`);
+    } else if (category != "" && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/monitoare?category=${category}&brand=${br}`);
+      router.push(`/monitoare?category=${category}&brand=${br}`);
+    } else if (router.asPath.includes('brand')){
+      setBaseLink(`/monitoare?brand=${br}`);
+      router.push(`/monitoare?brand=${br}`);
+    } else {
+      setBaseLink(`/monitoare?brand=${br}`);
+      router.push(`/monitoare?brand=${br}`);
+    }
+    setMultupleSelected(true);
+    setBrand(br);
+  };
+
+  const onScreenSelect = (scr) => {
+    setCurrentPage(1);
+    if (brand != "" && category != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/monitoare?category=${category}&brand=${brand}&screen=${scr}`);
+      router.push(`/monitoare?category=${category}&brand=${brand}&screen=${scr}`);
+    } else if (category != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/monitoare?category=${category}&screen=${scr}`);
+      router.push(`/monitoare?category=${category}&screen=${scr}`);
+    } else if (brand != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/monitoare?brand=${brand}&screen=${scr}`);
+      router.push(`/monitoare?brand=${brand}&screen=${scr}`);
+    } else if (router.asPath.includes('screen')){
+      setBaseLink(`/monitoare?screen=${scr}`);
+      router.push(`/monitoare?screen=${scr}`);
+    } else {
+      setBaseLink(`/monitoare?screen=${scr}`);
+      router.push(`/monitoare?screen=${scr}`);
+    }
+    setMultupleSelected(true);
+    setScreen(scr)
+  };
+
+  let matchBrand = brands.find((x) => x.slug == brand);
+  let matchScreen = screens.find((x) => x.slug == screen);
+
+  useEffect(() => {
+    if (category != "" && brand != "" && screen != '') {
+      if (category == "refurbished") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Refurbished")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
+          .filter(
+            (r) => r[28] == screen.split('-').join(' ')
+          );
+        setFilteredData(arr);
+        sortingService.getBrands(19).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByBrandAndScreen(19, `${matchBrand.slug}-${matchBrand.id}`, `${matchScreen.slug}-${matchScreen.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+        sortingService.getScreenSizesByBrand(19, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+            setScreens(res);
+          });
+      } else if (category == "second-hand") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Second Hand")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
+          .filter(
+            (r) => r[28] == screen.split('-').join(' ')
+          );
+        setFilteredData(arr);
+        sortingService.getBrands(20).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+        .getHighestPriceByBrandAndScreen(20, `${matchBrand.slug}-${matchBrand.id}`, `${matchScreen.slug}-${matchScreen.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+        sortingService.getScreenSizesByBrand(20, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+            setScreens(res);
+          });
+      } else if (category == "nou") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Noi")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
+          .filter(
+            (r) => r[28] == screen.split('-').join(' ')
+          );
+        setFilteredData(arr);
+        sortingService.getBrands(54).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+        .getHighestPriceByBrandAndScreen(54, `${matchBrand.slug}-${matchBrand.id}`, `${matchScreen.slug}-${matchScreen.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+        sortingService.getScreenSizesByBrand(54, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+            setScreens(res);
+          });
+      }
+    } else if (category != "" && brand != "") {
+      if (category == "refurbished") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Refurbished")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+        setFilteredData(arr);
+        sortingService.getBrands(19).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByBrand(19, `${matchBrand.slug}-${matchBrand.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+          sortingService.getScreenSizesByBrand(19, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+            setScreens(res);
+          });
+      } else if (category == "second-hand") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Second Hand")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+        setFilteredData(arr);
+        sortingService.getBrands(20).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByBrand(20, `${matchBrand.slug}-${matchBrand.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+          sortingService.getScreenSizesByBrand(20, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+            setScreens(res);
+          });
+      } else if (category == "nou") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Noi")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+        let arr2 = laptopsData
+          .filter((r) => r[2] == "Consumabile")
+          .filter((r) => r[18].toUpperCase() == brand.toUpperCase());
+        let newArr = arr.concat(arr2);
+        setFilteredData(newArr);
+        sortingService.getBrands(54).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByBrand(54, `${matchBrand.slug}-${matchBrand.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+          sortingService.getScreenSizesByBrand(54, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+            setScreens(res);
+          });
+      }
+    } else if (category != "" && screen != "") {
+      if (category == "refurbished") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Refurbished")
+          .filter(
+            (r) => r[28] == screen.split('-').join(' ')
+          );
+        setFilteredData(arr);
+        sortingService.getBrandsByScreenSizes(19, `${matchScreen.slug}-${matchScreen.id}`).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByScreen(19,  `${matchScreen.slug}-${matchScreen.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+      } else if (category == "second-hand") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Second Hand")
+          .filter(
+            (r) => r[28] == screen.split('-').join(' ')
+          );
+        setFilteredData(arr);
+        sortingService.getBrandsByScreenSizes(20, `${matchScreen.slug}-${matchScreen.id}`).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+          .getHighestPriceByScreen(20,  `${matchScreen.slug}-${matchScreen.id}`)
+          .then((response) => {
+            setHighestPrice(response[1]);
+          });
+      } else if (category == "nou") {
+        let arr = laptopsData
+          .filter((r) => r[2] == "Noi")
+          .filter(
+            (r) => r[28] == screen.split('-').join(' ')
+          );
+
+        setFilteredData(arr);
+        sortingService.getBrands(54).then((result) => {
+          setBrands(result);
+        });
+        sortingService
+        .getHighestPriceByScreen(54, `${matchScreen.slug}-${matchScreen.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+      }
+    } else if (brand != "" && screen !='') {
+      let arr = laptopsData
+      .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
+      .filter(
+        (r) => r[28] == screen.split('-').join(' ')
+      );
+      setFilteredData(arr);
+      sortingService
+        .getTypesByBrand(18, `${matchBrand.slug}-${matchBrand.id}`)
+        .then((result) => {
+          setCategories(result);
+        });
+
+      sortingService
+        .getHighestPriceByBrandAndScreen(18, `${matchBrand.slug}-${matchBrand.id}`, `${matchScreen.slug}-${matchScreen.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+
+        sortingService
+        .getScreenSizesByBrand(18, `${matchBrand.slug}-${matchBrand.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (brand != "") {
+      let arr = laptopsData.filter(
+        (r) => r[18].toUpperCase() == brand.toUpperCase()
+      );
+      setFilteredData(arr);
+      sortingService
+        .getTypesByBrand(18, `${matchBrand.slug}-${matchBrand.id}`)
+        .then((result) => {
+          setCategories(result);
+        });
+
+      sortingService
+        .getHighestPriceByBrand(18, `${matchBrand.slug}-${matchBrand.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+
+        sortingService
+        .getScreenSizesByBrand(18, `${matchBrand.slug}-${matchBrand.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+    } else if (category != "") {
+      if (category == "refurbished") {
+        let arr = laptopsData.filter((r) => r[2] == "Refurbished");
+        setFilteredData(arr);
+        sortingService.getBrands(19).then((result) => {
+          setBrands(result);
+        });
+        sortingService.getHighestPrice(19).then((response) => {
+          setHighestPrice(response[1]);
+        });
+        sortingService.getScreenSizes(19).then((res) => {
+          setScreens(res);
+        });
+      } else if (category == "second-hand") {
+        let arr = laptopsData.filter((r) => r[2] == "Second Hand");
+        setFilteredData(arr);
+        sortingService.getBrands(20).then((result) => {
+          setBrands(result);
+        });
+        sortingService.getHighestPrice(20).then((response) => {
+          setHighestPrice(response[1]);
+        });
+        sortingService.getScreenSizes(20).then((res) => {
+          setScreens(res);
+        });
+      } else if (category == "nou") {
+        let arr = laptopsData.filter((r) => r[2] == "Noi");
+        let arr2 = laptopsData.filter((r) => r[2] == "Consumabile");
+        let newArr = arr.concat(arr2);
+        setFilteredData(newArr);
+        sortingService.getBrands(54).then((result) => {
+          setBrands(result);
+        });
+        sortingService.getHighestPrice(54).then((response) => {
+          setHighestPrice(response[1]);
+        });
+        sortingService.getScreenSizes(54).then((res) => {
+          setScreens(res);
+        });
+      }
+    }  else if (screen != "") {
+      let arr = laptopsData.filter(
+        (r) => r[28] == screen.split('-').join(' ')
+      );
+      setFilteredData(arr);
+      sortingService
+        .getTypesByScreen(18, `${matchScreen.slug}-${matchScreen.id}`)
+        .then((result) => {
+          setCategories(result);
+        });
+
+      sortingService
+        .getHighestPriceByScreen(18, `${matchScreen.slug}-${matchScreen.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
+        });
+
+        sortingService
+        .getBrandsByScreenSizes(18, `${matchScreen.slug}-${matchScreen.id}`)
+        .then((response) => {
+          setBrands(response);
+        });
+    }
+  }, [brand, category, screen]);
+
   const paginationRange = usePagination({
     currentPage,
     totalCount: totalPages,
@@ -181,11 +492,16 @@ const Monitoare = () => {
     }
   };
 
-  let pageTitle = "";
-  if (screen != undefined) {
-    let slugToStr = screen as string;
-    pageTitle = slugToStr.split("-").slice(0, -1).join(" ");
-  }
+  let data = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    if (filteredData.length > 0) {
+      return filteredData.slice(firstPageIndex, lastPageIndex);
+    } else if (laptopsData.length > 0) {
+      return laptopsData.slice(firstPageIndex, lastPageIndex);
+    }
+    
+  }, [currentPage, laptopsData, pageSize, filteredData]);
 
   return (
     <>
@@ -195,21 +511,24 @@ const Monitoare = () => {
       ) : (
         <>
           <LaptopsPage
-            title={`Monitoare ${pageTitle}`}
-            laptopsData={laptopsData}
+            title={`Monitoare`}
+            laptopsData={data}
             categories={categories}
             breadcrumbs={monitorBrcrmbs}
             brands={brands}
-            brandLink={"/monitoare/brand/"}
             sortCriteria={onSort}
             baseLink={baseLink}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={show ? "" : "opacity-50"}
-            categoryLink={"/monitoare/"}
             screens={screens}
-            screensLink={"/monitoare?screen="}
             multipleQueries={multipleSelected}
+            countShow
+            totalCount={totalCount}
+            catSelect={onCatSelect}
+            brandSelect={onBrandSelect}
+            filteredData={data}
+            scrSelect={onScreenSelect}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

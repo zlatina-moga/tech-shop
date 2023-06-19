@@ -70,70 +70,87 @@ export const componentCategories = [
   {
     name: "Alimentator laptop",
     link: "/componente/alimentator-laptop",
+    slug: 'alimentator-laptop'
   },
   {
     name: "Barebone calculator",
     link: "/componente/barebone-calculator",
+    slug: 'barebone-calculator'
   },
   {
     name: "Baterie laptop",
     link: "/componente/baterie-laptop",
+    slug: 'baterie-laptop'
   },
   {
     name: "Caddy server",
     link: "/componente/caddy-server",
+    slug: 'caddy-server'
   },
   {
     name: "Carcasa si Surse",
     link: "/componente/carcasa-si-surse",
+    slug: 'carcasa-si-surse'
   },
   {
     name: "Controller Raid",
     link: "/componente/controller-raid",
+    slug: 'controller-raid'
   },
   {
     name: "Coolere si Radiatoare",
     link: "/componente/coolere-si-radiatoare",
+    slug: 'coolere-si-radiatoare'
   },
   {
     name: "Hard Disk",
     link: "/componente/hard-disk",
+    slug: 'hard-disk'
   },
   {
     name: "Masca Bay server",
     link: "/componente/masca-bay-server",
+    slug: 'masca-bay-server'
   },
   {
     name: "Memorie RAM",
     link: "/componente/memorie-ram",
+    slug: 'memorie-ram'
   },
   {
     name: "Palmrest",
     link: "/componente/palmrest",
+    slug: 'palmrest'
   },
   {
     name: "Placa de baza calculator",
     link: "/componente/placa-de-baza-calculator",
+    slug: 'placa-de-baza-calculator'
   },
   {
     name: "Placa de retea",
     link: "/componente/placa-de-retea",
+    slug: 'placa-de-retea'
   },
   {
     name: "Placa video",
     link: "/componente/placa-video",
+    slug: 'placa-video'
   },
   {
     name: "Procesor",
     link: "/componente/procesor",
+    slug: 'procesor'
   },
   {
     name: "RailKit server",
     link: "/componente/railkit-server",
+    slug: 'railkit-server'
   },
   {
     name: "Tastatura laptop",
     link: "/componente/tastatura-laptop",
+    slug: 'tastatura-laptop'
   },
 ];
 
@@ -198,22 +215,27 @@ export const networkCategories = [
   {
     name: "Access Point-uri",
     link: "/retelistica/access-point-uri",
+    slug: 'access-point-uri'
   },
   {
     name: "Adaptoare Wireless",
     link: "/retelistica/adaptoare-wireless",
+    slug: 'adaptoare-wireless'
   },
   {
     name: "Placi de retea",
     link: "/retelistica/placi-de-retea",
+    slug: 'placi-de-retea'
   },
   {
     name: "Routere",
     link: "/retelistica/routere",
+    slug: 'routere'
   },
   {
     name: "Switch-uri",
     link: "/retelistica/switch-uri",
+    slug: 'switch-uri'
   },
 ];
 
@@ -306,14 +328,17 @@ export const solarCategories = [
   {
     name: "Invertoare fotovoltaice",
     link: "/sisteme-solare-fotovoltaice/invertoare-fotovoltaice",
+    slug: 'invertoare-fotovoltaice'
   },
   {
     name: "Panouri solare fotovoltaice",
     link: "/sisteme-solare-fotovoltaice/panouri-solare-fotovoltaice",
+    slug: 'panouri-solare-fotovoltaice'
   },
   {
     name: "Sisteme solare fotovoltaice",
     link: "/sisteme-solare-fotovoltaice/sisteme-fotovoltaice",
+    slug: 'sisteme-fotovoltaice'
   },
 ];
 

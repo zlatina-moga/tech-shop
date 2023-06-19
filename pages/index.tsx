@@ -3,26 +3,8 @@ import Link from "next/link";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
 import Sidebar from "../components/landing/Sidebar";
-import * as productService from "../services/productService";
-import { usePapaParse } from "react-papaparse";
-import { useEffect } from "react";
 
 export default function Home() {
-  const { readRemoteFile } = usePapaParse();
-
-  useEffect(() => {
-    //@ts-ignore
-    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante", {
-        complete: (results) => {
-          console.log("---------------------------");
-          console.log("Results:", results);
-          console.log("---------------------------");
-        },
-      }
-    );
-  });
-
-
   return (
     <>
       <Navbar />

@@ -50,10 +50,9 @@ const Sidebar = () => {
                 height: 410,
               }}
             >
-              <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
                 <Link
                   href="/laptop"
-                  className="sidebar-link"
+                  className="nav-item nav-link py-3 sidebar-link"
                   data-target="/laptop"
                 >
                   <img
@@ -63,55 +62,10 @@ const Sidebar = () => {
                   />
                   Laptopuri
                 </Link>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/laptop/refurbished"
-                      data-target="/laptop/refurbished"
-                    >
-                      <img
-                        src={laptopIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Refurbished
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/laptop/nou"
-                      data-target="/laptop/nou"
-                    >
-                      <img
-                        src={laptopIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Noi
-                    </Link>
-                  </li>
-                  <li className="dropdown-submenu">
-                    <Link
-                      className="dropdown-item"
-                      href="/laptop/second-hand"
-                      data-target="/laptop/second-hand"
-                    >
-                      <img
-                        src={laptopIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Second Hand
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item nav-link py-3 sidebar-link  dropdown dropdown-toggle">
+            
                 <Link
                   href="/calculatoare"
-                  className="sidebar-link"
+                  className="nav-item nav-link py-3 sidebar-link"
                   data-target="/calculatoare"
                 >
                   <img
@@ -121,54 +75,6 @@ const Sidebar = () => {
                   />
                   Calculatoare
                 </Link>
-                <ul
-                  className="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/calculatoare/refurbished"
-                      data-target="/calculatoare/refurbished"
-                    >
-                      <img
-                        src={computerIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Refurbished
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/calculatoare/nou"
-                      data-target="/calculatoare/nou"
-                    >
-                      <img
-                        src={computerIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Noi
-                    </Link>
-                  </li>
-                  <li className="dropdown-submenu">
-                    <Link
-                      className="dropdown-item"
-                      href="/calculatoare/second-hand"
-                      data-target="/calculatoare/second-hand"
-                    >
-                      <img
-                        src={computerIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Second Hand
-                    </Link>
-                  </li>
-                </ul>
-              </li>
               <Link
                 href="/workstation"
                 className="nav-item nav-link py-3 sidebar-link"
@@ -181,10 +87,10 @@ const Sidebar = () => {
                 />
                 Workstation
               </Link>
-              <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
+              
                 <Link
                   href="/servere"
-                  className="sidebar-link"
+                  className="nav-item nav-link py-3 sidebar-link"
                   data-target="/servere"
                 >
                   <img
@@ -194,61 +100,11 @@ const Sidebar = () => {
                   />
                   Servere
                 </Link>
-                <ul
-                  className="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/servere/refurbished"
-                      passHref
-                      data-target="/servere/refurbished"
-                    >
-                      <img
-                        src={serverIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Refurbished
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/servere/nou"
-                      passHref
-                      data-target="/servere/nou"
-                    >
-                      <img
-                        src={serverIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Noi
-                    </Link>
-                  </li>
-                  <li className="dropdown-submenu">
-                    <Link
-                      className="dropdown-item"
-                      href="/servere/second-hand"
-                      passHref
-                      data-target="/servere/second-hand"
-                    >
-                      <img
-                        src={serverIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Second Hand
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item nav-link py-3 sidebar-link dropdown dropdown-toggle">
+
+              
                 <Link
                   href="/monitoare"
-                  className="sidebar-link"
+                  className="nav-item nav-link py-3 sidebar-link"
                   data-target="/monitoare"
                 >
                   <img
@@ -258,57 +114,7 @@ const Sidebar = () => {
                   />
                   Monitoare
                 </Link>
-                <ul
-                  className="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/monitoare/refurbished"
-                      passHref
-                      data-target="/monitoare/refurbished"
-                    >
-                      <img
-                        src={monitorIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Refurbished
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/monitoare/nou"
-                      passHref
-                      data-target="/monitoare/nou"
-                    >
-                      <img
-                        src={monitorIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Noi
-                    </Link>
-                  </li>
-                  <li className="dropdown-submenu">
-                    <Link
-                      className="dropdown-item"
-                      href="/monitoare/second-hand"
-                      passHref
-                      data-target="/monitoare/second-hand"
-                    >
-                      <img
-                        src={monitorIcon.src}
-                        alt="list"
-                        style={{ height: "18px", marginRight: "10px" }}
-                      />
-                      Second Hand
-                    </Link>
-                  </li>
-                </ul>
-              </li>
+
               <Link
                 href="/componente"
                 className="nav-item nav-link py-3 sidebar-link"
@@ -442,25 +248,6 @@ const Sidebar = () => {
                       style={{ height: "18px" }}
                     />
                     Sisteme solare fotovoltaice
-                  </Link>
-                </span>
-
-                <span
-                  style={{ display: "flex", alignItems: "center" }}
-                  className="icon-wrapper"
-                >
-                  {" "}
-                  <img
-                    src={discountIcon.src}
-                    alt="list"
-                    style={{ height: "18px" }}
-                  />
-                  <Link
-                    href="/produse-la-reducere"
-                    className="nav-item nav-link text-danger font-weight-medium px-1"
-                    style={{ fontSize: "18px" }}
-                  >
-                    Produse la reducere
                   </Link>
                 </span>
               </div>

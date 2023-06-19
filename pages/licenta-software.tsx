@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
-import LaptopsPage from "../components/shared/LaptopsPage";
+import LicensePage from "../components/shared/LicensePage";
 import { licenseData } from "../data/licenseData";
 import { softwareCategories } from "../data/categories";
 import { softwareBrcrmbs } from "../data/breadcrumbs";
@@ -11,6 +11,8 @@ const Software = () => {
   let [laptopsData, setLaptopsData] = useState([]);
   const [selectedSort, setSelectedSort] = useState("/licenta-software");
   const router = useRouter();
+  const [baseLink, setBaseLink] = useState("/licenta-software");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     router.push(selectedSort);
@@ -22,7 +24,9 @@ const Software = () => {
       );
       setLaptopsData(laptopsData);
     } else if (sort === "deals") {
-      laptopsData = [...licenseData].sort((a, b) => b.discountNum - a.discountNum);
+      laptopsData = [...licenseData].sort(
+        (a, b) => b.discountNum - a.discountNum
+      );
       setLaptopsData(laptopsData);
     } else if (sort === "price") {
       laptopsData = [...licenseData].sort((a, b) => a.priceNum - b.priceNum);
@@ -39,16 +43,31 @@ const Software = () => {
     setSelectedSort(sort);
   };
 
+  const onCatSelect = (cat) => {
+    setBaseLink(`/licenta-software?category=${cat}`);
+    router.push(`/licenta-software?category=${cat}`);
+    setCategory(cat);
+  };
+
+  console.log(category)
+
+  useEffect(() => {
+    if (category != '') {
+      return laptopsData.filter((x) => x.slug == category);
+    }
+  }, [category]);
+
   return (
     <>
       <Navbar />
-      <LaptopsPage
+      <LicensePage
         title="Software"
         laptopsData={laptopsData}
         categories2={softwareCategories}
         breadcrumbs={softwareBrcrmbs}
         sortCriteria={onSort}
-        baseLink="/licenta-software"
+        baseLink={baseLink}
+        catSelect={onCatSelect}
       />
       <Footer />
     </>

@@ -23,25 +23,25 @@ interface ILaptopPage {
   categories2?: any[];
   breadcrumbs?: any[];
   brands?: any;
-  brandLink?: string;
   processors?: any;
-  processorsLink?: string;
   sortCriteria?: any;
   baseLink?: string;
   highEnd?: number;
   priceRange?: any;
   className?: string;
   processorsGeneration?: any;
-  processorsGenerationLink?: string;
-  categoryLink?: string;
   multipleQueries?: boolean;
   screens?: any;
-  screensLink?: string;
   secTitle?: string;
   catSelect?: any;
   brandSelect?: any;
   countShow?: boolean;
-  totalCount?: number
+  totalCount?: number;
+  scrSelect?: any;
+  procSelect?: any;
+  generationSelect?: any;
+  videoCards?: any[];
+  videoSelect?: any;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -51,26 +51,26 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   categories,
   breadcrumbs,
   brands,
-  brandLink,
   processors,
-  processorsLink,
   sortCriteria,
   baseLink,
   highEnd,
   priceRange,
   className,
   processorsGeneration,
-  processorsGenerationLink,
-  categoryLink,
   categories2,
   multipleQueries,
   screens,
-  screensLink,
   secTitle,
   catSelect,
   brandSelect,
   countShow,
-  totalCount
+  totalCount,
+  scrSelect,
+  procSelect,
+  generationSelect,
+  videoCards,
+  videoSelect
 }) => {
   const [selected, setSelected] = useState("")
 
@@ -94,18 +94,20 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           breadcrumbs={breadcrumbs}
           brands={brands}
           processors={processors}
-          processorsLink={processorsLink}
           maxPrice={highEnd}
           range={priceRange}
           processorsGeneration={processorsGeneration}
-          processorsGenerationLink={processorsGenerationLink}
           categories2={categories2}
           screens={screens}
-          screensLink={screensLink}
           secTitle={secTitle}
           selectCategory={catSelect}
           selectBrand={brandSelect}
           countShow={countShow}
+          selectScreen={scrSelect}
+          selectProcessor={procSelect}
+          selectGeneration={generationSelect}
+          videoCards={videoCards}
+          selectVideo={videoSelect}
         />
         <div style={{ width: "80%" }}>
           <div className="text-center mb-4">
@@ -164,7 +166,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
             )}
             style={{ maxWidth: "98rem", justifyContent: "center" }}
           >
-            {filteredData.length > 0
+            {filteredData && filteredData.length > 0
               ? filteredData.map((itemData, idx) => (
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
@@ -190,9 +192,13 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                               <div>
                                 {itemData[16].split(".")[1] == 2 ? (
                                   <p>20%</p>
+                                ) : itemData[16].split(".")[1] == 3 ? (
+                                  <p>30%</p>
                                 ) : itemData[16].split(".")[1] == 4 ? (
                                   <p>40%</p>
-                                ) : (
+                                ) : itemData[16].split(".")[1] == 5 ? (
+                                  <p>50%</p>
+                                ):(
                                   <p>{itemData[16].split(".")[1]}%</p>
                                 )}
                               </div>
@@ -260,13 +266,17 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                                 ).toFixed(2)}{" "}
                                 Lei + TVA
                               </del>
+                            ) : itemData[16].split(".")[1] == 5 ? (
+                              <del>
+                                {Number(itemData[17]) } Lei + TVA
+                              </del>
                             ) : (
                               ""
                             )}
                           </div>
                         )}
 
-                        <div className="d-flex justify-content-center">
+                      <div className="d-flex justify-content-center">
                           {itemData[16].split(".")[1] == 2 ? (
                             <h6 className="discount">
                               {itemData[4]} Lei + TVA
@@ -284,6 +294,10 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                               {itemData[7]} Lei + TVA
                             </h6>
                           ) : itemData[16].split(".")[1] == 4 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 5 ? (
                             <h6 className="discount">
                               {itemData[7]} Lei + TVA
                             </h6>
@@ -328,9 +342,13 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                               <div>
                                 {itemData[16].split(".")[1] == 2 ? (
                                   <p>20%</p>
+                                ) : itemData[16].split(".")[1] == 3 ? (
+                                  <p>30%</p>
                                 ) : itemData[16].split(".")[1] == 4 ? (
                                   <p>40%</p>
-                                ) : (
+                                ) : itemData[16].split(".")[1] == 5 ? (
+                                  <p>50%</p>
+                                ):(
                                   <p>{itemData[16].split(".")[1]}%</p>
                                 )}
                               </div>
@@ -398,6 +416,10 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                                 ).toFixed(2)}{" "}
                                 Lei + TVA
                               </del>
+                            ) : itemData[16].split(".")[1] == 5 ? (
+                              <del>
+                                {Number(itemData[17]) } Lei + TVA
+                              </del>
                             ) : (
                               ""
                             )}
@@ -422,6 +444,10 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                               {itemData[7]} Lei + TVA
                             </h6>
                           ) : itemData[16].split(".")[1] == 4 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 5 ? (
                             <h6 className="discount">
                               {itemData[7]} Lei + TVA
                             </h6>

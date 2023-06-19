@@ -26,9 +26,20 @@ const Imprimante = () => {
   const [brand, setBrand] = useState("");
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/imprimante");
+  const [totalPages, setTotalPages] = useState(1);
 
   let pageSize = 64;
-  const totalPages = Math.ceil(laptopsData.length / pageSize);
+  const getTotalPages = Math.ceil(laptopsData.length / pageSize);
+  const totalCount = laptopsData.length;
+
+  useEffect(() => {
+    if (filteredData.length > 0) {
+      let getPages = Math.ceil(filteredData.length / pageSize);
+      setTotalPages(getPages);
+    } else {
+      setTotalPages(getTotalPages);
+    }
+  }, [getTotalPages, filteredData.length, pageSize])
 
   useEffect(() => {
     //@ts-ignore
@@ -36,7 +47,6 @@ const Imprimante = () => {
         skipEmptyLines: true,
         complete: (results) => {
           setLaptopsData(results.data.slice(1));
-          //console.log(results.data);
           setLoading(false);
         },
       }
@@ -115,17 +125,16 @@ const Imprimante = () => {
       setLaptopsData(arr);
       setShow(true);
     }
-  }, [priceRange]);
+  }, [priceRange, brand, category]);
 
   const onCatSelect = (cat) => {
-    if (brand != "" && category != "") {
-      setBrand("");
-      setFilteredData(laptopsData);
-      setBaseLink(`/imprimante?category=${cat}`);
-      router.push(`/imprimante?category=${cat}`);
-    } else if (brand != "") {
+    setCurrentPage(1);
+    if (brand != "" && !(router.asPath.includes('category'))) {
       setBaseLink(`/imprimante?brand=${brand}&category=${cat}`);
       router.push(`/imprimante?brand=${brand}&category=${cat}`);
+    } else if (router.asPath.includes('category')){
+      setBaseLink(`/imprimante?category=${cat}`);
+      router.push(`/imprimante?category=${cat}`);
     } else {
       setBaseLink(`/imprimante?category=${cat}`);
       router.push(`/imprimante?category=${cat}`);
@@ -135,10 +144,14 @@ const Imprimante = () => {
   };
 
   const onBrandSelect = (br) => {
-    if (category != "") {
+    setCurrentPage(1);
+    if (category != "" && !(router.asPath.includes('brand'))) {
       setBaseLink(`/imprimante?category=${category}&brand=${br}`);
       router.push(`/imprimante?category=${category}&brand=${br}`);
-    } else {
+    } else if (router.asPath.includes('brand')) {
+      setBaseLink(`/imprimante?brand=${br}`);
+      router.push(`/imprimante?brand=${br}`);
+    }  else {
       setBaseLink(`/imprimante?brand=${br}`);
       router.push(`/imprimante?brand=${br}`);
     }
@@ -212,7 +225,6 @@ const Imprimante = () => {
     } else if (category != "") {
       if (category == "refurbished") {
         let arr = laptopsData.filter((r) => r[2] == "Refurbished");
-        //setLaptopsData(arr);
         setFilteredData(arr);
         sortingService.getBrands(30).then((result) => {
           setBrands(result);
@@ -223,7 +235,6 @@ const Imprimante = () => {
       } else if (category == "second-hand") {
         let arr = laptopsData.filter((r) => r[2] == "Second Hand");
         setFilteredData(arr);
-        //setLaptopsData(arr);
         sortingService.getBrands(31).then((result) => {
           setBrands(result);
         });
@@ -235,7 +246,6 @@ const Imprimante = () => {
         let arr2 = laptopsData.filter((r) => r[2] == "Consumabile");
         let newArr = arr.concat(arr2);
         setFilteredData(newArr);
-        //setLaptopsData(arr);
         sortingService.getBrands(53).then((result) => {
           setBrands(result);
         });
@@ -264,11 +274,16 @@ const Imprimante = () => {
     }
   };
 
-  /*let laptopsData = useMemo(() => {
+  let data = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);*/
+    if (filteredData.length > 0) {
+      return filteredData.slice(firstPageIndex, lastPageIndex);
+    } else if (laptopsData.length > 0) {
+      return laptopsData.slice(firstPageIndex, lastPageIndex);
+    }
+    
+  }, [currentPage, laptopsData, pageSize, filteredData]);
 
   return (
     <>
@@ -279,7 +294,7 @@ const Imprimante = () => {
         <>
           <LaptopsPage
             title="Imprimante"
-            laptopsData={laptopsData}
+            laptopsData={data}
             categories={categories}
             breadcrumbs={printerBrcrmbs}
             brands={brands}
@@ -293,6 +308,7 @@ const Imprimante = () => {
             filteredData={filteredData}
             multipleQueries={multipleSelected}
             countShow
+            totalCount={totalCount}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>

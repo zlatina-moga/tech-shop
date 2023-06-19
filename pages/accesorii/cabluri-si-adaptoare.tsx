@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../components/global/Navbar";
 import * as productService from "../../services/productService";
@@ -10,9 +10,11 @@ import MainSkeleton from "../../components/shared/MainSkeleton";
 import Footer from "../../components/global/Footer";
 import * as sortingService from "../../services/sortingService";
 import classNames from "classnames";
+import { usePapaParse } from "react-papaparse";
 
 const Cables = () => {
-  const [laptopsData, setLaptopsData] = useState([]);
+  let [laptopsData, setLaptopsData] = useState([]);
+  let [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSort, setSelectedSort] = useState(
@@ -23,46 +25,39 @@ const Cables = () => {
   const [highestPrice, setHighestPrice] = useState(0);
   const [priceRange, setPriceRange] = useState("");
   const [show, setShow] = useState<boolean>(true);
-  const { brand } = router.query;
-  const [totalPages, setTotalPages] = useState(1);
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/accesorii/cabluri-si-adaptoare");
+  const [totalPages, setTotalPages] = useState(1);
+  const { readRemoteFile } = usePapaParse();
+  const [brand, setBrand] = useState("");
+
+  let pageSize = 64;
+  const getTotalPages = Math.ceil(laptopsData.length / pageSize);
+  const totalCount = laptopsData.length;
 
   useEffect(() => {
-    if (!router.isReady) return;
-    setLoading(true);
-    if (brand) {
-      setShow(false);
-      productService
-        .getAllCablesByBrand(currentPage, brand)
-        .then((result) => {
-          setLoading(false);
-          setLaptopsData(result);
-          setTotalPages(result[0].totalPages);
-          setShow(true);
-          setMultupleSelected(true);
-          setBaseLink(`/accesorii/cabluri-si-adaptoare?brand=${brand}`);
-        });
-      sortingService.getHighestPriceByBrand(68, brand).then((response) => {
-        setHighestPrice(response[1]);
-      });
+    if (filteredData.length > 0) {
+      let getPages = Math.ceil(filteredData.length / pageSize);
+      setTotalPages(getPages);
     } else {
-      setShow(false);
-      productService
-      .getAllCables(currentPage)
-      .then((result) => {
-        setLoading(false);
-        setLaptopsData(result);
-        setShow(true);
-        setTotalPages(result[0].totalPages);
-        setBaseLink(`/accesorii/cabluri-si-adaptoare`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      setTotalPages(getTotalPages);
     }
+  }, [getTotalPages, filteredData.length, pageSize]);
 
-  }, [router.isReady, currentPage, brand]);
+  useEffect(() => {
+    //@ts-ignore
+    readRemoteFile("https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_accesorii", {
+        skipEmptyLines: true,
+        complete: (results) => {
+          let arr = results.data
+            .slice(1)
+            .filter((r) => r[2] == "Cabluri si Adaptoare");
+          setLaptopsData(arr);
+          setLoading(false);
+        },
+      }
+    );
+  }, [readRemoteFile]);
 
   useEffect(() => {
     sortingService.getBrands(68).then((result) => {
@@ -78,94 +73,85 @@ const Cables = () => {
   };
 
   useEffect(() => {
-    if (priceRange != '' && brand && selectedSort != "/accesorii/cabluri-si-adaptoare" ) {
-      setShow(false);
-      const sort = selectedSort.split("=")[2];
-      productService
-        .getSortedCablesPriceAndBrand(
-          priceRange,
-          currentPage,
-          sort,
-          brand
-        )
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (brand && selectedSort != "/accesorii/cabluri-si-adaptoare") {
-      setShow(false);
-      const sort = selectedSort.split("=")[1];
-      productService
-        .getSortedCablesBrand(currentPage, sort, brand)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange != '' && !brand && selectedSort != "/accesorii/cabluri-si-adaptoare") {
-      const sort = selectedSort.split("=")[1];
-      productService
-        .getSortedCablesPrice(priceRange, currentPage, sort)
-        .then((result) => {
-          setLaptopsData(result);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (selectedSort != "/accesorii/cabluri-si-adaptoare") {
-      router.push(selectedSort);
-      const sort = selectedSort.split("=")[1];
-      productService
-        .getSortedCables(currentPage, sort)
-        .then((result) => {
-          setLoading(false);
-          setLaptopsData(result);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    router.push(selectedSort);
+    const sort = selectedSort.split("sort=")[1];
+
+    if (filteredData.length > 0) {
+      if (sort === "views") {
+        filteredData = [...filteredData].sort((a, b) => (a[3] > b[3] ? 1 : -1));
+        setFilteredData(filteredData);
+      } else if (sort === "deals") {
+        filteredData = [...filteredData].sort((a, b) => b[16] - a[16]);
+        setFilteredData(filteredData);
+      } else if (sort === "price") {
+        filteredData = [...filteredData].sort((a, b) => a[17] - b[17]);
+        setFilteredData(filteredData);
+      } else if (sort === "-price") {
+        filteredData = [...filteredData].sort((a, b) => b[17] - a[17]);
+        setFilteredData(filteredData);
+      }
+    } else {
+      if (sort === "views") {
+        laptopsData = [...laptopsData].sort((a, b) => (a[3] > b[3] ? 1 : -1));
+        setLaptopsData(laptopsData);
+      } else if (sort === "deals") {
+        laptopsData = [...laptopsData].sort((a, b) => b[16] - a[16]);
+        setLaptopsData(laptopsData);
+      } else if (sort === "price") {
+        laptopsData = [...laptopsData].sort((a, b) => a[17] - b[17]);
+        setLaptopsData(laptopsData);
+      } else if (sort === "-price") {
+        laptopsData = [...laptopsData].sort((a, b) => b[17] - a[17]);
+        setLaptopsData(laptopsData);
+      }
     }
-  }, [selectedSort, currentPage, priceRange]);
+  }, [selectedSort]);
 
   const onRangeSelect = (range) => {
     setPriceRange(range);
   };
 
   useEffect(() => {
-    if (brand && priceRange != '') {
+    if (priceRange != "" && brand != "") {
       setShow(false);
-      productService
-        .getCablesPriceAndBrand(priceRange, currentPage, brand)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (priceRange != ''){
+      let arr = filteredData.filter((r) => r[17] <= Number(priceRange));
+      setFilteredData(arr);
+      setShow(true);
+    } else if (priceRange != "" && (brand != "")) {
       setShow(false);
-      productService
-        .getAllCablesPrice(priceRange, currentPage)
-        .then((result) => {
-          setLaptopsData(result);
-          setShow(true);
-          setTotalPages(result[0].totalPages);
-        })
-        .catch((err) => {
-          console.log(err);
+      let arr = filteredData.filter((r) => r[17] <= Number(priceRange));
+      setFilteredData(arr);
+      setShow(true);
+    } else if (priceRange != "") {
+      setShow(false);
+      let arr = laptopsData.filter((r) => r[17] <= Number(priceRange));
+      setLaptopsData(arr);
+      setShow(true);
+    }
+  }, [priceRange, brand]);
+
+  const onBrandSelect = (br) => {
+    setCurrentPage(1);
+    setBaseLink(`/accesorii?brand=${br}`);
+    router.push(`/accesorii?brand=${br}`);
+    setBrand(br);
+  };
+
+  useEffect(() => {
+    if (brand != "") {
+      let arr = laptopsData.filter(
+        (r) => r[18].toUpperCase() == brand.toUpperCase()
+      );
+      setFilteredData(arr);
+      sortingService
+        .getHighestPriceByBrand(68, `${matchBrand.slug}-${matchBrand.id}`)
+        .then((response) => {
+          setHighestPrice(response[1]);
         });
     }
+  }, [brand]);
 
-  }, [priceRange, currentPage]);
+  let matchBrand = brands.find((x) => x.slug == brand);
 
   const paginationRange = usePagination({
     currentPage,
@@ -191,6 +177,17 @@ const Cables = () => {
     pageTitle = slugToStr.split("-")[0].toUpperCase();
   }
 
+  let data = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    if (filteredData.length > 0) {
+      return filteredData.slice(firstPageIndex, lastPageIndex);
+    } else if (laptopsData.length > 0) {
+      return laptopsData.slice(firstPageIndex, lastPageIndex);
+    }
+    
+  }, [currentPage, laptopsData, pageSize, filteredData]);
+
   return (
     <>
       <Navbar />
@@ -200,17 +197,19 @@ const Cables = () => {
         <>
           <LaptopsPage
             title={`Cabluri si Adaptoare ${pageTitle}`}
-            laptopsData={laptopsData}
+            laptopsData={data}
             categories2={accessoryCategories}
             breadcrumbs={cablesBreadCrmbs}
             sortCriteria={onSort}
             baseLink={baseLink}
             brands={brands}
-            brandLink={"/accesorii/cabluri-si-adaptoare?brand="}
             highEnd={highestPrice}
             priceRange={onRangeSelect}
             className={classNames("flex-nowrap", show ? "" : "opacity-50")}
+            filteredData={data}
             multipleQueries={multipleSelected}
+            countShow={false}
+            totalCount={totalCount}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav>
@@ -218,25 +217,29 @@ const Cables = () => {
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>
                     <a className="page-link" onClick={prevPage}>
-                    <i id='arrow' className="fas fa-arrow-left text-primary mr-1"></i>
+                      <i
+                        id="arrow"
+                        className="fas fa-arrow-left text-primary mr-1"
+                      ></i>
                     </a>
                   </li>
-                  {paginationRange && paginationRange.map((page) => (
-                    <li
-                      className={`page-item ${
-                        currentPage == page ? "active" : ""
-                      } ${page == DOTS ? "dots" : "" }`}
-                      key={page}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <a
-                        className="page-link"
-                        onClick={() => setCurrentPage(page)}
+                  {paginationRange &&
+                    paginationRange.map((page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage == page ? "active" : ""
+                        } ${page == DOTS ? "dots" : ""}`}
+                        key={page}
+                        style={{ cursor: "pointer" }}
                       >
-                        {page}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          className="page-link"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </a>
+                      </li>
+                    ))}
                   <li
                     className={`page-item ${
                       currentPage == totalPages ? "user-select-none" : ""
@@ -244,7 +247,10 @@ const Cables = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <a className="page-link" onClick={nextPage}>
-                    <i id='arrow' className="fas fa-arrow-right text-primary mr-1"></i>
+                      <i
+                        id="arrow"
+                        className="fas fa-arrow-right text-primary mr-1"
+                      ></i>
                     </a>
                   </li>
                 </>
