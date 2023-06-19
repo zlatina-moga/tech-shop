@@ -70,9 +70,9 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   procSelect,
   generationSelect,
   videoCards,
-  videoSelect
+  videoSelect,
 }) => {
-  const [selected, setSelected] = useState("")
+  const [selected, setSelected] = useState("");
 
   const handleSort = (e) => {
     setSelected(e.target.value);
@@ -198,7 +198,13 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                                   <p>40%</p>
                                 ) : itemData[16].split(".")[1] == 5 ? (
                                   <p>50%</p>
-                                ):(
+                                ) : itemData[16].split(".")[1] == 6 ? (
+                                  <p>60%</p>
+                                ) : itemData[16].split(".")[1] == 7 ? (
+                                  <p>70%</p>
+                                ) : itemData[16].split(".")[1] == 8 ? (
+                                  <p>80%</p>
+                                ) : (
                                   <p>{itemData[16].split(".")[1]}%</p>
                                 )}
                               </div>
@@ -267,16 +273,20 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                                 Lei + TVA
                               </del>
                             ) : itemData[16].split(".")[1] == 5 ? (
-                              <del>
-                                {Number(itemData[17]) } Lei + TVA
-                              </del>
+                              <del>{Number(itemData[17])} Lei + TVA</del>
+                            ) : itemData[16].split(".")[1] == 6 ? (
+                              <del>{Number(itemData[17])} Lei + TVA</del>
+                            ) : itemData[16].split(".")[1] == 7 ? (
+                              <del>{Number(itemData[17])} Lei + TVA</del>
+                            ) : itemData[16].split(".")[1] == 8 ? (
+                              <del>{Number(itemData[17])} Lei + TVA</del>
                             ) : (
                               ""
                             )}
                           </div>
                         )}
 
-                      <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
                           {itemData[16].split(".")[1] == 2 ? (
                             <h6 className="discount">
                               {itemData[4]} Lei + TVA
@@ -298,6 +308,18 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                               {itemData[7]} Lei + TVA
                             </h6>
                           ) : itemData[16].split(".")[1] == 5 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 6 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 7 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 8 ? (
                             <h6 className="discount">
                               {itemData[7]} Lei + TVA
                             </h6>
@@ -348,7 +370,13 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                                   <p>40%</p>
                                 ) : itemData[16].split(".")[1] == 5 ? (
                                   <p>50%</p>
-                                ):(
+                                ) : itemData[16].split(".")[1] == 6 ? (
+                                  <p>60%</p>
+                                ) : itemData[16].split(".")[1] == 7 ? (
+                                  <p>70%</p>
+                                ) : itemData[16].split(".")[1] == 8 ? (
+                                  <p>80%</p>
+                                ) : (
                                   <p>{itemData[16].split(".")[1]}%</p>
                                 )}
                               </div>
@@ -417,9 +445,13 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                                 Lei + TVA
                               </del>
                             ) : itemData[16].split(".")[1] == 5 ? (
-                              <del>
-                                {Number(itemData[17]) } Lei + TVA
-                              </del>
+                              <del>{Number(itemData[17])} Lei + TVA</del>
+                            ) : itemData[16].split(".")[1] == 6 ? (
+                              <del>{Number(itemData[17])} Lei + TVA</del>
+                            ) : itemData[16].split(".")[1] == 7 ? (
+                              <del>{Number(itemData[17])} Lei + TVA</del>
+                            ) : itemData[16].split(".")[1] == 8 ? (
+                              <del>{Number(itemData[17])} Lei + TVA</del>
                             ) : (
                               ""
                             )}
@@ -448,6 +480,18 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                               {itemData[7]} Lei + TVA
                             </h6>
                           ) : itemData[16].split(".")[1] == 5 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 6 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 7 ? (
+                            <h6 className="discount">
+                              {itemData[7]} Lei + TVA
+                            </h6>
+                          ) : itemData[16].split(".")[1] == 8 ? (
                             <h6 className="discount">
                               {itemData[7]} Lei + TVA
                             </h6>
