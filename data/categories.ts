@@ -372,25 +372,31 @@ export const softwareCategories = [
   {
     name: "Windows",
     link: "/licenta-software/windows",
+    slug: 'windows'
   },
   {
     name: "Microsoft Office",
     link: "/licenta-software/office",
+    slug: 'office'
   },
   {
     name: "Microsoft Visio",
     link: "/licenta-software/microsoft-visio",
+    slug: 'microsoft-visio'
   },
   {
     name: "Microsoft Project",
     link: "/licenta-software/project",
+    slug: 'project'
   },
   {
     name: "Adobe",
     link: "/licenta-software/adobe",
+    slug: 'adobe'
   },
   {
     name: "Antivirus",
     link: "/licenta-software/antivirus",
+    slug: 'antivirus'
   },
 ];

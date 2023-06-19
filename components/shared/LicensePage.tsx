@@ -70,6 +70,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
   generationSelect,
   videoCards,
   videoSelect,
+  filteredData,
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -165,80 +166,157 @@ const LicensePage: React.FC<ILaptopPage> = ({
             )}
             style={{ maxWidth: "98rem", justifyContent: "center" }}
           >
-            {laptopsData.map((itemData, idx) => (
-              <div
-                className={classNames(`pb-1`, "laptop-card")}
-                key={idx}
-                style={{ maxWidth: "270px" }}
-              >
-                <div
-                  className={classNames(
-                    "card product-item border border-gray rounded mb-4",
-                    "inner-container"
-                  )}
-                  style={{ alignItems: "stretch", height: "550px" }}
-                >
-                  <Link href={itemData.id}>
+            {filteredData && filteredData.length > 0
+              ? filteredData.map((itemData, idx) => (
+                  <div
+                    className={classNames(`pb-1`, "laptop-card")}
+                    key={idx}
+                    style={{ maxWidth: "270px" }}
+                  >
                     <div
                       className={classNames(
-                        "card-header product-img position-relative overflow-hidden bg-transparent",
-                        "img-wrapper"
+                        "card product-item border border-gray rounded mb-4",
+                        "inner-container"
                       )}
+                      style={{ alignItems: "stretch", height: "550px" }}
                     >
-                      {itemData.discount && (
-                        <div className="discount-container">
-                          <div>
-                            <p>{itemData.discount}</p>
-                          </div>
+                      <Link href={itemData.id}>
+                        <div
+                          className={classNames(
+                            "card-header product-img position-relative overflow-hidden bg-transparent",
+                            "img-wrapper"
+                          )}
+                        >
+                          {itemData.discount && (
+                            <div className="discount-container">
+                              <div>
+                                <p>{itemData.discount}</p>
+                              </div>
+                            </div>
+                          )}
+
+                          <img
+                            className="img-fluid w-100"
+                            src={
+                              itemData.imgLink
+                                ? itemData.imgLink
+                                : itemData.imgLink1
+                            }
+                            alt=""
+                            //style={{maxWidth: '200px'}}
+                          />
                         </div>
-                      )}
-
-                      <img
-                        className="img-fluid w-100"
-                        src={
-                          itemData.imgLink
-                            ? itemData.imgLink
-                            : itemData.imgLink1
-                        }
-                        alt=""
-                        //style={{maxWidth: '200px'}}
-                      />
-                    </div>
-                  </Link>
-                  <div className="card-body text-center p-3 pt-4 relative">
-                    <h6
-                      className="mb-3"
-                      style={{
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        maxHeight: "95px",
-                      }}
-                    >
-                      {itemData.title}
-                    </h6>
-                    {itemData.oldPrice && itemData.oldPrice.split(".")[1] && (
-                      <div className="d-flex justify-content-center">
-                        <h6 className="text-muted pb-2 price-2">
-                          <del>{itemData.oldPrice}</del>
+                      </Link>
+                      <div className="card-body text-center p-3 pt-4 relative">
+                        <h6
+                          className="mb-3"
+                          style={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            maxHeight: "95px",
+                          }}
+                        >
+                          {itemData.title}
                         </h6>
-                      </div>
-                    )}
+                        {itemData.oldPrice &&
+                          itemData.oldPrice.split(".")[1] && (
+                            <div className="d-flex justify-content-center">
+                              <h6 className="text-muted pb-2 price-2">
+                                <del>{itemData.oldPrice}</del>
+                              </h6>
+                            </div>
+                          )}
 
-                    <div className="d-flex justify-content-center">
-                      <h6 className="price">{itemData.price} + TVA</h6>
+                        <div className="d-flex justify-content-center">
+                          <h6 className="price">{itemData.price} + TVA</h6>
+                        </div>
+                      </div>
+                      <div className="card-footer w-100 bg-light">
+                        <Link
+                          href={itemData.id}
+                          className="btn btn-primary add-to-cart"
+                        >
+                          Vezi detalii
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                  <div className="card-footer w-100 bg-light">
-                    <Link
-                      href={itemData.id}
-                      className="btn btn-primary add-to-cart"
+                ))
+              : laptopsData.map((itemData, idx) => (
+                  <div
+                    className={classNames(`pb-1`, "laptop-card")}
+                    key={idx}
+                    style={{ maxWidth: "270px" }}
+                  >
+                    <div
+                      className={classNames(
+                        "card product-item border border-gray rounded mb-4",
+                        "inner-container"
+                      )}
+                      style={{ alignItems: "stretch", height: "550px" }}
                     >
-                      Vezi detalii
-                    </Link>
+                      <Link href={itemData.id}>
+                        <div
+                          className={classNames(
+                            "card-header product-img position-relative overflow-hidden bg-transparent",
+                            "img-wrapper"
+                          )}
+                        >
+                          {itemData.discount && (
+                            <div className="discount-container">
+                              <div>
+                                <p>{itemData.discount}</p>
+                              </div>
+                            </div>
+                          )}
+
+                          <img
+                            className="img-fluid w-100"
+                            src={
+                              itemData.imgLink
+                                ? itemData.imgLink
+                                : itemData.imgLink1
+                            }
+                            alt=""
+                            //style={{maxWidth: '200px'}}
+                          />
+                        </div>
+                      </Link>
+                      <div className="card-body text-center p-3 pt-4 relative">
+                        <h6
+                          className="mb-3"
+                          style={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            maxHeight: "95px",
+                          }}
+                        >
+                          {itemData.title}
+                        </h6>
+                        {itemData.oldPrice &&
+                          itemData.oldPrice.split(".")[1] && (
+                            <div className="d-flex justify-content-center">
+                              <h6 className="text-muted pb-2 price-2">
+                                <del>{itemData.oldPrice}</del>
+                              </h6>
+                            </div>
+                          )}
+
+                        <div className="d-flex justify-content-center">
+                          <h6 className="price">{itemData.price} + TVA</h6>
+                        </div>
+                      </div>
+                      <div className="card-footer w-100 bg-light">
+                        <Link
+                          href={itemData.id}
+                          className="btn btn-primary add-to-cart"
+                        >
+                          Vezi detalii
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))}
           </div>
         </div>
       </div>

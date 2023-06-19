@@ -13,6 +13,7 @@ const Software = () => {
   const router = useRouter();
   const [baseLink, setBaseLink] = useState("/licenta-software");
   const [category, setCategory] = useState("");
+  let [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     router.push(selectedSort);
@@ -49,11 +50,10 @@ const Software = () => {
     setCategory(cat);
   };
 
-  console.log(category)
-
   useEffect(() => {
-    if (category != '') {
-      return laptopsData.filter((x) => x.slug == category);
+    if (category != "") {
+      let arr = laptopsData.filter((r) => r.slug == category);
+      setFilteredData(arr);
     }
   }, [category]);
 
@@ -68,6 +68,7 @@ const Software = () => {
         sortCriteria={onSort}
         baseLink={baseLink}
         catSelect={onCatSelect}
+        filteredData={filteredData}
       />
       <Footer />
     </>
