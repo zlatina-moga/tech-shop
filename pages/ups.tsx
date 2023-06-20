@@ -306,7 +306,7 @@ const UPS = () => {
             totalCount={totalCount}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
-            <nav>
+            <nav id="pagination-container">
               <ul className="pagination justify-content-center flex-wrap">
                 <>
                   <li className="page-item" style={{ cursor: "pointer" }}>

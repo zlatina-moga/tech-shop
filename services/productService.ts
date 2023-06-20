@@ -9,6 +9,9 @@ const baseUrl = "https://pc-bun-api.onrender.com";
 export const getProductDetails = (id) => request.get(`https://api.citgrup.ro/public/products/${id}`)
 
 
+export const getSearchedItems = (search) =>
+  request.get(`https://api.citgrup.ro/public/products/search?${search}`);
+
 //<-------------------------------------------------------------------------------->
 
 /*export const getAllLaptops = (page) =>
@@ -4713,9 +4716,6 @@ export const getSortedInvertorsPrice = (price, page, sort) =>
   request.get(
     `${baseUrl}/sisteme-solare-fotovoltaice/invertoare-fotovoltaice?price=1-${price}&sort=${sort}&page=${page}`
   );
-
-export const getSearchedItems = (search) =>
-  request.get(`https://api.citgrup.ro/public/products/search?${search}`);
 
 export const getDiscountedItems = (page) =>
   request.get(`${baseUrl}/promotii?page=${page}`);
