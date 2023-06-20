@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../components/global/Navbar";
-import * as productService from "../services/productService";
 import * as sortingService from "../services/sortingService";
 import LaptopsPage from "../components/shared/LaptopsPage";
 import {  usePagination, DOTS  } from "../hooks/usePagination";

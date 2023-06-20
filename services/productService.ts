@@ -1,14 +1,9 @@
 import * as request from "./requester";
-const baseUrl = "http://localhost:5500";
+//const baseUrl = "http://localhost:5500";
 //const baseUrl = 'https://pc-bun-api.herokuapp.com';
-//const baseUrl = "https://pc-bun-api.onrender.com";
-import axios from 'axios';
+const baseUrl = "https://pc-bun-api.onrender.com";
 
 //export const getAllProdictsCount = () => request.get(`${baseUrl}`);
-
-export const getPrinters =  async () => {
-  return await axios.get('https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante')
-}
 
 
 export const getProductDetails = (id) => request.get(`https://api.citgrup.ro/public/products/${id}`)
@@ -16,7 +11,7 @@ export const getProductDetails = (id) => request.get(`https://api.citgrup.ro/pub
 
 //<-------------------------------------------------------------------------------->
 
-export const getAllLaptops = (page) =>
+/*export const getAllLaptops = (page) =>
   request.get(`${baseUrl}/laptop?page=${page}`);
 
 export const getAllLaptopsPrice = (price, page) =>
@@ -5086,4 +5081,4 @@ export const getDiscountedAccessoriesPriceAndBrand = (price, page, brand) =>
   );
 
 export const getAllDiscountedAccessoriesPrice = (price, page) =>
-  request.get(`${baseUrl}/promotii/accesorii?price=1-${price}&page=${page}`);
+  request.get(`${baseUrl}/promotii/accesorii?price=1-${price}&page=${page}`);*/

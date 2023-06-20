@@ -1,8 +1,9 @@
 import * as request from "./requester";
 //const baseUrl = "http://localhost:5500";
 //const baseUrl = 'https://pc-bun-api.herokuapp.com';
-const baseUrl = "https://pc-bun-api.onrender.com";
 //const baseUrl = 'https://api.citgrup.ro/public/products';
+
+const baseUrl = "https://pc-bun-api.onrender.com";
 
 export const getRefurbishedLaptop = (id) => request.get(`${baseUrl}/laptop/refurbished-1/${id}`)
 
