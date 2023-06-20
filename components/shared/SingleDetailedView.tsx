@@ -29,8 +29,6 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
   let [warrantyType, setWarrantyType] = useState("");
   const isTablet = useMediaQuery("(max-width:601px)");
 
-  itemData[11] = itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')
-
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: warranty }));
     setClicked(true);
@@ -429,7 +427,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                   <h3 style={{ fontWeight: "600" }}>
                     Specificatii produs {itemData[28]} {itemData[6]}
                   </h3>
-                <section dangerouslySetInnerHTML={{__html: itemData[11]}}></section>
+                <section style={{maxWidth: '90rem'}} dangerouslySetInnerHTML={{__html: itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')}}></section>
                 <div
                   style={{
                     display: "flex",

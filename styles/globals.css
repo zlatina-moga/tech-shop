@@ -1557,6 +1557,10 @@ pre code {
   border: 1px solid #EDF1FF !important;
 }
 
+.table-bordered #product-cell {
+  border: none !important;
+}
+
 .table-bordered thead th,
 .table-bordered thead td {
   border-bottom-width: 1px !important;

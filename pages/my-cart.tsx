@@ -20,48 +20,48 @@ const MyCard = () => {
         value: cart.total.toFixed(2),
         items: [
           {
-            item_id: cart.products[0].itemData[0].id,
-            item_name: cart.products[0].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[1].itemData[0].id,
-            item_name: cart.products[1].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[2].itemData[0].id,
-            item_name: cart.products[2].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[3].itemData[0].id,
-            item_name: cart.products[3].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[4].itemData[0].id,
-            item_name: cart.products[4].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[5].itemData[0].id,
-            item_name: cart.products[5].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[6].itemData[0].id,
-            item_name: cart.products[6].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[7].itemData[0].id,
-            item_name: cart.products[7].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[8].itemData[0].id,
-            item_name: cart.products[8].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[9].itemData[0].id,
-            item_name: cart.products[9].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[10].itemData[0].id,
-            item_name: cart.products[10].itemData[0].title
+            item_id: cart.products[0].itemData[0],
+            item_name: cart.products[0].itemData[3]
           },
         ],
       },
@@ -95,12 +95,12 @@ const MyCard = () => {
               <div style={{ display: "flex", flexDirection: "column" }}>
                 {cart.products.map((p) => (
                   <ResponsiveCart
-                    key={p.itemData[0].id}
-                    id={p.itemData[0].id}
-                    imgLink={p.itemData[0].imgLink}
-                    img1={p.itemData[0].img1}
-                    title={p.itemData[0].title}
-                    priceNum={p.itemData[0].priceNum}
+                    key={p.itemData[0]}
+                    id={p.itemData[8].replace('citgrup', 'pcbun')}
+                    imgLink={p.itemData[16][0].src}
+                    img1={''}
+                    title={p.itemData[3]}
+                    priceNum={p.itemData[35]}
                     warranty={p.warranty}
                     profile={false}
                   />
@@ -119,12 +119,12 @@ const MyCard = () => {
                 <tbody className="align-middle">
                   {cart.products.map((p) => (
                     <CartItem
-                      key={p.itemData[0].id}
-                      id={p.itemData[0].id}
-                      imgLink={p.itemData[0].imgLink}
-                      img1={p.itemData[0].img1}
-                      title={p.itemData[0].title}
-                      priceNum={p.itemData[0].priceNum}
+                    key={p.itemData[0]}
+                    id={p.itemData[8].replace('citgrup', 'pcbun')}
+                    imgLink={p.itemData[16][0].src}
+                    img1={''}
+                    title={p.itemData[3]}
+                    priceNum={p.itemData[35]}
                       warranty={p.warranty}
                       profile={false}
                       createdAt
@@ -201,7 +201,7 @@ const MyCard = () => {
                     </h5>
                   ) : (
                     <h5 className="font-weight-bold">
-                      {(Number(cart.total.toFixed(2)) + 20).toFixed(2)} Lei
+                      {cart.total && (Number(cart.total.toFixed(2)) + 20).toFixed(2)} Lei
                     </h5>
                   )}
                 </div>

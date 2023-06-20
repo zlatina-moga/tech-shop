@@ -18,12 +18,12 @@ const cartSlice = createSlice({
       state.products.push(action.payload);
       state.warranty += action.payload.warranty;
       state.total += action.payload.warranty;
-      state.total += action.payload.itemData[0].priceNum;
+      state.total += action.payload.itemData[35];
       state.isSoftware = action.payload.isSoftware;
     },
     removeItem: (state, { payload }) => {
       const newCart = state.products.filter(
-        (item) => item.itemData[0].id !== payload.id
+        (item) =>  item.itemData[8] != payload.id.replace('pcbun', 'citgrup')
       );
       state.products = newCart;
       state.quantity -= 1;
@@ -39,7 +39,7 @@ const cartSlice = createSlice({
     },
     increase: (state, { payload }) => {
       const cartItem = state.products.find(
-        (item) => item.itemData[0].id === payload.id
+        (item) => item.itemData[8] === payload.id.replace('pcbun', 'citgrup')
       );
       cartItem.quantity += 1;
       state.quantity += 1;
@@ -47,7 +47,7 @@ const cartSlice = createSlice({
     },
     decrease: (state, { payload }) => {
       const cartItem = state.products.find(
-        (item) => item.itemData[0].id === payload.id
+        (item) => item.itemData[8] === payload.id.replace('pcbun', 'citgrup')
       );
       cartItem.quantity -= 1;
       state.quantity -= 1;

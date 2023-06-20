@@ -14,7 +14,7 @@ import truckIcon from "../../public/svg/truck.svg";
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css";
 import "swiper/css/navigation";
-import { addProduct } from "../../services/redux/cartRedux";
+import { addProduct, empty } from "../../services/redux/cartRedux";
 import classNames from "classnames";
 import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
@@ -27,7 +27,7 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images }) => {
   const [clicked, setClicked] = useState(false);
   const isTablet = useMediaQuery("(max-width:601px)");
 
-  itemData[11] = itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')
+  //dispatch(empty());
 
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
@@ -285,7 +285,7 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images }) => {
                   <h3 style={{ fontWeight: "600" }}>
                     Specificatii produs {itemData[28]} {itemData[6]}
                   </h3>
-                <section dangerouslySetInnerHTML={{__html: itemData[11]}}></section>
+                <section dangerouslySetInnerHTML={{__html: itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')}}></section>
                 <div
                   style={{
                     display: "flex",
