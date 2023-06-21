@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { Country, State, City } from "country-state-city";
 import * as orderService from "../services/orderService";
 import { empty, addOrderNum } from "../services/redux/cartRedux";
+import * as ga from "../lib/gtag";
 
 const Checkout = () => {
   const [userData, setUserData] = useState<IUser>(initialValues);
@@ -19,11 +20,7 @@ const Checkout = () => {
   let [selectedCity, setSelectedCity] = useState("");
   let [selectedFirm, setSelectedFirm] = useState<boolean>(false);
   let [selectedPersonal, setSelectedPersonal] = useState<boolean>(true);
-  let [paymentData, setPaymentData] = useState({
-    url: "",
-    env_key: "",
-    data: "",
-  });
+  const [paymentData, setPaymentData] = useState({})
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -91,7 +88,7 @@ const Checkout = () => {
     const zip2 = formData.get("cf-zip-2");
 
     if (payment == "") {
-      toast.error("Please select payment method", {
+      toast.error("Vă rugăm să selectați metoda de plată", {
         style: { marginTop: "100px" },
       });
     }
@@ -107,14 +104,14 @@ const Checkout = () => {
       !checked
     ) {
       let cartItems = cart.products.map((c) => ({
-        productId: c.itemData[0].idCode,
+        productId: c.itemData[0],
         quantity: c.quantity,
-        price: c.itemData[0].priceNum,
+        price: c.itemData[35],
         warranty: c.warranty,
-        title: c.itemData[0].title,
-        img1: c.itemData[0].img1,
-        imgLink: c.itemData[0].imgLink,
-        idLink: c.itemData[0].id,
+        title: c.itemData[3],
+        img1: c.itemData[16][0].src,
+        imgLink: c.itemData[16][0].src,
+        idLink: c.itemData[8].replace('citgrup', 'pcbun')
       }));
 
       if (user) {
@@ -141,8 +138,10 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              //setShowModal(true);
-              dispatch(empty());
+              router.push(`${res.paymentResult.url}`)
+              //orderService.checkOrderStatus().then((response) => console.log(response))
+               //dispatch(empty());
+              //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
@@ -150,12 +149,59 @@ const Checkout = () => {
               dispatch(empty());
               router.push("/order-success");
             } else {
-              toast.success("Comanda plasata cu succes", {
-                style: { marginTop: "100px" },
-              });
               dispatch(empty());
               router.push("/success");
             }
+            ga.event({
+              action: "purchase",
+              params: {
+                currency: "RON",
+                transaction_id: orderNum,
+                value: orderTotal,
+                items: [
+                  {
+                    item_id: cartItems[0].productId,
+                    item_name: cartItems[0].title
+                  },
+                  {
+                    item_id: cartItems[1].productId,
+                    item_name: cartItems[1].title
+                  },
+                  {
+                    item_id: cartItems[2].productId,
+                    item_name: cartItems[2].title
+                  },
+                  {
+                    item_id: cartItems[3].productId,
+                    item_name: cartItems[3].title
+                  },
+                  {
+                    item_id: cartItems[4].productId,
+                    item_name: cartItems[4].title
+                  },
+                  {
+                    item_id: cartItems[5].productId,
+                    item_name: cartItems[5].title
+                  },
+                  {
+                    item_id: cartItems[6].productId,
+                    item_name: cartItems[6].title
+                  },
+                  {
+                    item_id: cartItems[7].productId,
+                    item_name: cartItems[7].title
+                  },
+                  {
+                    item_id: cartItems[8].productId,
+                    item_name: cartItems[8].title
+                  },
+                  {
+                    item_id: cartItems[9].productId,
+                    item_name: cartItems[9].title
+                  },
+                ]
+              },
+            });
           })
           .catch((err) => {
             toast.error(err, {
@@ -199,7 +245,10 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              dispatch(empty());
+              router.push(`${res.paymentResult.url}`)
+              //orderService.checkOrderStatus().then((response) => console.log(response))
+               //dispatch(empty());
+              //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
@@ -207,12 +256,59 @@ const Checkout = () => {
               dispatch(empty());
               router.push("/order-success");
             } else {
-              toast.success("Comanda plasata cu succes", {
-                style: { marginTop: "100px" },
-              });
               dispatch(empty());
               router.push("/success");
             }
+            ga.event({
+              action: "purchase",
+              params: {
+                currency: "RON",
+                transaction_id: orderNum,
+                value: orderTotal,
+                items: [
+                  {
+                    item_id: cartItems[0].productId,
+                    item_name: cartItems[0].title
+                  },
+                  {
+                    item_id: cartItems[1].productId,
+                    item_name: cartItems[1].title
+                  },
+                  {
+                    item_id: cartItems[2].productId,
+                    item_name: cartItems[2].title
+                  },
+                  {
+                    item_id: cartItems[3].productId,
+                    item_name: cartItems[3].title
+                  },
+                  {
+                    item_id: cartItems[4].productId,
+                    item_name: cartItems[4].title
+                  },
+                  {
+                    item_id: cartItems[5].productId,
+                    item_name: cartItems[5].title
+                  },
+                  {
+                    item_id: cartItems[6].productId,
+                    item_name: cartItems[6].title
+                  },
+                  {
+                    item_id: cartItems[7].productId,
+                    item_name: cartItems[7].title
+                  },
+                  {
+                    item_id: cartItems[8].productId,
+                    item_name: cartItems[8].title
+                  },
+                  {
+                    item_id: cartItems[9].productId,
+                    item_name: cartItems[9].title
+                  },
+                ]
+              },
+            });
           })
           .catch((err) => {
             toast.error(err, {
@@ -231,14 +327,14 @@ const Checkout = () => {
       zip2
     ) {
       let cartItems = cart.products.map((c) => ({
-        productId: c.itemData[0].idCode,
+        productId: c.itemData[0],
         quantity: c.quantity,
-        price: c.itemData[0].priceNum,
+        price: c.itemData[35],
         warranty: c.warranty,
-        title: c.itemData[0].title,
-        img1: c.itemData[0].img1,
-        imgLink: c.itemData[0].imgLink,
-        idLink: c.itemData[0].id,
+        title: c.itemData[3],
+        img1: c.itemData[16][0].src,
+        imgLink: c.itemData[16][0].src,
+        idLink: c.itemData[8].replace('citgrup', 'pcbun')
       }));
 
       if (user) {
@@ -265,8 +361,10 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {     
-              dispatch(empty());
-             //router.push("/success");
+              router.push(`${res.paymentResult.url}`)
+              //orderService.checkOrderStatus().then((response) => console.log(response))
+               //dispatch(empty());
+              //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
@@ -274,12 +372,59 @@ const Checkout = () => {
               dispatch(empty());
               router.push("/order-success");
             } else {
-              toast.success("Comanda plasata cu succes", {
-                style: { marginTop: "100px" },
-              });
               dispatch(empty());
               router.push("/success");
             }
+            ga.event({
+              action: "purchase",
+              params: {
+                currency: "RON",
+                transaction_id: orderNum,
+                value: orderTotal,
+                items: [
+                  {
+                    item_id: cartItems[0].productId,
+                    item_name: cartItems[0].title
+                  },
+                  {
+                    item_id: cartItems[1].productId,
+                    item_name: cartItems[1].title
+                  },
+                  {
+                    item_id: cartItems[2].productId,
+                    item_name: cartItems[2].title
+                  },
+                  {
+                    item_id: cartItems[3].productId,
+                    item_name: cartItems[3].title
+                  },
+                  {
+                    item_id: cartItems[4].productId,
+                    item_name: cartItems[4].title
+                  },
+                  {
+                    item_id: cartItems[5].productId,
+                    item_name: cartItems[5].title
+                  },
+                  {
+                    item_id: cartItems[6].productId,
+                    item_name: cartItems[6].title
+                  },
+                  {
+                    item_id: cartItems[7].productId,
+                    item_name: cartItems[7].title
+                  },
+                  {
+                    item_id: cartItems[8].productId,
+                    item_name: cartItems[8].title
+                  },
+                  {
+                    item_id: cartItems[9].productId,
+                    item_name: cartItems[9].title
+                  },
+                ]
+              },
+            });
           })
           .catch((err) => {
             toast.error(err, {
@@ -309,7 +454,10 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              dispatch(empty());
+              router.push(`${res.paymentResult.url}`)
+              //orderService.checkOrderStatus().then((response) => console.log(response))
+               //dispatch(empty());
+              //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
@@ -317,12 +465,59 @@ const Checkout = () => {
               dispatch(empty());
               router.push("/order-success");
             } else {
-              toast.success("Comanda plasata cu succes", {
-                style: { marginTop: "100px" },
-              });
               dispatch(empty());
               router.push("/success");
             }
+            ga.event({
+              action: "purchase",
+              params: {
+                currency: "RON",
+                transaction_id: orderNum,
+                value: orderTotal,
+                items: [
+                  {
+                    item_id: cartItems[0].productId,
+                    item_name: cartItems[0].title
+                  },
+                  {
+                    item_id: cartItems[1].productId,
+                    item_name: cartItems[1].title
+                  },
+                  {
+                    item_id: cartItems[2].productId,
+                    item_name: cartItems[2].title
+                  },
+                  {
+                    item_id: cartItems[3].productId,
+                    item_name: cartItems[3].title
+                  },
+                  {
+                    item_id: cartItems[4].productId,
+                    item_name: cartItems[4].title
+                  },
+                  {
+                    item_id: cartItems[5].productId,
+                    item_name: cartItems[5].title
+                  },
+                  {
+                    item_id: cartItems[6].productId,
+                    item_name: cartItems[6].title
+                  },
+                  {
+                    item_id: cartItems[7].productId,
+                    item_name: cartItems[7].title
+                  },
+                  {
+                    item_id: cartItems[8].productId,
+                    item_name: cartItems[8].title
+                  },
+                  {
+                    item_id: cartItems[9].productId,
+                    item_name: cartItems[9].title
+                  },
+                ]
+              },
+            });
           })
           .catch((err) => {
             toast.error(err, {
@@ -825,10 +1020,10 @@ const Checkout = () => {
                   {cart.products.map((p) => (
                     <div
                       className="d-flex justify-content-between"
-                      key={p.itemData[0].id}
+                      key={p.itemData[0]}
                     >
-                      <p className="mw-50 mr-5">{p.itemData[0].title}</p>
-                      <p>{p.itemData[0].priceNum} Lei</p>
+                      <p className="mw-50 mr-5">{p.itemData[3]}</p>
+                      <p>{p.itemData[35]} Lei</p>
                     </div>
                   ))}
 

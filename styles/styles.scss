@@ -609,3 +609,16 @@ form .auth-field {
     color: #EFC90A !important;
   }
 }
+
+.laptops-page {
+  .feed-container {
+    background-color: transparent;
+    border: 1px solid #609E42;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #609E42;
+    &:hover {
+      background: #EDF1FF;
+    }
+  }
+}

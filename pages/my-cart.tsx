@@ -24,45 +24,41 @@ const MyCard = () => {
             item_name: cart.products[0].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
+            item_id: cart.products[1].itemData[0],
+            item_name: cart.products[1].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
+            item_id: cart.products[2].itemData[0],
+            item_name: cart.products[2].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
+            item_id: cart.products[3].itemData[0],
+            item_name: cart.products[3].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
+            item_id: cart.products[4].itemData[0],
+            item_name: cart.products[4].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
+            item_id: cart.products[5].itemData[0],
+            item_name: cart.products[5].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
+            item_id: cart.products[6].itemData[0],
+            item_name: cart.products[6].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
+            item_id: cart.products[7].itemData[0],
+            item_name: cart.products[7].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
+            item_id: cart.products[8].itemData[0],
+            item_name: cart.products[8].itemData[3]
           },
           {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
-          },
-          {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
-          },
+            item_id: cart.products[9].itemData[0],
+            item_name: cart.products[9].itemData[3]
+          }
         ],
       },
     });
