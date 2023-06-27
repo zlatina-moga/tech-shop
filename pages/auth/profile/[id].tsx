@@ -228,7 +228,7 @@ const Profile = () => {
                           type="submit"
                           className="btn btn-primary btn-lg rounded-1"
                         >
-                          Update
+                         Actualizați
                         </button>
                         <button
                           type="button"
