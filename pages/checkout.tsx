@@ -1083,7 +1083,7 @@ const Checkout = () => {
                         className="custom-control-input"
                         name="payment"
                         id="delivery"
-                        defaultChecked
+                        //defaultChecked
                         onChange={() => setPayment("delivery")}
                       />
                       <label
@@ -1119,11 +1119,11 @@ const Checkout = () => {
                         name="payment"
                         id="card"
                         onChange={() => setPayment("card")}
-                        //defaultChecked
-                        disabled
+                        defaultChecked
+                        //disabled
                       />
                       <label className="custom-control-label" htmlFor="card">
-                        Plata cu cardul online *momentan indisponibil
+                        Plata cu cardul online
                       </label>
                     </div>
                   </div>

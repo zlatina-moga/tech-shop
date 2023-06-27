@@ -29,4 +29,4 @@ export const checkOrderStatus = async () => {
   return res;
 };
 
-export const verify = () => request.get(`${baseUrl}/order/success`)
+//export const verify = () => request.get(`${baseUrl}/order/success`)
