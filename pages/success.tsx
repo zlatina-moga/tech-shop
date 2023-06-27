@@ -2,8 +2,6 @@ import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import * as orderService from "../services/orderService";
 
 const Success = () => {
   //@ts-ignore
@@ -11,18 +9,6 @@ const Success = () => {
   //@ts-ignore
   const user = useSelector((state) => state.user.currentUser);
 
-  const [result, setResult] = useState("");
-
-  useEffect(() => {
-    orderService
-      .verify()
-      .then((result) => {
-        setResult(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
   return (
     <>
       <Navbar />

@@ -20,7 +20,7 @@ const Checkout = () => {
   let [selectedCity, setSelectedCity] = useState("");
   let [selectedFirm, setSelectedFirm] = useState<boolean>(false);
   let [selectedPersonal, setSelectedPersonal] = useState<boolean>(true);
-  const [paymentData, setPaymentData] = useState({})
+  const [paymentData, setPaymentData] = useState({});
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -111,7 +111,7 @@ const Checkout = () => {
         title: c.itemData[3],
         img1: c.itemData[16][0].src,
         imgLink: c.itemData[16][0].src,
-        idLink: c.itemData[8].replace('citgrup', 'pcbun')
+        idLink: c.itemData[8].replace("citgrup", "pcbun"),
       }));
 
       if (user) {
@@ -138,11 +138,11 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              router.push(`${res.paymentResult.url}`)
+              router.push(`${res.paymentResult.url}`);
               //orderService.checkOrderStatus().then((response) => console.log(response))
-               //dispatch(empty());
+              //dispatch(empty());
               //router.push("/success");
-            } else if (payment == "directcheck") {
+            } else if (payment === "directcheck") {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
               );
@@ -161,45 +161,45 @@ const Checkout = () => {
                 items: [
                   {
                     item_id: cartItems[0].productId,
-                    item_name: cartItems[0].title
+                    item_name: cartItems[0].title,
                   },
                   {
                     item_id: cartItems[1].productId,
-                    item_name: cartItems[1].title
+                    item_name: cartItems[1].title,
                   },
                   {
                     item_id: cartItems[2].productId,
-                    item_name: cartItems[2].title
+                    item_name: cartItems[2].title,
                   },
                   {
                     item_id: cartItems[3].productId,
-                    item_name: cartItems[3].title
+                    item_name: cartItems[3].title,
                   },
                   {
                     item_id: cartItems[4].productId,
-                    item_name: cartItems[4].title
+                    item_name: cartItems[4].title,
                   },
                   {
                     item_id: cartItems[5].productId,
-                    item_name: cartItems[5].title
+                    item_name: cartItems[5].title,
                   },
                   {
                     item_id: cartItems[6].productId,
-                    item_name: cartItems[6].title
+                    item_name: cartItems[6].title,
                   },
                   {
                     item_id: cartItems[7].productId,
-                    item_name: cartItems[7].title
+                    item_name: cartItems[7].title,
                   },
                   {
                     item_id: cartItems[8].productId,
-                    item_name: cartItems[8].title
+                    item_name: cartItems[8].title,
                   },
                   {
                     item_id: cartItems[9].productId,
-                    item_name: cartItems[9].title
+                    item_name: cartItems[9].title,
                   },
-                ]
+                ],
               },
             });
           })
@@ -245,9 +245,9 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              router.push(`${res.paymentResult.url}`)
+              router.push(`${res.paymentResult.url}`);
               //orderService.checkOrderStatus().then((response) => console.log(response))
-               //dispatch(empty());
+              //dispatch(empty());
               //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
@@ -268,45 +268,45 @@ const Checkout = () => {
                 items: [
                   {
                     item_id: cartItems[0].productId,
-                    item_name: cartItems[0].title
+                    item_name: cartItems[0].title,
                   },
                   {
                     item_id: cartItems[1].productId,
-                    item_name: cartItems[1].title
+                    item_name: cartItems[1].title,
                   },
                   {
                     item_id: cartItems[2].productId,
-                    item_name: cartItems[2].title
+                    item_name: cartItems[2].title,
                   },
                   {
                     item_id: cartItems[3].productId,
-                    item_name: cartItems[3].title
+                    item_name: cartItems[3].title,
                   },
                   {
                     item_id: cartItems[4].productId,
-                    item_name: cartItems[4].title
+                    item_name: cartItems[4].title,
                   },
                   {
                     item_id: cartItems[5].productId,
-                    item_name: cartItems[5].title
+                    item_name: cartItems[5].title,
                   },
                   {
                     item_id: cartItems[6].productId,
-                    item_name: cartItems[6].title
+                    item_name: cartItems[6].title,
                   },
                   {
                     item_id: cartItems[7].productId,
-                    item_name: cartItems[7].title
+                    item_name: cartItems[7].title,
                   },
                   {
                     item_id: cartItems[8].productId,
-                    item_name: cartItems[8].title
+                    item_name: cartItems[8].title,
                   },
                   {
                     item_id: cartItems[9].productId,
-                    item_name: cartItems[9].title
+                    item_name: cartItems[9].title,
                   },
-                ]
+                ],
               },
             });
           })
@@ -334,7 +334,7 @@ const Checkout = () => {
         title: c.itemData[3],
         img1: c.itemData[16][0].src,
         imgLink: c.itemData[16][0].src,
-        idLink: c.itemData[8].replace('citgrup', 'pcbun')
+        idLink: c.itemData[8].replace("citgrup", "pcbun"),
       }));
 
       if (user) {
@@ -360,10 +360,10 @@ const Checkout = () => {
             setPaymentData(res);
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
-            if (payment === "card") {     
-              router.push(`${res.paymentResult.url}`)
+            if (payment === "card") {
+              router.push(`${res.paymentResult.url}`);
               //orderService.checkOrderStatus().then((response) => console.log(response))
-               //dispatch(empty());
+              //dispatch(empty());
               //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
@@ -384,45 +384,45 @@ const Checkout = () => {
                 items: [
                   {
                     item_id: cartItems[0].productId,
-                    item_name: cartItems[0].title
+                    item_name: cartItems[0].title,
                   },
                   {
                     item_id: cartItems[1].productId,
-                    item_name: cartItems[1].title
+                    item_name: cartItems[1].title,
                   },
                   {
                     item_id: cartItems[2].productId,
-                    item_name: cartItems[2].title
+                    item_name: cartItems[2].title,
                   },
                   {
                     item_id: cartItems[3].productId,
-                    item_name: cartItems[3].title
+                    item_name: cartItems[3].title,
                   },
                   {
                     item_id: cartItems[4].productId,
-                    item_name: cartItems[4].title
+                    item_name: cartItems[4].title,
                   },
                   {
                     item_id: cartItems[5].productId,
-                    item_name: cartItems[5].title
+                    item_name: cartItems[5].title,
                   },
                   {
                     item_id: cartItems[6].productId,
-                    item_name: cartItems[6].title
+                    item_name: cartItems[6].title,
                   },
                   {
                     item_id: cartItems[7].productId,
-                    item_name: cartItems[7].title
+                    item_name: cartItems[7].title,
                   },
                   {
                     item_id: cartItems[8].productId,
-                    item_name: cartItems[8].title
+                    item_name: cartItems[8].title,
                   },
                   {
                     item_id: cartItems[9].productId,
-                    item_name: cartItems[9].title
+                    item_name: cartItems[9].title,
                   },
-                ]
+                ],
               },
             });
           })
@@ -454,9 +454,9 @@ const Checkout = () => {
             let orderNum = res._doc._id;
             let orderTotal = res._doc.amount;
             if (payment === "card") {
-              router.push(`${res.paymentResult.url}`)
+              router.push(`${res.paymentResult.url}`);
               //orderService.checkOrderStatus().then((response) => console.log(response))
-               //dispatch(empty());
+              //dispatch(empty());
               //router.push("/success");
             } else if (payment == "directcheck") {
               dispatch(
@@ -477,45 +477,45 @@ const Checkout = () => {
                 items: [
                   {
                     item_id: cartItems[0].productId,
-                    item_name: cartItems[0].title
+                    item_name: cartItems[0].title,
                   },
                   {
                     item_id: cartItems[1].productId,
-                    item_name: cartItems[1].title
+                    item_name: cartItems[1].title,
                   },
                   {
                     item_id: cartItems[2].productId,
-                    item_name: cartItems[2].title
+                    item_name: cartItems[2].title,
                   },
                   {
                     item_id: cartItems[3].productId,
-                    item_name: cartItems[3].title
+                    item_name: cartItems[3].title,
                   },
                   {
                     item_id: cartItems[4].productId,
-                    item_name: cartItems[4].title
+                    item_name: cartItems[4].title,
                   },
                   {
                     item_id: cartItems[5].productId,
-                    item_name: cartItems[5].title
+                    item_name: cartItems[5].title,
                   },
                   {
                     item_id: cartItems[6].productId,
-                    item_name: cartItems[6].title
+                    item_name: cartItems[6].title,
                   },
                   {
                     item_id: cartItems[7].productId,
-                    item_name: cartItems[7].title
+                    item_name: cartItems[7].title,
                   },
                   {
                     item_id: cartItems[8].productId,
-                    item_name: cartItems[8].title
+                    item_name: cartItems[8].title,
                   },
                   {
                     item_id: cartItems[9].productId,
-                    item_name: cartItems[9].title
+                    item_name: cartItems[9].title,
                   },
-                ]
+                ],
               },
             });
           })
@@ -714,9 +714,7 @@ const Checkout = () => {
                           className="custom-control-input "
                           checked
                         />
-                        <label
-                          className="custom-control-label"
-                        >
+                        <label className="custom-control-label">
                           Sunt de acord cu termenii și condițiile
                         </label>
                       </div>
@@ -885,6 +883,18 @@ const Checkout = () => {
                         defaultValue={userData.zip}
                         name="cf-zip"
                       />
+                    </div>
+                    <div className="col-md-12 form-group">
+                      <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input "
+                          checked
+                        />
+                        <label className="custom-control-label">
+                          Sunt de acord cu termenii și condițiile
+                        </label>
+                      </div>
                     </div>
                     <div className="col-md-12 form-group">
                       <div className="custom-control custom-checkbox">
