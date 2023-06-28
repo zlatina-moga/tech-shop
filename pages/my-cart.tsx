@@ -12,54 +12,18 @@ const MyCard = () => {
   const cart = useSelector((state) => state.cart);
   const isTablet = useMediaQuery("(max-width:500px)");
 
+  let gaItems = cart.products.map((p) => ({
+    item_id: p.itemData[0],
+    item_name: p.itemData[3]
+  }))
+
   const handleEvent = () => {
     ga.event({
       action: "begin_checkout",
       params: {
         currency: "RON",
         value: cart.total.toFixed(2),
-        items: [
-          {
-            item_id: cart.products[0].itemData[0],
-            item_name: cart.products[0].itemData[3]
-          },
-          {
-            item_id: cart.products[1].itemData[0],
-            item_name: cart.products[1].itemData[3]
-          },
-          {
-            item_id: cart.products[2].itemData[0],
-            item_name: cart.products[2].itemData[3]
-          },
-          {
-            item_id: cart.products[3].itemData[0],
-            item_name: cart.products[3].itemData[3]
-          },
-          {
-            item_id: cart.products[4].itemData[0],
-            item_name: cart.products[4].itemData[3]
-          },
-          {
-            item_id: cart.products[5].itemData[0],
-            item_name: cart.products[5].itemData[3]
-          },
-          {
-            item_id: cart.products[6].itemData[0],
-            item_name: cart.products[6].itemData[3]
-          },
-          {
-            item_id: cart.products[7].itemData[0],
-            item_name: cart.products[7].itemData[3]
-          },
-          {
-            item_id: cart.products[8].itemData[0],
-            item_name: cart.products[8].itemData[3]
-          },
-          {
-            item_id: cart.products[9].itemData[0],
-            item_name: cart.products[9].itemData[3]
-          }
-        ],
+        items: gaItems
       },
     });
   }

@@ -114,6 +114,11 @@ const Checkout = () => {
         idLink: c.itemData[8].replace("citgrup", "pcbun"),
       }));
 
+      let gaItems = cartItems.map((p) => ({
+        item_id: p.productId,
+        item_name: p.title,
+      }));
+
       if (user) {
         orderService
           .create({
@@ -158,48 +163,7 @@ const Checkout = () => {
                 currency: "RON",
                 transaction_id: orderNum,
                 value: orderTotal,
-                items: [
-                  {
-                    item_id: cartItems[0].productId,
-                    item_name: cartItems[0].title,
-                  },
-                  {
-                    item_id: cartItems[1].productId,
-                    item_name: cartItems[1].title,
-                  },
-                  {
-                    item_id: cartItems[2].productId,
-                    item_name: cartItems[2].title,
-                  },
-                  {
-                    item_id: cartItems[3].productId,
-                    item_name: cartItems[3].title,
-                  },
-                  {
-                    item_id: cartItems[4].productId,
-                    item_name: cartItems[4].title,
-                  },
-                  {
-                    item_id: cartItems[5].productId,
-                    item_name: cartItems[5].title,
-                  },
-                  {
-                    item_id: cartItems[6].productId,
-                    item_name: cartItems[6].title,
-                  },
-                  {
-                    item_id: cartItems[7].productId,
-                    item_name: cartItems[7].title,
-                  },
-                  {
-                    item_id: cartItems[8].productId,
-                    item_name: cartItems[8].title,
-                  },
-                  {
-                    item_id: cartItems[9].productId,
-                    item_name: cartItems[9].title,
-                  },
-                ],
+                items: gaItems
               },
             });
           })
@@ -253,7 +217,7 @@ const Checkout = () => {
               dispatch(
                 addOrderNum({ orderNumber: orderNum, orderTotal: orderTotal })
               );
-              dispatch(empty());
+              //dispatch(empty());
               router.push("/order-success");
             } else {
               dispatch(empty());
@@ -265,48 +229,7 @@ const Checkout = () => {
                 currency: "RON",
                 transaction_id: orderNum,
                 value: orderTotal,
-                items: [
-                  {
-                    item_id: cartItems[0].productId,
-                    item_name: cartItems[0].title,
-                  },
-                  {
-                    item_id: cartItems[1].productId,
-                    item_name: cartItems[1].title,
-                  },
-                  {
-                    item_id: cartItems[2].productId,
-                    item_name: cartItems[2].title,
-                  },
-                  {
-                    item_id: cartItems[3].productId,
-                    item_name: cartItems[3].title,
-                  },
-                  {
-                    item_id: cartItems[4].productId,
-                    item_name: cartItems[4].title,
-                  },
-                  {
-                    item_id: cartItems[5].productId,
-                    item_name: cartItems[5].title,
-                  },
-                  {
-                    item_id: cartItems[6].productId,
-                    item_name: cartItems[6].title,
-                  },
-                  {
-                    item_id: cartItems[7].productId,
-                    item_name: cartItems[7].title,
-                  },
-                  {
-                    item_id: cartItems[8].productId,
-                    item_name: cartItems[8].title,
-                  },
-                  {
-                    item_id: cartItems[9].productId,
-                    item_name: cartItems[9].title,
-                  },
-                ],
+                items: gaItems
               },
             });
           })
@@ -335,6 +258,11 @@ const Checkout = () => {
         img1: c.itemData[16][0].src,
         imgLink: c.itemData[16][0].src,
         idLink: c.itemData[8].replace("citgrup", "pcbun"),
+      }));
+
+      let gaItems = cartItems.map((p) => ({
+        item_id: p.productId,
+        item_name: p.title,
       }));
 
       if (user) {
@@ -381,48 +309,7 @@ const Checkout = () => {
                 currency: "RON",
                 transaction_id: orderNum,
                 value: orderTotal,
-                items: [
-                  {
-                    item_id: cartItems[0].productId,
-                    item_name: cartItems[0].title,
-                  },
-                  {
-                    item_id: cartItems[1].productId,
-                    item_name: cartItems[1].title,
-                  },
-                  {
-                    item_id: cartItems[2].productId,
-                    item_name: cartItems[2].title,
-                  },
-                  {
-                    item_id: cartItems[3].productId,
-                    item_name: cartItems[3].title,
-                  },
-                  {
-                    item_id: cartItems[4].productId,
-                    item_name: cartItems[4].title,
-                  },
-                  {
-                    item_id: cartItems[5].productId,
-                    item_name: cartItems[5].title,
-                  },
-                  {
-                    item_id: cartItems[6].productId,
-                    item_name: cartItems[6].title,
-                  },
-                  {
-                    item_id: cartItems[7].productId,
-                    item_name: cartItems[7].title,
-                  },
-                  {
-                    item_id: cartItems[8].productId,
-                    item_name: cartItems[8].title,
-                  },
-                  {
-                    item_id: cartItems[9].productId,
-                    item_name: cartItems[9].title,
-                  },
-                ],
+                items: gaItems
               },
             });
           })
@@ -474,48 +361,7 @@ const Checkout = () => {
                 currency: "RON",
                 transaction_id: orderNum,
                 value: orderTotal,
-                items: [
-                  {
-                    item_id: cartItems[0].productId,
-                    item_name: cartItems[0].title,
-                  },
-                  {
-                    item_id: cartItems[1].productId,
-                    item_name: cartItems[1].title,
-                  },
-                  {
-                    item_id: cartItems[2].productId,
-                    item_name: cartItems[2].title,
-                  },
-                  {
-                    item_id: cartItems[3].productId,
-                    item_name: cartItems[3].title,
-                  },
-                  {
-                    item_id: cartItems[4].productId,
-                    item_name: cartItems[4].title,
-                  },
-                  {
-                    item_id: cartItems[5].productId,
-                    item_name: cartItems[5].title,
-                  },
-                  {
-                    item_id: cartItems[6].productId,
-                    item_name: cartItems[6].title,
-                  },
-                  {
-                    item_id: cartItems[7].productId,
-                    item_name: cartItems[7].title,
-                  },
-                  {
-                    item_id: cartItems[8].productId,
-                    item_name: cartItems[8].title,
-                  },
-                  {
-                    item_id: cartItems[9].productId,
-                    item_name: cartItems[9].title,
-                  },
-                ],
+                items: gaItems
               },
             });
           })
