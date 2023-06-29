@@ -160,7 +160,7 @@ const Sidebar = () => {
                   <Link
                     href="/imprimante"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
-                    style={{ fontSize: "18px" }}
+                    style={{ fontSize: "16px" }}
                   >
                     Imprimante
                   </Link>
@@ -177,7 +177,7 @@ const Sidebar = () => {
                   <Link
                     href="/sisteme-pos"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
-                    style={{ fontSize: "18px" }}
+                    style={{ fontSize: "16px" }}
                   >
                     Sisteme POS
                   </Link>
@@ -194,7 +194,7 @@ const Sidebar = () => {
                   <Link
                     href="/ups"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
-                    style={{ fontSize: "18px" }}
+                    style={{ fontSize: "16px" }}
                   >
                     UPS
                   </Link>
@@ -211,7 +211,7 @@ const Sidebar = () => {
                   <Link
                     href="/accesorii"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
-                    style={{ fontSize: "18px" }}
+                    style={{ fontSize: "16px" }}
                   >
                     Accesorii
                   </Link>
@@ -223,7 +223,7 @@ const Sidebar = () => {
                   <Link
                     href="/retelistica"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
-                    style={{ fontSize: "18px" }}
+                    style={{ fontSize: "16px" }}
                   >
                     <img
                       src={netIcon.src}
@@ -240,7 +240,7 @@ const Sidebar = () => {
                   <Link
                     href="/sisteme-solare-fotovoltaice"
                     className="nav-item nav-link font-weight-medium px-1 mr-4"
-                    style={{ fontSize: "18px" }}
+                    style={{ fontSize: "16px" }}
                   >
                     <img
                       src={solarIcon.src}

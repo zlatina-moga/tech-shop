@@ -24,7 +24,8 @@ const SideFilter = ({
   videoCards,
   selectVideo,
   processorsFrequency,
-  selectFrequency
+  selectFrequency,
+  resetClicked
 }) => {
   const router = useRouter();
   const [value, setValue] = useState(1);
@@ -47,9 +48,9 @@ const SideFilter = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        maxWidth: "18rem",
+        maxWidth: "15rem",
         marginBottom: "30px",
-        width: "30%",
+        width: "20%",
       }}
       id="sidebar-wrapper"
     >
@@ -86,6 +87,18 @@ const SideFilter = ({
         </div>
       )}
 
+      <button
+        className="btn btn-block py-3 my-4"
+        style={{ 
+          border: "1px solid #619F42",
+          color: '#619F42',
+          borderRadius: '4px'
+       }}
+       onClick={() => resetClicked(true)}
+      >
+        Resetați filtrele
+      </button>
+
       {categories && (
         <div
           className="sidebar-container"
@@ -107,7 +120,7 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
+                  <h5 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h5>
                   {categories.map((c, idx) => (
                     <button
                       onClick={() => selectCategory(c.slug)}
@@ -119,6 +132,7 @@ const SideFilter = ({
                         background: "transparent",
                         border: "none",
                         borderBottom: "1px solid #EDF1FF",
+                        fontSize: "14px",
                       }}
                     >
                       {router.asPath.includes(c.slug) ? (
@@ -172,7 +186,7 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h4>
+                  <h5 className="py-2 mb-0 pl-4 bg-primary text-white">Tip</h5>
                   {categories2.map((c, idx) => (
                     <button
                       onClick={() => selectCategory(c.slug)}
@@ -184,6 +198,7 @@ const SideFilter = ({
                         background: "transparent",
                         border: "none",
                         borderBottom: "1px solid #EDF1FF",
+                        fontSize: "14px",
                       }}
                     >
                       {router.asPath.includes(c.slug) ? (
@@ -237,9 +252,9 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
+                  <h5 className="py-2 mb-0 pl-4 bg-primary text-white">
                     Brand
-                  </h4>
+                  </h5>
                   {brands.map((c) => (
                     <button
                       className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
@@ -251,6 +266,7 @@ const SideFilter = ({
                         background: "transparent",
                         border: "none",
                         borderBottom: "1px solid #EDF1FF",
+                        fontSize: "14px",
                       }}
                     >
                       {router.asPath.includes(c.slug) ? (
@@ -302,9 +318,9 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-4 bg-primary text-white">
+                  <h5 className="py-2 mb-0 pl-4 bg-primary text-white">
                     {secTitle ? secTitle : "Procesor"}
-                  </h4>
+                  </h5>
                   {processors.map((c, idx) => (
                     <button
                       onClick={() => selectProcessor(c.slug)}
@@ -316,6 +332,7 @@ const SideFilter = ({
                         background: "transparent",
                         border: "none",
                         borderBottom: "1px solid #EDF1FF",
+                        fontSize: "14px",
                       }}
                     >
                       {router.asPath.includes(c.slug) ? (
@@ -369,9 +386,9 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-3 bg-primary text-white">
+                  <h5 className="py-2 mb-0 pl-3 bg-primary text-white">
                     Generatie Procesor
-                  </h4>
+                  </h5>
                   {processorsGeneration.map((c, idx) => (
                     <button
                       onClick={() => selectGeneration(c.slug)}
@@ -383,6 +400,7 @@ const SideFilter = ({
                         background: "transparent",
                         border: "none",
                         borderBottom: "1px solid #EDF1FF",
+                        fontSize: "14px",
                       }}
                     >
                       {router.asPath.includes(c.slug) ? (
@@ -436,9 +454,9 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-3 bg-primary text-white">
-                  Frecventa procesor
-                  </h4>
+                  <h5 className="py-2 mb-0 pl-3 bg-primary text-white">
+                    Frecventa procesor
+                  </h5>
                   {processorsFrequency.map((c, idx) => (
                     <button
                       onClick={() => selectFrequency(c.slug)}
@@ -450,6 +468,7 @@ const SideFilter = ({
                         background: "transparent",
                         border: "none",
                         borderBottom: "1px solid #EDF1FF",
+                        fontSize: "14px",
                       }}
                     >
                       {router.asPath.includes(c.slug) ? (
@@ -503,9 +522,9 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-3 bg-primary text-white">
+                  <h5 className="py-2 mb-0 pl-3 bg-primary text-white">
                     Diagonala
-                  </h4>
+                  </h5>
                   {screens.map((c, idx) => (
                     <button
                       onClick={() => selectScreen(c.slug)}
@@ -570,9 +589,9 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h4 className="py-2 mb-0 pl-3 bg-primary text-white">
+                  <h5 className="py-2 mb-0 pl-3 bg-primary text-white">
                     Model Placa Video
-                  </h4>
+                  </h5>
                   {videoCards.map((c, idx) => (
                     <button
                       onClick={() => selectVideo(c.slug)}
@@ -584,6 +603,7 @@ const SideFilter = ({
                         background: "transparent",
                         border: "none",
                         borderBottom: "1px solid #EDF1FF",
+                        fontSize: "14px",
                       }}
                     >
                       {router.asPath.includes(c.slug) ? (

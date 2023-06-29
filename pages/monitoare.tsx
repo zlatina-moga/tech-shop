@@ -29,6 +29,7 @@ const Monitoare = () => {
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
   const [screen, setScreen] = useState("");
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -69,6 +70,41 @@ const Monitoare = () => {
       setScreens(res);
     });
   }, []);
+
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/monitoare`);
+    router.push(`/monitoare`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_monitoare", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(18).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getHighestPrice(18).then((response) => {
+    setHighestPrice(response[1]);
+  });
+  sortingService.getTypes(18).then((r) => {
+    setCategories(r);
+  });
+  sortingService.getScreenSizes(18).then((res) => {
+    setScreens(res);
+  });
+
+    }
+  }, [clicked, readRemoteFile])
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -529,6 +565,7 @@ const Monitoare = () => {
             brandSelect={onBrandSelect}
             filteredData={data}
             scrSelect={onScreenSelect}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">

@@ -28,6 +28,7 @@ const Accesorii = () => {
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/accesorii");
   const [totalPages, setTotalPages] = useState(1);
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -423,6 +424,38 @@ const Accesorii = () => {
     }
   };
 
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/accesorii`);
+    router.push(`/accesorii`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_accesorii", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(47).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getHighestPrice(47).then((response) => {
+    setHighestPrice(response[1]);
+  });
+  sortingService.getAccessoriesTypes(47).then((r) => {
+    setCategories(r);
+  });
+
+    }
+  }, [clicked, readRemoteFile])
+
   
   let data = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
@@ -459,6 +492,7 @@ const Accesorii = () => {
             multipleQueries={multipleSelected}
             countShow={false}
             totalCount={totalCount}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">

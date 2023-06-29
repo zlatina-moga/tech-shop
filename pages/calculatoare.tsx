@@ -35,6 +35,7 @@ const Calculatoare = () => {
   const [videoCards, setVideoCards] = useState([]);
   const [procFrequencies, setProcFrequencies] = useState([]);
   const [frequency, setFrequency] = useState('');
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -755,6 +756,45 @@ const Calculatoare = () => {
     setMultupleSelected(true);
     setFrequency(fr)
   }
+
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/calculatoare`);
+    router.push(`/calculatoare`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_calculatoare", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(1).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getProcessors(1).then((res) => {
+    setProcessors(res);
+  });
+  sortingService.getHighestPrice(1).then((response) => {
+    setHighestPrice(response[1]);
+  });
+  sortingService.getProcessorGeneration(1).then((r) => {
+    setProcessorsGeneration(r);
+  });
+  sortingService.getTypes(1).then((r) => {
+    setCategories(r);
+  });
+  sortingService.getVideoCards(1).then((resp) => setVideoCards(resp));
+  sortingService.getProccessorsFrequency(1).then((resp) => setProcFrequencies(resp))
+    }
+  }, [clicked, readRemoteFile])
 
   let matchBrand = brands.find((x) => x.slug == brand);
   let matchProc = processors.find((x) => x.slug == processor);
@@ -3092,6 +3132,7 @@ const Calculatoare = () => {
             videoSelect={onVideoSelect}
             processorsFrequency={procFrequencies}
             selectFrequency={onFrecSelect}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">

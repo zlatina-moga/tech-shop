@@ -27,6 +27,7 @@ const Imprimante = () => {
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/imprimante");
   const [totalPages, setTotalPages] = useState(1);
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -64,6 +65,39 @@ const Imprimante = () => {
       setHighestPrice(response[1]);
     });
   }, []);
+
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/imprimante`);
+    router.push(`/imprimante`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_imprimante", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(29).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getTypes(29).then((r) => {
+    setCategories(r);
+  });
+  sortingService.getHighestPrice(29).then((response) => {
+    setHighestPrice(response[1]);
+  });
+
+    }
+  }, [clicked, readRemoteFile])
+
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -309,6 +343,7 @@ const Imprimante = () => {
             multipleQueries={multipleSelected}
             countShow
             totalCount={totalCount}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">

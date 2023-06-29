@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div style={{ maxWidth: "100rem", margin: "0 auto" }}>
+      <div style={{ maxWidth: "90rem", margin: "0 auto" }}>
         <main style={{ paddingTop: "150px" }}>
           <Sidebar />
 
@@ -21,9 +21,9 @@ export default function Home() {
                   style={{ padding: 30, borderRadius: "4px", height: "110px" }}
                 >
                   <h1 className="fa fa-check text-primary m-0 mr-3"></h1>
-                  <h5 className="font-weight-semi-bold m-0">
+                  <h6 className="font-weight-semi-bold m-0">
                     Produse intr-o stare foarte buna
-                  </h5>
+                  </h6>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -32,9 +32,9 @@ export default function Home() {
                   style={{ padding: 30, borderRadius: "4px", height: "110px" }}
                 >
                   <h1 className="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
-                  <h5 className="font-weight-semi-bold m-0">
+                  <h6 className="font-weight-semi-bold m-0">
                     Transport gratuit*
-                  </h5>
+                  </h6>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -43,9 +43,9 @@ export default function Home() {
                   style={{ padding: 30, borderRadius: "4px", height: "110px" }}
                 >
                   <h1 className="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                  <h5 className="font-weight-semi-bold m-0">
+                  <h6 className="font-weight-semi-bold m-0">
                     Retur în 14 zile
-                  </h5>
+                  </h6>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -54,9 +54,9 @@ export default function Home() {
                   style={{ padding: 30, borderRadius: "4px", height: "110px" }}
                 >
                   <h1 className="fa fa-phone-volume text-primary m-0 mr-3"></h1>
-                  <h5 className="font-weight-semi-bold m-0">
+                  <h6 className="font-weight-semi-bold m-0">
                     Relații Clienți <br /> +40(721) 909 049
-                  </h5>
+                  </h6>
                 </div>
               </div>
             </div>
@@ -65,12 +65,12 @@ export default function Home() {
             <div className="row justify-content-md-center py-2 px-xl-5">
               <div className="col-md-6 col-12 py-5">
                 <div className="text-center mb-2 pb-2">
-                  <h2 className="section-title px-5 mb-3 pb-3">
+                  <h4 className="section-title px-5 mb-3 pb-3">
                     <span className="bg-secondary px-2">
                       Dorești un laptop care nu face parte din oferta?
                     </span>
-                  </h2>
-                  <p style={{ fontSize: "20px" }}>
+                  </h4>
+                  <p style={{ fontSize: "18px" }}>
                     Ne poți suna și te ajutăm imediat!
                   </p>
                   <a
@@ -80,7 +80,7 @@ export default function Home() {
                     <i className="fa fa-phone-alt text-primary mr-2"></i>
                     +40(721) 909 049
                   </a>
-                  <p className="mt-4" style={{ fontSize: "20px" }}>
+                  <p className="mt-4" style={{ fontSize: "18px" }}>
                     Aducem ORICE echipament IT din lume!
                   </p>
                 </div>

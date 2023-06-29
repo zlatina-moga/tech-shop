@@ -44,6 +44,7 @@ interface ILaptopPage {
   videoSelect?: any;
   processorsFrequency?: any[];
   selectFrequency?: any;
+  reset?: any;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -74,7 +75,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   videoCards,
   videoSelect,
   processorsFrequency,
-  selectFrequency
+  selectFrequency,
+  reset
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -89,7 +91,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
       <div
         className={classNames("container-fluid pt-5", "laptops-page")}
         style={{
-          maxWidth: "100rem",
+          maxWidth: "90rem",
           display: "flex",
         }}
       >
@@ -114,8 +116,9 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           selectVideo={videoSelect}
           processorsFrequency={processorsFrequency}
           selectFrequency={selectFrequency}
+          resetClicked={reset}
         />
-        <div style={{ width: "80%" }}>
+        <div style={{ width: "100%" }}>
           <div className="text-center mb-4">
             <h1 className={`font-${veneer.variable} font-sans`}>{title}</h1>
             {totalCount > 1 ? (
@@ -177,7 +180,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
                     key={idx}
-                    style={{ maxWidth: "270px" }}
+                    style={{ maxWidth: "250px" }}
                   >
                     <div
                       className={classNames(
@@ -349,7 +352,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
                     key={idx}
-                    style={{ maxWidth: "270px" }}
+                    style={{ maxWidth: "250px" }}
                   >
                     <div
                       className={classNames(

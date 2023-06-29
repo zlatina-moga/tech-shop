@@ -27,6 +27,7 @@ const UPS = () => {
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/ups");
   const [totalPages, setTotalPages] = useState(1);
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -64,6 +65,39 @@ const UPS = () => {
       });
     });
   }, [])
+
+
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/ups`);
+    router.push(`/ups`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_ups", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(40).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getHighestPrice(40).then((response) => {
+    setHighestPrice(response[1]);
+  sortingService.getTypes(40).then((r) => {
+      setCategories(r);
+    });
+  });
+
+    }
+  }, [clicked, readRemoteFile])
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -304,6 +338,7 @@ const UPS = () => {
             multipleQueries={multipleSelected}
             countShow
             totalCount={totalCount}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">

@@ -35,6 +35,7 @@ const Laptopuri = () => {
   const [videoCards, setVideoCards] = useState([]);
   const [procFrequencies, setProcFrequencies] = useState([]);
   const [frequency, setFrequency] = useState('');
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -80,6 +81,46 @@ const Laptopuri = () => {
     sortingService.getVideoCards(5).then((resp) => setVideoCards(resp));
     sortingService.getProccessorsFrequency(5).then((resp) => setProcFrequencies(resp))
   }, []);
+
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/laptop`);
+    router.push(`/laptop`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_laptop", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(5).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getProcessors(5).then((res) => {
+    setProcessors(res);
+  });
+  sortingService.getHighestPrice(5).then((response) => {
+    setHighestPrice(response[1]);
+  });
+  sortingService.getTypes(5).then((r) => {
+    setCategories(r);
+  });
+  sortingService.getProcessorGeneration(5).then((r) => {
+    setProcessorsGeneration(r);
+  });
+  sortingService.getVideoCards(5).then((resp) => setVideoCards(resp));
+  sortingService.getProccessorsFrequency(5).then((resp) => setProcFrequencies(resp))
+
+    }
+  }, [clicked, readRemoteFile])
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -3058,6 +3099,7 @@ const Laptopuri = () => {
             videoSelect={onVideoSelect}
             processorsFrequency={procFrequencies}
             selectFrequency={onFrecSelect}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">

@@ -30,6 +30,7 @@ const SolarPanels = () => {
   const [multipleSelected, setMultupleSelected] = useState<boolean>(false);
   const [baseLink, setBaseLink] = useState("/sisteme-solare-fotovoltaice");
   const [totalPages, setTotalPages] = useState(1);
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -64,6 +65,35 @@ const SolarPanels = () => {
       setHighestPrice(response[1]);
     });
   }, []);
+
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/sisteme-solare-fotovoltaice`);
+    router.push(`/sisteme-solare-fotovoltaice`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_sisteme-solare-fotovoltaice", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(95).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getHighestPrice(95).then((response) => {
+    setHighestPrice(response[1]);
+  });
+
+    }
+  }, [clicked, readRemoteFile])
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -315,6 +345,7 @@ useEffect(() => {
             multipleQueries={multipleSelected}
             countShow={false}
             totalCount={totalCount}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">

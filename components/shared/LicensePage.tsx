@@ -85,7 +85,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
       <div
         className={classNames("container-fluid pt-5", "laptops-page")}
         style={{
-          maxWidth: "100rem",
+          maxWidth: "90rem",
           display: "flex",
         }}
       >
@@ -108,8 +108,10 @@ const LicensePage: React.FC<ILaptopPage> = ({
           selectGeneration={generationSelect}
           videoCards={videoCards}
           selectVideo={videoSelect}
+          processorsFrequency={''}
+          selectFrequency={''}
         />
-        <div style={{ width: "80%" }}>
+        <div style={{ width: "100%" }}>
           <div className="text-center mb-4">
             <h1 className={`font-${veneer.variable} font-sans`}>{title}</h1>
             {totalCount > 1 ? (
@@ -171,7 +173,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
                     key={idx}
-                    style={{ maxWidth: "270px" }}
+                    style={{ maxWidth: "250px" }}
                   >
                     <div
                       className={classNames(

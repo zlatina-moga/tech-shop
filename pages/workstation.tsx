@@ -35,6 +35,7 @@ const Workstations = () => {
   const [videoCards, setVideoCards] = useState([]);
   const [procFrequencies, setProcFrequencies] = useState([]);
   const [frequency, setFrequency] = useState('');
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -80,6 +81,46 @@ const Workstations = () => {
     sortingService.getVideoCards(15).then((resp) => setVideoCards(resp))
     sortingService.getProccessorsFrequency(15).then((resp) => setProcFrequencies(resp))
   }, []);
+
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/workstation`);
+    router.push(`/workstation`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_workstation", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(15).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getProcessors(15).then((res) => {
+    setProcessors(res);
+  });
+  sortingService.getHighestPrice(15).then((response) => {
+    setHighestPrice(response[1]);
+  });
+  sortingService.getTypes(15).then((r) => {
+    setCategories(r);
+  });
+  sortingService.getProcessorGeneration(15).then((r) => {
+    setProcessorsGeneration(r);
+  });
+  sortingService.getVideoCards(15).then((resp) => setVideoCards(resp))
+  sortingService.getProccessorsFrequency(15).then((resp) => setProcFrequencies(resp))
+
+    }
+  }, [clicked, readRemoteFile])
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -3092,6 +3133,7 @@ const Workstations = () => {
             videoSelect={onVideoSelect}
             processorsFrequency={procFrequencies}
             selectFrequency={onFrecSelect}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">

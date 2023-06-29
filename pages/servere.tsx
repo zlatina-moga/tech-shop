@@ -29,6 +29,7 @@ const Laptopuri = () => {
   const [baseLink, setBaseLink] = useState("/servere");
   const [totalPages, setTotalPages] = useState(1);
   const [processor, setProcessor] = useState("");
+  const [clicked, setClicked] = useState<boolean>(false);
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -69,6 +70,41 @@ const Laptopuri = () => {
       setCategories(r);
     });
   }, []);
+
+  const onReset = () => {
+    setClicked(true);
+    setMultupleSelected(false);
+    setBaseLink(`/servere`);
+    router.push(`/servere`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setShow(false)
+    //@ts-ignore
+    readRemoteFile( "https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_servere", {
+      skipEmptyLines: true,
+      complete: (results) => {
+        setFilteredData(results.data.slice(1));
+        setShow(true)
+      },
+    }
+  );
+  sortingService.getBrands(9).then((result) => {
+    setBrands(result);
+  });
+  sortingService.getProcessors(9).then((res) => {
+    setProcessors(res);
+  });
+  sortingService.getHighestPrice(9).then((response) => {
+    setHighestPrice(response[1]);
+  });
+  sortingService.getTypes(9).then((r) => {
+    setCategories(r);
+  });
+
+    }
+  }, [clicked, readRemoteFile])
 
   const onSort = (sort) => {
     setSelectedSort(sort);
@@ -598,6 +634,7 @@ const Laptopuri = () => {
             countShow
             totalCount={totalCount}
             procSelect={onProcessorSelect}
+            reset={onReset}
           />
           {currentPage === 0 || totalPages < 2 ? null : (
             <nav id="pagination-container">
