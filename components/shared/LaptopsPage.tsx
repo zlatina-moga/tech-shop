@@ -42,6 +42,8 @@ interface ILaptopPage {
   generationSelect?: any;
   videoCards?: any[];
   videoSelect?: any;
+  processorsFrequency?: any[];
+  selectFrequency?: any;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -71,6 +73,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   generationSelect,
   videoCards,
   videoSelect,
+  processorsFrequency,
+  selectFrequency
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -108,6 +112,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           selectGeneration={generationSelect}
           videoCards={videoCards}
           selectVideo={videoSelect}
+          processorsFrequency={processorsFrequency}
+          selectFrequency={selectFrequency}
         />
         <div style={{ width: "80%" }}>
           <div className="text-center mb-4">

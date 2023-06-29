@@ -22,7 +22,9 @@ const SideFilter = ({
   selectGeneration,
   countShow,
   videoCards,
-  selectVideo
+  selectVideo,
+  processorsFrequency,
+  selectFrequency
 }) => {
   const router = useRouter();
   const [value, setValue] = useState(1);
@@ -373,6 +375,73 @@ const SideFilter = ({
                   {processorsGeneration.map((c, idx) => (
                     <button
                       onClick={() => selectGeneration(c.slug)}
+                      className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
+                        router.asPath.includes(c.slug) ? "active" : ""
+                      }`}
+                      key={idx}
+                      style={{
+                        background: "transparent",
+                        border: "none",
+                        borderBottom: "1px solid #EDF1FF",
+                      }}
+                    >
+                      {router.asPath.includes(c.slug) ? (
+                        <i
+                          className="fas fa-check"
+                          style={{
+                            color: "#57A046",
+                          }}
+                        ></i>
+                      ) : (
+                        ""
+                      )}
+                      {c.name}
+                      {countShow && (
+                        <span className="inner-count">({c.count})</span>
+                      )}
+                    </button>
+                  ))}
+                </ul>
+              </nav>
+              <nav
+                className="collapse show navbar navbar-vertical navbar-light align-items-start p-0"
+                id="navbar-vertical"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              ></nav>
+            </div>
+          </div>
+        </div>
+      )}
+      {processorsFrequency && (
+        <div
+          className="sidebar-container mt-4"
+          style={{ display: "block", maxWidth: "260px" }}
+        >
+          <div className="row">
+            <div className="">
+              <nav
+                className="collapse show navbar-vertical navbar-light p-0"
+                id="navbar-vertical-2"
+                style={{
+                  borderBottomLeftRadius: "4px",
+                  borderBottomRightRadius: "4px",
+                }}
+              >
+                <ul
+                  className="navbar-nav overflow-hidden relative"
+                  style={{
+                    borderRadius: "4px",
+                  }}
+                >
+                  <h4 className="py-2 mb-0 pl-3 bg-primary text-white">
+                  Frecventa procesor
+                  </h4>
+                  {processorsFrequency.map((c, idx) => (
+                    <button
+                      onClick={() => selectFrequency(c.slug)}
                       className={`nav-item nav-link py-3 sidebar-link  d-flex justify-content-between ${
                         router.asPath.includes(c.slug) ? "active" : ""
                       }`}
