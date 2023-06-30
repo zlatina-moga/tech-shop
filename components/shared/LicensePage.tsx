@@ -110,6 +110,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
           selectVideo={videoSelect}
           processorsFrequency={''}
           selectFrequency={''}
+          resetClicked={''}
         />
         <div style={{ width: "100%" }}>
           <div className="text-center mb-4">

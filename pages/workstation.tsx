@@ -2184,11 +2184,11 @@ const Workstations = () => {
           .then((response) => {
             setHighestPrice(response[1]);
           });
-          sortingService.getProcessorsByBrandFreq(16, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+          sortingService.getProcessorsByBrandFreq(16, `${matchBrand.slug}-${matchBrand.id}`, `${matchFreq.slug}-${matchFreq.id}`).then((res) => {
             setProcessors(res);
           })
-          sortingService.getVideosByBrandFreq(16, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((r) => setVideoCards(r))
-          sortingService.getGenerationsByBrandFreq(16, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((r) => setProcessorsGeneration(r))
+          sortingService.getVideosByBrandFreq(16, `${matchBrand.slug}-${matchBrand.id}`, `${matchFreq.slug}-${matchFreq.id}`).then((r) => setVideoCards(r))
+          sortingService.getGenerationsByBrandFreq(16, `${matchBrand.slug}-${matchBrand.id}`, `${matchFreq.slug}-${matchFreq.id}`).then((r) => setProcessorsGeneration(r))
       } else if (category == "second-hand") {
         let arr = laptopsData
           .filter((r) => r[2] == "Second Hand")
@@ -2200,11 +2200,11 @@ const Workstations = () => {
           .then((response) => {
             setHighestPrice(response[1]);
           });
-          sortingService.getProcessorsByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+          sortingService.getProcessorsByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchFreq.slug}-${matchFreq.id}`).then((res) => {
             setProcessors(res);
           })
-          sortingService.getVideosByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((r) => setVideoCards(r))
-          sortingService.getGenerationsByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((r) => setProcessorsGeneration(r))
+          sortingService.getVideosByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`,`${matchFreq.slug}-${matchFreq.id}`).then((r) => setVideoCards(r))
+          sortingService.getGenerationsByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchFreq.slug}-${matchFreq.id}`).then((r) => setProcessorsGeneration(r))
       } else if (category == "nou") {
         let arr = laptopsData
           .filter((r) => r[2] == "Nou")
@@ -2216,11 +2216,11 @@ const Workstations = () => {
           .then((response) => {
             setHighestPrice(response[1]);
           });
-          sortingService.getProcessorsByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((res) => {
+          sortingService.getProcessorsByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchFreq.slug}-${matchFreq.id}`).then((res) => {
             setProcessors(res);
           })
-          sortingService.getVideosByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((r) => setVideoCards(r))
-          sortingService.getGenerationsByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((r) => setProcessorsGeneration(r))
+          sortingService.getVideosByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`,`${matchFreq.slug}-${matchFreq.id}`).then((r) => setVideoCards(r))
+          sortingService.getGenerationsByBrandFreq(15, `${matchBrand.slug}-${matchBrand.id}`, `${matchFreq.slug}-${matchFreq.id}`).then((r) => setProcessorsGeneration(r))
       }
     } else if (category != "" && processor != "" && frequency != '' ) {
       if (category == "refurbished") {
