@@ -722,6 +722,7 @@ const Laptopuri = () => {
         sortingService.getProcessorsByBrand(9, `${matchBrand.slug}-${matchBrand.id}`).then((result) => {
           setProcessors(result);
         });
+        sortingService.getFreqByBrand(9, `${matchBrand.slug}-${matchBrand.id}`).then((r) => setProcFrequencies(r))
     } else if (category != "") {
       if (category == "refurbished") {
         let arr = laptopsData.filter((r) => r[2] == "Refurbished");
@@ -733,6 +734,7 @@ const Laptopuri = () => {
           setHighestPrice(response[1]);
         });
         sortingService.getProcessors(10).then((r) => setProcessors(r))
+        sortingService.getFreqs(10).then((r) => setProcFrequencies(r))
       } else if (category == "second-hand") {
         let arr = laptopsData.filter((r) => r[2] == "Second Hand");
         setFilteredData(arr);
@@ -743,6 +745,7 @@ const Laptopuri = () => {
           setHighestPrice(response[1]);
         });
         sortingService.getProcessors(11).then((r) => setProcessors(r))
+        sortingService.getFreqs(11).then((r) => setProcFrequencies(r))
 
       } else if (category == "nou") {
         let arr = laptopsData.filter((r) => r[2] == "Noi");
@@ -754,6 +757,7 @@ const Laptopuri = () => {
           setHighestPrice(response[1]);
         });
         sortingService.getProcessors(56).then((r) => setProcessors(r))
+        sortingService.getFreqs(56).then((r) => setProcFrequencies(r))
       }
     } else if (processor != "") {
       let arr = laptopsData.filter(
@@ -773,6 +777,7 @@ const Laptopuri = () => {
       sortingService.getBrandsByProcessor(9,`${matchProc.slug}-${matchProc.id}`).then((response) => {
         setBrands(response)
       });
+      sortingService.getFreqByProc(9,`${matchProc.slug}-${matchProc.id}`).then((r) => setProcFrequencies(r))
     } else if (frequency != "") {
       let arr = laptopsData.filter((r) => r[30] == matchFreq.name)
       setFilteredData(arr);
