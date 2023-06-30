@@ -42,6 +42,7 @@ interface ILaptopPage {
   generationSelect?: any;
   videoCards?: any[];
   videoSelect?: any;
+  reset?: any;
 }
 
 const LicensePage: React.FC<ILaptopPage> = ({
@@ -71,6 +72,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
   videoCards,
   videoSelect,
   filteredData,
+  reset
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -109,8 +111,8 @@ const LicensePage: React.FC<ILaptopPage> = ({
           videoCards={videoCards}
           selectVideo={videoSelect}
           processorsFrequency={''}
-          selectFrequency={''}
-          resetClicked={''}
+          selectFrequency
+          resetClicked={reset}
         />
         <div style={{ width: "100%" }}>
           <div className="text-center mb-4">
@@ -249,7 +251,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
                     key={idx}
-                    style={{ maxWidth: "270px" }}
+                    style={{ maxWidth: "250px" }}
                   >
                     <div
                       className={classNames(

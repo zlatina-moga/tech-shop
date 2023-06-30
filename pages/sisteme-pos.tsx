@@ -366,7 +366,7 @@ const SistemePOS = () => {
           .filter((r) => r[2] == "Refurbished")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[27].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[24].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           );
         setFilteredData(arr);
         sortingService
@@ -379,7 +379,7 @@ const SistemePOS = () => {
           .filter((r) => r[2] == "Second Hand")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[27].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[24].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           );
           setFilteredData(arr);
           sortingService
@@ -394,7 +394,7 @@ const SistemePOS = () => {
           .filter((r) => r[2] == "Noi")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[27].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[24].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           );
           setFilteredData(arr);
           sortingService
@@ -451,7 +451,7 @@ const SistemePOS = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Refurbished")
           .filter(
-            (r) => r[27].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[24].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           );
         setFilteredData(arr);
         sortingService.getBrandsByProcessor(35, `${matchProc.slug}-${matchProc.id}`).then((result) => {
@@ -466,7 +466,7 @@ const SistemePOS = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Second Hand")
           .filter(
-            (r) => r[27].toLowerCase() ==  processor.split('-').join(' ')
+            (r) => r[24].toLowerCase() ==  processor.split('-').join(' ')
           );
         setFilteredData(arr);
         sortingService.getBrandsByProcessor(36, `${matchProc.slug}-${matchProc.id}`).then((result) => {
@@ -480,7 +480,7 @@ const SistemePOS = () => {
       } else if (category == "nou") {
         let arr = laptopsData
           .filter((r) => r[2] == "Noi")
-          .filter((r) => r[27].toLowerCase() ==  processor.split('-').join(' '));
+          .filter((r) => r[24].toLowerCase() ==  processor.split('-').join(' '));
         setFilteredData(arr);
         sortingService.getBrandsByProcessor(58, `${matchProc.slug}-${matchProc.id}`).then((result) => {
           setBrands(result);
@@ -495,7 +495,7 @@ const SistemePOS = () => {
       let arr = laptopsData
       .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
       .filter(
-        (r) => r[27].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+        (r) => r[24].toLowerCase() == processor.split('-').join(' ').toLowerCase()
       );
     setFilteredData(arr);
     sortingService.getTypesByProcessorAndBrand(34, `${matchProc.slug}-${matchProc.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((result) => {
@@ -559,7 +559,7 @@ const SistemePOS = () => {
       }
     } else if (processor != "") {
       let arr = laptopsData.filter(
-        (r) => r[27].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+        (r) => r[24].toLowerCase() == processor.split('-').join(' ').toLowerCase()
       );
       setFilteredData(arr);
       sortingService

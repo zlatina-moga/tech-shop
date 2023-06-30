@@ -14,6 +14,7 @@ const Software = () => {
   const [baseLink, setBaseLink] = useState("/licenta-software");
   const [category, setCategory] = useState("");
   let [filteredData, setFilteredData] = useState([]);
+  const [clicked, setClicked] = useState<boolean>(false);
 
   useEffect(() => {
     router.push(selectedSort);
@@ -57,6 +58,18 @@ const Software = () => {
     }
   }, [category]);
 
+  const onReset = () => {
+    setClicked(true);
+    setBaseLink(`/licenta-software`);
+    router.push(`/licenta-software`);
+  }
+
+  useEffect(() => {
+    if (clicked) {
+      setFilteredData(laptopsData)
+    }
+  }, [clicked])
+
   return (
     <>
       <Navbar />
@@ -69,6 +82,7 @@ const Software = () => {
         baseLink={baseLink}
         catSelect={onCatSelect}
         filteredData={filteredData}
+        reset={onReset}
       />
       <Footer />
     </>
