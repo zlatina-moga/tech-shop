@@ -21,7 +21,7 @@ import emailjs from "emailjs-com";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as ga from "../../lib/gtag";
 
-const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, warrantyOptions, images }) => {
+const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, warrantyOptions, images, data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
@@ -460,6 +460,107 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
               </div>
               <Toaster position="top-right" />
             </div>
+            { data[3] && data[3].length > 0 && <div className="container-fluid py-5">
+            <h3 className="font-weight-bold">Vă mai recomandăm și</h3>
+            <div
+              className="row pb-3 justify-content-center, ml-xl-5"
+              style={{ maxWidth: "80rem", justifyContent: "center" }}
+            >
+              {data[3] && data[3].map((item, idx) => (
+                <div
+                  className={classNames(`pb-1`, "laptop-card")}
+                  key={idx}
+                  style={{ maxWidth: "320px" }}
+                >
+                  <div
+                    className={classNames(
+                      "card product-item border border-gray rounded mb-4",
+                      "inner-container"
+                    )}
+                    style={{ alignItems: "stretch", height: "580px" }}
+                    onClick={() => router.push(`/${item.permalink}`, undefined, {
+                      shallow: true, scroll: true}
+                    )}
+                  >
+                      <div
+                        className={classNames(
+                          "card-header product-img position-relative overflow-hidden bg-transparent",
+                          "img-wrapper"
+                        )}
+                      >
+                        {item.has_discount && (
+                          <div className="discount-container">
+                            <div>
+                              <p>{item.discount_percent}</p>
+                            </div>
+                          </div>
+                        )}
+
+                        <img
+                          className="img-fluid w-100"
+                          src={item.featured_image.src}
+                          alt=""
+                          //style={{maxWidth: '200px'}}
+                        />
+                      </div>
+                    <div className="card-body text-center p-3 pt-4 relative">
+                      <h6
+                        className=""
+                        style={{
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          maxHeight: "95px",
+                          fontWeight: '600'
+                        }}
+                      >
+                        {item.name}
+                      </h6>
+                      {item.has_discount && (
+                        <div className="d-flex justify-content-center">
+                          <del>
+                            {item.initial_price}
+                            Lei + TVA
+                          </del>
+                        </div>
+                      )}
+
+                      <div className="d-flex justify-content-center">
+                        {item.has_discount ? (
+                          <p style={{
+                            color: '#004f67',
+                            fontSize: '18px',
+                            fontWeight: '700',
+                            position: 'absolute',
+                            bottom: '10%',
+
+                          }}>{item.final_price} Lei + TVA</p>
+                        ) : (
+                          <h6 style={{
+                            color: '#90bd40',
+                            fontSize: '18px',
+                            fontWeight: '700',
+                            position: 'absolute',
+                            bottom: '10%',
+                          }}>{item.final_price} Lei + TVA</h6>
+                        )}
+                      </div>
+                    </div>
+                    <div className="card-footer w-100 bg-light" >
+                      <button
+                        onClick={() => router.push(`/${item.permalink}`, undefined, {
+                          shallow: true, scroll: true}
+                        )}
+                        className="btn btn-primary add-to-cart"
+                        id='recommendation-card'
+                      >
+                        Vezi detalii
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>}
           </div>
       </PhotoProvider>
     </div>

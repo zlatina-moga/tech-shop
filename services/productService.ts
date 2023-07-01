@@ -12,6 +12,8 @@ export const getProductDetails = (id) => request.get(`https://api.citgrup.ro/pub
 export const getSearchedItems = (search) =>
   request.get(`https://api.citgrup.ro/public/products/search?${search}`);
 
+export const getRecommendedProducts = (id) => request.get(`https://api.citgrup.ro/public/products/${id}/extra-products/recentlyAddedToFavourite`)
+
 //<-------------------------------------------------------------------------------->
 
 /*export const getAllLaptops = (page) =>

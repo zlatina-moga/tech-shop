@@ -14,6 +14,7 @@ const CableDetails = () => {
   const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     productService
@@ -38,6 +39,15 @@ const CableDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    productService
+      .getRecommendedProducts(id)
+      .then((res) => setData(res))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+  
   return (
     <>
       <Navbar />
@@ -49,6 +59,7 @@ const CableDetails = () => {
           breadcrumbs={cablesBreadCrmbs}
           techSpecs={techDetails}
           images={itemData[16]}
+          data={data}
         />
       )}
       <Footer />

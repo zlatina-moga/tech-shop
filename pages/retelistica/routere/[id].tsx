@@ -14,6 +14,7 @@ const RouterDetails = () => {
   const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -39,6 +40,16 @@ const RouterDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    productService
+      .getRecommendedProducts(id)
+      .then((res) => setData(res))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+  
+
   return (
     <>
       <Navbar />
@@ -50,6 +61,7 @@ const RouterDetails = () => {
           breadcrumbs={routerBrcrmbs}
           techSpecs={techDetails}
           images={itemData[16]}
+          data={data}
         />
       )}
       <Footer />

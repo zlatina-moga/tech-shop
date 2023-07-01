@@ -15,6 +15,7 @@ const NewServerDetails = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
   const [productDetails, setProductDetails] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -51,6 +52,15 @@ const NewServerDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    productService
+      .getRecommendedProducts(id)
+      .then((res) => setData(res))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <>
       <Navbar />
@@ -62,6 +72,7 @@ const NewServerDetails = () => {
           breadcrumbs={serverNewBrcrmbs}
           techSpecs={techDetails}
           images={itemData[16]}
+          data={data}
         />
       )}
       <Footer />

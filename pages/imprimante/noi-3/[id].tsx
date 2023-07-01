@@ -14,6 +14,7 @@ const NewPrinterDetails = () => {
   const [itemData, seItemsData] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
   const [techDetails, setTechDetails] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -39,6 +40,17 @@ const NewPrinterDetails = () => {
       });
   }, [id]);
 
+
+  useEffect(() => {
+    productService
+      .getRecommendedProducts(id)
+      .then((res) => setData(res))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+  
+
   return (
     <>
       <Navbar />
@@ -50,6 +62,7 @@ const NewPrinterDetails = () => {
           breadcrumbs={printerNewBrcrmbs}
           techSpecs={techDetails}
           images={itemData[16]}
+          data={data}
         />
       )}
       <Footer />

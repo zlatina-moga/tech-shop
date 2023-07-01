@@ -324,7 +324,7 @@ form .auth-field {
     }
 
     p.discount {
-      color: #004F67;
+      color: #004f67;
       font-size: 20px;
       font-weight: 700;
       position: absolute;
@@ -361,7 +361,7 @@ form .auth-field {
       margin-right: 5px;
     }
     &:hover {
-      background-color: #619F42 !important;
+      background-color: #619f42 !important;
       color: white !important;
       .inner-count {
         color: white !important;
@@ -378,7 +378,7 @@ form .auth-field {
     //background-color: #90BD3F;
     .inner-count {
       //color: white !important
-      color: #57A046 !important;
+      color: #57a046 !important;
     }
   }
   .landing-img-wrapper {
@@ -606,19 +606,64 @@ form .auth-field {
 
 .page-item:hover {
   #arrow {
-    color: #EFC90A !important;
+    color: #efc90a !important;
   }
 }
 
 .laptops-page {
   .feed-container {
     background-color: transparent;
-    border: 1px solid #609E42;
+    border: 1px solid #609e42;
     border-radius: 4px;
     padding: 5px 10px;
-    color: #609E42;
+    color: #609e42;
     &:hover {
-      background: #EDF1FF;
+      background: #edf1ff;
+    }
+  }
+}
+
+.page-details {
+  .laptop-card {
+    &:hover {
+      cursor: pointer !important;
+    }
+    #recommendation-card {
+      width: 100%;
+      position: relative;
+      padding: 5px 5px 5px 30px;
+      border-radius: 4px;
+      border: none;
+      text-transform: none;
+      font-weight: bold;
+      background: #90bd3f;
+      color: white;
+      &::before {
+        content: " ";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: #004f67;
+        width: 40px !important;
+        height: 100%;
+        border-radius: 4px 0px 0px 4px;
+      }
+      &::after {
+        content: " ";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 60px !important;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: 20px !important;
+        background-position: 7px 7px !important;
+        background: url(../public/images/cart_big.png) no-repeat;
+      }
+      &:hover {
+        background: #E8CA44;
+        color: white !important;
+      }
     }
   }
 }
