@@ -70,7 +70,7 @@ const ProcDetail = () => {
       <div
         className={classNames("container-fluid pt-10", "laptops-page")}
         style={{
-          maxWidth: "100rem",
+          maxWidth: "80rem",
           display: "flex",
           marginBottom: "5rem",
         }}
@@ -143,7 +143,7 @@ const ProcDetail = () => {
             <div
               className={classNames("container-fluid pt-5", "laptops-page")}
               style={{
-                maxWidth: "100rem",
+                maxWidth: "80rem",
                 display: "flex",
               }}
             >

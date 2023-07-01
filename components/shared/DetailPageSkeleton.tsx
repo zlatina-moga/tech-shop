@@ -21,7 +21,7 @@ const DetailPageSkeleton = () => {
           />
         </div>
 
-        <div className="container-fluid py-5" style={{ maxWidth: "90rem" }}>
+        <div className="container-fluid py-5" style={{ maxWidth: "80rem" }}>
           <div className="row px-xl-5">
             <div className="col-lg-5 pb-5">
               <Skeleton width={400} height={400} />

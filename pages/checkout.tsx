@@ -395,7 +395,7 @@ const Checkout = () => {
       <Navbar />
       <div
         className={classNames("container-fluid pt-5", "laptops-page")}
-        style={{ maxWidth: "100rem", marginTop: "50px" }}
+        style={{ maxWidth: "80rem", marginTop: "50px" }}
       >
         <form onSubmit={onSubmit}>
           <div className="row px-xl-5">

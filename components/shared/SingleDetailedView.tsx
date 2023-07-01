@@ -427,7 +427,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                   <h3 style={{ fontWeight: "600" }}>
                     Specificatii produs {itemData[28]} {itemData[6]}
                   </h3>
-                <section style={{maxWidth: '90rem'}} dangerouslySetInnerHTML={{__html: itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')}}></section>
+                <section style={{maxWidth: '80rem'}} dangerouslySetInnerHTML={{__html: itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')}}></section>
                 <div
                   style={{
                     display: "flex",

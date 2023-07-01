@@ -43,6 +43,8 @@ interface ILaptopPage {
   videoCards?: any[];
   videoSelect?: any;
   reset?: any;
+  formats?: any[];
+  selectFormat?: any
 }
 
 const LicensePage: React.FC<ILaptopPage> = ({
@@ -72,7 +74,9 @@ const LicensePage: React.FC<ILaptopPage> = ({
   videoCards,
   videoSelect,
   filteredData,
-  reset
+  reset,
+  formats,
+  selectFormat
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -87,7 +91,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
       <div
         className={classNames("container-fluid pt-5", "laptops-page")}
         style={{
-          maxWidth: "90rem",
+          maxWidth: "80rem",
           display: "flex",
         }}
       >
@@ -113,6 +117,8 @@ const LicensePage: React.FC<ILaptopPage> = ({
           processorsFrequency={''}
           selectFrequency
           resetClicked={reset}
+          formats={formats}
+          selectFormat={selectFormat}
         />
         <div style={{ width: "100%" }}>
           <div className="text-center mb-4">
@@ -176,7 +182,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
                     key={idx}
-                    style={{ maxWidth: "250px" }}
+                    style={{ maxWidth: "220px" }}
                   >
                     <div
                       className={classNames(
@@ -251,7 +257,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
                     key={idx}
-                    style={{ maxWidth: "250px" }}
+                    style={{ maxWidth: "220px" }}
                   >
                     <div
                       className={classNames(
@@ -299,7 +305,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
                           {itemData.title}
                         </h6>
                         {itemData.oldPrice &&
-                          itemData.oldPrice.split(".")[1] && (
+                           (
                             <div className="d-flex justify-content-center">
                               <h6 className="text-muted pb-2 price-2">
                                 <del>{itemData.oldPrice}</del>
@@ -308,7 +314,8 @@ const LicensePage: React.FC<ILaptopPage> = ({
                           )}
 
                         <div className="d-flex justify-content-center">
-                          <h6 className="price">{itemData.price} + TVA</h6>
+                          {itemData.discount ?  <p className="discount">{itemData.price} + TVA</p> :  <h6 className="price">{itemData.price} + TVA</h6>}
+                         
                         </div>
                       </div>
                       <div className="card-footer w-100 bg-light">

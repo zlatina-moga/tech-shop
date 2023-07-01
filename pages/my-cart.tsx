@@ -46,7 +46,7 @@ const MyCard = () => {
       </div>
       <div
         className="container-fluid pt-5"
-        style={{ maxWidth: "100rem", margin: "0 auto" }}
+        style={{ maxWidth: "80rem", margin: "0 auto" }}
         id="shopping-cart"
       >
         <div className="row px-xl-5">

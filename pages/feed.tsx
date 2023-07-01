@@ -153,7 +153,7 @@ const Feed = () => {
     <>
     <Navbar />
     <div className="container-fluid pt-5, laptops-page"
-        style={{ maxWidth: "90rem", marginTop: "80px"}}>
+        style={{ maxWidth: "80rem", marginTop: "80px"}}>
       <h1 >Feed produse</h1>
       <ul>
         <li className="mt-3">

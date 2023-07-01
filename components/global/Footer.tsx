@@ -48,7 +48,7 @@ const Footer = () => {
     >
       <div
         className="row px-xl-5 pt-5"
-        style={{ maxWidth: "100rem", margin: "0 auto", position: "relative" }}
+        style={{ maxWidth: "80rem", margin: "0 auto", position: "relative" }}
       >
         <div className="row">
           <div className="col-lg-4 col-md-12 mb-5 pr-xl-5">
@@ -187,7 +187,7 @@ const Footer = () => {
 
         <div
           className="row border-top border-light py-4"
-          style={{ maxWidth: "100rem", margin: "0 auto" }}
+          style={{ maxWidth: "80rem", margin: "0 auto" }}
         >
           <div className="col-md-6 px-xl-0">
             <p className="mb-md-0 text-center text-md-left text-dark">

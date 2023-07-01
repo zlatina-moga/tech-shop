@@ -20,7 +20,7 @@ const FourOhFour = () => {
       <Navbar />
       <div
         className="container-fluid pt-5, laptops-page"
-        style={{ maxWidth: "100rem", marginTop: "40px" }}
+        style={{ maxWidth: "80rem", marginTop: "40px" }}
       >
         <section className="not-found-page">
           <div className="p-5">

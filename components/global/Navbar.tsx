@@ -94,7 +94,7 @@ const Navbar = () => {
     <div className="w-100" id="nav-container">
       <nav
         className="row align-items-center px-xl-5 collapse show navbar navbar-vertical"
-        style={{ maxWidth: "90rem", margin: "0 auto" }}
+        style={{ maxWidth: "80rem", margin: "0 auto" }}
       >
         <div className="col-3 container-fluid">
           <Link href="/">

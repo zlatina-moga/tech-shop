@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div style={{ maxWidth: "90rem", margin: "0 auto" }}>
+      <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
         <main style={{ paddingTop: "150px" }}>
           <Sidebar />
 

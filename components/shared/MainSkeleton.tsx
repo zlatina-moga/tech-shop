@@ -9,7 +9,7 @@ const MainSkeleton = () => {
     <div
       className={classNames("container-fluid pt-5", "laptops-page")}
       style={{
-        maxWidth: "90rem",
+        maxWidth: "80rem",
         display: "flex",
       }}
     >
@@ -103,7 +103,7 @@ export const SkeletonCard = () => {
   return (
     <div
       className={classNames(`pb-1`, "laptop-card")}
-      style={{ maxWidth: "250px" }}
+      style={{ maxWidth: "220px" }}
     >
       <div
         className={classNames(

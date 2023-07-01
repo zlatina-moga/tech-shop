@@ -45,6 +45,8 @@ interface ILaptopPage {
   processorsFrequency?: any[];
   selectFrequency?: any;
   reset?: any;
+  formats?: any[];
+  selectFormat?: any;
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -76,7 +78,9 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   videoSelect,
   processorsFrequency,
   selectFrequency,
-  reset
+  reset,
+  formats,
+  selectFormat
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -91,7 +95,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
       <div
         className={classNames("container-fluid pt-5", "laptops-page")}
         style={{
-          maxWidth: "90rem",
+          maxWidth: "80rem",
           display: "flex",
         }}
       >
@@ -117,6 +121,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           processorsFrequency={processorsFrequency}
           selectFrequency={selectFrequency}
           resetClicked={reset}
+          formats={formats}
+          selectFormat={selectFormat}
         />
         <div style={{ width: "100%" }}>
           <div className="text-center mb-4">
@@ -173,14 +179,14 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
               "row pb-3 justify-content-center, ml-xl-5",
               className
             )}
-            style={{ maxWidth: "98rem", justifyContent: "center" }}
+            style={{ maxWidth: "80rem", justifyContent: "center" }}
           >
             {filteredData && filteredData.length > 0
               ? filteredData.map((itemData, idx) => (
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
                     key={idx}
-                    style={{ maxWidth: "250px" }}
+                    style={{ maxWidth: "220px" }}
                   >
                     <div
                       className={classNames(
@@ -297,41 +303,41 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
 
                         <div className="d-flex justify-content-center">
                           {itemData[16].split(".")[1] == 2 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[4]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 25 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[5]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 3 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[6]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 35 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 4 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 5 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 6 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 7 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 8 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : (
                             <h6 className="price">{itemData[17]} Lei + TVA</h6>
                           )}
@@ -352,7 +358,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                   <div
                     className={classNames(`pb-1`, "laptop-card")}
                     key={idx}
-                    style={{ maxWidth: "250px" }}
+                    style={{ maxWidth: "220px" }}
                   >
                     <div
                       className={classNames(
@@ -469,41 +475,41 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
 
                         <div className="d-flex justify-content-center">
                           {itemData[16].split(".")[1] == 2 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[4]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 25 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[5]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 3 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[6]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 35 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 4 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 5 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 6 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 7 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : itemData[16].split(".")[1] == 8 ? (
-                            <h6 className="discount">
+                            <p className="discount">
                               {itemData[7]} Lei + TVA
-                            </h6>
+                            </p>
                           ) : (
                             <h6 className="price">{itemData[17]} Lei + TVA</h6>
                           )}
