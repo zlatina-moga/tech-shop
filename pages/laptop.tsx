@@ -36,6 +36,8 @@ const Laptopuri = () => {
   const [procFrequencies, setProcFrequencies] = useState([]);
   const [frequency, setFrequency] = useState('');
   const [clicked, setClicked] = useState<boolean>(false);
+  const [screens, setScreens] = useState([]);
+  const [screen, setScreen] = useState("");
 
   let pageSize = 64;
   const getTotalPages = Math.ceil(laptopsData.length / pageSize);
@@ -79,7 +81,10 @@ const Laptopuri = () => {
       setProcessorsGeneration(r);
     });
     sortingService.getVideoCards(5).then((resp) => setVideoCards(resp));
-    sortingService.getProccessorsFrequency(5).then((resp) => setProcFrequencies(resp))
+    sortingService.getProccessorsFrequency(5).then((resp) => setProcFrequencies(resp));
+    sortingService.getScreenSizes(5).then((res) => {
+      setScreens(res);
+    });
   }, []);
 
   const onReset = () => {
@@ -118,7 +123,9 @@ const Laptopuri = () => {
   });
   sortingService.getVideoCards(5).then((resp) => setVideoCards(resp));
   sortingService.getProccessorsFrequency(5).then((resp) => setProcFrequencies(resp))
-
+  sortingService.getScreenSizes(5).then((res) => {
+    setScreens(res);
+  });
     }
   }, [clicked, readRemoteFile])
 
@@ -166,12 +173,12 @@ const Laptopuri = () => {
   };
 
   useEffect(() => {
-    if (priceRange != "" && category != "" && brand != "" && processor != '' && generation != '' && videoCard != '' && frequency != '' ) {
+    if (priceRange != "" && category != "" && brand != "" && processor != '' && generation != '' && videoCard != '' && frequency != '' && screen != '') {
       setShow(false);
       let arr = filteredData.filter((r) => r[17] <= Number(priceRange));
       setFilteredData(arr);
       setShow(true);
-    } else if (priceRange != "" && (category != "" || brand != "" || processor != '' || generation != '' || videoCard != '' || frequency != '')) {
+    } else if (priceRange != "" && (category != "" || brand != "" || processor != '' || generation != '' || videoCard != '' || frequency != '' || screen != '')) {
       setShow(false);
       let arr = filteredData.filter((r) => r[17] <= Number(priceRange));
       setFilteredData(arr);
@@ -182,38 +189,86 @@ const Laptopuri = () => {
       setLaptopsData(arr);
       setShow(true);
     }
-  }, [priceRange, brand, category, processor, generation, videoCard, frequency]);
+  }, [priceRange, brand, category, processor, generation, videoCard, frequency, screen]);
 
   const onCatSelect = (cat) => {
     setCurrentPage(1);
-    if (processor != "" && brand != "" && generation != "" && videoCard && frequency != '' && !(router.asPath.includes('category'))) {
+    if (processor != "" && brand != "" && generation != "" && videoCard !='' && frequency != '' && screen !=''  && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (brand != "" && generation != "" && videoCard !='' && frequency != '' && screen !=''  && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && generation != "" && videoCard !='' && frequency != '' && screen !=''  && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && videoCard !='' && frequency != '' && screen !=''  && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && generation != "" && frequency != '' && screen !=''  && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && generation != "" && videoCard !='' && screen !=''  && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && generation != "" && videoCard !='' && frequency != '' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (brand != "" && generation != "" && videoCard && frequency != '' && !(router.asPath.includes('category'))) {
+    } else if (brand != "" && generation != "" && videoCard !='' && frequency != '' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (processor != "" && generation != "" && videoCard && frequency != '' && !(router.asPath.includes('category'))) {
+    } else if (processor != "" && generation != "" && videoCard !='' && frequency != '' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${cat}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (processor != "" && brand != "" &&  videoCard && frequency != '' && !(router.asPath.includes('category'))) {
+    } else if (processor != "" && brand != "" &&  videoCard !='' && frequency != '' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}`);
     } else if (processor != "" && brand != "" && generation != "" && frequency != '' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}`);
-    } else if (processor != "" && brand != "" && generation != "" && videoCard && !(router.asPath.includes('category'))) {
+    } else if (processor != "" && brand != "" && generation != "" && videoCard !='' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && generation != "" && screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && brand != "" && videoCard !='' && screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && generation != "" && videoCard !='' && screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (brand != "" && generation != ""  && videoCard !='' && screen !=''&& !(router.asPath.includes('category')))  {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && frequency != ''  && screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (processor != "" && generation != "" && frequency != ''  && screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${cat}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (brand != "" && generation != "" && frequency != '' && screen !='' && !(router.asPath.includes('category')))  {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (brand != "" && videoCard != "" && frequency != '' && screen !='' && !(router.asPath.includes('category')))  {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && videoCard != ""  && frequency != ''  && screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&placa-video=${videoCard}}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${cat}&placa-video=${videoCard}}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (processor != "" && brand != "" && frequency != '' && screen !='' && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
     } else if (processor != "" && brand != "" && generation != "" && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&generatie=${generation}`);
-    } else if (processor != "" && brand != "" && videoCard && !(router.asPath.includes('category'))) {
+    } else if (processor != "" && brand != "" && videoCard !='' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}`);
-    } else if (processor != "" && generation != "" && videoCard && !(router.asPath.includes('category'))) {
+    } else if (processor != "" && generation != "" && videoCard !='' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${cat}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
-    } else if (brand != "" && generation != ""  && videoCard && !(router.asPath.includes('category')))  {
+    } else if (brand != "" && generation != ""  && videoCard !='' && !(router.asPath.includes('category')))  {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&generatie=${generation}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&generatie=${generation}&placa-video=${videoCard}`);
     } else if (processor != "" && brand != "" && frequency != '' && !(router.asPath.includes('category'))) {
@@ -234,7 +289,25 @@ const Laptopuri = () => {
     } else if (processor != "" && brand != "" && frequency != '' && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?category=${cat}&brand=${brand}&frecventa=${frequency}&procesor=${processor}`);
-    } else if (videoCard != "" && generation != ""&& !(router.asPath.includes('category'))) {
+    } else if (videoCard != "" && generation != "" && screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${cat}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && generation != ""&& screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&procesor=${processor}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${cat}&procesor=${processor}&screen=${screen}&generatie=${generation}`);
+    } else if (brand != "" && generation != "" && screen !=''&& !(router.asPath.includes('category')))  {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&screen=${screen}&generatie=${generation}`);
+    } else if (brand != "" && videoCard != "" && screen !=''&& !(router.asPath.includes('category')))  {
+      setBaseLink(`/laptop?category=${cat}&brand=${brand}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${cat}&brand=${brand}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && videoCard != "" && screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${cat}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (videoCard != "" && generation != ""&& screen !=''&& !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?category=${cat}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${cat}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+    } else if (videoCard != "" && generation != "" && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?category=${cat}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
     } else if (processor != "" && generation != ""&& !(router.asPath.includes('category'))) {
@@ -252,6 +325,21 @@ const Laptopuri = () => {
     } else if (videoCard != "" && generation != ""&& !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?category=${cat}&placa-video=${videoCard}&generatie=${generation}`);
       router.push(`/laptop?category=${cat}&placa-video=${videoCard}&generatie=${generation}`);
+    } else if (processor != "" && screen !=''  && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?procesor=${processor}&screen=${screen}&category=${cat}`);
+      router.push(`/laptop?procesor=${processor}&screen=${screen}&category=${cat}`);
+    } else if (brand != "" && screen !='' && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?brand=${brand}&screen=${screen}&category=${cat}`);
+      router.push(`/laptop?brand=${brand}&screen=${screen}&category=${cat}`);
+    } else if (generation != "" && screen !='' && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?generatie=${generation}&screen=${screen}&category=${cat}`);
+      router.push(`/laptop?generatie=${generation}&screen=${screen}&category=${cat}`);
+    } else if (videoCard != "" && screen !='' && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&screen=${screen}&category=${cat}`);
+      router.push(`/laptop?placa-video=${videoCard}&screen=${screen}&category=${cat}`);
+    } else if (frequency != "" && screen !='' && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?frecventa=${frequency}&screen=${screen}&category=${cat}`);
+      router.push(`/laptop?frecventa=${frequency}&screen=${screen}&category=${cat}`);
     } else if (processor != ""  && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?procesor=${processor}&category=${cat}`);
       router.push(`/laptop?procesor=${processor}&category=${cat}`);
@@ -267,7 +355,10 @@ const Laptopuri = () => {
     } else if (frequency != "" && !(router.asPath.includes('category'))) {
       setBaseLink(`/laptop?frecventa=${frequency}&category=${cat}`);
       router.push(`/laptop?frecventa=${frequency}&category=${cat}`);
-    } else if (router.asPath.includes('category')){
+    } else if (screen != "" && !(router.asPath.includes('category'))) {
+      setBaseLink(`/laptop?screen=${screen}&category=${cat}`);
+      router.push(`/laptop?screen=${screen}&category=${cat}`);
+    }else if (router.asPath.includes('category')){
       setBaseLink(`/laptop?category=${cat}`);
       router.push(`/laptop?category=${cat}`);
     } else {
@@ -280,34 +371,82 @@ const Laptopuri = () => {
 
   const onBrandSelect = (br) => {
     setCurrentPage(1);
-    if (processor != "" && generation != "" && category != '' && videoCard && frequency != '' && !(router.asPath.includes('brand'))) {
+    if (processor != "" && generation != "" && category != '' && videoCard != '' && frequency != '' && screen !=''  && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else  if (generation != "" && category != '' && videoCard != ''&& frequency != '' && screen !=''  && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&brand=${br}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&brand=${br}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else  if (processor != "" && category != '' && videoCard != ''&& frequency != '' && screen !=''  && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&brand=${br}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&brand=${br}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else  if (processor != "" && generation != "" && videoCard != ''&& frequency != '' && screen !=''  && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else  if (processor != "" && generation != "" && category != '' && frequency != '' && screen !=''  && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&screen=${screen}`);
+    } else  if (processor != "" && generation != "" && category != '' && videoCard != ''&& screen !=''  && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && generation != "" && category != '' && videoCard != ''&& frequency != '' && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (generation != "" && category != '' && videoCard && frequency != '' && !(router.asPath.includes('brand'))) {
+    } else if (generation != "" && category != '' && videoCard != ''&& frequency != '' && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&generatie=${generation}&brand=${br}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&generatie=${generation}&brand=${br}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (processor != "" && category != '' && videoCard && frequency != '' && !(router.asPath.includes('brand'))) {
+    } else if (processor != "" && category != '' && videoCard != ''&& frequency != '' && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&procesor=${processor}&brand=${br}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&procesor=${processor}&brand=${br}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (processor != "" && generation != "" && videoCard && frequency != '' && !(router.asPath.includes('brand'))) {
+    } else if (processor != "" && generation != "" && videoCard != ''&& frequency != '' && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}&placa-video=${videoCard}`);
     } else if (processor != "" && generation != "" && category != '' && frequency != '' && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}`);
       router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&frecventa=${frequency}`);
-    } else if (processor != "" && generation != "" && category != '' && videoCard && !(router.asPath.includes('brand'))) {
+    } else if (processor != "" && generation != "" && category != '' && videoCard != ''&& !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}&placa-video=${videoCard}`);
-    } else if (processor != "" && generation != "" && category != '' && !(router.asPath.includes('brand'))) {
+    } else if (processor != "" && generation != "" && category != '' && screen !=''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&screen=${screen}&brand=${br}`);
+    } else if (processor != "" && generation != ""  && videoCard != '' && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && category != ''  && videoCard != '' && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&brand=${br}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&brand=${br}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (generation != "" && category != '' && videoCard != '' && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&brand=${br}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&brand=${br}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && generation != "" && frequency != '' && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    } else if (processor != "" && category != '' && frequency != ''&& screen !=''  && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    } else if (generation != "" && category != ''&& frequency != ''&& screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    } else if (videoCard != "" && generation != "" && frequency != ''&& screen !=''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?placa-video=${videoCard}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    } else if (videoCard != "" && category != '' && frequency != '' && screen !=''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    } else if (processor != "" && videoCard != ''&& frequency != '' && screen !=''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?placa-video=${videoCard}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    }  else if (processor != "" && generation != "" && category != '' && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}`);
       router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&brand=${br}`);
-    } else if (processor != "" && generation != ""  && videoCard && !(router.asPath.includes('brand'))) {
-      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}}&placa-video=${videoCard}`);
-      router.push(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}}&placa-video=${videoCard}`);
-    } else if (processor != "" && category != ''  && videoCard && !(router.asPath.includes('brand'))) {
+    } else if (processor != "" && generation != ""  && videoCard != ''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}&placa-video=${videoCard}`);
+    } else if (processor != "" && category != ''  && videoCard != ''&& !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&procesor=${processor}&brand=${br}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&procesor=${processor}&brand=${br}&placa-video=${videoCard}`);
-    } else if (generation != "" && category != '' && videoCard && !(router.asPath.includes('brand'))) {
+    } else if (generation != "" && category != '' && videoCard != ''&& !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&generatie=${generation}&brand=${br}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&generatie=${generation}&brand=${br}&placa-video=${videoCard}`);
     } else if (processor != "" && generation != "" && frequency != '' && !(router.asPath.includes('brand'))) {
@@ -328,6 +467,36 @@ const Laptopuri = () => {
     } else if (processor != "" && videoCard != ''&& frequency != '' && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?placa-video=${videoCard}&procesor=${processor}&frecventa=${frequency}&brand=${br}`);
       router.push(`/laptop?placa-video=${videoCard}&procesor=${processor}&frecventa=${frequency}&brand=${br}`);
+    } else if (processor != "" && generation != "" && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&screen=${screen}&brand=${br}`);
+    } else if (processor != "" && category != ''&& screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&screen=${screen}&brand=${br}`);
+    } else if (generation != "" && category != '' && screen !=''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&brand=${br}`);
+    } else if (videoCard != "" && generation != "" && screen !=''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&generatie=${generation}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?placa-video=${videoCard}&generatie=${generation}&screen=${screen}&brand=${br}`);
+    } else if (videoCard != "" && category != '' && screen !=''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&placa-video=${videoCard}&screen=${screen}&brand=${br}`);
+    } else if (processor != "" && videoCard != '' && screen !=''&& !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&procesor=${processor}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?placa-video=${videoCard}&procesor=${processor}&screen=${screen}&brand=${br}`);
+    } else if (category != "" && frequency != ''&& screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    } else if (processor != ""  && frequency != '' && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?procesor=${processor}&frecventa=${frequency}&screen=${screen}brand=${br}`);
+      router.push(`/laptop?procesor=${processor}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    } else if (generation != "" && frequency != '' && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?generatie=${generation}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?generatie=${generation}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+    } else if (videoCard != ""  && frequency != '' && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&brand=${br}`);
     } else if (processor != "" && generation != "" && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}`);
       router.push(`/laptop?procesor=${processor}&generatie=${generation}&brand=${br}`);
@@ -358,6 +527,21 @@ const Laptopuri = () => {
     } else if (videoCard != ""  && frequency != '' && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&brand=${br}`);
       router.push(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&brand=${br}`);
+    }  else if (category != "" && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?category=${category}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?category=${category}&screen=${screen}&brand=${br}`);
+    } else if (processor != "" && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?procesor=${processor}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?procesor=${processor}&screen=${screen}&brand=${br}`);
+    } else if (generation != ""&& screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?generatie=${generation}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?generatie=${generation}&screen=${screen}&brand=${br}`);
+    } else if (videoCard != "" && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?placa-video=${videoCard}&screen=${screen}&brand=${br}`);
+    } else if (frequency!= "" && screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?frecventa=${frequency}&screen=${screen}&brand=${br}`);
+      router.push(`/laptop?frecventa=${frequency}&screen=${screen}&brand=${br}`);
     } else if (category != "" && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?category=${category}&brand=${br}`);
       router.push(`/laptop?category=${category}&brand=${br}`);
@@ -373,6 +557,9 @@ const Laptopuri = () => {
     } else if (frequency!= "" && !(router.asPath.includes('brand'))) {
       setBaseLink(`/laptop?frecventa=${frequency}&brand=${br}`);
       router.push(`/laptop?frecventa=${frequency}&brand=${br}`);
+    } else if (screen !='' && !(router.asPath.includes('brand'))) {
+      setBaseLink(`/laptop?screen=${screen}&brand=${br}`);
+      router.push(`/laptop?screen=${screen}&brand=${br}`);
     } else if (router.asPath.includes('brand')) {
       setBaseLink(`/laptop?brand=${br}`);
       router.push(`/laptop?brand=${br}`);
@@ -386,34 +573,82 @@ const Laptopuri = () => {
 
   const onProcessorSelect = (processor) => {
     setCurrentPage(1);
-    if (generation != "" && brand != "" && category != "" && videoCard  && frequency != '' && !(router.asPath.includes('procesor'))) {
+    if (generation != "" && brand != "" && category != "" && videoCard !='' && frequency != '' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (brand != "" && category != "" && videoCard !='' && frequency != '' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else  if (generation != "" && category != "" && videoCard !='' && frequency != '' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else  if (generation != "" && brand != "" && videoCard !='' && frequency != '' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (generation != "" && brand != "" && category != "" && frequency != '' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    } else  if (generation != "" && brand != "" && category != "" && videoCard !='' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (generation != "" && brand != "" && category != "" && videoCard !='' && frequency != '' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (brand != "" && category != "" && videoCard  && frequency != '' && !(router.asPath.includes('procesor'))) {
+    } else if (brand != "" && category != "" && videoCard !='' && frequency != '' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (generation != "" && category != "" && videoCard  && frequency != '' && !(router.asPath.includes('procesor'))) {
+    } else if (generation != "" && category != "" && videoCard !='' && frequency != '' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
-    } else if (generation != "" && brand != "" && videoCard  && frequency != '' && !(router.asPath.includes('procesor'))) {
+    } else if (generation != "" && brand != "" && videoCard !='' && frequency != '' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
     } else if (generation != "" && brand != "" && category != ""  && frequency != '' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}`);
-    } else if (generation != "" && brand != "" && category != "" && videoCard && !(router.asPath.includes('procesor'))) {
+    } else if (generation != "" && brand != "" && category != "" && videoCard !='' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
-    } else if (generation != "" && brand != "" && category != "" && !(router.asPath.includes('procesor'))) {
+    } else if (generation != "" && brand != "" && category != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}&generatie=${generation}`);
+    } else if (brand != "" && generation != "" && videoCard !='' && screen !=''&& !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && category != "" && videoCard !='' && screen !=''&& !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (generation != ""  && category != "" && videoCard !=''&& screen !=''&& !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && generation != "" && frequency != ''&& screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && category != "" && frequency != ''&& screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (generation != ""  && category != "" && frequency != '' && screen !=''&& !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && videoCard != ""  && frequency != '' && screen !=''&& !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (generation != "" && videoCard  && frequency != '' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (category != "" && videoCard !='' && frequency != '' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    }   else if (generation != "" && brand != "" && category != "" && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}`);
-    } else if (brand != "" && generation != "" && videoCard && !(router.asPath.includes('procesor'))) {
+    } else if (brand != "" && generation != "" && videoCard !='' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
       router.push(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
-    } else if (brand != "" && category != "" && videoCard && !(router.asPath.includes('procesor'))) {
+    } else if (brand != "" && category != "" && videoCard !='' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&procesor=${processor}`);
       router.push(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&procesor=${processor}`);
-    } else if (generation != ""  && category != "" && videoCard && !(router.asPath.includes('procesor'))) {
+    } else if (generation != ""  && category != "" && videoCard !='' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
       router.push(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
     } else if (brand != "" && generation != "" && !(router.asPath.includes('procesor'))) {
@@ -428,10 +663,10 @@ const Laptopuri = () => {
     } else if (brand != "" && videoCard != "" && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&procesor=${processor}`);
       router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&procesor=${processor}`);
-    } else if (generation != "" && videoCard && !(router.asPath.includes('procesor'))) {
+    } else if (generation != "" && videoCard !='' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
       router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
-    } else if (category != "" && videoCard&& !(router.asPath.includes('procesor'))) {
+    } else if (category != "" && videoCard !='' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&procesor=${processor}`);
       router.push(`/laptop?category=${category}&placa-video=${videoCard}&procesor=${processor}`);
     } else if (brand != "" && generation != "" && frequency != '' && !(router.asPath.includes('procesor'))) {
@@ -449,9 +684,27 @@ const Laptopuri = () => {
     } else if (generation != "" && videoCard  && frequency != ''&& !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&frecventa=${frequency}&procesor=${processor}`);
-    } else if (category != "" && videoCard  && frequency != '' && !(router.asPath.includes('procesor'))) {
+    } else if (category != "" && videoCard !='' && frequency != '' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&procesor=${processor}`);
+    } else if (brand != "" && generation != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && category != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&screen=${screen}&procesor=${processor}`);
+    } else if (generation != ""  && category != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && videoCard != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (generation != "" && videoCard !=''&& screen !=''  && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (category != "" && videoCard !='' && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
     } else if (brand != "" && frequency != '' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?brand=${brand}&frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?brand=${brand}&frecventa=${frequency}&procesor=${processor}`);
@@ -464,6 +717,21 @@ const Laptopuri = () => {
     } else if (videoCard != "" && frequency != '' && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&procesor=${processor}`);
+    }  else if (brand != ""&& screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?brand=${brand}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&screen=${screen}&procesor=${processor}`);
+    } else if (generation != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?generatie=${generation}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?generatie=${generation}&screen=${screen}&procesor=${processor}`);
+    } else if (category != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?category=${category}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&screen=${screen}&procesor=${processor}`);
+    } else if (videoCard != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (frequency != "" && screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
     } else if (brand != "" && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?brand=${brand}&procesor=${processor}`);
       router.push(`/laptop?brand=${brand}&procesor=${processor}`);
@@ -479,6 +747,9 @@ const Laptopuri = () => {
     } else if (frequency != "" && !(router.asPath.includes('procesor'))) {
       setBaseLink(`/laptop?frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?frecventa=${frequency}&procesor=${processor}`);
+    } else if (screen !='' && !(router.asPath.includes('procesor'))) {
+      setBaseLink(`/laptop?screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?screen=${screen}&procesor=${processor}`);
     } else if (router.asPath.includes('procesor')) {
       setBaseLink(`/laptop?procesor=${processor}`);
       router.push(`/laptop?procesor=${processor}`);
@@ -492,55 +763,85 @@ const Laptopuri = () => {
 
   const onGenerationSelect = (generation) => {
     setCurrentPage(1);
-    if (processor != "" && brand != "" && category != "" && videoCard && frequency != '' && !(router.asPath.includes('generatie'))) {
+    if (processor != "" && brand != "" && category != "" && videoCard!= ''  && frequency != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (brand != "" && category != "" && videoCard!= ''  && frequency != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" &&  category != "" && videoCard!= ''  && frequency != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && brand != "" && videoCard!= ''  && frequency != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && brand != "" && category != "" &&  frequency != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && brand != "" && category != "" && videoCard!= ''  && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && brand != "" && category != "" && videoCard != '' && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
-    } else if (brand != "" && category != "" && videoCard && frequency != '' && !(router.asPath.includes('generatie'))) {
+    } else if (brand != "" && category != "" && videoCard != '' && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?category=${category}&brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
-    } else if (processor != "" && category != "" && videoCard && frequency != '' && !(router.asPath.includes('generatie'))) {
+    } else if (processor != "" && category != "" && videoCard != '' && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
-    } else if (processor != "" && brand != "" && videoCard && frequency != '' && !(router.asPath.includes('generatie'))) {
+    } else if (processor != "" && brand != "" && videoCard != '' && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?brand=${brand}&procesor=${processor}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
     } else if (processor != "" && brand != "" && category != "" && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&generatie=${generation}`);
-    } else if (processor != "" && brand != "" && category != "" && videoCard && !(router.asPath.includes('generatie'))) {
+    } else if (processor != "" && brand != "" && category != "" && videoCard != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&generatie=${generation}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&generatie=${generation}`);
-    } else if (processor != "" && brand != "" && category != "" && !(router.asPath.includes('generatie'))) {
+    } else if (processor != "" && brand != "" && category != ""&& screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && brand != "" && videoCard != '' && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && category != "" && videoCard != '' && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && category != "" && videoCard != '' && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    }else if (processor != "" && brand != ""  && frequency != '' && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && category != ""  && frequency != ''&& screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && category != "" && frequency != ''&& screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && videoCard != ''  && frequency != '' && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&&screen=${screen}generatie=${generation}`);
+    } else if (processor != "" && videoCard != ''  && frequency != '' && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (category != "" && videoCard != ''  && frequency != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    }  else if (processor != "" && brand != "" && category != "" && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}`);
-    } else if (processor != "" && brand != "" && videoCard && !(router.asPath.includes('generatie'))) {
+    } else if (processor != "" && brand != "" && videoCard != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
       router.push(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
-    } else if (brand != "" && category != "" && videoCard && !(router.asPath.includes('generatie'))) {
+    } else if (brand != "" && category != "" && videoCard != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&generatie=${generation}`);
       router.push(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&generatie=${generation}`);
-    } else if (processor != "" && category != "" && videoCard && !(router.asPath.includes('generatie'))) {
+    } else if (processor != "" && category != "" && videoCard != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
       router.push(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
-    } else if (processor != "" && brand != "" && !(router.asPath.includes('generatie'))) {
-      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&procesor=${processor}`);
-      router.push(`/laptop?brand=${brand}&generatie=${generation}&procesor=${processor}`);
-    } else if (brand != "" && category != "" && !(router.asPath.includes('generatie'))) {
-      setBaseLink(`/laptop?brand=${brand}&category=${category}&generatie=${generation}`);
-      router.push(`/laptop?brand=${brand}&category=${category}&generatie=${generation}`);
-    } else if (processor != "" && category != "" && !(router.asPath.includes('generatie'))) {
-      setBaseLink(`/laptop?category=${category}&generatie=${generation}&procesor=${processor}`);
-      router.push(`/laptop?category=${category}&generatie=${generation}&procesor=${processor}`);
-    } else if (brand != "" && videoCard && !(router.asPath.includes('generatie'))) {
-      setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&generatie=${generation}`);
-      router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&generatie=${generation}`);
-    } else if (processor != "" && videoCard && !(router.asPath.includes('generatie'))) {
-      setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
-      router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
-    } else if (category != "" && videoCard && !(router.asPath.includes('generatie'))) {
-      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&generatie=${generation}`);
-      router.push(`/laptop?category=${category}&placa-video=${videoCard}&generatie=${generation}`);
-    } else if (processor != "" && brand != ""  && frequency != '' && !(router.asPath.includes('generatie'))) {
+    }else if (processor != "" && brand != ""  && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&procesor=${processor}`);
     } else if (brand != "" && category != ""  && frequency != '' && !(router.asPath.includes('generatie'))) {
@@ -549,16 +850,46 @@ const Laptopuri = () => {
     } else if (processor != "" && category != "" && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&procesor=${processor}`);
-    } else if (brand != "" && videoCard  && frequency != '' && !(router.asPath.includes('generatie'))) {
+    } else if (brand != "" && videoCard != ''  && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
-    } else if (processor != "" && videoCard  && frequency != '' && !(router.asPath.includes('generatie'))) {
+    } else if (processor != "" && videoCard != ''  && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&frecventa=${frequency}&procesor=${processor}`);
       router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&frecventa=${frequency}&procesor=${processor}`);
-    } else if (category != "" && videoCard  && frequency != ''  && !(router.asPath.includes('generatie'))) {
+    } else if (category != "" && videoCard != ''  && frequency != ''  && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?category=${category}&placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
-    } else if (brand != "" && frequency != '' && !(router.asPath.includes('generatie'))) {
+    }  else if (brand != "" && frequency != '' && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && frequency != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?generatie=${generation}&frecventa=${frequency}&screen=${screen}&procesor=${processor}`);
+    } else if (category != "" && frequency != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (videoCard != "" && frequency != ''  && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && brand != ""  && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && category != ""  && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && category != ""  && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&procesor=${processor}`);
+    } else if (brand != "" && videoCard != ''  && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && videoCard != ''  && screen !=''&& !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&screen=${screen}&procesor=${processor}`);
+    } else if (category != "" && videoCard != '' && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+    }  else if (brand != "" && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?brand=${brand}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?brand=${brand}&frecventa=${frequency}&generatie=${generation}`);
     } else if (processor != "" && frequency != '' && !(router.asPath.includes('generatie'))) {
@@ -570,6 +901,39 @@ const Laptopuri = () => {
     } else if (videoCard != "" && frequency != '' && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?placa-video=${videoCard}&frecventa=${frequency}&generatie=${generation}`);
+    } else if (processor != "" && brand != "" && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&procesor=${processor}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&procesor=${processor}`);
+    } else if (brand != "" && category != "" && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&generatie=${generation}`);
+    } else if (processor != "" && category != "" && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&procesor=${processor}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&procesor=${processor}`);
+    } else if (brand != "" && videoCard != '' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&generatie=${generation}`);
+    } else if (processor != "" && videoCard != '' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
+      router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&procesor=${processor}`);
+    } else if (category != "" && videoCard != '' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&placa-video=${videoCard}&generatie=${generation}`);
+    }  else if (brand != "" && screen !=''  && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?brand=${brand}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?brand=${brand}&screen=${screen}&generatie=${generation}`);
+    } else if (processor != "" && screen !=''  && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?generatie=${generation}&screen=${screen}&procesor=${processor}`);
+      router.push(`/laptop?generatie=${generation}&screen=${screen}&procesor=${processor}`);
+    } else if (category != "" && screen !=''  && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?category=${category}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?category=${category}&screen=${screen}&generatie=${generation}`);
+    } else if (videoCard != "" && screen !='' && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?placa-video=${videoCard}&screen=${screen}&generatie=${generation}`);
+    } else if (frequency != ""&& screen !=''  && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?frecventa=${frequency}&screen=${screen}&generatie=${generation}`);
     } else if (brand != "" && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?brand=${brand}&generatie=${generation}`);
       router.push(`/laptop?brand=${brand}&generatie=${generation}`);
@@ -585,7 +949,10 @@ const Laptopuri = () => {
     } else if (frequency != "" && !(router.asPath.includes('generatie'))) {
       setBaseLink(`/laptop?frecventa=${frequency}&generatie=${generation}`);
       router.push(`/laptop?frecventa=${frequency}&generatie=${generation}`);
-    } else if (router.asPath.includes('generatie')) {
+    } else if (screen !=''  && !(router.asPath.includes('generatie'))) {
+      setBaseLink(`/laptop?screen=${screen}&generatie=${generation}`);
+      router.push(`/laptop?screen=${screen}&generatie=${generation}`);
+    }else if (router.asPath.includes('generatie')) {
       setBaseLink(`/laptop?generatie=${generation}`);
       router.push(`/laptop?generatie=${generation}`);
     } else {
@@ -599,7 +966,25 @@ const Laptopuri = () => {
 
   const onVideoSelect = (videoCard) => {
     setCurrentPage(1);
-    if (processor != "" && brand != "" && category != "" && generation != '' && frequency != '' && !(router.asPath.includes('placa-video'))) {
+    if (processor != "" && brand != "" && category != "" && generation != '' && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (brand != "" && category != "" && generation != '' && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && category != "" && generation != '' && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && generation != '' && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && category != "" && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && category != "" && generation != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && category != "" && generation != '' && frequency != '' && !(router.asPath.includes('placa-video'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}`);
     } else if (brand != "" && category != "" && generation != '' && frequency != '' && !(router.asPath.includes('placa-video'))) {
@@ -617,7 +1002,40 @@ const Laptopuri = () => {
     } else if (processor != "" && brand != "" && category != "" && generation != '' && !(router.asPath.includes('placa-video'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
-    } else if (brand != "" && category != "" && generation != '' && !(router.asPath.includes('placa-video'))) {
+    } else if (brand != "" && category != "" && generation != '' && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && category != "" && generation != ''&& screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" &&  generation != '' && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && category != "" && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && frequency != ''&& screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (brand != "" && category != "" && frequency != ''&& screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && category != "" && frequency != '' && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (generation != "" && category != "" && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (brand != "" && generation != "" && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && generation != "" && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && frequency != '' && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+    }  else if (brand != "" && category != "" && generation != '' && !(router.asPath.includes('placa-video'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&placa-video=${videoCard}`);
     } else if (processor != "" && category != "" && generation != '' && !(router.asPath.includes('placa-video'))) {
@@ -629,27 +1047,6 @@ const Laptopuri = () => {
     } else if (processor != "" && brand != "" && category != "" && !(router.asPath.includes('placa-video'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}`);
-    } else if (processor != "" && brand != "" && !(router.asPath.includes('placa-video'))) {
-      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&placa-video=${videoCard}`);
-      router.push(`/laptop?brand=${brand}&procesor=${processor}&placa-video=${videoCard}`);
-    } else if (brand != "" && category != "" && !(router.asPath.includes('placa-video'))) {
-      setBaseLink(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}`);
-      router.push(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}`);
-    } else if (processor != "" && category != "" && !(router.asPath.includes('placa-video'))) {
-      setBaseLink(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}`);
-      router.push(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}`);
-    } else if (generation != "" && category != "" && !(router.asPath.includes('placa-video'))) {
-      setBaseLink(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}`);
-      router.push(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}`);
-    } else if (brand != "" && generation != "" && !(router.asPath.includes('placa-video'))) {
-      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}`);
-      router.push(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}`);
-    } else if (processor != "" && generation != "" && !(router.asPath.includes('placa-video'))) {
-      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
-      router.push(`/laptop?procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
-    } else if (processor != "" && brand != "" && !(router.asPath.includes('placa-video'))) {
-      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}`);
-      router.push(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}`);
     } else if (processor != "" && brand != "" && frequency != '' && !(router.asPath.includes('placa-video'))) {
       setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}`);
@@ -671,6 +1068,57 @@ const Laptopuri = () => {
     } else if (processor != "" && brand != "" && frequency != '' && !(router.asPath.includes('placa-video'))) {
       setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${frequency}&placa-video=${videoCard}`);
+    } else if (brand != "" && category != "" && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && category != ""  && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (generation != "" && category != ""  && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (brand != "" && generation != ""  && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && generation != "" && screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != ""  && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (brand != "" && category != "" && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}`);
+    } else if (processor != "" && category != "" && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}`);
+    } else if (generation != "" && category != "" && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}`);
+    } else if (brand != "" && generation != "" && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}`);
+    } else if (processor != "" && generation != "" && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&placa-video=${videoCard}`);
+    } else if (processor != "" && brand != "" && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}`);
+    } else if (brand != "" && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?brand=${brand}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?brand=${brand}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (processor != "" && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?procesor=${processor}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?procesor=${processor}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (category != "" && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?category=${category}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (generation != "" && screen !=''&& !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?generatie=${generation}&screen=${screen}&placa-video=${videoCard}`);
+    } else if (frequency != ""&& screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?frecventa=${frequency}&screen=${screen}&placa-video=${videoCard}`);
     } else if (brand != "" && !(router.asPath.includes('placa-video'))) {
       setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}`);
       router.push(`/laptop?brand=${brand}&placa-video=${videoCard}`);
@@ -686,7 +1134,10 @@ const Laptopuri = () => {
     } else if (frequency != "" && !(router.asPath.includes('placa-video'))) {
       setBaseLink(`/laptop?frecventa=${frequency}&placa-video=${videoCard}`);
       router.push(`/laptop?frecventa=${frequency}&placa-video=${videoCard}`);
-    }  else if (router.asPath.includes('placa-video')) {
+    } else if (screen !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?screen=${screen}&placa-video=${videoCard}`);
+      router.push(`/laptop?screen=${screen}&placa-video=${videoCard}`);
+    } else if (router.asPath.includes('placa-video')) {
       setBaseLink(`/laptop?placa-video=${videoCard}`);
       router.push(`/laptop?placa-video=${videoCard}`);
     } else {
@@ -699,7 +1150,25 @@ const Laptopuri = () => {
 
   const onFrecSelect = (fr) => {
     setCurrentPage(1);
-    if (processor != "" && brand != "" && category != "" && generation != '' && videoCard != '' && !(router.asPath.includes('frecventa'))) {
+    if (processor != "" && brand != "" && category != "" && generation != '' && videoCard != ''  && screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (brand != "" && category != "" && generation != '' && videoCard != ''  && screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && category != "" && generation != '' && videoCard != ''  && screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && generation != '' && videoCard != ''  && screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && category != "" && videoCard != ''  && screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && category != "" && generation != '' &&  screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && category != "" && generation != '' && videoCard != '' && !(router.asPath.includes('frecventa'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&frecventa=${fr}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&frecventa=${fr}`);
     } else if (brand != "" && category != "" && generation != '' && videoCard != '' && !(router.asPath.includes('frecventa'))) {
@@ -717,6 +1186,39 @@ const Laptopuri = () => {
     } else if (processor != "" && brand != "" && category != "" && generation != ''&& !(router.asPath.includes('frecventa'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${fr}`);
       router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${fr}`);
+    } else if (brand != "" && category != "" && generation != '' && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && category != "" && generation != '' && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" &&  generation != '' && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && category != "" && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && videoCard != '' && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (brand != "" && category != "" && videoCard != '' && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&screen=${screen}frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && category != "" && videoCard != ''&& screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (generation != "" && category != "" && videoCard != ''&& screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (brand != "" && generation != "" && videoCard != ''&& screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && generation != "" && videoCard != '' && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && videoCard != ''&& screen !='' && !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
     } else if (brand != "" && category != "" && generation != '' && !(router.asPath.includes('frecventa'))) {
       setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&frecventa=${fr}`);
       router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&frecventa=${fr}`);
@@ -750,6 +1252,27 @@ const Laptopuri = () => {
     } else if (processor != "" && brand != "" && videoCard != '' && !(router.asPath.includes('frecventa'))) {
       setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}&frecventa=${fr}`);
       router.push(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&screen=${screen}&frecventa=${fr}`);
+    } else if (brand != "" && category != "" && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && category != "" && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&screen=${screen}&frecventa=${fr}`);
+    } else if (generation != "" && category != "" && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+    } else if (brand != "" && generation != "" && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && generation != "" && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != "" && brand != "" && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&screen=${screen}&frecventa=${fr}`);
     } else if (processor != "" && brand != "" && !(router.asPath.includes('frecventa'))) {
       setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${fr}`);
       router.push(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${fr}`);
@@ -771,6 +1294,21 @@ const Laptopuri = () => {
     } else if (processor != "" && brand != "" && !(router.asPath.includes('frecventa'))) {
       setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${fr}`);
       router.push(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${fr}`);
+    } else if (brand != ""  && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?brand=${brand}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?brand=${brand}&screen=${screen}&frecventa=${fr}`);
+    } else if (processor != ""  && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?procesor=${processor}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?procesor=${processor}&screen=${screen}&frecventa=${fr}`);
+    } else if (category != ""  && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?category=${category}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?category=${category}&screen=${screen}&frecventa=${fr}`);
+    } else if (generation != ""  && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?generatie=${generation}&screen=${screen}&frecventa=${fr}`);
+    } else if (videoCard != ""  && screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?placa-video=${videoCard}&screen=${screen}&frecventa=${fr}`);
     } else if (brand != "" && !(router.asPath.includes('frecventa'))) {
       setBaseLink(`/laptop?brand=${brand}&frecventa=${fr}`);
       router.push(`/laptop?brand=${brand}&frecventa=${fr}`);
@@ -786,6 +1324,9 @@ const Laptopuri = () => {
     } else if (videoCard != "" && !(router.asPath.includes('frecventa'))) {
       setBaseLink(`/laptop?placa-video=${videoCard}&frecventa=${fr}`);
       router.push(`/laptop?placa-video=${videoCard}&frecventa=${fr}`);
+    } else if (screen !=''&& !(router.asPath.includes('frecventa'))) {
+      setBaseLink(`/laptop?screen=${screen}&frecventa=${fr}`);
+      router.push(`/laptop?screen=${screen}&frecventa=${fr}`);
     }  else if (router.asPath.includes('frecventa')) {
       setBaseLink(`/laptop?frecventa=${fr}`);
       router.push(`/laptop?frecventa=${fr}`);
@@ -797,9 +1338,193 @@ const Laptopuri = () => {
     setFrequency(fr)
   }
 
+  const onScreenSelect = (screen) => {
+    setCurrentPage(1);
+    if (processor != "" && brand != "" && category != "" && generation != '' && frequency != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (brand != "" && category != "" && generation != '' && frequency != '' && videoCard !='' && !(router.asPath.includes('placa-video'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && category != "" && generation != '' && frequency != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && generation != '' && frequency != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && category != "" && frequency != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && category != "" && generation != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && category != "" && generation != '' && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    } else if (brand != "" && category != "" && generation != '' && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    } else if (processor != "" &&  category != "" && generation != '' && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && generation != '' && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    }  else if (processor != "" && brand != "" && category != "" && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && category != "" && generation != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}`);
+    } else if (brand != "" && category != "" && generation != '' && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && category != "" && generation != ''&& videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != "" &&  generation != '' && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && category != "" && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && frequency != ''&& videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (brand != "" && category != "" && frequency != ''&& videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && category != "" && frequency != '' && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (generation != "" && category != "" && frequency != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (brand != "" && generation != "" && frequency != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && generation != "" && frequency != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && frequency != '' && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    }  else if (brand != "" && category != "" && generation != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&generatie=${generation}&screen=${screen}`);
+    } else if (processor != "" && category != "" && generation != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&generatie=${generation}&screen=${screen}`);
+    } else if (processor != "" && brand != "" &&  generation != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&generatie=${generation}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && category != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&brand=${brand}&procesor=${processor}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&procesor=${processor}&frecventa=${frequency}&screen=${screen}`);
+    } else if (brand != "" && category != "" && frequency != ''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&frecventa=${frequency}&screen=${screen}`);
+    } else if (processor != "" && category != "" && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&frecventa=${frequency}&screen=${screen}`);
+    } else if (generation != "" && category != "" && frequency != ''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    } else if (brand != "" && generation != "" && frequency != ''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    } else if (processor != "" && generation != "" && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&frecventa=${frequency}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && frequency != '' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&frecventa=${frequency}&screen=${screen}`);
+    } else if (brand != "" && category != "" && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && category != ""  && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (generation != "" && category != ""  && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (brand != "" && generation != ""  && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && generation != "" && videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && brand != ""  && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (brand != "" && category != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&category=${category}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&category=${category}&screen=${screen}`);
+    } else if (processor != "" && category != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&procesor=${processor}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&procesor=${processor}&screen=${screen}`);
+    } else if (generation != "" && category != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&generatie=${generation}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&generatie=${generation}&screen=${screen}`);
+    } else if (brand != "" && generation != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&generatie=${generation}&screen=${screen}`);
+    } else if (processor != "" && generation != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&generatie=${generation}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&generatie=${generation}&screen=${screen}`);
+    } else if (processor != "" && brand != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&brand=${brand}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&brand=${brand}&screen=${screen}`);
+    } else if (brand != "" && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (processor != "" && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (category != "" && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (generation != "" && videoCard !=''&& !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?generatie=${generation}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (frequency != ""&& videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?frecventa=${frequency}&placa-video=${videoCard}&screen=${screen}`);
+    } else if (brand != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?brand=${brand}&screen=${screen}`);
+      router.push(`/laptop?brand=${brand}&screen=${screen}`);
+    } else if (processor != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?procesor=${processor}&screen=${screen}`);
+      router.push(`/laptop?procesor=${processor}&screen=${screen}`);
+    } else if (category != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?category=${category}&screen=${screen}`);
+      router.push(`/laptop?category=${category}&screen=${screen}`);
+    } else if (generation != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?generatie=${generation}&screen=${screen}`);
+      router.push(`/laptop?generatie=${generation}&screen=${screen}`);
+    } else if (frequency != "" && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?frecventa=${frequency}&screen=${screen}`);
+      router.push(`/laptop?frecventa=${frequency}&screen=${screen}`);
+    } else if (videoCard !='' && !(router.asPath.includes('screen'))) {
+      setBaseLink(`/laptop?placa-video=${videoCard}&screen=${screen}`);
+      router.push(`/laptop?placa-video=${videoCard}&screen=${screen}`);
+    } else if (router.asPath.includes('screen')) {
+      setBaseLink(`/laptop?screen=${screen}`);
+      router.push(`/laptop?screen=${screen}`);
+    } else {
+      setBaseLink(`/laptop?screen=${screen}`);
+      router.push(`/laptop?screen=${screen}`);
+    }
+    setMultupleSelected(true);
+    setScreen(screen)
+  };
+
   let matchBrand = brands.find((x) => x.slug == brand);
   let matchProc = processors.find((x) => x.slug == processor);
-  let matchGeneration = processorsGeneration.find((x) => x.slug == generation);
+  let matchGeneration = processorsGeneration.find((x) => x.slug == generation); 
   let matchVideo = videoCards.find((x) => x.slug == videoCard);
   let matchFreq = procFrequencies.find((x) => x.slug == frequency);
 
