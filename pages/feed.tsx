@@ -35,9 +35,88 @@ const Feed = () => {
     return obj;
 }
 
+/*useEffect(() => {
+  if (Object.keys(serverData).length == 0){
+    console.log('finished')
+    return;
+  }
+  if (Object.keys(serverData).length > 0){
+    console.log('start')
+    feedService.generate(serverData, 'servere')
+  }
+  
+}, [serverData])*/
+
+/*useEffect(() => {
+  if (Object.keys(componentData).length > 0){
+    console.log('start')
+    feedService.generate(componentData, 'componente')
+  }
+}, [componentData])*/
+
+/*useEffect(() => {
+  if (Object.keys(computersData).length > 0){
+    console.log('start')
+    feedService.generate(computersData, 'calculatoare')
+  }
+}, [computersData])*/
+
+/*useEffect(() => {
+  if (Object.keys(laptopsData).length > 0){
+    console.log('start')
+    feedService.generate(laptopsData, 'laptop')
+  }
+}, [laptopsData])*/
+
+/*useEffect(() => {
+  if (Object.keys(printerData).length > 0){
+    console.log('start')
+    feedService.generate(printerData, 'imprimante')
+  }
+}, [printerData])*/
+
 useEffect(() => {
-  console.log('Mounted')
-}, [])
+  if (Object.keys(monitorData).length > 0){
+    console.log('fetching monitors')
+    feedService.generate(monitorData, 'monitoare')
+  }
+}, [monitorData])
+
+/*useEffect(() => {
+  if (Object.keys(networkData).length > 0){
+    console.log('fetching network')
+    feedService.generate(networkData, 'retelistica')
+  }
+}, [networkData])
+
+useEffect(() => {
+  if (Object.keys(posData).length > 0){
+    console.log('fetching pos')
+    feedService.generate(posData, 'sisteme-pos')
+  }
+}, [posData])
+
+useEffect(() => {
+  if (Object.keys(solarData).length > 0){
+    console.log('fetching solar')
+    feedService.generate(solarData, 'sisteme-solare-fotovoltaice')
+  }
+}, [solarData])
+
+useEffect(() => {
+  if (Object.keys(upsData).length > 0){
+    console.log('fetching upsData')
+    feedService.generate(upsData, 'ups')
+  }
+}, [upsData])
+
+useEffect(() => {
+  if (Object.keys(workstationData).length > 0){
+    console.log('fetching upsData')
+    feedService.generate(workstationData, 'workstation')
+  }
+}, [workstationData])*/
+
 
   useEffect(() => {
     //@ts-ignore
@@ -66,6 +145,7 @@ useEffect(() => {
         complete: (results) => {
           let result = update(results.data)
           setComputersData(result);
+          //feedService.generate(computersData, 'calculatoare')
         },
       }
     );
@@ -106,6 +186,7 @@ useEffect(() => {
         complete: (results) => {
           let result = update(results.data)
             setComponentData(result);
+            //feedService.generate(componentData, 'componente')
         },
       }
     );
@@ -116,7 +197,6 @@ useEffect(() => {
         complete: (results) => {
           let result = update(results.data)
            setPrinterData(result);
-           //feedService.generate(printerData)
         },
       }
     );
@@ -147,6 +227,7 @@ useEffect(() => {
         complete: (results) => {
           let result = update(results.data)
            setAccessoriesData(result);
+           //feedService.generate(accessoriesData, 'accesorii')
         },
       }
     );
@@ -162,27 +243,6 @@ useEffect(() => {
         );
     
   }, [readRemoteFile]);
-
-
-
-  /*useEffect(() => {
-    const interval = setInterval(() => {
-       //@ts-ignore
-      readRemoteFile("https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_sisteme-solare-fotovoltaice",{
-        skipEmptyLines: true,
-        complete: (results) => {
-          let result = update(results.data)
-            setSolarData(result);
-            feedService.generate(solarData)
-        },
-      }
-    );
-    }, 3600);
-
-    return () => clearInterval(interval);
-  }, [readRemoteFile, solarData]);*/
-
-
 
 
   return (
