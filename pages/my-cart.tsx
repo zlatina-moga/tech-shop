@@ -5,7 +5,7 @@ import CartItem from "../components/shared/CartItem";
 import Footer from "../components/global/Footer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ResponsiveCart from "../components/shared/ResponsiveCartItem";
-import * as ga from '../lib/gtag';
+import * as ga from "../lib/gtag";
 
 const MyCard = () => {
   //@ts-ignore
@@ -14,8 +14,8 @@ const MyCard = () => {
 
   let gaItems = cart.products.map((p) => ({
     item_id: p.itemData[0],
-    item_name: p.itemData[3]
-  }))
+    item_name: p.itemData[3],
+  }));
 
   const handleEvent = () => {
     ga.event({
@@ -23,10 +23,10 @@ const MyCard = () => {
       params: {
         currency: "RON",
         value: cart.total.toFixed(2),
-        items: gaItems
+        items: gaItems,
       },
     });
-  }
+  };
 
   return (
     <>
@@ -53,18 +53,31 @@ const MyCard = () => {
           <div className="col-lg-8 table-responsive mb-5">
             {isTablet ? (
               <div style={{ display: "flex", flexDirection: "column" }}>
-                {cart.products.map((p) => (
-                  <ResponsiveCart
-                    key={p.itemData[0]}
-                    id={p.itemData[8].replace('citgrup', 'pcbun')}
-                    imgLink={p.itemData[16][0].src}
-                    img1={''}
-                    title={p.itemData[3]}
-                    priceNum={p.itemData[35]}
-                    warranty={p.warranty}
-                    profile={false}
-                  />
-                ))}
+                {cart.isSoftware
+                  ? cart.products.map((p) => (
+                      <ResponsiveCart
+                        key={p.itemData[0].id}
+                        id={'https://pcbun.ro' + p.itemData[0].id}
+                        imgLink={p.itemData[0].img1}
+                        img1={""}
+                        title={p.itemData[0].title}
+                        priceNum={p.itemData[0].priceNum}
+                        warranty={0}
+                        profile={false}
+                      />
+                    ))
+                  : cart.products.map((p) => (
+                      <ResponsiveCart
+                        key={p.itemData[0]}
+                        id={p.itemData[8].replace("citgrup", "pcbun")}
+                        imgLink={p.itemData[16][0].src}
+                        img1={""}
+                        title={p.itemData[3]}
+                        priceNum={p.itemData[35]}
+                        warranty={p.warranty}
+                        profile={false}
+                      />
+                    ))}
               </div>
             ) : (
               <table className="table table-bordered text-center mb-0">
@@ -77,20 +90,35 @@ const MyCard = () => {
                   </tr>
                 </thead>
                 <tbody className="align-middle">
-                  {cart.products.map((p) => (
-                    <CartItem
-                    key={p.itemData[0]}
-                    id={p.itemData[8].replace('citgrup', 'pcbun')}
-                    imgLink={p.itemData[16][0].src}
-                    img1={''}
-                    title={p.itemData[3]}
-                    priceNum={p.itemData[35]}
-                      warranty={p.warranty}
-                      profile={false}
-                      createdAt
-                      orderNum
-                    />
-                  ))}
+                  {cart.isSoftware
+                    ? cart.products.map((p) => (
+                        <CartItem
+                          key={p.itemData[0].id}
+                          id={'https://pcbun.ro' + p.itemData[0].id}
+                          imgLink={p.itemData[0].img1}
+                          img1={""}
+                          title={p.itemData[0].title}
+                          priceNum={p.itemData[0].priceNum}
+                          warranty={0}
+                          profile={false}
+                          createdAt
+                          orderNum
+                        />
+                      ))
+                    : cart.products.map((p) => (
+                        <CartItem
+                          key={p.itemData[0]}
+                          id={p.itemData[8].replace("citgrup", "pcbun")}
+                          imgLink={p.itemData[16][0].src}
+                          img1={""}
+                          title={p.itemData[3]}
+                          priceNum={p.itemData[35]}
+                          warranty={p.warranty}
+                          profile={false}
+                          createdAt
+                          orderNum
+                        />
+                      ))}
                 </tbody>
               </table>
             )}
@@ -161,18 +189,22 @@ const MyCard = () => {
                     </h5>
                   ) : (
                     <h5 className="font-weight-bold">
-                      {cart.total && (Number(cart.total.toFixed(2)) + 20).toFixed(2)} Lei
+                      {cart.total &&
+                        (Number(cart.total.toFixed(2)) + 20).toFixed(2)}{" "}
+                      Lei
                     </h5>
                   )}
                 </div>
                 {cart.total != 0 ? (
-                  <button  className="btn btn-block btn-primary my-3" onClick={handleEvent}>
+                  <button
+                    className="btn btn-block btn-primary my-3"
+                    onClick={handleEvent}
+                  >
                     {" "}
                     <Link
-                    id='my-cart-button'
+                      id="my-cart-button"
                       className="text-white btn btn-block w-100 py-3 font-weight-bold text-uppercase"
                       href="/checkout"
-                      
                     >
                       Urmatorul pas
                     </Link>

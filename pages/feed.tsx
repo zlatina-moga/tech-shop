@@ -145,7 +145,6 @@ useEffect(() => {
         complete: (results) => {
           let result = update(results.data)
           setComputersData(result);
-          //feedService.generate(computersData, 'calculatoare')
         },
       }
     );
