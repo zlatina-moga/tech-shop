@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { usePapaParse, useCSVDownloader } from "react-papaparse";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
+import * as feedService from '../services/feedService';
 
 const Feed = () => {
   const { readRemoteFile } = usePapaParse();
@@ -111,6 +112,7 @@ const Feed = () => {
         complete: (results) => {
           let result = update(results.data)
            setPrinterData(result);
+           //feedService.generate(printerData)
         },
       }
     );
@@ -156,6 +158,28 @@ const Feed = () => {
         );
     
   }, [readRemoteFile]);
+
+
+
+  /*useEffect(() => {
+    const interval = setInterval(() => {
+       //@ts-ignore
+      readRemoteFile("https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_sisteme-solare-fotovoltaice",{
+        skipEmptyLines: true,
+        complete: (results) => {
+          let result = update(results.data)
+            setSolarData(result);
+            feedService.generate(solarData)
+        },
+      }
+    );
+    }, 3600);
+
+    return () => clearInterval(interval);
+  }, [readRemoteFile, solarData]);*/
+
+
+
 
   return (
     <>

@@ -176,7 +176,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
 
           <div
             className={classNames(
-              "row pb-3 justify-content-center, ml-xl-5",
+              "row pb-3 justify-content-center ml-xl-5",
               className
             )}
             style={{ maxWidth: "80rem", justifyContent: "center" }}

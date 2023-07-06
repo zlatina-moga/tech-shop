@@ -29,34 +29,34 @@ const ServerFeed = () => {
         complete: (results) => {
           let result = update(results.data);
           setServerData(result);
+          
         },
       }
     );
   }, [readRemoteFile]);
 
-  useEffect(() => {
-    buttonRef.current.click();
-  }, []);
-
+  //useEffect(() => {
+    //buttonRef.current.click();
+ // }, []);
 
   return (
     <div>
-      <CSVDownloader
-        type={Type.Button}
-        filename={"Servere"}
-        bom={true}
-        config={{
-          delimiter: ",",
-        }}
-        data={serverData}
-        className="feed-container"
-        style={{display: 'none'}}
-      >
-        <button ref={buttonRef}></button>
-        
-      </CSVDownloader>
+      
+        <CSVDownloader
+          type={Type.Button}
+          filename={"Servere"}
+          bom={true}
+          config={{
+            delimiter: ",",
+          }}
+          data={serverData}
+          className="feed-container"
+        >
+          <button ref={buttonRef} ></button>
+          Feed Produse Servere
+        </CSVDownloader>
     </div>
   );
-}
+};
 
 export default ServerFeed;
