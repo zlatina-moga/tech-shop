@@ -35,6 +35,10 @@ const Feed = () => {
     return obj;
 }
 
+useEffect(() => {
+  console.log('Mounted')
+}, [])
+
   useEffect(() => {
     //@ts-ignore
     readRemoteFile("https://api.citgrup.ro/public/feeds/csv-public-feeds/produse_servere",{
