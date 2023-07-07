@@ -75,12 +75,12 @@ const Feed = () => {
   }
 }, [printerData])*/
 
-useEffect(() => {
+/*useEffect(() => {
   if (Object.keys(monitorData).length > 0){
     console.log('fetching monitors')
     feedService.generate(monitorData, 'monitoare')
   }
-}, [monitorData])
+}, [monitorData])*/
 
 /*useEffect(() => {
   if (Object.keys(networkData).length > 0){

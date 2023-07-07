@@ -202,51 +202,51 @@ export default function Home() {
     () => [
       {
         fn: fetchMonitors,
-         config: '30 7 * * *',
+         config: '45 13 * * *',
       },
       {
         fn: fetchServers,
-         config: '30 7 * * *',
+         config: '50 13 * * *',
       },
       {
         fn: fetchComponents,
-         config: '30 7 * * *',
+         config: '0 14 * * *',
       },
       {
         fn: fetchPrinters,
-         config: '30 7 * * *',
+         config: '5 14 * * *',
       },
       {
         fn: fetchPos,
-         config: '30 7 * * *',
+         config: '10 14 * * *',
       },
       {
         fn: fetchUps,
-         config: '30 7 * * *',
+         config: '12 14 * * *',
       },
       {
         fn: fetchAccessories,
-         config: '30 7 * * *',
+         config: '15 14 * * *',
       },
       {
         fn: fetchNetwork,
-         config: '30 7 * * *',
+         config: '18 14 * * *',
       },
       {
         fn: fetchLaptop,
-         config: '30 7 * * *',
+         config: '20 14 * * *',
       },
       {
         fn: fetchSolar,
-         config: '30 7 * * *',
+         config: '30 14 * * *',
       },
       {
         fn: fetchComputers,
-         config: '30 7 * * *',
+         config: '35 14 * * *',
       },
       {
         fn: fetchWorkstation,
-         config: '30 7 * * *',
+         config: '0 15 * * *',
       },
 
     ],
