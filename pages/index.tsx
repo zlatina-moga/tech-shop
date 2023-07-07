@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo} from "react";
+import { useEffect, useMemo} from "react";
 import { usePapaParse} from "react-papaparse";
 import Crontab from "reactjs-crontab";
 import "reactjs-crontab/dist/index.css";
@@ -202,51 +202,51 @@ export default function Home() {
     () => [
       {
         fn: fetchMonitors,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchServers,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchComponents,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchPrinters,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchPos,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchUps,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchAccessories,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchNetwork,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchLaptop,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchSolar,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchComputers,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
       {
         fn: fetchWorkstation,
-        config: "0 0 * * *",
+         config: '30 7 * * *',
       },
 
     ],

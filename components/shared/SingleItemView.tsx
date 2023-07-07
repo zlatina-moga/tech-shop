@@ -32,16 +32,16 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images, data }) => {
   const handleAddToCart = () => {
     dispatch(addProduct({ itemData, quantity: 1, warranty: 0 }));
     setClicked(true);
-
+    
     ga.event({
       action: "add_to_cart",
       params: {
         currency: "RON",
-        value: itemData[35],
+        value: (itemData[35] ? itemData[35] : itemData[0].priceNum),
         items: [
           {
-            item_id: itemData[0],
-            item_name: itemData[9],
+            item_id: ( itemData[0] ? itemData[0] : itemData[0].id),
+            item_name: (itemData[3] ? itemData[3] : itemData[0].title),
           },
         ],
       },
@@ -285,7 +285,7 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images, data }) => {
               </h3>
               <section
                 dangerouslySetInnerHTML={{
-                  __html: itemData[11].replaceAll("citgrup.ro", "pcbun.ro"),
+                  __html: itemData[11].replaceAll("citgrup.ro", "pcbun.ro").replaceAll('https://api.pcbun.ro/img/badges/', 'https://api.citgrup.ro/img/badges/')
                 }}
               ></section>
               <div

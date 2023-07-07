@@ -103,15 +103,15 @@ const Checkout = () => {
       zip &&
       !checked
     ) {
-      let cartItems = cart.products.map((c) => ({
-        productId: c.itemData[0],
-        quantity: c.quantity,
-        price: c.itemData[35],
-        warranty: c.warranty,
-        title: c.itemData[3],
-        img1: c.itemData[16][0].src,
-        imgLink: c.itemData[16][0].src,
-        idLink: c.itemData[8].replace("citgrup", "pcbun"),
+      let cartItems = cart.products.map((p) => ({
+        productId:(p.itemData[0] ? p.itemData[0] : p.itemData[0].id),
+        quantity: p.quantity,
+        price: (p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum),
+        warranty: p.warranty,
+        title: (p.itemData[3] ? p.itemData[3] : p.itemData[0].title),
+        img1: (p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1),
+        imgLink: (p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1),
+        idLink: (p.itemData[8] ? p.itemData[8].replace("citgrup", "pcbun") : "https://pcbun.ro" + p.itemData[0].id),
       }));
 
       let gaItems = cartItems.map((p) => ({
@@ -249,15 +249,15 @@ const Checkout = () => {
       address2 &&
       zip2
     ) {
-      let cartItems = cart.products.map((c) => ({
-        productId: c.itemData[0],
-        quantity: c.quantity,
-        price: c.itemData[35],
-        warranty: c.warranty,
-        title: c.itemData[3],
-        img1: c.itemData[16][0].src,
-        imgLink: c.itemData[16][0].src,
-        idLink: c.itemData[8].replace("citgrup", "pcbun"),
+      let cartItems = cart.products.map((p) => ({
+        productId:(p.itemData[0] ? p.itemData[0] : p.itemData[0].id),
+        quantity: p.quantity,
+        price: (p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum),
+        warranty: p.warranty,
+        title: (p.itemData[3] ? p.itemData[3] : p.itemData[0].title),
+        img1: (p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1),
+        imgLink: (p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1),
+        idLink: (p.itemData[8] ? p.itemData[8].replace("citgrup", "pcbun") : "https://pcbun.ro" + p.itemData[0].id),
       }));
 
       let gaItems = cartItems.map((p) => ({
@@ -878,8 +878,8 @@ const Checkout = () => {
                       className="d-flex justify-content-between"
                       key={p.itemData[0]}
                     >
-                      <p className="mw-50 mr-5">{p.itemData[3]}</p>
-                      <p>{p.itemData[35]} Lei</p>
+                      <p className="mw-50 mr-5">{p.itemData[3] ? p.itemData[3] : p.itemData[0].title}</p>
+                      <p>{ p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum} Lei</p>
                     </div>
                   ))}
 

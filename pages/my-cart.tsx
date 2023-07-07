@@ -13,8 +13,8 @@ const MyCard = () => {
   const isTablet = useMediaQuery("(max-width:500px)");
 
   let gaItems = cart.products.map((p) => ({
-    item_id: p.itemData[0],
-    item_name: p.itemData[3],
+    item_id:( p.itemData[0] ? p.itemData[0] : p.itemData[0].id),
+    item_name: (p.itemData[3] ? p.itemData[3] : p.itemData[0].title),
   }));
 
   const handleEvent = () => {
@@ -53,31 +53,28 @@ const MyCard = () => {
           <div className="col-lg-8 table-responsive mb-5">
             {isTablet ? (
               <div style={{ display: "flex", flexDirection: "column" }}>
-                {cart.isSoftware
-                  ? cart.products.map((p) => (
-                      <ResponsiveCart
-                        key={p.itemData[0].id}
-                        id={'https://pcbun.ro' + p.itemData[0].id}
-                        imgLink={p.itemData[0].img1}
-                        img1={""}
-                        title={p.itemData[0].title}
-                        priceNum={p.itemData[0].priceNum}
-                        warranty={0}
-                        profile={false}
-                      />
-                    ))
-                  : cart.products.map((p) => (
-                      <ResponsiveCart
-                        key={p.itemData[0]}
-                        id={p.itemData[8].replace("citgrup", "pcbun")}
-                        imgLink={p.itemData[16][0].src}
-                        img1={""}
-                        title={p.itemData[3]}
-                        priceNum={p.itemData[35]}
-                        warranty={p.warranty}
-                        profile={false}
-                      />
-                    ))}
+                {cart.products.map((p) => (
+                  <ResponsiveCart
+                    key={p.itemData[0] ? p.itemData[0] : p.itemData[0].id}
+                    id={
+                      p.itemData[8]
+                        ? p.itemData[8].replace("citgrup", "pcbun")
+                        : "https://pcbun.ro" + p.itemData[0].id
+                    }
+                    imgLink={
+                      p.itemData[16]
+                        ? p.itemData[16][0].src
+                        : p.itemData[0].img1
+                    }
+                    img1={""}
+                    title={p.itemData[3] ? p.itemData[3] : p.itemData[0].title}
+                    priceNum={
+                      p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum
+                    }
+                    warranty={p.warranty}
+                    profile={false}
+                  />
+                ))}
               </div>
             ) : (
               <table className="table table-bordered text-center mb-0">
@@ -90,35 +87,20 @@ const MyCard = () => {
                   </tr>
                 </thead>
                 <tbody className="align-middle">
-                  {cart.isSoftware
-                    ? cart.products.map((p) => (
-                        <CartItem
-                          key={p.itemData[0].id}
-                          id={'https://pcbun.ro' + p.itemData[0].id}
-                          imgLink={p.itemData[0].img1}
-                          img1={""}
-                          title={p.itemData[0].title}
-                          priceNum={p.itemData[0].priceNum}
-                          warranty={0}
-                          profile={false}
-                          createdAt
-                          orderNum
-                        />
-                      ))
-                    : cart.products.map((p) => (
-                        <CartItem
-                          key={p.itemData[0]}
-                          id={p.itemData[8].replace("citgrup", "pcbun")}
-                          imgLink={p.itemData[16][0].src}
-                          img1={""}
-                          title={p.itemData[3]}
-                          priceNum={p.itemData[35]}
-                          warranty={p.warranty}
-                          profile={false}
-                          createdAt
-                          orderNum
-                        />
-                      ))}
+                  {cart.products.map((p) => (
+                    <CartItem
+                      key={p.itemData[0] ? p.itemData[0] : p.itemData[0].id}
+                      id={p.itemData[8] ? p.itemData[8].replace("citgrup", "pcbun") : "https://pcbun.ro" + p.itemData[0].id }
+                      imgLink={p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1}
+                      img1={""}
+                      title={p.itemData[3] ? p.itemData[3] : p.itemData[0].title}
+                      priceNum={p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum }
+                      warranty={p.warranty}
+                      profile={false}
+                      createdAt
+                      orderNum
+                    />
+                  ))}
                 </tbody>
               </table>
             )}

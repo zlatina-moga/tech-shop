@@ -8,9 +8,9 @@ const cartSlice = createSlice({
     quantity: 0,
     warranty: 0,
     total: 0,
-    orderNumber: '',
+    orderNumber: "",
     orderTotal: 0,
-    isSoftware: false
+    isSoftware: false,
   },
   reducers: {
     addProduct: (state, action) => {
@@ -19,33 +19,47 @@ const cartSlice = createSlice({
       state.warranty += action.payload.warranty;
       state.total += action.payload.warranty;
       state.isSoftware = action.payload.isSoftware;
-      if (state.isSoftware == true) { 
+      if (state.isSoftware == true) {
         state.total += action.payload.itemData[0].priceNum;
       } else {
         state.total += action.payload.itemData[35];
       }
-     
-      
     },
     removeItem: (state, { payload }) => {
-      const newCart = state.products.filter(
-        (item) =>  item.itemData[8] != payload.id.replace('pcbun', 'citgrup')
-      );
+      let newCart;
+      if (state.isSoftware) {
+        newCart = state.products.filter(
+          (item) => "https://pcbun.ro" + item.itemData[0].id != payload.id
+        ).filter(
+          (item) => item.itemData[8] != payload.id.replace("pcbun", "citgrup")
+        );
+      } else {
+        newCart = state.products.filter(
+          (item) => item.itemData[8] != payload.id.replace("pcbun", "citgrup")
+        );
+      }
+
       state.products = newCart;
       state.quantity -= 1;
-      if (state.products.length == 0) {
+      if (state.quantity < 0) {
         state.quantity = 0
-        state.warranty = 0 ;
-        state.total = 0 ;
+      }
+      if (state.products.length == 0) {
+        state.quantity = 0;
+        state.warranty = 0;
+        state.total = 0;
       } else {
-        state.warranty -= payload.warranty ;
-        state.total -= payload.warranty ;
+        state.warranty -= payload.warranty;
+        state.total -= payload.warranty;
         state.total -= payload.priceNum;
+        if(state.total < 0) {
+          state.total = 0
+        }
       }
     },
     increase: (state, { payload }) => {
       const cartItem = state.products.find(
-        (item) => item.itemData[8] === payload.id.replace('pcbun', 'citgrup')
+        (item) => item.itemData[8] === payload.id.replace("pcbun", "citgrup")
       );
       cartItem.quantity += 1;
       state.quantity += 1;
@@ -53,7 +67,7 @@ const cartSlice = createSlice({
     },
     decrease: (state, { payload }) => {
       const cartItem = state.products.find(
-        (item) => item.itemData[8] === payload.id.replace('pcbun', 'citgrup')
+        (item) => item.itemData[8] === payload.id.replace("pcbun", "citgrup")
       );
       cartItem.quantity -= 1;
       state.quantity -= 1;
@@ -66,9 +80,9 @@ const cartSlice = createSlice({
         (state.total = 0);
     },
     addOrderNum: (state, action) => {
-      state.orderNumber = action.payload.orderNumber,
-      state.orderTotal = action.payload.orderTotal;
-    }
+      (state.orderNumber = action.payload.orderNumber),
+        (state.orderTotal = action.payload.orderTotal);
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -80,6 +94,12 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addProduct, increase, decrease, removeItem, empty, addOrderNum } =
-  cartSlice.actions;
+export const {
+  addProduct,
+  increase,
+  decrease,
+  removeItem,
+  empty,
+  addOrderNum,
+} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -37,11 +37,11 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
       action: "add_to_cart",
       params: {
         currency: "RON",
-        value: itemData[35],
+        value: (itemData[35] ? itemData[35] : itemData[0].priceNum),
         items: [
           {
-            item_id: itemData[0],
-            item_name: itemData[9],
+            item_id: ( itemData[0] ? itemData[0] : itemData[0].id),
+            item_name: (itemData[3] ? itemData[3] : itemData[0].title),
           },
         ],
       },
@@ -427,7 +427,7 @@ const SingleDetailedView = ({ itemData, breadcrumbs, techSpecs, upgradeOptions, 
                   <h3 style={{ fontWeight: "600" }}>
                     Specificatii produs {itemData[28]} {itemData[6]}
                   </h3>
-                <section style={{maxWidth: '80rem'}} dangerouslySetInnerHTML={{__html: itemData[11].replaceAll('citgrup.ro', 'pcbun.ro')}}></section>
+                <section style={{maxWidth: '80rem'}} dangerouslySetInnerHTML={{__html: itemData[11].replaceAll('citgrup.ro', 'pcbun.ro').replaceAll('https://api.pcbun.ro/img/badges/', 'https://api.citgrup.ro/img/badges/')}}></section>
                 <div
                   style={{
                     display: "flex",
