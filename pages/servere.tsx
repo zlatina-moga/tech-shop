@@ -516,7 +516,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Refurbished")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name)
           .filter((r) => r[24] == matchFormat.name);
@@ -531,7 +531,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Second Hand")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name)
           .filter((r) => r[24] == matchFormat.name);
@@ -548,7 +548,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Noi")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name)
           .filter((r) => r[24] == matchFormat.name);
@@ -565,7 +565,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name)
           .filter((r) => r[24] == matchFormat.name)
@@ -583,7 +583,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Refurbished")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name)
           .filter((r) => r[24] == matchFormat.name);
@@ -600,7 +600,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Second Hand")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name)
           .filter((r) => r[24] == matchFormat.name);
@@ -617,7 +617,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Noi")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name)
           .filter((r) => r[24] == matchFormat.name);
@@ -684,7 +684,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Refurbished")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[24] == matchFormat.name);
         setFilteredData(arr);
@@ -699,7 +699,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Second Hand")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[24] == matchFormat.name);
         setFilteredData(arr);
@@ -714,7 +714,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Noi")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[24] == matchFormat.name);
         setFilteredData(arr);
@@ -731,7 +731,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Refurbished")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name);
         setFilteredData(arr);
@@ -746,7 +746,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Second Hand")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name);
           setFilteredData(arr);
@@ -762,7 +762,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Noi")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name);
           setFilteredData(arr);
@@ -778,7 +778,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name);
           setFilteredData(arr);
@@ -796,7 +796,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Refurbished")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name);
         setFilteredData(arr);
@@ -813,7 +813,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Second Hand")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name);
           setFilteredData(arr);
@@ -830,7 +830,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Noi")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[30] == matchFreq.name);
           setFilteredData(arr);
@@ -898,7 +898,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Refurbished")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           );
         setFilteredData(arr);
         sortingService
@@ -913,7 +913,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Second Hand")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           );
           setFilteredData(arr);
           sortingService
@@ -929,7 +929,7 @@ const Laptopuri = () => {
           .filter((r) => r[2] == "Noi")
           .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           );
           setFilteredData(arr);
           sortingService
@@ -993,7 +993,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Refurbished")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[24] == matchFormat.name);
         setFilteredData(arr);
@@ -1010,7 +1010,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Second Hand")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[24] == matchFormat.name);
         setFilteredData(arr);
@@ -1027,7 +1027,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Noi")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           )
           .filter((r) => r[24] == matchFormat.name);
         setFilteredData(arr);
@@ -1045,7 +1045,7 @@ const Laptopuri = () => {
       let arr = laptopsData
       .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
       .filter(
-        (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+        (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
       )
       .filter((r) => r[24] == matchFormat.name);
     setFilteredData(arr);
@@ -1117,7 +1117,7 @@ const Laptopuri = () => {
       }
     } else if (processor != "" && frequency != '' && format != '') {
       let arr = laptopsData.filter(
-        (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+        (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
       ).filter((r) => r[30] == matchFreq.name)
       .filter((r) => r[24] == matchFormat.name);
       setFilteredData(arr);
@@ -1186,7 +1186,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Refurbished")
           .filter(
-            (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+            (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
           );
         setFilteredData(arr);
         sortingService.getBrandsByProcessor(10, `${matchProc.slug}-${matchProc.id}`).then((result) => {
@@ -1203,7 +1203,7 @@ const Laptopuri = () => {
         let arr = laptopsData
           .filter((r) => r[2] == "Second Hand")
           .filter(
-            (r) => r[28].toLowerCase() ==  processor.split('-').join(' ')
+            (r) => r[25].toLowerCase() ==  processor.split('-').join(' ')
           );
         setFilteredData(arr);
         sortingService.getBrandsByProcessor(11, `${matchProc.slug}-${matchProc.id}`).then((result) => {
@@ -1219,7 +1219,7 @@ const Laptopuri = () => {
       } else if (category == "nou") {
         let arr = laptopsData
           .filter((r) => r[2] == "Noi")
-          .filter((r) => r[28].toLowerCase() ==  processor.split('-').join(' '));
+          .filter((r) => r[25].toLowerCase() ==  processor.split('-').join(' '));
         setFilteredData(arr);
         sortingService.getBrandsByProcessor(56, `${matchProc.slug}-${matchProc.id}`).then((result) => {
           setBrands(result);
@@ -1236,7 +1236,7 @@ const Laptopuri = () => {
       let arr = laptopsData
       .filter((r) => r[18].toUpperCase() == brand.toUpperCase())
       .filter(
-        (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+        (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
       );
     setFilteredData(arr);
     sortingService.getTypesByProcessorAndBrand(9, `${matchProc.slug}-${matchProc.id}`, `${matchBrand.slug}-${matchBrand.id}`).then((result) => {
@@ -1308,7 +1308,7 @@ const Laptopuri = () => {
       }
     } else if (processor != "" && frequency != '') {
       let arr = laptopsData.filter(
-        (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+        (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
       ).filter((r) => r[30] == matchFreq.name)
       setFilteredData(arr);
       sortingService
@@ -1382,7 +1382,7 @@ const Laptopuri = () => {
       }
     } else if (processor != "" && format != '') {
       let arr = laptopsData.filter(
-        (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+        (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
       ).filter((r) => r[24] == matchFormat.name);
       setFilteredData(arr);
       sortingService
@@ -1476,7 +1476,7 @@ const Laptopuri = () => {
       }
     } else if (processor != "") {
       let arr = laptopsData.filter(
-        (r) => r[28].toLowerCase() == processor.split('-').join(' ').toLowerCase()
+        (r) => r[25].toLowerCase() == processor.split('-').join(' ').toLowerCase()
       );
       setFilteredData(arr);
       sortingService

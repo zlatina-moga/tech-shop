@@ -27,7 +27,8 @@ const SideFilter = ({
   selectFrequency,
   resetClicked,
   formats,
-  selectFormat
+  selectFormat,
+  screenTitle
 }) => {
   const router = useRouter();
   const [value, setValue] = useState(1);
@@ -91,12 +92,12 @@ const SideFilter = ({
 
       <button
         className="btn btn-block py-3 my-4"
-        style={{ 
+        style={{
           border: "1px solid #619F42",
-          color: '#619F42',
-          borderRadius: '4px'
-       }}
-       onClick={() => resetClicked(true)}
+          color: "#619F42",
+          borderRadius: "4px",
+        }}
+        onClick={() => resetClicked(true)}
       >
         Resetați filtrele
       </button>
@@ -524,9 +525,16 @@ const SideFilter = ({
                     borderRadius: "4px",
                   }}
                 >
-                  <h5 className="py-2 mb-0 pl-3 bg-primary text-white">
-                    Diagonala
-                  </h5>
+                  {screenTitle ? (
+                    <h5 className="py-2 mb-0 pl-3 bg-primary text-white">
+                      Display
+                    </h5>
+                  ) : (
+                    <h5 className="py-2 mb-0 pl-3 bg-primary text-white">
+                      Diagonala
+                    </h5>
+                  )}
+
                   {screens.map((c, idx) => (
                     <button
                       onClick={() => selectScreen(c.slug)}
@@ -660,7 +668,7 @@ const SideFilter = ({
                   }}
                 >
                   <h5 className="py-2 mb-0 pl-3 bg-primary text-white">
-                  Format carcasa
+                    Format carcasa
                   </h5>
                   {formats.map((c, idx) => (
                     <button

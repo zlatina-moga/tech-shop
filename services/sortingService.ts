@@ -2843,332 +2843,2221 @@ export const getBrandsByGenerationFormat = (category, gen, format) =>
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getHighestPriceByGenFormat = (category, gen, format) =>
+export const getHighestPriceByGenFormat = (category, gen, format) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getFreqByGenerationFormat = (category, gen, format) =>
+export const getFreqByGenerationFormat = (category, gen, format) =>
   request.get(
     `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getProcessorsByGenerationFormat = (category, gen, format) =>
+export const getProcessorsByGenerationFormat = (category, gen, format) =>
   request.get(
     `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getVideosByGenerationFormat = (category, gen, format) =>
+export const getVideosByGenerationFormat = (category, gen, format) =>
   request.get(
     `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByProcessorAndGenFormat = (category, processor, gen, format) =>
+export const getTypesByProcessorAndGenFormat = (
+  category,
+  processor,
+  gen,
+  format
+) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-generatie-procesor-277]=${gen}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByBrandAndVideoFormat  = (category, brand, video, format) =>
+export const getTypesByBrandAndVideoFormat = (category, brand, video, format) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getBrandsByVideoFormat = (category, video, format) =>
+export const getBrandsByVideoFormat = (category, video, format) =>
   request.get(
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getHighestPriceByTypeVideoFormat = (category, video,  format) =>
+export const getHighestPriceByTypeVideoFormat = (category, video, format) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-
-export const getProcessorsByVideoFormat  = (category, video, format ) =>
-request.get(
-  `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
-);
+export const getProcessorsByVideoFormat = (category, video, format) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
+  );
 
 export const getGenerationsByTypeAndVideoFormat = (category, video, format) =>
   request.get(
     `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getFreqByVideoFormat = (category, video, format) =>
+export const getFreqByVideoFormat = (category, video, format) =>
   request.get(
     `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByProcessorAndVideoFormat = (category, processor, video, format) =>
+export const getTypesByProcessorAndVideoFormat = (
+  category,
+  processor,
+  video,
+  format
+) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByGenerationAndVideoFormat = (category, gen, video, format) =>
+export const getTypesByGenerationAndVideoFormat = (
+  category,
+  gen,
+  video,
+  format
+) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getFreqByGenerationAndVideoFormat  = (category, gen, video, format ) =>
+export const getFreqByGenerationAndVideoFormat = (
+  category,
+  gen,
+  video,
+  format
+) =>
   request.get(
     `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByBrandFreqFormat = (category, brand, freq, format) =>
+export const getTypesByBrandFreqFormat = (category, brand, freq, format) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getBrandsFreqFormat  = (category, freq, format) =>
+export const getBrandsFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getHighestPriceFreqFormat  = (category, freq, format) =>
+export const getHighestPriceFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getProcessorsFreqFormat = (category, freq, format) =>
+export const getProcessorsFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-
 export const getGenerationsByTypeFreqFormat = (category, freq, format) =>
-request.get(
-  `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
-);
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
+  );
 
 export const getVideosFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByProcessorFreqFormat = (category, processor, freq, format) =>
+export const getTypesByProcessorFreqFormat = (
+  category,
+  processor,
+  freq,
+  format
+) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByGenerationFreqFormat = (category, gen, freq, format) =>
+export const getTypesByGenerationFreqFormat = (category, gen, freq, format) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-
 export const getTypesByVideoFreqFormat = (category, video, freq, format) =>
-request.get(
-  `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
-);
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
+  );
 
-export const getHighestPriceByVideoFreqFormat = (category, video, freq, format) =>
+export const getHighestPriceByVideoFreqFormat = (
+  category,
+  video,
+  freq,
+  format
+) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getGenerationsByVideoFreqFormat  = (category, video, freq, format ) =>
+export const getGenerationsByVideoFreqFormat = (
+  category,
+  video,
+  freq,
+  format
+) =>
   request.get(
     `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getFormatByBrand = (category, brand) =>
+export const getFormatByBrand = (category, brand) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[brand]=${brand}`
   );
 
-  export const getFormatByProc = (category, processor) =>
+export const getFormatByProc = (category, processor) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-procesor-132]=${processor}`
   );
 
-  export const getFormatByBrandAndProcessor = (category, brand, processor) =>
+export const getFormatByBrandAndProcessor = (category, brand, processor) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}`
   );
 
-  export const getFormatByGeneration = (category, gen) =>
+export const getFormatByGeneration = (category, gen) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}`
   );
 
-  export const getFormatByGenerationAndProcessor = (category, gen, procesor) =>
+export const getFormatByGenerationAndProcessor = (category, gen, procesor) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}`
   );
 
-  export const getFormatByBrandAndVideo = (category, brand, video) =>
+export const getFormatByBrandAndVideo = (category, brand, video) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}`
   );
 
-  export const getFormatByVideo = (category, video) =>
+export const getFormatByVideo = (category, video) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-model-placa-video-254]=${video}`
   );
 
-  export const getFormatByProcessorNVideo = (category, processor, video) =>
+export const getFormatByProcessorNVideo = (category, processor, video) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}`
   );
 
-  export const getFormatByGenerationAndVideo = (category, gen, video) =>
+export const getFormatByGenerationAndVideo = (category, gen, video) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}`
   );
 
-  export const getFormatByBrandFreq = (category, brand, freq) =>
+export const getFormatByBrandFreq = (category, brand, freq) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}`
   );
 
-  export const getFormatByFreq = (category, freq) =>
+export const getFormatByFreq = (category, freq) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}`
   );
 
-  export const getFormatByProcFreq = (category, processor, freq) =>
+export const getFormatByProcFreq = (category, processor, freq) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}`
   );
 
-
 export const getFormatByGenerationFreq = (category, gen, freq) =>
-request.get(
-  `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}`
-);
+  request.get(
+    `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}`
+  );
 
 export const getFormatByVideoFreq = (category, video, freq) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
   );
 
-  export const getTypesByBrandFormat = (category, brand, format) =>
+export const getTypesByBrandFormat = (category, brand, format) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getBrandsFormat = (category, format) =>
-  request.get(`${baseUrl}/brand/brand?filter[category]=${category}&filter[a-format-carcasa-27]=${format}`);
-
+export const getBrandsFormat = (category, format) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-format-carcasa-27]=${format}`
+  );
 
 export const getHighestPriceFormat = (category, format) =>
-request.get(`${baseUrl}/price/price?filter[category]=${category}&filter[a-format-carcasa-27]=${format}`);
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-format-carcasa-27]=${format}`
+  );
 
 export const getProcessorsFormat = (category, format) =>
   request.get(
     `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getGenerationsByTypeFormat = (category, format) =>
+export const getGenerationsByTypeFormat = (category, format) =>
   request.get(
     `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getVideosFormat = (category, format) =>
+export const getVideosFormat = (category, format) =>
   request.get(
     `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getFreqsFormat = (category, format) =>
+export const getFreqsFormat = (category, format) =>
   request.get(
     `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByProcessorFormat = (category, processor, format) =>
+export const getTypesByProcessorFormat = (category, processor, format) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByGenerationFormat = (category, gen, format) =>
+export const getTypesByGenerationFormat = (category, gen, format) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByVideoFormat = (category, video, format ) =>
+export const getTypesByVideoFormat = (category, video, format) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getHighestPriceByVideoFormat = (category, video, format) =>
+export const getHighestPriceByVideoFormat = (category, video, format) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getGenerationsByVideoFormat = (category, video, format) =>
+export const getGenerationsByVideoFormat = (category, video, format) =>
   request.get(
     `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getTypesByFreqFormat  = (category, freq, format ) =>
+export const getTypesByFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getHighestPriceByFreqFormat = (category, freq, format) =>
+export const getHighestPriceByFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getBrandsByFreqFormat = (category, freq, format) =>
+export const getBrandsByFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getGenerationsByFreqFormat = (category, freq, format) =>
+export const getGenerationsByFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
-  export const getProcessorsByFreqFormat = (category, freq, format) =>
+export const getProcessorsByFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getVideosByFreqFormat = (category, freq, format) =>
+export const getVideosByFreqFormat = (category, freq, format) =>
   request.get(
     `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-format-carcasa-27]=${format}`
   );
 
-  export const getFormatsByProc = (category, processor) =>
+export const getFormatsByProc = (category, processor) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-procesor-132]=${processor}`
   );
 
-  export const getTypesByFormats = (category, freq) =>
+export const getTypesByFormats = (category, freq) =>
   request.get(
     `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-format-carcasa-27]=${freq}`
   );
 
-  export const getHighestPriceByFormats= (category, freq) =>
+export const getHighestPriceByFormats = (category, freq) =>
   request.get(
     `${baseUrl}/price/price?filter[category]=${category}&filter[a-format-carcasa-27]=${freq}`
   );
 
-  export const getBrandsByFormat = (category, freq) =>
+export const getBrandsByFormat = (category, freq) =>
   request.get(
     `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-format-carcasa-27]=${freq}`
   );
 
-  export const getGenerationsByFormat = (category, freq) =>
+export const getGenerationsByFormat = (category, freq) =>
   request.get(
     `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-format-carcasa-27]=${freq}`
   );
 
-  export const getProcessorsByFormat = (category, freq) =>
+export const getProcessorsByFormat = (category, freq) =>
   request.get(
     `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-format-carcasa-27]=${freq}`
   );
 
-  export const getVideosByFormat = (category, freq) =>
+export const getVideosByFormat = (category, freq) =>
   request.get(
     `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-format-carcasa-27]=${freq}`
   );
 
-  export const getFormatByFormat = (category, freq) =>
+export const getFormatByFormat = (category, freq) =>
   request.get(
     `${baseUrl}/attributes/a-format-carcasa-27?filter[category]=${category}&filter[a-format-carcasa-27]=${freq}`
   );
 
-  export const getFreqByFormat = (category, video) =>
+export const getFreqByFormat = (category, video) =>
   request.get(
     `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-format-carcasa-27]=${video}`
   );
+
+export const getScreens = (category) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}`
+  );
+
+export const getHighestPriceByBrandGenerationProcessorVideoAndFreqScreen = (
+  category,
+  brand,
+  generation,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesyBrandGenerationProcessorVideoAndFreqScreen = (
+  category,
+  brand,
+  generation,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenerationProcessorVideoAndFreqScreen = (
+  category,
+  generation,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationProcessorVideoAndFreqScreen = (
+  category,
+  generation,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandGenerationVideoAndFreqScreen = (
+  category,
+  brand,
+  generation,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByBrandGenerationVideoAndFreqScreen = (
+  category,
+  brand,
+  generation,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandProcessorVideoAndFreqScreen = (
+  category,
+  brand,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByBrandProcessorVideoAndFreqScreen = (
+  category,
+  brand,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandGenerationProcessorAndFreqScreen = (
+  category,
+  brand,
+  generation,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideoCardsByBrandGenerationProcessorAndFreqScreen = (
+  category,
+  brand,
+  generation,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandGenerationProcessorVideoAndScreen = (
+  category,
+  brand,
+  generation,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByBrandGenerationProcessorVideoAndScreen = (
+  category,
+  brand,
+  generation,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getScreensByProcessorBrandGenerationNVideoFreq = (
+  category,
+  processor,
+  brand,
+  gen,
+  video,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByGenerationAndProcessorVideoAndFreq = (
+  category,
+  gen,
+  procesor,
+  video,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByGenerationAndBrandAndVideoFreq = (
+  category,
+  gen,
+  brand,
+  video,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByProcessorAndVideoFreq = (
+  category,
+  brand,
+  processor,
+  video,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByGenerationBrandAndProcFreq = (
+  category,
+  gen,
+  brand,
+  processor,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByGenerationBrandAndProcVideo = (
+  category,
+  gen,
+  brand,
+  processor,
+  video
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getHighestPriceByBrandGenerationAndProcessorScreen = (
+  category,
+  brand,
+  generation,
+  processor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByGenerationBrandAndProcScreen = (
+  category,
+  gen,
+  brand,
+  processor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationBrandAndProcScreen = (
+  category,
+  gen,
+  brand,
+  processor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandProcessorAndVideoScreen = (
+  category,
+  brand,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcessorAndVideoScreen = (
+  category,
+  brand,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByBrandAndProcVideoScreen = (
+  category,
+  brand,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandAndGenerationAndVideoScreen = (
+  category,
+  brand,
+  generation,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByGenerationAndBrandAndVideoScreen = (
+  category,
+  gen,
+  brand,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationBrandAndVideoScreen = (
+  category,
+  gen,
+  brand,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorBrandGenerationNVideoScreen = (
+  category,
+  processor,
+  brand,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandGenerationAndProcessorNVideoScreen = (
+  category,
+  brand,
+  generation,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationBrandAndProcVideoScreen = (
+  category,
+  gen,
+  brand,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenerationAndProcessorNVideoScreen = (
+  category,
+  generation,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationAndProcessorAndVideoScreen = (
+  category,
+  gen,
+  procesor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationAndProcVideoScreen = (
+  category,
+  gen,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandAndProcessorAndFreqScreen = (
+  category,
+  brand,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByBrandAndProcessorScreen = (
+  category,
+  brand,
+  processor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcessorAndFreqScreen = (
+  category,
+  brand,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandAndGenerationFreqScreen = (
+  category,
+  brand,
+  generation,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByGenerationAndBrandFreqScreen = (
+  category,
+  gen,
+  brand,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByGenerationAndBrandFreqScreen = (
+  category,
+  gen,
+  brand,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorBrandAndGenerationScreen = (
+  category,
+  processor,
+  brand,
+  gen,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByProcessorBrandAndGenerationScreen = (
+  category,
+  processor,
+  brand,
+  gen,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByProcessorBrandAndGenerationScreen = (
+  category,
+  processor,
+  brand,
+  gen,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenerationAndProcessorFreqScreen = (
+  category,
+  generation,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByGenerationAndProcessorFreqScreen = (
+  category,
+  gen,
+  procesor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationAndProcessorFreqScreen = (
+  category,
+  gen,
+  procesor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandAndVideoFreqScreen = (
+  category,
+  brand,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByBrandAndVideoFreqScreen = (
+  category,
+  brand,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByBrandAndVideoFreqScreen = (
+  category,
+  brand,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByProcessorAndVideoFreqScreen = (
+  category,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByProcessorAndVideoFreqScreen = (
+  category,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcessorNVideoFreqScreen = (
+  category,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndBrandAndVideoFreqScreen = (
+  category,
+  processor,
+  brand,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandProcessorAndVideoFreqScreen = (
+  category,
+  brand,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcessorAndVideoFreqScreen = (
+  category,
+  brand,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByBrandAndGenerationVideoFreqScreen = (
+  category,
+  brand,
+  gen,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandAndGenerationVideoFreqScreen = (
+  category,
+  brand,
+  generation,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByGenerationAndBrandAndVideoFreqScreen = (
+  category,
+  gen,
+  brand,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationAndVideFreqScreen = (
+  category,
+  gen,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenAndVideoFreqScreen = (
+  category,
+  gen,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByGenerationAndVideoFreqScreen = (
+  category,
+  gen,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndGenAndVideoFreqScreen = (
+  category,
+  processor,
+  gen,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenerationAndProcessorNVideoFreqScreen = (
+  category,
+  generation,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationAndProcessorAndVideoFreqScreen = (
+  category,
+  gen,
+  procesor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getScreensByGenerationBrandAndProc = (
+  category,
+  gen,
+  brand,
+  processor
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}`
+  );
+
+export const getScreensByBrandAndProcVideo = (
+  category,
+  brand,
+  processor,
+  video
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensByGenerationBrandAndVideo = (
+  category,
+  gen,
+  brand,
+  video
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensyGenerationBrandAndProcVideo = (
+  category,
+  gen,
+  brand,
+  processor,
+  video
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensByGenerationAndProcVideo = (
+  category,
+  gen,
+  processor,
+  video
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensByProcessorAndFreq = (
+  category,
+  brand,
+  processor,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByGenerationAndBrandFreq = (
+  category,
+  gen,
+  brand,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByProcessorBrandAndGeneration = (
+  category,
+  processor,
+  brand,
+  gen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}`
+  );
+
+export const getScreensByGenerationAndProcessorFreq = (
+  category,
+  gen,
+  procesor,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByBrandAndVideoFreq = (category, brand, video, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByProcessorNVideoFreq = (
+  category,
+  processor,
+  video,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByGenerationAndVideoFreq = (
+  category,
+  gen,
+  video,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByProcessorAndGenAndVideoFreq = (
+  category,
+  processor,
+  gen,
+  video,
+  freq
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getHighestPriceByBrandAndProcessorScreen = (
+  category,
+  brand,
+  processor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcessorScreen = (
+  category,
+  brand,
+  processor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByBrandAndProcessorScreen = (
+  category,
+  brand,
+  processor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandAndGenerationScreen = (
+  category,
+  brand,
+  generation,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${generation}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByGenerationAndBrandScreen = (
+  category,
+  gen,
+  brand,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByGenerationAndBrandScreen = (
+  category,
+  gen,
+  brand,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationAndBrandScreen = (
+  category,
+  gen,
+  brand,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenerationAndProcessorScreen = (
+  category,
+  generation,
+  processor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${generation}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByGenerationAndProcessorScreen = (
+  category,
+  gen,
+  procesor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationAndProcessorScreen = (
+  category,
+  gen,
+  procesor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationAndProcessorScreen = (
+  category,
+  gen,
+  procesor,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandAndVideoScreen = (
+  category,
+  brand,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByBrandAndVideoScreen = (
+  category,
+  brand,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByBrandAndVideoScreen = (category, brand, video, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByBrandAndVideoScreen = (
+  category,
+  brand,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByProcessorAndVideoScreen = (
+  category,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByProcessorAndVideoScreen = (
+  category,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcessorNVideoScreen = (
+  category,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByProcessorNVideoScreen = (
+  category,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndBrandAndVideoScreen = (
+  category,
+  processor,
+  brand,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByProcessorAndVideoScreen = (
+  category,
+  brand,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByBrandAndGenerationAndVideoScreen = (
+  category,
+  brand,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqsByGenerationAndBrandAndVideoScreen = (
+  category,
+  gen,
+  brand,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationAndVideoScreen = (
+  category,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenAndVideoScreen = (
+  category,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByGenerationAndVideoScreen = (
+  category,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqsByGenerationAndVideoScreen = (
+  category,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndGenAndVideoScreen = (
+  category,
+  processor,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationAndProcessorAndVideoScreen = (
+  category,
+  gen,
+  procesor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByBrandFreqScreen = (
+  category,
+  brand,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByBrandFreqScreen = (category, brand, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByBrandFreqScreen = (category, brand, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByBrandFreqScreen = (
+  category,
+  brand,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByProcessorFreqScreen = (
+  category,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByProcessorFreqScreen = (
+  category,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByProcFreqScreen = (category, processor, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcFreqScreen = (
+  category,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndBrandFreqScreen = (
+  category,
+  processor,
+  brand,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByProcAndBrandFreqScreen = (
+  category,
+  processor,
+  brand,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcessorFreqScreen = (
+  category,
+  brand,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByBrandAndGenerationFreqScreen = (
+  category,
+  brand,
+  gen,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationFreqScreen = (category, gen, freq, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenFreqScreen = (category, gen, freq, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByGenerationFreqScreen = (category, gen, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByGenerationFreqScreen = (
+  category,
+  gen,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndGenFreqScreen = (
+  category,
+  processor,
+  gen,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByBrandAndVideoFreqScreen = (
+  category,
+  brand,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByVideoFreScreen = (category, video, freq, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByTypeVideoFreqScreen = (
+  category,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByVideoFreqScreen = (category, video, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByTypeAndVideoFreqScreen = (
+  category,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndVideoFreqScreen = (
+  category,
+  processor,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByGenerationAndVideoFreqScreen = (
+  category,
+  gen,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationAndVideoFreqScreen = (
+  category,
+  gen,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getScreensByBrandAndProcessor = (category, brand, processor) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}`
+  );
+
+export const getScreensByGenerationAndBrand = (category, gen, brand) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}`
+  );
+
+export const getScreensByGenerationAndProcessor = (category, gen, procesor) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}`
+  );
+
+export const getScreensByBrandAndVideo = (category, brand, video) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensByProcessorNVideo = (category, processor, video) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreenByProcessorAndVideo = (
+  category,
+  brand,
+  processor,
+  video
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensByGenerationAndBrandAndVideo = (
+  category,
+  gen,
+  brand,
+  video
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensByGenerationAndVideo = (category, gen, video) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensByGenerationAndProcessorAndVideo = (
+  category,
+  gen,
+  procesor,
+  video
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-procesor-132]=${procesor}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensByBrandFreq = (category, brand, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByProcFreq = (category, processor, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByProcessorFreq = (category, brand, processor, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByGenerationFreq = (category, gen, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByTypeAndVideoFreq = (category, video, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getHighestPriceByBrandScreen = (category, brand, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByBrandScreen = (category, brand, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByBrandScreen = (category, brand, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByBrandScreen = (category, brand, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByBrandScreen = (category, brand, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByProcessorScreen = (category, processor, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByProcessorScreen = (category, processor, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByProcScreen = (category, processor, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByProcScreen = (category, processor, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByProcScreen = (category, processor, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndBrandScreen = (
+  category,
+  processor,
+  brand,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByProcAndBrandScreen = (
+  category,
+  processor,
+  brand,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByBrandAndGenerationScreen = (
+  category,
+  brand,
+  gen,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByGenerationScreen = (category, gen, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByGenScreen = (category, gen, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationScreen = (category, gen, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByGenerationScreen = (category, gen, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByGenerationScreen = (category, gen, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndGenScreen = (
+  category,
+  processor,
+  gen,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByBrandAndVideoScreen = (category, brand, video, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByVideoScreen = (category, video, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByTypeVideoScreen = (category, video, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByVideoScreen = (category, video, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByVideoScreen = (category, video, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByTypeAndVideoScreen = (category, video, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorAndVideoScreen = (
+  category,
+  processor,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByGenerationAndVideoScreen = (
+  category,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqByGenerationAndVideoScreen = (
+  category,
+  gen,
+  video,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByBrandFreqScreen = (category, brand, freq, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByTypeFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorFreqScreen = (
+  category,
+  processor,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByGenerationFreqScreen = (category, gen, freq, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByVideoFreqScreen = (category, video, freq, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByVideoFreqScreen = (
+  category,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByVideoFreqScreen = (category, video, freq, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByVideoFreqScreen = (
+  category,
+  video,
+  freq,
+  screen
+) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getScreensByBrand = (category, brand) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}`
+  );
+
+export const getScreensByProc = (category, processor) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-procesor-132]=${processor}`
+  );
+
+export const getScreensByProcessor = (category, brand, processor) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[brand]=${brand}&filter[a-procesor-132]=${processor}`
+  );
+
+export const getScreensByGeneration = (category, gen) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}`
+  );
+
+export const getScreensByVideo = (category, video) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-model-placa-video-254]=${video}`
+  );
+
+export const getScreensFreq = (category, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getScreensByVideoFreq = (category, video, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getTypesByBrandScreen = (category, brand, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[brand]=${brand}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsScreen = (category, sreen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByTypeScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getFreqsScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByProcessorScreen = (category, processor, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-procesor-132]=${processor}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByGenerationScreen = (category, gen, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-generatie-procesor-277]=${gen}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByVideoScreen = (category, video, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByVideoScreen = (category, video, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByVideoScreen = (category, video, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-model-placa-video-254]=${video}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getTypesByFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/quality/qualities?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getHighestPriceByFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/price/price?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getBrandsByFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getProcessorsByFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getVideosByFreqScreen = (category, freq, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}&filter[a-diagonala-66]=${screen}`
+  );
+export const getScreenByFreq = (category, freq) =>
+  request.get(
+    `${baseUrl}/attributes/a-diagonala-66?filter[category]=${category}&filter[a-frecventa-procesor-61]=${freq}`
+  );
+
+export const getBrandsByScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/brand/brand?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+export const getGenerationsByScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-generatie-procesor-277?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+  export const getProcessorsByScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-procesor-132?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+
+  export const getVideosByScreen = (category, screen) =>
+  request.get(
+    `${baseUrl}/attributes/a-model-placa-video-254?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+  );
+  
+  
+  export const getFreqsByScreen = (
+    category,
+    screen
+  ) =>
+    request.get(
+      `${baseUrl}/attributes/a-frecventa-procesor-61?filter[category]=${category}&filter[a-diagonala-66]=${screen}`
+    );
+  

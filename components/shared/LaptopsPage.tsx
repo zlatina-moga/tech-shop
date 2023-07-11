@@ -47,6 +47,7 @@ interface ILaptopPage {
   reset?: any;
   formats?: any[];
   selectFormat?: any;
+  screenTitle?: boolean
 }
 
 const LaptopsPage: React.FC<ILaptopPage> = ({
@@ -80,7 +81,8 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
   selectFrequency,
   reset,
   formats,
-  selectFormat
+  selectFormat,
+  screenTitle
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -123,6 +125,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
           resetClicked={reset}
           formats={formats}
           selectFormat={selectFormat}
+          screenTitle={screenTitle}
         />
         <div style={{ width: "100%" }}>
           <div className="text-center mb-4">
