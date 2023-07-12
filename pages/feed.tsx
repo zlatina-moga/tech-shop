@@ -30,6 +30,8 @@ const Feed = () => {
       obj[0][17] = 'Price';
       obj[0][23] = 'Availability';
       obj[url][9] = obj[url][9].replace('citgrup', 'pcbun');
+      obj[url][23] = obj[url][23].replace('In Stoc', 'in_stock');
+      obj[url][23] = obj[url][23].replace('Stoc furnizor', 'limited_availability');
     }
     return obj;
 }

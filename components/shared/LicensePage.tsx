@@ -44,7 +44,8 @@ interface ILaptopPage {
   videoSelect?: any;
   reset?: any;
   formats?: any[];
-  selectFormat?: any
+  selectFormat?: any;
+  screenTitle?: any
 }
 
 const LicensePage: React.FC<ILaptopPage> = ({
@@ -76,7 +77,8 @@ const LicensePage: React.FC<ILaptopPage> = ({
   filteredData,
   reset,
   formats,
-  selectFormat
+  selectFormat,
+  screenTitle
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -119,6 +121,7 @@ const LicensePage: React.FC<ILaptopPage> = ({
           resetClicked={reset}
           formats={formats}
           selectFormat={selectFormat}
+          screenTitle={screenTitle}
         />
         <div style={{ width: "100%" }}>
           <div className="text-center mb-4">
