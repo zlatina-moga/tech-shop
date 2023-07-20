@@ -26,23 +26,18 @@ const cartSlice = createSlice({
       }
     },
     removeItem: (state, { payload }) => {
-      let newCart;
-      if (state.isSoftware) {
-        newCart = state.products.filter(
+      let newCart = state.products
+        .filter(
           (item) => "https://pcbun.ro" + item.itemData[0].id != payload.id
-        ).filter(
+        )
+        .filter(
           (item) => item.itemData[8] != payload.id.replace("pcbun", "citgrup")
         );
-      } else {
-        newCart = state.products.filter(
-          (item) => item.itemData[8] != payload.id.replace("pcbun", "citgrup")
-        );
-      }
 
       state.products = newCart;
       state.quantity -= 1;
       if (state.quantity < 0) {
-        state.quantity = 0
+        state.quantity = 0;
       }
       if (state.products.length == 0) {
         state.quantity = 0;
@@ -52,8 +47,8 @@ const cartSlice = createSlice({
         state.warranty -= payload.warranty;
         state.total -= payload.warranty;
         state.total -= payload.priceNum;
-        if(state.total < 0) {
-          state.total = 0
+        if (state.total < 0) {
+          state.total = 0;
         }
       }
     },

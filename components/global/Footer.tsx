@@ -185,28 +185,6 @@ const Footer = () => {
           </div>
         </div>
 
-        <div
-          className="row border-top border-light py-4"
-          style={{ maxWidth: "80rem", margin: "0 auto" }}
-        >
-          <div className="col-md-6 px-xl-0">
-            <p className="mb-md-0 text-center text-md-left text-dark">
-              &copy;{" "}
-              <a className="text-dark font-weight-semi-bold" href="#">
-                PC Bun{" "}
-              </a>
-              <a
-                className="text-dark font-weight-semi-bold"
-                href="https://www.linkedin.com/in/zlatina-moga-7094871a9/"
-                target="_blank"
-                rel="noreferrer"
-                style={{ textDecoration: "underline" }}
-              >
-                Website
-              </a>
-            </p>
-          </div>
-        </div>
         <button
           style={{
             borderRadius: "50%",

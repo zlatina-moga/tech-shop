@@ -104,14 +104,16 @@ const Checkout = () => {
       !checked
     ) {
       let cartItems = cart.products.map((p) => ({
-        productId:(p.itemData[0] ? p.itemData[0] : p.itemData[0].id),
+        productId: p.itemData[0].id ? p.itemData[0].id : p.itemData[0],
         quantity: p.quantity,
-        price: (p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum),
+        price: p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum,
         warranty: p.warranty,
-        title: (p.itemData[3] ? p.itemData[3] : p.itemData[0].title),
-        img1: (p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1),
-        imgLink: (p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1),
-        idLink: (p.itemData[8] ? p.itemData[8].replace("citgrup", "pcbun") : "https://pcbun.ro" + p.itemData[0].id),
+        title: p.itemData[3] ? p.itemData[3] : p.itemData[0].title,
+        img1: p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1,
+        imgLink: p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1,
+        idLink: p.itemData[8]
+          ? p.itemData[8].replace("citgrup", "pcbun")
+          : "https://pcbun.ro" + p.itemData[0].id,
       }));
 
       let gaItems = cartItems.map((p) => ({
@@ -163,7 +165,7 @@ const Checkout = () => {
                 currency: "RON",
                 transaction_id: orderNum,
                 value: orderTotal,
-                items: gaItems
+                items: gaItems,
               },
             });
           })
@@ -229,7 +231,7 @@ const Checkout = () => {
                 currency: "RON",
                 transaction_id: orderNum,
                 value: orderTotal,
-                items: gaItems
+                items: gaItems,
               },
             });
           })
@@ -250,14 +252,16 @@ const Checkout = () => {
       zip2
     ) {
       let cartItems = cart.products.map((p) => ({
-        productId:(p.itemData[0] ? p.itemData[0] : p.itemData[0].id),
+        productId: p.itemData[0].id ? p.itemData[0].id : p.itemData[0],
         quantity: p.quantity,
-        price: (p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum),
+        price: p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum,
         warranty: p.warranty,
-        title: (p.itemData[3] ? p.itemData[3] : p.itemData[0].title),
-        img1: (p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1),
-        imgLink: (p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1),
-        idLink: (p.itemData[8] ? p.itemData[8].replace("citgrup", "pcbun") : "https://pcbun.ro" + p.itemData[0].id),
+        title: p.itemData[3] ? p.itemData[3] : p.itemData[0].title,
+        img1: p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1,
+        imgLink: p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1,
+        idLink: p.itemData[8]
+          ? p.itemData[8].replace("citgrup", "pcbun")
+          : "https://pcbun.ro" + p.itemData[0].id,
       }));
 
       let gaItems = cartItems.map((p) => ({
@@ -309,7 +313,7 @@ const Checkout = () => {
                 currency: "RON",
                 transaction_id: orderNum,
                 value: orderTotal,
-                items: gaItems
+                items: gaItems,
               },
             });
           })
@@ -361,7 +365,7 @@ const Checkout = () => {
                 currency: "RON",
                 transaction_id: orderNum,
                 value: orderTotal,
-                items: gaItems
+                items: gaItems,
               },
             });
           })
@@ -878,8 +882,15 @@ const Checkout = () => {
                       className="d-flex justify-content-between"
                       key={p.itemData[0]}
                     >
-                      <p className="mw-50 mr-5">{p.itemData[3] ? p.itemData[3] : p.itemData[0].title}</p>
-                      <p>{ p.itemData[35] ? p.itemData[35] : p.itemData[0].priceNum} Lei</p>
+                      <p className="mw-50 mr-5">
+                        {p.itemData[3] ? p.itemData[3] : p.itemData[0].title}
+                      </p>
+                      <p>
+                        {p.itemData[35]
+                          ? p.itemData[35]
+                          : p.itemData[0].priceNum}{" "}
+                        Lei
+                      </p>
                     </div>
                   ))}
 
@@ -933,39 +944,74 @@ const Checkout = () => {
                 </div>
                 <div className="card-body">
                   <div className="form-group">
-                    <div className="custom-control custom-radio">
-                      <input
-                        type="radio"
-                        className="custom-control-input"
-                        name="payment"
-                        id="delivery"
-                        //defaultChecked
-                        onChange={() => setPayment("delivery")}
-                      />
-                      <label
-                        className="custom-control-label"
-                        htmlFor="delivery"
-                      >
-                        Plata ramburs
-                      </label>
-                    </div>
+                    {cart.isSoftware ? (
+                      <div className="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          className="custom-control-input"
+                          name="payment"
+                          id="delivery"
+                          disabled
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="delivery"
+                        >
+                          Plata ramburs
+                        </label>
+                      </div>
+                    ) : (
+                      <div className="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          className="custom-control-input"
+                          name="payment"
+                          id="delivery"
+                          onChange={() => setPayment("delivery")}
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="delivery"
+                        >
+                          Plata ramburs
+                        </label>
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
-                    <div className="custom-control custom-radio">
-                      <input
-                        type="radio"
-                        className="custom-control-input"
-                        name="payment"
-                        id="directcheck"
-                        onChange={() => setPayment("directcheck")}
-                      />
-                      <label
-                        className="custom-control-label"
-                        htmlFor="directcheck"
-                      >
-                        Ordin de plata
-                      </label>
-                    </div>
+                    {cart.isSoftware ? (
+                      <div className="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          className="custom-control-input"
+                          name="payment"
+                          id="directcheck"
+                          disabled
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="directcheck"
+                        >
+                          Ordin de plata
+                        </label>
+                      </div>
+                    ) : (
+                      <div className="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          className="custom-control-input"
+                          name="payment"
+                          id="directcheck"
+                          onChange={() => setPayment("directcheck")}
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="directcheck"
+                        >
+                          Ordin de plata
+                        </label>
+                      </div>
+                    )}
                   </div>
                   <div className="">
                     <div className="custom-control custom-radio">
@@ -976,7 +1022,6 @@ const Checkout = () => {
                         id="card"
                         onChange={() => setPayment("card")}
                         defaultChecked
-                        //disabled
                       />
                       <label className="custom-control-label" htmlFor="card">
                         Plata cu cardul online
