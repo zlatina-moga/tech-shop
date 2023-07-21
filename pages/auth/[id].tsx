@@ -15,7 +15,7 @@ const VerifiedEmail = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const url = `https://pc-bun-api.herokuapp.com/auth/${id}?token=${token}`;
+        const url = `https://pc-bun-api.onrender.com/auth/${id}?token=${token}`;
         const { data } = await axios.get(url);
         console.log('data: ', data)
         setValidUrl(true);
