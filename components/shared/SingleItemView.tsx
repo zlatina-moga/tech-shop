@@ -143,8 +143,7 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images, data }) => {
                       <p>Livrare gratuita la comanda de peste 250 lei</p>
                     </div>
                     <p className="mb-4 details">
-                      Produsele noastre arată foarte bine, fără zgârieturi
-                      vizibile (in cazul produselor Second hand sau Refurbished)
+                    Toate fotografiile produselor prezentate au caracter informativ, pot diferi fata de produsul vandut si pot arata accesorii ce nu sunt incluse in pachetul standard al produsului
                     </p>
                   </div>
                 ) : (

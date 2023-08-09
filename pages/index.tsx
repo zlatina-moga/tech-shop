@@ -22,7 +22,7 @@ export default function Home() {
                 >
                   <h1 className="fa fa-check text-primary m-0 mr-3"></h1>
                   <h6 className="font-weight-semi-bold m-0">
-                    Produse intr-o stare foarte buna
+                  Produse de calitate
                   </h6>
                 </div>
               </div>
