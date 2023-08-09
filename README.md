@@ -1,9 +1,7 @@
 # NextJS e-commerce platform 
-* Still in the works.
 To install all dependencies, open a terminal and run `npm install`.
 To execute it manually run `npm run dev` .
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-* Please make sure to run the API service first (https://github.com/zlatina-moga/tech-shop-api) .
 
 ### Authentication
 User authentication is a 2-step process, which requires user registration and e-mail confirmation. 
