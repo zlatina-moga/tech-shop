@@ -18,7 +18,7 @@ const DataProcessing = () => {
           <h1 className="px-5">
             Politica de prelucrare a datelor cu caracter personal
           </h1>
-          <h2>Exclusive Key Licenses SRL</h2>
+          <h2>'firm name'</h2>
           <p>
             Conduita de bună credință și de calitate pe care compania Exclusive
             Key Licenses SRL o are și o promovează în relațiile contractuale și
@@ -29,7 +29,7 @@ const DataProcessing = () => {
           <p>
             Prin prezenta Politică ne propunem să vă informăm despre modul în
             care colectăm, utilizăm, transferăm și protejăm datele dumneavoastră
-            cu caracter personal în cadrul Exclusive Key Licenses SRL.
+            cu caracter personal în cadrul 'firm name'.
           </p>
         </div>
         <div className="text-start mb-1">
@@ -91,7 +91,7 @@ const DataProcessing = () => {
         <div className="text-start mb-1">
           <strong>2. Cine suntem noi</strong>
           <p>
-            Exclusive Key Licenses SRL, cu sediul în localitatea Sanpetru,
+            'firm name', cu sediul în localitatea Sanpetru,
             Brasov, Romania, identificată prin prin CUI: 46848581, în calitatea
             sa de operator, prelucrează datele cu caracter personal ale
             clienților, angajaților, reprezentanților partenerilor și altor
@@ -100,8 +100,8 @@ const DataProcessing = () => {
           </p>
           <p>
             Persoana cu atribuții în domeniul protecției datelor desemnată la
-            nivelul Exclusive Key Licenses SRL poate fi contactată la adresa de
-            e-mail salut@pcbun.ro
+            nivelul 'firm name' poate fi contactată la adresa de
+            e-mail email@email.com
           </p>
         </div>
         <div className="text-start mb-1">
@@ -144,7 +144,7 @@ const DataProcessing = () => {
           <p>
             În contextul derulării activității comerciale, pentru confirmarea şi
             procesarea comenzilor (accesare comandă, confirmare, facturare,
-            livrare), Exclusive Key Licenses SRL, colectează următoarele tipuri
+            livrare), 'firm name', colectează următoarele tipuri
             de date cu caracter personal: nume, prenume, adresă de
             facturare/livrare, e-mail, număr de telefon. Aceste date sunt
             partajate cu companiile de curierat: ex DPD Courier, Dragon Star Curier.
@@ -226,14 +226,13 @@ const DataProcessing = () => {
         <div className="text-start mb-1">
           <strong>8. Măsuri de protecție și garanții</strong>
           <p>
-            Exclusive Key Licenses SRL implementează măsuri tehnice și
+            'firm name' implementează măsuri tehnice și
             organizatorice adecvate în vederea asigurării unui nivel înalt de
             securitate și protecție a datelor cu caracter personal. Noi utilizăm
             metode şi tehnologii de securitate, împreună cu politici aplicate
             salariaţilor şi proceduri de lucru, inclusiv de control şi audit,
             pentru a proteja datele cu caracter personal colectate conform
-            prevederilor legale în vigoare. La nivelul Exclusive Key Licenses
-            SRL există proceduri de securitate care se aplică pe toată rețeaua
+            prevederilor legale în vigoare. La nivelul 'firm name' există proceduri de securitate care se aplică pe toată rețeaua
             și pentru toate tipurile de date.
           </p>
         </div>

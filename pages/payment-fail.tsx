@@ -37,10 +37,10 @@ const Fail = () => {
                 contactați <br />{" "}
                 <a
                   className="mb-2 footer-link font-weight-bold mt-2"
-                  href="tel:+40(721) 909 049"
+                  href="tel:+1234567890"
                 >
                   <i className="fa fa-phone-alt text-primary mt-2"></i>
-                  +40(721) 909 049
+                  +1234567890
                 </a>
               </p>
               <button className="btn btn-outline-primary rounded-1">

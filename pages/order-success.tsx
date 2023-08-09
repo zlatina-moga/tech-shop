@@ -34,14 +34,14 @@ const Success = () => {
                 </p>
                 <div className="border border-primary py-4 rounded">
                   <p>
-                    Nume titular: <strong>Popescu Vlad-Nicolae</strong>
+                    Nume titular: <strong>Representative</strong>
                   </p>
                   <p>
                     {" "}
-                    IBAN: <strong>RO70BTRLRONCRT0659572401</strong>{" "}
+                    IBAN: <strong>number</strong>{" "}
                   </p>
                   <p>
-                    SWIFT: <strong>BTRLRO22</strong>
+                    SWIFT: <strong>swift</strong>
                   </p>
                   <p>
                     Vă rugăm să indicați numărul comenzii ca bază de plată{" "}
@@ -56,7 +56,7 @@ const Success = () => {
                   Dacă aveți întrebări, nu ezitați să ne sunați <br />{" "}
                   <a className="mb-2 footer-link font-weight-bold ml-2">
                     <i className="fa fa-phone-alt text-primary mr-2"></i>
-                    +40(721) 909 049
+                    +1234567890
                   </a>
                 </p>
                 <button className="btn btn-outline-primary rounded-1">

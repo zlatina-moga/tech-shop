@@ -28,10 +28,10 @@ const cartSlice = createSlice({
     removeItem: (state, { payload }) => {
       let newCart = state.products
         .filter(
-          (item) => "https://pcbun.ro" + item.itemData[0].id != payload.id
+          (item) => "https://fancy-selkie-5f6e47.netlify.app" + item.itemData[0].id != payload.id
         )
         .filter(
-          (item) => item.itemData[8] != payload.id.replace("pcbun", "citgrup")
+          (item) => item.itemData[8] != payload.id.replace("fancy-selkie-5f6e47.netlify.app", "citgrup")
         );
 
       state.products = newCart;
@@ -54,7 +54,7 @@ const cartSlice = createSlice({
     },
     increase: (state, { payload }) => {
       const cartItem = state.products.find(
-        (item) => item.itemData[8] === payload.id.replace("pcbun", "citgrup")
+        (item) => item.itemData[8] === payload.id.replace("citgrup.ro", "fancy-selkie-5f6e47.netlify.app")
       );
       cartItem.quantity += 1;
       state.quantity += 1;
@@ -62,7 +62,7 @@ const cartSlice = createSlice({
     },
     decrease: (state, { payload }) => {
       const cartItem = state.products.find(
-        (item) => item.itemData[8] === payload.id.replace("pcbun", "citgrup")
+        (item) => item.itemData[8] === payload.id.replace("citgrup.ro", "fancy-selkie-5f6e47.netlify.app")
       );
       cartItem.quantity -= 1;
       state.quantity -= 1;

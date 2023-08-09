@@ -1,10 +1,10 @@
 export const accessoryBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Accesorii", link: "/accesorii" },
 ];
 
 export const accessoryBrandBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -14,7 +14,7 @@ export const accessoryBrandBreadCrmbs = [
 ];
 
 export const cablesBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -24,7 +24,7 @@ export const cablesBreadCrmbs = [
 ];
 
 export const camerasBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -34,7 +34,7 @@ export const camerasBreadCrmbs = [
 ];
 
 export const headphonesBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -44,7 +44,7 @@ export const headphonesBreadCrmbs = [
 ];
 
 export const dockingBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -54,7 +54,7 @@ export const dockingBreadCrmbs = [
 ];
 
 export const gamingBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -64,7 +64,7 @@ export const gamingBreadCrmbs = [
 ];
 
 export const bagsBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -74,7 +74,7 @@ export const bagsBreadCrmbs = [
 ];
 
 export const mouseBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -84,7 +84,7 @@ export const mouseBreadCrmbs = [
 ];
 
 export const diverseBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -94,7 +94,7 @@ export const diverseBreadCrmbs = [
 ];
 
 export const keyboardBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -104,7 +104,7 @@ export const keyboardBreadCrmbs = [
 ];
 
 export const videoBreadCrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Accesorii",
     link: "/accesorii",
@@ -114,12 +114,12 @@ export const videoBreadCrmbs = [
 ];
 
 export const computersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Calculatoare", link: "/calculatoare" },
 ];
 
 export const newComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -129,7 +129,7 @@ export const newComputersBrcrmbs = [
 ];
 
 export const newGenerationComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -144,7 +144,7 @@ export const newGenerationComputersBrcrmbs = [
 ];
 
 export const newGenerationLaptopsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -159,7 +159,7 @@ export const newGenerationLaptopsBrcrmbs = [
 ];
 
 export const refGenerationLaptopsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -174,7 +174,7 @@ export const refGenerationLaptopsBrcrmbs = [
 ];
 
 export const refGenerationWorkstationBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Workstation",
     link: "/workstation",
@@ -189,7 +189,7 @@ export const refGenerationWorkstationBrcrmbs = [
 ];
 
 export const sHGenerationLaptopsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -205,7 +205,7 @@ export const sHGenerationLaptopsBrcrmbs = [
 
 
 export const refGenerationComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -220,7 +220,7 @@ export const refGenerationComputersBrcrmbs = [
 ];
 
 export const secondHandGenerationComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -235,7 +235,7 @@ export const secondHandGenerationComputersBrcrmbs = [
 ];
 
 export const secondHandComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -245,7 +245,7 @@ export const secondHandComputersBrcrmbs = [
 ];
 
 export const refComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -255,7 +255,7 @@ export const refComputersBrcrmbs = [
 ];
 
 export const brandComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -265,7 +265,7 @@ export const brandComputersBrcrmbs = [
 ];
 
 export const generationComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -275,7 +275,7 @@ export const generationComputersBrcrmbs = [
 ];
 
 export const generationLaptosBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -285,7 +285,7 @@ export const generationLaptosBrcrmbs = [
 ];
 
 export const generationWorkstationBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Workstation",
     link: "/workstation",
@@ -295,7 +295,7 @@ export const generationWorkstationBrcrmbs = [
 ];
 
 export const brandNewComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -310,7 +310,7 @@ export const brandNewComputersBrcrmbs = [
 ];
 
 export const brandNewLaptopsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -325,7 +325,7 @@ export const brandNewLaptopsBrcrmbs = [
 ];
 
 export const brandNewServersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Servere",
     link: "/servere",
@@ -340,7 +340,7 @@ export const brandNewServersBrcrmbs = [
 ];
 
 export const brandSHServersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Servere",
     link: "/servere",
@@ -355,7 +355,7 @@ export const brandSHServersBrcrmbs = [
 ];
 
 export const brandRefServersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Servere",
     link: "/servere",
@@ -370,7 +370,7 @@ export const brandRefServersBrcrmbs = [
 ];
 
 export const brandRefLaptopsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -385,7 +385,7 @@ export const brandRefLaptopsBrcrmbs = [
 ];
 
 export const brandRefWorkstationsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Workstation",
     link: "/workstation",
@@ -401,7 +401,7 @@ export const brandRefWorkstationsBrcrmbs = [
 
 
 export const brandSHLaptopsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -416,7 +416,7 @@ export const brandSHLaptopsBrcrmbs = [
 ];
 
 export const brandRefComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -431,7 +431,7 @@ export const brandRefComputersBrcrmbs = [
 ];
 
 export const brandSHComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -446,7 +446,7 @@ export const brandSHComputersBrcrmbs = [
 ];
 
 export const compSHComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -461,7 +461,7 @@ export const compSHComputersBrcrmbs = [
 ];
 
 export const compRefComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -476,7 +476,7 @@ export const compRefComputersBrcrmbs = [
 ];
 
 export const compNewComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -491,7 +491,7 @@ export const compNewComputersBrcrmbs = [
 ];
 
 export const compNewLaptopBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name:  "Laptopuri",
     link: "/laptop",
@@ -506,7 +506,7 @@ export const compNewLaptopBrcrmbs = [
 ];
 
 export const compNewServersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name:  "Servere",
     link: "/servere",
@@ -521,7 +521,7 @@ export const compNewServersBrcrmbs = [
 ];
 
 export const compRefServersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name:  "Servere",
     link: "/servere",
@@ -538,7 +538,7 @@ export const compRefServersBrcrmbs = [
 
 
 export const refLaptopsProcessorBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -553,7 +553,7 @@ export const refLaptopsProcessorBrcrmbs = [
 ];
 
 export const refWorkstationProcessorBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Workstation",
     link: "/workstation",
@@ -568,7 +568,7 @@ export const refWorkstationProcessorBrcrmbs = [
 ];
 
 export const sHLaptopsProcessorBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -583,7 +583,7 @@ export const sHLaptopsProcessorBrcrmbs = [
 ];
 
 export const procComputersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Calculatoare",
     link: "/calculatoare",
@@ -593,7 +593,7 @@ export const procComputersBrcrmbs = [
 ];
 
 export const procLaptopsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Laptopuri",
     link: "/laptop",
@@ -603,12 +603,12 @@ export const procLaptopsBrcrmbs = [
 ];
 
 export const componentBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Componente", link: "/componente" },
 ];
 
 export const componentBrandBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -618,7 +618,7 @@ export const componentBrandBrcrmbs = [
 ];
 
 export const chargerBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -628,7 +628,7 @@ export const chargerBrcrmbs = [
 ];
 
 export const bareboneBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -638,7 +638,7 @@ export const bareboneBrcrmbs = [
 ];
 
 export const batteriesBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -648,7 +648,7 @@ export const batteriesBrcrmbs = [
 ];
 
 export const caddyBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -658,7 +658,7 @@ export const caddyBrcrmbs = [
 ];
 
 export const carcasaBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -668,7 +668,7 @@ export const carcasaBrcrmbs = [
 ];
 
 export const controllerBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -678,7 +678,7 @@ export const controllerBrcrmbs = [
 ];
 
 export const coolerBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -688,7 +688,7 @@ export const coolerBrcrmbs = [
 ];
 
 export const hardDiskBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -698,7 +698,7 @@ export const hardDiskBrcrmbs = [
 ];
 
 export const mascaBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -708,7 +708,7 @@ export const mascaBrcrmbs = [
 ];
 
 export const ramBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -718,7 +718,7 @@ export const ramBrcrmbs = [
 ];
 
 export const palmrestBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -728,7 +728,7 @@ export const palmrestBrcrmbs = [
 ];
 
 export const mbBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -741,7 +741,7 @@ export const mbBrcrmbs = [
 ];
 
 export const reteaBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -754,7 +754,7 @@ export const reteaBrcrmbs = [
 ];
 
 export const videoCardBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -767,7 +767,7 @@ export const videoCardBrcrmbs = [
 ];
 
 export const processorBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -780,7 +780,7 @@ export const processorBrcrmbs = [
 ];
 
 export const railkitBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -793,7 +793,7 @@ export const railkitBrcrmbs = [
 ];
 
 export const laptopKeyboardBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Componente",
     link: "/componente",
@@ -806,12 +806,12 @@ export const laptopKeyboardBrcrmbs = [
 ];
 
 export const printerBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Imprimante", link: "/imprimante" },
 ];
 
 export const printerBrandBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Imprimante",
     link: "/imprimante",
@@ -821,7 +821,7 @@ export const printerBrandBrcrmbs = [
 ];
 
 export const printerConsumablesBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Imprimante",
     link: "/imprimante",
@@ -831,7 +831,7 @@ export const printerConsumablesBrcrmbs = [
 ];
 
 export const printerNewBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Imprimante",
     link: "/imprimante",
@@ -841,7 +841,7 @@ export const printerNewBrcrmbs = [
 ];
 
 export const printerSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Imprimante",
     link: "/imprimante",
@@ -851,7 +851,7 @@ export const printerSHBrcrmbs = [
 ];
 
 export const printerRefBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Imprimante",
     link: "/imprimante",
@@ -861,47 +861,47 @@ export const printerRefBrcrmbs = [
 ];
 
 export const laptopBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop" },
 ];
 
 export const laptopBrandBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
   { name: "Brand", link: "#" },
 ];
 
 export const laptopRefurbishedBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
   { name: "Refurbished",  link: "#"  },
 ];
 
 export const laptopNewdBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
   { name: "Noi",  link: "#"  },
 ];
 
 export const laptopSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
   { name: "Second Hand",  link: "#"  },
 ];
 
 export const laptopProcesorBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Laptopuri", link: "/laptop", linkIcon: "fa fa-angle-double-right" },
   { name: "Procesor", link: "#" },
 ];
 
 export const monitorBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Monitoare", link: "/monitoare" },
 ];
 
 export const monitorBrandBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Monitoare",
     link: "/monitoare",
@@ -911,7 +911,7 @@ export const monitorBrandBrcrmbs = [
 ];
 
 export const monitorNewBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Monitoare",
     link: "/monitoare",
@@ -921,7 +921,7 @@ export const monitorNewBrcrmbs = [
 ];
 
 export const monitorRefBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Monitoare",
     link: "/monitoare",
@@ -931,7 +931,7 @@ export const monitorRefBrcrmbs = [
 ];
 
 export const monitorSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Monitoare",
     link: "/monitoare",
@@ -941,7 +941,7 @@ export const monitorSHBrcrmbs = [
 ];
 
 export const monitorTouchSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Monitoare",
     link: "/monitoare",
@@ -954,7 +954,7 @@ export const monitorTouchSHBrcrmbs = [
 ];
 
 export const monitorTouchScreenSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Monitoare",
     link: "/monitoare",
@@ -964,7 +964,7 @@ export const monitorTouchScreenSHBrcrmbs = [
 ];
 
 export const discountedItemsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -972,7 +972,7 @@ export const discountedItemsBrcrmbs = [
 ];
 
 export const discountedServersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -982,7 +982,7 @@ export const discountedServersBrcrmbs = [
 ];
 
 export const discountedWorkstationsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -992,7 +992,7 @@ export const discountedWorkstationsBrcrmbs = [
 ];
 
 export const discountedCompBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -1002,7 +1002,7 @@ export const discountedCompBrcrmbs = [
 ];
 
 export const discountedLaptopBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -1012,7 +1012,7 @@ export const discountedLaptopBrcrmbs = [
 ];
 
 export const discountedMonitorBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -1022,7 +1022,7 @@ export const discountedMonitorBrcrmbs = [
 ];
 
 export const discountedComponentsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -1032,7 +1032,7 @@ export const discountedComponentsBrcrmbs = [
 ];
 
 export const discountedPrinterBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -1042,7 +1042,7 @@ export const discountedPrinterBrcrmbs = [
 ];
 
 export const discountedPOSrBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -1052,7 +1052,7 @@ export const discountedPOSrBrcrmbs = [
 ];
 
 export const discountedUPSBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -1062,7 +1062,7 @@ export const discountedUPSBrcrmbs = [
 ];
 
 export const discountedAccBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Produse la reducere",
     link: "/produse-la-reducere",
@@ -1072,12 +1072,12 @@ export const discountedAccBrcrmbs = [
 ];
 
 export const networkBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Retelistica", link: "/retelistica" },
 ];
 
 export const networkBrandsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Retelistica",
     link: "/retelistica",
@@ -1087,7 +1087,7 @@ export const networkBrandsBrcrmbs = [
 ];
 
 export const accessPointskBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Retelistica",
     link: "/retelistica",
@@ -1097,7 +1097,7 @@ export const accessPointskBrcrmbs = [
 ];
 
 export const adaptorskBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Retelistica",
     link: "/retelistica",
@@ -1107,7 +1107,7 @@ export const adaptorskBrcrmbs = [
 ];
 
 export const networkCardsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Retelistica",
     link: "/retelistica",
@@ -1117,7 +1117,7 @@ export const networkCardsBrcrmbs = [
 ];
 
 export const routerBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Retelistica",
     link: "/retelistica",
@@ -1127,7 +1127,7 @@ export const routerBrcrmbs = [
 ];
 
 export const switchBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Retelistica",
     link: "/retelistica",
@@ -1137,36 +1137,36 @@ export const switchBrcrmbs = [
 ];
 
 export const serverBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere" },
 ];
 
 export const serverBrandBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
   { name: "Brand", link: "#" },
 ];
 
 export const serverProcBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
   { name: "Procesor", link: "#" },
 ];
 
 export const serverRefBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
   { name: "Refurbished ",  link: "#" },
 ];
 
 export const serverNewBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
   { name: "Noi ",  link: "#"  },
 ];
 
 export const serverRackBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Cabinet Rack Refurbished ",
@@ -1175,18 +1175,18 @@ export const serverRackBrcrmbs = [
 ];
 
 export const serverSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Servere", link: "/servere", linkIcon: "fa fa-angle-double-right" },
   { name: "Second Hand",  link: "#"  },
 ];
 
 export const posBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Sisteme POS", link: "/sisteme-pos" },
 ];
 
 export const posBrandsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme POS",
     link: "/sisteme-pos",
@@ -1196,7 +1196,7 @@ export const posBrandsBrcrmbs = [
 ];
 
 export const posProcBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme POS",
     link: "/sisteme-pos",
@@ -1206,7 +1206,7 @@ export const posProcBrcrmbs = [
 ];
 
 export const posReadersBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme POS",
     link: "/sisteme-pos",
@@ -1216,7 +1216,7 @@ export const posReadersBrcrmbs = [
 ];
 
 export const posPrinterBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme POS",
     link: "/sisteme-pos",
@@ -1229,7 +1229,7 @@ export const posPrinterBrcrmbs = [
 ];
 
 export const posNewBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme POS",
     link: "/sisteme-pos",
@@ -1239,7 +1239,7 @@ export const posNewBrcrmbs = [
 ];
 
 export const posRefBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme POS",
     link: "/sisteme-pos",
@@ -1249,7 +1249,7 @@ export const posRefBrcrmbs = [
 ];
 
 export const posSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme POS",
     link: "/sisteme-pos",
@@ -1259,12 +1259,12 @@ export const posSHBrcrmbs = [
 ];
 
 export const solarBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Sisteme Solare Fotovoltaice", link: "/sisteme-solare-fotovoltaice" },
 ];
 
 export const solarBrandsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme Solare Fotovoltaice",
     link: "/sisteme-solare-fotovoltaice",
@@ -1274,7 +1274,7 @@ export const solarBrandsBrcrmbs = [
 ];
 
 export const solarInvertorsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme Solare Fotovoltaice",
     link: "/sisteme-solare-fotovoltaice",
@@ -1287,7 +1287,7 @@ export const solarInvertorsBrcrmbs = [
 ];
 
 export const solarSystemBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme Solare Fotovoltaice",
     link: "/sisteme-solare-fotovoltaice",
@@ -1300,7 +1300,7 @@ export const solarSystemBrcrmbs = [
 ];
 
 export const solarpanelsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Sisteme Solare Fotovoltaice",
     link: "/sisteme-solare-fotovoltaice",
@@ -1313,41 +1313,41 @@ export const solarpanelsBrcrmbs = [
 ];
 
 export const upsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups" },
 ];
 
 export const upsBrandsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
   { name: "Brand", link: "#" },
 ];
 
 export const upsNewBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
   { name: "Noi",  link: "#"  },
 ];
 
 export const upsRefBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
   { name: "Refurbished",  link: "#"  },
 ];
 
 export const upsSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "UPS", link: "/ups", linkIcon: "fa fa-angle-double-right" },
   { name: "Second Hand",  link: "#"  },
 ];
 
 export const workstationBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Workstation", link: "/workstation" },
 ];
 
 export const workstationBrandBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Workstation",
     link: "/workstation",
@@ -1357,7 +1357,7 @@ export const workstationBrandBrcrmbs = [
 ];
 
 export const workstationProcBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Workstation",
     link: "/workstation",
@@ -1367,7 +1367,7 @@ export const workstationProcBrcrmbs = [
 ];
 
 export const workstationRefBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Workstation",
     link: "/workstation",
@@ -1377,7 +1377,7 @@ export const workstationRefBrcrmbs = [
 ];
 
 export const workstationSHBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Workstation",
     link: "/workstation",
@@ -1387,12 +1387,12 @@ export const workstationSHBrcrmbs = [
 ];
 
 export const softwareBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   { name: "Software", link: "/licenta-software" },
 ];
 
 export const windowsBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Software",
     link: "/licenta-software",
@@ -1402,7 +1402,7 @@ export const windowsBrcrmbs = [
 ];
 
 export const officeBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Software",
     link: "/licenta-software",
@@ -1412,7 +1412,7 @@ export const officeBrcrmbs = [
 ];
 
 export const visioBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Software",
     link: "/licenta-software",
@@ -1422,7 +1422,7 @@ export const visioBrcrmbs = [
 ];
 
 export const projectBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Software",
     link: "/licenta-software",
@@ -1432,7 +1432,7 @@ export const projectBrcrmbs = [
 ];
 
 export const adobeBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Software",
     link: "/licenta-software",
@@ -1442,7 +1442,7 @@ export const adobeBrcrmbs = [
 ];
 
 export const antivurusBrcrmbs = [
-  { name: "PC Bun", link: "/", linkIcon: "fa fa-angle-double-right" },
+  { name: "Home", link: "/", linkIcon: "fa fa-angle-double-right" },
   {
     name: "Software",
     link: "/licenta-software",

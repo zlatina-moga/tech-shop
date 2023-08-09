@@ -22,7 +22,7 @@ const Meta = ({ keywords, description, title }: MetaProps) => {
 Meta.defaultProps = {
   keywords: "",
   description: "",
-  title: "PC Bun",
+  title: "",
 };
 
 export default Meta;

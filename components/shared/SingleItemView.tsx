@@ -241,12 +241,12 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images, data }) => {
                       <div className="contact">
                         <span>Comanda telefonica:</span>
                         <div>
-                          <b>Popescu Vlad</b>
+                          <b>Representative</b>
                           <p>
-                            <b>Email: </b>salut@pcbun.ro
+                            <b>Email: </b>email@email.com
                           </p>
                           <p>
-                            <b>Telefon: </b>+40 (721) 909 049
+                            <b>Telefon: </b>+1234567890
                           </p>
                           <p>
                             <b>ID Produs: </b>
@@ -264,12 +264,12 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images, data }) => {
                       <div className="contact">
                         <span>Comanda telefonica:</span>
                         <div>
-                          <b>Popescu Vlad</b>
+                          <b>Representative</b>
                           <p>
-                            <b>Email: </b>salut@pcbun.ro
+                            <b>Email: </b>email@email.com
                           </p>
                           <p>
-                            <b>Telefon: </b>+40 (721) 909 049
+                            <b>Telefon: </b>+1234567890
                           </p>
                         </div>
                       </div>
@@ -283,11 +283,7 @@ const SingleItemView = ({ itemData, breadcrumbs, techSpecs, images, data }) => {
               <h3 style={{ fontWeight: "600" }}>
                 Specificatii produs {itemData[28]} {itemData[6]}
               </h3>
-              <section
-                dangerouslySetInnerHTML={{
-                  __html: itemData[11].replaceAll("citgrup.ro", "pcbun.ro").replaceAll('https://api.pcbun.ro/img/badges/', 'https://api.citgrup.ro/img/badges/')
-                }}
-              ></section>
+              <section style={{maxWidth: '80rem'}} dangerouslySetInnerHTML={{__html: itemData[11]}}></section>
               <div
                 style={{
                   display: "flex",

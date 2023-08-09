@@ -112,8 +112,8 @@ const Checkout = () => {
         img1: p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1,
         imgLink: p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1,
         idLink: p.itemData[8]
-          ? p.itemData[8].replace("citgrup", "pcbun")
-          : "https://pcbun.ro" + p.itemData[0].id,
+          ? p.itemData[8].replace("citgrup", "fancy-selkie-5f6e47.netlify.app")
+          : "https://fancy-selkie-5f6e47.netlify.app" + p.itemData[0].id,
       }));
 
       let gaItems = cartItems.map((p) => ({
@@ -260,8 +260,8 @@ const Checkout = () => {
         img1: p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1,
         imgLink: p.itemData[16] ? p.itemData[16][0].src : p.itemData[0].img1,
         idLink: p.itemData[8]
-          ? p.itemData[8].replace("citgrup", "pcbun")
-          : "https://pcbun.ro" + p.itemData[0].id,
+          ? p.itemData[8].replace("citgrup", "fancy-selkie-5f6e47.netlify.app")
+          : "https://fancy-selkie-5f6e47.netlify.app" + p.itemData[0].id,
       }));
 
       let gaItems = cartItems.map((p) => ({

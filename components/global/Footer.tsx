@@ -21,7 +21,7 @@ const Footer = () => {
     const email = formData.get("cf-email");
 
     sendItemRequest(process.env.TEMPLATE_ID, {
-      message: `${name} just subscribed to PC Bun newsletter`,
+      message: `${name} just subscribed to newsletter`,
       email: email,
       from_name: name,
       reply_to: email,
@@ -54,7 +54,7 @@ const Footer = () => {
           <div className="col-lg-4 col-md-12 mb-5 pr-xl-5">
             <Link href="/">
               <Image
-                src="/images/logo-example.png"
+                src="/images/logo.png"
                 className="rounded-1"
                 alt="logo"
                 width={150}
@@ -62,19 +62,16 @@ const Footer = () => {
               />
             </Link>
             <p className="mb-2 mt-4">
-              <i className="fa fa-map-marker-alt text-primary mr-3"></i>Str.
-              Galaxiei nr.29, Sanpetru, Brașov
+              <i className="fa fa-map-marker-alt text-primary mr-3"></i>address
             </p>
             <p className="mb-2">
-              <i className="fa fa-envelope text-primary mr-3"></i>salut@pcbun.ro
+              <i className="fa fa-envelope text-primary mr-3"></i>email@email.com
             </p>
             <p className="mb-2">
-              <i className="fa fa-phone-alt text-primary mr-3"></i>+40 (721) 909
-              049
+              <i className="fa fa-phone-alt text-primary mr-3"></i>+1234567890
             </p>
-            <b className="mb-2">Exclusive Key Licenses SRL</b>
-            <p className="mb-2">CUI 46848581</p>
-            <p className="mb-2">RO70BTRLRONCRT0659572401</p>
+            <b className="mb-2">Firm name</b>
+            <p className="mb-2">Firm details</p>
             <Image
               className="img-fluid"
               src="/images/payu.gif"

@@ -101,7 +101,7 @@ const Navbar = () => {
             {isTablet ? (
               <img src="/images/pcbun_icon.png" alt="logo" />
             ) : (
-              <img src="/images/logo-example.png" alt="logo" />
+              <img src="/images/logo.png" alt="logo" />
             )}
           </Link>
         </div>

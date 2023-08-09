@@ -198,7 +198,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                       )}
                       style={{ alignItems: "stretch", height: "550px" }}
                     >
-                      <Link href={itemData[9].replace("citgrup", "pcbun")}>
+                      <Link href={itemData[9].replace("citgrup.ro", "fancy-selkie-5f6e47.netlify.app")}>
                         <div
                           className={classNames(
                             "card-header product-img position-relative overflow-hidden bg-transparent",
@@ -348,7 +348,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                       </div>
                       <div className="card-footer w-100 bg-light">
                         <Link
-                          href={itemData[9].replace("citgrup", "pcbun")}
+                          href={itemData[9].replace("citgrup.ro", "fancy-selkie-5f6e47.netlify.app")}
                           className="btn btn-primary add-to-cart"
                         >
                           Vezi detalii
@@ -370,7 +370,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                       )}
                       style={{ alignItems: "stretch", height: "550px" }}
                     >
-                      <Link href={itemData[9].replace("citgrup", "pcbun")}>
+                      <Link href={itemData[9].replace("citgrup.ro", "fancy-selkie-5f6e47.netlify.app")}>
                         <div
                           className={classNames(
                             "card-header product-img position-relative overflow-hidden bg-transparent",
@@ -520,7 +520,7 @@ const LaptopsPage: React.FC<ILaptopPage> = ({
                       </div>
                       <div className="card-footer w-100 bg-light">
                         <Link
-                          href={itemData[9].replace("citgrup", "pcbun")}
+                          href={itemData[9].replace("citgrup.ro", "fancy-selkie-5f6e47.netlify.app")}
                           className="btn btn-primary add-to-cart"
                         >
                           Vezi detalii

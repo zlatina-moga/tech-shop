@@ -51,14 +51,14 @@ const data: IData[] = [
     title: "Plata cu card online",
     description: [
       "Se poate efectua plata online cu cardul personal sau al firmei, in conditii de siguranta deplina. Cardurile acceptate la plata sunt cele emise sub siglele VISA (Classic si Electron) si MASTERCARD (inclusiv Maestro, daca au cod CVV2/CVC2)",
-      "Nu este perceput nici un comision suplimentar pentru tranzactii. Pentru asigurarea securitatii tranzactiilor, Exclusive Key Licenses SRL foloseste sistemul PayU payments. Pentru finalizarea corecta a tranzactiei, trebuie sa furnizezi codul cardului (toate cifrele din cele patru grupe de pe fata cardului, fara spatii), data de expirare si ultimele trei cifre de pe spatele cardului inscriptionate pe banda cu semnatura ta. Indiferent de valuta pe care o ai in cont, tranzactiile se fac in lei la cursul de schimb al bancii unde este emis cardul. Procesarea datelor de card se face in mod exclusiv pe serverele PayU payments, Exclusive Key Licenses SRL nu solicita si nu stocheaza nici un fel de detalii referitoare la card.",
+      "Nu este perceput nici un comision suplimentar pentru tranzactii. Pentru asigurarea securitatii tranzactiilor, <firm name> foloseste sistemul PayU payments. Pentru finalizarea corecta a tranzactiei, trebuie sa furnizezi codul cardului (toate cifrele din cele patru grupe de pe fata cardului, fara spatii), data de expirare si ultimele trei cifre de pe spatele cardului inscriptionate pe banda cu semnatura ta. Indiferent de valuta pe care o ai in cont, tranzactiile se fac in lei la cursul de schimb al bancii unde este emis cardul. Procesarea datelor de card se face in mod exclusiv pe serverele PayU payments, <firm name> nu solicita si nu stocheaza nici un fel de detalii referitoare la card.",
     ],
   },
   { description: ["Livrarea marfii se va face dupa confirmarea platii."] },
   {
     section: "Contact:",
-    title: "PC Bun",
-    description: ["tel: +40 (721) 909 049", "email: salut@pcbun.ro"],
+    title: "",
+    description: ["tel: +1234567890", "email: email@email.com"],
   },
   {
     title: "Unde livram",

@@ -258,7 +258,7 @@ const Sidebar = () => {
               <div>
                 <Image
                   className="img-fluid"
-                  src="/images/banner-11.jpg"
+                  src="/images/banner-1.jpeg"
                   alt=""
                   layout="fill"
                   objectFit="contain"

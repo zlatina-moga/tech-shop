@@ -44,11 +44,11 @@ const Transport = () => {
             24 de ore din momentul expedierii. Totusi, ca exceptie, in regiunile
             Moldova si Dobrogea coletul ajunge in maxim 48 de ore. <br />
             In cazul platilor prin virament bancar, livrarea decurge din
-            momentul confirmarii in contul PC Bun a platii contravalorii
+            momentul confirmarii in contul 'firm name' a platii contravalorii
             facturii proforme. <br />
             Pentru produsele care se intorc in service in perioada de garantie
             datorita unor probleme legate de transport, costul returnarii este
-            suportat de catre PC Bun.
+            suportat de catre 'firm name'.
           </p>
           <p>
             <strong>
@@ -71,11 +71,11 @@ const Transport = () => {
             <br />
             Companiile, persoanele fizice autorizate, intreprinderile
             individuale, in considerarea avantajelor dobandite in calitate de
-            clienti PC Bun (produse achizitionate in sistem discount, transport
+            clienti 'firm name' (produse achizitionate in sistem discount, transport
             gratuit, discounturi mari de 35%-60% fata de un produs nou, livrare
             rapida cu prioritate, super garantie), este posibila doar inlocuirea
             produselor care nu corespund cerintelor si care au fost returnate
-            catre PC Bun, insa nu este posibila si returnarea de catre PC Bun
+            catre 'firm name', insa nu este posibila si returnarea de catre 'firm name'
             a sumelor de bani platite de catre acestia. Termenul de returnare
             este de 60 de zile si decurge de la data facturii fiscale.
           </p>
@@ -86,7 +86,7 @@ const Transport = () => {
           </p>
           <p>
             O exceptie de la aceasta regula o reprezinta produsele care sunt
-            returnate din cauze legate de transport. Pentru acestea PC Bun ofera
+            returnate din cauze legate de transport. Pentru acestea 'firm name' ofera
             transport GRATUIT si inlocuirea produsului doar daca s-a completat
             un proces verbal cu agentul de la curier in momentul preluarii
             coletului sau daca s-a specificat pe awb la observatii faptul ca

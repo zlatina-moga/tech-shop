@@ -55,7 +55,7 @@ export default function Home() {
                 >
                   <h1 className="fa fa-phone-volume text-primary m-0 mr-3"></h1>
                   <h6 className="font-weight-semi-bold m-0">
-                    Relații Clienți <br /> +40(721) 909 049
+                    Relații Clienți <br /> +1234567890
                   </h6>
                 </div>
               </div>
@@ -75,10 +75,10 @@ export default function Home() {
                   </p>
                   <a
                     className="mb-2 footer-link font-weight-bold"
-                    href="tel:+40(721) 909 049"
+                    href="tel:+1234567890"
                   >
                     <i className="fa fa-phone-alt text-primary mr-2"></i>
-                    +40(721) 909 049
+                    +1234567890
                   </a>
                   <p className="mt-4" style={{ fontSize: "18px" }}>
                     Aducem ORICE echipament IT din lume!
